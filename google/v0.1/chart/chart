@@ -1,0 +1,158 @@
+args[0] = args[0] || {};
+
+jsClientApi({
+	name: "google.chart",
+	data: {
+		title: args[0].title || 'My custom chart',
+		datasource: args[0].datasource || [],
+		columns: args[0].columns || [],
+		data: args[0].data || [],
+		type: args[0].type || 'piechart',
+		width: args[0].width || 375,
+		height: args[0].height || 300,
+		bgcolor: args[0].bgcolor || 'transparent'
+	},
+	initialize: function(callback) {
+		$('body').append('<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAd3OUPPa2yWfuONwk_fJ0bhTHaM3KMPvuIPafOprTH7-W3OYIrRSWPxDOXslNmYDinoqNRDsv5AKabw&callback=' + callback + '"></script>');
+	},
+	loaded: function() {
+	},
+	create: function(jsapi) {
+		console.log("create gchart")
+		var t = this;
+	    google.load('visualization', '1.0', {
+	    	'packages':['corechart'],
+	    	'callback': function() { 
+	    		t.ready(jsapi) 
+	    	}
+	    });
+		return false;
+	},
+	ready: function(jsapi) {
+		console.log("ready gchart")
+		this.data.datasource = this.toArr(this.data.datasource)
+		if (this.data.datasource.length > 0) {
+		    console.log("start analyze datasource")
+            if (this.isEmpty(this.data.datasource[0])) {
+                return ;//error("The data source is empty");
+            }
+            console.log("datasource", this.data.datasource);
+            if (typeof this.data.datasource == 'string')
+            	this.data.datasource = JSON.parse(this.data.datasource);
+            for (key in this.data.datasource[0])
+            {
+            	var value = this.data.datasource[0][key];
+            	console.log(typeof value);
+                if (typeof value == 'number') {
+                    this.data.columns[key] = 'number';
+                }
+                else if (value instanceof Date) {
+                	this.data.columns[key] = 'date'
+                }
+                else if (typeof value == 'string') {
+                	console.log('IS STRING', value);
+                	if (value.match(/^[0-9]{2,4}-[0-1][0-9]-[0-3][0-9]$/))
+	                 	this.data.columns[key] = 'date';
+	                else
+	                    this.data.columns[key] = 'string';
+                }
+                else
+                	console.log('WARNING', value, typeof value);
+            }
+
+            this.data.data = this.data.datasource;
+        }
+	    console.log("columns ready")
+	    console.log(this.data.columns)
+		var datatable = new google.visualization.DataTable();
+	    for (var k in this.data.columns)
+	        datatable.addColumn(this.data.columns[k], k);
+
+	    console.log(this.data.columns)
+	    console.log(this.data.data);
+	    var x = this.datatoarr(this.data.data);
+	    console.log("afterdatatoarray", x);
+	    datatable.addRows(x);
+
+	    // Set chart options
+	    var options = {
+	        'title': this.data.title,
+	        'width': this.data.width,
+	        'height': this.data.height,
+	        'backgroundColor': {fill: this.data.bgcolor}
+	    };
+
+	    // Create chart
+	    var chart;
+	    if (this.data.type == 'piechart')
+	        chart = new google.visualization.PieChart(document.getElementById('chart_div' + this.data.pid));
+	    else if (this.data.type == 'areachart')
+	        chart = new google.visualization.AreaChart(document.getElementById('chart_div' + this.data.pid));
+	    else if (this.data.type == 'barchart')
+	        chart = new google.visualization.BarChart(document.getElementById('chart_div' + this.data.pid));
+	    else if (this.data.type == 'linechart')
+	        chart = new google.visualization.LineChart(document.getElementById('chart_div' + this.data.pid));
+	    
+	    console.log('initialize google.vizualization.chart');
+	    chart.draw(datatable, options);
+	    this.chart = {chart: chart, datatable: datatable, options: options}
+
+		jsapi.ready();
+	},
+	interface: {
+		resize: function(width, height) {
+            this.chart.options.width = width
+            this.chart.options.height = height
+            this.chart.chart.draw(this.chart.datatable, this.chart.options)
+            return this.chart;
+        },
+	},
+	datatoarr: function(data) {
+		var res = [];
+
+		console.log('in datatoarr', data, typeof data);
+		if (typeof data == 'string')
+			data = JSON.parse(data)
+        for (var i = 0; i < data.length; i++)
+        {
+            var arr = [];
+            for (var c in data[i])
+            {
+                if (c == 'date')
+                {
+                    var t = data[i][c].split('-');
+                    arr[arr.length] = new Date(t[0], t[1] - 1, t[2]); 
+                }
+                else
+                {
+                    if (arr.length > 0)
+                        arr[arr.length] = parseInt(data[i][c]);
+                    else
+                        arr[arr.length] = data[i][c];
+                }
+            }
+            res[res.length] = arr;
+        }
+//                console.log(res);
+        return res;		
+	},
+	isEmpty: function(obj) {
+		if (obj.length > 0)
+			return false;
+		for (i in obj)
+			return false
+		return true
+	},
+	toArr: function(obj)
+	{
+		if (typeof obj != "object")
+			return obj;
+		var res = [];
+		for (key in obj) {
+			res[key] = this.toArr(obj[key])
+		}
+		return res;
+	}
+}, {
+	view: '<div id="chart_div<%= data.pid %>" style="width: <%= data.width %>px; height: <%= data.height %>px;"></div>'
+})

@@ -1,0 +1,3 @@
+Klout allows you to track the impact of your opinions, links and recommendations across your social graph, including Twitter, Facebook, Google Plus and other networks. Klout collects data about the content you create, how people interact with that content and the size and composition of your network. From there, it analyzes the data to find indicators of influence and then provide you with innovative tools to interact with and interpret the data.
+
+The Klout API can be searched by identity and returns a score between 1 and 100 that represents Klout's calculation of that user's influence.

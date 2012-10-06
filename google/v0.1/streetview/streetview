@@ -1,0 +1,23 @@
+var params = args[0] || {}
+var sensor = params.sensor || false;
+var location = params.location
+    || params.latitude + "," + params.longitude;
+var url = "http://maps.googleapis.com/maps/api/streetview?size=";
+
+if (params.width && params.height)
+    url += params.width + "x" + param.height;
+else
+    url += "400x400";
+if (location)
+    url += "&location=" + location;
+if (params.fov)
+    url += "&fov=" + params.fov;
+if (params.heading)
+    url += "&heading=" + params.heading;
+if (params.pitch)
+    url += "&pitch=" + params.pitch;
+
+url += "&sensor=" + sensor;
+url += "&key=AIzaSyBMPZ3mllAMlHw_3u6Hh2TJYoSXi57S0gA";
+echo(url);
+render({imgurl : url}, { view: '<img src="<%= data.imgurl %>" />' })

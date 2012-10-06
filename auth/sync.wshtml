@@ -1,0 +1,133 @@
+<script type="text/javascript">
+
+var __sync_callback;
+function syncSetCallback(callback) {
+    if (__sync_callback) {
+        if (window.addEventListener)
+            window.removeEventListener("message", __sync_handler, false);
+        else if (window.attachEvent)
+            window.detachEvent("onmessage", __sync_handler);
+        else if (document.detachEvent)
+            document.detachEvent("onmessage", __sync_handler);
+    }
+    __sync_callback = callback
+    if (window.attachEvent)
+        window.attachEvent("onmessage", __sync_handler);
+    else if (document.attachEvent)
+        document.attachEvent("onmessage", __sync_handler);
+    else if (window.addEventListener)
+        window.addEventListener("message", __sync_handler, false);
+}
+
+function __sync_handler(e)
+{
+    try
+    {
+        $(".wsh_oauth-wnd").modal('hide');
+        var data = eval('(' + e.data + ')');
+        <% if (data.success) { %>wsh.exec({code: "<%= data.success %>"});<% } %>
+        if (__sync_callback)
+            __sync_callback(data);
+    }
+    catch(e)
+    {
+    }
+}
+if (!__sync_callback)
+    syncSetCallback(function(data) {});
+
+$.fn.popupWindow = function(instanceSettings){
+    return this.each(function(){
+        $.fn.popupWindow.defaultSettings = {
+            height:450, // sets the height in pixels of the window.
+            left:0, // left position when the window appears.
+            location:0, // determines whether the address bar is displayed {1 (YES) or 0 (NO)}.
+            menubar:0, // determines whether the menu bar is displayed {1 (YES) or 0 (NO)}.
+            sresizable:0, // whether the window can be resized {1 (YES) or 0 (NO)}. Can also be overloaded using resizable.
+            scrollbars:0, // determines whether scrollbars appear on the window {1 (YES) or 0 (NO)}.
+            status:0, // whether a status line appears at the bottom of the window {1 (YES) or 0 (NO)}.
+            width:600, // sets the width in pixels of the window.
+            windowName:null, // name of window set from the name attribute of the element that invokes the click
+            windowURL:null, // url used for the popup
+            top:0, // top position when the window appears.
+            toolbar:0 // determines whether a toolbar (includes the forward and back buttons)
+        };
+
+        settings = $.extend({}, $.fn.popupWindow.defaultSettings, instanceSettings || {});
+
+        settings.windowName = this.name || settings.windowName;
+        settings.windowURL = this.href || settings.windowURL;
+
+        settings.height = 250;
+        settings.width = 600;
+        //var wnd_content = '<p>You can close this frame once you\'re signed into <%= data.provider %><br /><em>Please ensure your browser allows popups.</em><br /><button class="btn-close">Close</button></p>';
+
+        var windowFeatures =
+            'height=' + settings.height +
+            ',width=' + settings.width +
+            ',toolbar=' + settings.toolbar +
+            ',scrollbars=' + settings.scrollbars +
+            ',status=' + settings.status +
+            ',resizable=' + settings.resizable +
+            ',location=' + settings.location +
+            ',menuBar=' + settings.menubar;
+
+        var posY,posX;
+        if ($.browser.msie) {//hacked together for IE browsers
+            posX = window.screenLeft + (document.body.offsetWidth + 20 - settings.width) / 2;
+            posY = window.screenTop - 120 + (document.documentElement.clientHeight + 120 - settings.height) / 8;
+        }else{
+            posX = window.screenX + (window.outerWidth - settings.width) / 2;
+            posY = window.screenY + (window.outerHeight - settings.height) / 8;
+        }
+        if (posY > 80)
+            posY = 80;
+
+        windowFeatures +=
+            ',left=' + posX +
+            ',top=' + posY;
+        var wnd = window.open(settings.windowURL, settings.windowName, windowFeatures);
+        if (wnd)
+            wnd.focus();
+        return false;
+    });
+};
+
+function initialize() {
+    var ael = document.activeElement;
+    $('#wsh_oauth-wnd-<%= data.pid %>').modal('show').appendTo('body');
+    $('#wsh_oauth-wnd-<%= data.pid %> .close').click(function() {
+        __sync_callback({data:'{"provider":"<%= data.provider %>"}'})
+    })
+
+    var wnd = $(this).popupWindow({
+        windowName: 'Connecting',
+        windowURL: 'http://webshell.local<%= data.requestAuth %>'
+    });
+
+    /*
+    $("#wsh_oauth-wnd-<%= data.pid %> .title span").click(function() {
+        $('.wsh_oauth-wnd').remove();
+        $("#overlay").hide();
+    });
+*/
+}
+
+$(document).ready(function() {
+    initialize();
+});
+
+</script>
+
+<div id="wsh_oauth-wnd-<%= data.pid %>" class="wsh_oauth-wnd modal fade" style=" margin-top: -100px; z-index: 1800;">
+    <div class="modal-header">
+        <h2>Connecting to <%= data.provider %>...</h2>
+    </div>
+    <div class="modal-body">
+        <p>You can close this frame once you're signed into <%= data.provider %>.<br/><br/><em>Please ensure your browser allows popups.</em>
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="close btn btn-primary" data-dismiss="modal">Close</button>
+    </div>
+</div>

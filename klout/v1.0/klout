@@ -1,0 +1,60 @@
+ret({
+	score: function(params)
+	{
+		var users;
+		if (typeof params == "string")
+			users = params;
+		if (typeof params == "object")
+			users = params[0];
+
+		get({provider:'klout', url:'/klout.json', params:{"users":users}}).body
+	},
+	showuser: function(params)
+	{
+		var users;
+		if (typeof params == "string")
+			users = params;
+		if (typeof params == "object")
+			users = params[0];
+
+		var url = "http://api.klout.com/1/users/show.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+
+		return get(url).body;
+	},
+	topics: function(params)
+	{
+		var users;
+		if (typeof params == "string")
+			users = params;
+		if (typeof params == "object")
+			users = params[0];
+
+		var url = "http://api.klout.com/1/users/topics.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+
+		return get(url).body;
+	},
+	influencedby: function(params)
+	{
+		var users;
+		if (typeof params == "string")
+			users = params;
+		if (typeof params == "object")
+			users = params[0];
+
+		var url = "http://api.klout.com/1/soi/influenced_by.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+
+		return get(url).body;
+	},
+	influencerof: function(params)
+	{
+		var users;
+		if (typeof params == "string")
+			users = params;
+		if (typeof params == "object")
+			users = params[0];
+
+		var url = "http://api.klout.com/1/soi/influencer_of.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+
+		return get(url).body;
+	}
+})
