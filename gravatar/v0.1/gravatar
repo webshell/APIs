@@ -1,32 +1,22 @@
-ret(function(args, opts) {
-	opts = opts || {};
+var mail;
+var size = 80;
+var def = false;
 
-	var mail;
-    var size = 80;
-	var def = false;
-
-	if (typeof args == 'string') {
-        mail = args;
-	}
-	else if (typeof args == 'object') {
-		if (args.mail) {
-			mail = args.mail;
-			size = args.size || 80;
-            def = args['default'] || false;
-		}
-		else {
-            throw new Error('You have to give a mail as argument');
-		}
+if (typeof args == 'string') {
+   mail = args;
+}
+else if (typeof args == 'object') {
+	if (args.mail) {
+		mail = args.mail;
+		size = args.size || 80;
+		def = args['default'] || false;
 	}
 	else {
-		throw new Error('You have to give a mail as argument');
+	       throw new Error('You have to give a mail as argument');
 	}
+}
+else {
+	throw new Error('You have to give a mail as argument');
+}
 
-	render({
-		"hash": md5(mail.trim().toLowerCase()),
-		"size": size,
-		"default": def
-	}, {
-		view: opts.view || '<img src="http://www.gravatar.com/avatar/<%= data.hash %>?s=<%= data.size %>&d=<%= encodeURIComponent(data.default) %>" alt="gravatar" />'
-	});
-});
+render('http://www.gravatar.com/avatar/' + md5(mail.trim().toLowerCase()) + "?s=" + size + "&d=" + encodeURIComponent(def), {view: '<img src="<% data %>" alt="gravatar" />'});
