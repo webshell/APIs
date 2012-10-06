@@ -1,0 +1,23 @@
+ret({
+	'lookup': function(args, opts) {
+		var url = 'lookup/1/';
+		args = args || {}
+		if (args['uri'] == null) throw new Error('uri is a required parameter');
+		return http({provider:'spotify',url:url,method:'GET',params:args,out:'implicit'}, opts);
+	},
+	'search': function(args, opts, type) {
+		var url = 'search/1/' + type;
+		args = args || {};
+		if (args['q'] == null) throw new Error('q is a required parameter');
+		return http({provider:'spotify',url:url,method:'GET',params:args,out:'implicit'}, opts);
+	},
+	'searchAlbum' : function(args, opts) {
+		this.search(args, opts, 'album');
+	},
+	'searchArtist' : function(args, opts) {
+		this.search(args, opts, 'artist');
+	},
+	'searchTrack' : function(args, opts) {
+		this.search(args, opts, 'track');
+	}
+})

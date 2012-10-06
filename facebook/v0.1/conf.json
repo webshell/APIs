@@ -1,0 +1,40 @@
+{ 
+	"displayName":"Facebook",
+	"icon":"/images/fb-big.png",
+	"base_url":"https://graph.facebook.com/",
+	"default_auth":"oauth2",
+	"auth":{ 
+		"none":{}, 
+		"oauth2":{ 
+			"authorize":{ 
+				"url":"https://graph.facebook.com/oauth/authorize", 
+				"params":{ 
+					"client_id":"{client_id}", 
+					"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}", 
+					"scope":"{scope}" 
+				}
+			},
+			"access_token":{
+				"url":"https://graph.facebook.com/oauth/access_token",
+				"format":"url",
+				"params":{
+					"client_id":"{client_id}",
+					"client_secret":"{client_secret}",
+					"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}",
+					"code":"{_code}"
+				}
+			},
+			"request":{
+				"get":{
+					"oauth_token":"{_access_token}"
+				},
+				"format": "json"
+			}, 
+			"parameters":[ 
+				{ "name":"client_id", "type":"string" },
+				{ "name":"client_secret", "type":"string" },
+				{ "name":"scope", "type":"string" } 
+			]
+		}
+	} 
+}
