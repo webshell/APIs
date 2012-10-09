@@ -27,11 +27,17 @@ jsClientApi({
 		jsapi.ready();
 	},
 	interface: {
-		center: function(address) {
+		center: function(opts) {
 			var self = this;
             var geocoder = new google.maps.Geocoder();
+            if (typeof opts == 'string')
+				opts = {address:opts}
+			if (opts.lat !== undefined && opts.lng !== undefined)
+				opts.address = {lat:opts.lat, lng:opts.lng}
+            if (typeof opts.address == 'object' && opts.address.lat && opts.address.lng)
+				opts.address = opts.address.lat + ',' + opts.address.lng
             geocoder.geocode(
-            	{ 'address': address },
+            	{ 'address': opts.address },
             	function(results, status) {
 	                if (status == google.maps.GeocoderStatus.OK)
 						self.map.setCenter(results[0].geometry.location);
@@ -49,9 +55,14 @@ jsClientApi({
 		addMarker: function(opts) {
 			var self = this;
 			var geocoder = new google.maps.Geocoder();
+			if (typeof opts == 'string')
+				opts = {address:opts}
+			if (opts.lat !== undefined && opts.lng !== undefined)
+				opts.address = {lat:opts.lat, lng:opts.lng}
+			if (typeof opts.address == 'object' && opts.address.lat !== undefined && opts.address.lng !== undefined)
+				opts.address = opts.address.lat + ',' + opts.address.lng
 			geocoder.geocode({ 'address': opts.address }, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
-					var latlng = { lat: 0, lng: 0 }
 					var marker_options = {
 						map: self.map,
 						position: results[0].geometry.location,

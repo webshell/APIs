@@ -1,3 +1,42 @@
 {
-    name: "twitter"
+  "displayName":"Twitter",
+  "icon":"/images/api/explorer/twitter1.png",
+  "base_url":"https://api.twitter.com/1",
+  "default_auth":"oauth1",
+  "auth":{
+    "none":{},
+    "oauth1":{
+      "request_token":{
+        "url":"https://api.twitter.com/oauth/request_token",
+        "params":{
+          "oauth_consumer_key":"{client_id}",
+          "oauth_callback":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cid={_cid}"
+        }
+      },
+      "authorize":{
+        "url":"https://api.twitter.com/oauth/authenticate"
+      },
+      "access_token":{
+        "url":"https://api.twitter.com/oauth/access_token",
+        "params":{
+          "oauth_consumer_key":"{client_id}"
+        }
+      },
+      "request":{
+        "params":{
+          "oauth_consumer_key":"{client_id}"
+        }
+      },
+      "parameters":[
+        {
+          "name":"client_id",
+          "type":"string"
+        },
+        {
+          "name":"client_secret",
+          "type":"string"
+        }
+      ]
+    }
+  }
 }
