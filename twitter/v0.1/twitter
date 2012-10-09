@@ -1,0 +1,2677 @@
+({
+	auth:function(){auth({provider:'twitter'})},
+	'statusespublic_timeline': function(args, opts) {
+		var url = 'statuses/public_timeline.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statuseshome_timeline': function(args, opts) {
+		var url = 'statuses/home_timeline.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "5"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (args['skip_user'] == null) args['skip_user'] = "true"
+		var rgx = new RegExp('\{skip_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['skip_user'])
+			if (args['skip_user']) delete args['skip_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesuser_timeline': function(args, opts) {
+		var url = 'statuses/user_timeline.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['user_id'] == null) args['user_id'] = "10330576396"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['screen_name'] == null) args['screen_name'] = "apigee"
+		var rgx = new RegExp('\{screen_name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['screen_name'])
+			if (args['screen_name']) delete args['screen_name']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['skip_user'] == null) args['skip_user'] = "true"
+		var rgx = new RegExp('\{skip_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['skip_user'])
+			if (args['skip_user']) delete args['skip_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['include_rts'] == null) args['include_rts'] = "true"
+		var rgx = new RegExp('\{include_rts\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_rts'])
+			if (args['include_rts']) delete args['include_rts']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesmentions': function(args, opts) {
+		var url = 'statuses/mentions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['include_rts'] == null) args['include_rts'] = "true"
+		var rgx = new RegExp('\{include_rts\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_rts'])
+			if (args['include_rts']) delete args['include_rts']
+		}
+		if (args['skip_user'] == null) args['skip_user'] = "true"
+		var rgx = new RegExp('\{skip_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['skip_user'])
+			if (args['skip_user']) delete args['skip_user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesretweeted_by_me': function(args, opts) {
+		var url = 'statuses/retweeted_by_me.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesretweeted_to_me': function(args, opts) {
+		var url = 'statuses/retweeted_to_me.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesretweets_of_me': function(args, opts) {
+		var url = 'statuses/retweets_of_me.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesretweeted_by2': function(args, opts) {
+		var url = 'statuses/{id}/retweeted_by.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "12164581432"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesretweeted_by1': function(args, opts) {
+		var url = 'statuses/{id}/retweeted_by/ids.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "12164581432"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesshow': function(args, opts) {
+		var url = 'statuses/show/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "10279582992"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesupdate': function(args, opts) {
+		var url = 'statuses/update.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['status'] == null) args['status'] = "Posting from @apigee's API test console. It's like a command line for the Twitter API! "
+		var rgx = new RegExp('\{status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['status'])
+			if (args['status']) delete args['status']
+		}
+		if (args['place_id'] == null) args['place_id'] = "7695dd2ec2f86f2b"
+		var rgx = new RegExp('\{place_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['place_id'])
+			if (args['place_id']) delete args['place_id']
+		}
+		if (args['long'] == null) args['long'] = "-122.40060"
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (args['in_reply_to_status_id'] == null) args['in_reply_to_status_id'] = "11432445742"
+		var rgx = new RegExp('\{in_reply_to_status_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['in_reply_to_status_id'])
+			if (args['in_reply_to_status_id']) delete args['in_reply_to_status_id']
+		}
+		if (args['display_coordinates'] == null) args['display_coordinates'] = "false"
+		var rgx = new RegExp('\{display_coordinates\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['display_coordinates'])
+			if (args['display_coordinates']) delete args['display_coordinates']
+		}
+		if (args['lat'] == null) args['lat'] = "37.78215"
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['annotations'] == null) args['annotations'] = "[{'TYPE':{'ATTRIBUTE':'VALUE'}}]"
+		var rgx = new RegExp('\{annotations\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['annotations'])
+			if (args['annotations']) delete args['annotations']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'statusesdestroy': function(args, opts) {
+		var url = 'statuses/destroy/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "1472669360"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'statusesretweetid': function(args, opts) {
+		var url = 'statuses/retweet/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "10279582992"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'statusesretweets': function(args, opts) {
+		var url = 'statuses/retweets/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "11432445742"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['count'] == null) args['count'] = "100"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'usersshow': function(args, opts) {
+		var url = 'users/show.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userslookup': function(args, opts) {
+		var url = 'users/lookup.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userssearch': function(args, opts) {
+		var url = 'users/search.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['q'] == null) args['q'] = "Marsh Gardiner"
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (args['per_page'] == null) args['per_page'] = "20"
+		var rgx = new RegExp('\{per_page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['per_page'])
+			if (args['per_page']) delete args['per_page']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userssuggestions': function(args, opts) {
+		var url = 'users/suggestions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userssuggestionscategory': function(args, opts) {
+		var url = 'users/suggestions/{slug}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "twitter"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'usersprofile_image': function(args, opts) {
+		var url = 'users/profile_image/{screen_name}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['screen_name'] == null) args['screen_name'] = "apigee"
+		var rgx = new RegExp('\{screen_name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['screen_name'])
+			if (args['screen_name']) delete args['screen_name']
+		}
+		if (args['size'] == null) args['size'] = "bigger"
+		var rgx = new RegExp('\{size\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['size'])
+			if (args['size']) delete args['size']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'direct_messages': function(args, opts) {
+		var url = 'direct_messages.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'direct_messagessent': function(args, opts) {
+		var url = 'direct_messages/sent.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "200"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'direct_messagesnew': function(args, opts) {
+		var url = 'direct_messages/new.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['text'] == null) args['text'] = "Check it out... I'm sending this direct message from Apigee's test console for Twitter!"
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'direct_messagesdestroy': function(args, opts) {
+		var url = 'direct_messages/destroy/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "12345"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'friendshipscreate': function(args, opts) {
+		var url = 'friendships/create.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['follow'] == null) args['follow'] = "true"
+		var rgx = new RegExp('\{follow\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['follow'])
+			if (args['follow']) delete args['follow']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'friendshipsdestroy': function(args, opts) {
+		var url = 'friendships/destroy.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'friendshipsexists': function(args, opts) {
+		var url = 'friendships/exists.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['user_b'] == null) args['user_b'] = "apigee"
+		var rgx = new RegExp('\{user_b\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_b'])
+			if (args['user_b']) delete args['user_b']
+		}
+		if (args['user_a'] == null) args['user_a'] = "sonoa"
+		var rgx = new RegExp('\{user_a\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_a'])
+			if (args['user_a']) delete args['user_a']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'friendshipsshow': function(args, opts) {
+		var url = 'friendships/show.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'friendshipsexists.format': function(args, opts) {
+		var url = 'friendships/incoming.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'friendshipsoutgoing.format': function(args, opts) {
+		var url = 'friendships/outgoing.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'friendsids': function(args, opts) {
+		var url = 'friends/ids.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'followersids': function(args, opts) {
+		var url = 'followers/ids.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'accountverify_credentials': function(args, opts) {
+		var url = 'account/verify_credentials.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'accountrate_limit_status': function(args, opts) {
+		var url = 'account/rate_limit_status.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistscreate1': function(args, opts) {
+		var url = 'lists.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "12893764510938"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistsmemberships1': function(args, opts) {
+		var url = 'lists/memberships.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "12893764510938"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		if (args['filter_to_owned_lists'] == null) args['filter_to_owned_lists'] = "true"
+		var rgx = new RegExp('\{filter_to_owned_lists\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter_to_owned_lists'])
+			if (args['filter_to_owned_lists']) delete args['filter_to_owned_lists']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistssubscriptions1': function(args, opts) {
+		var url = 'lists/subscriptions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "12893764510938"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistsshow': function(args, opts) {
+		var url = 'lists/show.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "12893764510938"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userliststatuses': function(args, opts) {
+		var url = 'lists/statuses.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['list_id'] == null) args['list_id'] = "2031945"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['owner_screen_name'] == null) args['owner_screen_name'] = "twitterapi"
+		var rgx = new RegExp('\{owner_screen_name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['owner_screen_name'])
+			if (args['owner_screen_name']) delete args['owner_screen_name']
+		}
+		if (args['count'] == null) args['count'] = "5"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (args['trim_user'] == null) args['trim_user'] = "true"
+		var rgx = new RegExp('\{trim_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['trim_user'])
+			if (args['trim_user']) delete args['trim_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['include_rts'] == null) args['include_rts'] = "true"
+		var rgx = new RegExp('\{include_rts\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_rts'])
+			if (args['include_rts']) delete args['include_rts']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistscreate2': function(args, opts) {
+		var url = 'lists/create.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['list_name'] == null) args['list_name'] = "apigee"
+		var rgx = new RegExp('\{list_name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_name'])
+			if (args['list_name']) delete args['list_name']
+		}
+		if (args['mode'] == null) args['mode'] = "public"
+		var rgx = new RegExp('\{mode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mode'])
+			if (args['mode']) delete args['mode']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'userlistupdate': function(args, opts) {
+		var url = 'lists/update.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'userlistdestroy': function(args, opts) {
+		var url = 'lists/destroy.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'listmembers': function(args, opts) {
+		var url = 'lists/members.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'listmembersshow': function(args, opts) {
+		var url = 'lists/members/show.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'listmemberscreate': function(args, opts) {
+		var url = 'lists/members/create.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'listmemberscreateall': function(args, opts) {
+		var url = 'lists/members/create_all.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'listmembersdestroy': function(args, opts) {
+		var url = 'lists/members/destroy.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'listsubscribers': function(args, opts) {
+		var url = 'lists/subscribers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'listsubscribersshow': function(args, opts) {
+		var url = 'lists/subscribers/show.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'listsubscriberscreate': function(args, opts) {
+		var url = 'lists/subscribers/create.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'listsubscribersdestroy': function(args, opts) {
+		var url = 'lists/subscribers/destroy.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['slug'] == null) args['slug'] = "team"
+		var rgx = new RegExp('\{slug\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['slug'])
+			if (args['slug']) delete args['slug']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'accountupdate_profile_colors': function(args, opts) {
+		var url = 'account/update_profile_colors.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'accountupdate_profile_image': function(args, opts) {
+		var url = 'account/update_profile_image.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['image'] == null) throw new Error('image is a required parameter')
+		var rgx = new RegExp('\{image\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['image'])
+			if (args['image']) delete args['image']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'accountupdate_profile_background_image': function(args, opts) {
+		var url = 'account/update_profile_background_image.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['tile'] == null) args['tile'] = "false"
+		var rgx = new RegExp('\{tile\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tile'])
+			if (args['tile']) delete args['tile']
+		}
+		if (args['image'] == null) throw new Error('image is a required parameter')
+		var rgx = new RegExp('\{image\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['image'])
+			if (args['image']) delete args['image']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'accountupdate_profile': function(args, opts) {
+		var url = 'account/update_profile.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'favorites': function(args, opts) {
+		var url = 'favorites.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "apigee"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'favoritescreate': function(args, opts) {
+		var url = 'favorites/create/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "11432445742"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'favoritesdestroy': function(args, opts) {
+		var url = 'favorites/destroy/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "11432445742"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'notificationsfollow': function(args, opts) {
+		var url = 'notifications/follow.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'notificationsleave': function(args, opts) {
+		var url = 'notifications/leave.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'blockscreate': function(args, opts) {
+		var url = 'blocks/create.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'blocksdestroy': function(args, opts) {
+		var url = 'blocks/destroy.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'blocksexists': function(args, opts) {
+		var url = 'blocks/exists.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'blocksblocking': function(args, opts) {
+		var url = 'blocks/blocking.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'blocksblockingids': function(args, opts) {
+		var url = 'blocks/blocking/ids.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'report_spam': function(args, opts) {
+		var url = 'report_spam.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'saved_searches': function(args, opts) {
+		var url = 'saved_searches.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'saved_searchesshow': function(args, opts) {
+		var url = 'saved_searches/show/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "313006"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'saved_searchescreate': function(args, opts) {
+		var url = 'saved_searches/create.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['query'] == null) args['query'] = "from:apigee OR from:sonoa"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'saved_searchesdestroy': function(args, opts) {
+		var url = 'saved_searches/destroy/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "12345"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'trendsavailable': function(args, opts) {
+		var url = 'trends/available.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'trendswoeid': function(args, opts) {
+		var url = 'trends/{woeid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['woeid'] == null) args['woeid'] = "2487956"
+		var rgx = new RegExp('\{woeid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['woeid'])
+			if (args['woeid']) delete args['woeid']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'geonearby_places': function(args, opts) {
+		var url = 'geo/search.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{ip\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ip'])
+			if (args['ip']) delete args['ip']
+		}
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		var rgx = new RegExp('\{max_results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_results'])
+			if (args['max_results']) delete args['max_results']
+		}
+		var rgx = new RegExp('\{granularity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['granularity'])
+			if (args['granularity']) delete args['granularity']
+		}
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['accuracy'] == null) args['accuracy'] = "city"
+		var rgx = new RegExp('\{accuracy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accuracy'])
+			if (args['accuracy']) delete args['accuracy']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'geosimilar_places': function(args, opts) {
+		var url = 'geo/similar_places.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['name'] == null) throw new Error('name is a required parameter')
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		var rgx = new RegExp('\{attribute:street_address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['attribute:street_address'])
+			if (args['attribute:street_address']) delete args['attribute:street_address']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'georeverse_geocode': function(args, opts) {
+		var url = 'geo/reverse_geocode.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['lat'] == null) args['lat'] = "37.78215"
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['max_results'] == null) args['max_results'] = "20"
+		var rgx = new RegExp('\{max_results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_results'])
+			if (args['max_results']) delete args['max_results']
+		}
+		if (args['granularity'] == null) args['granularity'] = "city"
+		var rgx = new RegExp('\{granularity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['granularity'])
+			if (args['granularity']) delete args['granularity']
+		}
+		if (args['long'] == null) args['long'] = "-122.40060"
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (args['accuracy'] == null) args['accuracy'] = "500"
+		var rgx = new RegExp('\{accuracy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accuracy'])
+			if (args['accuracy']) delete args['accuracy']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'geoid': function(args, opts) {
+		var url = 'geo/id/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "7695dd2ec2f86f2b"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'geoplace': function(args, opts) {
+		var url = 'geo/place.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['name'] == null) args['name'] = "7695dd2ec2f86f2b"
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (args['lat'] == null) args['lat'] = "37.78215"
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['token'] == null) args['token'] = "36179c9bf78835898ebf521c1defd4be"
+		var rgx = new RegExp('\{token\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['token'])
+			if (args['token']) delete args['token']
+		}
+		if (args['contained_within'] == null) args['contained_within'] = "247f43d441defc03"
+		var rgx = new RegExp('\{contained_within\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contained_within'])
+			if (args['contained_within']) delete args['contained_within']
+		}
+		if (args['long'] == null) args['long'] = "-122.40060"
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		var rgx = new RegExp('\{attribute:street_address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['attribute:street_address'])
+			if (args['attribute:street_address']) delete args['attribute:street_address']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'helptest': function(args, opts) {
+		var url = 'help/test.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'legaltos': function(args, opts) {
+		var url = 'legal/tos.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'legalprivacy': function(args, opts) {
+		var url = 'legal/privacy.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'trends': function(args, opts) {
+		var url = 'trends.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'trendscurrent2': function(args, opts) {
+		var url = 'trends/current.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['exclude'] == null) args['exclude'] = "hashtags"
+		var rgx = new RegExp('\{exclude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['exclude'])
+			if (args['exclude']) delete args['exclude']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'trendscurrent1': function(args, opts) {
+		var url = 'trends/daily.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['exclude'] == null) args['exclude'] = "hashtags"
+		var rgx = new RegExp('\{exclude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['exclude'])
+			if (args['exclude']) delete args['exclude']
+		}
+		if (args['date'] == null) args['date'] = "2009-03-19"
+		var rgx = new RegExp('\{date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['date'])
+			if (args['date']) delete args['date']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'trendsweekly': function(args, opts) {
+		var url = 'trends/weekly.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['exclude'] == null) args['exclude'] = "hashtags"
+		var rgx = new RegExp('\{exclude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['exclude'])
+			if (args['exclude']) delete args['exclude']
+		}
+		if (args['date'] == null) args['date'] = "2009-03-19"
+		var rgx = new RegExp('\{date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['date'])
+			if (args['date']) delete args['date']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesfriends_timeline': function(args, opts) {
+		var url = 'statuses/friends_timeline.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['count'] == null) args['count'] = "5"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (args['skip_user'] == null) args['skip_user'] = "true"
+		var rgx = new RegExp('\{skip_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['skip_user'])
+			if (args['skip_user']) delete args['skip_user']
+		}
+		if (args['include_entities'] == null) args['include_entities'] = "true"
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		if (args['include_rts'] == null) args['include_rts'] = "true"
+		var rgx = new RegExp('\{include_rts\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_rts'])
+			if (args['include_rts']) delete args['include_rts']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistscreate': function(args, opts) {
+		var url = '{user}/lists.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['description'] == null) args['description'] = "They make APIs better."
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (args['name'] == null) args['name'] = "API"
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		if (args['mode'] == null) args['mode'] = "public"
+		var rgx = new RegExp('\{mode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mode'])
+			if (args['mode']) delete args['mode']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'userlistsindex': function(args, opts) {
+		var url = '{user}/lists.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistsidupdate': function(args, opts) {
+		var url = '{user}/lists/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['description'] == null) args['description'] = "They make APIs better."
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (args['name'] == null) args['name'] = "APIs"
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		if (args['id'] == null) args['id'] = "apigee"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['mode'] == null) args['mode'] = "public"
+		var rgx = new RegExp('\{mode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mode'])
+			if (args['mode']) delete args['mode']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'userlistsidshow': function(args, opts) {
+		var url = '{user}/lists/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "team"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistsiddestroy': function(args, opts) {
+		var url = '{user}/lists/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "team"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'userlistsstatuses': function(args, opts) {
+		var url = '{user}/lists/{list_id}/statuses.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['per_page'] == null) args['per_page'] = "200"
+		var rgx = new RegExp('\{per_page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['per_page'])
+			if (args['per_page']) delete args['per_page']
+		}
+		if (args['page'] == null) args['page'] = "2"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['max_id'] == null) args['max_id'] = "54321"
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (args['since_id'] == null) args['since_id'] = "12345"
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (args['id'] == null) args['id'] = "team"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistsmemberships': function(args, opts) {
+		var url = '{user}/lists/memberships.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'userlistssubscriptions': function(args, opts) {
+		var url = '{user}/lists/subscriptions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'getuserlist_idmembers': function(args, opts) {
+		var url = '{user}/{list_id}/members.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'postuserlist_idmembers': function(args, opts) {
+		var url = '{user}/{list_id}/members.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "apigee"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'deleteuserlist_idmembers': function(args, opts) {
+		var url = '{user}/{list_id}/members.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "earth2marsh"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'adduserlist_idmembers': function(args, opts) {
+		var url = '{user}/{list_id}/members/create_all.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "earth2marsh"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'getuserlist_idmembersid': function(args, opts) {
+		var url = '{user}/{list_id}/members/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "apigee"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'getuserlist_idsubscribers': function(args, opts) {
+		var url = '{user}/{list_id}/subscribers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'postuserlist_idsubscribers': function(args, opts) {
+		var url = '{user}/{list_id}/subscribers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'deleteuserlist_idsubscribers': function(args, opts) {
+		var url = '{user}/{list_id}/subscribers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "earth2marsh"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'DELETE',params:args}, opts)
+	},
+	'getuserlist_idsubscribersid': function(args, opts) {
+		var url = '{user}/{list_id}/subscribers/{id}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['id'] == null) args['id'] = "earth2marsh"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['list_id'] == null) args['list_id'] = "team"
+		var rgx = new RegExp('\{list_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list_id'])
+			if (args['list_id']) delete args['list_id']
+		}
+		if (args['user'] == null) args['user'] = "apigee"
+		var rgx = new RegExp('\{user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'geonearby_places1': function(args, opts) {
+		var url = 'geo/nearby_places.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{ip\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ip'])
+			if (args['ip']) delete args['ip']
+		}
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		var rgx = new RegExp('\{max_results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_results'])
+			if (args['max_results']) delete args['max_results']
+		}
+		var rgx = new RegExp('\{granularity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['granularity'])
+			if (args['granularity']) delete args['granularity']
+		}
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['accuracy'] == null) args['accuracy'] = "city"
+		var rgx = new RegExp('\{accuracy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accuracy'])
+			if (args['accuracy']) delete args['accuracy']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'accountend_session': function(args, opts) {
+		var url = 'account/end_session.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'accountupdate_delivery_device': function(args, opts) {
+		var url = 'account/update_delivery_device.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['device'] == null) args['device'] = "sms"
+		var rgx = new RegExp('\{device\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['device'])
+			if (args['device']) delete args['device']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'POST',params:args}, opts)
+	},
+	'statuseshome_friends': function(args, opts) {
+		var url = 'statuses/friends.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'statusesfollowers': function(args, opts) {
+		var url = 'statuses/followers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['cursor'] == null) args['cursor'] = "-1"
+		var rgx = new RegExp('\{cursor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
+		return http({provider:'twitter',url:'http://api.twitter.com/1/' + url,method:'GET',params:args}, opts)
+	},
+	'search': function(args, opts) {
+		var url = 'search.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{geocode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['geocode'])
+			if (args['geocode']) delete args['geocode']
+		}
+		var rgx = new RegExp('\{lang\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lang'])
+			if (args['lang']) delete args['lang']
+		}
+		var rgx = new RegExp('\{locale\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['locale'])
+			if (args['locale']) delete args['locale']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{result_type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['result_type'])
+			if (args['result_type']) delete args['result_type']
+		}
+		var rgx = new RegExp('\{rpp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['rpp'])
+			if (args['rpp']) delete args['rpp']
+		}
+		var rgx = new RegExp('\{show_user\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['show_user'])
+			if (args['show_user']) delete args['show_user']
+		}
+		var rgx = new RegExp('\{until\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['until'])
+			if (args['until']) delete args['until']
+		}
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		var rgx = new RegExp('\{include_entities\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_entities'])
+			if (args['include_entities']) delete args['include_entities']
+		}
+		return http({provider:'twitter',url:'http://search.twitter.com/' + url,method:'GET',params:args}, opts)
+	}
+})

@@ -1,0 +1,865 @@
+({
+	auth:function(){auth({provider:'foursquare'})},
+	'getuser': function(args, opts) {
+		var url = 'users/{USER_ID}'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'searchUserViaGet': function(args, opts) {
+		var url = 'users/search'
+		args = args || {}
+		var rgx = new RegExp('\{phone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		var rgx = new RegExp('\{twitter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['twitter'])
+			if (args['twitter']) delete args['twitter']
+		}
+		var rgx = new RegExp('\{twitterSource\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['twitterSource'])
+			if (args['twitterSource']) delete args['twitterSource']
+		}
+		var rgx = new RegExp('\{fbid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fbid'])
+			if (args['fbid']) delete args['fbid']
+		}
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'searchUserViaPost': function(args, opts) {
+		var url = 'users/search'
+		args = args || {}
+		var rgx = new RegExp('\{phone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		var rgx = new RegExp('\{twitter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['twitter'])
+			if (args['twitter']) delete args['twitter']
+		}
+		var rgx = new RegExp('\{twitterSource\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['twitterSource'])
+			if (args['twitterSource']) delete args['twitterSource']
+		}
+		var rgx = new RegExp('\{fbid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fbid'])
+			if (args['fbid']) delete args['fbid']
+		}
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getRequests': function(args, opts) {
+		var url = 'users/requests'
+		args = args || {}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getBadges': function(args, opts) {
+		var url = 'users/{USER_ID}/badges'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getUserCheckins': function(args, opts) {
+		var url = 'users/{USER_ID}/checkins'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		var rgx = new RegExp('\{afterTimestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['afterTimestamp'])
+			if (args['afterTimestamp']) delete args['afterTimestamp']
+		}
+		var rgx = new RegExp('\{beforeTimestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['beforeTimestamp'])
+			if (args['beforeTimestamp']) delete args['beforeTimestamp']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getFriends': function(args, opts) {
+		var url = 'users/{USER_ID}/friends'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getUserTips': function(args, opts) {
+		var url = 'users/{USER_ID}/tips'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getTodos': function(args, opts) {
+		var url = 'users/{USER_ID}/todos'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (args['ll'] == null) throw new Error('ll is a required parameter')
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getVenueHistory': function(args, opts) {
+		var url = 'users/{USER_ID}/venuehistory'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'sendRequest': function(args, opts) {
+		var url = 'users/{USER_ID}/request'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'unfriendUser': function(args, opts) {
+		var url = 'users/{USER_ID}/unfriend'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'approveFriend': function(args, opts) {
+		var url = 'users/{USER_ID}/approve'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'denyFriend': function(args, opts) {
+		var url = 'users/{USER_ID}/deny'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'setPings': function(args, opts) {
+		var url = 'users/{USER_ID}/setpings'
+		args = args || {}
+		if (args['USER_ID'] == null) throw new Error('USER_ID is a required parameter')
+		var rgx = new RegExp('\{USER_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['USER_ID'])
+			if (args['USER_ID']) delete args['USER_ID']
+		}
+		if (args['value'] == null) throw new Error('value is a required parameter')
+		var rgx = new RegExp('\{value\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['value'])
+			if (args['value']) delete args['value']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getVenue': function(args, opts) {
+		var url = 'venues/{VENUE_ID}'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'addVenue': function(args, opts) {
+		var url = 'venues/add'
+		args = args || {}
+		if (args['name'] == null) throw new Error('name is a required parameter')
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		var rgx = new RegExp('\{address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['address'])
+			if (args['address']) delete args['address']
+		}
+		var rgx = new RegExp('\{crossStreet\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['crossStreet'])
+			if (args['crossStreet']) delete args['crossStreet']
+		}
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		var rgx = new RegExp('\{state\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['state'])
+			if (args['state']) delete args['state']
+		}
+		var rgx = new RegExp('\{zip\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zip'])
+			if (args['zip']) delete args['zip']
+		}
+		var rgx = new RegExp('\{phone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		if (args['ll'] == null) throw new Error('ll is a required parameter')
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{primaryCategoryId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['primaryCategoryId'])
+			if (args['primaryCategoryId']) delete args['primaryCategoryId']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getCategories': function(args, opts) {
+		var url = 'venues/categories'
+		args = args || {}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'searchVenue': function(args, opts) {
+		var url = 'venues/search'
+		args = args || {}
+		if (args['ll'] == null) throw new Error('ll is a required parameter')
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{llAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['llAcc'])
+			if (args['llAcc']) delete args['llAcc']
+		}
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{altAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['altAcc'])
+			if (args['altAcc']) delete args['altAcc']
+		}
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getVenueDetails': function(args, opts) {
+		var url = 'venues/{VENUE_ID}/herenow'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getVenueTips': function(args, opts) {
+		var url = 'venues/{VENUE_ID}/tips'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getVenuePhotos': function(args, opts) {
+		var url = 'venues/{VENUE_ID}/photos'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		if (args['group'] == null) throw new Error('group is a required parameter')
+		var rgx = new RegExp('\{group\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['group'])
+			if (args['group']) delete args['group']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'markToDo': function(args, opts) {
+		var url = 'venues/{VENUE_ID}/marktodo'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'flagVenue': function(args, opts) {
+		var url = 'venues/{VENUE_ID}/flag'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		if (args['problem'] == null) throw new Error('problem is a required parameter')
+		var rgx = new RegExp('\{problem\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['problem'])
+			if (args['problem']) delete args['problem']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'editVenue': function(args, opts) {
+		var url = 'venues/{VENUE_ID}/proposeedit'
+		args = args || {}
+		if (args['VENUE_ID'] == null) throw new Error('VENUE_ID is a required parameter')
+		var rgx = new RegExp('\{VENUE_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VENUE_ID'])
+			if (args['VENUE_ID']) delete args['VENUE_ID']
+		}
+		if (args['name'] == null) throw new Error('name is a required parameter')
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (args['address'] == null) throw new Error('address is a required parameter')
+		var rgx = new RegExp('\{address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['address'])
+			if (args['address']) delete args['address']
+		}
+		var rgx = new RegExp('\{crossStreet\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['crossStreet'])
+			if (args['crossStreet']) delete args['crossStreet']
+		}
+		if (args['city'] == null) throw new Error('city is a required parameter')
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (args['state'] == null) throw new Error('state is a required parameter')
+		var rgx = new RegExp('\{state\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['state'])
+			if (args['state']) delete args['state']
+		}
+		var rgx = new RegExp('\{zip\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zip'])
+			if (args['zip']) delete args['zip']
+		}
+		var rgx = new RegExp('\{phone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		if (args['ll'] == null) throw new Error('ll is a required parameter')
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{primaryCategoryId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['primaryCategoryId'])
+			if (args['primaryCategoryId']) delete args['primaryCategoryId']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getTip': function(args, opts) {
+		var url = 'tips/{TIP_ID}'
+		args = args || {}
+		if (args['TIP_ID'] == null) throw new Error('TIP_ID is a required parameter')
+		var rgx = new RegExp('\{TIP_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['TIP_ID'])
+			if (args['TIP_ID']) delete args['TIP_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'addTip': function(args, opts) {
+		var url = 'tips/add'
+		args = args || {}
+		if (args['venueId'] == null) throw new Error('venueId is a required parameter')
+		var rgx = new RegExp('\{venueId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venueId'])
+			if (args['venueId']) delete args['venueId']
+		}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getTips': function(args, opts) {
+		var url = 'tips/search'
+		args = args || {}
+		if (args['ll'] == null) throw new Error('ll is a required parameter')
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'markToDoTip': function(args, opts) {
+		var url = 'tips/{TIP_ID}/marktodo'
+		args = args || {}
+		if (args['TIP_ID'] == null) throw new Error('TIP_ID is a required parameter')
+		var rgx = new RegExp('\{TIP_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['TIP_ID'])
+			if (args['TIP_ID']) delete args['TIP_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'markdoneTip': function(args, opts) {
+		var url = 'tips/{TIP_ID}/markdone'
+		args = args || {}
+		if (args['TIP_ID'] == null) throw new Error('TIP_ID is a required parameter')
+		var rgx = new RegExp('\{TIP_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['TIP_ID'])
+			if (args['TIP_ID']) delete args['TIP_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'unmarkTip': function(args, opts) {
+		var url = 'tips/{TIP_ID}/unmark'
+		args = args || {}
+		if (args['TIP_ID'] == null) throw new Error('TIP_ID is a required parameter')
+		var rgx = new RegExp('\{TIP_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['TIP_ID'])
+			if (args['TIP_ID']) delete args['TIP_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getCheckinDetails': function(args, opts) {
+		var url = 'checkins/{CHECKIN_ID}'
+		args = args || {}
+		if (args['CHECKIN_ID'] == null) throw new Error('CHECKIN_ID is a required parameter')
+		var rgx = new RegExp('\{CHECKIN_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CHECKIN_ID'])
+			if (args['CHECKIN_ID']) delete args['CHECKIN_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'checkin': function(args, opts) {
+		var url = 'checkins/add'
+		args = args || {}
+		if (args['venueId'] == null) throw new Error('venueId is a required parameter')
+		var rgx = new RegExp('\{venueId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venueId'])
+			if (args['venueId']) delete args['venueId']
+		}
+		var rgx = new RegExp('\{venue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venue'])
+			if (args['venue']) delete args['venue']
+		}
+		var rgx = new RegExp('\{shout\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['shout'])
+			if (args['shout']) delete args['shout']
+		}
+		if (args['broadcast'] == null) throw new Error('broadcast is a required parameter')
+		var rgx = new RegExp('\{broadcast\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['broadcast'])
+			if (args['broadcast']) delete args['broadcast']
+		}
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{llAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['llAcc'])
+			if (args['llAcc']) delete args['llAcc']
+		}
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{altAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['altAcc'])
+			if (args['altAcc']) delete args['altAcc']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getCheckins': function(args, opts) {
+		var url = 'checkins/recent'
+		args = args || {}
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		var rgx = new RegExp('\{afterTimestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['afterTimestamp'])
+			if (args['afterTimestamp']) delete args['afterTimestamp']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'addCheckinComment': function(args, opts) {
+		var url = 'checkins/{CHECKIN_ID}/addcomment'
+		args = args || {}
+		if (args['CHECKIN_ID'] == null) throw new Error('CHECKIN_ID is a required parameter')
+		var rgx = new RegExp('\{CHECKIN_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CHECKIN_ID'])
+			if (args['CHECKIN_ID']) delete args['CHECKIN_ID']
+		}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'removeCheckinComment': function(args, opts) {
+		var url = 'checkins/{CHECKIN_ID}/deletecomment'
+		args = args || {}
+		if (args['CHECKIN_ID'] == null) throw new Error('CHECKIN_ID is a required parameter')
+		var rgx = new RegExp('\{CHECKIN_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CHECKIN_ID'])
+			if (args['CHECKIN_ID']) delete args['CHECKIN_ID']
+		}
+		if (args['commentId'] == null) throw new Error('commentId is a required parameter')
+		var rgx = new RegExp('\{commentId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getPhotoDetails': function(args, opts) {
+		var url = 'photos/{PHOTO_ID}'
+		args = args || {}
+		if (args['PHOTO_ID'] == null) throw new Error('PHOTO_ID is a required parameter')
+		var rgx = new RegExp('\{PHOTO_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['PHOTO_ID'])
+			if (args['PHOTO_ID']) delete args['PHOTO_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'addPhoto': function(args, opts) {
+		var url = 'photos/add'
+		args = args || {}
+		var rgx = new RegExp('\{checkinId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['checkinId'])
+			if (args['checkinId']) delete args['checkinId']
+		}
+		var rgx = new RegExp('\{tipId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tipId'])
+			if (args['tipId']) delete args['tipId']
+		}
+		var rgx = new RegExp('\{venueId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venueId'])
+			if (args['venueId']) delete args['venueId']
+		}
+		var rgx = new RegExp('\{broadcast\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['broadcast'])
+			if (args['broadcast']) delete args['broadcast']
+		}
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{llAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['llAcc'])
+			if (args['llAcc']) delete args['llAcc']
+		}
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{altAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['altAcc'])
+			if (args['altAcc']) delete args['altAcc']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'getSpecialDetails': function(args, opts) {
+		var url = 'specials/{SPECIAL_ID}'
+		args = args || {}
+		if (args['SPECIAL_ID'] == null) throw new Error('SPECIAL_ID is a required parameter')
+		var rgx = new RegExp('\{SPECIAL_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SPECIAL_ID'])
+			if (args['SPECIAL_ID']) delete args['SPECIAL_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getSpecials': function(args, opts) {
+		var url = 'specials/search'
+		args = args || {}
+		if (args['ll'] == null) throw new Error('ll is a required parameter')
+		var rgx = new RegExp('\{ll\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ll'])
+			if (args['ll']) delete args['ll']
+		}
+		var rgx = new RegExp('\{llAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['llAcc'])
+			if (args['llAcc']) delete args['llAcc']
+		}
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{altAcc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['altAcc'])
+			if (args['altAcc']) delete args['altAcc']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getSetting': function(args, opts) {
+		var url = 'settings/{SETTING_ID}'
+		args = args || {}
+		if (args['SETTING_ID'] == null) throw new Error('SETTING_ID is a required parameter')
+		var rgx = new RegExp('\{SETTING_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SETTING_ID'])
+			if (args['SETTING_ID']) delete args['SETTING_ID']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'getAllSettings': function(args, opts) {
+		var url = 'settings/all'
+		args = args || {}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	},
+	'setSetting': function(args, opts) {
+		var url = 'settings/{SETTING_ID}/set'
+		args = args || {}
+		if (args['SETTING_ID'] == null) throw new Error('SETTING_ID is a required parameter')
+		var rgx = new RegExp('\{SETTING_ID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SETTING_ID'])
+			if (args['SETTING_ID']) delete args['SETTING_ID']
+		}
+		if (args['value'] == null) throw new Error('value is a required parameter')
+		var rgx = new RegExp('\{value\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['value'])
+			if (args['value']) delete args['value']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'POST',params:args}, opts)
+	},
+	'multipleRequests': function(args, opts) {
+		var url = 'multi'
+		args = args || {}
+		if (args['requests'] == null) throw new Error('requests is a required parameter')
+		var rgx = new RegExp('\{requests\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['requests'])
+			if (args['requests']) delete args['requests']
+		}
+		return http({provider:'foursquare',url:'https://api.foursquare.com/v2/' + url,method:'GET',params:args}, opts)
+	}
+})
