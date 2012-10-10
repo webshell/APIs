@@ -57,6 +57,10 @@ jsClientApi({
 			var geocoder = new google.maps.Geocoder();
 			if (typeof opts == 'string')
 				opts = {address:opts}
+			if (opts.latitude !== undefined && opts.longitude !== undefined)
+				opts = {lat:opts.latitude, lng:opts.longitude}
+			if (typeof opts.address == 'object' && opts.address.latitude !== undefined && opts.address.longitude !== undefined)
+				opts = {lat:opts.address.latitude, lng:opts.address.longitude}
 			if (opts.lat !== undefined && opts.lng !== undefined)
 				opts.address = {lat:opts.lat, lng:opts.lng}
 			if (typeof opts.address == 'object' && opts.address.lat !== undefined && opts.address.lng !== undefined)
