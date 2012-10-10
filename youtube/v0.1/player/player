@@ -1,12 +1,15 @@
-args[0] = args[0] || {};
-var url = 'http://www.youtube.com/v/' + (args[0].idVideo || 'g1BV7XTLUNg')
+args = args || {};
+if (typeof args == 'string') {
+    args = {idVideo: args};
+}
+var url = 'http://www.youtube.com/v/' + (args.idVideo || 'g1BV7XTLUNg')
 
 jsClientApi({
     name: "youtube.player",
 	data: {
 		url: url,
-		width: args[0].width,
-		height: args[0].height || '300',
+		width: args.width,
+		height: args.height || '300',
 		params: {allowScriptAccess: "always", wmode: "Opaque"}
 	},
 	initialize: function(callback) {

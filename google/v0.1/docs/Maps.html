@@ -1,0 +1,74 @@
+<h1>Google Maps API</h1>
+
+<p>Integrate a Google Maps with Webshell is pretty easy</p>
+
+<h3>Initialisation</h3>
+<p>To initialize a google maps : <code>apis.google.maps()</code></p>
+<p>Some parameters can be given to maps()</p>
+<table class="table">
+	<thead>
+		<th>Parameter</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>width</td>
+			<td>The width of the maps</td>
+			<td><em>Container width</em></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>height</td>
+			<td>The height of the maps</td>
+			<td>300</td>
+			<td>false</td>			
+		</tr>
+	</tbody>
+</table>
+<p>e.g : <code>apis.google.maps({width: 550, height: 400})</code></p>
+
+<h3>Manipulation</h3>
+<p>Once your Google Maps instanciated : <code>var m = apis.google.maps();</code>. You can manipulate it using the object stored in <code>m</code> variable</p>
+<p>Google Maps has the following interface :</p>
+<table class="table">
+	<thead>
+		<th>Method</th>
+		<th>Description</th>
+		<th width="250">Exemple</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>center(address)</code></td>
+			<td>Center the google maps with the <code>address</code> as center</td>
+			<td><pre class="prettyprint">var m = apis.google.maps();
+m.center('paris');</pre></td>
+		</tr>
+		<tr>
+			<td><code>zoom(level)</code></td>
+			<td>Set the Zoom <code>level</code> for your Google Maps. <code>zoom</code> is a number between 1 and 18</td>
+			<td><pre class="prettyprint">var m = apis.google.maps();
+m.zoom(16);</pre></td>
+		</tr>
+		<tr>
+			<td><code>addMarker(location)</code></td>
+			<td>Add a marker on the Google Maps at a specified <code>location</code>. That location can be an address or a couple of latitude, longitude. This marker can have a <code>title</code> and an <code>icon</code></td>
+			<td><pre class="prettyprint">var m = apis.google.maps();
+m.addMarker('Palais brongniart');</pre>or<pre class="prettyprint">var m = apis.google.maps();
+m.addMarker({
+    address: "Palais brongniart",
+    title: "Le camping",
+    icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdoIypXej4lB5-IPzVuFxr0Owcpi0EhtQtQByr0j4Dypu1jo7y"
+})
+</pre></td>
+		</tr>
+<!-- 		<tr>
+			<td><code>streetview()</code></td>
+			<td>Wrap the Google Maps with a Street View widget center on your position</td>
+			<td><pre class="prettyprint">var m = apis.google.maps();
+m.center('paris');
+m.streetview();</pre></td>
+		</tr> -->
+	</tbody>
+</table>
