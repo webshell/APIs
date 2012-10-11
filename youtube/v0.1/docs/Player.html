@@ -1,0 +1,129 @@
+<h1>Youtube Player API</h1>
+
+<p>Youtube provide a Javascript API allowing you to integrate and manipulate a player inside your web application</p>
+
+<h3>Initialisation</h3>
+<p>To initialize a Youtube player, you have to give him the id of a Video on youtube : <code>apis.youtube.player('g1BV7XTLUNg')</code></p>
+<p>Some parameters can be given to chart()</p>
+<table class="table">
+	<thead>
+		<th>Parameter</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>idVideo</td>
+			<td>The ID of the video you want to play</td>
+			<td>g1BV7XTLUNg</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>width</td>
+			<td>The width of the player</td>
+			<td>100%</td>
+			<td>false</td>			
+		</tr>
+		<tr>
+			<td>height</td>
+			<td>The height of the player</td>
+			<td>300</td>
+			<td>false</td>			
+		</tr>
+	</tbody>
+</table>
+<p>e.g : <code>apis.google.player({idVideo: 'g1BV7XTLUNg', width: 250, height: 400})</code></p>
+
+<h3>Manipulation</h3>
+<p>Once your player instanciated and loaded: <code>var player = apis.youtube.player('g1BV7XTLUNg');</code>. You can manipulate it using the object stored in <code>player</code> variable</p>
+<p>Youtube has the following interface :</p>
+<table class="table">
+	<thead>
+		<th>Method</th>
+		<th>Description</th>
+		<th width="250">Exemple</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>playVideo()</code></td>
+			<td>Play the current video loaded</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player('g1BV7XTLUNg');
+pl.playVideo();</pre></td>
+		</tr>
+		<tr>
+			<td><code>pauseVideo()</code></td>
+			<td>Pause the current video</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player('g1BV7XTLUNg');
+pl.playVideo(); 
+pl.pauseVideo();</pre></td>
+		</tr>
+		<tr>
+			<td><code>stopVideo()</code></td>
+			<td>Stop the current video</td>
+			<td><pre class="prettyprint">pl.stopVideo();</pre></td>
+		</tr>
+		<tr>
+			<td><code>seekTo(seconds, allowSeekAhead)</code></td>
+			<td>Seek to </td>
+			<td><pre class="prettyprint">pl.stopVideo();</pre></td>
+		</tr>
+		<tr>
+			<td><code>clearVideo()</code></td>
+			<td>Clear the video loaded</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player('g1BV7XTLUNg');
+pl.clearVideo();</pre></td>
+		</tr>
+		<tr>
+			<td><code>cue(url, startSeconds, suggestedQuality)</code></td>
+			<td>Cue the <code>url</code> to be played after the current video. This url can be an <code> or a <code>videoId</code>. The <code>startSeconds</code> is by default set to 0, and the suggestedQuality is auto set if none is given</td>
+			<td><pre class="prettyprint">pl.cueVideo('g1BV7XTLUNg', 0);</pre></td>
+		</tr>
+		<tr>
+			<td><code>load(url, startSeconds, suggestedQuality)</code></td>
+			<td>Load another video in your player using is url or videoId</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player('g1BV7XTLUNg');
+pl.load('0dG72w-Hg0M');</td>
+		</tr>
+		<tr>
+			<td><code>loadPlaylist(playlist, index, startSeconds, suggestedQuality)</code></td>
+			<td>Load a playlist (using his id), and start to play at the <code>index</code> setted. If none is given, it will play the first video first</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player();
+pl.loadPlaylist('fdsfldjslk');</td>
+		</tr>
+		<tr>
+			<td><code>cuePlaylist(playlist, index, startSeconds, suggestedQuality)</code></td>
+			<td>Cue a playlist (using his id), and start to play at the <code>index</code> setted. If none is given, it will play the first video first</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player();
+pl.cuePlaylist('fdsfldjslk');</td>
+		</tr>
+		<tr>
+			<td><code>nextVideo()</code></td>
+			<td>When some videos are loaded, you can go to the next video using this method</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player();
+pl.loadPlaylist('fdsfldjslk', 1);
+pl.nextVideo();</td>
+		</tr>
+		<tr>
+			<td><code>previousVideo()</code></td>
+			<td>When some videos are loaded, you can go to the previous video using this method</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player();
+pl.loadPlaylist('fdsfldjslk', 3);
+pl.previousVideo();</td>
+		</tr>
+		<tr>
+			<td><code>playVideoAt(index)</code></td>
+			<td>play the <code>index</code> video in the current playlist loaded</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player();
+pl.loadPlaylist('fdsfldjslk', 3);
+pl.playVideoAt(5);</td>
+		</tr>
+		<tr>
+			<td><code>mute()</code></td>
+			<td>set mute</td>
+			<td><pre class="prettyprint">var pl = apis.youtube.player('g1BV7XTLUNg');
+pl.playVideo();
+pl.mute();</td>
+		</tr>		
+	</tbody>
+</table>
