@@ -49,8 +49,35 @@ jsClientApi({
 		zoom: function(level) {
 			this.map.setZoom(parseInt(level));
 		},
-		streetview: function() {
-			this.map.getStreetView();
+		streetview: function(opts) {
+			if (!opts)
+			{
+				var panorama = this.map.getStreetView();
+				panorama.setPosition(this.map.getCenter());
+				panorama.setVisible(true);
+				return;
+			}
+		    var self = this;
+		    var geocoder = new google.maps.Geocoder();
+		    if (typeof opts == 'string')
+				opts = {address:opts}
+			if (opts.lat !== undefined && opts.lng !== undefined)
+				opts.address = {lat:opts.lat, lng:opts.lng}
+            if (typeof opts.address == 'object' && opts.address.lat && opts.address.lng)
+				opts.address = opts.address.lat + ',' + opts.address.lng
+		    geocoder.geocode(
+            	{ 'address': opts.address },
+            	function(results, status) {
+	                if (status == google.maps.GeocoderStatus.OK)
+			    	{
+						var panorama = self.map.getStreetView();
+						panorama.setPosition(results[0].geometry.location);
+						panorama.setVisible(true);
+			    	}
+	                else
+	               		alert("Geocode was not successful for the following reason: " + status);
+            	}
+		    );
 		},
 		addMarker: function(opts) {
 			var self = this;
@@ -76,6 +103,47 @@ jsClientApi({
 					var marker = new google.maps.Marker(marker_options);
 				}
 			});
+		},
+		getDirections: function(opts) {
+			if (!opts.origin || !opts.destination)
+				return;
+
+			var rendererOptions = {};
+			var travelMode = google.maps.TravelMode.DRIVING;
+
+			if (opts.draggable)
+				rendererOptions.draggable = opts.draggable;
+
+			var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+			var directionsService = new google.maps.DirectionsService();
+
+			if (opts.travelMode)
+				switch (opts.travelMode)
+				{
+					case 'driving':
+						travelMode = google.maps.TravelMode.DRIVING;
+						break;
+					case 'bicycling':
+						travelMode = google.maps.TravelMode.BICYCLING;
+						break;
+					case 'transit':
+						travelMode = google.maps.TravelMode.TRANSIT;
+						break;
+					case 'walking':
+						travelMode = google.maps.TravelMode.WALKING;
+						break;
+				}
+
+			directionsDisplay.setMap(this.map);
+			  var request = {
+    			origin : opts.origin,
+    			destination : opts.destination,
+    			travelMode : travelMode
+  			};
+  			directionsService.route(request, function(result, status) {
+   				if (status == google.maps.DirectionsStatus.OK)
+      				directionsDisplay.setDirections(result);
+  			});
 		}
 	}
 }, {
