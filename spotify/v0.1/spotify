@@ -1,23 +1,75 @@
-ret({
+({
 	'lookup': function(args, opts) {
-		var url = 'lookup/1/';
-		args = args || {}
-		if (args['uri'] == null) throw new Error('uri is a required parameter');
-		return http({provider:'spotify',url:url,method:'GET',params:args,out:'implicit'}, opts);
-	},
-	'search': function(args, opts, type) {
-		var url = 'search/1/' + type;
-		args = args || {};
-		if (args['q'] == null) throw new Error('q is a required parameter');
-		return http({provider:'spotify',url:url,method:'GET',params:args,out:'implicit'}, opts);
+		var url = 'lookup/1/.json';
+		var args = args || {};
+		var params = {};
+		if (typeof args == "string") params['uri'] = args; else params['uri'] = args['uri'];
+		if (params['uri'] == null) throw new Error('uri is a required parameter');
+		params['extras'] = args['extras'];
+		return http({provider:'spotify',url:url, method:'GET',params:params}, opts);
 	},
 	'searchAlbum' : function(args, opts) {
-		this.search(args, opts, 'album');
+		var url = 'search/1/album.json';
+		args = args || {};
+		var params = {};
+		if (typeof args == "string") params['q'] = args; else params['q'] = args['q'];
+		if (params['q'] == null) throw new Error('q is a required parameter');
+		params['page'] = args['page'];
+		return http({provider:'spotify',url:url, method:'GET',params:params}, opts);
 	},
 	'searchArtist' : function(args, opts) {
-		this.search(args, opts, 'artist');
+		var url = 'search/1/artist.json';
+		args = args || {};
+		var params = {};
+		if (typeof args == "string") params['q'] = args; else params['q'] = args['q'];
+		if (params['q'] == null) throw new Error('q is a required parameter');
+		params['page'] = args['page'];
+		return http({provider:'spotify',url:url, method:'GET',params:params}, opts);
 	},
 	'searchTrack' : function(args, opts) {
-		this.search(args, opts, 'track');
+		var url = 'search/1/track.json';
+		args = args || {};
+		var params = {};
+		if (typeof args == "string") params['q'] = args; else params['q'] = args['q'];
+		if (params['q'] == null) throw new Error('q is a required parameter');
+		params['page'] = args['page'];
+		return http({provider:'spotify',url:url, method:'GET',params:params}, opts);
+	},
+	'player' : function(args, opts) {
+		args = args || {};
+		var url = "https://embed.spotify.com/";
+		var embed = '<iframe src="';
+		var uris;
+		var params = {};
+		if (typeof args == "string") params['uri'] = args; else params['uri'] = args['uri'];
+		if (params['uri'] == null) throw new Error('uri is a required parameter');
+
+		uris = (typeof params['uri'] == "string") ? [params['uri']] : params['uri'];
+		var l = 0;
+		for (var k in uris)
+			l++;
+		if (l == 1)
+			url += "?uri=" + uris[0];
+		else
+		{
+			url += "?uri=spotify:trackset:";
+			if (args['title'])
+				url += args['title'] + ":";
+			for (var i in uris)
+				if (uris[i].lastIndexOf(':') == 13)
+					url += uris[i].substring(14, uris[i].length) + ',';
+			url = url.substring(0, url.length - 1);
+		}
+		if (args['theme'])
+			url += '&theme=' + args['theme'];
+		if (args['view'])
+			url += '&view=' + args['view'];
+		embed += url + '" ';
+		if (args['width'] != null)
+			embed += 'width="' + args['width'] + '" ';
+		if (args['height'] != null)
+			embed += 'height="' + args['height'] + '" ';
+		embed += 'frameborder="0" allowtransparency="true"></iframe>';
+		echo(embed);
 	}
 })

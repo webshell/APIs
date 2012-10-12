@@ -1,0 +1,38 @@
+<h1>Spotify API</h1>
+
+<p>The Spotify Web API enables you to retrieve data from the Spotify service</p>
+
+<table class="table">
+	<thead>
+		<th>Method</th>
+		<th>Description</th>
+		<th width="250">Exemple</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>lookup(params)</code></td>
+			<td>Looks up an artist, album or track <code>uri</code>. Using the <code>extras</code> parameter you can get more detailed information in the response, only for artist and album uris.</td>
+			<td><pre class="prettyprint">apis.spotify.lookup('spotify:artist:4YrKBkKSVeqDamzBPWVnSJ')</pre>or<pre class="prettyprint">apis.spotify.lookup({uri: 'spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', extras: 'album'})</pre>or<pre class="prettyprint">apis.spotify.lookup({uri: 'spotify:artist:4YrKBkKSVeqDamzBPWVnSJ', extras: 'albumdetail'})</pre>or<pre class="prettyprint">apis.spotify.lookup({uri: 'spotify:album:6G9fHYDCoyEErUkHrFYfs4', extras: 'track'})</pre>or<pre class="prettyprint">apis.spotify.lookup({uri: 'spotify:album:6G9fHYDCoyEErUkHrFYfs4', extras: 'trackdetail'})</pre></td>
+		</tr>
+		<tr>
+			<td><code>searchAlbum(params)</code></td>
+			<td>Searches for an album. Use the <code>q</code> attribute or <code>params</code> as the query string and <code>page</code> as the page of the result set to return.</td>
+			<td><pre class="prettyprint">apis.spotify.searchAlbum('plastic beach')</pre>or<pre class="prettyprint">apis.spotify.searchAlbum({q:'are you experienced', page: 2})</pre></td>
+		</tr>
+		<tr>
+			<td><code>searchArtist(params)</code></td>
+			<td>Searches for an artist. Use the <code>q</code> attribute or <code>params</code> as the query string and <code>page</code> as the page of the result set to return.</td>
+			<td><pre class="prettyprint">apis.spotify.searchArtist('Them Crooked Vultures')</pre>or<pre class="prettyprint">apis.spotify.searchArtist({q:'john', page: 2})</pre></td>
+		</tr>
+		<tr>
+			<td><code>searchTrack(params)</code></td>
+			<td>Searches for a track. Use the <code>q</code> attribute or <code>params</code> as the query string and <code>page</code> as the page of the result set to return.</td>
+			<td><pre class="prettyprint">apis.spotify.searchTrack('Master of Puppets')</pre>or<pre class="prettyprint">apis.spotify.searchArtist({q:'GANGNAM STYLE', page: 2})</pre></td>
+		</tr>
+		<tr>
+			<td><code>player(params)</code></td>
+			<td>Creates a play button for the given <code>uri</code>(s). The <code>uri</code> parameter can either be a string representing a single uri or an array containing multiple track uris, in that case the play button would be a trackset whose <code>title</code> can be chosen. You can set the button's <code>height</code>, <code>width</code>, <code>theme</code> (black or white) and <code>view</code>(list or coverart).</td>
+			<td><pre class="prettyprint">apis.spotify.player('spotify:track:4NFhtFE68cXUrfbne8JE2c')</pre>or<pre class="prettyprint">apis.spotify.player({uri: 'spotify:album:3BTvFnJt1Hhh985s3oZ61L', width: 800, height: 600, theme: "white", view: "list"})</pre>or<pre class="prettyprint">apis.spotify.player({uri: ['spotify:track:5JunxkcjfCYcY7xJ29tLai', 'spotify:track:40lY9BHMh2bFE5aFIJyGgy'], width: 800, height: 150})</pre></td>
+		</tr>
+	</tbody>
+</table>
