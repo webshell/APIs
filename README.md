@@ -17,4 +17,4 @@ If you have an account on [Webshell](http://webshell.io/), you can setup your AP
 Note
 ====
 
-Some builtins used in their APIs are not describe on Webshell.io yet... We work on it ;)
+Some builtins are used in their APIs are not describe on Webshell.io yet... We work on it ;)
