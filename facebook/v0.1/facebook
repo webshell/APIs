@@ -26,7 +26,7 @@
 			url = url.replace(rgx, args['distance'])
 			if (args['distance']) delete args['distance']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
 	'getAlbum': function(args, opts) {
 		var url = '{album}'
@@ -43,7 +43,7 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
 	'getAlbumPhotos': function(args, opts) {
 		var url = '{album}/photos'
@@ -78,7 +78,7 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
 	'getAlbumComments': function(args, opts) {
 		var url = '{album}/comments'
@@ -113,9 +113,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getevent': function(args, opts) {
+	'getEvent': function(args, opts) {
 		var url = '{event}'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -130,9 +130,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventfeed': function(args, opts) {
+	'getEventFeed': function(args, opts) {
 		var url = '{event}/feed'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -165,9 +165,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventnoreply': function(args, opts) {
+	'getEventNoReply': function(args, opts) {
 		var url = '{event}/noreply'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -200,9 +200,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventmaybe': function(args, opts) {
+	'getEventMaybe': function(args, opts) {
 		var url = '{event}/maybe'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -235,9 +235,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventinvited': function(args, opts) {
+	'getEventInvited': function(args, opts) {
 		var url = '{event}/invited'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -270,9 +270,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventattending': function(args, opts) {
+	'getEventAttending': function(args, opts) {
 		var url = '{event}/attending'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -305,9 +305,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventdeclined': function(args, opts) {
+	'getEventDeclined': function(args, opts) {
 		var url = '{event}/declined'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -340,9 +340,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'geteventpicture': function(args, opts) {
+	'getEventPicture': function(args, opts) {
 		var url = '{event}/picture'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
@@ -357,9 +357,9 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getgroup': function(args, opts) {
+	'getGroup': function(args, opts) {
 		var url = '{group}'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
@@ -374,9 +374,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getgroupfeed': function(args, opts) {
+	'getGroupFeed': function(args, opts) {
 		var url = '{group}/feed'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
@@ -409,9 +409,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getgroupmembers': function(args, opts) {
+	'getGroupMembers': function(args, opts) {
 		var url = '{group}/members'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
@@ -444,9 +444,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getgrouppicture': function(args, opts) {
+	'getGroupPicture': function(args, opts) {
 		var url = '{group}/picture'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
@@ -461,9 +461,9 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getlink': function(args, opts) {
+	'getLink': function(args, opts) {
 		var url = '{link}'
 		args = args || {}
 		if (args['link'] == null) args['link'] = "114961875194024"
@@ -478,9 +478,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getlinkcomments': function(args, opts) {
+	'getLinkComments': function(args, opts) {
 		var url = '{link}/comments'
 		args = args || {}
 		if (args['link'] == null) args['link'] = "114961875194024"
@@ -513,9 +513,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getnote': function(args, opts) {
+	'getNote': function(args, opts) {
 		var url = '{note}'
 		args = args || {}
 		if (args['note'] == null) args['note'] = "122788341354"
@@ -530,9 +530,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getnotecomments': function(args, opts) {
+	'getNoteComments': function(args, opts) {
 		var url = '{note}/comments'
 		args = args || {}
 		if (args['note'] == null) args['note'] = "122788341354"
@@ -565,9 +565,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getnotelikes': function(args, opts) {
+	'getNoteLikes': function(args, opts) {
 		var url = '{note}/likes'
 		args = args || {}
 		if (args['note'] == null) args['note'] = "122788341354"
@@ -600,9 +600,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpage': function(args, opts) {
+	'getPage': function(args, opts) {
 		var url = '{page}'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -617,9 +617,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagefeed': function(args, opts) {
+	'getPageFeed': function(args, opts) {
 		var url = '{page}/feed'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -652,9 +652,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagepicture': function(args, opts) {
+	'getPagePicture': function(args, opts) {
 		var url = '{page}/picture'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -669,9 +669,9 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagetagged': function(args, opts) {
+	'getPageTagged': function(args, opts) {
 		var url = '{page}/tagged'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -704,9 +704,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagelinks': function(args, opts) {
+	'getPageLinks': function(args, opts) {
 		var url = '{page}/links'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -739,9 +739,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagephotos': function(args, opts) {
+	'getPagePhotos': function(args, opts) {
 		var url = '{page}/photos'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -774,9 +774,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagegroups': function(args, opts) {
+	'getPageGroups': function(args, opts) {
 		var url = '{page}/groups'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -809,9 +809,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagealbums': function(args, opts) {
+	'getPageAlbums': function(args, opts) {
 		var url = '{page}/albums'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -844,9 +844,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagestatuses': function(args, opts) {
+	'getPageStatuses': function(args, opts) {
 		var url = '{page}/statuses'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -879,9 +879,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagevideos': function(args, opts) {
+	'getPageVideos': function(args, opts) {
 		var url = '{page}/videos'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -914,9 +914,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagenotes': function(args, opts) {
+	'getPageNotes': function(args, opts) {
 		var url = '{page}/notes'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -949,9 +949,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpageposts': function(args, opts) {
+	'getPagePosts': function(args, opts) {
 		var url = '{page}/posts'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -984,9 +984,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpageevents': function(args, opts) {
+	'getPageEvents': function(args, opts) {
 		var url = '{page}/events'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -1019,9 +1019,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpagecheckins': function(args, opts) {
+	'getPageCheckins': function(args, opts) {
 		var url = '{page}/checkins'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
@@ -1054,9 +1054,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getphoto': function(args, opts) {
+	'getPhoto': function(args, opts) {
 		var url = '{photo}'
 		args = args || {}
 		if (args['photo'] == null) args['photo'] = "98423808305"
@@ -1071,9 +1071,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getphotocomments': function(args, opts) {
+	'getPhotoComments': function(args, opts) {
 		var url = '{photo}/comments'
 		args = args || {}
 		if (args['photo'] == null) args['photo'] = "98423808305"
@@ -1106,9 +1106,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getphotolikes': function(args, opts) {
+	'getPhotoLikes': function(args, opts) {
 		var url = '{photo}/likes'
 		args = args || {}
 		if (args['photo'] == null) args['photo'] = "98423808305"
@@ -1141,9 +1141,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpost': function(args, opts) {
+	'getPost': function(args, opts) {
 		var url = '{post}'
 		args = args || {}
 		if (args['post'] == null) args['post'] = "19292868552_118464504835613"
@@ -1158,9 +1158,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getpostcomments': function(args, opts) {
+	'getPostComments': function(args, opts) {
 		var url = '{post}/comments'
 		args = args || {}
 		if (args['post'] == null) args['post'] = "19292868552_118464504835613"
@@ -1193,9 +1193,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getstatus': function(args, opts) {
+	'getStatus': function(args, opts) {
 		var url = '{status}'
 		args = args || {}
 		if (args['status'] == null) args['status'] = "367501354973"
@@ -1210,9 +1210,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getstatuscomments': function(args, opts) {
+	'getStatusComments': function(args, opts) {
 		var url = '{status}/comments'
 		args = args || {}
 		if (args['status'] == null) args['status'] = "367501354973"
@@ -1245,9 +1245,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuser': function(args, opts) {
+	'getUser': function(args, opts) {
 		var url = '{user}'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1262,7 +1262,7 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
 	'me': function(args, opts) {
 		var url = '{user}'
@@ -1279,9 +1279,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
-	'getusersearch': function(args, opts) {
+	'getUserSearch': function(args, opts) {
 		var url = '{user}/home'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "robertscoble"
@@ -1302,9 +1302,9 @@
 			url = url.replace(rgx, args['q'])
 			if (args['q']) delete args['q']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserhome': function(args, opts) {
+	'getUserHome': function(args, opts) {
 		var url = '{user}/home'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1337,9 +1337,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserfeed': function(args, opts) {
+	'getUserFeed': function(args, opts) {
 		var url = '{user}/feed'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1372,9 +1372,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusertagged': function(args, opts) {
+	'getUserTagged': function(args, opts) {
 		var url = '{user}/tagged'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1407,9 +1407,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserposts': function(args, opts) {
+	'getUserPosts': function(args, opts) {
 		var url = '{user}/posts'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1442,9 +1442,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserpicture': function(args, opts) {
+	'getUserPicture': function(args, opts) {
 		var url = '{user}/picture'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1459,9 +1459,9 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserfriends': function(args, opts) {
+	'getUserFriends': function(args, opts) {
 		var url = '{user}/friends'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1494,9 +1494,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuseractivities': function(args, opts) {
+	'getUserActivities': function(args, opts) {
 		var url = '{user}/activities'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1529,9 +1529,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusercheckins': function(args, opts) {
+	'getUserCheckins': function(args, opts) {
 		var url = '{user}/checkins'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1564,9 +1564,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserinterests': function(args, opts) {
+	'getUserInterests': function(args, opts) {
 		var url = '{user}/interests'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1599,9 +1599,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusermusic': function(args, opts) {
+	'getUserMusic': function(args, opts) {
 		var url = '{user}/music'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1634,9 +1634,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserbooks': function(args, opts) {
+	'getUserBooks': function(args, opts) {
 		var url = '{user}/books'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1669,9 +1669,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusermovies': function(args, opts) {
+	'getUserMovies': function(args, opts) {
 		var url = '{user}/movies'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1704,9 +1704,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusertelevision': function(args, opts) {
+	'getUserTelevision': function(args, opts) {
 		var url = '{user}/television'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1739,9 +1739,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserlikes': function(args, opts) {
+	'getUserLikes': function(args, opts) {
 		var url = '{user}/likes'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1774,9 +1774,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserphotos': function(args, opts) {
+	'getUserPhotos': function(args, opts) {
 		var url = '{user}/photos'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1809,9 +1809,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuseralbums': function(args, opts) {
+	'getUserAlbums': function(args, opts) {
 		var url = '{user}/albums'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1844,9 +1844,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuservideos': function(args, opts) {
+	'getUserVideos': function(args, opts) {
 		var url = '{user}/videos'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1879,9 +1879,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusergroups': function(args, opts) {
+	'getUserGroups': function(args, opts) {
 		var url = '{user}/groups'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1914,9 +1914,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserstatuses': function(args, opts) {
+	'getUserStatuses': function(args, opts) {
 		var url = '{user}/statuses'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1949,9 +1949,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserlinks': function(args, opts) {
+	'getUserLinks': function(args, opts) {
 		var url = '{user}/links'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -1984,9 +1984,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getusernotes': function(args, opts) {
+	'getUserNotes': function(args, opts) {
 		var url = '{user}/notes'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -2019,9 +2019,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserevents': function(args, opts) {
+	'getUserEvents': function(args, opts) {
 		var url = '{user}/events'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -2054,9 +2054,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserinbox': function(args, opts) {
+	'getUserInbox': function(args, opts) {
 		var url = '{user}/inbox'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -2089,9 +2089,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuseroutbox': function(args, opts) {
+	'getUserOutbox': function(args, opts) {
 		var url = '{user}/outbox'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -2124,9 +2124,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuserupdates': function(args, opts) {
+	'getUserUpdates': function(args, opts) {
 		var url = '{user}/updates'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -2159,9 +2159,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getuseraccounts': function(args, opts) {
+	'getUserAccounts': function(args, opts) {
 		var url = '{user}/accounts'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
@@ -2194,9 +2194,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getvideo': function(args, opts) {
+	'getVideo': function(args, opts) {
 		var url = '{video}'
 		args = args || {}
 		if (args['video'] == null) args['video'] = "614004947048"
@@ -2211,9 +2211,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getvideocomments': function(args, opts) {
+	'getVideoComments': function(args, opts) {
 		var url = '{video}/comments'
 		args = args || {}
 		if (args['video'] == null) args['video'] = "614004947048"
@@ -2246,9 +2246,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'postprofileidfeed': function(args, opts) {
+	'postProfileIdFeed': function(args, opts) {
 		var url = '{profile_id}/feed'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
@@ -2293,9 +2293,9 @@
 			url = url.replace(rgx, args['description'])
 			if (args['description']) delete args['description']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postpostidcomments': function(args, opts) {
+	'postPostIdComments': function(args, opts) {
 		var url = '{post_id}/comments'
 		args = args || {}
 		if (args['post_id'] == null) args['post_id'] = "163046417207_399962632207"
@@ -2310,9 +2310,9 @@
 			url = url.replace(rgx, args['message'])
 			if (args['message']) delete args['message']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postpostidlikes': function(args, opts) {
+	'postPostIdLikes': function(args, opts) {
 		var url = '{post_id}/likes'
 		args = args || {}
 		if (args['post_id'] == null) args['post_id'] = "163046417207_399962632207"
@@ -2321,9 +2321,9 @@
 			url = url.replace(rgx, args['post_id'])
 			if (args['post_id']) delete args['post_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postprofileidnotes': function(args, opts) {
+	'postProfileIdNotes': function(args, opts) {
 		var url = '{profile_id}/notes'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
@@ -2344,9 +2344,9 @@
 			url = url.replace(rgx, args['subject'])
 			if (args['subject']) delete args['subject']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postprofileidlinks': function(args, opts) {
+	'postProfileIdLinks': function(args, opts) {
 		var url = '{profile_id}/links'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
@@ -2367,9 +2367,9 @@
 			url = url.replace(rgx, args['link'])
 			if (args['link']) delete args['link']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postprofileidevents': function(args, opts) {
+	'postProfileIdEvents': function(args, opts) {
 		var url = '{profile_id}/events'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
@@ -2378,9 +2378,9 @@
 			url = url.replace(rgx, args['profile_id'])
 			if (args['profile_id']) delete args['profile_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'posteventidattending': function(args, opts) {
+	'postEventIdAttending': function(args, opts) {
 		var url = '{event_id}/attending'
 		args = args || {}
 		if (args['event_id'] == null) args['event_id'] = "331218348435"
@@ -2389,9 +2389,9 @@
 			url = url.replace(rgx, args['event_id'])
 			if (args['event_id']) delete args['event_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'posteventidmaybe': function(args, opts) {
+	'postEventIdMaybe': function(args, opts) {
 		var url = '{event_id}/maybe'
 		args = args || {}
 		if (args['event_id'] == null) args['event_id'] = "331218348435"
@@ -2400,9 +2400,9 @@
 			url = url.replace(rgx, args['event_id'])
 			if (args['event_id']) delete args['event_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'posteventiddeclined': function(args, opts) {
+	'postEventIdDeclined': function(args, opts) {
 		var url = '{event_id}/declined'
 		args = args || {}
 		if (args['event_id'] == null) args['event_id'] = "331218348435"
@@ -2411,9 +2411,9 @@
 			url = url.replace(rgx, args['event_id'])
 			if (args['event_id']) delete args['event_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postprofileidalbums': function(args, opts) {
+	'postProfileIdAlbums': function(args, opts) {
 		var url = '{profile_id}/albums'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
@@ -2434,9 +2434,9 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'postalbumidphotos': function(args, opts) {
+	'postAlbumIdPhotos': function(args, opts) {
 		var url = '{album_id}/photos'
 		args = args || {}
 		if (args['album_id'] == null) args['album_id'] = "me"
@@ -2451,9 +2451,9 @@
 			url = url.replace(rgx, args['message'])
 			if (args['message']) delete args['message']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'POST',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
-	'deleteobjectid': function(args, opts) {
+	'deleteObjectId': function(args, opts) {
 		var url = '{object_id}'
 		args = args || {}
 		if (args['object_id'] == null) args['object_id'] = "OBJECTID"
@@ -2462,9 +2462,9 @@
 			url = url.replace(rgx, args['object_id'])
 			if (args['object_id']) delete args['object_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'DELETE',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
 	},
-	'deletepostidlikes': function(args, opts) {
+	'deletePostIdLikes': function(args, opts) {
 		var url = '{post_id}/likes'
 		args = args || {}
 		if (args['post_id'] == null) args['post_id'] = "OBJECTID"
@@ -2473,9 +2473,9 @@
 			url = url.replace(rgx, args['post_id'])
 			if (args['post_id']) delete args['post_id']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'DELETE',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
 	},
-	'getcheckin': function(args, opts) {
+	'getCheckin': function(args, opts) {
 		var url = '{checkin}'
 		args = args || {}
 		if (args['checkin'] == null) args['checkin'] = "robertscoble"
@@ -2490,9 +2490,9 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
-	'getapplication': function(args, opts) {
+	'getApplication': function(args, opts) {
 		var url = '{application}'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2501,9 +2501,9 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
-	'getapplicationfeed': function(args, opts) {
+	'getApplicationFeed': function(args, opts) {
 		var url = '{application}/feed'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2536,9 +2536,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationposts': function(args, opts) {
+	'getApplicationPosts': function(args, opts) {
 		var url = '{application}/posts'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2571,9 +2571,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationpicture': function(args, opts) {
+	'getApplicationPicture': function(args, opts) {
 		var url = '{application}/picture'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2588,9 +2588,9 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationtagged': function(args, opts) {
+	'getApplicationTagged': function(args, opts) {
 		var url = '{application}/tagged'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2623,9 +2623,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationlinks': function(args, opts) {
+	'getApplicationLinks': function(args, opts) {
 		var url = '{application}/links'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2658,9 +2658,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationphotos': function(args, opts) {
+	'getApplicationPhotos': function(args, opts) {
 		var url = '{application}/photos'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2693,9 +2693,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationalbums': function(args, opts) {
+	'getApplicationAlbums': function(args, opts) {
 		var url = '{application}/albums'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2728,9 +2728,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationstatuses': function(args, opts) {
+	'getApplicationStatuses': function(args, opts) {
 		var url = '{application}/statuses'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2763,9 +2763,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationvideos': function(args, opts) {
+	'getApplicationVideos': function(args, opts) {
 		var url = '{application}/videos'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2798,9 +2798,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationnotes': function(args, opts) {
+	'getApplicationNotes': function(args, opts) {
 		var url = '{application}/notes'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2833,9 +2833,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationevents': function(args, opts) {
+	'getApplicationEvents': function(args, opts) {
 		var url = '{application}/events'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2868,9 +2868,9 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	},
-	'getapplicationinsights': function(args, opts) {
+	'getApplicationInsights': function(args, opts) {
 		var url = '{application}/insights'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
@@ -2903,6 +2903,6 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		return http({provider:'facebook',url:'https://graph.facebook.com/' + url,method:'GET',params:args}, opts)
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth: 'true'}, opts)
 	}
 })

@@ -30,11 +30,6 @@
 			url = url.replace(rgx, args['filter'])
 			if (args['filter']) delete args['filter']
 		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
 		if (args['html_escape'] == null) args['html_escape'] = "true"
 		var rgx = new RegExp('\{html_escape\}', 'g')
 		if (url.match(rgx)) {
@@ -75,12 +70,7 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'none'}, opts)
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
 	'mqlread': function(args, opts) {
 		var url = 'mqlread'
@@ -136,7 +126,7 @@
 			url = url.replace(rgx, args['uniqueness_failure'])
 			if (args['uniqueness_failure']) delete args['uniqueness_failure']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'none'}, opts)
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
 	'mqlwrite': function(args, opts) {
 		var url = 'mqlwrite'
@@ -147,34 +137,7 @@
 			url = url.replace(rgx, args['query'])
 			if (args['query']) delete args['query']
 		}
-		return http({provider:'freebase',url:url,method:'POST',params:args, auth: 'manual'}, opts)
-	},
-	'topic': function(args, opts) {
-		var url = 'topic{id}'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (args['lang'] == null) args['lang'] = "/lang/en"
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		var rgx = new RegExp('\{filter\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'none'}, opts)
+		return http({provider:'freebase',url:url,method:'POST',params:args, auth: 'true'}, opts)
 	},
 	'text': function(args, opts) {
 		var url = 'text{id}'
@@ -203,7 +166,7 @@
 			url = url.replace(rgx, args['maxlength'])
 			if (args['maxlength']) delete args['maxlength']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'none'}, opts)
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	},
 	'image': function(args, opts) {
 		var url = 'image{id}'
@@ -239,6 +202,6 @@
 			url = url.replace(rgx, args['pad'])
 			if (args['pad']) delete args['pad']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'none'}, opts)
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth: 'false'}, opts)
 	}
 })

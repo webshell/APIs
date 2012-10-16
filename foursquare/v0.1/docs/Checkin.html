@@ -1,0 +1,195 @@
+<h1>Foursquare API: Checkin</h1>
+<p>These methods are relative to the tag 'Checkin'</p><h3>getCheckinDetails</h3>
+<p>
+					Get details of a checkin. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>CHECKIN_ID</td>
+			<td>The ID of the checkin to retrieve additional information for.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>checkin</h3>
+<p>
+					Allows you to check in to a place. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>venueId</td>
+			<td>
+					The venue where the user is checking in. No venueid is needed if shouting or just providing a venue name. Find venue IDs
+					by searching or from historical APIs.
+				</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>venue</td>
+			<td>
+					If are not shouting, but you don't have a venue ID or would rather prefer a 'venueless' checkin, pass the venue name as
+					a string using this parameter. It will become an 'orphan' (no address or venueid but with geolat, geolong).
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>shout</td>
+			<td>A message about your check-in. The maximum length of this field is 140 characters.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>broadcast</td>
+			<td>
+					How much to broadcast this check-in, ranging from private (off-the-grid) to public,faceboook,twitter. Can also be just
+					public or public,facebook, for example. If no valid value is found, the default is public. Shouts cannot be private.
+				</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>ll</td>
+			<td>Latitude and longitude of the user's location.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>llAcc</td>
+			<td>Accuracy of the user's latitude and longitude, in meters.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>alt</td>
+			<td>Altitude of the user's location, in meters.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>altAcc</td>
+			<td>Vertical accuracy of the user's location, in meters.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getCheckins</h3>
+<p>
+					Returns a list of recent checkins from friends. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ll</td>
+			<td>Latitude and longitude of the user's location, so response can include distance.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Number of results to return, up to 500.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>Used to page through results.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>afterTimestamp</td>
+			<td>
+					Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit
+					results are new since then, this is ignored.
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addCheckinComment</h3>
+<p>
+					Comment on a checkin-in
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>CHECKIN_ID</td>
+			<td>The ID of the checkin to add a comment to.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>text</td>
+			<td>The text of the comment, up to 200 characters.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>removeCheckinComment</h3>
+<p>
+					Remove a comment from a checkin, if the acting user is the author or the owner of the checkin.
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>CHECKIN_ID</td>
+			<td>The ID of the checkin to remove a comment from.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>commentId</td>
+			<td>The id of the comment to remove.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

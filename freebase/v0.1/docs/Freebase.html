@@ -1,0 +1,273 @@
+<h1>Freebase API: Freebase</h1>
+<p>These methods are relative to the tag 'Freebase'</p><h3>search</h3>
+<p>
+					Find entities by keyword search.
+				</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>query</td>
+			<td>The text you want to match against freebase entities.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>JS method name for JSONP callbacks.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>domain</td>
+			<td>A comma separated list of domain IDs. Search results must include these domains.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>exact</td>
+			<td>Matches only the name, and keys 'exactly'. No normalization of any kind is done at indexing and query time. The text is only broken up on space characters.</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>A Filter s-expression.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>html_escape</td>
+			<td>Whether or not to escape entities.</td>
+			<td>true</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>indent</td>
+			<td>Whether to indent the json.</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Return up to this number of results. (integer >= 1)</td>
+			<td>20</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>mql_output</td>
+			<td>A MQL query thats extracts entity information.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefixed</td>
+			<td>Whether or not to match by name prefix (used for autosuggest).</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>Allows paging through results. (integer >= 0)</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>A comma seperated list of type IDs. Search results must include these types.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>mqlread</h3>
+<p>
+					Retrieve detailed structured data about entities or collections of entities using the Metaweb Query Language (MQL).
+				</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>query</td>
+			<td>A valid MQL query in the json format.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>as_of_time</td>
+			<td>Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>JS method name for JSONP callbacks.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>cursor</td>
+			<td>Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>html_escape</td>
+			<td>Whether or not to escape entities.</td>
+			<td>true</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>indent</td>
+			<td>How many spaces to indent the JSON. (integer 0-10)</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>lang</td>
+			<td>Return strings in the language requested (if a given object has no name in the requested language, null will be returned).</td>
+			<td>/lang/en</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>cost</td>
+			<td>Whether or not to show the costs.</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>uniqueness_failure</td>
+			<td>How MQL responds to uniqueness failures.</td>
+			<td>hard</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>mqlwrite</h3>
+<p>
+					Perform insertions, deletions and updates of Metaweb Query Language (MQL).
+				</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>query</td>
+			<td>A valid MQL query in the json format.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>text</h3>
+<p>
+					Get short textual descriptions for entities.
+				</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The id of the entity that you want a description for.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>format</td>
+			<td>Sanitizing transformation.</td>
+			<td>raw</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>lang</td>
+			<td>The desired language of the content.</td>
+			<td>/lang/en</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>maxlength</td>
+			<td>The max number of characters to return. Valid only for 'plain' format. (integer 0-4,294,967,295)</td>
+			<td>200</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>image</h3>
+<p>
+					Get representative thumbnail images for entities.
+				</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The id of an entity for which you want an image. Alternatively, you may pass the id of the content node for a specific image.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fallbackid</td>
+			<td>Use the image associated with this secondary id if no image is associated with the primary id.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>maxheight</td>
+			<td>Maximum height in pixels for resulting image. (integer 0 - 4,096)</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>maxwidth</td>
+			<td>Maximum width in pixels for resulting image. (integer 0 - 4,096)</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>mode</td>
+			<td>Method used to scale or crop image.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pad</td>
+			<td>Whether the resulting image should be padded up to the requested dimensions. (boolean as 0 or 1)</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>

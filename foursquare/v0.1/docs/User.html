@@ -1,0 +1,454 @@
+<h1>Foursquare API: User</h1>
+<p>These methods are relative to the tag 'User'</p><h3>getuser</h3>
+<p>
+					Returns profile information for a given user, including selected badges and mayorships.
+                    If the user is a friend, contact information, Facebook ID, and Twitter handle and the user's last
+                    checkin may also be present.In addition, the pings field will indicate whether checkins from this
+                    user will trigger a ping (notifications to mobile devices). This setting can be changed via setpings.
+                    Note that this setting is overriden if pings is false in settings (no pings will be sent, even if
+                    this user is set to true). 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>Identity of the user to get details for. Pass self to get details of the acting user.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>searchUserViaGet</h3>
+<p>
+                      Returns an array of compact user objects with Twitter or Facebook information and friend status.
+                  </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>phone</td>
+			<td>A comma-delimited list of phone numbers to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td>A comma-delimited list of email addresses to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>twitter</td>
+			<td>A comma-delimited list of Twitter handles to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>twitterSource</td>
+			<td>A single Twitter handle. Results will be friends of this user who use Foursquare</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fbid</td>
+			<td>A comma-delimited list of Facebook ID's to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>A single string to search for in users' names</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>searchUserViaPost</h3>
+<p>
+					Returns an array of compact user objects with Twitter or Facebook information and friend status.
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>phone</td>
+			<td>A comma-delimited list of phone numbers to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td>A comma-delimited list of email addresses to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>twitter</td>
+			<td>A comma-delimited list of Twitter handles to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>twitterSource</td>
+			<td>A single Twitter handle. Results will be friends of this user who use Foursquare</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fbid</td>
+			<td>A comma-delimited list of Facebook ID's to look for</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>A single string to search for in users' names</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getRequests</h3>
+<p>
+					Shows a user the list of users with whom they have a pending friend request 
+					(i.e., someone tried to add the acting user as a friend, but the acting user has not accepted). 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+	</tbody>
+
+</table>
+<h3>getBadges</h3>
+<p>
+					Returns badges for a given user. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>ID for user to view badges for. Pass self to get details of the acting user.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getUserCheckins</h3>
+<p>
+					Returns a history of checkins for the authenticated user. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>
+					Identity of the user to get details for. Pass self to get details of the acting user. For now, only "self" is supported
+				</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Number of results to return, up to 500.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>Used to page through results.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>afterTimestamp</td>
+			<td>
+					Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or
+					when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last
+					poll time and then de-deduplicating.
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>beforeTimestamp</td>
+			<td>Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getFriends</h3>
+<p>
+					Returns an array of a user's friends. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>Identity of the user to get friends of. Pass self to get friends of the acting user.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getUserTips</h3>
+<p>
+					Returns tips from a user. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>Identity of the user to get tips from. Pass self to get tips of the acting user.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>ll</td>
+			<td>Latitude and longitude of the user's location.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getTodos</h3>
+<p>
+					Returns todos from a user. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>Identity of the user to get todos for. Pass self to get todos of the acting user.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>One of recent or popular. Nearby requires geolat and geolong to be provided.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>ll</td>
+			<td>Latitude and longitude of the user's location.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getVenueHistory</h3>
+<p>
+					Returns a list of all venues visited by the specified user, along with how many visits and when they were last there.
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>
+					Identity of the user to get details for. Pass self to get details of the acting user. For now, only "self" is supported
+				</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>sendRequest</h3>
+<p>
+					Sends a friend request to another user. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>The user ID to which a request will be sent.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>unfriendUser</h3>
+<p>
+					Cancels any relationship between the acting user and the specified user.
+					Removes a friend, unfollows a celebrity, or cancels a pending friend request. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>Identity of the user to unfriend.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>approveFriend</h3>
+<p>
+					Approves a pending friend request from another user.  
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>The user ID of a pending friend.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>denyFriend</h3>
+<p>
+					Denies a pending friend request from another user. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>The user ID of a pending friend.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>setPings</h3>
+<p>
+					Changes whether the acting user will receive pings (phone notifications) when the specified user checks in. 
+                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>USER_ID</td>
+			<td>The user ID of a friend.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>True or false.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

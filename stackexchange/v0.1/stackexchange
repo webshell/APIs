@@ -1,0 +1,2207 @@
+({
+	auth:function(){auth({provider:'stackexchange'})},
+	'getAnswers': function(args, opts) {
+		var url = 'answers'
+		args = args || {}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getAnswersByIds': function(args, opts) {
+		var url = 'answers/{ids}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getAnswersCommentsByIds': function(args, opts) {
+		var url = 'answers/{ids}/comments'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getBadges': function(args, opts) {
+		var url = 'badges'
+		args = args || {}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getBadgeRecipients': function(args, opts) {
+		var url = 'badges/{ids}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getNonTaggedBadges': function(args, opts) {
+		var url = 'badges/name'
+		args = args || {}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTaggedBadges': function(args, opts) {
+		var url = 'badges/tags'
+		args = args || {}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getComments': function(args, opts) {
+		var url = 'comments'
+		args = args || {}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getCommentsByIds': function(args, opts) {
+		var url = 'comments/{ids}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getPostsCommentsByIds': function(args, opts) {
+		var url = 'posts/{ids}/comments'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'simulateApiError': function(args, opts) {
+		var url = 'errors/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getPrivileges': function(args, opts) {
+		var url = 'privileges'
+		args = args || {}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getQuestions': function(args, opts) {
+		var url = 'questions'
+		args = args || {}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{tagged\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tagged'])
+			if (args['tagged']) delete args['tagged']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getQuestionsByIds': function(args, opts) {
+		var url = 'questions/{ids}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getQuestionsAnswersByIds': function(args, opts) {
+		var url = 'questions/{ids}/answers'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getQuestionsCommentsByIds': function(args, opts) {
+		var url = 'questions/{ids}/comments'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getLinkedQuestionsByIds': function(args, opts) {
+		var url = 'questions/{ids}/linked'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getRelatedQuestionsByIds': function(args, opts) {
+		var url = 'questions/{ids}/related'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getQuestionsTimelinesByIds': function(args, opts) {
+		var url = 'questions/{ids}/timeline'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUnansweredQuestions': function(args, opts) {
+		var url = 'questions/unanswered'
+		args = args || {}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{tagged\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tagged'])
+			if (args['tagged']) delete args['tagged']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getNoAnswersQuestions': function(args, opts) {
+		var url = 'questions/no-answers'
+		args = args || {}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{tagged\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tagged'])
+			if (args['tagged']) delete args['tagged']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getPostsRevisionsByIds': function(args, opts) {
+		var url = 'revisions/{ids}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getPostSpecificRevision': function(args, opts) {
+		var url = 'revisions/{id}/{revisionguid}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['revisionguid'] == null) throw new Error('revisionguid is a required parameter')
+		var rgx = new RegExp('\{revisionguid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['revisionguid'])
+			if (args['revisionguid']) delete args['revisionguid']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'SearchQuestionsByCriteria': function(args, opts) {
+		var url = 'search'
+		args = args || {}
+		var rgx = new RegExp('\{nottagged\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nottagged'])
+			if (args['nottagged']) delete args['nottagged']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'SearchSimilarQuestionsByTitle': function(args, opts) {
+		var url = 'similar'
+		args = args || {}
+		var rgx = new RegExp('\{nottagged\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nottagged'])
+			if (args['nottagged']) delete args['nottagged']
+		}
+		var rgx = new RegExp('\{tagged\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tagged'])
+			if (args['tagged']) delete args['tagged']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getStats': function(args, opts) {
+		var url = 'stats'
+		args = args || {}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTags': function(args, opts) {
+		var url = 'tags'
+		args = args || {}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTagsSynonyms': function(args, opts) {
+		var url = 'tags/synonyms'
+		args = args || {}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getSpecificTagsSynonyms': function(args, opts) {
+		var url = 'tags/{tags}/synonyms'
+		args = args || {}
+		if (args['tags'] == null) throw new Error('tags is a required parameter')
+		var rgx = new RegExp('\{tags\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTagsWikis': function(args, opts) {
+		var url = 'tags/{tags}/wikis'
+		args = args || {}
+		if (args['tags'] == null) throw new Error('tags is a required parameter')
+		var rgx = new RegExp('\{tags\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTagTopAnswerersByPeriod': function(args, opts) {
+		var url = 'tags/{tag}/top-answerers/{period}'
+		args = args || {}
+		if (args['tag'] == null) throw new Error('tag is a required parameter')
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (args['period'] == null) throw new Error('period is a required parameter')
+		var rgx = new RegExp('\{period\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['period'])
+			if (args['period']) delete args['period']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTagTopAskersByPeriod': function(args, opts) {
+		var url = 'tags/{tag}/top-askers/{period}'
+		args = args || {}
+		if (args['tag'] == null) throw new Error('tag is a required parameter')
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (args['period'] == null) throw new Error('period is a required parameter')
+		var rgx = new RegExp('\{period\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['period'])
+			if (args['period']) delete args['period']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsers': function(args, opts) {
+		var url = 'users'
+		args = args || {}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersByIds': function(args, opts) {
+		var url = 'users/{ids}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersAnswersByIds': function(args, opts) {
+		var url = 'users/{ids}/answers'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersBadgesByIds': function(args, opts) {
+		var url = 'users/{ids}/badges'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersCommentsByIds': function(args, opts) {
+		var url = 'users/{ids}/comments'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getReplyUsersCommentsByIds': function(args, opts) {
+		var url = 'users/{ids}/comments/{toid}'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		if (args['toid'] == null) throw new Error('toid is a required parameter')
+		var rgx = new RegExp('\{toid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['toid'])
+			if (args['toid']) delete args['toid']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersFavoritedQuestionsByIds': function(args, opts) {
+		var url = 'users/{ids}/favorites'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getCommentsMentioningUsersByIds': function(args, opts) {
+		var url = 'users/{ids}/favorites'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersAskedQuestionsByIds': function(args, opts) {
+		var url = 'users/{ids}/questions'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersAskedQuestionsWithNoAnswersByIds': function(args, opts) {
+		var url = 'users/{ids}/questions/no-answers'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUnacceptedUsersAskedQuestionsByIds': function(args, opts) {
+		var url = 'users/{ids}/questions/unaccepted'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUnansweredUsersAskedQuestionsByIds': function(args, opts) {
+		var url = 'users/{ids}/questions/unanswered'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersReputationChangesSubsetByIds': function(args, opts) {
+		var url = 'users/{ids}/reputation'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getTagsUsersBeingActiveByIds': function(args, opts) {
+		var url = 'users/{ids}/tags'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUserPostedTopAnswersWithTags': function(args, opts) {
+		var url = 'users/{id}/tags/{tags}/top-answers'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['tags'] == null) throw new Error('tags is a required parameter')
+		var rgx = new RegExp('\{tags\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUserPostedTopQuestionsWithTags': function(args, opts) {
+		var url = 'users/{id}/tags/{tags}/top-questions'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['tags'] == null) throw new Error('tags is a required parameter')
+		var rgx = new RegExp('\{tags\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		var rgx = new RegExp('\{answers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['answers'])
+			if (args['answers']) delete args['answers']
+		}
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		var rgx = new RegExp('\{comments\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comments'])
+			if (args['comments']) delete args['comments']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUsersActionsSubsetByIds': function(args, opts) {
+		var url = 'users/{ids}/timeline'
+		args = args || {}
+		if (args['ids'] == null) throw new Error('ids is a required parameter')
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUserAnswersTopTags': function(args, opts) {
+		var url = 'users/{id}/top-answer-tags'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getUserQuestionsTopTags': function(args, opts) {
+		var url = 'users/{id}/top-question-tags'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	},
+	'getModeratorsUsers': function(args, opts) {
+		var url = 'users/moderators'
+		args = args || {}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{fromdate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdate'])
+			if (args['fromdate']) delete args['fromdate']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (args['order'] == null) args['order'] = "desc"
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{pagesize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagesize'])
+			if (args['pagesize']) delete args['pagesize']
+		}
+		if (args['sort'] == null) args['sort'] = "activity"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{todate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todate'])
+			if (args['todate']) delete args['todate']
+		}
+		return http({provider:'stackexchange',url:url,method:'GET',params:args, auth: 'false'}, opts)
+	}
+})
