@@ -9,7 +9,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'statuseshome_timeline': function(args, opts) {
 		var url = 'statuses/home_timeline.{format}'
@@ -56,7 +56,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'statusesuser_timeline': function(args, opts) {
 		var url = 'statuses/user_timeline.{format}'
@@ -121,7 +121,7 @@
 			url = url.replace(rgx, args['include_rts'])
 			if (args['include_rts']) delete args['include_rts']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'statusesmentions': function(args, opts) {
 		var url = 'statuses/mentions.{format}'
@@ -174,7 +174,7 @@
 			url = url.replace(rgx, args['skip_user'])
 			if (args['skip_user']) delete args['skip_user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'statusesretweeted_by_me': function(args, opts) {
 		var url = 'statuses/retweeted_by_me.{format}'
@@ -209,7 +209,7 @@
 			url = url.replace(rgx, args['since_id'])
 			if (args['since_id']) delete args['since_id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'statusesretweeted_to_me': function(args, opts) {
 		var url = 'statuses/retweeted_to_me.{format}'
@@ -244,7 +244,7 @@
 			url = url.replace(rgx, args['since_id'])
 			if (args['since_id']) delete args['since_id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'statusesretweets_of_me': function(args, opts) {
 		var url = 'statuses/retweets_of_me.{format}'
@@ -279,7 +279,7 @@
 			url = url.replace(rgx, args['since_id'])
 			if (args['since_id']) delete args['since_id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'statusesretweeted_by2': function(args, opts) {
 		var url = 'statuses/{id}/retweeted_by.{format}'
@@ -320,7 +320,7 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'statusesretweeted_by1': function(args, opts) {
 		var url = 'statuses/{id}/retweeted_by/ids.{format}'
@@ -361,7 +361,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'statusesshow': function(args, opts) {
 		var url = 'statuses/show/{id}.{format}'
@@ -390,7 +390,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'statusesupdate': function(args, opts) {
 		var url = 'statuses/update.{format}'
@@ -455,7 +455,7 @@
 			url = url.replace(rgx, args['annotations'])
 			if (args['annotations']) delete args['annotations']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'statusesdestroy': function(args, opts) {
 		var url = 'statuses/destroy/{id}.{format}'
@@ -484,7 +484,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'statusesretweetid': function(args, opts) {
 		var url = 'statuses/retweet/{id}.{format}'
@@ -513,7 +513,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'statusesretweets': function(args, opts) {
 		var url = 'statuses/retweets/{id}.{format}'
@@ -548,7 +548,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'usersshow': function(args, opts) {
 		var url = 'users/show.{format}'
@@ -565,7 +565,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userslookup': function(args, opts) {
 		var url = 'users/lookup.{format}'
@@ -582,7 +582,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userssearch': function(args, opts) {
 		var url = 'users/search.{format}'
@@ -617,7 +617,7 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userssuggestions': function(args, opts) {
 		var url = 'users/suggestions.{format}'
@@ -628,7 +628,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userssuggestionscategory': function(args, opts) {
 		var url = 'users/suggestions/{slug}.{format}'
@@ -645,7 +645,7 @@
 			url = url.replace(rgx, args['slug'])
 			if (args['slug']) delete args['slug']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'usersprofile_image': function(args, opts) {
 		var url = 'users/profile_image/{screen_name}.{format}'
@@ -668,7 +668,7 @@
 			url = url.replace(rgx, args['size'])
 			if (args['size']) delete args['size']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'direct_messages': function(args, opts) {
 		var url = 'direct_messages.{format}'
@@ -703,7 +703,7 @@
 			url = url.replace(rgx, args['since_id'])
 			if (args['since_id']) delete args['since_id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'direct_messagessent': function(args, opts) {
 		var url = 'direct_messages/sent.{format}'
@@ -738,7 +738,7 @@
 			url = url.replace(rgx, args['since_id'])
 			if (args['since_id']) delete args['since_id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'direct_messagesnew': function(args, opts) {
 		var url = 'direct_messages/new.{format}'
@@ -755,7 +755,7 @@
 			url = url.replace(rgx, args['text'])
 			if (args['text']) delete args['text']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'direct_messagesdestroy': function(args, opts) {
 		var url = 'direct_messages/destroy/{id}.{format}'
@@ -772,7 +772,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'friendshipscreate': function(args, opts) {
 		var url = 'friendships/create.{format}'
@@ -789,7 +789,7 @@
 			url = url.replace(rgx, args['follow'])
 			if (args['follow']) delete args['follow']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'friendshipsdestroy': function(args, opts) {
 		var url = 'friendships/destroy.{format}'
@@ -800,7 +800,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'friendshipsexists': function(args, opts) {
 		var url = 'friendships/exists.{format}'
@@ -823,7 +823,7 @@
 			url = url.replace(rgx, args['user_a'])
 			if (args['user_a']) delete args['user_a']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'friendshipsshow': function(args, opts) {
 		var url = 'friendships/show.{format}'
@@ -834,7 +834,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'friendshipsexists.format': function(args, opts) {
 		var url = 'friendships/incoming.{format}'
@@ -851,7 +851,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'friendshipsoutgoing.format': function(args, opts) {
 		var url = 'friendships/outgoing.{format}'
@@ -868,7 +868,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'friendsids': function(args, opts) {
 		var url = 'friends/ids.{format}'
@@ -885,7 +885,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'followersids': function(args, opts) {
 		var url = 'followers/ids.{format}'
@@ -902,7 +902,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'accountverify_credentials': function(args, opts) {
 		var url = 'account/verify_credentials.{format}'
@@ -913,7 +913,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'accountrate_limit_status': function(args, opts) {
 		var url = 'account/rate_limit_status.{format}'
@@ -924,7 +924,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userlistscreate1': function(args, opts) {
 		var url = 'lists.{format}'
@@ -941,7 +941,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userlistsmemberships1': function(args, opts) {
 		var url = 'lists/memberships.{format}'
@@ -964,7 +964,7 @@
 			url = url.replace(rgx, args['filter_to_owned_lists'])
 			if (args['filter_to_owned_lists']) delete args['filter_to_owned_lists']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userlistssubscriptions1': function(args, opts) {
 		var url = 'lists/subscriptions.{format}'
@@ -981,7 +981,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userlistsshow': function(args, opts) {
 		var url = 'lists/show.{format}'
@@ -1004,7 +1004,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userliststatuses': function(args, opts) {
 		var url = 'lists/statuses.{format}'
@@ -1075,7 +1075,7 @@
 			url = url.replace(rgx, args['include_rts'])
 			if (args['include_rts']) delete args['include_rts']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userlistscreate2': function(args, opts) {
 		var url = 'lists/create.{format}'
@@ -1103,7 +1103,7 @@
 			url = url.replace(rgx, args['description'])
 			if (args['description']) delete args['description']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'userlistupdate': function(args, opts) {
 		var url = 'lists/update.{format}'
@@ -1120,7 +1120,7 @@
 			url = url.replace(rgx, args['slug'])
 			if (args['slug']) delete args['slug']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'userlistdestroy': function(args, opts) {
 		var url = 'lists/destroy.{format}'
@@ -1137,7 +1137,7 @@
 			url = url.replace(rgx, args['slug'])
 			if (args['slug']) delete args['slug']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'listmembers': function(args, opts) {
 		var url = 'lists/members.{format}'
@@ -1166,7 +1166,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listmembersshow': function(args, opts) {
 		var url = 'lists/members/show.{format}'
@@ -1195,7 +1195,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listmemberscreate': function(args, opts) {
 		var url = 'lists/members/create.{format}'
@@ -1218,7 +1218,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'listmemberscreateall': function(args, opts) {
 		var url = 'lists/members/create_all.{format}'
@@ -1235,7 +1235,7 @@
 			url = url.replace(rgx, args['slug'])
 			if (args['slug']) delete args['slug']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'listmembersdestroy': function(args, opts) {
 		var url = 'lists/members/destroy.{format}'
@@ -1252,7 +1252,7 @@
 			url = url.replace(rgx, args['slug'])
 			if (args['slug']) delete args['slug']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'listsubscribers': function(args, opts) {
 		var url = 'lists/subscribers.{format}'
@@ -1275,7 +1275,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'listsubscribersshow': function(args, opts) {
 		var url = 'lists/subscribers/show.{format}'
@@ -1304,7 +1304,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'listsubscriberscreate': function(args, opts) {
 		var url = 'lists/subscribers/create.{format}'
@@ -1327,7 +1327,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'listsubscribersdestroy': function(args, opts) {
 		var url = 'lists/subscribers/destroy.{format}'
@@ -1350,7 +1350,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'accountupdate_profile_colors': function(args, opts) {
 		var url = 'account/update_profile_colors.{format}'
@@ -1361,7 +1361,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'accountupdate_profile_image': function(args, opts) {
 		var url = 'account/update_profile_image.{format}'
@@ -1378,7 +1378,7 @@
 			url = url.replace(rgx, args['image'])
 			if (args['image']) delete args['image']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'accountupdate_profile_background_image': function(args, opts) {
 		var url = 'account/update_profile_background_image.{format}'
@@ -1401,7 +1401,7 @@
 			url = url.replace(rgx, args['image'])
 			if (args['image']) delete args['image']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'accountupdate_profile': function(args, opts) {
 		var url = 'account/update_profile.{format}'
@@ -1412,7 +1412,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'favorites': function(args, opts) {
 		var url = 'favorites.{format}'
@@ -1435,7 +1435,7 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'favoritescreate': function(args, opts) {
 		var url = 'favorites/create/{id}.{format}'
@@ -1452,7 +1452,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'favoritesdestroy': function(args, opts) {
 		var url = 'favorites/destroy/{id}.{format}'
@@ -1469,7 +1469,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'notificationsfollow': function(args, opts) {
 		var url = 'notifications/follow.{format}'
@@ -1480,7 +1480,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'notificationsleave': function(args, opts) {
 		var url = 'notifications/leave.{format}'
@@ -1491,7 +1491,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'blockscreate': function(args, opts) {
 		var url = 'blocks/create.{format}'
@@ -1502,7 +1502,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'blocksdestroy': function(args, opts) {
 		var url = 'blocks/destroy.{format}'
@@ -1513,7 +1513,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'blocksexists': function(args, opts) {
 		var url = 'blocks/exists.{format}'
@@ -1524,7 +1524,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'blocksblocking': function(args, opts) {
 		var url = 'blocks/blocking.{format}'
@@ -1541,7 +1541,7 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'blocksblockingids': function(args, opts) {
 		var url = 'blocks/blocking/ids.{format}'
@@ -1552,7 +1552,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'report_spam': function(args, opts) {
 		var url = 'report_spam.{format}'
@@ -1563,7 +1563,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'saved_searches': function(args, opts) {
 		var url = 'saved_searches.{format}'
@@ -1574,7 +1574,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'saved_searchesshow': function(args, opts) {
 		var url = 'saved_searches/show/{id}.{format}'
@@ -1591,7 +1591,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'saved_searchescreate': function(args, opts) {
 		var url = 'saved_searches/create.{format}'
@@ -1608,7 +1608,7 @@
 			url = url.replace(rgx, args['query'])
 			if (args['query']) delete args['query']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'saved_searchesdestroy': function(args, opts) {
 		var url = 'saved_searches/destroy/{id}.{format}'
@@ -1625,7 +1625,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'trendsavailable': function(args, opts) {
 		var url = 'trends/available.{format}'
@@ -1636,7 +1636,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'trendswoeid': function(args, opts) {
 		var url = 'trends/{woeid}.{format}'
@@ -1653,7 +1653,7 @@
 			url = url.replace(rgx, args['woeid'])
 			if (args['woeid']) delete args['woeid']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'geonearby_places': function(args, opts) {
 		var url = 'geo/search.{format}'
@@ -1695,7 +1695,7 @@
 			url = url.replace(rgx, args['accuracy'])
 			if (args['accuracy']) delete args['accuracy']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'geosimilar_places': function(args, opts) {
 		var url = 'geo/similar_places.{format}'
@@ -1734,7 +1734,7 @@
 			url = url.replace(rgx, args['callback'])
 			if (args['callback']) delete args['callback']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'georeverse_geocode': function(args, opts) {
 		var url = 'geo/reverse_geocode.{format}'
@@ -1775,7 +1775,7 @@
 			url = url.replace(rgx, args['accuracy'])
 			if (args['accuracy']) delete args['accuracy']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'geoid': function(args, opts) {
 		var url = 'geo/id/{id}.{format}'
@@ -1792,7 +1792,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'geoplace': function(args, opts) {
 		var url = 'geo/place.{format}'
@@ -1843,7 +1843,7 @@
 			url = url.replace(rgx, args['callback'])
 			if (args['callback']) delete args['callback']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'helptest': function(args, opts) {
 		var url = 'help/test.{format}'
@@ -1854,7 +1854,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'legaltos': function(args, opts) {
 		var url = 'legal/tos.{format}'
@@ -1865,7 +1865,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'legalprivacy': function(args, opts) {
 		var url = 'legal/privacy.{format}'
@@ -1876,7 +1876,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'trends': function(args, opts) {
 		var url = 'trends.{format}'
@@ -1887,7 +1887,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'trendscurrent2': function(args, opts) {
 		var url = 'trends/current.{format}'
@@ -1904,7 +1904,7 @@
 			url = url.replace(rgx, args['exclude'])
 			if (args['exclude']) delete args['exclude']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'trendscurrent1': function(args, opts) {
 		var url = 'trends/daily.{format}'
@@ -1927,7 +1927,7 @@
 			url = url.replace(rgx, args['date'])
 			if (args['date']) delete args['date']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'trendsweekly': function(args, opts) {
 		var url = 'trends/weekly.{format}'
@@ -1950,7 +1950,7 @@
 			url = url.replace(rgx, args['date'])
 			if (args['date']) delete args['date']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'statusesfriends_timeline': function(args, opts) {
 		var url = 'statuses/friends_timeline.{format}'
@@ -2003,7 +2003,7 @@
 			url = url.replace(rgx, args['include_rts'])
 			if (args['include_rts']) delete args['include_rts']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userlistscreate': function(args, opts) {
 		var url = '{user}/lists.{format}'
@@ -2038,7 +2038,7 @@
 			url = url.replace(rgx, args['mode'])
 			if (args['mode']) delete args['mode']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'userlistsindex': function(args, opts) {
 		var url = '{user}/lists.{format}'
@@ -2061,7 +2061,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userlistsidupdate': function(args, opts) {
 		var url = '{user}/lists/{id}.{format}'
@@ -2102,7 +2102,7 @@
 			url = url.replace(rgx, args['mode'])
 			if (args['mode']) delete args['mode']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'userlistsidshow': function(args, opts) {
 		var url = '{user}/lists/{id}.{format}'
@@ -2125,7 +2125,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userlistsiddestroy': function(args, opts) {
 		var url = '{user}/lists/{id}.{format}'
@@ -2148,7 +2148,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'userlistsstatuses': function(args, opts) {
 		var url = '{user}/lists/{list_id}/statuses.{format}'
@@ -2195,7 +2195,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'userlistsmemberships': function(args, opts) {
 		var url = '{user}/lists/memberships.{format}'
@@ -2218,7 +2218,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'userlistssubscriptions': function(args, opts) {
 		var url = '{user}/lists/subscriptions.{format}'
@@ -2241,7 +2241,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'getuserlist_idmembers': function(args, opts) {
 		var url = '{user}/{list_id}/members.{format}'
@@ -2270,7 +2270,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'postuserlist_idmembers': function(args, opts) {
 		var url = '{user}/{list_id}/members.{format}'
@@ -2299,7 +2299,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'deleteuserlist_idmembers': function(args, opts) {
 		var url = '{user}/{list_id}/members.{format}'
@@ -2328,7 +2328,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'adduserlist_idmembers': function(args, opts) {
 		var url = '{user}/{list_id}/members/create_all.{format}'
@@ -2357,7 +2357,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'getuserlist_idmembersid': function(args, opts) {
 		var url = '{user}/{list_id}/members/{id}.{format}'
@@ -2386,7 +2386,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'getuserlist_idsubscribers': function(args, opts) {
 		var url = '{user}/{list_id}/subscribers.{format}'
@@ -2415,7 +2415,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'postuserlist_idsubscribers': function(args, opts) {
 		var url = '{user}/{list_id}/subscribers.{format}'
@@ -2438,7 +2438,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'deleteuserlist_idsubscribers': function(args, opts) {
 		var url = '{user}/{list_id}/subscribers.{format}'
@@ -2467,7 +2467,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'DELETE',params:args, opts)
 	},
 	'getuserlist_idsubscribersid': function(args, opts) {
 		var url = '{user}/{list_id}/subscribers/{id}.{format}'
@@ -2496,7 +2496,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, opts)
 	},
 	'geonearby_places1': function(args, opts) {
 		var url = 'geo/nearby_places.{format}'
@@ -2538,7 +2538,7 @@
 			url = url.replace(rgx, args['accuracy'])
 			if (args['accuracy']) delete args['accuracy']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'accountend_session': function(args, opts) {
 		var url = 'account/end_session.{format}'
@@ -2549,7 +2549,7 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'accountupdate_delivery_device': function(args, opts) {
 		var url = 'account/update_delivery_device.{format}'
@@ -2566,7 +2566,7 @@
 			url = url.replace(rgx, args['device'])
 			if (args['device']) delete args['device']
 		}
-		return http({provider:'twitter',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'twitter',url:url,method:'POST',params:args, opts)
 	},
 	'statuseshome_friends': function(args, opts) {
 		var url = 'statuses/friends.{format}'
@@ -2583,7 +2583,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'statusesfollowers': function(args, opts) {
 		var url = 'statuses/followers.{format}'
@@ -2600,7 +2600,7 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'search': function(args, opts) {
 		var url = 'search.{format}'
@@ -2672,6 +2672,6 @@
 			url = url.replace(rgx, args['include_entities'])
 			if (args['include_entities']) delete args['include_entities']
 		}
-		return http({provider:'twitter',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'twitter',url:url,method:'GET',params:args, auth: "none"}, opts)
 	}
 })
