@@ -9,22 +9,22 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'gistList': function(args, opts) {
 		var url = 'gists'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'gistListPublic': function(args, opts) {
 		var url = 'gists/public'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'gistListStarred': function(args, opts) {
 		var url = 'gists/starred'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'gistGet': function(args, opts) {
 		var url = 'gists/{id}'
@@ -35,7 +35,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'gistEdit': function(args, opts) {
 		var url = 'gists/{id}'
@@ -63,7 +63,7 @@
 			url = url.replace(rgx, args['files'])
 			if (args['files']) delete args['files']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'gistDelete': function(args, opts) {
 		var url = 'gists/{id}'
@@ -74,7 +74,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'gistCreate': function(args, opts) {
 		var url = 'gists'
@@ -96,7 +96,7 @@
 			url = url.replace(rgx, args['files'])
 			if (args['files']) delete args['files']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'gistStarred': function(args, opts) {
 		var url = 'gists/{id}/star'
@@ -107,7 +107,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'gistStar': function(args, opts) {
 		var url = 'gists/{id}/star'
@@ -118,7 +118,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'gistUnstar': function(args, opts) {
 		var url = 'gists/{id}/star'
@@ -129,7 +129,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'gistFork': function(args, opts) {
 		var url = 'gists/{id}/fork'
@@ -140,7 +140,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'gistListComments': function(args, opts) {
 		var url = 'gists/{id}/comments'
@@ -151,7 +151,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'gistPostComment': function(args, opts) {
 		var url = 'gists/{id}/comments'
@@ -168,7 +168,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'gistGetComment': function(args, opts) {
 		var url = 'gists/comments/{id}'
@@ -179,7 +179,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'gistEditComment': function(args, opts) {
 		var url = 'gists/comments/{id}'
@@ -196,7 +196,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'gistDeleteComment': function(args, opts) {
 		var url = 'gists/comments/{id}'
@@ -207,7 +207,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'getBlob': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/blobs/{sha}'
@@ -230,7 +230,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createBlob': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/blobs'
@@ -259,7 +259,7 @@
 			url = url.replace(rgx, args['encoding'])
 			if (args['encoding']) delete args['encoding']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getCommit': function(args, opts) {
 		var url = 'repos/{user}/{repo}/commits/{sha}'
@@ -282,7 +282,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createBlob': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/commits'
@@ -346,7 +346,7 @@
 			url = url.replace(rgx, args['committer.date'])
 			if (args['committer.date']) delete args['committer.date']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/refs/{ref}'
@@ -369,7 +369,7 @@
 			url = url.replace(rgx, args['ref'])
 			if (args['ref']) delete args['ref']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getSubReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/refs/{ref}'
@@ -392,7 +392,7 @@
 			url = url.replace(rgx, args['ref'])
 			if (args['ref']) delete args['ref']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'updateReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/refs/{ref}'
@@ -426,7 +426,7 @@
 			url = url.replace(rgx, args['force'])
 			if (args['force']) delete args['force']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/refs/{ref}'
@@ -449,7 +449,7 @@
 			url = url.replace(rgx, args['ref'])
 			if (args['ref']) delete args['ref']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listReferences': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/refs'
@@ -466,7 +466,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/refs'
@@ -495,7 +495,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/tags/{sha}'
@@ -518,7 +518,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/tags'
@@ -574,7 +574,7 @@
 			url = url.replace(rgx, args['tagger.date'])
 			if (args['tagger.date']) delete args['tagger.date']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/trees/{sha}'
@@ -597,7 +597,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/trees/{sha}'
@@ -625,7 +625,7 @@
 			url = url.replace(rgx, args['recursive'])
 			if (args['recursive']) delete args['recursive']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createTree': function(args, opts) {
 		var url = 'repos/{user}/{repo}/git/trees'
@@ -675,7 +675,7 @@
 			url = url.replace(rgx, args['tree.content'])
 			if (args['tree.content']) delete args['tree.content']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'listIssues': function(args, opts) {
 		var url = 'issues'
@@ -714,7 +714,7 @@
 			url = url.replace(rgx, args['since'])
 			if (args['since']) delete args['since']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listRepoIssues': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues'
@@ -774,7 +774,7 @@
 			url = url.replace(rgx, args['since'])
 			if (args['since']) delete args['since']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createIssue': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues'
@@ -817,7 +817,7 @@
 			url = url.replace(rgx, args['labels'])
 			if (args['labels']) delete args['labels']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getIssue': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}'
@@ -840,7 +840,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createIssue': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}'
@@ -895,7 +895,7 @@
 			url = url.replace(rgx, args['labels'])
 			if (args['labels']) delete args['labels']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'listIssueComments': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/comments'
@@ -918,7 +918,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'postIssueComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/comments'
@@ -947,7 +947,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getIssueComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/comments/{id}'
@@ -976,7 +976,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editIssueComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/comments/{id}'
@@ -1011,7 +1011,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteIssueComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/comments/{id}'
@@ -1040,7 +1040,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listIssueEvents': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/events'
@@ -1063,7 +1063,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listRepoEvents': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/events'
@@ -1080,7 +1080,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getIssueEvent': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/events/{id}'
@@ -1103,7 +1103,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listIssueLabels': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/labels'
@@ -1126,7 +1126,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'addIssueLabels': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/labels'
@@ -1149,7 +1149,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'replaceIssueLabels': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/labels'
@@ -1172,7 +1172,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'removeIssueLabels': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/labels'
@@ -1195,7 +1195,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'deleteIssueLabel': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/{number}/labels/{name}'
@@ -1224,7 +1224,7 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listLabels': function(args, opts) {
 		var url = 'repos/{user}/{repo}/labels'
@@ -1241,7 +1241,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createLabel': function(args, opts) {
 		var url = 'repos/{user}/{repo}/labels'
@@ -1270,7 +1270,7 @@
 			url = url.replace(rgx, args['color'])
 			if (args['color']) delete args['color']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getLabel': function(args, opts) {
 		var url = 'repos/{user}/{repo}/labels/{name}'
@@ -1293,7 +1293,7 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'updateLabel': function(args, opts) {
 		var url = 'repos/{user}/{repo}/labels/{name}'
@@ -1328,7 +1328,7 @@
 			url = url.replace(rgx, args['color'])
 			if (args['color']) delete args['color']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteLabel': function(args, opts) {
 		var url = 'repos/{user}/{repo}/labels/{name}'
@@ -1351,7 +1351,7 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listMilestoneLabels': function(args, opts) {
 		var url = 'repos/{user}/{repo}/milestones/{number}/labels'
@@ -1374,7 +1374,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listMilestones': function(args, opts) {
 		var url = 'repos/{user}/{repo}/milestones'
@@ -1391,7 +1391,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createMilestone': function(args, opts) {
 		var url = 'repos/{user}/{repo}/milestones'
@@ -1430,7 +1430,7 @@
 			url = url.replace(rgx, args['due_on'])
 			if (args['due_on']) delete args['due_on']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getMilestone': function(args, opts) {
 		var url = 'repos/{user}/{repo}/milestones/{number}'
@@ -1453,7 +1453,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'updateMilestone': function(args, opts) {
 		var url = 'repos/{user}/{repo}/milestones/{number}'
@@ -1498,7 +1498,7 @@
 			url = url.replace(rgx, args['due_on'])
 			if (args['due_on']) delete args['due_on']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteMilestone': function(args, opts) {
 		var url = 'repos/{user}/{repo}/milestones/{number}'
@@ -1521,7 +1521,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listUserOrgs': function(args, opts) {
 		var url = 'users/{user}/orgs'
@@ -1532,7 +1532,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listOrgs': function(args, opts) {
 		var url = 'users/orgs'
@@ -1543,7 +1543,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'getOrg': function(args, opts) {
 		var url = 'orgs/{org}'
@@ -1554,7 +1554,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editOrg': function(args, opts) {
 		var url = 'orgs/{org}'
@@ -1590,7 +1590,7 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'listOrgMembers': function(args, opts) {
 		var url = 'orgs/{org}/members'
@@ -1601,7 +1601,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getOrgMember': function(args, opts) {
 		var url = 'orgs/{org}/members/{user}'
@@ -1618,7 +1618,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'removeOrgMember': function(args, opts) {
 		var url = 'orgs/{org}/members/{user}'
@@ -1635,7 +1635,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listOrgPublicMembers': function(args, opts) {
 		var url = 'orgs/{org}/public_members'
@@ -1646,7 +1646,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'checkOrgPublicMember': function(args, opts) {
 		var url = 'orgs/{org}/public_members/{user}'
@@ -1663,7 +1663,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'publicizeOrgMember': function(args, opts) {
 		var url = 'orgs/{org}/public_members/{user}'
@@ -1680,7 +1680,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'concealOrgMember': function(args, opts) {
 		var url = 'orgs/{org}/public_members/{user}'
@@ -1697,7 +1697,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listOrgTeams': function(args, opts) {
 		var url = 'orgs/{org}/teams'
@@ -1708,7 +1708,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createTeam': function(args, opts) {
 		var url = 'orgs/{org}/teams'
@@ -1736,7 +1736,7 @@
 			url = url.replace(rgx, args['permission'])
 			if (args['permission']) delete args['permission']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getTeam': function(args, opts) {
 		var url = 'teams/{id}'
@@ -1747,7 +1747,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editOrg': function(args, opts) {
 		var url = 'teams/{id}'
@@ -1770,7 +1770,7 @@
 			url = url.replace(rgx, args['permission'])
 			if (args['permission']) delete args['permission']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteTeam': function(args, opts) {
 		var url = 'teams/{id}'
@@ -1781,7 +1781,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listTeamMembers': function(args, opts) {
 		var url = 'teams/{id}/members'
@@ -1792,7 +1792,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'getTeamMember': function(args, opts) {
 		var url = 'teams/{id}/members/{user}'
@@ -1809,7 +1809,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'addTeamMember': function(args, opts) {
 		var url = 'teams/{id}/members/{user}'
@@ -1826,7 +1826,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'removeTeamMember': function(args, opts) {
 		var url = 'teams/{id}/members/{user}'
@@ -1843,7 +1843,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listTeamRepos': function(args, opts) {
 		var url = 'teams/{id}/repos'
@@ -1854,7 +1854,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getTeamRepo': function(args, opts) {
 		var url = 'teams/{id}/repos/{user}/{repo}'
@@ -1877,7 +1877,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'addTeamRepo': function(args, opts) {
 		var url = 'teams/{id}/repos/{user}/{repo}'
@@ -1900,7 +1900,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'removeTeamRepo': function(args, opts) {
 		var url = 'teams/{id}/repos/{user}/{repo}'
@@ -1923,7 +1923,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listPullRequests': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls'
@@ -1946,7 +1946,7 @@
 			url = url.replace(rgx, args['state'])
 			if (args['state']) delete args['state']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createPullRequest': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls'
@@ -1986,7 +1986,7 @@
 			url = url.replace(rgx, args['head'])
 			if (args['head']) delete args['head']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'createPullRequestFromIssue': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls'
@@ -2021,7 +2021,7 @@
 			url = url.replace(rgx, args['head'])
 			if (args['head']) delete args['head']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'updatePullRequest': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}'
@@ -2060,7 +2060,7 @@
 			url = url.replace(rgx, args['state'])
 			if (args['state']) delete args['state']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'listPullRequestCommits': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/commits'
@@ -2083,7 +2083,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listPullRequestFiles': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/files'
@@ -2106,7 +2106,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'checkPullRequestMerged': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/merge'
@@ -2129,7 +2129,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'mergePullRequest': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/merge'
@@ -2157,7 +2157,7 @@
 			url = url.replace(rgx, args['commit_message'])
 			if (args['commit_message']) delete args['commit_message']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'listPullRequestComments': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/comments'
@@ -2180,7 +2180,7 @@
 			url = url.replace(rgx, args['number'])
 			if (args['number']) delete args['number']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'postPullRequestComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/comments'
@@ -2209,7 +2209,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getPullRequestComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/comments/{id}'
@@ -2238,7 +2238,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editPullRequestComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/comments/{id}'
@@ -2273,7 +2273,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deletePullRequestComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/pulls/{number}/comments/{id}'
@@ -2302,7 +2302,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listRepos': function(args, opts) {
 		var url = 'user/repos'
@@ -2324,7 +2324,7 @@
 			url = url.replace(rgx, args['direction'])
 			if (args['direction']) delete args['direction']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'createRepo': function(args, opts) {
 		var url = 'user/repos'
@@ -2374,7 +2374,7 @@
 			url = url.replace(rgx, args['team_id'])
 			if (args['team_id']) delete args['team_id']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'listUserRepos': function(args, opts) {
 		var url = 'users/{user}/repos'
@@ -2402,7 +2402,7 @@
 			url = url.replace(rgx, args['direction'])
 			if (args['direction']) delete args['direction']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listOrgRepos': function(args, opts) {
 		var url = 'orgs/{org}/repos'
@@ -2430,7 +2430,7 @@
 			url = url.replace(rgx, args['direction'])
 			if (args['direction']) delete args['direction']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createOrgRepo': function(args, opts) {
 		var url = 'orgs/{org}/repos'
@@ -2486,7 +2486,7 @@
 			url = url.replace(rgx, args['team_id'])
 			if (args['team_id']) delete args['team_id']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getRepo': function(args, opts) {
 		var url = 'repos/{user}/{repo}'
@@ -2503,7 +2503,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'updateRepo': function(args, opts) {
 		var url = 'repos/{user}/{repo}'
@@ -2565,7 +2565,7 @@
 			url = url.replace(rgx, args['team_id'])
 			if (args['team_id']) delete args['team_id']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteRepo': function(args, opts) {
 		var url = 'repos/{user}/{repo}'
@@ -2582,7 +2582,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listContributors': function(args, opts) {
 		var url = 'repos/{user}/{repo}/contributors'
@@ -2604,7 +2604,7 @@
 			url = url.replace(rgx, args['anon'])
 			if (args['anon']) delete args['anon']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listLanguages': function(args, opts) {
 		var url = 'repos/{user}/{repo}/languages'
@@ -2621,7 +2621,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listTeams': function(args, opts) {
 		var url = 'repos/{user}/{repo}/teams'
@@ -2638,7 +2638,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listTags': function(args, opts) {
 		var url = 'repos/{user}/{repo}/tags'
@@ -2655,7 +2655,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listBranches': function(args, opts) {
 		var url = 'repos/{user}/{repo}/branches'
@@ -2672,7 +2672,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getBranch': function(args, opts) {
 		var url = 'repos/{user}/{repo}/branches/{branch}'
@@ -2695,7 +2695,7 @@
 			url = url.replace(rgx, args['branch'])
 			if (args['branch']) delete args['branch']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listCollaborators': function(args, opts) {
 		var url = 'repos/{user}/{repo}/collaborators'
@@ -2712,7 +2712,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'checkCollaborator': function(args, opts) {
 		var url = 'repos/{user}/{repo}/collaborators/{collaborator}'
@@ -2735,7 +2735,7 @@
 			url = url.replace(rgx, args['collaborator'])
 			if (args['collaborator']) delete args['collaborator']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'addCollaborator': function(args, opts) {
 		var url = 'repos/{user}/{repo}/collaborators/{collaborator}'
@@ -2758,7 +2758,7 @@
 			url = url.replace(rgx, args['collaborator'])
 			if (args['collaborator']) delete args['collaborator']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'removeCollaborator': function(args, opts) {
 		var url = 'repos/{user}/{repo}/collaborators/{collaborator}'
@@ -2781,7 +2781,7 @@
 			url = url.replace(rgx, args['collaborator'])
 			if (args['collaborator']) delete args['collaborator']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listCommitsComments': function(args, opts) {
 		var url = 'repos/{user}/{repo}/comments'
@@ -2798,7 +2798,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getCommitComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/comments/{id}'
@@ -2821,7 +2821,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editCommitComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/comments/{id}'
@@ -2850,7 +2850,7 @@
 			url = url.replace(rgx, args['body'])
 			if (args['body']) delete args['body']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteCommitComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/comments/{id}'
@@ -2873,7 +2873,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args, auth: "none"}, opts)
 	},
 	'listCommitComments': function(args, opts) {
 		var url = 'repos/{user}/{repo}/commits/{sha}/comments'
@@ -2896,7 +2896,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'postCommitComment': function(args, opts) {
 		var url = 'repos/{user}/{repo}/commits/{sha}/comments'
@@ -2949,7 +2949,7 @@
 			url = url.replace(rgx, args['position'])
 			if (args['position']) delete args['position']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getCommit': function(args, opts) {
 		var url = 'repos/{user}/{repo}/commits/{sha}'
@@ -2972,7 +2972,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listCommits': function(args, opts) {
 		var url = 'repos/{user}/{repo}/commits'
@@ -2999,7 +2999,7 @@
 			url = url.replace(rgx, args['path'])
 			if (args['path']) delete args['path']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getCommit': function(args, opts) {
 		var url = 'repos/{user}/{repo}/commits/{sha}'
@@ -3022,7 +3022,7 @@
 			url = url.replace(rgx, args['sha'])
 			if (args['sha']) delete args['sha']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'compareCommits': function(args, opts) {
 		var url = 'repos/{user}/{repo}/compare/{base}...{head}'
@@ -3051,7 +3051,7 @@
 			url = url.replace(rgx, args['head'])
 			if (args['head']) delete args['head']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getReadme': function(args, opts) {
 		var url = 'repos/{user}/{repo}/readme'
@@ -3074,7 +3074,7 @@
 			url = url.replace(rgx, args['ref'])
 			if (args['ref']) delete args['ref']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getContents': function(args, opts) {
 		var url = 'repos/{user}/{repo}/contents/{path}'
@@ -3103,7 +3103,7 @@
 			url = url.replace(rgx, args['ref'])
 			if (args['ref']) delete args['ref']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'getArchive': function(args, opts) {
 		var url = 'repos/{user}/{repo}/{archive_format}/{ref}'
@@ -3132,7 +3132,7 @@
 			url = url.replace(rgx, args['ref'])
 			if (args['ref']) delete args['ref']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listDownloads': function(args, opts) {
 		var url = 'repos/{user}/{repo}/downloads'
@@ -3149,7 +3149,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createDownload': function(args, opts) {
 		var url = 'repos/{user}/{repo}/downloads'
@@ -3188,7 +3188,7 @@
 			url = url.replace(rgx, args['content_type'])
 			if (args['content_type']) delete args['content_type']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getDownload': function(args, opts) {
 		var url = 'repos/{user}/{repo}/downloads/{id}'
@@ -3211,7 +3211,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'deleteDownload': function(args, opts) {
 		var url = 'repos/{user}/{repo}/downloads/{id}'
@@ -3234,7 +3234,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listForks': function(args, opts) {
 		var url = 'repos/{user}/{repo}/forks'
@@ -3257,7 +3257,7 @@
 			url = url.replace(rgx, args['sort'])
 			if (args['sort']) delete args['sort']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'fork': function(args, opts) {
 		var url = 'repos/{user}/{repo}/forks'
@@ -3279,7 +3279,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'listRepoKeys': function(args, opts) {
 		var url = 'repos/{user}/{repo}/keys'
@@ -3296,7 +3296,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createRepoKey': function(args, opts) {
 		var url = 'repos/{user}/{repo}/keys'
@@ -3323,7 +3323,7 @@
 			url = url.replace(rgx, args['key'])
 			if (args['key']) delete args['key']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args, auth: "none"}, opts)
 	},
 	'getRepoKey': function(args, opts) {
 		var url = 'repos/{user}/{repo}/keys/{id}'
@@ -3346,7 +3346,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editRepoKey': function(args, opts) {
 		var url = 'repos/{user}/{repo}/keys/{id}'
@@ -3379,7 +3379,7 @@
 			url = url.replace(rgx, args['key'])
 			if (args['key']) delete args['key']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteRepoKey': function(args, opts) {
 		var url = 'repos/{user}/{repo}/keys/{id}'
@@ -3402,7 +3402,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listWatchers': function(args, opts) {
 		var url = 'repos/{user}/{repo}/watchers'
@@ -3419,7 +3419,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listUserWatched': function(args, opts) {
 		var url = 'repos/{user}/watched'
@@ -3430,7 +3430,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listWatched': function(args, opts) {
 		var url = 'repos/watched'
@@ -3441,7 +3441,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'checkUserWatched': function(args, opts) {
 		var url = 'repos/watched/{user}/{repo}'
@@ -3458,7 +3458,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'watch': function(args, opts) {
 		var url = 'repos/watched/{user}/{repo}'
@@ -3475,7 +3475,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'unwatch': function(args, opts) {
 		var url = 'repos/watched/{user}/{repo}'
@@ -3492,12 +3492,12 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'hooks': function(args, opts) {
 		var url = 'hooks'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listHooks': function(args, opts) {
 		var url = 'repos/{user}/{repo}/hooks'
@@ -3514,7 +3514,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'createHook': function(args, opts) {
 		var url = 'repos/{user}/{repo}/hooks'
@@ -3554,7 +3554,7 @@
 			url = url.replace(rgx, args['active'])
 			if (args['active']) delete args['active']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getHook': function(args, opts) {
 		var url = 'repos/{user}/{repo}/hooks/{id}'
@@ -3577,7 +3577,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editHook': function(args, opts) {
 		var url = 'repos/{user}/{repo}/hooks/{id}'
@@ -3633,7 +3633,7 @@
 			url = url.replace(rgx, args['active'])
 			if (args['active']) delete args['active']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'deleteHook': function(args, opts) {
 		var url = 'repos/{user}/{repo}/hooks/{id}'
@@ -3656,7 +3656,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'testHook': function(args, opts) {
 		var url = 'repos/{user}/{repo}/hooks/{id}/test'
@@ -3679,7 +3679,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getUser': function(args, opts) {
 		var url = 'users/{user}'
@@ -3690,12 +3690,12 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'me': function(args, opts) {
 		var url = 'user'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'editMe': function(args, opts) {
 		var url = 'user'
@@ -3737,22 +3737,22 @@
 			url = url.replace(rgx, args['bio'])
 			if (args['bio']) delete args['bio']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'listEmails': function(args, opts) {
 		var url = 'user/emails'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'addEmails': function(args, opts) {
 		var url = 'user/emails'
 		args = args || {}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'removeEmails': function(args, opts) {
 		var url = 'user/emails'
 		args = args || {}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listWatchers': function(args, opts) {
 		var url = 'users/{user}/followers'
@@ -3769,12 +3769,12 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listWatched': function(args, opts) {
 		var url = 'user/followers'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'listUserFollowing': function(args, opts) {
 		var url = 'users/{user}/following'
@@ -3785,12 +3785,12 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listFollowing': function(args, opts) {
 		var url = 'user/following'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'checkUserWatched': function(args, opts) {
 		var url = 'user/following/{user}'
@@ -3801,7 +3801,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'follow': function(args, opts) {
 		var url = 'user/following/{user}'
@@ -3812,7 +3812,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'PUT',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PUT',params:args}, opts)
 	},
 	'unfollow': function(args, opts) {
 		var url = 'user/following/{user}'
@@ -3823,12 +3823,12 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listKeys': function(args, opts) {
 		var url = 'user/keys'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'createKey': function(args, opts) {
 		var url = 'user/keys'
@@ -3843,7 +3843,7 @@
 			url = url.replace(rgx, args['key'])
 			if (args['key']) delete args['key']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'getKey': function(args, opts) {
 		var url = 'user/keys/{id}'
@@ -3854,7 +3854,7 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'editKey': function(args, opts) {
 		var url = 'user/keys/{id}'
@@ -3875,7 +3875,7 @@
 			url = url.replace(rgx, args['key'])
 			if (args['key']) delete args['key']
 		}
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'PATCH',params:args}, opts)
 	},
 	'deleteKey': function(args, opts) {
 		var url = 'user/keys/{id}'
@@ -3886,12 +3886,12 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'DELETE',params:args}, opts)
 	},
 	'listEvents': function(args, opts) {
 		var url = 'events'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listRepoEvents': function(args, opts) {
 		var url = 'repos/{user}/{repo}/events'
@@ -3908,7 +3908,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listIssuesEvents': function(args, opts) {
 		var url = 'repos/{user}/{repo}/issues/events'
@@ -3925,7 +3925,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listNetworksEvents': function(args, opts) {
 		var url = 'networks/{user}/{repo}/events'
@@ -3942,7 +3942,7 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listOrgPublicEvents': function(args, opts) {
 		var url = 'orgs/{org}/events'
@@ -3953,7 +3953,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listUserReceivedEvents': function(args, opts) {
 		var url = 'users/{user}/received_events'
@@ -3964,7 +3964,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listUserPublicReceivedEvents': function(args, opts) {
 		var url = 'users/{user}/received_events/public'
@@ -3975,7 +3975,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listUserEvents': function(args, opts) {
 		var url = 'users/{user}/events'
@@ -3986,7 +3986,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listUserPublicEvents': function(args, opts) {
 		var url = 'users/{user}/events/public'
@@ -3997,7 +3997,7 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'listOrgEvents': function(args, opts) {
 		var url = 'users/{user}/events/orgs/{org}'
@@ -4014,7 +4014,7 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'searchIssues': function(args, opts) {
 		var url = 'legacy/issues/search/{user}/{repo}/{state}/{keyword}'
@@ -4043,7 +4043,7 @@
 			url = url.replace(rgx, args['keyword'])
 			if (args['keyword']) delete args['keyword']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'searchRepos': function(args, opts) {
 		var url = 'legacy/repos/search/{keyword}'
@@ -4064,7 +4064,7 @@
 			url = url.replace(rgx, args['start_page'])
 			if (args['start_page']) delete args['start_page']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'searchUsers': function(args, opts) {
 		var url = 'legacy/user/search/{keyword}'
@@ -4075,7 +4075,7 @@
 			url = url.replace(rgx, args['keyword'])
 			if (args['keyword']) delete args['keyword']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'searchEmails': function(args, opts) {
 		var url = 'legacy/user/email/{email}'
@@ -4086,7 +4086,7 @@
 			url = url.replace(rgx, args['email'])
 			if (args['email']) delete args['email']
 		}
-		return http({provider:'github',url:url,method:'GET',params:args, auth: 'false'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args, auth: "none"}, opts)
 	},
 	'markdown': function(args, opts) {
 		var url = 'markdown'
@@ -4107,11 +4107,11 @@
 			url = url.replace(rgx, args['context'])
 			if (args['context']) delete args['context']
 		}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	},
 	'markdownRaw': function(args, opts) {
 		var url = 'markdown/raw'
 		args = args || {}
-		return http({provider:'github',url:url,method:'POST',params:args, auth: 'true'}, opts)
+		return http({provider:'github',url:url,method:'POST',params:args}, opts)
 	}
 })

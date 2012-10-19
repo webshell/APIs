@@ -1,0 +1,1 @@
+Spotify allows you to share songs and playlists with friends, and work together on collaborative playlists. With Spotify Metadata API, you can explore Spotify's music catalog in two ways: search and lookup. You will be able to use the Metadata API to search for tracks, albums and artists.
