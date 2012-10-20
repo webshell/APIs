@@ -1,60 +1,95 @@
 ({
-	score: function(params)
+	score: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string")
 			users = params;
 		if (typeof params == "object")
-			users = params[0];
+			users = params.users;
 
-		get({provider:'klout', url:'/klout.json', params:{"users":users}}).body
+		return http({
+			provider:'klout',
+			url:'/klout.json',
+			method: 'GET',
+			params: {
+				"users":users
+			}
+		}, opts);
 	},
-	showUser: function(params)
+	showUser: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string")
 			users = params;
 		if (typeof params == "object")
-			users = params[0];
+			users = params.users;
 
-		var url = "http://api.klout.com/1/users/show.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
-
-		return get(url).body;
+		var url = "/users/show.json";
+		return http({
+			provider:'klout',
+			url: url,
+			method: 'GET',
+			params: {
+				"users":users
+			}
+		}, opts);
 	},
-	topics: function(params)
+	topics: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string")
 			users = params;
 		if (typeof params == "object")
-			users = params[0];
+			users = params.users;
 
-		var url = "http://api.klout.com/1/users/topics.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+		var url = "/users/topics.json";
 
-		return get(url).body;
+		return http({
+			provider:'klout',
+			url: url,
+			method: 'GET',
+			params: {
+				"users":users
+			}
+		}, opts);
 	},
-	influencedBy: function(params)
+
+	influencedBy: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string")
 			users = params;
 		if (typeof params == "object")
-			users = params[0];
+			users = params.users;
 
-		var url = "http://api.klout.com/1/soi/influenced_by.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+		var url = "/soi/influenced_by.json";
 
-		return get(url).body;
+		return http({
+			provider:'klout',
+			url: url,
+			method: 'GET',
+			params: {
+				"users":users
+			}
+		}, opts);
 	},
-	influencerOf: function(params)
+	influencerOf: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string")
 			users = params;
 		if (typeof params == "object")
-			users = params[0];
+			users = params.users;
 
-		var url = "http://api.klout.com/1/soi/influencer_of.json?users=" + users + "&key=dhmsddgtpz95fwb6dyka5z44";
+		var url = "/soi/influencer_of.json";
 
-		return get(url).body;
+		return http({
+			provider:'klout',
+			url: url,
+			method: 'GET',
+			params: {
+				"users":users
+			}
+		}, opts);
 	}
 })

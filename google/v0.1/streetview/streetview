@@ -1,22 +1,38 @@
-var params = args || {}
-var sensor = params.sensor || false;
-var location = params.location
-    || params.latitude + "," + params.longitude;
-var url = "http://maps.googleapis.com/maps/api/streetview?size=";
-if (params.width && params.height)
-    url += params.width + "x" + param.height;
-else
-    url += "400x400";
-if (location)
-    url += "&location=" + location;
-if (params.fov)
-    url += "&fov=" + params.fov;
-if (params.heading)
-    url += "&heading=" + params.heading;
-if (params.pitch)
-    url += "&pitch=" + params.pitch;
+var args = args || {}
+var sensor = args.sensor || false;
+var location = args.location || args.latitude + ", " + args.longitude;
 
-url += "&sensor=" + sensor;
-url += "&key=AIzaSyBMPZ3mllAMlHw_3u6Hh2TJYoSXi57S0gA";
-echo(url);
-render({imgurl : url}, { view: '<img src="<%= data.imgurl %>" />' })
+var url = "http://maps.googleapis.com/maps/api/streetview";
+
+var params = []
+if (args.width && args.height)
+    params[params.length] = "size=" + args.width + "x" + args.height;
+else
+	params[params.length] = "size=400x400"
+
+if (location)
+    params[params.length] = "location=" + location;
+
+if (args.fov)
+    params[params.length] = "fov=" + args.fov;
+
+if (args.heading)
+    params[params.length] = "heading=" + args.heading;
+
+if (args.pitch)
+    params[params.length] = "pitch=" + args.pitch;
+
+params[params.length] = "sensor=" + sensor;
+params[params.length] = "key=AIzaSyBMPZ3mllAMlHw_3u6Hh2TJYoSXi57S0gA";
+
+var fullurl = url;
+if (params.length > 0)
+	fullurl += '?'
+
+for (var i = 0; i < params.length; i++) {
+	if (i != 0)
+		fullurl += '&';
+	fullurl += params[i];
+}
+echo(fullurl);
+render(fullurl, { view: '<img src="<%= data %>" />' })
