@@ -2,19 +2,50 @@
 	score: function(params, opts)
 	{
 		var users;
-		if (typeof params == "string")
+		if (typeof params == "string") {
+			users = [params];
+		}
+		else if (typeof params == "object") {
+			if (typeof params.users == "string") {
+				users = [params.users];
+			}
+			else {
+				users = params
+			}
+		}
+		else {
 			users = params;
-		if (typeof params == "object")
-			users = params.users;
+		}
 
-		return http({
+		var usersQuery = '';
+		for (var i in users) {
+			if (i != 0)
+				usersQuery += ',';
+			usersQuery += users[i];
+		}
+		var data = http({
 			provider:'klout',
 			url:'/klout.json',
 			method: 'GET',
 			params: {
-				"users":users
+				"users":usersQuery
 			}
-		}, opts);
+		});
+		
+		var view = '';
+		if (opts && opts.view != null) {
+			view = opts.view;
+		}
+		else {
+			view = '<% for (i in data.users) { %>\
+<p>The Klout Score of <%= data.users[i].twitter_screen_name %> is : <%= data.users[i].kscore %></p>\
+<% } %>';
+		}
+
+		if (view != '') {
+			render(JSON.parse(data), {view: view})
+		}
+		return data;
 	},
 	showUser: function(params, opts)
 	{

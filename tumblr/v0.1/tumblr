@@ -14,7 +14,7 @@
 			if (args['base-hostname']) delete args['base-hostname']
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'manual'}, opts)
 	},
 	'avatar': function(args, opts) {
 		var url = 'blog/{base-hostname}/avatar[/size]'
@@ -81,7 +81,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
 	},
-	'postsGet': function(args, opts) {
+	'getPosts': function(args, opts) {
 		var url = 'blog/{base-hostname}/posts[/type]'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
@@ -99,7 +99,7 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (url.indexOf('[/type]') !== -1) {
+		if (url.indexOf('[/type]') !== -1 && args['type']) {
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
@@ -380,16 +380,6 @@
 			url = url.replace('[/title]', '/' + args['title'])
 			if (args['title']) delete args['title']
 		}
-		if (args['body'] == null) throw new Error('body is a required parameter')
-		var rgx = new RegExp('\{body\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['body'])
-			if (args['body']) delete args['body']
-		}
-		if (url.indexOf('[/body]') !== -1) {
-			url = url.replace('[/body]', '/' + args['body'])
-			if (args['body']) delete args['body']
-		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
@@ -400,7 +390,7 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'manual'}, opts)
 	},
 	'postPhoto': function(args, opts) {
 		var url = 'blog/{base-hostname}/post'
