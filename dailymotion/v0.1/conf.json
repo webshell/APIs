@@ -1,0 +1,41 @@
+{ 
+	"displayName":"Dailymotion",
+	"icon":"/images/daily-big.png",
+	"base_url":"https://api.dailymotion.com/",
+	"default_auth":"oauth2",
+	"auth":{ 
+		"none":{}, 
+		"oauth2":{ 
+			"authorize":{ 
+				"url":"https:/api.dailymotion.com/oauth/authorize", 
+				"params":{ 
+					"response_type":"code",
+					"client_id":"{client_id}",
+					"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}"
+				}
+			},
+			"access_token":{
+				"url":"https://api.dailymotion.com/oauth/token",
+				"format":"json",
+				"method":"post",
+				"params":{
+					"grant_type":"authorization_code",
+					"client_id":"{client_id}",
+					"client_secret":"{client_secret}",
+					"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}",
+					"code":"{_code}"
+				}
+			},
+			"request":{
+				"get":{
+					"access_token":"{_access_token}"
+				},
+				"format": "json"
+			}, 
+			"parameters":[ 
+				{ "name":"client_id", "type":"string" },
+				{ "name":"client_secret", "type":"string" }
+			]
+		}
+	} 
+}
