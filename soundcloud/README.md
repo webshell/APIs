@@ -1,0 +1,1 @@
+SoundCloud is an online audio distribution platform which allows collaboration, promotion and distribution of audio recordings.
