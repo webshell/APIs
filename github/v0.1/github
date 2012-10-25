@@ -1,5 +1,5 @@
 ({
-	auth:function(){auth({provider:'github'})},
+	auth:function(){return auth({provider:'github'})},
 	'gistListUser': function(args, opts) {
 		var url = 'users/{user}/gists'
 		args = args || {}
@@ -680,13 +680,11 @@
 	'listIssues': function(args, opts) {
 		var url = 'issues'
 		args = args || {}
-		if (args['filter'] == null) args['filter'] = "assigned"
 		var rgx = new RegExp('\{filter\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['filter'])
 			if (args['filter']) delete args['filter']
 		}
-		if (args['state'] == null) args['state'] = "open"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -697,13 +695,11 @@
 			url = url.replace(rgx, args['labels'])
 			if (args['labels']) delete args['labels']
 		}
-		if (args['sort'] == null) args['sort'] = "created"
 		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['sort'])
 			if (args['sort']) delete args['sort']
 		}
-		if (args['direction'] == null) args['direction'] = "desc"
 		var rgx = new RegExp('\{direction\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['direction'])
@@ -736,7 +732,6 @@
 			url = url.replace(rgx, args['milestone'])
 			if (args['milestone']) delete args['milestone']
 		}
-		if (args['state'] == null) args['state'] = "open"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -757,13 +752,11 @@
 			url = url.replace(rgx, args['labels'])
 			if (args['labels']) delete args['labels']
 		}
-		if (args['sort'] == null) args['sort'] = "created"
 		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['sort'])
 			if (args['sort']) delete args['sort']
 		}
-		if (args['direction'] == null) args['direction'] = "desc"
 		var rgx = new RegExp('\{direction\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['direction'])
@@ -879,7 +872,6 @@
 			url = url.replace(rgx, args['assignee'])
 			if (args['assignee']) delete args['assignee']
 		}
-		if (args['state'] == null) args['state'] = "open"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1414,7 +1406,6 @@
 			url = url.replace(rgx, args['title'])
 			if (args['title']) delete args['title']
 		}
-		if (args['state'] == null) args['state'] = "open"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1482,7 +1473,6 @@
 			url = url.replace(rgx, args['title'])
 			if (args['title']) delete args['title']
 		}
-		if (args['state'] == null) args['state'] = "open"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1730,7 +1720,6 @@
 			url = url.replace(rgx, args['repo_names'])
 			if (args['repo_names']) delete args['repo_names']
 		}
-		if (args['permission'] == null) args['permission'] = "pull"
 		var rgx = new RegExp('\{permission\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['permission'])
@@ -1764,7 +1753,6 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
-		if (args['permission'] == null) args['permission'] = "pull"
 		var rgx = new RegExp('\{permission\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['permission'])
@@ -1940,7 +1928,6 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		if (args['state'] == null) args['state'] = "open"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2307,13 +2294,11 @@
 	'listRepos': function(args, opts) {
 		var url = 'user/repos'
 		args = args || {}
-		if (args['type'] == null) args['type'] = "all"
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['sort'] == null) args['sort'] = "full_name"
 		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['sort'])
@@ -2345,25 +2330,21 @@
 			url = url.replace(rgx, args['homepage'])
 			if (args['homepage']) delete args['homepage']
 		}
-		if (args['private'] == null) args['private'] = "false"
 		var rgx = new RegExp('\{private\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['private'])
 			if (args['private']) delete args['private']
 		}
-		if (args['has_issues'] == null) args['has_issues'] = "true"
 		var rgx = new RegExp('\{has_issues\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_issues'])
 			if (args['has_issues']) delete args['has_issues']
 		}
-		if (args['has_wiki'] == null) args['has_wiki'] = "true"
 		var rgx = new RegExp('\{has_wiki\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_wiki'])
 			if (args['has_wiki']) delete args['has_wiki']
 		}
-		if (args['has_downloads'] == null) args['has_downloads'] = "true"
 		var rgx = new RegExp('\{has_downloads\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_downloads'])
@@ -2385,13 +2366,11 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
-		if (args['type'] == null) args['type'] = "all"
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['sort'] == null) args['sort'] = "full_name"
 		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['sort'])
@@ -2413,13 +2392,11 @@
 			url = url.replace(rgx, args['org'])
 			if (args['org']) delete args['org']
 		}
-		if (args['type'] == null) args['type'] = "all"
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['sort'] == null) args['sort'] = "full_name"
 		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['sort'])
@@ -2457,25 +2434,21 @@
 			url = url.replace(rgx, args['homepage'])
 			if (args['homepage']) delete args['homepage']
 		}
-		if (args['private'] == null) args['private'] = "false"
 		var rgx = new RegExp('\{private\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['private'])
 			if (args['private']) delete args['private']
 		}
-		if (args['has_issues'] == null) args['has_issues'] = "true"
 		var rgx = new RegExp('\{has_issues\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_issues'])
 			if (args['has_issues']) delete args['has_issues']
 		}
-		if (args['has_wiki'] == null) args['has_wiki'] = "true"
 		var rgx = new RegExp('\{has_wiki\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_wiki'])
 			if (args['has_wiki']) delete args['has_wiki']
 		}
-		if (args['has_downloads'] == null) args['has_downloads'] = "true"
 		var rgx = new RegExp('\{has_downloads\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_downloads'])
@@ -2536,25 +2509,21 @@
 			url = url.replace(rgx, args['homepage'])
 			if (args['homepage']) delete args['homepage']
 		}
-		if (args['private'] == null) args['private'] = "false"
 		var rgx = new RegExp('\{private\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['private'])
 			if (args['private']) delete args['private']
 		}
-		if (args['has_issues'] == null) args['has_issues'] = "true"
 		var rgx = new RegExp('\{has_issues\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_issues'])
 			if (args['has_issues']) delete args['has_issues']
 		}
-		if (args['has_wiki'] == null) args['has_wiki'] = "true"
 		var rgx = new RegExp('\{has_wiki\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_wiki'])
 			if (args['has_wiki']) delete args['has_wiki']
 		}
-		if (args['has_downloads'] == null) args['has_downloads'] = "true"
 		var rgx = new RegExp('\{has_downloads\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['has_downloads'])
@@ -3068,7 +3037,6 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		if (args['ref'] == null) args['ref'] = "master"
 		var rgx = new RegExp('\{ref\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['ref'])
@@ -3097,7 +3065,6 @@
 			url = url.replace(rgx, args['path'])
 			if (args['path']) delete args['path']
 		}
-		if (args['ref'] == null) args['ref'] = "master"
 		var rgx = new RegExp('\{ref\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['ref'])
@@ -3126,7 +3093,6 @@
 			url = url.replace(rgx, args['archive_format'])
 			if (args['archive_format']) delete args['archive_format']
 		}
-		if (args['ref'] == null) args['ref'] = "master"
 		var rgx = new RegExp('\{ref\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['ref'])
@@ -3251,7 +3217,6 @@
 			url = url.replace(rgx, args['repo'])
 			if (args['repo']) delete args['repo']
 		}
-		if (args['sort'] == null) args['sort'] = "newest"
 		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['sort'])
@@ -3543,7 +3508,6 @@
 			url = url.replace(rgx, args['config'])
 			if (args['config']) delete args['config']
 		}
-		if (args['events'] == null) args['events'] = "['push']"
 		var rgx = new RegExp('\{events\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['events'])
@@ -3612,7 +3576,6 @@
 			url = url.replace(rgx, args['config'])
 			if (args['config']) delete args['config']
 		}
-		if (args['events'] == null) args['events'] = "['push']"
 		var rgx = new RegExp('\{events\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['events'])
