@@ -23,29 +23,19 @@
 				usersQuery += ',';
 			usersQuery += users[i];
 		}
-		var data = http({
+
+		opts = opts || {}
+		opts.view = opts.view || '<% for (i in data.users) { %>\
+<p>The Klout Score of <%= data.users[i].twitter_screen_name %> is : <%= data.users[i].kscore %></p>\
+<% } %>';
+		return http({
 			provider:'klout',
 			url:'/klout.json',
 			method: 'GET',
 			params: {
 				"users":usersQuery
 			}
-		});
-		
-		var view = '';
-		if (opts && opts.view != null) {
-			view = opts.view;
-		}
-		else {
-			view = '<% for (i in data.users) { %>\
-<p>The Klout Score of <%= data.users[i].twitter_screen_name %> is : <%= data.users[i].kscore %></p>\
-<% } %>';
-		}
-
-		if (view != '') {
-			render(JSON.parse(data), {view: view})
-		}
-		return data;
+		}, opts);
 	},
 	showUser: function(params, opts)
 	{
