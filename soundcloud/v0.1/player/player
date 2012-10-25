@@ -1,106 +1,104 @@
 args = args || {};
 if (typeof args == 'string') {
-    args = {idVideo: args};
+    args = {url: args};
 }
-var url = 'http://www.youtube.com/v/' + (args.idVideo || 'g1BV7XTLUNg')
 
 jsClientApi({
     name: "soundcloud.player",
 	data: {
-		url: url,
+		url: args.url,
 		width: args.width,
-		height: args.height || '300',
-		params: {allowScriptAccess: "always", wmode: "Opaque"}
+		height: args.height
 	},
 	initialize: function(callback) {
+        $('body').append('<script type="text/javascript" src="https://raw.github.com/soundcloud/Widget-JS-API/master/soundcloud.player.api.js"></script>')
 		$.getScript("http://webshell.local/lib/swfobject/swfobject.js", callback);
 	},
 	loaded: function() {
 	},
 	create: function(jsapi) {
-		swfobject.embedSWF(
-			this.data.url + '?version=3&f=videos&app=youtube_gdata&enablejsapi=1&playerapiid=player' + this.data.pid,
-			"ytapiplayer" + this.data.pid,
-			this.data.width || $('#ytapiplayer' + this.data.pid).width(),
-			this.data.height,
-			"8",
-			null,
-			null,
-			this.data.params,
-			{id: 'player' + this.data.pid }
-		);
-        this.player = document.getElementById("player" + this.data.pid);
-        var self = this;
-        setTimeout(function() {self.ready(jsapi)}, 700);
+        var playerId = 'scplayer' + this.data.pid;
+        var flashvars = {
+           enable_api: true, 
+           object_id: playerId,
+           default_width: this.data.width,
+           default_height: this.data.height,
+           url: this.data.url
+        };
+        var params = {
+            allowscriptaccess: "always"
+        };
+        var attributes = {
+            id: playerId,
+            name: playerId
+        };
+        swfobject.embedSWF("http://player.soundcloud.com/player.swf", playerId, "100%", "100%", "8",null, flashvars, params, attributes);
+        var self = this;        
+        soundcloud.addEventListener('onPlayerReady', function(player, data) {
+            self.player = player;
+            self.ready(jsapi);
+        });
+        //setTimeout(function() {self.ready(jsapi)}, 700);
         return false;
 	},
 	ready: function(jsapi) {
 		jsapi.ready();
 	},
 	interface: {
-		playVideo: function() {
-            this.player.playVideo();
+		play: function() {
+            this.player.api_play()
         },
-        pauseVideo: function() {
-            this.player.pauseVideo();
+        pause: function() {
+            this.player.api_pause()
         },
-        stopVideo: function() {
-            this.player.stopVideo();
+        stop: function() {
+            this.player.api_stop();
         },
-        seekTo: function(seconds, allowSeekAhead) {
-            this.player.seekTo(seconds, allowSeekAhead);
+        toggle: function() {
+            this.player.api_toggle();
         },
-        clearVideo: function() {
-            this.player.clearVideo();
+        skip: function(trackIndex) {
+            this.player.api_skip(trackIndex);
         },
-        cue:function(url, startSeconds, suggestedQuality) {
-            if (url.substr(0, 7) == 'http://')
-                this.player.cueVideoByUrl(url, startSeconds, suggestedQuality)
-            else
-                this.player.cueVideoById(url, startSeconds, suggestedQuality)
-
+        seekTo: function(seconds) {
+            // player has to be done buffering (onMediaDoneBuffering) to be able to seekTo, fix ?
+            this.player.api_seekTo(seconds);       
         },
-        load:function(url, startSeconds, suggestedQuality) {
-            if (url.substr(0, 7) == 'http://')
-                this.player.loadVideoByUrl(url, startSeconds, suggestedQuality)
-            else
-                this.player.loadVideoById(url, startSeconds, suggestedQuality)
+        load:function(url) {
+            // player will be ready after the onReady event, fix ?
+            this.player.api_load(url);
         },
-        loadPlaylist: function(playlist, index, startSeconds, suggestedQuality) {
-            this.player.loadPlaylist(playlist, index, startSeconds, suggestedQuality)
+        next: function() {
+            this.player.api_next();
         },
-        cuePlaylist: function(playlist, index, startSeconds, suggestedQuality) {
-            this.player.cuePlaylist(playlist, index, startSeconds, suggestedQuality)
-        },
-        nextVideo: function() {
-            this.player.nextVideo();
-        },
-        previousVideo: function() {
-            this.player.previousVideo();
-        },
-        playVideoAt: function(index) {
-            this.player.playVideoAt(index);
-        },
-        mute: function() {
-            this.player.mute();
-        },
-        unmute: function() {
-            this.player.unMute();
+        prev: function() {
+            this.player.api_prev();
         },
         setVolume: function(value) {
-            this.player.setVolume(value);
+            this.player.api_setVolume(value);  
         },
-        setLoop: function(activate) {
-            this.player.setLoop(activate);
+        getVolume: function() {
+            return this.player.api_getVolume();
         },
-        setShuffle: function(activate) {
-            this.player.setShuffle(activate);
-
+        getTrackDuration: function() {
+            return this.player.api_getTrackDuration();
         },
-        setPlaybackQuality: function(quality) {
-            this.player.setPlaybackQuality(quality);
+        getTrackPosition: function() {
+            return this.player.api_getTrackPosition();
+        },
+        getTracks: function() {
+            return this.player.api_getTracks()
+        },
+        getCurrentTrack: function() {
+            return this.api_getCurrentTrack();
+        },
+        getCurrentTrackIndex: function() {
+            return this.api_getCurrentTrackIndex();
+        },
+        getFlashId: function() {
+            return this.api_getFlashId();
         }
 	}
 }, {
-	view: '<div id="ytapiplayer<%= data.pid %>"></div>'
+	view: '<div id="scplayer<%= data.pid %>"></div>'
 });

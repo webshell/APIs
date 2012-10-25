@@ -40,28 +40,61 @@
 	showUser: function(params, opts)
 	{
 		var users;
-		if (typeof params == "string")
+		if (typeof params == "string") {
+			users = [params];
+		}
+		else if (typeof params == "object") {
+			if (typeof params.users == "string") {
+				users = [params.users];
+			}
+			else {
+				users = params
+			}
+		}
+		else {
 			users = params;
-		if (typeof params == "object")
-			users = params.users;
+		}
 
+		var usersQuery = '';
+		for (var i in users) {
+			if (i != 0)
+				usersQuery += ',';
+			usersQuery += users[i];
+		}
 		var url = "/users/show.json";
 		return http({
 			provider:'klout',
 			url: url,
 			method: 'GET',
 			params: {
-				"users":users
+				"users":usersQuery
 			}
 		}, opts);
 	},
 	topics: function(params, opts)
 	{
 		var users;
-		if (typeof params == "string")
+		if (typeof params == "string") {
+			users = [params];
+		}
+		else if (typeof params == "object") {
+			if (typeof params.users == "string") {
+				users = [params.users];
+			}
+			else {
+				users = params
+			}
+		}
+		else {
 			users = params;
-		if (typeof params == "object")
-			users = params.users;
+		}
+
+		var usersQuery = '';
+		for (var i in users) {
+			if (i != 0)
+				usersQuery += ',';
+			usersQuery += users[i];
+		}
 
 		var url = "/users/topics.json";
 
@@ -70,7 +103,7 @@
 			url: url,
 			method: 'GET',
 			params: {
-				"users":users
+				"users":usersQuery
 			}
 		}, opts);
 	},
@@ -78,10 +111,27 @@
 	influencedBy: function(params, opts)
 	{
 		var users;
-		if (typeof params == "string")
+		if (typeof params == "string") {
+			users = [params];
+		}
+		else if (typeof params == "object") {
+			if (typeof params.users == "string") {
+				users = [params.users];
+			}
+			else {
+				users = params
+			}
+		}
+		else {
 			users = params;
-		if (typeof params == "object")
-			users = params.users;
+		}
+
+		var usersQuery = '';
+		for (var i in users) {
+			if (i != 0)
+				usersQuery += ',';
+			usersQuery += users[i];
+		}
 
 		var url = "/soi/influenced_by.json";
 
@@ -90,17 +140,34 @@
 			url: url,
 			method: 'GET',
 			params: {
-				"users":users
+				"users":usersQuery
 			}
 		}, opts);
 	},
 	influencerOf: function(params, opts)
 	{
-		var users;
-		if (typeof params == "string")
+				var users;
+		if (typeof params == "string") {
+			users = [params];
+		}
+		else if (typeof params == "object") {
+			if (typeof params.users == "string") {
+				users = [params.users];
+			}
+			else {
+				users = params
+			}
+		}
+		else {
 			users = params;
-		if (typeof params == "object")
-			users = params.users;
+		}
+
+		var usersQuery = '';
+		for (var i in users) {
+			if (i != 0)
+				usersQuery += ',';
+			usersQuery += users[i];
+		}
 
 		var url = "/soi/influencer_of.json";
 
@@ -109,7 +176,7 @@
 			url: url,
 			method: 'GET',
 			params: {
-				"users":users
+				"users":usersQuery
 			}
 		}, opts);
 	}
