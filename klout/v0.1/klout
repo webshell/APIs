@@ -1,6 +1,62 @@
 ({
-	score: function(params, opts)
-	{
+	getTwitterId: function(params, opts) {
+		var user;
+		if (typeof params == "string")
+			user = params;
+		else
+			user = params.user;	
+		var url = "identity.json/klout/" + user + "/tw";
+
+		return http({
+			provider:'klout',
+			url:url,
+			method: 'GET'
+		}, opts);
+	},
+	getKloutId: function(params, opts) {
+		var url = "identity.json/";
+		var user;
+		var args = {};
+		if (typeof params == "string")
+			user = params;
+		else
+			user = params.user;
+
+		var id = parseInt(user);
+		var isId = !isNaN(id) && id.toString().length == user.length;
+		if (isId) {
+			if (idType == "tw" || "twitter")
+				url += "tw/" + id.toString();
+			else if (idType == "gp" || "google+")
+				url += "gp/" + id.toString();
+		}
+		else {
+			args.screenName = user;
+			url += "twitter";
+		}
+
+		return http({
+			provider:'klout',
+			url:url,
+			method: 'GET',
+			params: args
+		}, opts);
+	},
+	score: function(params, opts) {
+		var user;
+		if (typeof params == "string")
+			user = params;
+		else
+			user = params.user;	
+		var url = "user.json/" + user + "/score";
+
+		return http({
+			provider:'klout',
+			url:url,
+			method: 'GET'
+		}, opts);
+	},
+	scorev1: function(params, opts) {
 		var users;
 		if (typeof params == "string") {
 			users = [params];
@@ -37,7 +93,21 @@
 			}
 		}, opts);
 	},
-	showUser: function(params, opts)
+	showUser: function(params, opts) {
+		var user;
+		if (typeof params == "string")
+			user = params;
+		else
+			user = params.user;	
+		var url = "user.json/" + user;
+
+		return http({
+			provider:'klout',
+			url:url,
+			method: 'GET'
+		}, opts);
+	},
+	showUserv1: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string") {
@@ -71,7 +141,21 @@
 			}
 		}, opts);
 	},
-	topics: function(params, opts)
+	topics: function(params, opts) {
+		var user;
+		if (typeof params == "string")
+			user = params;
+		else
+			user = params.user;	
+		var url = "user.json/" + user + "/topics";
+
+		return http({
+			provider:'klout',
+			url:url,
+			method: 'GET'
+		}, opts);
+	},
+	topicsv1: function(params, opts)
 	{
 		var users;
 		if (typeof params == "string") {
@@ -107,7 +191,20 @@
 			}
 		}, opts);
 	},
+	influence: function(params, opts) {
+		var user;
+		if (typeof params == "string")
+			user = params;
+		else
+			user = params.user;	
+		var url = "user.json/" + user + "/influence";
 
+		return http({
+			provider:'klout',
+			url:url,
+			method: 'GET'
+		}, opts);
+	},
 	influencedBy: function(params, opts)
 	{
 		var users;
