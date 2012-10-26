@@ -2,29 +2,17 @@
   "displayName":"Soundcloud",
   "icon":"",
   "base_url":"http://api.soundcloud.com/",
-  "default_auth":"manual",
+  "default_auth":"oauth2",
   "auth":{
     "none":{},
-    "manual":{
-      "request":{
-        "get":{
-          "client_id":"{client_id}"
-        }
-      },
-      "parameters":[
-        {
-          "name":"client_id",
-          "type":"string",
-          "required":false
-        }
-      ]
-    }, "oauth2":{ 
+     "oauth2":{ 
 		"authorize":{ 
 			"url":"https://soundcloud.com/connect", 
 			"params":{ 
 				"client_id":"{client_id}", 
-				"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}", 
-				"scope":"{scope}" 
+				"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}&error=redirect_uri_mismatch, 
+				"scope":"{scope}" ,
+				"response_type" : "code"
 			}
 		},
 		"access_token":{
@@ -33,9 +21,11 @@
 			"params":{
 				"client_id":"{client_id}",
 				"client_secret":"{client_secret}",
-				"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}",
-				"code":"{_code}"
-			}
+				"redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}&error=redirect_uri_mismatch",
+				"code":"{_code}",
+				"grant_type":"authorization_code"
+			},
+			"method": "POST"
 		},
 		"request":{
 			"get":{

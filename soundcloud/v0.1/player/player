@@ -5,11 +5,7 @@ if (typeof args == 'string') {
 
 jsClientApi({
     name: "soundcloud.player",
-	data: {
-		url: args.url,
-		width: args.width,
-		height: args.height
-	},
+	data: args,
 	initialize: function(callback) {
         $('body').append('<script type="text/javascript" src="https://raw.github.com/soundcloud/Widget-JS-API/master/soundcloud.player.api.js"></script>')
 		$.getScript("http://webshell.local/lib/swfobject/swfobject.js", callback);
@@ -18,13 +14,10 @@ jsClientApi({
 	},
 	create: function(jsapi) {
         var playerId = 'scplayer' + this.data.pid;
-        var flashvars = {
-           enable_api: true, 
-           object_id: playerId,
-           default_width: this.data.width,
-           default_height: this.data.height,
-           url: this.data.url
-        };
+        var flashvars = this.data;
+        if (typeof flashvars.enable_api == "undefined")
+            flashvars.enable_api = true;
+        flashvars.object_id = playerId;
         var params = {
             allowscriptaccess: "always"
         };
