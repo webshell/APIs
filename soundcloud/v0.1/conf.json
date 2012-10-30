@@ -1,0 +1,53 @@
+{
+   "displayName": "Soundcloud",
+   "icon": "",
+   "base_url": "http://api.soundcloud.com/",
+   "default_auth": "oauth2",
+   "auth": {
+       "none": {},
+       "oauth2": {
+           "authorize": {
+               "url": "https://soundcloud.com/connect",
+               "params": {
+                   "client_id": "{client_id}",
+                   "redirect_uri": "http://{_wsdomain}.webshell.local/name/{_name}",
+                   "state":"api={_id}&cip={_cid}",
+                   "scope": "{scope}",
+                   "response_type": "code"
+               }
+           },
+           "access_token": {
+               "url": "https://api.soundcloud.com/oauth2/token",
+               "field":"state",
+               "params": {
+                   "client_id": "{client_id}",
+                   "client_secret": "{client_secret}",
+                   "redirect_uri": "http://{_wsdomain}.webshell.local/name/{_name}",
+                   "code": "{_code}",
+                   "grant_type": "authorization_code"
+               },
+               "method": "POST"
+           },
+           "request": {
+               "get": {
+                   "oauth_token": "{_access_token}"
+               },
+               "format": "json"
+           },
+           "parameters": [
+               {
+                   "name": "client_id",
+                   "type": "string"
+               },
+               {
+                   "name": "client_secret",
+                   "type": "string"
+               },
+               {
+                   "name": "scope",
+                   "type": "string"
+               }
+           ]
+       }
+   }
+}
