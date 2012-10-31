@@ -5,23 +5,39 @@
     "default_auth": "oauth2",
     "auth": {
         "none": {},
+        "manual": {
+            "request": {
+                "format": "json",
+                "get": {
+                    "client_id": "{client_id}"
+                }
+            },
+            "parameters": [
+                {
+                    "name": "client_id",
+                    "type": "string",
+                    "required": false
+                }
+            ]
+        },
         "oauth2": {
             "authorize": {
                 "url": "https://soundcloud.com/connect",
                 "params": {
                     "client_id": "{client_id}",
-                    "redirect_uri": "http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}",
+                    "redirect_uri": "http://{_wsdomain}.webshell.local/name/{_name}",
+                    "state": "api={_id}&cip={_cid}",
                     "scope": "{scope}",
                     "response_type": "code"
                 }
             },
             "access_token": {
                 "url": "https://api.soundcloud.com/oauth2/token",
-                "format": "url",
+                "field": "state",
                 "params": {
                     "client_id": "{client_id}",
                     "client_secret": "{client_secret}",
-                    "redirect_uri": "http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cip={_cid}",
+                    "redirect_uri": "http://{_wsdomain}.webshell.local/name/{_name}",
                     "code": "{_code}",
                     "grant_type": "authorization_code"
                 },
