@@ -1,0 +1,811 @@
+({
+	auth:function(){return auth({provider:'sncf'})},
+	'departs': function(args, opts) {
+		var url = 'gare/{depart}/depart'
+		args = args || {}
+		if (args['depart'] == null) throw new Error('depart is a required parameter')
+		var rgx = new RegExp('\{depart\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['depart'])
+			if (args['depart']) delete args['depart']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'departs_arrivee': function(args, opts) {
+		var url = 'gare/{depart}/depart/{arrivee}'
+		args = args || {}
+		if (args['depart'] == null) throw new Error('depart is a required parameter')
+		var rgx = new RegExp('\{depart\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['depart'])
+			if (args['depart']) delete args['depart']
+		}
+		if (args['arrivee'] == null) throw new Error('arrivee is a required parameter')
+		var rgx = new RegExp('\{arrivee\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['arrivee'])
+			if (args['arrivee']) delete args['arrivee']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'NetworkList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "NetworkList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'ModeTypeList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "ModeTypeList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'ModeList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "ModeList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'LineList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "LineList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		var rgx = new RegExp('\{DestinationExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['DestinationExternalCode'])
+			if (args['DestinationExternalCode']) delete args['DestinationExternalCode']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'RouteList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "RouteList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		var rgx = new RegExp('\{Sens\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Sens'])
+			if (args['Sens']) delete args['Sens']
+		}
+		var rgx = new RegExp('\{CheckOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CheckOrder'])
+			if (args['CheckOrder']) delete args['CheckOrder']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'VehicleJourneyList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "VehicleJourneyList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		var rgx = new RegExp('\{ShowStop\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ShowStop'])
+			if (args['ShowStop']) delete args['ShowStop']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyName'])
+			if (args['VehicleJourneyName']) delete args['VehicleJourneyName']
+		}
+		var rgx = new RegExp('\{Date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Date'])
+			if (args['Date']) delete args['Date']
+		}
+		var rgx = new RegExp('\{EndDate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['EndDate'])
+			if (args['EndDate']) delete args['EndDate']
+		}
+		var rgx = new RegExp('\{StartTime\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StartTime'])
+			if (args['StartTime']) delete args['StartTime']
+		}
+		var rgx = new RegExp('\{EndTime\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['EndTime'])
+			if (args['EndTime']) delete args['EndTime']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'StopAreaList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "StopAreaList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		var rgx = new RegExp('\{MainStopArea\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['MainStopArea'])
+			if (args['MainStopArea']) delete args['MainStopArea']
+		}
+		var rgx = new RegExp('\{MultiModal\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['MultiModal'])
+			if (args['MultiModal']) delete args['MultiModal']
+		}
+		var rgx = new RegExp('\{CarPark\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CarPark'])
+			if (args['CarPark']) delete args['CarPark']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'StopPointList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "StopPointList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'RoutePointList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "RoutePointList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		var rgx = new RegExp('\{Sens\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Sens'])
+			if (args['Sens']) delete args['Sens']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	},
+	'CompanyList': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{NetworkExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NetworkExternalCode'])
+			if (args['NetworkExternalCode']) delete args['NetworkExternalCode']
+		}
+		var rgx = new RegExp('\{ModeTypeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeTypeExternalCode'])
+			if (args['ModeTypeExternalCode']) delete args['ModeTypeExternalCode']
+		}
+		var rgx = new RegExp('\{ModeExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ModeExternalCode'])
+			if (args['ModeExternalCode']) delete args['ModeExternalCode']
+		}
+		var rgx = new RegExp('\{LineExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineExternalCode'])
+			if (args['LineExternalCode']) delete args['LineExternalCode']
+		}
+		var rgx = new RegExp('\{RouteExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RouteExternalCode'])
+			if (args['RouteExternalCode']) delete args['RouteExternalCode']
+		}
+		var rgx = new RegExp('\{VehicleJourneyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VehicleJourneyExternalCode'])
+			if (args['VehicleJourneyExternalCode']) delete args['VehicleJourneyExternalCode']
+		}
+		var rgx = new RegExp('\{StopAreaExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopAreaExternalCode'])
+			if (args['StopAreaExternalCode']) delete args['StopAreaExternalCode']
+		}
+		var rgx = new RegExp('\{StopPointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StopPointExternalCode'])
+			if (args['StopPointExternalCode']) delete args['StopPointExternalCode']
+		}
+		var rgx = new RegExp('\{RoutePointExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RoutePointExternalCode'])
+			if (args['RoutePointExternalCode']) delete args['RoutePointExternalCode']
+		}
+		var rgx = new RegExp('\{CityExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CityExternalCode'])
+			if (args['CityExternalCode']) delete args['CityExternalCode']
+		}
+		var rgx = new RegExp('\{CompanyExternalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CompanyExternalCode'])
+			if (args['CompanyExternalCode']) delete args['CompanyExternalCode']
+		}
+		var rgx = new RegExp('\{LineCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['LineCode'])
+			if (args['LineCode']) delete args['LineCode']
+		}
+		if (args['Action'] == null) args['Action'] = "CompanyList"
+		var rgx = new RegExp('\{Action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Action'])
+			if (args['Action']) delete args['Action']
+		}
+		return http({provider:'sncf',url:url,method:'GET',params:args}, opts)
+	}
+})
