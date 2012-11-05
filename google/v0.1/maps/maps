@@ -92,10 +92,9 @@ jsClientApi({
 				opts = {lat:opts.address.latitude, lng:opts.address.longitude}
 			if (opts.lat !== undefined && opts.lng !== undefined)
 				opts.address = {lat:opts.lat, lng:opts.lng}
-			if (typeof opts.address == 'object' && opts.address.lat !== undefined && opts.address.lng !== undefined)
-				opts.address = opts.address.lat + ',' + opts.address.lng
 
-			geocoder.geocode({ 'address': opts.address }, function(results, status) {
+			var disp = function(results, status) {
+				console.log (results, status)
 				if (status == google.maps.GeocoderStatus.OK) {
 					var marker_options = {
 						map: self.map,
@@ -106,7 +105,12 @@ jsClientApi({
 					var marker = new google.maps.Marker(marker_options);
 					//self.markers[self.markers.length] = marker;
 				}
-			});
+			}
+
+			if (typeof opts.address == 'object' && opts.address.lat !== undefined && opts.address.lng !== undefined)
+				disp([{geometry:{location:new google.maps.LatLng(opts.address.lat,opts.address.lng)}}], google.maps.GeocoderStatus.OK)
+			else
+				geocoder.geocode({ 'address': opts.address }, disp);
 		},
 		// clearMarker: function() {
 		// 	for(var i = 0; i < this.markers.length; i++) {
