@@ -1,10 +1,6 @@
 <h1>Twitter API: Account</h1>
-<p>These methods are relative to the tag 'Account'</p><h3>accountverify_credentials</h3>
-<p>Returns an HTTP 200 OK response code and a representation of the requesting user if
-                    authentication was successful; returns a 401 status code and an error message if not. Use this
-                    method to test if supplied user credentials are valid.
-                </p>
-<p><em>Authentication required</em></p>
+<p>These methods are relative to the tag 'Account'</p><h3>accountVerifyCredentials</h3>
+<p>Returns an HTTP 200 OK response code and a representation of the requesting user if authentication was successful; returns a 401 status code and an error message if not. Use this method to test if supplied user credentials are valid.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -19,16 +15,27 @@
 			<td>json</td>
 			<td>false</td>
 		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will not be included when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>skip_status</td>
+			<td>
+                    When set to either true, t or 1 statuses will not be included in the returned user objects.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
 	</tbody>
 
 </table>
-<h3>accountrate_limit_status</h3>
-<p>Returns the remaining number of API requests available to the requesting user before the API
-                    limit is reached for the current hour. Calls to rate_limit_status do not count against the rate
-                    limit. If authentication credentials are provided, the rate limit status for the authenticating user
-                    is returned. Otherwise, the rate limit status for the requester's IP address is returned. Learn more
-                    about the<a xmlns_xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns_xsd="http://www.w3.org/2001/XMLSchema" href="http://apiwiki.twitter.com/Rate-limiting">REST API rate limiting</a>.
-                </p>
+<h3>accountUpdateProfileColors</h3>
+<p>Sets one or more hex values that control the color scheme of the authenticating user's profile page on twitter.com. Each parameter's value must be a valid hexidecimal value, and may be either three or six characters (ex: #fff or #ffffff).</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -43,37 +50,69 @@
 			<td>json</td>
 			<td>false</td>
 		</tr>
-	</tbody>
-
-</table>
-<h3>accountupdate_profile_colors</h3>
-<p>Sets one or more hex values that control the color scheme of the authenticating user's profile
-                    page on twitter.com.
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
 		<tr>
-			<td>format</td>
-			<td></td>
-			<td>json</td>
-			<td>false</td>
+			<td>profile_background_color</td>
+			<td>
+                    Profile background color.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>profile_link_color</td>
+			<td>
+                    Profile link color.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>profile_sidebar_border_color</td>
+			<td>
+                    Profile sidebar's border color.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>profile_sidebar_fill_color</td>
+			<td>
+                    Profile sidebar's background color.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>profile_text_color</td>
+			<td>
+                    Profile text color.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will not be included when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>skip_status</td>
+			<td>
+                    When set to either true, t or 1 statuses will not be included in the returned user objects.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>accountupdate_profile_image</h3>
-<p>Updates the authenticating user's profile image. Note that this method expects raw multipart
-                    data, not a URL to an image. Must be a valid GIF, JPG, or PNG image of less than 700 kilobytes in
-                    size. Images with width larger than 500 pixels will be scaled down.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>accountUpdateProfileImage</h3>
+<p>Updates the authenticating user's profile image. Note that this method expects raw multipart data, not a URL to an image.
+
+This method asynchronously processes the uploaded file before updating the user's profile image URL. You can either update your local cache the next time you request the user's information, or, at least 5 seconds after uploading the image, ask for the updated URL using GET users/show.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -90,19 +129,35 @@
 		</tr>
 		<tr>
 			<td>image</td>
-			<td></td>
-			<td></td>
+			<td>
+                    The avatar image for the profile, base64-encoded. Must be a valid GIF, JPG, or PNG image of less than 700 kilobytes in size. Images with width larger than 500 pixels will be scaled down. Animated GIFs will be converted to a static GIF of the first frame, removing the animation.
+                </td>
+			<td>undefined</td>
 			<td>false</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will not be included when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>skip_status</td>
+			<td>
+                    When set to either true, t or 1 statuses will not be included in the returned user objects.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>accountupdate_profile_background_image</h3>
-<p>Updates the authenticating user's profile background image. Note that this method expects raw
-                    multipart data, not a URL to an image. Must be a valid GIF, JPG, or PNG image of less than 800
-                    kilobytes in size. Images with width larger than 2048 pixels will be forceably scaled down.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>accountUpdateProfileBackgroundImage</h3>
+<p>Updates the authenticating user's profile background image. This method can also be used to enable or disable the profile background image.
+
+Although each parameter is marked as optional, at least one of image, tile or use must be provided when making this request.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -119,24 +174,49 @@
 		</tr>
 		<tr>
 			<td>tile</td>
-			<td></td>
-			<td>false</td>
+			<td>
+                    Whether or not to tile the background image. If set to true, t or 1 the background image will be displayed tiled. The image will not be tiled otherwise.
+                </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>image</td>
-			<td></td>
+			<td>
+                    The background image for the profile, base64-encoded. Must be a valid GIF, JPG, or PNG image of less than 800 kilobytes in size. Images with width larger than 2048 pixels will be forcibly scaled down. The image must be provided as raw multipart data, not a URL.
+                </td>
 			<td>undefined</td>
-			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>skip_status</td>
+			<td>
+                    When set to either true, t or 1 statuses will not be included in the returned user objects.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will not be included when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>use</td>
+			<td>
+                    Determines whether to display the profile background image or not. When set to true, t or 1 the background image will be displayed if an image is being uploaded with the request, or has been uploaded previously. An error will be returned if you try to use a background image when one is not being uploaded or does not exist. If this parameter is defined but set to anything other than true, t or 1, the background image will stop being used.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>accountupdate_profile</h3>
-<p>Sets values that users are able to set under the "Account" tab of their settings page. Only the
-                    parameters specified will be updated.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>accountUpdateProfile</h3>
+<p>Sets values that users are able to set under the "Account" tab of their settings page. Only the parameters specified will be updated.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -150,6 +230,89 @@
 			<td></td>
 			<td>json</td>
 			<td>false</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>
+                    Full name associated with the profile. Maximum of 20 characters.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>
+                    URL associated with the profile. Will be prepended with "http://" if not present. Maximum of 100 characters.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>location</td>
+			<td>
+                    The city or country describing where the user of the account is located. The contents are not normalized or geocoded in any way. Maximum of 30 characters.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>description</td>
+			<td>
+                    A description of the user owning the account. Maximum of 160 characters.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will not be included when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>skip_status</td>
+			<td>
+                    When set to either true, t or 1 statuses will not be included in the returned user objects.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>accountUpdateDeliveryDevice</h3>
+<p>Sets which device Twitter delivers updates to for the authenticating user. Sending none as the device parameter will disable SMS updates.</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>device</td>
+			<td>
+                    Must be one of: sms, none.
+                </td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    When set to either true, t or 1, each tweet will include a node called "entities,". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 

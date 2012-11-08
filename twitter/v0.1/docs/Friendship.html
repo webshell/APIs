@@ -1,10 +1,10 @@
 <h1>Twitter API: Friendship</h1>
-<p>These methods are relative to the tag 'Friendship'</p><h3>friendshipscreate</h3>
-<p>Allows the authenticating users to follow the user specified in the ID parameter. Returns the
-                    befriended user in the requested format when successful. Returns a string describing the failure
-                    condition when unsuccessful. If you are already friends with the user an HTTP 403 will be returned.
-                </p>
-<p><em>Authentication required</em></p>
+<p>These methods are relative to the tag 'Friendship'</p><h3>follow</h3>
+<p>Allows the authenticating users to follow the user specified in the ID parameter.
+
+Returns the befriended user in the requested format when successful. Returns a string describing the failure condition when unsuccessful. If you are already friends with the user a HTTP 403 may be returned, though for performance reasons you may get a 200 OK message even if the friendship already exists.
+
+Actions taken in this method are asynchronous and changes will be eventually consistent. Providing either screen_name or user_id is required.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -18,45 +18,36 @@
 			<td></td>
 			<td>json</td>
 			<td>false</td>
+		</tr>
+		<tr>
+			<td>screen_name</td>
+			<td>
+                    The screen name of the user for whom to befriend.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>user_id</td>
+			<td>
+                    The ID of the user for whom to befriend.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 		<tr>
 			<td>follow</td>
-			<td></td>
-			<td>true</td>
+			<td>
+                    Enable notifications for the target user.        
+                </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>friendshipsdestroy</h3>
-<p>Allows the authenticating users to unfollow the user specified in the ID parameter. Returns the
-                    unfollowed user in the requested format when successful. Returns a string describing the failure
-                    condition when unsuccessful.
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>format</td>
-			<td></td>
-			<td>json</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>friendshipsexists</h3>
-<p>Tests for the existence of friendship between two users. Will return true if user_a follows
-                    user_b, otherwise will return false. Also try the friendship/show method, which gives even more
-                    information with a single call!
-                </p>
-<p><em>Authentication required</em></p>
+<h3>unfollow</h3>
+<p>undefined</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -72,24 +63,156 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>user_b</td>
-			<td></td>
-			<td>apigee</td>
-			<td>false</td>
+			<td>screen_name</td>
+			<td>
+                    The screen name of the user for whom to befriend.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 		<tr>
-			<td>user_a</td>
-			<td></td>
-			<td>sonoa</td>
-			<td>false</td>
+			<td>user_id</td>
+			<td>
+                    The ID of the user for whom to befriend.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>friendshipsshow</h3>
+<h3>showFriendship</h3>
+<p>Returns detailed information about the relationship between two arbitrary users. A choice has to be made between screen_name or id for both target and source parameters.</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>source_id</td>
+			<td>
+                    The user_id of the subject user.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>source_screen_name</td>
+			<td>
+                    The screen_name of the subject user.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>target_id</td>
+			<td>
+                    The user_id of the target user.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>target_screen_name</td>
+			<td>
+                    The screen_name of the target user.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>incomingFriendships</h3>
+<p>Returns a collection of numeric IDs for every user who has a pending request to follow the authenticating user.</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>cursor</td>
+			<td>
+                    Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."
+
+The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>stringify_ids</td>
+			<td>
+                    Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>outgoingFriendships</h3>
+<p>Returns a collection of numeric IDs for every protected user for whom the authenticating user has a pending follow request.</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>cursor</td>
+			<td>
+                    Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."
+
+The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>stringify_ids</td>
+			<td>
+                    Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>friendsIds</h3>
 <p>
-					Returns detailed information about the relationship between two users.
-                </p>
+                Returns a cursored collection of user IDs for every user the specified user is following (otherwise known as their "friends").
+
+At this time, results are ordered with the most recent following first — however, this ordering is subject to unannounced change and eventual consistency issues. Results are given in groups of 5,000 user IDs and multiple "pages" of results can be navigated through using the next_cursor value in subsequent requests. See Using cursors to navigate collections for more information.
+
+This method is especially powerful when used in conjunction with GET users/lookup, a method that allows you to convert user IDs into full user objects in bulk.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -104,61 +227,38 @@
 			<td>json</td>
 			<td>false</td>
 		</tr>
-	</tbody>
-
-</table>
-<h3>friendshipsexists.format</h3>
-<p>Returns an array of numeric IDs for every user who has a pending request to follow the
-                    authenticating user.
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
 		<tr>
-			<td>format</td>
-			<td></td>
-			<td>json</td>
-			<td>false</td>
+			<td>user_id</td>
+			<td>
+                    The ID of the user for whom to return results for.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>screen_name</td>
+			<td>
+                    The screen name of the user for whom to return results for.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 		<tr>
 			<td>cursor</td>
-			<td></td>
-			<td>-1</td>
-			<td>false</td>
-		</tr>
-	</tbody>
+			<td>
+                    Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."
 
-</table>
-<h3>friendshipsoutgoing.format</h3>
-<p>Returns an array of numeric IDs for every user who has a pending request to follow the
-                    authenticating user.
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>format</td>
-			<td></td>
-			<td>json</td>
-			<td>false</td>
+The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.</td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 		<tr>
-			<td>cursor</td>
-			<td></td>
-			<td>-1</td>
-			<td>false</td>
+			<td>stringify_ids</td>
+			<td>
+                    Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 

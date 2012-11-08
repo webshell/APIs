@@ -1,7 +1,6 @@
 <h1>Twitter API: Tweets</h1>
-<p>These methods are relative to the tag 'Tweets'</p><h3>statusesretweeted_by2</h3>
-<p>
-                    Show user objects of up to 100 members who retweeted the status.</p>
+<p>These methods are relative to the tag 'Tweets'</p><h3>showStatus</h3>
+<p>Returns a single Tweet, specified by the id parameter. The Tweet's author will also be embedded within the tweet.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -18,133 +17,37 @@
 		</tr>
 		<tr>
 			<td>id</td>
-			<td></td>
-			<td>12164581432</td>
+			<td>The numerical ID of the desired Tweet.</td>
+			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>trim_user</td>
-			<td></td>
+			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
+			<td>undefined</td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_my_retweet</td>
+			<td>When set to either true, t or 1, any Tweets returned that have been retweeted by the authenticating user will include an additional current_user_retweet node, containing the ID of the source status for the retweet.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>count</td>
-			<td></td>
-			<td>200</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td></td>
-			<td>2</td>
+			<td>The entities node will be disincluded when set to false.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>statusesretweeted_by1</h3>
-<p>
-                    Show user ids of up to 100 users who retweeted the status.</p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>format</td>
-			<td></td>
-			<td>json</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>id</td>
-			<td></td>
-			<td>12164581432</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>count</td>
-			<td></td>
-			<td>200</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td></td>
-			<td>2</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-	</tbody>
+<h3>tweet</h3>
+<p>Updates the authenticating user's current status, also known as tweeting. To upload an image to accompany the tweet, use POST statuses/update_with_media.
 
-</table>
-<h3>statusesshow</h3>
-<p>Returns a single status, specified by the id parameter below. The status's author will be
-                    returned inline.
-                </p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>format</td>
-			<td></td>
-			<td>json</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>id</td>
-			<td></td>
-			<td>10279582992</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-	</tbody>
+For each update attempt, the update text is compared with the authenticating user's recent tweets. Any attempt that would result in duplication will be blocked, resulting in a 403 error. Therefore, a user cannot submit the same status twice in a row.
 
-</table>
-<h3>statusesupdate</h3>
-<p>Updates the authenticating user's status. Requires the status parameter specified below. Request
-                    must be a POST. A status update with text identical to the authenticating user's current status will
-                    be ignored to prevent duplicates.
-                </p>
-<p><em>Authentication required</em></p>
+While not rate limited by the API a user is limited in the number of tweets they can create at a time. If the number of updates posted by the user reaches the current allowed limit this method will return an HTTP 403 error.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -161,66 +64,55 @@
 		</tr>
 		<tr>
 			<td>status</td>
-			<td></td>
-			<td>Posting from @apigee's API test console. It's like a command line for the Twitter API! </td>
+			<td>The text of your status update, typically up to 140 characters. URL encode as necessary. t.co link wrapping may effect character counts.
+
+There are some special commands in this field to be aware of. For instance, preceding a message with "D " or "M " and following it with a screen name can create a direct message to that user if the relationship allows for it.</td>
+			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>place_id</td>
-			<td></td>
-			<td>7695dd2ec2f86f2b</td>
+			<td>A place in the world. These IDs can be retrieved from apis.twitter.reverseGeocode.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>long</td>
-			<td></td>
-			<td>-122.40060</td>
+			<td>The longitude of the location this tweet refers to. The valid ranges for longitude is -180.0 to +180.0 (East is positive) inclusive. This parameter will be ignored if outside that range, if it is not a number, if geo_enabled is disabled, or if there not a corresponding lat parameter.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>in_reply_to_status_id</td>
-			<td></td>
-			<td>11432445742</td>
+			<td>The ID of an existing status that the update is in reply to.
+
+                Note:: This parameter will be ignored unless the author of the tweet this parameter references is mentioned within the status text. Therefore, you must include @username, where username is the author of the referenced tweet, within the update.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>display_coordinates</td>
-			<td></td>
-			<td>false</td>
+			<td>Whether or not to put a pin on the exact coordinates a tweet has been sent from.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>lat</td>
-			<td></td>
-			<td>37.78215</td>
+			<td>The latitude of the location this tweet refers to. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive. It will also be ignored if there isn't a corresponding long parameter.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>trim_user</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>annotations</td>
-			<td></td>
-			<td>[{'TYPE':{'ATTRIBUTE':'VALUE'}}]</td>
+			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>statusesdestroy</h3>
-<p>Destroys the status specified by the required ID parameter. The authenticating user must be the
-                    author of the specified status.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>destroyStatus</h3>
+<p>Destroys the status specified by the required ID parameter. The authenticating user must be the author of the specified status. Returns the destroyed status if successful.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -237,29 +129,21 @@
 		</tr>
 		<tr>
 			<td>id</td>
-			<td></td>
-			<td>1472669360</td>
+			<td>The numerical ID of the desired status.</td>
+			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>trim_user</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
+			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>statusesretweetid</h3>
-<p>Retweets a tweet. Requires the id parameter of the tweet you are retweeting. Returns the original tweet with retweet details embedded.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>retweet</h3>
+<p>Retweets a tweet. Returns the original tweet with retweet details embedded.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -276,29 +160,21 @@
 		</tr>
 		<tr>
 			<td>id</td>
-			<td></td>
-			<td>10279582992</td>
+			<td>The numerical ID of the desired status.</td>
+			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>trim_user</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
+			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>statusesretweets</h3>
-<p>
-                    Returns up to 100 of the first retweets of a given tweet.</p>
-<p><em>Authentication required</em></p>
+<h3>retweets</h3>
+<p>Returns up to 100 of the first retweets of a given tweet.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -315,26 +191,20 @@
 		</tr>
 		<tr>
 			<td>id</td>
-			<td></td>
-			<td>11432445742</td>
+			<td>The numerical ID of the desired status.</td>
+			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>count</td>
-			<td></td>
-			<td>100</td>
+			<td>Specifies the number of records to retrieve. Must be less than or equal to 100.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>trim_user</td>
-			<td></td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td></td>
-			<td>true</td>
+			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>

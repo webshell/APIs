@@ -1,0 +1,8 @@
+args = args || {};
+obj = {};
+params = querystring(args);
+obj.url = 'https://twitter.com/share';
+obj.pid = Math.floor(Math.random() * 10000);
+if (params.length > 0)
+	obj.url += '?' + params;
+render(obj, { view: '<a href="<%= data.url %>" class="twitter-share-button" data-lang="en">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs<%= data.pid %>");</script>'});
