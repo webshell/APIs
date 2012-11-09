@@ -1,0 +1,1 @@
+The Twitter API provides simple interfaces for most Twitter functionality and allows you to embed twitter objects such as buttons

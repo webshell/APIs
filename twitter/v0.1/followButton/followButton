@@ -2,8 +2,8 @@ args = args || {};
 obj = {}
 obj.pid = Math.floor(Math.random() * 10000);
 obj.params = "";
-if (args.screen_name)
-	obj.screen_name = args.screen_name;
+obj.screen_name = (typeof args == "string") ? args
+	: (args.screen_name ? args.screen_name : "Webshell_");
 delete(args.screen_name);
 for (var opt in args)
 	obj.params += ' ' + opt + '="' + args[opt] + '"';
