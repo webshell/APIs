@@ -7,8 +7,9 @@ jsClientApi({
     name: "soundcloud.player",
 	data: args,
 	initialize: function(callback) {
-        $('body').append('<script type="text/javascript" src="https://raw.github.com/soundcloud/Widget-JS-API/master/soundcloud.player.api.js"></script>')
-		$.getScript("http://webshell.local/lib/swfobject/swfobject.js", callback);
+		$.getScript("http://webshell.local/lib/swfobject/swfobject.js", function() {
+            $.getScript("https://raw.github.com/soundcloud/Widget-JS-API/master/soundcloud.player.api.js", callback)
+        });
 	},
 	loaded: function() {
 	},
@@ -31,7 +32,6 @@ jsClientApi({
             self.player = player;
             self.ready(jsapi);
         });
-        //setTimeout(function() {self.ready(jsapi)}, 700);
         return false;
 	},
 	ready: function(jsapi) {

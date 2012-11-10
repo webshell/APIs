@@ -1,0 +1,10 @@
+args = args || {};
+obj = {}
+obj.pid = Math.floor(Math.random() * 10000);
+obj.params = "";
+obj.screen_name = (typeof args == "string") ? args
+	: (args.screen_name ? args.screen_name : "Webshell_");
+delete(args.screen_name);
+for (var opt in args)
+	obj.params += ' ' + opt + '="' + args[opt] + '"';
+render(obj, { view: '<a href="https://twitter.com/<%= data.screen_name %>" class="twitter-follow-button"<%- data.params %>>Follow</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs<%= data.pid %>");</script>'});

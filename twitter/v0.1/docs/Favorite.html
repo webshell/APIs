@@ -1,8 +1,6 @@
 <h1>Twitter API: Favorite</h1>
 <p>These methods are relative to the tag 'Favorite'</p><h3>favorites</h3>
-<p>Returns the 20 most recent favorite statuses for the authenticating user or user specified by the
-                    ID parameter in the requested format.
-                </p>
+<p>Returns the 20 most recent Tweets favorited by the authenticating or specified user. If you do not provide either a user_id or screen_name to this method, it will assume you are requesting on behalf of the authenticating user. Specify one or the other for best results.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -18,25 +16,66 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>id</td>
-			<td></td>
-			<td>apigee</td>
+			<td>user_id</td>
+			<td>
+                       The ID of the user for whom to return results for.
+                   </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>screen_name</td>
+			<td>
+                       The screen name of the user for whom to return results for.
+                   </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>
+                        Specifies the number of records to retrieve. Must be less than or equal to 200. Defaults to 20.
+                   </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>since_id</td>
+			<td>
+                        Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.
+                   </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max_id</td>
+			<td>
+                        Returns results with an ID less than (that is, older than) or equal to the specified ID.
+                   </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                        The entities node will be omitted when set to false.
+                   </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
 			<td></td>
-			<td>2</td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>favoritescreate</h3>
-<p>Favorites the status specified in the ID parameter as the authenticating user. Returns the
-                    favorite status when successful.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>favoriteStatus</h3>
+<p>Favorites the status specified in the ID parameter as the authenticating user. Returns the favorite status when successful.
+
+This process invoked by this method is asynchronous. The immediately returned status may not indicate the resultant favorited status of the tweet. A 200 OK response from this method will indicate whether the intended action was successful or not.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -53,18 +92,27 @@
 		</tr>
 		<tr>
 			<td>id</td>
-			<td></td>
-			<td>11432445742</td>
+			<td>
+                    The numerical ID of the desired status.
+                </td>
+			<td>undefined</td>
 			<td>false</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will be omitted when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>favoritesdestroy</h3>
-<p>Un-favorites the status specified in the ID parameter as the authenticating user. Returns the
-                    un-favorited status in the requested format when successful.
-                </p>
-<p><em>Authentication required</em></p>
+<h3>unfavoriteStatus</h3>
+<p>Un-favorites the status specified in the ID parameter as the authenticating user. Returns the un-favorited status in the requested format when successful.
+
+This process invoked by this method is asynchronous. The immediately returned status may not indicate the resultant favorited status of the tweet. A 200 OK response from this method will indicate whether the intended action was successful or not.</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -81,9 +129,19 @@
 		</tr>
 		<tr>
 			<td>id</td>
-			<td></td>
-			<td>11432445742</td>
+			<td>
+                    The numerical ID of the desired status.
+                </td>
+			<td>undefined</td>
 			<td>false</td>
+		</tr>
+		<tr>
+			<td>include_entities</td>
+			<td>
+                    The entities node will be omitted when set to false.
+                </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 
