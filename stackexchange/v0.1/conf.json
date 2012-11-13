@@ -1,0 +1,55 @@
+{
+  "displayName":"Stackexchange",
+  "icon":"",
+  "base_url":"https://api.stackexchange.com/2.1/",
+  "default_auth":"none",
+  "auth":{
+    "none":{},
+    "manual":{
+      "request":{
+        "format": "json",
+        "get":{
+          "key":"{key}"
+        }
+      }
+    },
+    "oauth2":{ 
+      "authorize":{ 
+        "url":"https://stackexchange.com/oauth", 
+        "params":{ 
+          "client_id":"{client_id}", 
+          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}",
+          "state":"api={_id}&cip={_cid}",
+          "scope":"{scope}" 
+        }
+      },
+      "access_token":{
+        "url":"https://stackexchange.com/oauth/access_token",
+        "field":"state",
+        "format":"url",
+        "method":"post",
+        "params":{
+          "client_id":"{client_id}",
+          "client_secret":"{client_secret}",
+          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}",
+          "code":"{_code}"
+        }
+      },
+      "request":{
+        "get":{
+          "access_token":"{_access_token}",
+          "key":"{key}"
+        },
+        "format": "json"
+      }, 
+      "parameters":[ 
+        { "name":"client_id", "type":"string" },
+        { "name":"client_secret", "type":"string" },
+        { "name":"scope", "type":"string" }
+      ]
+    }
+  },
+  "parameters":[
+    { "name":"key", "type":"string" }
+  ]
+}
