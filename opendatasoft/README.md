@@ -1,0 +1,1 @@
+OpenDataSoft's platform provides easy to use tools for developers. These tools provide simple while powerfull data manipulation functions.

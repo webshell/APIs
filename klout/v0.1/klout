@@ -4,7 +4,7 @@
 		if (typeof params == "string")
 			user = params;
 		else
-			user = params.user;	
+			user = params.kloutId;	
 		var url = "identity.json/klout/" + user + "/tw";
 
 		return http({
@@ -17,17 +17,14 @@
 		var url = "identity.json/";
 		var user;
 		var args = {};
-		if (typeof params == "string")
-			user = params;
-		else
-			user = params.user;
+		user = params.userId;
 
 		var id = parseInt(user);
 		var isId = !isNaN(id) && id.toString().length == user.length;
 		if (isId) {
-			if (idType == "tw" || "twitter")
+			if (params.idType == "tw" || params.idType == "twitter")
 				url += "tw/" + id.toString();
-			else if (idType == "gp" || "google+")
+			else if (params.idType == "gp" || params.idType == "google+")
 				url += "gp/" + id.toString();
 		}
 		else {
@@ -56,43 +53,6 @@
 			method: 'GET'
 		}, opts);
 	},
-	scorev1: function(params, opts) {
-		var users;
-		if (typeof params == "string") {
-			users = [params];
-		}
-		else if (typeof params == "object") {
-			if (typeof params.users == "string") {
-				users = [params.users];
-			}
-			else {
-				users = params
-			}
-		}
-		else {
-			users = params;
-		}
-
-		var usersQuery = '';
-		for (var i in users) {
-			if (i != 0)
-				usersQuery += ',';
-			usersQuery += users[i];
-		}
-
-		opts = opts || {}
-		opts.view = opts.view || '<% for (i in data.users) { %>\
-<p>The Klout Score of <%= data.users[i].twitter_screen_name %> is : <%= data.users[i].kscore %></p>\
-<% } %>';
-		return http({
-			provider:'klout',
-			url:'/klout.json',
-			method: 'GET',
-			params: {
-				"users":usersQuery
-			}
-		}, opts);
-	},
 	showUser: function(params, opts) {
 		var user;
 		if (typeof params == "string")
@@ -105,40 +65,6 @@
 			provider:'klout',
 			url:url,
 			method: 'GET'
-		}, opts);
-	},
-	showUserv1: function(params, opts)
-	{
-		var users;
-		if (typeof params == "string") {
-			users = [params];
-		}
-		else if (typeof params == "object") {
-			if (typeof params.users == "string") {
-				users = [params.users];
-			}
-			else {
-				users = params
-			}
-		}
-		else {
-			users = params;
-		}
-
-		var usersQuery = '';
-		for (var i in users) {
-			if (i != 0)
-				usersQuery += ',';
-			usersQuery += users[i];
-		}
-		var url = "/users/show.json";
-		return http({
-			provider:'klout',
-			url: url,
-			method: 'GET',
-			params: {
-				"users":usersQuery
-			}
 		}, opts);
 	},
 	topics: function(params, opts) {
@@ -155,42 +81,6 @@
 			method: 'GET'
 		}, opts);
 	},
-	topicsv1: function(params, opts)
-	{
-		var users;
-		if (typeof params == "string") {
-			users = [params];
-		}
-		else if (typeof params == "object") {
-			if (typeof params.users == "string") {
-				users = [params.users];
-			}
-			else {
-				users = params
-			}
-		}
-		else {
-			users = params;
-		}
-
-		var usersQuery = '';
-		for (var i in users) {
-			if (i != 0)
-				usersQuery += ',';
-			usersQuery += users[i];
-		}
-
-		var url = "/users/topics.json";
-
-		return http({
-			provider:'klout',
-			url: url,
-			method: 'GET',
-			params: {
-				"users":usersQuery
-			}
-		}, opts);
-	},
 	influence: function(params, opts) {
 		var user;
 		if (typeof params == "string")
@@ -203,78 +93,6 @@
 			provider:'klout',
 			url:url,
 			method: 'GET'
-		}, opts);
-	},
-	influencedBy: function(params, opts)
-	{
-		var users;
-		if (typeof params == "string") {
-			users = [params];
-		}
-		else if (typeof params == "object") {
-			if (typeof params.users == "string") {
-				users = [params.users];
-			}
-			else {
-				users = params
-			}
-		}
-		else {
-			users = params;
-		}
-
-		var usersQuery = '';
-		for (var i in users) {
-			if (i != 0)
-				usersQuery += ',';
-			usersQuery += users[i];
-		}
-
-		var url = "/soi/influenced_by.json";
-
-		return http({
-			provider:'klout',
-			url: url,
-			method: 'GET',
-			params: {
-				"users":usersQuery
-			}
-		}, opts);
-	},
-	influencerOf: function(params, opts)
-	{
-				var users;
-		if (typeof params == "string") {
-			users = [params];
-		}
-		else if (typeof params == "object") {
-			if (typeof params.users == "string") {
-				users = [params.users];
-			}
-			else {
-				users = params
-			}
-		}
-		else {
-			users = params;
-		}
-
-		var usersQuery = '';
-		for (var i in users) {
-			if (i != 0)
-				usersQuery += ',';
-			usersQuery += users[i];
-		}
-
-		var url = "/soi/influencer_of.json";
-
-		return http({
-			provider:'klout',
-			url: url,
-			method: 'GET',
-			params: {
-				"users":usersQuery
-			}
 		}, opts);
 	}
 })
