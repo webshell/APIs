@@ -10,29 +10,34 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td><code>score(users)</code></td>
-			<td>This method allows you to retrieve a Klout score. <code>users</code> is a string containing comma-separated twitter usernames.</td>
-			<td><pre class="prettyprint">apis.klout.score('webshell_,SteveMartinToGo')</pre></td>
+			<td><code>getKloutId(params)</code></td>
+			<td>This method allows you to retrieve a KloutID from numeric twitter id or google+ id. The <code>params.userId</code> is the google+ or twitter id and <code>params.idType</code> can be <code>tw</code>, <code>twitter</code>, <code>gp</code> or <code>google+</code>.</td>
+			<td><pre class="prettyprint">apis.klout.getKloutId({userId: "112620727907435773834", idType: "google+"})</pre></td>
 		</tr>
 		<tr>
-			<td><code>showUser(users)</code></td>
-			<td>This method allows you to retrieve user objects. <code>users</code> is a string containing comma-separated twitter usernames.</td>
-			<td><pre class="prettyprint">apis.klout.showUser('webshell_,SteveMartinToGo')</pre></td>
+			<td><code>getTwitterId(kloutId)</code></td>
+			<td>This method allows you to retrieve a TwitterId for a numeric KloutId. </td>
+			<td><pre class="prettyprint">apis.klout.getTwitterId('45598950992084523')</pre></td>
 		</tr>
 		<tr>
-			<td><code>topics(users)</code></td>
-			<td>This method allows you to retrieve the top 3 topic objects for a given user. <code>users</code> is a string containing comma-separated twitter usernames.</td>
-			<td><pre class="prettyprint">apis.klout.topics('webshell_,SteveMartinToGo')</pre></td>
+			<td><code>score(kloutId)</code></td>
+			<td>This method allows you to retrieve a user's Klout Score and deltas.</td>
+			<td><pre class="prettyprint">apis.klout.score('635263')</pre></td>
 		</tr>
 		<tr>
-			<td><code>influencedBy(users)</code></td>
-			<td>This method allows you to retrieve up to 5 user score pairs for users that are influenced by the given influencer. <code>users</code> is a string containing comma-separated twitter usernames.</td>
-			<td><pre class="prettyprint">apis.klout.influencedBy('webshell_,SteveMartinToGo')</pre></td>
+			<td><code>showUser(kloutId)</code></td>
+			<td>This method allows you to retrieve a user.</td>
+			<td><pre class="prettyprint">apis.klout.showUser('635263')</pre></td>
 		</tr>
 		<tr>
-			<td><code>influencerOf(users)</code></td>
-			<td>This method allows you to retrieve up to 5 user score pairs for users that are influencers of the given user. <code>users</code> is a string containing comma-separated twitter usernames.</td>
-			<td><pre class="prettyprint">apis.klout.influencerOf('webshell_,SteveMartinToGo')</pre></td>
+			<td><code>topics(kloutId)</code></td>
+			<td>This method allows you to retrieve a user's topics.</td>
+			<td><pre class="prettyprint">apis.klout.topics('635263')</pre></td>
+		</tr>
+		<tr>
+			<td><code>influence(kloutId)</code></td>
+			<td>This method allows you to retrieve a user's influencers and influencees.</td>
+			<td><pre class="prettyprint">apis.klout.topics('635263')</pre></td>
 		</tr>
 	</tbody>
 </table>
