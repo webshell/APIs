@@ -1,0 +1,379 @@
+({
+	auth:function(){return auth({provider:'google'})},
+	'search': function(args, opts) {
+		var url = ''
+		args = args || {}
+		var rgx = new RegExp('\{cx\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cx'])
+			if (args['cx']) delete args['cx']
+		}
+		if (url.indexOf('[/cx]') !== -1) {
+			url = url.replace('[/cx]', '/' + args['cx'])
+			if (args['cx']) delete args['cx']
+		}
+		var rgx = new RegExp('\{cref\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cref'])
+			if (args['cref']) delete args['cref']
+		}
+		if (url.indexOf('[/cref]') !== -1) {
+			url = url.replace('[/cref]', '/' + args['cref'])
+			if (args['cref']) delete args['cref']
+		}
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		if (url.indexOf('[/alt]') !== -1) {
+			url = url.replace('[/alt]', '/' + args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{cr\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cr'])
+			if (args['cr']) delete args['cr']
+		}
+		if (url.indexOf('[/cr]') !== -1) {
+			url = url.replace('[/cr]', '/' + args['cr'])
+			if (args['cr']) delete args['cr']
+		}
+		var rgx = new RegExp('\{dateRestrict\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['dateRestrict'])
+			if (args['dateRestrict']) delete args['dateRestrict']
+		}
+		if (url.indexOf('[/dateRestrict]') !== -1) {
+			url = url.replace('[/dateRestrict]', '/' + args['dateRestrict'])
+			if (args['dateRestrict']) delete args['dateRestrict']
+		}
+		var rgx = new RegExp('\{c2coff\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['c2coff'])
+			if (args['c2coff']) delete args['c2coff']
+		}
+		if (url.indexOf('[/c2coff]') !== -1) {
+			url = url.replace('[/c2coff]', '/' + args['c2coff'])
+			if (args['c2coff']) delete args['c2coff']
+		}
+		var rgx = new RegExp('\{exactTerms\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['exactTerms'])
+			if (args['exactTerms']) delete args['exactTerms']
+		}
+		if (url.indexOf('[/exactTerms]') !== -1) {
+			url = url.replace('[/exactTerms]', '/' + args['exactTerms'])
+			if (args['exactTerms']) delete args['exactTerms']
+		}
+		var rgx = new RegExp('\{excludeTerms\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['excludeTerms'])
+			if (args['excludeTerms']) delete args['excludeTerms']
+		}
+		if (url.indexOf('[/excludeTerms]') !== -1) {
+			url = url.replace('[/excludeTerms]', '/' + args['excludeTerms'])
+			if (args['excludeTerms']) delete args['excludeTerms']
+		}
+		var rgx = new RegExp('\{linkSite\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['linkSite'])
+			if (args['linkSite']) delete args['linkSite']
+		}
+		if (url.indexOf('[/linkSite]') !== -1) {
+			url = url.replace('[/linkSite]', '/' + args['linkSite'])
+			if (args['linkSite']) delete args['linkSite']
+		}
+		var rgx = new RegExp('\{fileType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fileType'])
+			if (args['fileType']) delete args['fileType']
+		}
+		if (url.indexOf('[/fileType]') !== -1) {
+			url = url.replace('[/fileType]', '/' + args['fileType'])
+			if (args['fileType']) delete args['fileType']
+		}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{gl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['gl'])
+			if (args['gl']) delete args['gl']
+		}
+		if (url.indexOf('[/gl]') !== -1) {
+			url = url.replace('[/gl]', '/' + args['gl'])
+			if (args['gl']) delete args['gl']
+		}
+		var rgx = new RegExp('\{googlehost\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['googlehost'])
+			if (args['googlehost']) delete args['googlehost']
+		}
+		if (url.indexOf('[/googlehost]') !== -1) {
+			url = url.replace('[/googlehost]', '/' + args['googlehost'])
+			if (args['googlehost']) delete args['googlehost']
+		}
+		var rgx = new RegExp('\{highRange\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['highRange'])
+			if (args['highRange']) delete args['highRange']
+		}
+		if (url.indexOf('[/highRange]') !== -1) {
+			url = url.replace('[/highRange]', '/' + args['highRange'])
+			if (args['highRange']) delete args['highRange']
+		}
+		var rgx = new RegExp('\{hl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		if (url.indexOf('[/hl]') !== -1) {
+			url = url.replace('[/hl]', '/' + args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		var rgx = new RegExp('\{hq\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hq'])
+			if (args['hq']) delete args['hq']
+		}
+		if (url.indexOf('[/hq]') !== -1) {
+			url = url.replace('[/hq]', '/' + args['hq'])
+			if (args['hq']) delete args['hq']
+		}
+		var rgx = new RegExp('\{imgColorType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['imgColorType'])
+			if (args['imgColorType']) delete args['imgColorType']
+		}
+		if (url.indexOf('[/imgColorType]') !== -1) {
+			url = url.replace('[/imgColorType]', '/' + args['imgColorType'])
+			if (args['imgColorType']) delete args['imgColorType']
+		}
+		var rgx = new RegExp('\{imgDominantColor\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['imgDominantColor'])
+			if (args['imgDominantColor']) delete args['imgDominantColor']
+		}
+		if (url.indexOf('[/imgDominantColor]') !== -1) {
+			url = url.replace('[/imgDominantColor]', '/' + args['imgDominantColor'])
+			if (args['imgDominantColor']) delete args['imgDominantColor']
+		}
+		var rgx = new RegExp('\{imgSize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['imgSize'])
+			if (args['imgSize']) delete args['imgSize']
+		}
+		if (url.indexOf('[/imgSize]') !== -1) {
+			url = url.replace('[/imgSize]', '/' + args['imgSize'])
+			if (args['imgSize']) delete args['imgSize']
+		}
+		var rgx = new RegExp('\{imgType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['imgType'])
+			if (args['imgType']) delete args['imgType']
+		}
+		if (url.indexOf('[/imgType]') !== -1) {
+			url = url.replace('[/imgType]', '/' + args['imgType'])
+			if (args['imgType']) delete args['imgType']
+		}
+		var rgx = new RegExp('\{lowRange\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lowRange'])
+			if (args['lowRange']) delete args['lowRange']
+		}
+		if (url.indexOf('[/lowRange]') !== -1) {
+			url = url.replace('[/lowRange]', '/' + args['lowRange'])
+			if (args['lowRange']) delete args['lowRange']
+		}
+		var rgx = new RegExp('\{lr\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lr'])
+			if (args['lr']) delete args['lr']
+		}
+		if (url.indexOf('[/lr]') !== -1) {
+			url = url.replace('[/lr]', '/' + args['lr'])
+			if (args['lr']) delete args['lr']
+		}
+		var rgx = new RegExp('\{num\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['num'])
+			if (args['num']) delete args['num']
+		}
+		if (url.indexOf('[/num]') !== -1) {
+			url = url.replace('[/num]', '/' + args['num'])
+			if (args['num']) delete args['num']
+		}
+		var rgx = new RegExp('\{orTerms\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['orTerms'])
+			if (args['orTerms']) delete args['orTerms']
+		}
+		if (url.indexOf('[/orTerms]') !== -1) {
+			url = url.replace('[/orTerms]', '/' + args['orTerms'])
+			if (args['orTerms']) delete args['orTerms']
+		}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{relatedSite\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['relatedSite'])
+			if (args['relatedSite']) delete args['relatedSite']
+		}
+		if (url.indexOf('[/relatedSite]') !== -1) {
+			url = url.replace('[/relatedSite]', '/' + args['relatedSite'])
+			if (args['relatedSite']) delete args['relatedSite']
+		}
+		var rgx = new RegExp('\{rights\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['rights'])
+			if (args['rights']) delete args['rights']
+		}
+		if (url.indexOf('[/rights]') !== -1) {
+			url = url.replace('[/rights]', '/' + args['rights'])
+			if (args['rights']) delete args['rights']
+		}
+		var rgx = new RegExp('\{safe\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['safe'])
+			if (args['safe']) delete args['safe']
+		}
+		if (url.indexOf('[/safe]') !== -1) {
+			url = url.replace('[/safe]', '/' + args['safe'])
+			if (args['safe']) delete args['safe']
+		}
+		var rgx = new RegExp('\{searchType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchType'])
+			if (args['searchType']) delete args['searchType']
+		}
+		if (url.indexOf('[/searchType]') !== -1) {
+			url = url.replace('[/searchType]', '/' + args['searchType'])
+			if (args['searchType']) delete args['searchType']
+		}
+		var rgx = new RegExp('\{siteSearch\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['siteSearch'])
+			if (args['siteSearch']) delete args['siteSearch']
+		}
+		if (url.indexOf('[/siteSearch]') !== -1) {
+			url = url.replace('[/siteSearch]', '/' + args['siteSearch'])
+			if (args['siteSearch']) delete args['siteSearch']
+		}
+		var rgx = new RegExp('\{siteSearchFilter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['siteSearchFilter'])
+			if (args['siteSearchFilter']) delete args['siteSearchFilter']
+		}
+		if (url.indexOf('[/siteSearchFilter]') !== -1) {
+			url = url.replace('[/siteSearchFilter]', '/' + args['siteSearchFilter'])
+			if (args['siteSearchFilter']) delete args['siteSearchFilter']
+		}
+		var rgx = new RegExp('\{start\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start'])
+			if (args['start']) delete args['start']
+		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{prettyPrint\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['prettyPrint'])
+			if (args['prettyPrint']) delete args['prettyPrint']
+		}
+		if (url.indexOf('[/prettyPrint]') !== -1) {
+			url = url.replace('[/prettyPrint]', '/' + args['prettyPrint'])
+			if (args['prettyPrint']) delete args['prettyPrint']
+		}
+		var rgx = new RegExp('\{quotaUser\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['quotaUser'])
+			if (args['quotaUser']) delete args['quotaUser']
+		}
+		if (url.indexOf('[/quotaUser]') !== -1) {
+			url = url.replace('[/quotaUser]', '/' + args['quotaUser'])
+			if (args['quotaUser']) delete args['quotaUser']
+		}
+		var rgx = new RegExp('\{userIp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userIp'])
+			if (args['userIp']) delete args['userIp']
+		}
+		if (url.indexOf('[/userIp]') !== -1) {
+			url = url.replace('[/userIp]', '/' + args['userIp'])
+			if (args['userIp']) delete args['userIp']
+		}
+		if (url.indexOf('[/cx]') !== -1) url = url.replace('[/cx]', '')
+		if (url.indexOf('[/cref]') !== -1) url = url.replace('[/cref]', '')
+		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
+		if (url.indexOf('[/cr]') !== -1) url = url.replace('[/cr]', '')
+		if (url.indexOf('[/dateRestrict]') !== -1) url = url.replace('[/dateRestrict]', '')
+		if (url.indexOf('[/c2coff]') !== -1) url = url.replace('[/c2coff]', '')
+		if (url.indexOf('[/exactTerms]') !== -1) url = url.replace('[/exactTerms]', '')
+		if (url.indexOf('[/excludeTerms]') !== -1) url = url.replace('[/excludeTerms]', '')
+		if (url.indexOf('[/linkSite]') !== -1) url = url.replace('[/linkSite]', '')
+		if (url.indexOf('[/fileType]') !== -1) url = url.replace('[/fileType]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/gl]') !== -1) url = url.replace('[/gl]', '')
+		if (url.indexOf('[/googlehost]') !== -1) url = url.replace('[/googlehost]', '')
+		if (url.indexOf('[/highRange]') !== -1) url = url.replace('[/highRange]', '')
+		if (url.indexOf('[/hl]') !== -1) url = url.replace('[/hl]', '')
+		if (url.indexOf('[/hq]') !== -1) url = url.replace('[/hq]', '')
+		if (url.indexOf('[/imgColorType]') !== -1) url = url.replace('[/imgColorType]', '')
+		if (url.indexOf('[/imgDominantColor]') !== -1) url = url.replace('[/imgDominantColor]', '')
+		if (url.indexOf('[/imgSize]') !== -1) url = url.replace('[/imgSize]', '')
+		if (url.indexOf('[/imgType]') !== -1) url = url.replace('[/imgType]', '')
+		if (url.indexOf('[/lowRange]') !== -1) url = url.replace('[/lowRange]', '')
+		if (url.indexOf('[/lr]') !== -1) url = url.replace('[/lr]', '')
+		if (url.indexOf('[/num]') !== -1) url = url.replace('[/num]', '')
+		if (url.indexOf('[/orTerms]') !== -1) url = url.replace('[/orTerms]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/relatedSite]') !== -1) url = url.replace('[/relatedSite]', '')
+		if (url.indexOf('[/rights]') !== -1) url = url.replace('[/rights]', '')
+		if (url.indexOf('[/safe]') !== -1) url = url.replace('[/safe]', '')
+		if (url.indexOf('[/searchType]') !== -1) url = url.replace('[/searchType]', '')
+		if (url.indexOf('[/siteSearch]') !== -1) url = url.replace('[/siteSearch]', '')
+		if (url.indexOf('[/siteSearchFilter]') !== -1) url = url.replace('[/siteSearchFilter]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/prettyPrint]') !== -1) url = url.replace('[/prettyPrint]', '')
+		if (url.indexOf('[/quotaUser]') !== -1) url = url.replace('[/quotaUser]', '')
+		if (url.indexOf('[/userIp]') !== -1) url = url.replace('[/userIp]', '')
+		return http({provider:'google',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	}
+})
