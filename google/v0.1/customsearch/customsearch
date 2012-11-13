@@ -1,4 +1,7 @@
-		var url = ''
+({
+	auth:function(){return auth({provider:'google'})},
+	'search': function(args, opts) {
+		var url = 'https://www.googleapis.com/customsearch/v1'
 		args = args || {}
 		var rgx = new RegExp('\{cx\}', 'g')
 		if (url.match(rgx)) {
@@ -371,4 +374,6 @@
 		if (url.indexOf('[/prettyPrint]') !== -1) url = url.replace('[/prettyPrint]', '')
 		if (url.indexOf('[/quotaUser]') !== -1) url = url.replace('[/quotaUser]', '')
 		if (url.indexOf('[/userIp]') !== -1) url = url.replace('[/userIp]', '')
-		render(http({provider:'google',url:url,method:'GET',params:args, auth: 'manual'}, opts));
+		return http({provider:'google',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	}
+})
