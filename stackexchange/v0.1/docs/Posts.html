@@ -1,80 +1,14 @@
-<h1>Stackexchange API: Answers</h1>
-<p>These methods are relative to the tag 'Answers'</p><h3>answersList</h3>
+<h1>Stackexchange API: Posts</h1>
+<p>These methods are relative to the tag 'Posts'</p><h3>postsList</h3>
 <p>
-					Returns all the answers in the system
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>fromdate</td>
-			<td> Unix timestamp of the minimum creation date on a returned item. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td> Maximum of the range to include in the response according to the current sort. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td> Minimum of the range to include in the response according to the current sort. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td> One of :
-							activity - last_activity_date
-							creation - creation_date
-							votes - score
-							activity is the default sort. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>todate</td>
-			<td> Unix timestamp of the maximum creation date on a returned item. </td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td>[object Object]</td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
+					Fetches all posts (questions and answers) on the site.
 
-</table>
-<h3>answersGet</h3>
-<p>
-					Gets the set of answers with ids in id.
+					In many ways this method is the union of /questions and /answers, returning both sets of data albeit only the common fields.
+
+					Most applications should use the question or answer specific methods, but /posts is available for those rare cases where any activity is of intereset. Examples of such queries would be: "all posts on Jan. 1st 2011" or "top 10 posts by score of all time".
+
+					It is possible to create moderately complex queries using sort, min, max, fromdate, and todate.
+					This method returns a list of posts.
 				</p>
 <table class="table">
 	<thead>
@@ -88,7 +22,7 @@
 			<td>ids</td>
 			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
 					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
-					string. {ids} can contain up to 100 semicolon delimited ids, to find ids programatically look for answer_id on answer objects. </td>
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
@@ -130,11 +64,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td> One of :
-							activity - last_activity_date
-							creation - creation_date
-							votes - score
-							activity is the default sort. </td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
@@ -144,18 +74,19 @@
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
-		<tr>
-			<td>site</td>
-			<td>[object Object]</td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
 	</tbody>
 
 </table>
-<h3>answersCommentsGet</h3>
+<h3>postsGet</h3>
 <p>
-					Gets the comments on an answer.
+					Fetches a set of posts by ids.
+
+					This method is meant for grabbing an object when unsure whether an id identifies a question or an answer. This is most common with user entered data.
+
+					{ids} can contain up to 100 semicolon delimited ids, to find ids programatically look for post_id, answer_id, or question_id on post, answer, and question objects respectively.
+
+					It is possible to create moderately complex queries using sort, min, max, fromdate, and todate.
+					This method returns a list of posts.
 				</p>
 <table class="table">
 	<thead>
@@ -169,7 +100,7 @@
 			<td>ids</td>
 			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
 					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
-					string. {ids} can contain up to 100 semicolon delimited ids, to find ids programatically look for answer_id on answer objects. </td>
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
@@ -211,11 +142,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td> One of :
-							activity - last_activity_date
-							creation - creation_date
-							votes - score
-							activity is the default sort. </td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
@@ -225,11 +152,172 @@
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
+	</tbody>
+
+</table>
+<h3>newComment</h3>
+<p>
+					Create a new comment.
+
+					Use an access_token with write_access to create a new comment on a post.
+
+					This method return the created comment.
+				</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
 		<tr>
-			<td>site</td>
-			<td>[object Object]</td>
-			<td>stackoverflow</td>
+			<td>id</td>
+			<td> Post id. </td>
+			<td>undefined</td>
 			<td>false</td>
+		</tr>
+		<tr>
+			<td>body</td>
+			<td> Comment body. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>preview</td>
+			<td>[object Object]</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postsRevisions</h3>
+<p>
+					Returns edit revisions for the posts identified in ids.
+
+					{ids} can contain up to 100 semicolon delimited ids, to find ids programatically look for post_id, answer_id, or question_id on post, answer, and question objects respectively.
+
+					This method returns a list of revisions.
+				</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ids</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postsSuggestedEdits</h3>
+<p>
+					Returns suggsted edits on the posts identified in ids.
+
+					creation - creation_date
+					approval - approval_date
+					rejection - rejection_date
+					creation is the default sort.
+
+					{ids} can contain up to 100 semicolon delimited ids, to find ids programatically look for post_id, answer_id, or question_id on post, answer, and question objects respectively.
+					This method returns a list of suggested-edits.
+				</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ids</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>[object Object]</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
+			<td>undefined</td>
+			<td>true</td>
 		</tr>
 	</tbody>
 

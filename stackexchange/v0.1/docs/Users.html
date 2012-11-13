@@ -1,9 +1,10 @@
 <h1>Stackexchange API: Users</h1>
-<p>These methods are relative to the tag 'Users'</p><h3>getUsers</h3>
+<p>These methods are relative to the tag 'Users'</p><h3>usersList</h3>
 <p>
-					Get all users on the site.
+					Returns all users on a site.
+
+					Sorting and min/max ranges allow for interesting queries against users. For instance, you can find how many users have between 1,000 and 2,000 reputation with the parameters sort=reputation min=1000 max=2000 pagesize=0.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -14,66 +15,67 @@
 	<tbody>
 		<tr>
 			<td>filter</td>
-			<td>String that must appear in returned users' names</td>
+			<td> Required text in returned tags. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersByIds</h3>
+<h3>usersGet</h3>
 <p>
-					Get the users identified by a set of ids.
+					Gets the users identified in id.
+
+					Typically this method will be called to fetch user profiles when you have obtained user ids from some other source, such as /questions.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -83,67 +85,70 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersAnswersByIds</h3>
+<h3>userAnswersGet</h3>
 <p>
-					Get the answers posted by the users identified by a set of ids.
+					Returns the answers the users in id have posted.
+
+					This method is useful for finding sets of answers meeting certain criteria. For instance, to get a user's top voted answer simply use the parameters sort=votes pagesize=1.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -153,79 +158,80 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> When "true", a post's body will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> When "true", any comments on a post will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersBadgesByIds</h3>
+<h3>userBadgesGet</h3>
 <p>
-					Get the badges earned by the users identified by a set of ids.
+					Get the badges the users in id have earned.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -235,19 +241,20 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersCommentsByIds</h3>
+<h3>userCommentsGet</h3>
 <p>
-					Get the comments posted by the users identified by a set of ids.
+					Get the comments posted by users in id.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -257,67 +264,70 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getReplyUsersCommentsByIds</h3>
+<h3>userCommentsToUserGet</h3>
 <p>
-					Get the comments posted by a set of users in reply to another user.
+					Get the comments that the users in id have posted in reply to the single user identified in toid.
+
+					This method is useful for extracting conversations, especially over time or across multiple posts.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -327,73 +337,76 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>toid</td>
-			<td>id of the user referred to. 32-bit signed integer</td>
+			<td> id of the user referred to. </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersFavoritedQuestionsByIds</h3>
+<h3>userFavoritesGet</h3>
 <p>
-					Get the questions favorited by users identified by a set of ids.
+					Get the questions that users in id have favorited.
+
+					This method is effectively a view onto a user's favorites tab.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -403,85 +416,88 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>answers</td>
-			<td>When "true", the answers to a question will be returned. boolean</td>
+			<td> When "true", the answers to a question will be returned. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> When "true", a post's body will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> When "true", any comments on a post will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getCommentsMentioningUsersByIds</h3>
+<h3>userMentionedGet</h3>
 <p>
-					Get the comments that mention one of the users identified by a set of ids.
+					Gets all the comments that the users in id were mentioned in.
+
+					Note, to count as a mention the comment must be considered to be "in reply to" a user. Most importantly, this means that a comment can only be in reply to a single user.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -491,67 +507,70 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersAskedQuestionsByIds</h3>
+<h3>userQuestionsGet</h3>
 <p>
-					Get the questions asked by the users identified by a set of ids.
+					Gets the questions asked by the users in id.
+
+					Sorting user questions can be very useful. For instance, to get a user's most recently asked question you can use the parameters sort=creation pagesize=1.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -561,85 +580,88 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>answers</td>
-			<td>When "true", the answers to a question will be returned. boolean</td>
+			<td> When "true", the answers to a question will be returned. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> When "true", a post's body will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> When "true", any comments on a post will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersAskedQuestionsWithNoAnswersByIds</h3>
+<h3>userQuestionsNoAnswersGet</h3>
 <p>
-					Get the questions asked by a set of users, which have no answers.
+					Gets the questions asked by the users in id which have no answers.
+
+					Questions returns by this method actually have zero undeleted answers. It is completely disjoint /users/{id}/questions/unanswered and /users/{id}/questions/unaccepted, which only return questions with at least one answer, subject to other contraints.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -649,85 +671,88 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>answers</td>
-			<td>When "true", the answers to a question will be returned. boolean</td>
+			<td> When "true", the answers to a question will be returned. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> When "true", a post's body will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> When "true", any comments on a post will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUnacceptedUsersAskedQuestionsByIds</h3>
+<h3>userQuestionsUnacceptedGet</h3>
 <p>
-					Get the questions asked by a set of users, which have at least one answer but no accepted answer.
+					Gets the questions asked by the users in id which have at least one answer, but no accepted answer.
+
+					Questions returned by this method have answers, but the owner has not opted to accept any of them.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -737,85 +762,90 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>answers</td>
-			<td>When "true", the answers to a question will be returned. boolean</td>
+			<td> When "true", the answers to a question will be returned. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> When "true", a post's body will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> When "true", any comments on a post will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUnansweredUsersAskedQuestionsByIds</h3>
+<h3>userQuestionsUnansweredGet</h3>
 <p>
-					Get the questions asked by a set of users, which are not considered to be adequately answered.
+					Gets the questions asked by the users in id which the site consideres unanswered, while still having at least one answer posted.
+
+					These rules are subject to change, but currently any question without at least one upvoted or accepted answer is considered unanswered.
+
+					To get the set of questions that a user probably considers unanswered, the returned questions should be unioned with those returned by /users/{id}/questions/no-answers. These methods are distinct so that truly unanswered (that is, zero posted answers) questions can be easily separated from mearly poorly or inadequately answered ones.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -825,85 +855,88 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>answers</td>
-			<td>When "true", the answers to a question will be returned. boolean</td>
+			<td> When "true", the answers to a question will be returned. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> When "true", a post's body will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> When "true", any comments on a post will be included in the response. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersReputationChangesSubsetByIds</h3>
+<h3>userReputationGet</h3>
 <p>
-					Get a subset of the reputation changes experienced by the users identified by a set of ids.
+					Gets a subset of the reputation changes for users in id.
+
+					Reputation changes are intentionally scrubbed of some data to make it difficult to correlate votes on particular posts with user reputation changes. That being said, this method returns enough data for reasonable display of reputation trends.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -913,43 +946,46 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getTagsUsersBeingActiveByIds</h3>
+<h3>userTagsGet</h3>
 <p>
-					Get the tags that the users (identified by a set of ids) have been active in.
+					Returns the tags the users identified in id have been active in.
+
+					This route corresponds roughly to user's stats tab, but does not include tag scores. A subset of tag scores are available (on a single user basis) in /users/{id}/top-answer-tags and /users/{id}/top-question-tags.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -959,73 +995,72 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>filter</td>
-			<td>Required text in returned tags. string</td>
+			<td> Required text in returned tags. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUserPostedTopAnswersWithTags</h3>
-<p>
-					Get the top answers a user has posted on questions with a set of tags.
-				</p>
-<p><em>Authentication required</em></p>
+<h3>userTopTaggedAnswersGet</h3>
+<p>undefined</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1036,36 +1071,36 @@
 	<tbody>
 		<tr>
 			<td>id</td>
-			<td>the id of a user. 32-bit signed integer</td>
+			<td> the id of a user </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>tags</td>
-			<td>a semi-colon delimitted list of tags the questions the answers are on must have. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td> a semi-colon delimitted list of tags the questions the answers are on must have.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> whether or not to return the answers' bodies. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> whether or not to return comments on the answers. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUserPostedTopQuestionsWithTags</h3>
+<h3>userTopTaggedQuestionsGet</h3>
 <p>
-					Get the top questions a user has posted on questions with a set of tags.
+					Returns the top 30 questions a user has asked with the given tags.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1076,42 +1111,44 @@
 	<tbody>
 		<tr>
 			<td>id</td>
-			<td>the id of a user. 32-bit signed integer</td>
+			<td> the id of a user </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>tags</td>
-			<td>a semi-colon delimitted list of tags the questions the answers are on must have. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td> a semi-colon delimitted list of tags the questions the answers are on must have.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>answers</td>
-			<td>When "true", the answers to a question will be returned. boolean</td>
+			<td> whether or not to return the answers to the questions. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>body</td>
-			<td>When "true", a post's body will be included in the response. boolean</td>
+			<td> whether or not to return the answers' bodies. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response. boolean</td>
+			<td> whether or not to return comments on the answers. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUsersActionsSubsetByIds</h3>
+<h3>userTimelinesGet</h3>
 <p>
-					Get a subset of the actions of that have been taken by the users identified by a set of ids.
+					Returns a subset of the actions the users in id have taken on the site.
+
+					This method returns users' posts, edits, and earned badges in the order they were accomplished. It is possible to filter to just a window of activity using the fromdate and todate parameters.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1121,43 +1158,46 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>ids</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers. This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. string</td>
+			<td>id</td>
+			<td> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.
+					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon
+					string </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUserAnswersTopTags</h3>
+<h3>userTopAnswerTagsGet</h3>
 <p>
-					Get the top 30 tags (by score) a single user has posted answers in.
+					Returns a single user's top 30 tags by answer score.
+
+					This a subset of the data returned on a user's stats tab.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1168,18 +1208,19 @@
 	<tbody>
 		<tr>
 			<td>id</td>
-			<td>The single user id to query with. 32-bit signed integer</td>
+			<td> the id of a user </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getUserQuestionsTopTags</h3>
+<h3>userTopQuestionTagsGet</h3>
 <p>
-					Get the top 30 tags (by score) a single user has asked questions in.
+					Returns a single user's top 30 tags by question score.
+
+					This a subset of the data returned on a user's stats tab.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1190,18 +1231,19 @@
 	<tbody>
 		<tr>
 			<td>id</td>
-			<td>The single user id to query with. 32-bit signed integer</td>
+			<td> the id of a user </td>
 			<td>undefined</td>
 			<td>false</td>
 		</tr>
 	</tbody>
 
 </table>
-<h3>getModeratorsUsers</h3>
+<h3>moderatorsGet</h3>
 <p>
-					Get the users who have moderation powers on the site.
+					Gets those users on a site who can exercise moderation powers.
+
+					Note, employees of Stack Overflow will be returned if they have been granted moderation powers on a site even if they have never been appointed or elected explicitly. This method checks abilities, not the manner in which they were obtained.
 				</p>
-<p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1212,55 +1254,55 @@
 	<tbody>
 		<tr>
 			<td>filter</td>
-			<td>String that must appear in returned users' names. string</td>
+			<td> Required text in returned tags. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item. unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the minimum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Maximum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort. integer or unix epoch date</td>
+			<td> Minimum of the range to include in the response according to the current sort. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>order</td>
-			<td>How the current sort should be ordered. one of desc (default), or asc</td>
-			<td>desc</td>
+			<td> How the current sort should be ordered. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize. 32-bit signed integer</td>
+			<td> The pagination offset for the current collection. Affected by the specified pagesize. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive. 32-bit signed integer</td>
+			<td> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. one of activity (default), creation, or votes</td>
-			<td>activity</td>
+			<td> How a collection should be sorted. One of desc (default), or asc. </td>
+			<td>undefined</td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item. Unix epoch date, range [0, 253,402,300,799]</td>
+			<td> Unix timestamp of the maximum creation date on a returned item. </td>
 			<td>undefined</td>
 			<td>true</td>
 		</tr>
