@@ -1,12 +1,16 @@
 ({
 	auth:function(){return auth({provider:'facebook'})},
 	'search': function(args, opts) {
-		var url = 'search'
+		var url = 'https://graph.facebook.com/search'
 		args = args || {}
 		if (args['q'] == null) throw new Error('q is a required parameter')
 		var rgx = new RegExp('\{q\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
 			if (args['q']) delete args['q']
 		}
 		if (args['type'] == null) throw new Error('type is a required parameter')
@@ -15,10 +19,18 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
 		if (typeof args['center'] == 'object' && args['center'].lat !== undefined && args['center'].lng !== undefined) args['center'] = args['center'].lat + ',' + args['center'].lng
 		var rgx = new RegExp('\{center\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['center'])
+			if (args['center']) delete args['center']
+		}
+		if (url.indexOf('[/center]') !== -1) {
+			url = url.replace('[/center]', '/' + args['center'])
 			if (args['center']) delete args['center']
 		}
 		var rgx = new RegExp('\{distance\}', 'g')
@@ -26,10 +38,18 @@
 			url = url.replace(rgx, args['distance'])
 			if (args['distance']) delete args['distance']
 		}
+		if (url.indexOf('[/distance]') !== -1) {
+			url = url.replace('[/distance]', '/' + args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
+		if (url.indexOf('[/center]') !== -1) url = url.replace('[/center]', '')
+		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getAlbum': function(args, opts) {
-		var url = '{album}'
+		var url = 'https://graph.facebook.com/{album}'
 		args = args || {}
 		if (args['album'] == null) args['album'] = "99394368305"
 		var rgx = new RegExp('\{album\}', 'g')
@@ -37,15 +57,25 @@
 			url = url.replace(rgx, args['album'])
 			if (args['album']) delete args['album']
 		}
+		if (url.indexOf('[/album]') !== -1) {
+			url = url.replace('[/album]', '/' + args['album'])
+			if (args['album']) delete args['album']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/album]') !== -1) url = url.replace('[/album]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getAlbumPhotos': function(args, opts) {
-		var url = '{album}/photos'
+		var url = 'https://graph.facebook.com/{album}/photos'
 		args = args || {}
 		if (args['album'] == null) args['album'] = "99394368305"
 		var rgx = new RegExp('\{album\}', 'g')
@@ -53,9 +83,17 @@
 			url = url.replace(rgx, args['album'])
 			if (args['album']) delete args['album']
 		}
+		if (url.indexOf('[/album]') !== -1) {
+			url = url.replace('[/album]', '/' + args['album'])
+			if (args['album']) delete args['album']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -63,9 +101,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -73,10 +119,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/album]') !== -1) url = url.replace('[/album]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getAlbumComments': function(args, opts) {
-		var url = '{album}/comments'
+		var url = 'https://graph.facebook.com/{album}/comments'
 		args = args || {}
 		if (args['album'] == null) args['album'] = "99394368305"
 		var rgx = new RegExp('\{album\}', 'g')
@@ -84,9 +139,17 @@
 			url = url.replace(rgx, args['album'])
 			if (args['album']) delete args['album']
 		}
+		if (url.indexOf('[/album]') !== -1) {
+			url = url.replace('[/album]', '/' + args['album'])
+			if (args['album']) delete args['album']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -94,9 +157,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -104,10 +175,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/album]') !== -1) url = url.replace('[/album]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEvent': function(args, opts) {
-		var url = '{event}'
+		var url = 'https://graph.facebook.com/{event}'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -115,15 +195,25 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventFeed': function(args, opts) {
-		var url = '{event}/feed'
+		var url = 'https://graph.facebook.com/{event}/feed'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -131,9 +221,17 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -141,9 +239,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -151,10 +257,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventNoReply': function(args, opts) {
-		var url = '{event}/noreply'
+		var url = 'https://graph.facebook.com/{event}/noreply'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -162,9 +277,17 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -172,9 +295,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -182,10 +313,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventMaybe': function(args, opts) {
-		var url = '{event}/maybe'
+		var url = 'https://graph.facebook.com/{event}/maybe'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -193,9 +333,17 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -203,9 +351,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -213,10 +369,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventInvited': function(args, opts) {
-		var url = '{event}/invited'
+		var url = 'https://graph.facebook.com/{event}/invited'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -224,9 +389,17 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -234,9 +407,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -244,10 +425,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventAttending': function(args, opts) {
-		var url = '{event}/attending'
+		var url = 'https://graph.facebook.com/{event}/attending'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -255,9 +445,17 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -265,9 +463,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -275,10 +481,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventDeclined': function(args, opts) {
-		var url = '{event}/declined'
+		var url = 'https://graph.facebook.com/{event}/declined'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -286,9 +501,17 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -296,9 +519,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -306,10 +537,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getEventPicture': function(args, opts) {
-		var url = '{event}/picture'
+		var url = 'https://graph.facebook.com/{event}/picture'
 		args = args || {}
 		if (args['event'] == null) args['event'] = "331218348435"
 		var rgx = new RegExp('\{event\}', 'g')
@@ -317,15 +557,25 @@
 			url = url.replace(rgx, args['event'])
 			if (args['event']) delete args['event']
 		}
+		if (url.indexOf('[/event]') !== -1) {
+			url = url.replace('[/event]', '/' + args['event'])
+			if (args['event']) delete args['event']
+		}
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/event]') !== -1) url = url.replace('[/event]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getGroup': function(args, opts) {
-		var url = '{group}'
+		var url = 'https://graph.facebook.com/{group}'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
 		var rgx = new RegExp('\{group\}', 'g')
@@ -333,15 +583,25 @@
 			url = url.replace(rgx, args['group'])
 			if (args['group']) delete args['group']
 		}
+		if (url.indexOf('[/group]') !== -1) {
+			url = url.replace('[/group]', '/' + args['group'])
+			if (args['group']) delete args['group']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/group]') !== -1) url = url.replace('[/group]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getGroupFeed': function(args, opts) {
-		var url = '{group}/feed'
+		var url = 'https://graph.facebook.com/{group}/feed'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
 		var rgx = new RegExp('\{group\}', 'g')
@@ -349,9 +609,17 @@
 			url = url.replace(rgx, args['group'])
 			if (args['group']) delete args['group']
 		}
+		if (url.indexOf('[/group]') !== -1) {
+			url = url.replace('[/group]', '/' + args['group'])
+			if (args['group']) delete args['group']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -359,9 +627,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -369,10 +645,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/group]') !== -1) url = url.replace('[/group]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getGroupMembers': function(args, opts) {
-		var url = '{group}/members'
+		var url = 'https://graph.facebook.com/{group}/members'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
 		var rgx = new RegExp('\{group\}', 'g')
@@ -380,9 +665,17 @@
 			url = url.replace(rgx, args['group'])
 			if (args['group']) delete args['group']
 		}
+		if (url.indexOf('[/group]') !== -1) {
+			url = url.replace('[/group]', '/' + args['group'])
+			if (args['group']) delete args['group']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -390,9 +683,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -400,10 +701,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/group]') !== -1) url = url.replace('[/group]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getGroupPicture': function(args, opts) {
-		var url = '{group}/picture'
+		var url = 'https://graph.facebook.com/{group}/picture'
 		args = args || {}
 		if (args['group'] == null) args['group'] = "2204501798"
 		var rgx = new RegExp('\{group\}', 'g')
@@ -411,15 +721,25 @@
 			url = url.replace(rgx, args['group'])
 			if (args['group']) delete args['group']
 		}
+		if (url.indexOf('[/group]') !== -1) {
+			url = url.replace('[/group]', '/' + args['group'])
+			if (args['group']) delete args['group']
+		}
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/group]') !== -1) url = url.replace('[/group]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getLink': function(args, opts) {
-		var url = '{link}'
+		var url = 'https://graph.facebook.com/{link}'
 		args = args || {}
 		if (args['link'] == null) args['link'] = "114961875194024"
 		var rgx = new RegExp('\{link\}', 'g')
@@ -427,15 +747,25 @@
 			url = url.replace(rgx, args['link'])
 			if (args['link']) delete args['link']
 		}
+		if (url.indexOf('[/link]') !== -1) {
+			url = url.replace('[/link]', '/' + args['link'])
+			if (args['link']) delete args['link']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getLinkComments': function(args, opts) {
-		var url = '{link}/comments'
+		var url = 'https://graph.facebook.com/{link}/comments'
 		args = args || {}
 		if (args['link'] == null) args['link'] = "114961875194024"
 		var rgx = new RegExp('\{link\}', 'g')
@@ -443,9 +773,17 @@
 			url = url.replace(rgx, args['link'])
 			if (args['link']) delete args['link']
 		}
+		if (url.indexOf('[/link]') !== -1) {
+			url = url.replace('[/link]', '/' + args['link'])
+			if (args['link']) delete args['link']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -453,9 +791,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -463,10 +809,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getNote': function(args, opts) {
-		var url = '{note}'
+		var url = 'https://graph.facebook.com/{note}'
 		args = args || {}
 		if (args['note'] == null) args['note'] = "122788341354"
 		var rgx = new RegExp('\{note\}', 'g')
@@ -474,15 +829,25 @@
 			url = url.replace(rgx, args['note'])
 			if (args['note']) delete args['note']
 		}
+		if (url.indexOf('[/note]') !== -1) {
+			url = url.replace('[/note]', '/' + args['note'])
+			if (args['note']) delete args['note']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getNoteComments': function(args, opts) {
-		var url = '{note}/comments'
+		var url = 'https://graph.facebook.com/{note}/comments'
 		args = args || {}
 		if (args['note'] == null) args['note'] = "122788341354"
 		var rgx = new RegExp('\{note\}', 'g')
@@ -490,9 +855,17 @@
 			url = url.replace(rgx, args['note'])
 			if (args['note']) delete args['note']
 		}
+		if (url.indexOf('[/note]') !== -1) {
+			url = url.replace('[/note]', '/' + args['note'])
+			if (args['note']) delete args['note']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -500,9 +873,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -510,10 +891,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getNoteLikes': function(args, opts) {
-		var url = '{note}/likes'
+		var url = 'https://graph.facebook.com/{note}/likes'
 		args = args || {}
 		if (args['note'] == null) args['note'] = "122788341354"
 		var rgx = new RegExp('\{note\}', 'g')
@@ -521,9 +911,17 @@
 			url = url.replace(rgx, args['note'])
 			if (args['note']) delete args['note']
 		}
+		if (url.indexOf('[/note]') !== -1) {
+			url = url.replace('[/note]', '/' + args['note'])
+			if (args['note']) delete args['note']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -531,9 +929,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -541,15 +947,28 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPage': function(args, opts) {
-		var url = '{page}'
+		var url = 'https://graph.facebook.com/{page}'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
 			if (args['page']) delete args['page']
 		}
 		var rgx = new RegExp('\{metadata\}', 'g')
@@ -557,10 +976,16 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageFeed': function(args, opts) {
-		var url = '{page}/feed'
+		var url = 'https://graph.facebook.com/{page}/feed'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -568,9 +993,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -578,9 +1011,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -588,15 +1029,28 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPagePicture': function(args, opts) {
-		var url = '{page}/picture'
+		var url = 'https://graph.facebook.com/{page}/picture'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
 			if (args['page']) delete args['page']
 		}
 		var rgx = new RegExp('\{type\}', 'g')
@@ -604,10 +1058,16 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageTagged': function(args, opts) {
-		var url = '{page}/tagged'
+		var url = 'https://graph.facebook.com/{page}/tagged'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -615,9 +1075,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -625,9 +1093,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -635,10 +1111,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageLinks': function(args, opts) {
-		var url = '{page}/links'
+		var url = 'https://graph.facebook.com/{page}/links'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -646,9 +1131,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -656,9 +1149,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -666,10 +1167,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPagePhotos': function(args, opts) {
-		var url = '{page}/photos'
+		var url = 'https://graph.facebook.com/{page}/photos'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -677,9 +1187,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -687,9 +1205,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -697,10 +1223,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageGroups': function(args, opts) {
-		var url = '{page}/groups'
+		var url = 'https://graph.facebook.com/{page}/groups'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -708,9 +1243,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -718,9 +1261,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -728,10 +1279,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageAlbums': function(args, opts) {
-		var url = '{page}/albums'
+		var url = 'https://graph.facebook.com/{page}/albums'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -739,9 +1299,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -749,9 +1317,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -759,10 +1335,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageStatuses': function(args, opts) {
-		var url = '{page}/statuses'
+		var url = 'https://graph.facebook.com/{page}/statuses'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -770,9 +1355,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -780,9 +1373,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -790,10 +1391,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageVideos': function(args, opts) {
-		var url = '{page}/videos'
+		var url = 'https://graph.facebook.com/{page}/videos'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -801,9 +1411,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -811,9 +1429,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -821,10 +1447,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageNotes': function(args, opts) {
-		var url = '{page}/notes'
+		var url = 'https://graph.facebook.com/{page}/notes'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -832,9 +1467,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -842,9 +1485,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -852,10 +1503,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPagePosts': function(args, opts) {
-		var url = '{page}/posts'
+		var url = 'https://graph.facebook.com/{page}/posts'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -863,9 +1523,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -873,9 +1541,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -883,10 +1559,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageEvents': function(args, opts) {
-		var url = '{page}/events'
+		var url = 'https://graph.facebook.com/{page}/events'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -894,9 +1579,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -904,9 +1597,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -914,10 +1615,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPageCheckins': function(args, opts) {
-		var url = '{page}/checkins'
+		var url = 'https://graph.facebook.com/{page}/checkins'
 		args = args || {}
 		if (args['page'] == null) args['page'] = "platform"
 		var rgx = new RegExp('\{page\}', 'g')
@@ -925,9 +1635,17 @@
 			url = url.replace(rgx, args['page'])
 			if (args['page']) delete args['page']
 		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -935,9 +1653,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -945,10 +1671,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPhoto': function(args, opts) {
-		var url = '{photo}'
+		var url = 'https://graph.facebook.com/{photo}'
 		args = args || {}
 		if (args['photo'] == null) args['photo'] = "98423808305"
 		var rgx = new RegExp('\{photo\}', 'g')
@@ -956,15 +1691,25 @@
 			url = url.replace(rgx, args['photo'])
 			if (args['photo']) delete args['photo']
 		}
+		if (url.indexOf('[/photo]') !== -1) {
+			url = url.replace('[/photo]', '/' + args['photo'])
+			if (args['photo']) delete args['photo']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/photo]') !== -1) url = url.replace('[/photo]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPhotoComments': function(args, opts) {
-		var url = '{photo}/comments'
+		var url = 'https://graph.facebook.com/{photo}/comments'
 		args = args || {}
 		if (args['photo'] == null) args['photo'] = "98423808305"
 		var rgx = new RegExp('\{photo\}', 'g')
@@ -972,9 +1717,17 @@
 			url = url.replace(rgx, args['photo'])
 			if (args['photo']) delete args['photo']
 		}
+		if (url.indexOf('[/photo]') !== -1) {
+			url = url.replace('[/photo]', '/' + args['photo'])
+			if (args['photo']) delete args['photo']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -982,9 +1735,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -992,10 +1753,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/photo]') !== -1) url = url.replace('[/photo]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPhotoLikes': function(args, opts) {
-		var url = '{photo}/likes'
+		var url = 'https://graph.facebook.com/{photo}/likes'
 		args = args || {}
 		if (args['photo'] == null) args['photo'] = "98423808305"
 		var rgx = new RegExp('\{photo\}', 'g')
@@ -1003,9 +1773,17 @@
 			url = url.replace(rgx, args['photo'])
 			if (args['photo']) delete args['photo']
 		}
+		if (url.indexOf('[/photo]') !== -1) {
+			url = url.replace('[/photo]', '/' + args['photo'])
+			if (args['photo']) delete args['photo']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1013,9 +1791,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1023,10 +1809,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/photo]') !== -1) url = url.replace('[/photo]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPost': function(args, opts) {
-		var url = '{post}'
+		var url = 'https://graph.facebook.com/{post}'
 		args = args || {}
 		if (args['post'] == null) args['post'] = "19292868552_118464504835613"
 		var rgx = new RegExp('\{post\}', 'g')
@@ -1034,15 +1829,25 @@
 			url = url.replace(rgx, args['post'])
 			if (args['post']) delete args['post']
 		}
+		if (url.indexOf('[/post]') !== -1) {
+			url = url.replace('[/post]', '/' + args['post'])
+			if (args['post']) delete args['post']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/post]') !== -1) url = url.replace('[/post]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getPostComments': function(args, opts) {
-		var url = '{post}/comments'
+		var url = 'https://graph.facebook.com/{post}/comments'
 		args = args || {}
 		if (args['post'] == null) args['post'] = "19292868552_118464504835613"
 		var rgx = new RegExp('\{post\}', 'g')
@@ -1050,9 +1855,17 @@
 			url = url.replace(rgx, args['post'])
 			if (args['post']) delete args['post']
 		}
+		if (url.indexOf('[/post]') !== -1) {
+			url = url.replace('[/post]', '/' + args['post'])
+			if (args['post']) delete args['post']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1060,9 +1873,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1070,10 +1891,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/post]') !== -1) url = url.replace('[/post]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getStatus': function(args, opts) {
-		var url = '{status}'
+		var url = 'https://graph.facebook.com/{status}'
 		args = args || {}
 		if (args['status'] == null) args['status'] = "367501354973"
 		var rgx = new RegExp('\{status\}', 'g')
@@ -1081,20 +1911,34 @@
 			url = url.replace(rgx, args['status'])
 			if (args['status']) delete args['status']
 		}
+		if (url.indexOf('[/status]') !== -1) {
+			url = url.replace('[/status]', '/' + args['status'])
+			if (args['status']) delete args['status']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getStatusComments': function(args, opts) {
-		var url = '{status}/comments'
+		var url = 'https://graph.facebook.com/{status}/comments'
 		args = args || {}
 		if (args['status'] == null) args['status'] = "367501354973"
 		var rgx = new RegExp('\{status\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['status'])
+			if (args['status']) delete args['status']
+		}
+		if (url.indexOf('[/status]') !== -1) {
+			url = url.replace('[/status]', '/' + args['status'])
 			if (args['status']) delete args['status']
 		}
 		var rgx = new RegExp('\{since\}', 'g')
@@ -1102,9 +1946,17 @@
 			url = url.replace(rgx, args['since'])
 			if (args['since']) delete args['since']
 		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
+			if (args['since']) delete args['since']
+		}
 		var rgx = new RegExp('\{until\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['until'])
+			if (args['until']) delete args['until']
+		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
 			if (args['until']) delete args['until']
 		}
 		var rgx = new RegExp('\{limit\}', 'g')
@@ -1112,15 +1964,28 @@
 			url = url.replace(rgx, args['limit'])
 			if (args['limit']) delete args['limit']
 		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUser': function(args, opts) {
-		var url = '{user}'
+		var url = 'https://graph.facebook.com/{user}'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1128,15 +1993,25 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
+		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'me': function(args, opts) {
-		var url = '{user}'
+		var url = 'https://graph.facebook.com/{user}'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1144,15 +2019,25 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserSearch': function(args, opts) {
-		var url = '{user}/home'
+		var url = 'https://graph.facebook.com/{user}/home'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "robertscoble"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1160,9 +2045,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
 		var rgx = new RegExp('\{q\}', 'g')
@@ -1170,10 +2063,17 @@
 			url = url.replace(rgx, args['q'])
 			if (args['q']) delete args['q']
 		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserHome': function(args, opts) {
-		var url = '{user}/home'
+		var url = 'https://graph.facebook.com/{user}/home'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1181,9 +2081,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1191,9 +2099,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1201,10 +2117,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserFeed': function(args, opts) {
-		var url = '{user}/feed'
+		var url = 'https://graph.facebook.com/{user}/feed'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1212,9 +2137,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1222,9 +2155,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1232,10 +2173,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserTagged': function(args, opts) {
-		var url = '{user}/tagged'
+		var url = 'https://graph.facebook.com/{user}/tagged'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1243,9 +2193,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1253,9 +2211,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1263,10 +2229,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserPosts': function(args, opts) {
-		var url = '{user}/posts'
+		var url = 'https://graph.facebook.com/{user}/posts'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1274,9 +2249,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1284,9 +2267,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1294,15 +2285,28 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserPicture': function(args, opts) {
-		var url = '{user}/picture'
+		var url = 'https://graph.facebook.com/{user}/picture'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user'])
+			if (args['user']) delete args['user']
+		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
 			if (args['user']) delete args['user']
 		}
 		var rgx = new RegExp('\{type\}', 'g')
@@ -1310,10 +2314,16 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserFriends': function(args, opts) {
-		var url = '{user}/friends'
+		var url = 'https://graph.facebook.com/{user}/friends'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1321,9 +2331,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1331,9 +2349,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1341,10 +2367,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserActivities': function(args, opts) {
-		var url = '{user}/activities'
+		var url = 'https://graph.facebook.com/{user}/activities'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1352,9 +2387,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1362,9 +2405,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1372,10 +2423,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserCheckins': function(args, opts) {
-		var url = '{user}/checkins'
+		var url = 'https://graph.facebook.com/{user}/checkins'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1383,9 +2443,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1393,9 +2461,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1403,10 +2479,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserInterests': function(args, opts) {
-		var url = '{user}/interests'
+		var url = 'https://graph.facebook.com/{user}/interests'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1414,9 +2499,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1424,9 +2517,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1434,10 +2535,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserMusic': function(args, opts) {
-		var url = '{user}/music'
+		var url = 'https://graph.facebook.com/{user}/music'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1445,9 +2555,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1455,9 +2573,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1465,10 +2591,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserBooks': function(args, opts) {
-		var url = '{user}/books'
+		var url = 'https://graph.facebook.com/{user}/books'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1476,9 +2611,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1486,9 +2629,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1496,10 +2647,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserMovies': function(args, opts) {
-		var url = '{user}/movies'
+		var url = 'https://graph.facebook.com/{user}/movies'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1507,9 +2667,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1517,9 +2685,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1527,10 +2703,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserTelevision': function(args, opts) {
-		var url = '{user}/television'
+		var url = 'https://graph.facebook.com/{user}/television'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1538,9 +2723,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1548,9 +2741,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1558,10 +2759,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserLikes': function(args, opts) {
-		var url = '{user}/likes'
+		var url = 'https://graph.facebook.com/{user}/likes'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1569,9 +2779,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1579,9 +2797,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1589,10 +2815,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserPhotos': function(args, opts) {
-		var url = '{user}/photos'
+		var url = 'https://graph.facebook.com/{user}/photos'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1600,9 +2835,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1610,9 +2853,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1620,10 +2871,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserAlbums': function(args, opts) {
-		var url = '{user}/albums'
+		var url = 'https://graph.facebook.com/{user}/albums'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1631,9 +2891,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1641,9 +2909,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1651,10 +2927,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserVideos': function(args, opts) {
-		var url = '{user}/videos'
+		var url = 'https://graph.facebook.com/{user}/videos'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1662,9 +2947,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1672,9 +2965,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1682,10 +2983,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserGroups': function(args, opts) {
-		var url = '{user}/groups'
+		var url = 'https://graph.facebook.com/{user}/groups'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1693,9 +3003,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1703,9 +3021,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1713,10 +3039,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserStatuses': function(args, opts) {
-		var url = '{user}/statuses'
+		var url = 'https://graph.facebook.com/{user}/statuses'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1724,9 +3059,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1734,9 +3077,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1744,10 +3095,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserLinks': function(args, opts) {
-		var url = '{user}/links'
+		var url = 'https://graph.facebook.com/{user}/links'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1755,9 +3115,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1765,9 +3133,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1775,10 +3151,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserNotes': function(args, opts) {
-		var url = '{user}/notes'
+		var url = 'https://graph.facebook.com/{user}/notes'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1786,9 +3171,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1796,9 +3189,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1806,10 +3207,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserEvents': function(args, opts) {
-		var url = '{user}/events'
+		var url = 'https://graph.facebook.com/{user}/events'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1817,9 +3227,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1827,9 +3245,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1837,10 +3263,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserInbox': function(args, opts) {
-		var url = '{user}/inbox'
+		var url = 'https://graph.facebook.com/{user}/inbox'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1848,9 +3283,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1858,9 +3301,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1868,10 +3319,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserOutbox': function(args, opts) {
-		var url = '{user}/outbox'
+		var url = 'https://graph.facebook.com/{user}/outbox'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1879,9 +3339,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1889,9 +3357,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1899,10 +3375,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserUpdates': function(args, opts) {
-		var url = '{user}/updates'
+		var url = 'https://graph.facebook.com/{user}/updates'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1910,9 +3395,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1920,9 +3413,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1930,10 +3431,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getUserAccounts': function(args, opts) {
-		var url = '{user}/accounts'
+		var url = 'https://graph.facebook.com/{user}/accounts'
 		args = args || {}
 		if (args['user'] == null) args['user'] = "me"
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1941,9 +3451,17 @@
 			url = url.replace(rgx, args['user'])
 			if (args['user']) delete args['user']
 		}
+		if (url.indexOf('[/user]') !== -1) {
+			url = url.replace('[/user]', '/' + args['user'])
+			if (args['user']) delete args['user']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1951,9 +3469,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -1961,15 +3487,28 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getVideo': function(args, opts) {
-		var url = '{video}'
+		var url = 'https://graph.facebook.com/{video}'
 		args = args || {}
 		if (args['video'] == null) args['video'] = "614004947048"
 		var rgx = new RegExp('\{video\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['video'])
+			if (args['video']) delete args['video']
+		}
+		if (url.indexOf('[/video]') !== -1) {
+			url = url.replace('[/video]', '/' + args['video'])
 			if (args['video']) delete args['video']
 		}
 		var rgx = new RegExp('\{metadata\}', 'g')
@@ -1977,10 +3516,16 @@
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/video]') !== -1) url = url.replace('[/video]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getVideoComments': function(args, opts) {
-		var url = '{video}/comments'
+		var url = 'https://graph.facebook.com/{video}/comments'
 		args = args || {}
 		if (args['video'] == null) args['video'] = "614004947048"
 		var rgx = new RegExp('\{video\}', 'g')
@@ -1988,9 +3533,17 @@
 			url = url.replace(rgx, args['video'])
 			if (args['video']) delete args['video']
 		}
+		if (url.indexOf('[/video]') !== -1) {
+			url = url.replace('[/video]', '/' + args['video'])
+			if (args['video']) delete args['video']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -1998,9 +3551,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2008,15 +3569,28 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/video]') !== -1) url = url.replace('[/video]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'postProfileIdFeed': function(args, opts) {
-		var url = '{profile_id}/feed'
+		var url = 'https://graph.facebook.com/{profile_id}/feed'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
 		var rgx = new RegExp('\{profile_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['profile_id'])
+			if (args['profile_id']) delete args['profile_id']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) {
+			url = url.replace('[/profile_id]', '/' + args['profile_id'])
 			if (args['profile_id']) delete args['profile_id']
 		}
 		if (args['message'] == null) throw new Error('message is a required parameter')
@@ -2025,9 +3599,17 @@
 			url = url.replace(rgx, args['message'])
 			if (args['message']) delete args['message']
 		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
 		var rgx = new RegExp('\{picture\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['picture'])
+			if (args['picture']) delete args['picture']
+		}
+		if (url.indexOf('[/picture]') !== -1) {
+			url = url.replace('[/picture]', '/' + args['picture'])
 			if (args['picture']) delete args['picture']
 		}
 		var rgx = new RegExp('\{link\}', 'g')
@@ -2035,9 +3617,17 @@
 			url = url.replace(rgx, args['link'])
 			if (args['link']) delete args['link']
 		}
+		if (url.indexOf('[/link]') !== -1) {
+			url = url.replace('[/link]', '/' + args['link'])
+			if (args['link']) delete args['link']
+		}
 		var rgx = new RegExp('\{caption\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['caption'])
+			if (args['caption']) delete args['caption']
+		}
+		if (url.indexOf('[/caption]') !== -1) {
+			url = url.replace('[/caption]', '/' + args['caption'])
 			if (args['caption']) delete args['caption']
 		}
 		var rgx = new RegExp('\{name\}', 'g')
@@ -2045,20 +3635,39 @@
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
 		var rgx = new RegExp('\{description\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['description'])
 			if (args['description']) delete args['description']
 		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) url = url.replace('[/profile_id]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		if (url.indexOf('[/picture]') !== -1) url = url.replace('[/picture]', '')
+		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
+		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postPostIdComments': function(args, opts) {
-		var url = '{post_id}/comments'
+		var url = 'https://graph.facebook.com/{post_id}/comments'
 		args = args || {}
 		if (args['post_id'] == null) args['post_id'] = "163046417207_399962632207"
 		var rgx = new RegExp('\{post_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['post_id'])
+			if (args['post_id']) delete args['post_id']
+		}
+		if (url.indexOf('[/post_id]') !== -1) {
+			url = url.replace('[/post_id]', '/' + args['post_id'])
 			if (args['post_id']) delete args['post_id']
 		}
 		if (args['message'] == null) args['message'] = "Test comment, please ignore!"
@@ -2067,10 +3676,16 @@
 			url = url.replace(rgx, args['message'])
 			if (args['message']) delete args['message']
 		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/post_id]') !== -1) url = url.replace('[/post_id]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postPostIdLikes': function(args, opts) {
-		var url = '{post_id}/likes'
+		var url = 'https://graph.facebook.com/{post_id}/likes'
 		args = args || {}
 		if (args['post_id'] == null) args['post_id'] = "163046417207_399962632207"
 		var rgx = new RegExp('\{post_id\}', 'g')
@@ -2078,10 +3693,15 @@
 			url = url.replace(rgx, args['post_id'])
 			if (args['post_id']) delete args['post_id']
 		}
+		if (url.indexOf('[/post_id]') !== -1) {
+			url = url.replace('[/post_id]', '/' + args['post_id'])
+			if (args['post_id']) delete args['post_id']
+		}
+		if (url.indexOf('[/post_id]') !== -1) url = url.replace('[/post_id]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postProfileIdNotes': function(args, opts) {
-		var url = '{profile_id}/notes'
+		var url = 'https://graph.facebook.com/{profile_id}/notes'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
 		var rgx = new RegExp('\{profile_id\}', 'g')
@@ -2089,10 +3709,18 @@
 			url = url.replace(rgx, args['profile_id'])
 			if (args['profile_id']) delete args['profile_id']
 		}
+		if (url.indexOf('[/profile_id]') !== -1) {
+			url = url.replace('[/profile_id]', '/' + args['profile_id'])
+			if (args['profile_id']) delete args['profile_id']
+		}
 		if (args['message'] == null) throw new Error('message is a required parameter')
 		var rgx = new RegExp('\{message\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
 			if (args['message']) delete args['message']
 		}
 		if (args['subject'] == null) args['subject'] = "Test post"
@@ -2101,10 +3729,17 @@
 			url = url.replace(rgx, args['subject'])
 			if (args['subject']) delete args['subject']
 		}
+		if (url.indexOf('[/subject]') !== -1) {
+			url = url.replace('[/subject]', '/' + args['subject'])
+			if (args['subject']) delete args['subject']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) url = url.replace('[/profile_id]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		if (url.indexOf('[/subject]') !== -1) url = url.replace('[/subject]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postProfileIdLinks': function(args, opts) {
-		var url = '{profile_id}/links'
+		var url = 'https://graph.facebook.com/{profile_id}/links'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
 		var rgx = new RegExp('\{profile_id\}', 'g')
@@ -2112,10 +3747,18 @@
 			url = url.replace(rgx, args['profile_id'])
 			if (args['profile_id']) delete args['profile_id']
 		}
+		if (url.indexOf('[/profile_id]') !== -1) {
+			url = url.replace('[/profile_id]', '/' + args['profile_id'])
+			if (args['profile_id']) delete args['profile_id']
+		}
 		if (args['message'] == null) throw new Error('message is a required parameter')
 		var rgx = new RegExp('\{message\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
 			if (args['message']) delete args['message']
 		}
 		if (args['link'] == null) throw new Error('link is a required parameter')
@@ -2124,10 +3767,17 @@
 			url = url.replace(rgx, args['link'])
 			if (args['link']) delete args['link']
 		}
+		if (url.indexOf('[/link]') !== -1) {
+			url = url.replace('[/link]', '/' + args['link'])
+			if (args['link']) delete args['link']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) url = url.replace('[/profile_id]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postProfileIdEvents': function(args, opts) {
-		var url = '{profile_id}/events'
+		var url = 'https://graph.facebook.com/{profile_id}/events'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
 		var rgx = new RegExp('\{profile_id\}', 'g')
@@ -2135,10 +3785,15 @@
 			url = url.replace(rgx, args['profile_id'])
 			if (args['profile_id']) delete args['profile_id']
 		}
+		if (url.indexOf('[/profile_id]') !== -1) {
+			url = url.replace('[/profile_id]', '/' + args['profile_id'])
+			if (args['profile_id']) delete args['profile_id']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) url = url.replace('[/profile_id]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postEventIdAttending': function(args, opts) {
-		var url = '{event_id}/attending'
+		var url = 'https://graph.facebook.com/{event_id}/attending'
 		args = args || {}
 		if (args['event_id'] == null) args['event_id'] = "331218348435"
 		var rgx = new RegExp('\{event_id\}', 'g')
@@ -2146,10 +3801,15 @@
 			url = url.replace(rgx, args['event_id'])
 			if (args['event_id']) delete args['event_id']
 		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postEventIdMaybe': function(args, opts) {
-		var url = '{event_id}/maybe'
+		var url = 'https://graph.facebook.com/{event_id}/maybe'
 		args = args || {}
 		if (args['event_id'] == null) args['event_id'] = "331218348435"
 		var rgx = new RegExp('\{event_id\}', 'g')
@@ -2157,10 +3817,15 @@
 			url = url.replace(rgx, args['event_id'])
 			if (args['event_id']) delete args['event_id']
 		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postEventIdDeclined': function(args, opts) {
-		var url = '{event_id}/declined'
+		var url = 'https://graph.facebook.com/{event_id}/declined'
 		args = args || {}
 		if (args['event_id'] == null) args['event_id'] = "331218348435"
 		var rgx = new RegExp('\{event_id\}', 'g')
@@ -2168,15 +3833,24 @@
 			url = url.replace(rgx, args['event_id'])
 			if (args['event_id']) delete args['event_id']
 		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postProfileIdAlbums': function(args, opts) {
-		var url = '{profile_id}/albums'
+		var url = 'https://graph.facebook.com/{profile_id}/albums'
 		args = args || {}
 		if (args['profile_id'] == null) args['profile_id'] = "me"
 		var rgx = new RegExp('\{profile_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['profile_id'])
+			if (args['profile_id']) delete args['profile_id']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) {
+			url = url.replace('[/profile_id]', '/' + args['profile_id'])
 			if (args['profile_id']) delete args['profile_id']
 		}
 		if (args['message'] == null) throw new Error('message is a required parameter')
@@ -2185,21 +3859,36 @@
 			url = url.replace(rgx, args['message'])
 			if (args['message']) delete args['message']
 		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
 		if (args['name'] == null) throw new Error('name is a required parameter')
 		var rgx = new RegExp('\{name\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['name'])
 			if (args['name']) delete args['name']
 		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (url.indexOf('[/profile_id]') !== -1) url = url.replace('[/profile_id]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'postAlbumIdPhotos': function(args, opts) {
-		var url = '{album_id}/photos'
+		var url = 'https://graph.facebook.com/{album_id}/photos'
 		args = args || {}
 		if (args['album_id'] == null) args['album_id'] = "me"
 		var rgx = new RegExp('\{album_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (url.indexOf('[/album_id]') !== -1) {
+			url = url.replace('[/album_id]', '/' + args['album_id'])
 			if (args['album_id']) delete args['album_id']
 		}
 		if (args['message'] == null) args['message'] = "{attachment}"
@@ -2208,10 +3897,16 @@
 			url = url.replace(rgx, args['message'])
 			if (args['message']) delete args['message']
 		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/album_id]') !== -1) url = url.replace('[/album_id]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
 		return http({provider:'facebook',url:url,method:'POST',params:args}, opts)
 	},
 	'deleteObjectId': function(args, opts) {
-		var url = '{object_id}'
+		var url = 'https://graph.facebook.com/{object_id}'
 		args = args || {}
 		if (args['object_id'] == null) args['object_id'] = "OBJECTID"
 		var rgx = new RegExp('\{object_id\}', 'g')
@@ -2219,10 +3914,15 @@
 			url = url.replace(rgx, args['object_id'])
 			if (args['object_id']) delete args['object_id']
 		}
+		if (url.indexOf('[/object_id]') !== -1) {
+			url = url.replace('[/object_id]', '/' + args['object_id'])
+			if (args['object_id']) delete args['object_id']
+		}
+		if (url.indexOf('[/object_id]') !== -1) url = url.replace('[/object_id]', '')
 		return http({provider:'facebook',url:url,method:'DELETE',params:args}, opts)
 	},
 	'deletePostIdLikes': function(args, opts) {
-		var url = '{post_id}/likes'
+		var url = 'https://graph.facebook.com/{post_id}/likes'
 		args = args || {}
 		if (args['post_id'] == null) args['post_id'] = "OBJECTID"
 		var rgx = new RegExp('\{post_id\}', 'g')
@@ -2230,10 +3930,15 @@
 			url = url.replace(rgx, args['post_id'])
 			if (args['post_id']) delete args['post_id']
 		}
+		if (url.indexOf('[/post_id]') !== -1) {
+			url = url.replace('[/post_id]', '/' + args['post_id'])
+			if (args['post_id']) delete args['post_id']
+		}
+		if (url.indexOf('[/post_id]') !== -1) url = url.replace('[/post_id]', '')
 		return http({provider:'facebook',url:url,method:'DELETE',params:args}, opts)
 	},
 	'getCheckin': function(args, opts) {
-		var url = '{checkin}'
+		var url = 'https://graph.facebook.com/{checkin}'
 		args = args || {}
 		if (args['checkin'] == null) args['checkin'] = "robertscoble"
 		var rgx = new RegExp('\{checkin\}', 'g')
@@ -2241,15 +3946,25 @@
 			url = url.replace(rgx, args['checkin'])
 			if (args['checkin']) delete args['checkin']
 		}
+		if (url.indexOf('[/checkin]') !== -1) {
+			url = url.replace('[/checkin]', '/' + args['checkin'])
+			if (args['checkin']) delete args['checkin']
+		}
 		var rgx = new RegExp('\{metadata\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['metadata'])
 			if (args['metadata']) delete args['metadata']
 		}
-		return http({provider:'facebook',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/metadata]') !== -1) {
+			url = url.replace('[/metadata]', '/' + args['metadata'])
+			if (args['metadata']) delete args['metadata']
+		}
+		if (url.indexOf('[/checkin]') !== -1) url = url.replace('[/checkin]', '')
+		if (url.indexOf('[/metadata]') !== -1) url = url.replace('[/metadata]', '')
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getApplication': function(args, opts) {
-		var url = '{application}'
+		var url = 'https://graph.facebook.com/{application}'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2257,15 +3972,24 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
-		return http({provider:'facebook',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		return http({provider:'facebook',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getApplicationFeed': function(args, opts) {
-		var url = '{application}/feed'
+		var url = 'https://graph.facebook.com/{application}/feed'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['application'])
+			if (args['application']) delete args['application']
+		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
 			if (args['application']) delete args['application']
 		}
 		var rgx = new RegExp('\{since\}', 'g')
@@ -2273,9 +3997,17 @@
 			url = url.replace(rgx, args['since'])
 			if (args['since']) delete args['since']
 		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
+			if (args['since']) delete args['since']
+		}
 		var rgx = new RegExp('\{until\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['until'])
+			if (args['until']) delete args['until']
+		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
 			if (args['until']) delete args['until']
 		}
 		var rgx = new RegExp('\{limit\}', 'g')
@@ -2283,15 +4015,28 @@
 			url = url.replace(rgx, args['limit'])
 			if (args['limit']) delete args['limit']
 		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationPosts': function(args, opts) {
-		var url = '{application}/posts'
+		var url = 'https://graph.facebook.com/{application}/posts'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2299,9 +4044,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2309,9 +4062,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2319,15 +4080,28 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationPicture': function(args, opts) {
-		var url = '{application}/picture'
+		var url = 'https://graph.facebook.com/{application}/picture'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['application'])
+			if (args['application']) delete args['application']
+		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
 			if (args['application']) delete args['application']
 		}
 		var rgx = new RegExp('\{type\}', 'g')
@@ -2335,10 +4109,16 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationTagged': function(args, opts) {
-		var url = '{application}/tagged'
+		var url = 'https://graph.facebook.com/{application}/tagged'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2346,9 +4126,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2356,9 +4144,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2366,10 +4162,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationLinks': function(args, opts) {
-		var url = '{application}/links'
+		var url = 'https://graph.facebook.com/{application}/links'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2377,9 +4182,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2387,9 +4200,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2397,10 +4218,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationPhotos': function(args, opts) {
-		var url = '{application}/photos'
+		var url = 'https://graph.facebook.com/{application}/photos'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2408,9 +4238,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2418,9 +4256,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2428,10 +4274,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationAlbums': function(args, opts) {
-		var url = '{application}/albums'
+		var url = 'https://graph.facebook.com/{application}/albums'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2439,9 +4294,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2449,9 +4312,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2459,10 +4330,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationStatuses': function(args, opts) {
-		var url = '{application}/statuses'
+		var url = 'https://graph.facebook.com/{application}/statuses'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2470,9 +4350,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2480,9 +4368,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2490,10 +4386,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationVideos': function(args, opts) {
-		var url = '{application}/videos'
+		var url = 'https://graph.facebook.com/{application}/videos'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2501,9 +4406,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2511,9 +4424,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2521,10 +4442,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationNotes': function(args, opts) {
-		var url = '{application}/notes'
+		var url = 'https://graph.facebook.com/{application}/notes'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2532,9 +4462,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2542,9 +4480,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2552,10 +4498,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationEvents': function(args, opts) {
-		var url = '{application}/events'
+		var url = 'https://graph.facebook.com/{application}/events'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2563,9 +4518,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2573,9 +4536,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2583,10 +4554,19 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	},
 	'getApplicationInsights': function(args, opts) {
-		var url = '{application}/insights'
+		var url = 'https://graph.facebook.com/{application}/insights'
 		args = args || {}
 		if (args['application'] == null) args['application'] = "2439131959"
 		var rgx = new RegExp('\{application\}', 'g')
@@ -2594,9 +4574,17 @@
 			url = url.replace(rgx, args['application'])
 			if (args['application']) delete args['application']
 		}
+		if (url.indexOf('[/application]') !== -1) {
+			url = url.replace('[/application]', '/' + args['application'])
+			if (args['application']) delete args['application']
+		}
 		var rgx = new RegExp('\{since\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since'])
+			if (args['since']) delete args['since']
+		}
+		if (url.indexOf('[/since]') !== -1) {
+			url = url.replace('[/since]', '/' + args['since'])
 			if (args['since']) delete args['since']
 		}
 		var rgx = new RegExp('\{until\}', 'g')
@@ -2604,9 +4592,17 @@
 			url = url.replace(rgx, args['until'])
 			if (args['until']) delete args['until']
 		}
+		if (url.indexOf('[/until]') !== -1) {
+			url = url.replace('[/until]', '/' + args['until'])
+			if (args['until']) delete args['until']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{offset\}', 'g')
@@ -2614,6 +4610,15 @@
 			url = url.replace(rgx, args['offset'])
 			if (args['offset']) delete args['offset']
 		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/application]') !== -1) url = url.replace('[/application]', '')
+		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
+		if (url.indexOf('[/until]') !== -1) url = url.replace('[/until]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'facebook',url:url,method:'GET',params:args}, opts)
 	}
 })
