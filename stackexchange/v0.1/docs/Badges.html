@@ -47,7 +47,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td></td>
+			<td>One of :<br/>						  rank - rank of the badge<br/>						  name - name of the badge<br/>						  type - type of the badge<br/>						  rank is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -126,7 +126,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td></td>
+			<td>One of :<br/>							rank - rank of the badge<br/>							name - name of the badge<br/>							rank is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -147,11 +147,239 @@
 </table>
 <h3>namedBadgesList</h3>
 <p>Gets all explicitly named badges in the system.<br/><br/>					A named badged stands in opposition to a tag-based badge. These are referred to as general badges on the sites themselves.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>One of :<br/>							rank - rank of the badge<br/>							name - name of the badge<br/>							rank is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>inname</td>
+			<td></td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td></td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>recipientsBadgesList</h3>
+<p>Returns recently awarded badges in the system.<br/><br/>				  As these badges have been awarded, they will have the badge.user property set.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td></td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>recipientsBadgesGet</h3>
+<p>Returns recently awarded badges in the system, constrained to a certain set of badges.<br/><br/>				  As these badges have been awarded, they will have the badge.user property set.<br/>				  <br/>				  {ids} can contain up to 100 semicolon delimited ids, to find ids programatically look for badge_id on badge objects.<br/><br/><br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>ids</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td></td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
 <h3>tagBadgesList</h3>
-<p>Returns the badges that are awarded for participation in specific tags.<br/><br/>					Tag badges vary wildly between sites, and should not be assumed to correlate in any regard (such as id).<br/>			</p>
+<p>Returns the badges that are awarded for participation in specific tags.<br/><br/>				  For the rank sort, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver&min=silver for just silver, and min=bronze for just bronze.<br/>				  <br/>				  rank is the default sort.<br/><br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>One of :<br/>							rank - rank of the badge<br/>							name - name of the badge<br/>							rank is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>inname</td>
+			<td></td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td></td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
