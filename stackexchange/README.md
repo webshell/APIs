@@ -1,0 +1,3 @@
+Stack Exchange is a growing network of 89 question and answer sites on diverse topics from software programming to cooking to photography. Stack Exchange builds libraries of high-quality questions and answers focused on the most important topics in each area of expertise.
+
+The Stack Exchange API enables users to retrieve answers, comments, badges, events, questions, revisions, suggested edits, user information, and tags from the site. Users can also use the API to search the site or edit posts. The API uses REST calls issued in JSON and JSONP.

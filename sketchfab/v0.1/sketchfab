@@ -1,0 +1,26 @@
+({
+	search: function(args, opts) {
+		if (typeof args === 'string') {
+			args = {q: args};
+		}
+		return http({
+			url: 'https://api.sketchfab.com/v1/models',
+			method: 'GET',
+			params: args,
+			format: 'json'
+		}, opts)
+	},
+	embed: function(args, opts) {
+		if (typeof args === 'string') {
+			args = {id: args}
+		}
+		if (! args.width)
+			args.width = 854;
+
+		if (! args.height)
+			args.height = 480;
+
+		render(args, {view: '<iframe frameborder="0" height="<%= data.height %>" width="<%= data.width %>" allowFullScreen webkitallowfullscreen="true" mozallowfullscreen="true" src="https://sketchfab.com/embed/<%= data.id %>?autostart=0&transparent=0&autospin=0&controls=1&watermark=1"></iframe>'});
+	}
+})
+
