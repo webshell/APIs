@@ -1,0 +1,26 @@
+args = args || {}
+
+if (typeof args == 'string')
+	args = {url: args};
+
+if (args.urls && typeof urls != 'string')
+	args.urls = args.urls.map(escape).join(',')
+
+get({
+	url: 'http://api.embed.ly/1/oembed',
+	params: {
+		url: args.url,
+		urls: args.urls,
+		maxwidth: args.maxwidth,
+		maxheight: args.maxheight,
+		width: args.width,
+		format: args.format || 'json',
+		callback: args.callback,
+		allowscripts: args.allowscripts,
+		nostyle: args.nostyle,
+		autoplay: args.autoplay,
+		videosrc: args.videosrc,
+	},
+	provider: 'embedly',
+	format: args.format || 'json'
+})
