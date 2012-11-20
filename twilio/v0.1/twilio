@@ -1,0 +1,2953 @@
+({
+	auth:function(){return auth({provider:'twilio'})},
+	'getAccount': function(args, opts) {
+		var url = '/{AccountSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'updateAccountByPost': function(args, opts) {
+		var url = '/{AccountSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{Status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/Status]') !== -1) {
+			url = url.replace('[/Status]', '/' + args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/Status]') !== -1) url = url.replace('[/Status]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'updateAccountByPut': function(args, opts) {
+		var url = '/{AccountSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{Status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/Status]') !== -1) {
+			url = url.replace('[/Status]', '/' + args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/Status]') !== -1) url = url.replace('[/Status]', '')
+		return http({provider:'twilio',url:url,method:'PUT',params:args, auth: 'manual'}, opts)
+	},
+	'getAccountList': function(args, opts) {
+		var url = '.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{Status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/Status]') !== -1) {
+			url = url.replace('[/Status]', '/' + args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/Status]') !== -1) url = url.replace('[/Status]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'createSubAccount': function(args, opts) {
+		var url = '.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'sendSMS': function(args, opts) {
+		var url = '/{AccountSid}/SMS/Messages.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['From'] == null) throw new Error('From is a required parameter')
+		var rgx = new RegExp('\{From\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['From'])
+			if (args['From']) delete args['From']
+		}
+		if (url.indexOf('[/From]') !== -1) {
+			url = url.replace('[/From]', '/' + args['From'])
+			if (args['From']) delete args['From']
+		}
+		if (args['To'] == null) throw new Error('To is a required parameter')
+		var rgx = new RegExp('\{To\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['To'])
+			if (args['To']) delete args['To']
+		}
+		if (url.indexOf('[/To]') !== -1) {
+			url = url.replace('[/To]', '/' + args['To'])
+			if (args['To']) delete args['To']
+		}
+		if (args['Body'] == null) throw new Error('Body is a required parameter')
+		var rgx = new RegExp('\{Body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Body'])
+			if (args['Body']) delete args['Body']
+		}
+		if (url.indexOf('[/Body]') !== -1) {
+			url = url.replace('[/Body]', '/' + args['Body'])
+			if (args['Body']) delete args['Body']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/From]') !== -1) url = url.replace('[/From]', '')
+		if (url.indexOf('[/To]') !== -1) url = url.replace('[/To]', '')
+		if (url.indexOf('[/Body]') !== -1) url = url.replace('[/Body]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'getSMSList': function(args, opts) {
+		var url = '/{AccountSid}/SMS/Messages.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{From\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['From'])
+			if (args['From']) delete args['From']
+		}
+		if (url.indexOf('[/From]') !== -1) {
+			url = url.replace('[/From]', '/' + args['From'])
+			if (args['From']) delete args['From']
+		}
+		var rgx = new RegExp('\{To\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['To'])
+			if (args['To']) delete args['To']
+		}
+		if (url.indexOf('[/To]') !== -1) {
+			url = url.replace('[/To]', '/' + args['To'])
+			if (args['To']) delete args['To']
+		}
+		var rgx = new RegExp('\{DateSent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['DateSent'])
+			if (args['DateSent']) delete args['DateSent']
+		}
+		if (url.indexOf('[/DateSent]') !== -1) {
+			url = url.replace('[/DateSent]', '/' + args['DateSent'])
+			if (args['DateSent']) delete args['DateSent']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/From]') !== -1) url = url.replace('[/From]', '')
+		if (url.indexOf('[/To]') !== -1) url = url.replace('[/To]', '')
+		if (url.indexOf('[/DateSent]') !== -1) url = url.replace('[/DateSent]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getSMS': function(args, opts) {
+		var url = '/{AccountSid}/SMS/Messages/{SMSMessageSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['SMSMessageSid'] == null) throw new Error('SMSMessageSid is a required parameter')
+		var rgx = new RegExp('\{SMSMessageSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SMSMessageSid'])
+			if (args['SMSMessageSid']) delete args['SMSMessageSid']
+		}
+		if (url.indexOf('[/SMSMessageSid]') !== -1) {
+			url = url.replace('[/SMSMessageSid]', '/' + args['SMSMessageSid'])
+			if (args['SMSMessageSid']) delete args['SMSMessageSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/SMSMessageSid]') !== -1) url = url.replace('[/SMSMessageSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getOutgoingCallerIdList': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{PhoneNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		if (url.indexOf('[/PhoneNumber]') !== -1) {
+			url = url.replace('[/PhoneNumber]', '/' + args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/PhoneNumber]') !== -1) url = url.replace('[/PhoneNumber]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'addOutgoingCallerId': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['PhoneNumber'] == null) throw new Error('PhoneNumber is a required parameter')
+		var rgx = new RegExp('\{PhoneNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		if (url.indexOf('[/PhoneNumber]') !== -1) {
+			url = url.replace('[/PhoneNumber]', '/' + args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{CallDelay\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallDelay'])
+			if (args['CallDelay']) delete args['CallDelay']
+		}
+		if (url.indexOf('[/CallDelay]') !== -1) {
+			url = url.replace('[/CallDelay]', '/' + args['CallDelay'])
+			if (args['CallDelay']) delete args['CallDelay']
+		}
+		var rgx = new RegExp('\{Extension\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Extension'])
+			if (args['Extension']) delete args['Extension']
+		}
+		if (url.indexOf('[/Extension]') !== -1) {
+			url = url.replace('[/Extension]', '/' + args['Extension'])
+			if (args['Extension']) delete args['Extension']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		var rgx = new RegExp('\{StatusCallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) {
+			url = url.replace('[/StatusCallbackMethod]', '/' + args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/PhoneNumber]') !== -1) url = url.replace('[/PhoneNumber]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/CallDelay]') !== -1) url = url.replace('[/CallDelay]', '')
+		if (url.indexOf('[/Extension]') !== -1) url = url.replace('[/Extension]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) url = url.replace('[/StatusCallbackMethod]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'getOutgoingCallerIds': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{PhoneNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		if (url.indexOf('[/PhoneNumber]') !== -1) {
+			url = url.replace('[/PhoneNumber]', '/' + args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/PhoneNumber]') !== -1) url = url.replace('[/PhoneNumber]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getOutgoingCallerId': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['OutgoingCallerIdSid'] == null) throw new Error('OutgoingCallerIdSid is a required parameter')
+		var rgx = new RegExp('\{OutgoingCallerIdSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) {
+			url = url.replace('[/OutgoingCallerIdSid]', '/' + args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) url = url.replace('[/OutgoingCallerIdSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'updateOutgoingCallerIdByPost': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['OutgoingCallerIdSid'] == null) throw new Error('OutgoingCallerIdSid is a required parameter')
+		var rgx = new RegExp('\{OutgoingCallerIdSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) {
+			url = url.replace('[/OutgoingCallerIdSid]', '/' + args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) url = url.replace('[/OutgoingCallerIdSid]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'updateOutgoingCallerIdByPut': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['OutgoingCallerIdSid'] == null) throw new Error('OutgoingCallerIdSid is a required parameter')
+		var rgx = new RegExp('\{OutgoingCallerIdSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) {
+			url = url.replace('[/OutgoingCallerIdSid]', '/' + args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) url = url.replace('[/OutgoingCallerIdSid]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		return http({provider:'twilio',url:url,method:'PUT',params:args, auth: 'manual'}, opts)
+	},
+	'deleteOutgoingCallerId': function(args, opts) {
+		var url = '/{AccountSid}/OutgoingCallerIds/{OutgoingCallerIdSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['OutgoingCallerIdSid'] == null) throw new Error('OutgoingCallerIdSid is a required parameter')
+		var rgx = new RegExp('\{OutgoingCallerIdSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) {
+			url = url.replace('[/OutgoingCallerIdSid]', '/' + args['OutgoingCallerIdSid'])
+			if (args['OutgoingCallerIdSid']) delete args['OutgoingCallerIdSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/OutgoingCallerIdSid]') !== -1) url = url.replace('[/OutgoingCallerIdSid]', '')
+		return http({provider:'twilio',url:url,method:'DELETE',params:args, auth: 'manual'}, opts)
+	},
+	'getAvailableLocalPhoneNumberList': function(args, opts) {
+		var url = '/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/Local.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['IsoCountryCode'] == null) throw new Error('IsoCountryCode is a required parameter')
+		var rgx = new RegExp('\{IsoCountryCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IsoCountryCode'])
+			if (args['IsoCountryCode']) delete args['IsoCountryCode']
+		}
+		if (url.indexOf('[/IsoCountryCode]') !== -1) {
+			url = url.replace('[/IsoCountryCode]', '/' + args['IsoCountryCode'])
+			if (args['IsoCountryCode']) delete args['IsoCountryCode']
+		}
+		var rgx = new RegExp('\{AreaCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AreaCode'])
+			if (args['AreaCode']) delete args['AreaCode']
+		}
+		if (url.indexOf('[/AreaCode]') !== -1) {
+			url = url.replace('[/AreaCode]', '/' + args['AreaCode'])
+			if (args['AreaCode']) delete args['AreaCode']
+		}
+		var rgx = new RegExp('\{Contains\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Contains'])
+			if (args['Contains']) delete args['Contains']
+		}
+		if (url.indexOf('[/Contains]') !== -1) {
+			url = url.replace('[/Contains]', '/' + args['Contains'])
+			if (args['Contains']) delete args['Contains']
+		}
+		var rgx = new RegExp('\{InRegion\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['InRegion'])
+			if (args['InRegion']) delete args['InRegion']
+		}
+		if (url.indexOf('[/InRegion]') !== -1) {
+			url = url.replace('[/InRegion]', '/' + args['InRegion'])
+			if (args['InRegion']) delete args['InRegion']
+		}
+		var rgx = new RegExp('\{InPostalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['InPostalCode'])
+			if (args['InPostalCode']) delete args['InPostalCode']
+		}
+		if (url.indexOf('[/InPostalCode]') !== -1) {
+			url = url.replace('[/InPostalCode]', '/' + args['InPostalCode'])
+			if (args['InPostalCode']) delete args['InPostalCode']
+		}
+		var rgx = new RegExp('\{NearLatLong\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NearLatLong'])
+			if (args['NearLatLong']) delete args['NearLatLong']
+		}
+		if (url.indexOf('[/NearLatLong]') !== -1) {
+			url = url.replace('[/NearLatLong]', '/' + args['NearLatLong'])
+			if (args['NearLatLong']) delete args['NearLatLong']
+		}
+		var rgx = new RegExp('\{NearNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NearNumber'])
+			if (args['NearNumber']) delete args['NearNumber']
+		}
+		if (url.indexOf('[/NearNumber]') !== -1) {
+			url = url.replace('[/NearNumber]', '/' + args['NearNumber'])
+			if (args['NearNumber']) delete args['NearNumber']
+		}
+		var rgx = new RegExp('\{InLata\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['InLata'])
+			if (args['InLata']) delete args['InLata']
+		}
+		if (url.indexOf('[/InLata]') !== -1) {
+			url = url.replace('[/InLata]', '/' + args['InLata'])
+			if (args['InLata']) delete args['InLata']
+		}
+		var rgx = new RegExp('\{InRateCenter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['InRateCenter'])
+			if (args['InRateCenter']) delete args['InRateCenter']
+		}
+		if (url.indexOf('[/InRateCenter]') !== -1) {
+			url = url.replace('[/InRateCenter]', '/' + args['InRateCenter'])
+			if (args['InRateCenter']) delete args['InRateCenter']
+		}
+		var rgx = new RegExp('\{Distance\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Distance'])
+			if (args['Distance']) delete args['Distance']
+		}
+		if (url.indexOf('[/Distance]') !== -1) {
+			url = url.replace('[/Distance]', '/' + args['Distance'])
+			if (args['Distance']) delete args['Distance']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/IsoCountryCode]') !== -1) url = url.replace('[/IsoCountryCode]', '')
+		if (url.indexOf('[/AreaCode]') !== -1) url = url.replace('[/AreaCode]', '')
+		if (url.indexOf('[/Contains]') !== -1) url = url.replace('[/Contains]', '')
+		if (url.indexOf('[/InRegion]') !== -1) url = url.replace('[/InRegion]', '')
+		if (url.indexOf('[/InPostalCode]') !== -1) url = url.replace('[/InPostalCode]', '')
+		if (url.indexOf('[/NearLatLong]') !== -1) url = url.replace('[/NearLatLong]', '')
+		if (url.indexOf('[/NearNumber]') !== -1) url = url.replace('[/NearNumber]', '')
+		if (url.indexOf('[/InLata]') !== -1) url = url.replace('[/InLata]', '')
+		if (url.indexOf('[/InRateCenter]') !== -1) url = url.replace('[/InRateCenter]', '')
+		if (url.indexOf('[/Distance]') !== -1) url = url.replace('[/Distance]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getAvailableTollFreePhoneNumberList': function(args, opts) {
+		var url = '/{AccountSid}/AvailablePhoneNumbers/{IsoCountryCode}/TollFree.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['IsoCountryCode'] == null) throw new Error('IsoCountryCode is a required parameter')
+		var rgx = new RegExp('\{IsoCountryCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IsoCountryCode'])
+			if (args['IsoCountryCode']) delete args['IsoCountryCode']
+		}
+		if (url.indexOf('[/IsoCountryCode]') !== -1) {
+			url = url.replace('[/IsoCountryCode]', '/' + args['IsoCountryCode'])
+			if (args['IsoCountryCode']) delete args['IsoCountryCode']
+		}
+		var rgx = new RegExp('\{Contains\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Contains'])
+			if (args['Contains']) delete args['Contains']
+		}
+		if (url.indexOf('[/Contains]') !== -1) {
+			url = url.replace('[/Contains]', '/' + args['Contains'])
+			if (args['Contains']) delete args['Contains']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/IsoCountryCode]') !== -1) url = url.replace('[/IsoCountryCode]', '')
+		if (url.indexOf('[/Contains]') !== -1) url = url.replace('[/Contains]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getCall': function(args, opts) {
+		var url = '/{AccountSid}/Calls/{CallSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'modifyLiveCall': function(args, opts) {
+		var url = '/{AccountSid}/Calls/{CallSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		var rgx = new RegExp('\{Url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Url'])
+			if (args['Url']) delete args['Url']
+		}
+		if (url.indexOf('[/Url]') !== -1) {
+			url = url.replace('[/Url]', '/' + args['Url'])
+			if (args['Url']) delete args['Url']
+		}
+		var rgx = new RegExp('\{Method\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Method'])
+			if (args['Method']) delete args['Method']
+		}
+		if (url.indexOf('[/Method]') !== -1) {
+			url = url.replace('[/Method]', '/' + args['Method'])
+			if (args['Method']) delete args['Method']
+		}
+		var rgx = new RegExp('\{Status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/Status]') !== -1) {
+			url = url.replace('[/Status]', '/' + args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		if (url.indexOf('[/Url]') !== -1) url = url.replace('[/Url]', '')
+		if (url.indexOf('[/Method]') !== -1) url = url.replace('[/Method]', '')
+		if (url.indexOf('[/Status]') !== -1) url = url.replace('[/Status]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'getCallList': function(args, opts) {
+		var url = '/{AccountSid}/Calls.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{To\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['To'])
+			if (args['To']) delete args['To']
+		}
+		if (url.indexOf('[/To]') !== -1) {
+			url = url.replace('[/To]', '/' + args['To'])
+			if (args['To']) delete args['To']
+		}
+		var rgx = new RegExp('\{From\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['From'])
+			if (args['From']) delete args['From']
+		}
+		if (url.indexOf('[/From]') !== -1) {
+			url = url.replace('[/From]', '/' + args['From'])
+			if (args['From']) delete args['From']
+		}
+		var rgx = new RegExp('\{Status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/Status]') !== -1) {
+			url = url.replace('[/Status]', '/' + args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		var rgx = new RegExp('\{StartTime\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StartTime'])
+			if (args['StartTime']) delete args['StartTime']
+		}
+		if (url.indexOf('[/StartTime]') !== -1) {
+			url = url.replace('[/StartTime]', '/' + args['StartTime'])
+			if (args['StartTime']) delete args['StartTime']
+		}
+		var rgx = new RegExp('\{EndTime\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['EndTime'])
+			if (args['EndTime']) delete args['EndTime']
+		}
+		if (url.indexOf('[/EndTime]') !== -1) {
+			url = url.replace('[/EndTime]', '/' + args['EndTime'])
+			if (args['EndTime']) delete args['EndTime']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/To]') !== -1) url = url.replace('[/To]', '')
+		if (url.indexOf('[/From]') !== -1) url = url.replace('[/From]', '')
+		if (url.indexOf('[/Status]') !== -1) url = url.replace('[/Status]', '')
+		if (url.indexOf('[/StartTime]') !== -1) url = url.replace('[/StartTime]', '')
+		if (url.indexOf('[/EndTime]') !== -1) url = url.replace('[/EndTime]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'makeCall': function(args, opts) {
+		var url = '/{AccountSid}/Calls.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['From'] == null) throw new Error('From is a required parameter')
+		var rgx = new RegExp('\{From\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['From'])
+			if (args['From']) delete args['From']
+		}
+		if (url.indexOf('[/From]') !== -1) {
+			url = url.replace('[/From]', '/' + args['From'])
+			if (args['From']) delete args['From']
+		}
+		if (args['To'] == null) throw new Error('To is a required parameter')
+		var rgx = new RegExp('\{To\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['To'])
+			if (args['To']) delete args['To']
+		}
+		if (url.indexOf('[/To]') !== -1) {
+			url = url.replace('[/To]', '/' + args['To'])
+			if (args['To']) delete args['To']
+		}
+		if (args['Url'] == null) throw new Error('Url is a required parameter')
+		var rgx = new RegExp('\{Url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Url'])
+			if (args['Url']) delete args['Url']
+		}
+		if (url.indexOf('[/Url]') !== -1) {
+			url = url.replace('[/Url]', '/' + args['Url'])
+			if (args['Url']) delete args['Url']
+		}
+		var rgx = new RegExp('\{Method\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Method'])
+			if (args['Method']) delete args['Method']
+		}
+		if (url.indexOf('[/Method]') !== -1) {
+			url = url.replace('[/Method]', '/' + args['Method'])
+			if (args['Method']) delete args['Method']
+		}
+		var rgx = new RegExp('\{FallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FallbackUrl'])
+			if (args['FallbackUrl']) delete args['FallbackUrl']
+		}
+		if (url.indexOf('[/FallbackUrl]') !== -1) {
+			url = url.replace('[/FallbackUrl]', '/' + args['FallbackUrl'])
+			if (args['FallbackUrl']) delete args['FallbackUrl']
+		}
+		var rgx = new RegExp('\{FallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FallbackMethod'])
+			if (args['FallbackMethod']) delete args['FallbackMethod']
+		}
+		if (url.indexOf('[/FallbackMethod]') !== -1) {
+			url = url.replace('[/FallbackMethod]', '/' + args['FallbackMethod'])
+			if (args['FallbackMethod']) delete args['FallbackMethod']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		var rgx = new RegExp('\{StatusCallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) {
+			url = url.replace('[/StatusCallbackMethod]', '/' + args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		var rgx = new RegExp('\{SendDigits\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SendDigits'])
+			if (args['SendDigits']) delete args['SendDigits']
+		}
+		if (url.indexOf('[/SendDigits]') !== -1) {
+			url = url.replace('[/SendDigits]', '/' + args['SendDigits'])
+			if (args['SendDigits']) delete args['SendDigits']
+		}
+		var rgx = new RegExp('\{IfMachine\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IfMachine'])
+			if (args['IfMachine']) delete args['IfMachine']
+		}
+		if (url.indexOf('[/IfMachine]') !== -1) {
+			url = url.replace('[/IfMachine]', '/' + args['IfMachine'])
+			if (args['IfMachine']) delete args['IfMachine']
+		}
+		var rgx = new RegExp('\{Timeout\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Timeout'])
+			if (args['Timeout']) delete args['Timeout']
+		}
+		if (url.indexOf('[/Timeout]') !== -1) {
+			url = url.replace('[/Timeout]', '/' + args['Timeout'])
+			if (args['Timeout']) delete args['Timeout']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/From]') !== -1) url = url.replace('[/From]', '')
+		if (url.indexOf('[/To]') !== -1) url = url.replace('[/To]', '')
+		if (url.indexOf('[/Url]') !== -1) url = url.replace('[/Url]', '')
+		if (url.indexOf('[/Method]') !== -1) url = url.replace('[/Method]', '')
+		if (url.indexOf('[/FallbackUrl]') !== -1) url = url.replace('[/FallbackUrl]', '')
+		if (url.indexOf('[/FallbackMethod]') !== -1) url = url.replace('[/FallbackMethod]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) url = url.replace('[/StatusCallbackMethod]', '')
+		if (url.indexOf('[/SendDigits]') !== -1) url = url.replace('[/SendDigits]', '')
+		if (url.indexOf('[/IfMachine]') !== -1) url = url.replace('[/IfMachine]', '')
+		if (url.indexOf('[/Timeout]') !== -1) url = url.replace('[/Timeout]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'getIncomingPhoneNumber': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['IncomingPhoneNumberSid'] == null) throw new Error('IncomingPhoneNumberSid is a required parameter')
+		var rgx = new RegExp('\{IncomingPhoneNumberSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) {
+			url = url.replace('[/IncomingPhoneNumberSid]', '/' + args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) url = url.replace('[/IncomingPhoneNumberSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'updateIncomingPhoneNumberByPost': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['IncomingPhoneNumberSid'] == null) throw new Error('IncomingPhoneNumberSid is a required parameter')
+		var rgx = new RegExp('\{IncomingPhoneNumberSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) {
+			url = url.replace('[/IncomingPhoneNumberSid]', '/' + args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{ApiVersion\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ApiVersion'])
+			if (args['ApiVersion']) delete args['ApiVersion']
+		}
+		if (url.indexOf('[/ApiVersion]') !== -1) {
+			url = url.replace('[/ApiVersion]', '/' + args['ApiVersion'])
+			if (args['ApiVersion']) delete args['ApiVersion']
+		}
+		var rgx = new RegExp('\{VoiceUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		if (url.indexOf('[/VoiceUrl]') !== -1) {
+			url = url.replace('[/VoiceUrl]', '/' + args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		var rgx = new RegExp('\{VoiceMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		if (url.indexOf('[/VoiceMethod]') !== -1) {
+			url = url.replace('[/VoiceMethod]', '/' + args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		var rgx = new RegExp('\{VoiceFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) {
+			url = url.replace('[/VoiceFallbackUrl]', '/' + args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		var rgx = new RegExp('\{VoiceFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) {
+			url = url.replace('[/VoiceFallbackMethod]', '/' + args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		var rgx = new RegExp('\{StatusCallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) {
+			url = url.replace('[/StatusCallbackMethod]', '/' + args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		var rgx = new RegExp('\{SmsUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		if (url.indexOf('[/SmsUrl]') !== -1) {
+			url = url.replace('[/SmsUrl]', '/' + args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		var rgx = new RegExp('\{SmsMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/SmsMethod]') !== -1) {
+			url = url.replace('[/SmsMethod]', '/' + args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		var rgx = new RegExp('\{SmsFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) {
+			url = url.replace('[/SmsFallbackUrl]', '/' + args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		var rgx = new RegExp('\{SmsFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) {
+			url = url.replace('[/SmsFallbackMethod]', '/' + args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		var rgx = new RegExp('\{VoiceCallerIdLookup\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) {
+			url = url.replace('[/VoiceCallerIdLookup]', '/' + args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) url = url.replace('[/IncomingPhoneNumberSid]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/ApiVersion]') !== -1) url = url.replace('[/ApiVersion]', '')
+		if (url.indexOf('[/VoiceUrl]') !== -1) url = url.replace('[/VoiceUrl]', '')
+		if (url.indexOf('[/VoiceMethod]') !== -1) url = url.replace('[/VoiceMethod]', '')
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) url = url.replace('[/VoiceFallbackUrl]', '')
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) url = url.replace('[/VoiceFallbackMethod]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) url = url.replace('[/StatusCallbackMethod]', '')
+		if (url.indexOf('[/SmsUrl]') !== -1) url = url.replace('[/SmsUrl]', '')
+		if (url.indexOf('[/SmsMethod]') !== -1) url = url.replace('[/SmsMethod]', '')
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) url = url.replace('[/SmsFallbackUrl]', '')
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) url = url.replace('[/SmsFallbackMethod]', '')
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) url = url.replace('[/VoiceCallerIdLookup]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'updateIncomingPhoneNumberByPut': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['IncomingPhoneNumberSid'] == null) throw new Error('IncomingPhoneNumberSid is a required parameter')
+		var rgx = new RegExp('\{IncomingPhoneNumberSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) {
+			url = url.replace('[/IncomingPhoneNumberSid]', '/' + args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{ApiVersion\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ApiVersion'])
+			if (args['ApiVersion']) delete args['ApiVersion']
+		}
+		if (url.indexOf('[/ApiVersion]') !== -1) {
+			url = url.replace('[/ApiVersion]', '/' + args['ApiVersion'])
+			if (args['ApiVersion']) delete args['ApiVersion']
+		}
+		var rgx = new RegExp('\{VoiceUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		if (url.indexOf('[/VoiceUrl]') !== -1) {
+			url = url.replace('[/VoiceUrl]', '/' + args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		var rgx = new RegExp('\{VoiceMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		if (url.indexOf('[/VoiceMethod]') !== -1) {
+			url = url.replace('[/VoiceMethod]', '/' + args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		var rgx = new RegExp('\{VoiceFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) {
+			url = url.replace('[/VoiceFallbackUrl]', '/' + args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		var rgx = new RegExp('\{VoiceFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) {
+			url = url.replace('[/VoiceFallbackMethod]', '/' + args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		var rgx = new RegExp('\{StatusCallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) {
+			url = url.replace('[/StatusCallbackMethod]', '/' + args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		var rgx = new RegExp('\{SmsUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		if (url.indexOf('[/SmsUrl]') !== -1) {
+			url = url.replace('[/SmsUrl]', '/' + args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		var rgx = new RegExp('\{SmsMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/SmsMethod]') !== -1) {
+			url = url.replace('[/SmsMethod]', '/' + args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		var rgx = new RegExp('\{SmsFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) {
+			url = url.replace('[/SmsFallbackUrl]', '/' + args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		var rgx = new RegExp('\{SmsFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) {
+			url = url.replace('[/SmsFallbackMethod]', '/' + args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		var rgx = new RegExp('\{VoiceCallerIdLookup\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) {
+			url = url.replace('[/VoiceCallerIdLookup]', '/' + args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) url = url.replace('[/IncomingPhoneNumberSid]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/ApiVersion]') !== -1) url = url.replace('[/ApiVersion]', '')
+		if (url.indexOf('[/VoiceUrl]') !== -1) url = url.replace('[/VoiceUrl]', '')
+		if (url.indexOf('[/VoiceMethod]') !== -1) url = url.replace('[/VoiceMethod]', '')
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) url = url.replace('[/VoiceFallbackUrl]', '')
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) url = url.replace('[/VoiceFallbackMethod]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) url = url.replace('[/StatusCallbackMethod]', '')
+		if (url.indexOf('[/SmsUrl]') !== -1) url = url.replace('[/SmsUrl]', '')
+		if (url.indexOf('[/SmsMethod]') !== -1) url = url.replace('[/SmsMethod]', '')
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) url = url.replace('[/SmsFallbackUrl]', '')
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) url = url.replace('[/SmsFallbackMethod]', '')
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) url = url.replace('[/VoiceCallerIdLookup]', '')
+		return http({provider:'twilio',url:url,method:'PUT',params:args, auth: 'manual'}, opts)
+	},
+	'deleteIncomingPhoneNumber': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers/{IncomingPhoneNumberSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['IncomingPhoneNumberSid'] == null) throw new Error('IncomingPhoneNumberSid is a required parameter')
+		var rgx = new RegExp('\{IncomingPhoneNumberSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) {
+			url = url.replace('[/IncomingPhoneNumberSid]', '/' + args['IncomingPhoneNumberSid'])
+			if (args['IncomingPhoneNumberSid']) delete args['IncomingPhoneNumberSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/IncomingPhoneNumberSid]') !== -1) url = url.replace('[/IncomingPhoneNumberSid]', '')
+		return http({provider:'twilio',url:url,method:'DELETE',params:args, auth: 'manual'}, opts)
+	},
+	'getIncomingPhoneNumberList': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{PhoneNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		if (url.indexOf('[/PhoneNumber]') !== -1) {
+			url = url.replace('[/PhoneNumber]', '/' + args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/PhoneNumber]') !== -1) url = url.replace('[/PhoneNumber]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'addIncomingPhoneNumber': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['PhoneNumber'] == null) throw new Error('PhoneNumber is a required parameter')
+		var rgx = new RegExp('\{PhoneNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		if (url.indexOf('[/PhoneNumber]') !== -1) {
+			url = url.replace('[/PhoneNumber]', '/' + args['PhoneNumber'])
+			if (args['PhoneNumber']) delete args['PhoneNumber']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{VoiceUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		if (url.indexOf('[/VoiceUrl]') !== -1) {
+			url = url.replace('[/VoiceUrl]', '/' + args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		var rgx = new RegExp('\{VoiceMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		if (url.indexOf('[/VoiceMethod]') !== -1) {
+			url = url.replace('[/VoiceMethod]', '/' + args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		var rgx = new RegExp('\{VoiceFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) {
+			url = url.replace('[/VoiceFallbackUrl]', '/' + args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		var rgx = new RegExp('\{VoiceFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) {
+			url = url.replace('[/VoiceFallbackMethod]', '/' + args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		var rgx = new RegExp('\{StatusCallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) {
+			url = url.replace('[/StatusCallbackMethod]', '/' + args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		var rgx = new RegExp('\{SmsUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		if (url.indexOf('[/SmsUrl]') !== -1) {
+			url = url.replace('[/SmsUrl]', '/' + args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		var rgx = new RegExp('\{SmsMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/SmsMethod]') !== -1) {
+			url = url.replace('[/SmsMethod]', '/' + args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		var rgx = new RegExp('\{SmsFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) {
+			url = url.replace('[/SmsFallbackUrl]', '/' + args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		var rgx = new RegExp('\{SmsFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) {
+			url = url.replace('[/SmsFallbackMethod]', '/' + args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		var rgx = new RegExp('\{VoiceCallerIdLookup\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) {
+			url = url.replace('[/VoiceCallerIdLookup]', '/' + args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/PhoneNumber]') !== -1) url = url.replace('[/PhoneNumber]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/VoiceUrl]') !== -1) url = url.replace('[/VoiceUrl]', '')
+		if (url.indexOf('[/VoiceMethod]') !== -1) url = url.replace('[/VoiceMethod]', '')
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) url = url.replace('[/VoiceFallbackUrl]', '')
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) url = url.replace('[/VoiceFallbackMethod]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) url = url.replace('[/StatusCallbackMethod]', '')
+		if (url.indexOf('[/SmsUrl]') !== -1) url = url.replace('[/SmsUrl]', '')
+		if (url.indexOf('[/SmsMethod]') !== -1) url = url.replace('[/SmsMethod]', '')
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) url = url.replace('[/SmsFallbackUrl]', '')
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) url = url.replace('[/SmsFallbackMethod]', '')
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) url = url.replace('[/VoiceCallerIdLookup]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'addIncomingPhoneNumberByAreaCode': function(args, opts) {
+		var url = '/{AccountSid}/IncomingPhoneNumbers.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['AreaCode'] == null) throw new Error('AreaCode is a required parameter')
+		var rgx = new RegExp('\{AreaCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AreaCode'])
+			if (args['AreaCode']) delete args['AreaCode']
+		}
+		if (url.indexOf('[/AreaCode]') !== -1) {
+			url = url.replace('[/AreaCode]', '/' + args['AreaCode'])
+			if (args['AreaCode']) delete args['AreaCode']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{VoiceUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		if (url.indexOf('[/VoiceUrl]') !== -1) {
+			url = url.replace('[/VoiceUrl]', '/' + args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		var rgx = new RegExp('\{VoiceMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		if (url.indexOf('[/VoiceMethod]') !== -1) {
+			url = url.replace('[/VoiceMethod]', '/' + args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		var rgx = new RegExp('\{VoiceFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) {
+			url = url.replace('[/VoiceFallbackUrl]', '/' + args['VoiceFallbackUrl'])
+			if (args['VoiceFallbackUrl']) delete args['VoiceFallbackUrl']
+		}
+		var rgx = new RegExp('\{VoiceFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) {
+			url = url.replace('[/VoiceFallbackMethod]', '/' + args['VoiceFallbackMethod'])
+			if (args['VoiceFallbackMethod']) delete args['VoiceFallbackMethod']
+		}
+		var rgx = new RegExp('\{StatusCallback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		if (url.indexOf('[/StatusCallback]') !== -1) {
+			url = url.replace('[/StatusCallback]', '/' + args['StatusCallback'])
+			if (args['StatusCallback']) delete args['StatusCallback']
+		}
+		var rgx = new RegExp('\{StatusCallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) {
+			url = url.replace('[/StatusCallbackMethod]', '/' + args['StatusCallbackMethod'])
+			if (args['StatusCallbackMethod']) delete args['StatusCallbackMethod']
+		}
+		var rgx = new RegExp('\{SmsUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		if (url.indexOf('[/SmsUrl]') !== -1) {
+			url = url.replace('[/SmsUrl]', '/' + args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		var rgx = new RegExp('\{SmsMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/SmsMethod]') !== -1) {
+			url = url.replace('[/SmsMethod]', '/' + args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		var rgx = new RegExp('\{SmsFallbackUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) {
+			url = url.replace('[/SmsFallbackUrl]', '/' + args['SmsFallbackUrl'])
+			if (args['SmsFallbackUrl']) delete args['SmsFallbackUrl']
+		}
+		var rgx = new RegExp('\{SmsFallbackMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) {
+			url = url.replace('[/SmsFallbackMethod]', '/' + args['SmsFallbackMethod'])
+			if (args['SmsFallbackMethod']) delete args['SmsFallbackMethod']
+		}
+		var rgx = new RegExp('\{VoiceCallerIdLookup\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) {
+			url = url.replace('[/VoiceCallerIdLookup]', '/' + args['VoiceCallerIdLookup'])
+			if (args['VoiceCallerIdLookup']) delete args['VoiceCallerIdLookup']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/AreaCode]') !== -1) url = url.replace('[/AreaCode]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/VoiceUrl]') !== -1) url = url.replace('[/VoiceUrl]', '')
+		if (url.indexOf('[/VoiceMethod]') !== -1) url = url.replace('[/VoiceMethod]', '')
+		if (url.indexOf('[/VoiceFallbackUrl]') !== -1) url = url.replace('[/VoiceFallbackUrl]', '')
+		if (url.indexOf('[/VoiceFallbackMethod]') !== -1) url = url.replace('[/VoiceFallbackMethod]', '')
+		if (url.indexOf('[/StatusCallback]') !== -1) url = url.replace('[/StatusCallback]', '')
+		if (url.indexOf('[/StatusCallbackMethod]') !== -1) url = url.replace('[/StatusCallbackMethod]', '')
+		if (url.indexOf('[/SmsUrl]') !== -1) url = url.replace('[/SmsUrl]', '')
+		if (url.indexOf('[/SmsMethod]') !== -1) url = url.replace('[/SmsMethod]', '')
+		if (url.indexOf('[/SmsFallbackUrl]') !== -1) url = url.replace('[/SmsFallbackUrl]', '')
+		if (url.indexOf('[/SmsFallbackMethod]') !== -1) url = url.replace('[/SmsFallbackMethod]', '')
+		if (url.indexOf('[/VoiceCallerIdLookup]') !== -1) url = url.replace('[/VoiceCallerIdLookup]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'getRecordingListForCall': function(args, opts) {
+		var url = '/{AccountSid}/Calls/{CallSid}/Recordings.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		var rgx = new RegExp('\{DateCreated\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['DateCreated'])
+			if (args['DateCreated']) delete args['DateCreated']
+		}
+		if (url.indexOf('[/DateCreated]') !== -1) {
+			url = url.replace('[/DateCreated]', '/' + args['DateCreated'])
+			if (args['DateCreated']) delete args['DateCreated']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		if (url.indexOf('[/DateCreated]') !== -1) url = url.replace('[/DateCreated]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getRecordingListForAccount': function(args, opts) {
+		var url = '/{AccountSid}/Recordings.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		var rgx = new RegExp('\{DateCreated\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['DateCreated'])
+			if (args['DateCreated']) delete args['DateCreated']
+		}
+		if (url.indexOf('[/DateCreated]') !== -1) {
+			url = url.replace('[/DateCreated]', '/' + args['DateCreated'])
+			if (args['DateCreated']) delete args['DateCreated']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		if (url.indexOf('[/DateCreated]') !== -1) url = url.replace('[/DateCreated]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getTranscriptionListForRecording': function(args, opts) {
+		var url = '/{AccountSid}/Recordings/{RecordingSid}/Transcriptions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['RecordingSid'] == null) throw new Error('RecordingSid is a required parameter')
+		var rgx = new RegExp('\{RecordingSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RecordingSid'])
+			if (args['RecordingSid']) delete args['RecordingSid']
+		}
+		if (url.indexOf('[/RecordingSid]') !== -1) {
+			url = url.replace('[/RecordingSid]', '/' + args['RecordingSid'])
+			if (args['RecordingSid']) delete args['RecordingSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/RecordingSid]') !== -1) url = url.replace('[/RecordingSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getTranscription': function(args, opts) {
+		var url = '/{AccountSid}/Transcriptions/{TranscriptionSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['TranscriptionSid'] == null) throw new Error('TranscriptionSid is a required parameter')
+		var rgx = new RegExp('\{TranscriptionSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['TranscriptionSid'])
+			if (args['TranscriptionSid']) delete args['TranscriptionSid']
+		}
+		if (url.indexOf('[/TranscriptionSid]') !== -1) {
+			url = url.replace('[/TranscriptionSid]', '/' + args['TranscriptionSid'])
+			if (args['TranscriptionSid']) delete args['TranscriptionSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/TranscriptionSid]') !== -1) url = url.replace('[/TranscriptionSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getTranscriptionList': function(args, opts) {
+		var url = '/{AccountSid}/Transcriptions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getRecording': function(args, opts) {
+		var url = '/{AccountSid}/Recordings/{RecordingSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "wav"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['RecordingSid'] == null) throw new Error('RecordingSid is a required parameter')
+		var rgx = new RegExp('\{RecordingSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RecordingSid'])
+			if (args['RecordingSid']) delete args['RecordingSid']
+		}
+		if (url.indexOf('[/RecordingSid]') !== -1) {
+			url = url.replace('[/RecordingSid]', '/' + args['RecordingSid'])
+			if (args['RecordingSid']) delete args['RecordingSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/RecordingSid]') !== -1) url = url.replace('[/RecordingSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'deleteRecording': function(args, opts) {
+		var url = '/{AccountSid}/Recordings/{RecordingSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "wav"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['RecordingSid'] == null) throw new Error('RecordingSid is a required parameter')
+		var rgx = new RegExp('\{RecordingSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['RecordingSid'])
+			if (args['RecordingSid']) delete args['RecordingSid']
+		}
+		if (url.indexOf('[/RecordingSid]') !== -1) {
+			url = url.replace('[/RecordingSid]', '/' + args['RecordingSid'])
+			if (args['RecordingSid']) delete args['RecordingSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/RecordingSid]') !== -1) url = url.replace('[/RecordingSid]', '')
+		return http({provider:'twilio',url:url,method:'DELETE',params:args, auth: 'manual'}, opts)
+	},
+	'getNotification': function(args, opts) {
+		var url = '/{AccountSid}/Notifications/{NotificationSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['NotificationSid'] == null) throw new Error('NotificationSid is a required parameter')
+		var rgx = new RegExp('\{NotificationSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NotificationSid'])
+			if (args['NotificationSid']) delete args['NotificationSid']
+		}
+		if (url.indexOf('[/NotificationSid]') !== -1) {
+			url = url.replace('[/NotificationSid]', '/' + args['NotificationSid'])
+			if (args['NotificationSid']) delete args['NotificationSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/NotificationSid]') !== -1) url = url.replace('[/NotificationSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'deleteNotification': function(args, opts) {
+		var url = '/{AccountSid}/Notifications/{NotificationSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['NotificationSid'] == null) throw new Error('NotificationSid is a required parameter')
+		var rgx = new RegExp('\{NotificationSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['NotificationSid'])
+			if (args['NotificationSid']) delete args['NotificationSid']
+		}
+		if (url.indexOf('[/NotificationSid]') !== -1) {
+			url = url.replace('[/NotificationSid]', '/' + args['NotificationSid'])
+			if (args['NotificationSid']) delete args['NotificationSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/NotificationSid]') !== -1) url = url.replace('[/NotificationSid]', '')
+		return http({provider:'twilio',url:url,method:'DELETE',params:args, auth: 'manual'}, opts)
+	},
+	'getNotificationList': function(args, opts) {
+		var url = '/{AccountSid}/Notifications.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{Log\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Log'])
+			if (args['Log']) delete args['Log']
+		}
+		if (url.indexOf('[/Log]') !== -1) {
+			url = url.replace('[/Log]', '/' + args['Log'])
+			if (args['Log']) delete args['Log']
+		}
+		var rgx = new RegExp('\{MessageDate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['MessageDate'])
+			if (args['MessageDate']) delete args['MessageDate']
+		}
+		if (url.indexOf('[/MessageDate]') !== -1) {
+			url = url.replace('[/MessageDate]', '/' + args['MessageDate'])
+			if (args['MessageDate']) delete args['MessageDate']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/Log]') !== -1) url = url.replace('[/Log]', '')
+		if (url.indexOf('[/MessageDate]') !== -1) url = url.replace('[/MessageDate]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getNotificationListForCall': function(args, opts) {
+		var url = '/{AccountSid}/Calls/{CallSid}/Notifications.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		var rgx = new RegExp('\{Log\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Log'])
+			if (args['Log']) delete args['Log']
+		}
+		if (url.indexOf('[/Log]') !== -1) {
+			url = url.replace('[/Log]', '/' + args['Log'])
+			if (args['Log']) delete args['Log']
+		}
+		var rgx = new RegExp('\{MessageDate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['MessageDate'])
+			if (args['MessageDate']) delete args['MessageDate']
+		}
+		if (url.indexOf('[/MessageDate]') !== -1) {
+			url = url.replace('[/MessageDate]', '/' + args['MessageDate'])
+			if (args['MessageDate']) delete args['MessageDate']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		if (url.indexOf('[/Log]') !== -1) url = url.replace('[/Log]', '')
+		if (url.indexOf('[/MessageDate]') !== -1) url = url.replace('[/MessageDate]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getConference': function(args, opts) {
+		var url = '/{AccountSid}/Conferences/{ConferenceSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['ConferenceSid'] == null) throw new Error('ConferenceSid is a required parameter')
+		var rgx = new RegExp('\{ConferenceSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/ConferenceSid]') !== -1) {
+			url = url.replace('[/ConferenceSid]', '/' + args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/ConferenceSid]') !== -1) url = url.replace('[/ConferenceSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getParticipantListForConference': function(args, opts) {
+		var url = '/{AccountSid}/Conferences/{ConferenceSid}/Participants.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['ConferenceSid'] == null) throw new Error('ConferenceSid is a required parameter')
+		var rgx = new RegExp('\{ConferenceSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/ConferenceSid]') !== -1) {
+			url = url.replace('[/ConferenceSid]', '/' + args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		var rgx = new RegExp('\{Muted\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Muted'])
+			if (args['Muted']) delete args['Muted']
+		}
+		if (url.indexOf('[/Muted]') !== -1) {
+			url = url.replace('[/Muted]', '/' + args['Muted'])
+			if (args['Muted']) delete args['Muted']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/ConferenceSid]') !== -1) url = url.replace('[/ConferenceSid]', '')
+		if (url.indexOf('[/Muted]') !== -1) url = url.replace('[/Muted]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getConferenceListForAccount': function(args, opts) {
+		var url = '/{AccountSid}/Conferences.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{Status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		if (url.indexOf('[/Status]') !== -1) {
+			url = url.replace('[/Status]', '/' + args['Status'])
+			if (args['Status']) delete args['Status']
+		}
+		var rgx = new RegExp('\{FriendlyName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		if (url.indexOf('[/FriendlyName]') !== -1) {
+			url = url.replace('[/FriendlyName]', '/' + args['FriendlyName'])
+			if (args['FriendlyName']) delete args['FriendlyName']
+		}
+		var rgx = new RegExp('\{DateCreated\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['DateCreated'])
+			if (args['DateCreated']) delete args['DateCreated']
+		}
+		if (url.indexOf('[/DateCreated]') !== -1) {
+			url = url.replace('[/DateCreated]', '/' + args['DateCreated'])
+			if (args['DateCreated']) delete args['DateCreated']
+		}
+		var rgx = new RegExp('\{DateUpdated\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['DateUpdated'])
+			if (args['DateUpdated']) delete args['DateUpdated']
+		}
+		if (url.indexOf('[/DateUpdated]') !== -1) {
+			url = url.replace('[/DateUpdated]', '/' + args['DateUpdated'])
+			if (args['DateUpdated']) delete args['DateUpdated']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/Status]') !== -1) url = url.replace('[/Status]', '')
+		if (url.indexOf('[/FriendlyName]') !== -1) url = url.replace('[/FriendlyName]', '')
+		if (url.indexOf('[/DateCreated]') !== -1) url = url.replace('[/DateCreated]', '')
+		if (url.indexOf('[/DateUpdated]') !== -1) url = url.replace('[/DateUpdated]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getParticipantForConference': function(args, opts) {
+		var url = '/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['ConferenceSid'] == null) throw new Error('ConferenceSid is a required parameter')
+		var rgx = new RegExp('\{ConferenceSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/ConferenceSid]') !== -1) {
+			url = url.replace('[/ConferenceSid]', '/' + args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/ConferenceSid]') !== -1) url = url.replace('[/ConferenceSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'MuteParticipant': function(args, opts) {
+		var url = '/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['ConferenceSid'] == null) throw new Error('ConferenceSid is a required parameter')
+		var rgx = new RegExp('\{ConferenceSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/ConferenceSid]') !== -1) {
+			url = url.replace('[/ConferenceSid]', '/' + args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		var rgx = new RegExp('\{Muted\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Muted'])
+			if (args['Muted']) delete args['Muted']
+		}
+		if (url.indexOf('[/Muted]') !== -1) {
+			url = url.replace('[/Muted]', '/' + args['Muted'])
+			if (args['Muted']) delete args['Muted']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/ConferenceSid]') !== -1) url = url.replace('[/ConferenceSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		if (url.indexOf('[/Muted]') !== -1) url = url.replace('[/Muted]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'deleteParticipant': function(args, opts) {
+		var url = '/{AccountSid}/Conferences/{ConferenceSid}/Participants/{CallSid}.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['ConferenceSid'] == null) throw new Error('ConferenceSid is a required parameter')
+		var rgx = new RegExp('\{ConferenceSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/ConferenceSid]') !== -1) {
+			url = url.replace('[/ConferenceSid]', '/' + args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (args['CallSid'] == null) throw new Error('CallSid is a required parameter')
+		var rgx = new RegExp('\{CallSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/CallSid]') !== -1) {
+			url = url.replace('[/CallSid]', '/' + args['CallSid'])
+			if (args['CallSid']) delete args['CallSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/ConferenceSid]') !== -1) url = url.replace('[/ConferenceSid]', '')
+		if (url.indexOf('[/CallSid]') !== -1) url = url.replace('[/CallSid]', '')
+		return http({provider:'twilio',url:url,method:'DELETE',params:args, auth: 'manual'}, opts)
+	},
+	'getParticipantListForConference2': function(args, opts) {
+		var url = '/{AccountSid}/Conferences/{ConferenceSid}/Participants.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (args['ConferenceSid'] == null) throw new Error('ConferenceSid is a required parameter')
+		var rgx = new RegExp('\{ConferenceSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		if (url.indexOf('[/ConferenceSid]') !== -1) {
+			url = url.replace('[/ConferenceSid]', '/' + args['ConferenceSid'])
+			if (args['ConferenceSid']) delete args['ConferenceSid']
+		}
+		var rgx = new RegExp('\{Muted\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Muted'])
+			if (args['Muted']) delete args['Muted']
+		}
+		if (url.indexOf('[/Muted]') !== -1) {
+			url = url.replace('[/Muted]', '/' + args['Muted'])
+			if (args['Muted']) delete args['Muted']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/ConferenceSid]') !== -1) url = url.replace('[/ConferenceSid]', '')
+		if (url.indexOf('[/Muted]') !== -1) url = url.replace('[/Muted]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'getSandbox': function(args, opts) {
+		var url = '/{AccountSid}/Sandbox.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		return http({provider:'twilio',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+	},
+	'updateSandboxByPost': function(args, opts) {
+		var url = '/{AccountSid}/Sandbox.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{VoiceUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		if (url.indexOf('[/VoiceUrl]') !== -1) {
+			url = url.replace('[/VoiceUrl]', '/' + args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		var rgx = new RegExp('\{VoiceMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		if (url.indexOf('[/VoiceMethod]') !== -1) {
+			url = url.replace('[/VoiceMethod]', '/' + args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		var rgx = new RegExp('\{SmsUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		if (url.indexOf('[/SmsUrl]') !== -1) {
+			url = url.replace('[/SmsUrl]', '/' + args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		var rgx = new RegExp('\{SmsMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/SmsMethod]') !== -1) {
+			url = url.replace('[/SmsMethod]', '/' + args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/VoiceUrl]') !== -1) url = url.replace('[/VoiceUrl]', '')
+		if (url.indexOf('[/VoiceMethod]') !== -1) url = url.replace('[/VoiceMethod]', '')
+		if (url.indexOf('[/SmsUrl]') !== -1) url = url.replace('[/SmsUrl]', '')
+		if (url.indexOf('[/SmsMethod]') !== -1) url = url.replace('[/SmsMethod]', '')
+		return http({provider:'twilio',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+	},
+	'updateSandboxByPut': function(args, opts) {
+		var url = '/{AccountSid}/Sandbox.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['AccountSid'] == null) throw new Error('AccountSid is a required parameter')
+		var rgx = new RegExp('\{AccountSid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		if (url.indexOf('[/AccountSid]') !== -1) {
+			url = url.replace('[/AccountSid]', '/' + args['AccountSid'])
+			if (args['AccountSid']) delete args['AccountSid']
+		}
+		var rgx = new RegExp('\{VoiceUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		if (url.indexOf('[/VoiceUrl]') !== -1) {
+			url = url.replace('[/VoiceUrl]', '/' + args['VoiceUrl'])
+			if (args['VoiceUrl']) delete args['VoiceUrl']
+		}
+		var rgx = new RegExp('\{VoiceMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		if (url.indexOf('[/VoiceMethod]') !== -1) {
+			url = url.replace('[/VoiceMethod]', '/' + args['VoiceMethod'])
+			if (args['VoiceMethod']) delete args['VoiceMethod']
+		}
+		var rgx = new RegExp('\{SmsUrl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		if (url.indexOf('[/SmsUrl]') !== -1) {
+			url = url.replace('[/SmsUrl]', '/' + args['SmsUrl'])
+			if (args['SmsUrl']) delete args['SmsUrl']
+		}
+		var rgx = new RegExp('\{SmsMethod\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/SmsMethod]') !== -1) {
+			url = url.replace('[/SmsMethod]', '/' + args['SmsMethod'])
+			if (args['SmsMethod']) delete args['SmsMethod']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/AccountSid]') !== -1) url = url.replace('[/AccountSid]', '')
+		if (url.indexOf('[/VoiceUrl]') !== -1) url = url.replace('[/VoiceUrl]', '')
+		if (url.indexOf('[/VoiceMethod]') !== -1) url = url.replace('[/VoiceMethod]', '')
+		if (url.indexOf('[/SmsUrl]') !== -1) url = url.replace('[/SmsUrl]', '')
+		if (url.indexOf('[/SmsMethod]') !== -1) url = url.replace('[/SmsMethod]', '')
+		return http({provider:'twilio',url:url,method:'PUT',params:args, auth: 'manual'}, opts)
+	}
+})
