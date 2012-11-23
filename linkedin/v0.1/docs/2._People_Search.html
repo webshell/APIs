@@ -1,0 +1,117 @@
+<h1>Linkedin API: 2. People Search</h1>
+<p>These methods are relative to the tag '2. People Search'</p><h3>people_search_api</h3>
+<p>The People Search API returns information about people.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>keywords</td>
+			<td>Members who have all the keywords anywhere in their profile, including name. Use this field if you have a name that you<br/>					don't know how to accurately split into a first and last name, such as Mao Ze Dong or Jennifer Love Hewitt. Multiple<br/>					words should be separated by a space. (Don't forget to URL encode this data.)<br/>			</td>
+			<td>Princess</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>first-name</td>
+			<td>Members with a matching first name. Matches must be exact. Multiple words should be separated by a space.</td>
+			<td>Clair</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>last-name</td>
+			<td>Members with a matching last name. Matches must be exactly. Multiple words should be separated by a space.</td>
+			<td>Standish</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>company-name</td>
+			<td>Members who have a matching company name on their profile. company-name can be combined with the current-company<br/>					parameter to specifies whether the person is or is not still working at the company. It's often valuable to not be too<br/>					specific with the company name. LinkedIn has made great efforts at standardizing company names, but including suffixes<br/>					such as "Inc" and "Company" may overly limit your search, missing people who did not include those suffixes on their<br/>					company names. It's usually better to search for the basic name of the company and all different versions will be<br/>					returned. This does increase the possibility of a false positive match return, though, so consider the most specific<br/>					terms you can use. For example, consider using "Acme" instead of "Acme, Inc" to find people from a company called Acme,<br/>					Inc. But this runs the risk of finding people from different companies with Acme in the title, such as "Acme Vending"<br/>					and "Acme Services".<br/>			</td>
+			<td>Shermer%20High%20School</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>current-company</td>
+			<td>Valid values are true or false. A value of true matches members who currently work at the company specified in the<br/>					company-name parameter. A value of false matches members who once worked at the company. Omitting the parameter matches<br/>					members who currently or once worked the company.<br/>			</td>
+			<td>Tim%20O%5CReilly</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>Matches members with that title on their profile. Works with the current-title parameter.</td>
+			<td>engineer</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>current-title</td>
+			<td>Valid values are true or false. A value of true matches members whose title is currently the one specified in the<br/>					title-name parameter. A value of false matches members who once had that title. Omitting the parameter matches members<br/>					who currently or once had that title.<br/>			</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>school-name</td>
+			<td>Members who have a matching school name on their profile. school-name can be combined with the current-school parameter<br/>					to specifies whether the person is or is not still at the school. It's often valuable to not be too specific with the<br/>					school name. The same explation provided with company name applies: "Yale" vs. "Yale University".<br/>			</td>
+			<td>Shermer%20High%20School</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>current-school</td>
+			<td>Valid values are true or false. A value of true matches members who currently attend the school specified in the<br/>					school-name parameter. A value of false matches members who once attended the school. Omitting the parameter matches<br/>					members who currently or once attended the school.<br/>			</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>country-code</td>
+			<td>Matches members with a location in a specific country. Values are defined in by ISO 3166 standard. Country codes must be<br/>					in all lower case.<br/>			</td>
+			<td>.us</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>postal-code</td>
+			<td>Matches members centered around a Postal Code. Must be combined with the country-code parameter. Not supported for all<br/>					countries.<br/>			</td>
+			<td>10002</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>distance</td>
+			<td>Matches members within a distance from a central point. This is measured in miles. This is best used in combination with<br/>					both country-code and postal-code.<br/>			</td>
+			<td>1000</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>facet</td>
+			<td>Facet values to search over. Facets provide you with data similar to what appears on left-hand side of the LinkedIn<br/>					Search results page. Use facets to discover for a member:* Who in their network works at a specific company, or group of<br/>					companies.* How the people their network cluster together. What locations or industries are the most popular? * Where<br/>					their connections graduated from school. There are many facet types. Use these values to both receive a bucketed<br/>					histogram of information about a type and also to filter your search query based on that data. To retrieve facet<br/>					histograms, specify both the list of facets you want to retrieve and fields you want for each facet. Eg:<br/>					people-search:(facets:(code,buckets:(code,name,count)))?facets=location&facet=location,us:84,fr:0<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>facets</td>
+			<td>Facet buckets to return. Facets provide you with data similar to what appears on left-hand side of the LinkedIn Search<br/>					results page. Use facets to discover for a member:* Who in their network works at a specific company, or group of<br/>					companies.* How the people their network cluster together. What locations or industries are the most popular? * Where<br/>					their connections graduated from school. There are many facet types. Use these values to both receive a bucketed<br/>					histogram of information about a type and also to filter your search query based on that data. To retrieve facet<br/>					histograms, specify both the list of facets you want to retrieve and fields you want for each facet Eg:<br/>					people-search:(facets:(code,buckets:(code,name,count)))?facets=location,network&facet=location,us:84&facet=network,facet<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>Start location within the result set for paginated returns. This is the zero-based ordinal number of the search return,<br/>					not the number of the page. To see the second page of 10 results per page, specify 10, not 1. Ranges are specified with<br/>					a starting index and a number of results (count) to return. The default value is 0.<br/>			</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>The number of profiles to return. Values can range between 0 and 25. The default value is 10. The total results<br/>					available to any user depends on their account level.<br/>			</td>
+			<td>10</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>Controls the search result order. There are four options:1-connections: Number of connections per person, from largest<br/>					to smallest. 2-recommenders: Number of recommendations per person, from largest to smallest.3-distance: Degree of<br/>					separation within the member's network, from first degree to out of network.4-relevance: Relevance of results based on<br/>					the query, from most to least relevant.By default, results are ordered by the number of connections.<br/>			</td>
+			<td>connections</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
