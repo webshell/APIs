@@ -1,0 +1,159 @@
+({
+	'standardFeeds': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/standardfeeds/{regionID}/{tag}{category}'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		var rgx = new RegExp('\{regionID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['regionID'])
+			if (args['regionID']) delete args['regionID']
+		}
+		if (url.indexOf('[/regionID]') !== -1) {
+			url = url.replace('[/regionID]', '/' + args['regionID'])
+			if (args['regionID']) delete args['regionID']
+		}
+		if (args['tag'] == null) throw new Error('tag is a required parameter')
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		var rgx = new RegExp('\{category\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['category'])
+			if (args['category']) delete args['category']
+		}
+		if (url.indexOf('[/category]') !== -1) {
+			url = url.replace('[/category]', '/' + args['category'])
+			if (args['category']) delete args['category']
+		}
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		if (url.indexOf('[/alt]') !== -1) {
+			url = url.replace('[/alt]', '/' + args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{author\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['author'])
+			if (args['author']) delete args['author']
+		}
+		if (url.indexOf('[/author]') !== -1) {
+			url = url.replace('[/author]', '/' + args['author'])
+			if (args['author']) delete args['author']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{field\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['field'])
+			if (args['field']) delete args['field']
+		}
+		if (url.indexOf('[/field]') !== -1) {
+			url = url.replace('[/field]', '/' + args['field'])
+			if (args['field']) delete args['field']
+		}
+		var rgx = new RegExp('\{fields-language\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		if (url.indexOf('[/fields-language]') !== -1) {
+			url = url.replace('[/fields-language]', '/' + args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		var rgx = new RegExp('\{max-results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (url.indexOf('[/max-results]') !== -1) {
+			url = url.replace('[/max-results]', '/' + args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		var rgx = new RegExp('\{prettyprint\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		if (url.indexOf('[/prettyprint]') !== -1) {
+			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		var rgx = new RegExp('\{start-index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		if (url.indexOf('[/start-index]') !== -1) {
+			url = url.replace('[/start-index]', '/' + args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		var rgx = new RegExp('\{strict\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		if (url.indexOf('[/strict]') !== -1) {
+			url = url.replace('[/strict]', '/' + args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		var rgx = new RegExp('\{v\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (url.indexOf('[/v]') !== -1) {
+			url = url.replace('[/v]', '/' + args['v'])
+			if (args['v']) delete args['v']
+		}
+		var rgx = new RegExp('\{time\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['time'])
+			if (args['time']) delete args['time']
+		}
+		if (url.indexOf('[/time]') !== -1) {
+			url = url.replace('[/time]', '/' + args['time'])
+			if (args['time']) delete args['time']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/regionID]') !== -1) url = url.replace('[/regionID]', '')
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		if (url.indexOf('[/category]') !== -1) url = url.replace('[/category]', '')
+		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
+		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
+		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
+		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
+		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
+		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
+		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
+		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
+		if (url.indexOf('[/time]') !== -1) url = url.replace('[/time]', '')
+		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+	}
+})
