@@ -13,6 +13,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -67,6 +68,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -437,8 +439,8 @@
 		if (url.indexOf('[/uploader]') !== -1) url = url.replace('[/uploader]', '')
 		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'favoriteFeeds': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}/favorites'
+	'videoResponse': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/videos/{videoID}/responses'
 		args = args || {}
 		if (args['projection'] == null) args['projection'] = "api"
 		var rgx = new RegExp('\{projection\}', 'g')
@@ -450,16 +452,17 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
-		if (args['userID'] == null) args['userID'] = "default"
-		var rgx = new RegExp('\{userID\}', 'g')
+		if (args['videoID'] == null) args['videoID'] = "api"
+		var rgx = new RegExp('\{videoID\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['userID'])
-			if (args['userID']) delete args['userID']
+			url = url.replace(rgx, args['videoID'])
+			if (args['videoID']) delete args['videoID']
 		}
-		if (url.indexOf('[/userID]') !== -1) {
-			url = url.replace('[/userID]', '/' + args['userID'])
-			if (args['userID']) delete args['userID']
+		if (url.indexOf('[/videoID]') !== -1) {
+			url = url.replace('[/videoID]', '/' + args['videoID'])
+			if (args['videoID']) delete args['videoID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -514,6 +517,174 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
+		var rgx = new RegExp('\{prettyprint\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		if (url.indexOf('[/prettyprint]') !== -1) {
+			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		var rgx = new RegExp('\{start-index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		if (url.indexOf('[/start-index]') !== -1) {
+			url = url.replace('[/start-index]', '/' + args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		var rgx = new RegExp('\{strict\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		if (url.indexOf('[/strict]') !== -1) {
+			url = url.replace('[/strict]', '/' + args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		var rgx = new RegExp('\{v\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (url.indexOf('[/v]') !== -1) {
+			url = url.replace('[/v]', '/' + args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
+		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
+		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
+		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
+		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
+		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
+		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
+		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
+		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
+		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'deleteVideoResponse': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/videos/{videoID}/responses/{videoResponseID}'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['videoID'] == null) throw new Error('videoID is a required parameter')
+		var rgx = new RegExp('\{videoID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['videoID'])
+			if (args['videoID']) delete args['videoID']
+		}
+		if (url.indexOf('[/videoID]') !== -1) {
+			url = url.replace('[/videoID]', '/' + args['videoID'])
+			if (args['videoID']) delete args['videoID']
+		}
+		if (args['videoResponseID'] == null) throw new Error('videoResponseID is a required parameter')
+		var rgx = new RegExp('\{videoResponseID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['videoResponseID'])
+			if (args['videoResponseID']) delete args['videoResponseID']
+		}
+		if (url.indexOf('[/videoResponseID]') !== -1) {
+			url = url.replace('[/videoResponseID]', '/' + args['videoResponseID'])
+			if (args['videoResponseID']) delete args['videoResponseID']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
+		if (url.indexOf('[/videoResponseID]') !== -1) url = url.replace('[/videoResponseID]', '')
+		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+	},
+	'favoriteFeeds': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}/favorites'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['userID'] == null) args['userID'] = "default"
+		var rgx = new RegExp('\{userID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (url.indexOf('[/userID]') !== -1) {
+			url = url.replace('[/userID]', '/' + args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (args['alt'] == null) args['alt'] = "json"
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		if (url.indexOf('[/alt]') !== -1) {
+			url = url.replace('[/alt]', '/' + args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{author\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['author'])
+			if (args['author']) delete args['author']
+		}
+		if (url.indexOf('[/author]') !== -1) {
+			url = url.replace('[/author]', '/' + args['author'])
+			if (args['author']) delete args['author']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{field\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['field'])
+			if (args['field']) delete args['field']
+		}
+		if (url.indexOf('[/field]') !== -1) {
+			url = url.replace('[/field]', '/' + args['field'])
+			if (args['field']) delete args['field']
+		}
+		var rgx = new RegExp('\{fields-language\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		if (url.indexOf('[/fields-language]') !== -1) {
+			url = url.replace('[/fields-language]', '/' + args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		var rgx = new RegExp('\{max-results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (url.indexOf('[/max-results]') !== -1) {
+			url = url.replace('[/max-results]', '/' + args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -564,6 +735,33 @@
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
+	'userDeleteFavorite': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/favorites/{favoriteVideoID}'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['favoriteVideoID'] == null) throw new Error('favoriteVideoID is a required parameter')
+		var rgx = new RegExp('\{favoriteVideoID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['favoriteVideoID'])
+			if (args['favoriteVideoID']) delete args['favoriteVideoID']
+		}
+		if (url.indexOf('[/favoriteVideoID]') !== -1) {
+			url = url.replace('[/favoriteVideoID]', '/' + args['favoriteVideoID'])
+			if (args['favoriteVideoID']) delete args['favoriteVideoID']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/favoriteVideoID]') !== -1) url = url.replace('[/favoriteVideoID]', '')
+		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+	},
 	'playlistFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com//feeds/{projection}/playlists/{playlistID}'
 		args = args || {}
@@ -587,6 +785,7 @@
 			url = url.replace('[/playlistID]', '/' + args['playlistID'])
 			if (args['playlistID']) delete args['playlistID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -641,6 +840,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -714,6 +914,7 @@
 			url = url.replace('[/userID]', '/' + args['userID'])
 			if (args['userID']) delete args['userID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -768,6 +969,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -851,6 +1053,7 @@
 			url = url.replace('[/playlistEntryID]', '/' + args['playlistEntryID'])
 			if (args['playlistEntryID']) delete args['playlistEntryID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -905,6 +1108,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1006,6 +1210,7 @@
 			url = url.replace('[/userID]', '/' + args['userID'])
 			if (args['userID']) delete args['userID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1060,6 +1265,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1137,8 +1343,8 @@
 		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
 		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
 	},
-	'userProfile': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}'
+	'searchPlaylists': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/playlists/snippets'
 		args = args || {}
 		if (args['projection'] == null) args['projection'] = "api"
 		var rgx = new RegExp('\{projection\}', 'g')
@@ -1150,16 +1356,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
-		if (args['userID'] == null) args['userID'] = "default"
-		var rgx = new RegExp('\{userID\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['userID'])
-			if (args['userID']) delete args['userID']
-		}
-		if (url.indexOf('[/userID]') !== -1) {
-			url = url.replace('[/userID]', '/' + args['userID'])
-			if (args['userID']) delete args['userID']
-		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1214,6 +1411,146 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
+		var rgx = new RegExp('\{prettyprint\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		if (url.indexOf('[/prettyprint]') !== -1) {
+			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		var rgx = new RegExp('\{start-index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		if (url.indexOf('[/start-index]') !== -1) {
+			url = url.replace('[/start-index]', '/' + args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		var rgx = new RegExp('\{strict\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		if (url.indexOf('[/strict]') !== -1) {
+			url = url.replace('[/strict]', '/' + args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		var rgx = new RegExp('\{v\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (url.indexOf('[/v]') !== -1) {
+			url = url.replace('[/v]', '/' + args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
+		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
+		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
+		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
+		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
+		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
+		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
+		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'userProfile': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['userID'] == null) args['userID'] = "default"
+		var rgx = new RegExp('\{userID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (url.indexOf('[/userID]') !== -1) {
+			url = url.replace('[/userID]', '/' + args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (args['alt'] == null) args['alt'] = "json"
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		if (url.indexOf('[/alt]') !== -1) {
+			url = url.replace('[/alt]', '/' + args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{author\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['author'])
+			if (args['author']) delete args['author']
+		}
+		if (url.indexOf('[/author]') !== -1) {
+			url = url.replace('[/author]', '/' + args['author'])
+			if (args['author']) delete args['author']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{field\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['field'])
+			if (args['field']) delete args['field']
+		}
+		if (url.indexOf('[/field]') !== -1) {
+			url = url.replace('[/field]', '/' + args['field'])
+			if (args['field']) delete args['field']
+		}
+		var rgx = new RegExp('\{fields-language\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		if (url.indexOf('[/fields-language]') !== -1) {
+			url = url.replace('[/fields-language]', '/' + args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		var rgx = new RegExp('\{max-results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (url.indexOf('[/max-results]') !== -1) {
+			url = url.replace('[/max-results]', '/' + args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1277,6 +1614,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1331,6 +1669,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1403,6 +1742,7 @@
 			url = url.replace('[/userID]', '/' + args['userID'])
 			if (args['userID']) delete args['userID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1457,6 +1797,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1507,33 +1848,6 @@
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'userDeleteFavorite': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/favorites/{favoriteVideoID}'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (args['favoriteVideoID'] == null) throw new Error('favoriteVideoID is a required parameter')
-		var rgx = new RegExp('\{favoriteVideoID\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['favoriteVideoID'])
-			if (args['favoriteVideoID']) delete args['favoriteVideoID']
-		}
-		if (url.indexOf('[/favoriteVideoID]') !== -1) {
-			url = url.replace('[/favoriteVideoID]', '/' + args['favoriteVideoID'])
-			if (args['favoriteVideoID']) delete args['favoriteVideoID']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/favoriteVideoID]') !== -1) url = url.replace('[/favoriteVideoID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
-	},
 	'userRecommendations': function(args, opts) {
 		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/recommendations'
 		args = args || {}
@@ -1547,6 +1861,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1601,6 +1916,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1650,8 +1966,8 @@
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
 	},
-	'videoResponse': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/videos/{videoID}/responses'
+	'userActivityFeeds': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}/events'
 		args = args || {}
 		if (args['projection'] == null) args['projection'] = "api"
 		var rgx = new RegExp('\{projection\}', 'g')
@@ -1663,16 +1979,17 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
-		if (args['videoID'] == null) args['videoID'] = "api"
-		var rgx = new RegExp('\{videoID\}', 'g')
+		if (args['userID'] == null) throw new Error('userID is a required parameter')
+		var rgx = new RegExp('\{userID\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['videoID'])
-			if (args['videoID']) delete args['videoID']
+			url = url.replace(rgx, args['userID'])
+			if (args['userID']) delete args['userID']
 		}
-		if (url.indexOf('[/videoID]') !== -1) {
-			url = url.replace('[/videoID]', '/' + args['videoID'])
-			if (args['videoID']) delete args['videoID']
+		if (url.indexOf('[/userID]') !== -1) {
+			url = url.replace('[/userID]', '/' + args['userID'])
+			if (args['userID']) delete args['userID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1727,6 +2044,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1763,8 +2081,17 @@
 			url = url.replace('[/v]', '/' + args['v'])
 			if (args['v']) delete args['v']
 		}
+		var rgx = new RegExp('\{region\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/region]') !== -1) {
+			url = url.replace('[/region]', '/' + args['region'])
+			if (args['region']) delete args['region']
+		}
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
+		if (url.indexOf('[/userID]') !== -1) url = url.replace('[/userID]', '')
 		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
 		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
@@ -1775,10 +2102,11 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
+		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
 		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'deleteVideoResponse': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/videos/{videoID}/responses/{videoResponseID}'
+	'usersActivityFeeds': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/events'
 		args = args || {}
 		if (args['projection'] == null) args['projection'] = "api"
 		var rgx = new RegExp('\{projection\}', 'g')
@@ -1790,54 +2118,17 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
-		if (args['videoID'] == null) throw new Error('videoID is a required parameter')
-		var rgx = new RegExp('\{videoID\}', 'g')
+		if (args['author'] == null) throw new Error('author is a required parameter')
+		var rgx = new RegExp('\{author\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['videoID'])
-			if (args['videoID']) delete args['videoID']
+			url = url.replace(rgx, args['author'])
+			if (args['author']) delete args['author']
 		}
-		if (url.indexOf('[/videoID]') !== -1) {
-			url = url.replace('[/videoID]', '/' + args['videoID'])
-			if (args['videoID']) delete args['videoID']
+		if (url.indexOf('[/author]') !== -1) {
+			url = url.replace('[/author]', '/' + args['author'])
+			if (args['author']) delete args['author']
 		}
-		if (args['videoResponseID'] == null) throw new Error('videoResponseID is a required parameter')
-		var rgx = new RegExp('\{videoResponseID\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['videoResponseID'])
-			if (args['videoResponseID']) delete args['videoResponseID']
-		}
-		if (url.indexOf('[/videoResponseID]') !== -1) {
-			url = url.replace('[/videoResponseID]', '/' + args['videoResponseID'])
-			if (args['videoResponseID']) delete args['videoResponseID']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
-		if (url.indexOf('[/videoResponseID]') !== -1) url = url.replace('[/videoResponseID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
-	},
-	'subscriptionsFeeds': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}/subscriptions'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (args['userID'] == null) args['userID'] = "default"
-		var rgx = new RegExp('\{userID\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['userID'])
-			if (args['userID']) delete args['userID']
-		}
-		if (url.indexOf('[/userID]') !== -1) {
-			url = url.replace('[/userID]', '/' + args['userID'])
-			if (args['userID']) delete args['userID']
-		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -1892,6 +2183,301 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
+		var rgx = new RegExp('\{prettyprint\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		if (url.indexOf('[/prettyprint]') !== -1) {
+			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		var rgx = new RegExp('\{start-index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		if (url.indexOf('[/start-index]') !== -1) {
+			url = url.replace('[/start-index]', '/' + args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		var rgx = new RegExp('\{strict\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		if (url.indexOf('[/strict]') !== -1) {
+			url = url.replace('[/strict]', '/' + args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		var rgx = new RegExp('\{v\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (url.indexOf('[/v]') !== -1) {
+			url = url.replace('[/v]', '/' + args['v'])
+			if (args['v']) delete args['v']
+		}
+		var rgx = new RegExp('\{region\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/region]') !== -1) {
+			url = url.replace('[/region]', '/' + args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
+		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
+		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
+		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
+		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
+		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
+		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
+		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
+		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
+		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
+		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'userInbox': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/inbox'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['alt'] == null) args['alt'] = "json"
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		if (url.indexOf('[/alt]') !== -1) {
+			url = url.replace('[/alt]', '/' + args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{author\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['author'])
+			if (args['author']) delete args['author']
+		}
+		if (url.indexOf('[/author]') !== -1) {
+			url = url.replace('[/author]', '/' + args['author'])
+			if (args['author']) delete args['author']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{field\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['field'])
+			if (args['field']) delete args['field']
+		}
+		if (url.indexOf('[/field]') !== -1) {
+			url = url.replace('[/field]', '/' + args['field'])
+			if (args['field']) delete args['field']
+		}
+		var rgx = new RegExp('\{fields-language\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		if (url.indexOf('[/fields-language]') !== -1) {
+			url = url.replace('[/fields-language]', '/' + args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		var rgx = new RegExp('\{max-results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (url.indexOf('[/max-results]') !== -1) {
+			url = url.replace('[/max-results]', '/' + args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
+		var rgx = new RegExp('\{prettyprint\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		if (url.indexOf('[/prettyprint]') !== -1) {
+			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
+			if (args['prettyprint']) delete args['prettyprint']
+		}
+		var rgx = new RegExp('\{start-index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		if (url.indexOf('[/start-index]') !== -1) {
+			url = url.replace('[/start-index]', '/' + args['start-index'])
+			if (args['start-index']) delete args['start-index']
+		}
+		var rgx = new RegExp('\{strict\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		if (url.indexOf('[/strict]') !== -1) {
+			url = url.replace('[/strict]', '/' + args['strict'])
+			if (args['strict']) delete args['strict']
+		}
+		var rgx = new RegExp('\{v\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['v'])
+			if (args['v']) delete args['v']
+		}
+		if (url.indexOf('[/v]') !== -1) {
+			url = url.replace('[/v]', '/' + args['v'])
+			if (args['v']) delete args['v']
+		}
+		var rgx = new RegExp('\{region\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/region]') !== -1) {
+			url = url.replace('[/region]', '/' + args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
+		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
+		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
+		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
+		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
+		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
+		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
+		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
+		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
+		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+	},
+	'deleteMessage': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/inbox/{messageID}'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['messageID'] == null) throw new Error('messageID is a required parameter')
+		var rgx = new RegExp('\{messageID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['messageID'])
+			if (args['messageID']) delete args['messageID']
+		}
+		if (url.indexOf('[/messageID]') !== -1) {
+			url = url.replace('[/messageID]', '/' + args['messageID'])
+			if (args['messageID']) delete args['messageID']
+		}
+		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
+		if (url.indexOf('[/messageID]') !== -1) url = url.replace('[/messageID]', '')
+		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+	},
+	'subscriptionsFeeds': function(args, opts) {
+		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}/subscriptions'
+		args = args || {}
+		if (args['projection'] == null) args['projection'] = "api"
+		var rgx = new RegExp('\{projection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (url.indexOf('[/projection]') !== -1) {
+			url = url.replace('[/projection]', '/' + args['projection'])
+			if (args['projection']) delete args['projection']
+		}
+		if (args['userID'] == null) args['userID'] = "default"
+		var rgx = new RegExp('\{userID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (url.indexOf('[/userID]') !== -1) {
+			url = url.replace('[/userID]', '/' + args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (args['alt'] == null) args['alt'] = "json"
+		var rgx = new RegExp('\{alt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		if (url.indexOf('[/alt]') !== -1) {
+			url = url.replace('[/alt]', '/' + args['alt'])
+			if (args['alt']) delete args['alt']
+		}
+		var rgx = new RegExp('\{author\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['author'])
+			if (args['author']) delete args['author']
+		}
+		if (url.indexOf('[/author]') !== -1) {
+			url = url.replace('[/author]', '/' + args['author'])
+			if (args['author']) delete args['author']
+		}
+		var rgx = new RegExp('\{callback\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		var rgx = new RegExp('\{field\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['field'])
+			if (args['field']) delete args['field']
+		}
+		if (url.indexOf('[/field]') !== -1) {
+			url = url.replace('[/field]', '/' + args['field'])
+			if (args['field']) delete args['field']
+		}
+		var rgx = new RegExp('\{fields-language\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		if (url.indexOf('[/fields-language]') !== -1) {
+			url = url.replace('[/fields-language]', '/' + args['fields-language'])
+			if (args['fields-language']) delete args['fields-language']
+		}
+		var rgx = new RegExp('\{max-results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (url.indexOf('[/max-results]') !== -1) {
+			url = url.replace('[/max-results]', '/' + args['max-results'])
+			if (args['max-results']) delete args['max-results']
+		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -1965,6 +2551,7 @@
 			url = url.replace('[/userID]', '/' + args['userID'])
 			if (args['userID']) delete args['userID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2019,6 +2606,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -2109,6 +2697,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2163,6 +2752,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -2225,6 +2815,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2279,133 +2870,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
-		var rgx = new RegExp('\{prettyprint\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		if (url.indexOf('[/prettyprint]') !== -1) {
-			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		var rgx = new RegExp('\{start-index\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		if (url.indexOf('[/start-index]') !== -1) {
-			url = url.replace('[/start-index]', '/' + args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		var rgx = new RegExp('\{strict\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		if (url.indexOf('[/strict]') !== -1) {
-			url = url.replace('[/strict]', '/' + args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		var rgx = new RegExp('\{v\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['v'])
-			if (args['v']) delete args['v']
-		}
-		if (url.indexOf('[/v]') !== -1) {
-			url = url.replace('[/v]', '/' + args['v'])
-			if (args['v']) delete args['v']
-		}
-		if (args['q'] == null) throw new Error('q is a required parameter')
-		var rgx = new RegExp('\{q\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['q'])
-			if (args['q']) delete args['q']
-		}
-		if (url.indexOf('[/q]') !== -1) {
-			url = url.replace('[/q]', '/' + args['q'])
-			if (args['q']) delete args['q']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
-		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
-		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
-		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
-		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
-		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
-		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
-		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
-		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
-		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'searchPlaylists': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/playlists/snippets'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		var rgx = new RegExp('\{alt\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		if (url.indexOf('[/alt]') !== -1) {
-			url = url.replace('[/alt]', '/' + args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		var rgx = new RegExp('\{author\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['author'])
-			if (args['author']) delete args['author']
-		}
-		if (url.indexOf('[/author]') !== -1) {
-			url = url.replace('[/author]', '/' + args['author'])
-			if (args['author']) delete args['author']
-		}
-		var rgx = new RegExp('\{callback\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		if (url.indexOf('[/callback]') !== -1) {
-			url = url.replace('[/callback]', '/' + args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		var rgx = new RegExp('\{field\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['field'])
-			if (args['field']) delete args['field']
-		}
-		if (url.indexOf('[/field]') !== -1) {
-			url = url.replace('[/field]', '/' + args['field'])
-			if (args['field']) delete args['field']
-		}
-		var rgx = new RegExp('\{fields-language\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		if (url.indexOf('[/fields-language]') !== -1) {
-			url = url.replace('[/fields-language]', '/' + args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		var rgx = new RegExp('\{max-results\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		if (url.indexOf('[/max-results]') !== -1) {
-			url = url.replace('[/max-results]', '/' + args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -2479,6 +2944,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2533,6 +2999,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -2605,6 +3072,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2659,6 +3127,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -2731,6 +3200,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2785,6 +3255,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -2867,6 +3338,7 @@
 			url = url.replace('[/projection]', '/' + args['projection'])
 			if (args['projection']) delete args['projection']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -2921,6 +3393,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -3003,6 +3476,7 @@
 			url = url.replace('[/userID]', '/' + args['userID'])
 			if (args['userID']) delete args['userID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -3057,6 +3531,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -3140,6 +3615,7 @@
 			url = url.replace('[/videoID]', '/' + args['videoID'])
 			if (args['videoID']) delete args['videoID']
 		}
+		if (args['alt'] == null) args['alt'] = "json"
 		var rgx = new RegExp('\{alt\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['alt'])
@@ -3194,6 +3670,7 @@
 			url = url.replace('[/max-results]', '/' + args['max-results'])
 			if (args['max-results']) delete args['max-results']
 		}
+		if (args['prettyprint'] == null) args['prettyprint'] = "true"
 		var rgx = new RegExp('\{prettyprint\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prettyprint'])
@@ -3281,432 +3758,5 @@
 		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
 		if (url.indexOf('[/commentID]') !== -1) url = url.replace('[/commentID]', '')
 		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'userActivityFeeds': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/{userID}/events'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (args['userID'] == null) throw new Error('userID is a required parameter')
-		var rgx = new RegExp('\{userID\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['userID'])
-			if (args['userID']) delete args['userID']
-		}
-		if (url.indexOf('[/userID]') !== -1) {
-			url = url.replace('[/userID]', '/' + args['userID'])
-			if (args['userID']) delete args['userID']
-		}
-		var rgx = new RegExp('\{alt\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		if (url.indexOf('[/alt]') !== -1) {
-			url = url.replace('[/alt]', '/' + args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		var rgx = new RegExp('\{author\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['author'])
-			if (args['author']) delete args['author']
-		}
-		if (url.indexOf('[/author]') !== -1) {
-			url = url.replace('[/author]', '/' + args['author'])
-			if (args['author']) delete args['author']
-		}
-		var rgx = new RegExp('\{callback\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		if (url.indexOf('[/callback]') !== -1) {
-			url = url.replace('[/callback]', '/' + args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		var rgx = new RegExp('\{field\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['field'])
-			if (args['field']) delete args['field']
-		}
-		if (url.indexOf('[/field]') !== -1) {
-			url = url.replace('[/field]', '/' + args['field'])
-			if (args['field']) delete args['field']
-		}
-		var rgx = new RegExp('\{fields-language\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		if (url.indexOf('[/fields-language]') !== -1) {
-			url = url.replace('[/fields-language]', '/' + args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		var rgx = new RegExp('\{max-results\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		if (url.indexOf('[/max-results]') !== -1) {
-			url = url.replace('[/max-results]', '/' + args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		var rgx = new RegExp('\{prettyprint\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		if (url.indexOf('[/prettyprint]') !== -1) {
-			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		var rgx = new RegExp('\{start-index\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		if (url.indexOf('[/start-index]') !== -1) {
-			url = url.replace('[/start-index]', '/' + args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		var rgx = new RegExp('\{strict\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		if (url.indexOf('[/strict]') !== -1) {
-			url = url.replace('[/strict]', '/' + args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		var rgx = new RegExp('\{v\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['v'])
-			if (args['v']) delete args['v']
-		}
-		if (url.indexOf('[/v]') !== -1) {
-			url = url.replace('[/v]', '/' + args['v'])
-			if (args['v']) delete args['v']
-		}
-		var rgx = new RegExp('\{region\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['region'])
-			if (args['region']) delete args['region']
-		}
-		if (url.indexOf('[/region]') !== -1) {
-			url = url.replace('[/region]', '/' + args['region'])
-			if (args['region']) delete args['region']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/userID]') !== -1) url = url.replace('[/userID]', '')
-		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
-		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
-		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
-		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
-		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
-		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
-		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
-		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
-		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
-		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'usersActivityFeeds': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/events'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (args['author'] == null) throw new Error('author is a required parameter')
-		var rgx = new RegExp('\{author\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['author'])
-			if (args['author']) delete args['author']
-		}
-		if (url.indexOf('[/author]') !== -1) {
-			url = url.replace('[/author]', '/' + args['author'])
-			if (args['author']) delete args['author']
-		}
-		var rgx = new RegExp('\{alt\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		if (url.indexOf('[/alt]') !== -1) {
-			url = url.replace('[/alt]', '/' + args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		var rgx = new RegExp('\{author\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['author'])
-			if (args['author']) delete args['author']
-		}
-		if (url.indexOf('[/author]') !== -1) {
-			url = url.replace('[/author]', '/' + args['author'])
-			if (args['author']) delete args['author']
-		}
-		var rgx = new RegExp('\{callback\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		if (url.indexOf('[/callback]') !== -1) {
-			url = url.replace('[/callback]', '/' + args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		var rgx = new RegExp('\{field\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['field'])
-			if (args['field']) delete args['field']
-		}
-		if (url.indexOf('[/field]') !== -1) {
-			url = url.replace('[/field]', '/' + args['field'])
-			if (args['field']) delete args['field']
-		}
-		var rgx = new RegExp('\{fields-language\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		if (url.indexOf('[/fields-language]') !== -1) {
-			url = url.replace('[/fields-language]', '/' + args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		var rgx = new RegExp('\{max-results\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		if (url.indexOf('[/max-results]') !== -1) {
-			url = url.replace('[/max-results]', '/' + args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		var rgx = new RegExp('\{prettyprint\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		if (url.indexOf('[/prettyprint]') !== -1) {
-			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		var rgx = new RegExp('\{start-index\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		if (url.indexOf('[/start-index]') !== -1) {
-			url = url.replace('[/start-index]', '/' + args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		var rgx = new RegExp('\{strict\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		if (url.indexOf('[/strict]') !== -1) {
-			url = url.replace('[/strict]', '/' + args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		var rgx = new RegExp('\{v\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['v'])
-			if (args['v']) delete args['v']
-		}
-		if (url.indexOf('[/v]') !== -1) {
-			url = url.replace('[/v]', '/' + args['v'])
-			if (args['v']) delete args['v']
-		}
-		var rgx = new RegExp('\{region\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['region'])
-			if (args['region']) delete args['region']
-		}
-		if (url.indexOf('[/region]') !== -1) {
-			url = url.replace('[/region]', '/' + args['region'])
-			if (args['region']) delete args['region']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
-		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
-		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
-		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
-		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
-		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
-		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
-		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
-		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
-		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
-		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'userInbox': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/inbox'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		var rgx = new RegExp('\{alt\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		if (url.indexOf('[/alt]') !== -1) {
-			url = url.replace('[/alt]', '/' + args['alt'])
-			if (args['alt']) delete args['alt']
-		}
-		var rgx = new RegExp('\{author\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['author'])
-			if (args['author']) delete args['author']
-		}
-		if (url.indexOf('[/author]') !== -1) {
-			url = url.replace('[/author]', '/' + args['author'])
-			if (args['author']) delete args['author']
-		}
-		var rgx = new RegExp('\{callback\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		if (url.indexOf('[/callback]') !== -1) {
-			url = url.replace('[/callback]', '/' + args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		var rgx = new RegExp('\{field\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['field'])
-			if (args['field']) delete args['field']
-		}
-		if (url.indexOf('[/field]') !== -1) {
-			url = url.replace('[/field]', '/' + args['field'])
-			if (args['field']) delete args['field']
-		}
-		var rgx = new RegExp('\{fields-language\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		if (url.indexOf('[/fields-language]') !== -1) {
-			url = url.replace('[/fields-language]', '/' + args['fields-language'])
-			if (args['fields-language']) delete args['fields-language']
-		}
-		var rgx = new RegExp('\{max-results\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		if (url.indexOf('[/max-results]') !== -1) {
-			url = url.replace('[/max-results]', '/' + args['max-results'])
-			if (args['max-results']) delete args['max-results']
-		}
-		var rgx = new RegExp('\{prettyprint\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		if (url.indexOf('[/prettyprint]') !== -1) {
-			url = url.replace('[/prettyprint]', '/' + args['prettyprint'])
-			if (args['prettyprint']) delete args['prettyprint']
-		}
-		var rgx = new RegExp('\{start-index\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		if (url.indexOf('[/start-index]') !== -1) {
-			url = url.replace('[/start-index]', '/' + args['start-index'])
-			if (args['start-index']) delete args['start-index']
-		}
-		var rgx = new RegExp('\{strict\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		if (url.indexOf('[/strict]') !== -1) {
-			url = url.replace('[/strict]', '/' + args['strict'])
-			if (args['strict']) delete args['strict']
-		}
-		var rgx = new RegExp('\{v\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['v'])
-			if (args['v']) delete args['v']
-		}
-		if (url.indexOf('[/v]') !== -1) {
-			url = url.replace('[/v]', '/' + args['v'])
-			if (args['v']) delete args['v']
-		}
-		var rgx = new RegExp('\{region\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['region'])
-			if (args['region']) delete args['region']
-		}
-		if (url.indexOf('[/region]') !== -1) {
-			url = url.replace('[/region]', '/' + args['region'])
-			if (args['region']) delete args['region']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
-		if (url.indexOf('[/author]') !== -1) url = url.replace('[/author]', '')
-		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
-		if (url.indexOf('[/field]') !== -1) url = url.replace('[/field]', '')
-		if (url.indexOf('[/fields-language]') !== -1) url = url.replace('[/fields-language]', '')
-		if (url.indexOf('[/max-results]') !== -1) url = url.replace('[/max-results]', '')
-		if (url.indexOf('[/prettyprint]') !== -1) url = url.replace('[/prettyprint]', '')
-		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
-		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
-		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
-	},
-	'deleteMessage': function(args, opts) {
-		var url = 'http://gdata.youtube.com//feeds/{projection}/users/default/inbox/{messageID}'
-		args = args || {}
-		if (args['projection'] == null) args['projection'] = "api"
-		var rgx = new RegExp('\{projection\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (url.indexOf('[/projection]') !== -1) {
-			url = url.replace('[/projection]', '/' + args['projection'])
-			if (args['projection']) delete args['projection']
-		}
-		if (args['messageID'] == null) throw new Error('messageID is a required parameter')
-		var rgx = new RegExp('\{messageID\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['messageID'])
-			if (args['messageID']) delete args['messageID']
-		}
-		if (url.indexOf('[/messageID]') !== -1) {
-			url = url.replace('[/messageID]', '/' + args['messageID'])
-			if (args['messageID']) delete args['messageID']
-		}
-		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
-		if (url.indexOf('[/messageID]') !== -1) url = url.replace('[/messageID]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
 	}
 })
