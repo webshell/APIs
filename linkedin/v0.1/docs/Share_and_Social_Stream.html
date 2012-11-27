@@ -1,0 +1,211 @@
+<h1>Linkedin API: Share and Social Stream</h1>
+<p>These methods are relative to the tag 'Share and Social Stream'</p><h3>shares</h3>
+<p>The Get Network Updates API returns the users network updates, which is the LinkedIn term for the user's feed. This call returns most of what shows up in the middle column of the LinkedIn.com home page, either for the member or the member's connections.<br/><br/>Note: Before using this API make sure you understand LinkedIn's OAuth Authentication Model.<br/>Network Updates<br/>Returns a feed of event items. Each item contains a core set of information, such as when it occured, what type of event took place, and whether you can comment and like the item.<br/><br/>However, the format of the event's information can vary widely from type to type. Information about changing a profile is not similar to the status published by an application. Each event type needs to be parsed differently.<br/><br/>We may perodically add new event types to this feed, or deprecate old ones.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>scope</td>
+			<td>self to return member's feed. Omitted to return aggregated network feed.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Any valid Network Update Type from the table below. Types must be in all capital letters. To specify more than one Network Update type, add the type parameter to the resource URL for each type.<br/>				      - ANSW : A connection has answered a question posed on LinkedIn Answers. <br/>				      - APPS : An action that occurred in a partner application either by a connection or by an application itself. The contents of the update will be HTML entity encoded.<br/>				      <br/>				      Return types:<br/>				      <br/>				      APPM: Activity of a connection in an application<br/>				      APPS: Applicaiton-to-member direct update. Messages where an applicaiton needs to message a user directly. Rarely used.<br/>				      - CMPY : A change to one of the companies the member is following.<br/><br/>				      Return type:<br/>				      <br/>				      CMPY: A change to company information, personnel (new hire, position change, departure), or a job.<br/>				      - CONN : These updates cover aspects of connections made on LinkedIn. They cover both the user connecting and the user's connections making connections (second degree connections).<br/><br/>Return types:<br/><br/>CONN: A connection has added connections to their network. This update indicates who those new connections are.<br/>NCON: New connections of the member.<br/>CCEM: A contact (not a connection) has just joined LinkedIn and is open to be invited to become a connection. Contacts are added by importing from email. They remain contacts until specifically invited to become a connection.<br/>				      - JOBS : A connection has posted a job posting on LinkedIn<br/><br/>				      Return types:<br/>				      <br/>				      JOBP<br/>				      - JGRP : A connection has joined a group.<br/>				      - PICT : A connection has updated their profile picture.<br/><br/>				      Return types:<br/>				      <br/>				      PICU<br/>				      - PRFX : A connection has updated their extended profile, personal information such as phone number, IM account, and Twitter handle.<br/>				      <br/>				      Return types:<br/>				      <br/>				      PRFX<br/>				      - RECU : A connection was recommended<br/><br/>				      Return types:<br/>				      <br/>				      PREC<br/>				      SVPR<br/>				      - PRFU : A connection has updated their profile. This does not include picture updates, which are covered under PICT type.<br/><br/>				      The fields updated are returned in the XML. Since the first name, last name, and headline are always returned for each update, if those are the only fields you see, then you can assume that the change was to the headline.<br/>				      <br/>				      Return types:<br/>				      <br/>				      PROF<br/>				      - QSTN : A connection has asked a question on LinkedIn Answers.<br/>				      - SHAR : A connection has shared an update or link.<br/><br/>Return types:<br/><br/>SHAR: A connection has shared an update or link.<br/>				      - VIRL : A connection has commented on or liked another update.<br/>				      <br/>				      Return types:<br/>				      <br/>				      VIRL <br/>				      <br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td># of updates to return, with a maximum of 250<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>The offset by which to start Network Update pagination<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>after</td>
+			<td>timestamp after which to retrieve updates for (Ex: 1243834824000) note: precision is milliseconds since the epoch<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>before</td>
+			<td>timestamp before which to retrieve updates for (Ex: 1243834824000) note: precision is milliseconds since the epoch<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>show-hidden-members</td>
+			<td>true or false. default is false. Whether to display updates from people the member has chosen to "hide" from their update stream.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>shares_by_id</h3>
+<p>The Get Network Updates API returns the users network updates, which is the LinkedIn term for the user's feed. This call returns most of what shows up in the middle column of the LinkedIn.com home page, either for the member or the member's connections.<br/><br/>Note: Before using this API make sure you understand LinkedIn's OAuth Authentication Model.<br/>Network Updates<br/>Returns a feed of event items. Each item contains a core set of information, such as when it occured, what type of event took place, and whether you can comment and like the item.<br/><br/>However, the format of the event's information can vary widely from type to type. Information about changing a profile is not similar to the status published by an application. Each event type needs to be parsed differently.<br/><br/>We may perodically add new event types to this feed, or deprecate old ones.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>To retrieve updates from 1st degree connections of the authenticated user (privacy restrictions will apply):<br/>		   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>scope</td>
+			<td>self to return member's feed. Omitted to return aggregated network feed.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Any valid Network Update Type from the table below. Types must be in all capital letters. To specify more than one Network Update type, add the type parameter to the resource URL for each type.<br/>				      - ANSW : A connection has answered a question posed on LinkedIn Answers. <br/>				      - APPS : An action that occurred in a partner application either by a connection or by an application itself. The contents of the update will be HTML entity encoded.<br/>				      <br/>				      Return types:<br/>				      <br/>				      APPM: Activity of a connection in an application<br/>				      APPS: Applicaiton-to-member direct update. Messages where an applicaiton needs to message a user directly. Rarely used.<br/>				      - CMPY : A change to one of the companies the member is following.<br/><br/>				      Return type:<br/>				      <br/>				      CMPY: A change to company information, personnel (new hire, position change, departure), or a job.<br/>				      - CONN : These updates cover aspects of connections made on LinkedIn. They cover both the user connecting and the user's connections making connections (second degree connections).<br/><br/>Return types:<br/><br/>CONN: A connection has added connections to their network. This update indicates who those new connections are.<br/>NCON: New connections of the member.<br/>CCEM: A contact (not a connection) has just joined LinkedIn and is open to be invited to become a connection. Contacts are added by importing from email. They remain contacts until specifically invited to become a connection.<br/>				      - JOBS : A connection has posted a job posting on LinkedIn<br/><br/>				      Return types:<br/>				      <br/>				      JOBP<br/>				      - JGRP : A connection has joined a group.<br/>				      - PICT : A connection has updated their profile picture.<br/><br/>				      Return types:<br/>				      <br/>				      PICU<br/>				      - PRFX : A connection has updated their extended profile, personal information such as phone number, IM account, and Twitter handle.<br/>				      <br/>				      Return types:<br/>				      <br/>				      PRFX<br/>				      - RECU : A connection was recommended<br/><br/>				      Return types:<br/>				      <br/>				      PREC<br/>				      SVPR<br/>				      - PRFU : A connection has updated their profile. This does not include picture updates, which are covered under PICT type.<br/><br/>				      The fields updated are returned in the XML. Since the first name, last name, and headline are always returned for each update, if those are the only fields you see, then you can assume that the change was to the headline.<br/>				      <br/>				      Return types:<br/>				      <br/>				      PROF<br/>				      - QSTN : A connection has asked a question on LinkedIn Answers.<br/>				      - SHAR : A connection has shared an update or link.<br/><br/>Return types:<br/><br/>SHAR: A connection has shared an update or link.<br/>				      - VIRL : A connection has commented on or liked another update.<br/>				      <br/>				      Return types:<br/>				      <br/>				      VIRL <br/>				      <br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td># of updates to return, with a maximum of 250<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>The offset by which to start Network Update pagination<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>after</td>
+			<td>timestamp after which to retrieve updates for (Ex: 1243834824000) note: precision is milliseconds since the epoch<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>before</td>
+			<td>timestamp before which to retrieve updates for (Ex: 1243834824000) note: precision is milliseconds since the epoch<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>show-hidden-members</td>
+			<td>true or false. default is false. Whether to display updates from people the member has chosen to "hide" from their update stream.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>network-stats</h3>
+<p>Network Statistics<br/>Information about the member's network, such as how many connections they have one and two degrees away.<br/>			</p>
+<p><em>Authentication required</em></p>
+	</tbody>
+
+</table>
+<h3>get_update_comments</h3>
+<p>Some Network Updates may have comments attached to them. These kind of updates are called commentable network updates. They are indicated by the presence of the string "true" within the node of update/is-commentable. By default, a network update containing more than 5 comments will only return you the most recent five. This API is used to retrieve all comments for a given network update,where NETWORK UPDATE KEY is a update/update-key representing an update.<br/><br/>		      By default, a network update containing more than 10 comments will only return you the most recent five. To retrieve all comments for a given network update:<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>network_update_key</td>
+			<td>{network_update_key} is a update/update-key representing an update. Returns all comments belonging to this network update, following the same structure as above.<br/>		   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>get_update_likes</h3>
+<p>Some Network Updates may have likes attached to them. These kind of updates are called likeable network updates. They are indicated by the presence of the string "true" within the node of update/is-likeable. This API is used to retrive the complete list of people who liked an update, where NETWORK UPDATE KEY is a update/update-key representing an update.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>network_update_key</td>
+			<td>{network_update_key} is a update/update-key representing an update. Returns all comments belonging to this network update, following the same structure as above.<br/>		   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>post_update_comments</h3>
+<p>When you want to post a new comment to an existing update,1. Ensure the node update/is-commentable in Network Update Comment XML POST Body is set to true 2. Take the update/update-key from an existing update and POST to the URL structure. A successful comment POST will return a 201 Content Created status code. Comments have a maximum length of 700 characters.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>network_update_key</td>
+			<td>{network_update_key} is a update/update-key representing an update. Returns all comments belonging to this network update, following the same structure as above.<br/>		   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>post_update_likes</h3>
+<p>When you want to Like or Unlike an existing update, 1. Ensure the node update/is-likeable in Network Update Like XML POST Body is set to true 2. Use the same update/update-key and PUT to the URL. A successful comment PUT will return a 201 Content Created status code.<br/>			 </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>network_update_key</td>
+			<td>{network_update_key} is a update/update-key representing an update. Returns all comments belonging to this network update, following the same structure as above.<br/>		   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>post_network_update</h3>
+<p>The Post Network Update API allows you to send in an activity from your site to be posted to the first degree connections of the LinkedIn user. Network updates are the LinkedIn term for news feed activities. Once a network update is posted, it cannot be removed or deleted. A successful response will be indicated by a 201 Created HTTP status code and an empty response body. Invitation should be of POST XML Body, given a sample.<br/>			</p>
+<p><em>Authentication required</em></p>
+	</tbody>
+
+</table>

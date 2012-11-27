@@ -1,5 +1,37 @@
-<h1>Linkedin API: 2. People Search</h1>
-<p>These methods are relative to the tag '2. People Search'</p><h3>people_search_api</h3>
+<h1>Linkedin API: People</h1>
+<p>These methods are relative to the tag 'People'</p><h3>profile</h3>
+<p>The Profile API returns a member's LinkedIn profile.<br/> Displays the profile the requestor is allowed to see. The specific content will depend on the privacy settings of the profile owner, the relationship (degree separation or groups in common) between the owner and requestor, and in rare cases, the privacy settings of the requestor.<br/>			</p>
+<p><em>Authentication required</em></p>
+	</tbody>
+
+</table>
+<h3>profileGet</h3>
+<p>The Profile API returns a member's LinkedIn profile.<br/>				  Returns the public profile. The fields returned are only determined by the privacy settings of the profile owner.<br/>                                </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>If you know the member token of the profile you want to display, you can use it as the key value for this API call. Requesting by member token only returns a profile from the logged in person's three degree network and doesn't return any out-of-network profiles. You cannot use a member token to get a public profile.<br/>				     </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>Using the Public Profile URL will return a profile from inside or outside the logged in member's three degree network. The Public Profile URL must be URL escaped.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>people_search</h3>
 <p>The People Search API returns information about people.<br/>               </p>
 <p><em>Authentication required</em></p>
 <table class="table">
@@ -110,6 +142,132 @@
 			<td>sort</td>
 			<td>Controls the search result order. There are four options:1-connections: Number of connections per person, from largest<br/>					to smallest. 2-recommenders: Number of recommendations per person, from largest to smallest.3-distance: Degree of<br/>					separation within the member's network, from first degree to out of network.4-relevance: Relevance of results based on<br/>					the query, from most to least relevant.By default, results are ordered by the number of connections.<br/>			</td>
 			<td>connections</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>connection</h3>
+<p>The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections. If your application iteratively polls to find the latest set of a member's connections, please make a call like: http://api.linkedin.com/v1/people/~/connections?modified=new&modified-since=1267401600000<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>start</td>
+			<td>Starting location within the result set for paginated returns. Ranges are specified with a starting index and a number<br/>					of results (count) to return. The default value for this parameter is 0.<br/>			</td>
+			<td>connections</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>Ranges are specified with a starting index and a number of results to return. You may specify any number.</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>modified</td>
+			<td>Values are updated or new.</td>
+			<td>new</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>modified-since</td>
+			<td>Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient set of results in the<br/>					least amount of time.<br/>			</td>
+			<td>1262304000</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>connection_id</h3>
+<p>The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>userID</td>
+			<td>the member ID !<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>Starting location within the result set for paginated returns. Ranges are specified with a starting index and a number<br/>					of results (count) to return. The default value for this parameter is 0.<br/>			</td>
+			<td>connections</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>Ranges are specified with a starting index and a number of results to return. You may specify any number.</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>modified</td>
+			<td>Values are updated or new.</td>
+			<td>new</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>modified-since</td>
+			<td>Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient set of results in the<br/>					least amount of time.<br/>			</td>
+			<td>1262304000</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>connection_url</h3>
+<p>The Connections API returns a list of connections for a user who has granted access to his/her account. You can control the fields you want to have returned and the number of connections returned for each call.You can use any of three ways of identifying the user: ~, member ID, or public profile URL.If you don't specify any parameters in the URL, you get full details of all connections.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>public profile URL<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start</td>
+			<td>Starting location within the result set for paginated returns. Ranges are specified with a starting index and a number<br/>					of results (count) to return. The default value for this parameter is 0.<br/>			</td>
+			<td>connections</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>count</td>
+			<td>Ranges are specified with a starting index and a number of results to return. You may specify any number.</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>modified</td>
+			<td>Values are updated or new.</td>
+			<td>new</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>modified-since</td>
+			<td>Value as a Unix time stamp of milliseconds since epoch. This provides you with the most efficient set of results in the<br/>					least amount of time.<br/>			</td>
+			<td>1262304000</td>
 			<td>true</td>
 		</tr>
 	</tbody>

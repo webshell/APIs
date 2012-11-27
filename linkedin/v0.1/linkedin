@@ -1,21 +1,36 @@
 ({
 	auth:function(){return auth({provider:'linkedin'})},
-	'profile_api': function(args, opts) {
+	'profile': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~'
 		args = args || {}
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'profile_id_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/id'
+	'profileGet': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/'
 		args = args || {}
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'profile_url_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/url'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'people_search_api': function(args, opts) {
+	'people_search': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people-search'
 		args = args || {}
 		var rgx = new RegExp('\{keywords\}', 'g')
@@ -190,7 +205,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'connection_api': function(args, opts) {
+	'connection': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/connections'
 		args = args || {}
 		var rgx = new RegExp('\{start\}', 'g')
@@ -235,9 +250,18 @@
 		if (url.indexOf('[/modified-since]') !== -1) url = url.replace('[/modified-since]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'connection_id_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/id/connections'
+	'connection_id': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/id={userID}/connections'
 		args = args || {}
+		var rgx = new RegExp('\{userID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userID'])
+			if (args['userID']) delete args['userID']
+		}
+		if (url.indexOf('[/userID]') !== -1) {
+			url = url.replace('[/userID]', '/' + args['userID'])
+			if (args['userID']) delete args['userID']
+		}
 		var rgx = new RegExp('\{start\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['start'])
@@ -274,15 +298,25 @@
 			url = url.replace('[/modified-since]', '/' + args['modified-since'])
 			if (args['modified-since']) delete args['modified-since']
 		}
+		if (url.indexOf('[/userID]') !== -1) url = url.replace('[/userID]', '')
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/modified]') !== -1) url = url.replace('[/modified]', '')
 		if (url.indexOf('[/modified-since]') !== -1) url = url.replace('[/modified-since]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'connection_url_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/url/connections'
+	'connection_url': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/url={url}/connections'
 		args = args || {}
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
 		var rgx = new RegExp('\{start\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['start'])
@@ -319,23 +353,543 @@
 			url = url.replace('[/modified-since]', '/' + args['modified-since'])
 			if (args['modified-since']) delete args['modified-since']
 		}
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/modified]') !== -1) url = url.replace('[/modified]', '')
 		if (url.indexOf('[/modified-since]') !== -1) url = url.replace('[/modified-since]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'messaging_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/mailbox'
+	'join-group': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+	},
+	'leave-group': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get-groups': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/group-memberships'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'get-suggested-groups': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/suggestions/groups'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'group-settings': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/settings'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'group-posts': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/groups/{id}/posts'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'create-group-post': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/groups/{id}/posts'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+	},
+	'like-group-post': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/posts/{id}/relation-to-viewer/is-liked'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+	},
+	'comment-on-group-post': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/posts/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+	},
+	'get_company': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/companies'
+		args = args || {}
+		var rgx = new RegExp('\{universal-name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['universal-name'])
+			if (args['universal-name']) delete args['universal-name']
+		}
+		if (url.indexOf('[/universal-name]') !== -1) {
+			url = url.replace('[/universal-name]', '/' + args['universal-name'])
+			if (args['universal-name']) delete args['universal-name']
+		}
+		var rgx = new RegExp('\{email-domain\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email-domain'])
+			if (args['email-domain']) delete args['email-domain']
+		}
+		if (url.indexOf('[/email-domain]') !== -1) {
+			url = url.replace('[/email-domain]', '/' + args['email-domain'])
+			if (args['email-domain']) delete args['email-domain']
+		}
+		if (url.indexOf('[/universal-name]') !== -1) url = url.replace('[/universal-name]', '')
+		if (url.indexOf('[/email-domain]') !== -1) url = url.replace('[/email-domain]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'get_company_by_id': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/companies/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'company-search': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/company-search'
+		args = args || {}
+		var rgx = new RegExp('\{keywords\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['keywords'])
+			if (args['keywords']) delete args['keywords']
+		}
+		if (url.indexOf('[/keywords]') !== -1) {
+			url = url.replace('[/keywords]', '/' + args['keywords'])
+			if (args['keywords']) delete args['keywords']
+		}
+		var rgx = new RegExp('\{hq-only\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hq-only'])
+			if (args['hq-only']) delete args['hq-only']
+		}
+		if (url.indexOf('[/hq-only]') !== -1) {
+			url = url.replace('[/hq-only]', '/' + args['hq-only'])
+			if (args['hq-only']) delete args['hq-only']
+		}
+		var rgx = new RegExp('\{facet\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['facet'])
+			if (args['facet']) delete args['facet']
+		}
+		if (url.indexOf('[/facet]') !== -1) {
+			url = url.replace('[/facet]', '/' + args['facet'])
+			if (args['facet']) delete args['facet']
+		}
+		var rgx = new RegExp('\{facets\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['facets'])
+			if (args['facets']) delete args['facets']
+		}
+		if (url.indexOf('[/facets]') !== -1) {
+			url = url.replace('[/facets]', '/' + args['facets'])
+			if (args['facets']) delete args['facets']
+		}
+		var rgx = new RegExp('\{start\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start'])
+			if (args['start']) delete args['start']
+		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/sort]') !== -1) {
+			url = url.replace('[/sort]', '/' + args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/keywords]') !== -1) url = url.replace('[/keywords]', '')
+		if (url.indexOf('[/hq-only]') !== -1) url = url.replace('[/hq-only]', '')
+		if (url.indexOf('[/facet]') !== -1) url = url.replace('[/facet]', '')
+		if (url.indexOf('[/facets]') !== -1) url = url.replace('[/facets]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'updates_companies': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/companies/{id}/updates'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{start\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start'])
+			if (args['start']) delete args['start']
+		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{event-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-type'])
+			if (args['event-type']) delete args['event-type']
+		}
+		if (url.indexOf('[/event-type]') !== -1) {
+			url = url.replace('[/event-type]', '/' + args['event-type'])
+			if (args['event-type']) delete args['event-type']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/event-type]') !== -1) url = url.replace('[/event-type]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'followed-companies': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'recommended-companies': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/suggestions/to-follow/companies'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'follow-company': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
 		args = args || {}
 		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
 	},
-	'invitation_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/mailbox'
+	'unfollow-company': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+	},
+	'product-company': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/companies/{id}/products'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'job-details': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/jobs/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'bookmark-jobs': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-bookmarks'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'bookmarking-job': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-bookmarks'
 		args = args || {}
 		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
 	},
-	'network_updates_api': function(args, opts) {
+	'remove-bookmark-job': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-bookmarks/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+	},
+	'recommended-jobs': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-suggestions'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'job-search': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/job-search'
+		args = args || {}
+		var rgx = new RegExp('\{keywords\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['keywords'])
+			if (args['keywords']) delete args['keywords']
+		}
+		if (url.indexOf('[/keywords]') !== -1) {
+			url = url.replace('[/keywords]', '/' + args['keywords'])
+			if (args['keywords']) delete args['keywords']
+		}
+		var rgx = new RegExp('\{company-name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['company-name'])
+			if (args['company-name']) delete args['company-name']
+		}
+		if (url.indexOf('[/company-name]') !== -1) {
+			url = url.replace('[/company-name]', '/' + args['company-name'])
+			if (args['company-name']) delete args['company-name']
+		}
+		var rgx = new RegExp('\{job-title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['job-title'])
+			if (args['job-title']) delete args['job-title']
+		}
+		if (url.indexOf('[/job-title]') !== -1) {
+			url = url.replace('[/job-title]', '/' + args['job-title'])
+			if (args['job-title']) delete args['job-title']
+		}
+		var rgx = new RegExp('\{country-code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['country-code'])
+			if (args['country-code']) delete args['country-code']
+		}
+		if (url.indexOf('[/country-code]') !== -1) {
+			url = url.replace('[/country-code]', '/' + args['country-code'])
+			if (args['country-code']) delete args['country-code']
+		}
+		var rgx = new RegExp('\{postal-code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postal-code'])
+			if (args['postal-code']) delete args['postal-code']
+		}
+		if (url.indexOf('[/postal-code]') !== -1) {
+			url = url.replace('[/postal-code]', '/' + args['postal-code'])
+			if (args['postal-code']) delete args['postal-code']
+		}
+		var rgx = new RegExp('\{distance\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/distance]') !== -1) {
+			url = url.replace('[/distance]', '/' + args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		var rgx = new RegExp('\{facet\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['facet'])
+			if (args['facet']) delete args['facet']
+		}
+		if (url.indexOf('[/facet]') !== -1) {
+			url = url.replace('[/facet]', '/' + args['facet'])
+			if (args['facet']) delete args['facet']
+		}
+		var rgx = new RegExp('\{facets\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['facets'])
+			if (args['facets']) delete args['facets']
+		}
+		if (url.indexOf('[/facets]') !== -1) {
+			url = url.replace('[/facets]', '/' + args['facets'])
+			if (args['facets']) delete args['facets']
+		}
+		var rgx = new RegExp('\{start\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start'])
+			if (args['start']) delete args['start']
+		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/sort]') !== -1) {
+			url = url.replace('[/sort]', '/' + args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/keywords]') !== -1) url = url.replace('[/keywords]', '')
+		if (url.indexOf('[/company-name]') !== -1) url = url.replace('[/company-name]', '')
+		if (url.indexOf('[/job-title]') !== -1) url = url.replace('[/job-title]', '')
+		if (url.indexOf('[/country-code]') !== -1) url = url.replace('[/country-code]', '')
+		if (url.indexOf('[/postal-code]') !== -1) url = url.replace('[/postal-code]', '')
+		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
+		if (url.indexOf('[/facet]') !== -1) url = url.replace('[/facet]', '')
+		if (url.indexOf('[/facets]') !== -1) url = url.replace('[/facets]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
+		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+	},
+	'posting-job': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/jobs'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+	},
+	'editing-job': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/jobs/'
+		args = args || {}
+		if (args['partner-job-id'] == null) throw new Error('partner-job-id is a required parameter')
+		var rgx = new RegExp('\{partner-job-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['partner-job-id'])
+			if (args['partner-job-id']) delete args['partner-job-id']
+		}
+		if (url.indexOf('[/partner-job-id]') !== -1) {
+			url = url.replace('[/partner-job-id]', '/' + args['partner-job-id'])
+			if (args['partner-job-id']) delete args['partner-job-id']
+		}
+		if (url.indexOf('[/partner-job-id]') !== -1) url = url.replace('[/partner-job-id]', '')
+		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+	},
+	'renewing-job': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/jobs/'
+		args = args || {}
+		if (args['partner-job-id'] == null) throw new Error('partner-job-id is a required parameter')
+		var rgx = new RegExp('\{partner-job-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['partner-job-id'])
+			if (args['partner-job-id']) delete args['partner-job-id']
+		}
+		if (url.indexOf('[/partner-job-id]') !== -1) {
+			url = url.replace('[/partner-job-id]', '/' + args['partner-job-id'])
+			if (args['partner-job-id']) delete args['partner-job-id']
+		}
+		if (url.indexOf('[/partner-job-id]') !== -1) url = url.replace('[/partner-job-id]', '')
+		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+	},
+	'closing-job': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/jobs/'
+		args = args || {}
+		if (args['partner-job-id'] == null) throw new Error('partner-job-id is a required parameter')
+		var rgx = new RegExp('\{partner-job-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['partner-job-id'])
+			if (args['partner-job-id']) delete args['partner-job-id']
+		}
+		if (url.indexOf('[/partner-job-id]') !== -1) {
+			url = url.replace('[/partner-job-id]', '/' + args['partner-job-id'])
+			if (args['partner-job-id']) delete args['partner-job-id']
+		}
+		if (url.indexOf('[/partner-job-id]') !== -1) url = url.replace('[/partner-job-id]', '')
+		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+	},
+	'shares': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/shares'
+		args = args || {}
+		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+	},
+	'shares': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/updates'
 		args = args || {}
 		var rgx = new RegExp('\{scope\}', 'g')
@@ -410,58 +964,17 @@
 		if (url.indexOf('[/show-hidden-members]') !== -1) url = url.replace('[/show-hidden-members]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'post_network_update_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/person-activities'
+	'shares_by_id': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/id={id}/network/updates'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
-	},
-	'get_update_comments_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/network/updates/update-comments'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'get_update_likes_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/network/updates/likes'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'post_update_comments_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/network/updates/update-comments'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
-	},
-	'post_update_likes_api': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/network/updates/is-liked'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
-	},
-	'post_update_likes_api1': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/shares'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
-	},
-	'post_update_likes_api2': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/shares'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
-	},
-	'post_update_likes_api3': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~:(current-share)'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'post_update_likes_api4': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/network'
-		args = args || {}
-		if (args['type'] == null) args['type'] = "ANSW"
-		var rgx = new RegExp('\{type\}', 'g')
+		var rgx = new RegExp('\{id\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['type'])
-			if (args['type']) delete args['type']
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
 		}
-		if (url.indexOf('[/type]') !== -1) {
-			url = url.replace('[/type]', '/' + args['type'])
-			if (args['type']) delete args['type']
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
 		}
 		var rgx = new RegExp('\{scope\}', 'g')
 		if (url.match(rgx)) {
@@ -472,103 +985,152 @@
 			url = url.replace('[/scope]', '/' + args['scope'])
 			if (args['scope']) delete args['scope']
 		}
-		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
+		var rgx = new RegExp('\{type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{start\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start'])
+			if (args['start']) delete args['start']
+		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
+		var rgx = new RegExp('\{after\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['after'])
+			if (args['after']) delete args['after']
+		}
+		if (url.indexOf('[/after]') !== -1) {
+			url = url.replace('[/after]', '/' + args['after'])
+			if (args['after']) delete args['after']
+		}
+		var rgx = new RegExp('\{before\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['before'])
+			if (args['before']) delete args['before']
+		}
+		if (url.indexOf('[/before]') !== -1) {
+			url = url.replace('[/before]', '/' + args['before'])
+			if (args['before']) delete args['before']
+		}
+		var rgx = new RegExp('\{show-hidden-members\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['show-hidden-members'])
+			if (args['show-hidden-members']) delete args['show-hidden-members']
+		}
+		if (url.indexOf('[/show-hidden-members]') !== -1) {
+			url = url.replace('[/show-hidden-members]', '/' + args['show-hidden-members'])
+			if (args['show-hidden-members']) delete args['show-hidden-members']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/scope]') !== -1) url = url.replace('[/scope]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/after]') !== -1) url = url.replace('[/after]', '')
+		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
+		if (url.indexOf('[/show-hidden-members]') !== -1) url = url.replace('[/show-hidden-members]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'get_company_by_domain': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/companies/email-domain'
+	'network-stats': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/network/network-stats'
 		args = args || {}
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'get_company_by_id': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/companies/id'
+	'get_update_comments': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/update-comments'
 		args = args || {}
+		if (args['network_update_key'] == null) throw new Error('network_update_key is a required parameter')
+		var rgx = new RegExp('\{network_update_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) {
+			url = url.replace('[/network_update_key]', '/' + args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'get_company_bulk': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/companies/bulk'
+	'get_update_likes': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/likes'
 		args = args || {}
+		if (args['network_update_key'] == null) throw new Error('network_update_key is a required parameter')
+		var rgx = new RegExp('\{network_update_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) {
+			url = url.replace('[/network_update_key]', '/' + args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
 		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
 	},
-	'company-search': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/company-search'
+	'post_update_comments': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/update-comments'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'followed-companies': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'recommended-companies': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/suggestions/to-follow/companies'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'follow-company': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
-		args = args || {}
+		if (args['network_update_key'] == null) throw new Error('network_update_key is a required parameter')
+		var rgx = new RegExp('\{network_update_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) {
+			url = url.replace('[/network_update_key]', '/' + args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
 		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
 	},
-	'join-group': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/4058745'
+	'post_update_likes': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/is-liked'
 		args = args || {}
+		if (args['network_update_key'] == null) throw new Error('network_update_key is a required parameter')
+		var rgx = new RegExp('\{network_update_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) {
+			url = url.replace('[/network_update_key]', '/' + args['network_update_key'])
+			if (args['network_update_key']) delete args['network_update_key']
+		}
+		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
 		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
 	},
-	'leave-group': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/4058745'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
-	},
-	'get-groups': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/group-memberships'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'get-suggested-groups': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/suggestions/groups'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'group-settings': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/settings'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'group-posts': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/groups/id/posts'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'create-group-post': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/groups/id/posts'
+	'post_network_update': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/person-activities'
 		args = args || {}
 		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
 	},
-	'like-group-post': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/posts/id/relation-to-viewer/is-liked'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
-	},
-	'comment-on-group-post': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/posts/id/comments'
+	'messaging': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/mailbox'
 		args = args || {}
 		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
 	},
-	'job-search': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/job-search'
+	'invitation': function(args, opts) {
+		var url = 'http://api.linkedin.com/v1/people/~/mailbox'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'recommended-jobs': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-suggestions'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
-	},
-	'job-details': function(args, opts) {
-		var url = 'http://api.linkedin.com/v1/jobs/id'
-		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
 	}
 })
