@@ -8,24 +8,20 @@
     "oauth2": {
       "authorize": {
         "url":"https://connect.deezer.com/oauth/auth.php",
+        "format":"url",
         "params": {
-          "client_id":"{client_id}",
-          "response_type":"code",
-          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}",
-          "state":"api={_id}&cip={_cid}",
-          "scope":"{scope}"
-        }
+          "app_id":"{app_id}",
+          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cid={_cid}"
+	  }
       },
       "access_token":{
         "url":"https://connect.deezer.com/oauth/access_token.php",
+        "format":"url",
         "field":"state",
-        "method":"post",
         "params":{
-          "client_id":"{client_id}",
-          "client_secret":"{client_secret}",
-          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}",
-          "grant_type":"authorization_code",
-          "code":"{_code}"
+	  "app_id":"{app_id}",
+          "secret":"{secret}",
+ 	  "code":"{_code}"
         }
       },
       "request":{
@@ -36,29 +32,11 @@
       },
       "parameters":[
         {
-          "name":"client_id",
+          "name":"app_id",
           "type":"string"
         },
         {
-          "name":"client_secret",
-          "type":"string"
-        },
-        {
-          "name":"scope",
-          "type":"string"
-        }
-      ]
-    },
-    "manual": {
-      "request":{
-        "format":"json",
-        "get":{
-          "key":"{key}"
-        }
-      },
-      "parameters":[
-        {
-          "name":"key",
+          "name":"secret",
           "type":"string"
         }
       ]
