@@ -1,4 +1,13 @@
-APIS
+Node.js layer for APIs
+======================
+
+JavaScript has long been the de facto standard for client-side APIs and mashups with Googlemaps, Youtube etc... While nearly all client API code is written in JavaScript, server-side APIs like Twitter or Facebook can be called in PHP, Python, Ruby, Java, and numerous other languages. Life as a web and mobile developer would be much simpler if a single language was used everywhere.
+
+Because JavaScript dominates APIs in the browser , it makes sense to use it for server side APIs as well.
+
+In the same way Node.js made Javascript the unique language to execute code server-side and client-side, Webshell, built on Node.js too, lets you call APIs with a single language : Javascript.
+
+APIs
 ====
 
 All APIs implemented in Webshell are here in Javascript.
