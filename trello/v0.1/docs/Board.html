@@ -1,0 +1,1550 @@
+<h1>Trello API: Board</h1>
+<p>These methods are relative to the tag 'Board'</p><h3>getBoard</h3>
+<p>Get a board !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>actions </td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions_entities</td>
+			<td>Valid Values:<br/>	      true<br/>	      false	    <br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions_format</td>
+			<td>Valid Values: One of:<br/>	      count<br/>	      list<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions_since</td>
+			<td>Valid Values: A date, null or lastView<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions_limit</td>
+			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>action_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>cards</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>card_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>card_attachments</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>card_attachment_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>lists</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>list_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      closed<br/>	      idBoard<br/>	      pos<br/>	      subscribed<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>members</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      normal<br/>	      admins<br/>	      owners<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>member_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>membersInvited</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      normal<br/>	      admins<br/>	      owners<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>membersInvited_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checklists</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checklist_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      idBoard<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>organization</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>organization_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>myPrefs</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardField</h3>
+<p>get a board with field.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>field</td>
+			<td>Valid Values: One of:<br/>	  name<br/>	  desc<br/>	  closed<br/>	  idOrganization<br/>	  invited<br/>	  pinned<br/>	  url<br/>	  prefs<br/>	  invitations<br/>	  memberships<br/>	  subscribed<br/>	  labelNames<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardAction</h3>
+<p>get a board action.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>entities</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>since</td>
+			<td>Valid Values: A date, null or lastView<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>before</td>
+			<td>Valid Values: A date or null<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>Valid Values: a number from 0 to 100<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idModels</td>
+			<td>Valid Values: Only return actions related to these model ids<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardCards</h3>
+<p>get a board cards.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>actions</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>attachments</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>attachment_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>members</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>checkItemStates</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>checklists</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardCardsFilter</h3>
+<p>get a board cards with filter.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	  none<br/>	  visible<br/>	  open<br/>	  closed<br/>	  all<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardByCardId</h3>
+<p>get a board with a card id.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idCard</td>
+			<td>Valid Values: The id (or short id) of a card on the board<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>attachments</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>attachment_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions_entities</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>actions_limit</td>
+			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>action_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>members</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>member_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checkItemStates</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checkItemState_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      idCheckItem<br/>	      state<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>labels</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checklists</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checklist_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      idBoard<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardChecklists</h3>
+<p>get a board checklists.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>cards</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>card_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checkItems</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checkItem_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      type<br/>	      pos<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      idBoard<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardLists</h3>
+<p>get a board lists.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>cards</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>card_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      closed<br/>	      idBoard<br/>	      pos<br/>	      subscribed<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardListsWithFilter</h3>
+<p>get a board lists with filter.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	  none<br/>	  open<br/>	  closed<br/>	  all<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardMembers</h3>
+<p>get the board members.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      normal<br/>	      admins<br/>	      owners<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>activity</td>
+			<td>Valid Values: true or false; works for premium organizations only.<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardMembersWithFilter</h3>
+<p>get the board members with filter.<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	  none<br/>	  normal<br/>	  admins<br/>	  owners<br/>	  all<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardMemberWithCard</h3>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idMember</td>
+			<td>Valid Values: A board id, organization id, or organization name<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>actions</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>attachments</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>attachment_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>members</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>member_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checkItemStates</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>checklists</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>board</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>board_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>list</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>list_fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      closed<br/>	      idBoard<br/>	      pos<br/>	      subscribed<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardMemberInvited</h3>
+<p>get board Member Invited !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	      avatarSource<br/>	      confirmed<br/>	      email<br/>	      gravatarHash<br/>	      idBoards<br/>	      idBoardsInvited<br/>	      idBoardsPinned<br/>	      idOrganizations<br/>	      idOrganizationsInvited<br/>	      idPremOrgsAdmin<br/>	      loginTypes<br/>	      prefs<br/>	      status<br/>	      trophies<br/>	      uploadedAvatarHash<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardMemberInvitedWithField</h3>
+<p>get board Member Invited with field!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>field</td>
+			<td>Valid Values: One of:<br/>	  avatarHash<br/>	  bio<br/>	  fullName<br/>	  initials<br/>	  status<br/>	  url<br/>	  username<br/>	  avatarSource<br/>	  confirmed<br/>	  email<br/>	  gravatarHash<br/>	  idBoards<br/>	  idBoardsInvited<br/>	  idBoardsPinned<br/>	  idOrganizations<br/>	  idOrganizationsInvited<br/>	  idPremOrgsAdmin<br/>	  loginTypes<br/>	  prefs<br/>	  status<br/>	  trophies<br/>	  uploadedAvatarHash<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardPrefs</h3>
+<p>get board prefs!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardOrganization</h3>
+<p>get board organization!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getBoardOrganizationWithField</h3>
+<p>get board organization with field!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>field</td>
+			<td>Valid Values: One of:<br/>	  name<br/>	  displayName<br/>	  desc<br/>	  idBoards<br/>	  invited<br/>	  invitations<br/>	  memberships<br/>	  prefs<br/>	  powerUps<br/>	  url<br/>	  website<br/>	  logoHash<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>createBoard</h3>
+<p>create a board!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Valid Values: a string with a length from 1 to 16384<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>desc</td>
+			<td>Valid Values: A user ID or name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>closed</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>subscribed</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>idOrganization</td>
+			<td>Valid Values: A user ID or name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs/permissionLevel</td>
+			<td>Valid Values: One of:<br/>	      private<br/>	      org<br/>	      public<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs/selfJoin</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs/cardCovers</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs/invitations</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      admins<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs/voting</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      org<br/>	      public<br/>	      disabled<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs/comments</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      org<br/>	      public<br/>	      disabled<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>closedBoard</h3>
+<p>closed a board!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>putBoardDesc</h3>
+<p>put a board desc!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: A user ID or name<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>putBoardOrganization</h3>
+<p>put a board organization!<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: A user ID or name<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardMember</h3>
+<p>add a member to the board !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idMember</td>
+			<td>Valid Values: A board id, organization id, or organization name<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Valid Values: One of:<br/>	      normal<br/>	      observer<br/>	      admin<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>renameBoard</h3>
+<p>name or rename a board !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: a string with a length from 1 to 16384<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardPrefCardCovers</h3>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardPrefComments</h3>
+<p>Add a board Pref comment !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      org<br/>	      public<br/>	      disabled<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardPrefInvitations</h3>
+<p>Add a board Pref invitation !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      admins<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardPrefPermissionLevel</h3>
+<p>Add a board Pref permissionLevel !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: One of:<br/>	      private<br/>	      org<br/>	      public<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardPrefSelfJoin</h3>
+<p>Add a board Pref selfjoin !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>addBoardPrefVoting</h3>
+<p>Add a board Pref voting !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      org<br/>	      public<br/>	      disabled<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>subscribedToABoard</h3>
+<p>Subscribed to a board<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postBoard</h3>
+<p>Post a board<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>name</td>
+			<td>Valid Values: a string with a length from 1 to 16384<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>desc</td>
+			<td>Valid Values: A user ID or name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>idOrganization</td>
+			<td>Valid Values: The id or name of the organization to add the board to.<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>idBoardSource</td>
+			<td>Valid Values: The id of the board to copy into the new board<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>keepFromSource</td>
+			<td>Valid Values: Components of the source board to copy.<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs_permissionLevel</td>
+			<td>Valid Values: One of:<br/>	      private<br/>	      org<br/>	      public<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs_voting</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      observers<br/>	      org<br/>	      public<br/>	      disabled<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs_comments</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      observers<br/>	      org<br/>	      public<br/>	      disabled<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs_invitations</td>
+			<td>Valid Values: One of:<br/>	      members<br/>	      admins<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs_selfJoin</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prefs_cardCovers</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postBoardChecklists</h3>
+<p>Post a board Checklists<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Valid Values: a string with a length from 1 to 16384<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postBoardInvitations</h3>
+<p>Post a board invitations<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idMember</td>
+			<td>Valid Values: A user ID or name<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td>Valid Values: An email address<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Valid Values: One of:<br/>	      normal<br/>	      observer<br/>	      admin<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>responseToBoardInvitations</h3>
+<p>Response to a board invitations<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>response</td>
+			<td>Valid Values: One of:<br/>	  accept<br/>	  reject<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>invitationTokens</td>
+			<td>Valid Values: A comma-separated list of unique identifier tokens<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postBoardLists</h3>
+<p>post board lists !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Valid Values: a string with a length from 1 to 16384<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>pos</td>
+			<td>Valid Values: A position. top, bottom, or a positive number.<br/>	   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>markBoardAsViewed</h3>
+<p>Mark a board as viewed !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>postBoardPrefs</h3>
+<p>post a board prefs !<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td>Valid Values: One of:<br/>	      showSidebar<br/>	      showSidebarMembers<br/>	      showSidebarBoardActions<br/>	      showSidebarActivity<br/>	      showListGuide<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>deleteBoardInvitation</h3>
+<p>delete a board invitation<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idInvitation</td>
+			<td>Valid Values: The ID of an invitation<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>deleteBoardMember</h3>
+<p>delete a board Member<br/></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>board_id</td>
+			<td>the board id !<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>idMember</td>
+			<td>Valid Values: A board id, organization id, or organization name<br/></td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
