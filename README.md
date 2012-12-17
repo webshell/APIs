@@ -15,15 +15,36 @@ All APIs implemented in Webshell are here in Javascript.
 Usage
 =====
 
-in [Webshell](http://webshell.io/prototype), you can try all these APIs online in really few lines of code :
+1. Sign up and create an app on Webshell
+By creating an app, you generate API Key for the Webshell API. You can configure hosts, and attach to this app some API Key for the API you are using.
 
-`apis.google.maps();`
+2. Install the Javascript SDK
+Insert this line in your HTML
 
-This command will search in google folder, pick the last version and execute maps/maps file. 
+    <script type="text/javascript" src="http://api.webshell.io/sdk/js?key={key}"></script>
+     
+3. Hello world app
+In your Javascript you can now use the wsh object
 
-If you have an account on [Webshell](http://webshell.io/), you can setup your API Key by creating an apps in your [Dashboard](http://webshell.io/dashboard). All settings needed are specified in the `conf.json` file which allow us to generate a form to let you set your API Keys.
+    wsh.exec({
+        code: function() {
+            //Some javascript which have to be executed by Webshell
+            apis.tts('hello world');
+        },
+        process: function(data, meta) {
+            $('body').append(meta.view);
+        }
+    });
+    
+You just call the Text to Speech API for say "Hello World". You can call lots of API like that and script them together directly in your JavaScript. Take a minute to visit our API Explorer to discover them!
+
+4. Webshell Cloud Editor
+To try and create API directly in your browser to use them in the Webshell API. Go to the [http://webshell.io/creator](API Creator)
+
+5. More
+For more information on what you can do with Webshell, check the [http://webshell.io/docs](Documentation) and the [http://webshell.io/docs/faq](FAQ)
 
 Note
 ====
 
-Some builtins are used in their APIs are not describe on Webshell.io yet... We work on it ;)
+Some builtins are used in their APIs are not describe on [http://webshell.io](webshell.io) yet... We work on it ;)
