@@ -1,0 +1,684 @@
+({
+	auth:function(){return auth({provider:'box'})},
+	'createFolder': function(args, opts) {
+		var url = '/folders'
+		args = args || {}
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'Retrivefolderitems': function(args, opts) {
+		var url = '/folders/{folder_id}/items'
+		args = args || {}
+		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
+		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (url.indexOf('[/folder_id]') !== -1) {
+			url = url.replace('[/folder_id]', '/' + args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'GetFolderInfo': function(args, opts) {
+		var url = '/folders/{folder_id}'
+		args = args || {}
+		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
+		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (url.indexOf('[/folder_id]') !== -1) {
+			url = url.replace('[/folder_id]', '/' + args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'UpdateFolderInfo': function(args, opts) {
+		var url = '/folders/{folder_id}'
+		args = args || {}
+		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
+		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (url.indexOf('[/folder_id]') !== -1) {
+			url = url.replace('[/folder_id]', '/' + args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'put',params:args}, opts)
+	},
+	'deletefolders': function(args, opts) {
+		var url = '/folders/{folder_id}'
+		args = args || {}
+		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
+		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (url.indexOf('[/folder_id]') !== -1) {
+			url = url.replace('[/folder_id]', '/' + args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		var rgx = new RegExp('\{recursive\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['recursive'])
+			if (args['recursive']) delete args['recursive']
+		}
+		if (url.indexOf('[/recursive]') !== -1) {
+			url = url.replace('[/recursive]', '/' + args['recursive'])
+			if (args['recursive']) delete args['recursive']
+		}
+		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+	},
+	'copyFolder': function(args, opts) {
+		var url = '/folders/{folder_id}/copy'
+		args = args || {}
+		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
+		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (url.indexOf('[/folder_id]') !== -1) {
+			url = url.replace('[/folder_id]', '/' + args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'CopyFile': function(args, opts) {
+		var url = '/files/{file_id}/copy'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'GetFile': function(args, opts) {
+		var url = '/files/{file_id}'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		var rgx = new RegExp('\{If-None-Match\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['If-None-Match'])
+			if (args['If-None-Match']) delete args['If-None-Match']
+		}
+		if (url.indexOf('[/If-None-Match]') !== -1) {
+			url = url.replace('[/If-None-Match]', '/' + args['If-None-Match'])
+			if (args['If-None-Match']) delete args['If-None-Match']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'PutFile': function(args, opts) {
+		var url = '/files/{file_id}'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'put',params:args}, opts)
+	},
+	'DeleteFile': function(args, opts) {
+		var url = '/files/{file_id}'
+		args = args || {}
+		var rgx = new RegExp('\{If-Match\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['If-Match'])
+			if (args['If-Match']) delete args['If-Match']
+		}
+		if (url.indexOf('[/If-Match]') !== -1) {
+			url = url.replace('[/If-Match]', '/' + args['If-Match'])
+			if (args['If-Match']) delete args['If-Match']
+		}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+	},
+	'GetContentFile': function(args, opts) {
+		var url = '/files/{file_id}/content'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'UploadPostFile': function(args, opts) {
+		var url = '/files/{file_id}/content'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		var rgx = new RegExp('\{If-Match\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['If-Match'])
+			if (args['If-Match']) delete args['If-Match']
+		}
+		if (url.indexOf('[/If-Match]') !== -1) {
+			url = url.replace('[/If-Match]', '/' + args['If-Match'])
+			if (args['If-Match']) delete args['If-Match']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'UploadPostFile': function(args, opts) {
+		var url = '/files/content'
+		args = args || {}
+		var rgx = new RegExp('\{Content-MD5 \}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-MD5 '])
+			if (args['Content-MD5 ']) delete args['Content-MD5 ']
+		}
+		if (url.indexOf('[/Content-MD5 ]') !== -1) {
+			url = url.replace('[/Content-MD5 ]', '/' + args['Content-MD5 '])
+			if (args['Content-MD5 ']) delete args['Content-MD5 ']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'CommentGetFile': function(args, opts) {
+		var url = '/files/{file_id}/comments'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'GetFileVersion': function(args, opts) {
+		var url = '/files/{file_id}/versions'
+		args = args || {}
+		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
+		var rgx = new RegExp('\{file_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		if (url.indexOf('[/file_id]') !== -1) {
+			url = url.replace('[/file_id]', '/' + args['file_id'])
+			if (args['file_id']) delete args['file_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'SharedItems': function(args, opts) {
+		var url = '/shared_items'
+		args = args || {}
+		if (args['shared_link'] == null) throw new Error('shared_link is a required parameter')
+		var rgx = new RegExp('\{shared_link\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['shared_link'])
+			if (args['shared_link']) delete args['shared_link']
+		}
+		if (url.indexOf('[/shared_link]') !== -1) {
+			url = url.replace('[/shared_link]', '/' + args['shared_link'])
+			if (args['shared_link']) delete args['shared_link']
+		}
+		if (args['shared_link_password'] == null) throw new Error('shared_link_password is a required parameter')
+		var rgx = new RegExp('\{shared_link_password\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['shared_link_password'])
+			if (args['shared_link_password']) delete args['shared_link_password']
+		}
+		if (url.indexOf('[/shared_link_password]') !== -1) {
+			url = url.replace('[/shared_link_password]', '/' + args['shared_link_password'])
+			if (args['shared_link_password']) delete args['shared_link_password']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'commentPOST': function(args, opts) {
+		var url = '/files/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'CommentResponse': function(args, opts) {
+		var url = '/comments/{comment_id}'
+		args = args || {}
+		if (args['comment_id'] == null) throw new Error('comment_id is a required parameter')
+		var rgx = new RegExp('\{comment_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment_id'])
+			if (args['comment_id']) delete args['comment_id']
+		}
+		if (url.indexOf('[/comment_id]') !== -1) {
+			url = url.replace('[/comment_id]', '/' + args['comment_id'])
+			if (args['comment_id']) delete args['comment_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'comment': function(args, opts) {
+		var url = '/comments/{comment_id}'
+		args = args || {}
+		if (args['comment_id'] == null) throw new Error('comment_id is a required parameter')
+		var rgx = new RegExp('\{comment_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment_id'])
+			if (args['comment_id']) delete args['comment_id']
+		}
+		if (url.indexOf('[/comment_id]') !== -1) {
+			url = url.replace('[/comment_id]', '/' + args['comment_id'])
+			if (args['comment_id']) delete args['comment_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'put',params:args}, opts)
+	},
+	'commentDELETE': function(args, opts) {
+		var url = '/comments/{comment_id}'
+		args = args || {}
+		if (args['comment_id'] == null) throw new Error('comment_id is a required parameter')
+		var rgx = new RegExp('\{comment_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment_id'])
+			if (args['comment_id']) delete args['comment_id']
+		}
+		if (url.indexOf('[/comment_id]') !== -1) {
+			url = url.replace('[/comment_id]', '/' + args['comment_id'])
+			if (args['comment_id']) delete args['comment_id']
+		}
+		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+	},
+	'newDiscussion': function(args, opts) {
+		var url = '/discussions'
+		args = args || {}
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'updateDiscussion': function(args, opts) {
+		var url = '/discussions/{discussion_id}'
+		args = args || {}
+		if (args['discussion_id'] == null) throw new Error('discussion_id is a required parameter')
+		var rgx = new RegExp('\{discussion_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['discussion_id'])
+			if (args['discussion_id']) delete args['discussion_id']
+		}
+		if (url.indexOf('[/discussion_id]') !== -1) {
+			url = url.replace('[/discussion_id]', '/' + args['discussion_id'])
+			if (args['discussion_id']) delete args['discussion_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'put',params:args}, opts)
+	},
+	'getDiscussionComments': function(args, opts) {
+		var url = '/discussions/{discussion_id}/comments'
+		args = args || {}
+		if (args['discussion_id'] == null) throw new Error('discussion_id is a required parameter')
+		var rgx = new RegExp('\{discussion_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['discussion_id'])
+			if (args['discussion_id']) delete args['discussion_id']
+		}
+		if (url.indexOf('[/discussion_id]') !== -1) {
+			url = url.replace('[/discussion_id]', '/' + args['discussion_id'])
+			if (args['discussion_id']) delete args['discussion_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'addDiscussionComment': function(args, opts) {
+		var url = '/discussions/{discussion_id}/comments'
+		args = args || {}
+		if (args['discussion_id'] == null) throw new Error('discussion_id is a required parameter')
+		var rgx = new RegExp('\{discussion_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['discussion_id'])
+			if (args['discussion_id']) delete args['discussion_id']
+		}
+		if (url.indexOf('[/discussion_id]') !== -1) {
+			url = url.replace('[/discussion_id]', '/' + args['discussion_id'])
+			if (args['discussion_id']) delete args['discussion_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'getPendingCollaborationItems': function(args, opts) {
+		var url = '/collaborations'
+		args = args || {}
+		if (args['status'] == null) throw new Error('status is a required parameter')
+		var rgx = new RegExp('\{status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['status'])
+			if (args['status']) delete args['status']
+		}
+		if (url.indexOf('[/status]') !== -1) {
+			url = url.replace('[/status]', '/' + args['status'])
+			if (args['status']) delete args['status']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'createCollaboration': function(args, opts) {
+		var url = '/collaborations'
+		args = args || {}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'getCollaborationItems': function(args, opts) {
+		var url = '/collaborations/{collaborations_id}'
+		args = args || {}
+		if (args['collaborations_id'] == null) throw new Error('collaborations_id is a required parameter')
+		var rgx = new RegExp('\{collaborations_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['collaborations_id'])
+			if (args['collaborations_id']) delete args['collaborations_id']
+		}
+		if (url.indexOf('[/collaborations_id]') !== -1) {
+			url = url.replace('[/collaborations_id]', '/' + args['collaborations_id'])
+			if (args['collaborations_id']) delete args['collaborations_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'editCollaborationItems': function(args, opts) {
+		var url = '/collaborations/{collaborations_id}'
+		args = args || {}
+		if (args['collaborations_id'] == null) throw new Error('collaborations_id is a required parameter')
+		var rgx = new RegExp('\{collaborations_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['collaborations_id'])
+			if (args['collaborations_id']) delete args['collaborations_id']
+		}
+		if (url.indexOf('[/collaborations_id]') !== -1) {
+			url = url.replace('[/collaborations_id]', '/' + args['collaborations_id'])
+			if (args['collaborations_id']) delete args['collaborations_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'put',params:args}, opts)
+	},
+	'deleteCollaboration': function(args, opts) {
+		var url = '/collaborations/{collaborations_id}'
+		args = args || {}
+		if (args['collaborations_id'] == null) throw new Error('collaborations_id is a required parameter')
+		var rgx = new RegExp('\{collaborations_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['collaborations_id'])
+			if (args['collaborations_id']) delete args['collaborations_id']
+		}
+		if (url.indexOf('[/collaborations_id]') !== -1) {
+			url = url.replace('[/collaborations_id]', '/' + args['collaborations_id'])
+			if (args['collaborations_id']) delete args['collaborations_id']
+		}
+		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+	},
+	'GetEvents': function(args, opts) {
+		var url = '/events'
+		args = args || {}
+		var rgx = new RegExp('\{stream_position\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['stream_position'])
+			if (args['stream_position']) delete args['stream_position']
+		}
+		if (url.indexOf('[/stream_position]') !== -1) {
+			url = url.replace('[/stream_position]', '/' + args['stream_position'])
+			if (args['stream_position']) delete args['stream_position']
+		}
+		var rgx = new RegExp('\{stream_type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['stream_type'])
+			if (args['stream_type']) delete args['stream_type']
+		}
+		if (url.indexOf('[/stream_type]') !== -1) {
+			url = url.replace('[/stream_type]', '/' + args['stream_type'])
+			if (args['stream_type']) delete args['stream_type']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		var rgx = new RegExp('\{event_type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_type'])
+			if (args['event_type']) delete args['event_type']
+		}
+		if (url.indexOf('[/event_type]') !== -1) {
+			url = url.replace('[/event_type]', '/' + args['event_type'])
+			if (args['event_type']) delete args['event_type']
+		}
+		var rgx = new RegExp('\{created_after\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['created_after'])
+			if (args['created_after']) delete args['created_after']
+		}
+		if (url.indexOf('[/created_after]') !== -1) {
+			url = url.replace('[/created_after]', '/' + args['created_after'])
+			if (args['created_after']) delete args['created_after']
+		}
+		var rgx = new RegExp('\{created_before\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['created_before'])
+			if (args['created_before']) delete args['created_before']
+		}
+		if (url.indexOf('[/created_before]') !== -1) {
+			url = url.replace('[/created_before]', '/' + args['created_before'])
+			if (args['created_before']) delete args['created_before']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	}
+})
