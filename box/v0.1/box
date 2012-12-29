@@ -680,5 +680,148 @@
 			if (args['created_before']) delete args['created_before']
 		}
 		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'userResponse': function(args, opts) {
+		var url = '/users'
+		args = args || {}
+		var rgx = new RegExp('\{filter_term\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter_term'])
+			if (args['filter_term']) delete args['filter_term']
+		}
+		if (url.indexOf('[/filter_term]') !== -1) {
+			url = url.replace('[/filter_term]', '/' + args['filter_term'])
+			if (args['filter_term']) delete args['filter_term']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'userDtlsClass': function(args, opts) {
+		var url = '/users'
+		args = args || {}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		return http({provider:'box',url:url,method:'post',params:args}, opts)
+	},
+	'userResponse': function(args, opts) {
+		var url = '/users/{user_id}'
+		args = args || {}
+		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		return http({provider:'box',url:url,method:'get',params:args}, opts)
+	},
+	'userDELETE': function(args, opts) {
+		var url = '/users/{user_id}'
+		args = args || {}
+		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		var rgx = new RegExp('\{notify\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['notify'])
+			if (args['notify']) delete args['notify']
+		}
+		if (url.indexOf('[/notify]') !== -1) {
+			url = url.replace('[/notify]', '/' + args['notify'])
+			if (args['notify']) delete args['notify']
+		}
+		var rgx = new RegExp('\{force\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['force'])
+			if (args['force']) delete args['force']
+		}
+		if (url.indexOf('[/force]') !== -1) {
+			url = url.replace('[/force]', '/' + args['force'])
+			if (args['force']) delete args['force']
+		}
+		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+	},
+	'userDtlsClass': function(args, opts) {
+		var url = '/users/me'
+		args = args || {}
+	'moveUserFolder': function(args, opts) {
+		var url = '/users/{user_id}/folders/{folder_id}'
+		args = args || {}
+		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
+		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (url.indexOf('[/folder_id]') !== -1) {
+			url = url.replace('[/folder_id]', '/' + args['folder_id'])
+			if (args['folder_id']) delete args['folder_id']
+		}
+		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
+		var rgx = new RegExp('\{undefined\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (url.indexOf('[/undefined]') !== -1) {
+			url = url.replace('[/undefined]', '/' + args['undefined'])
+			if (args['undefined']) delete args['undefined']
+		}
+		if (args['notify'] == null) throw new Error('notify is a required parameter')
+		var rgx = new RegExp('\{notify\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['notify'])
+			if (args['notify']) delete args['notify']
+		}
+		if (url.indexOf('[/notify]') !== -1) {
+			url = url.replace('[/notify]', '/' + args['notify'])
+			if (args['notify']) delete args['notify']
+		}
+		return http({provider:'box',url:url,method:'put',params:args}, opts)
 	}
 })
