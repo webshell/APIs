@@ -1,827 +1,684 @@
 ({
 	auth:function(){return auth({provider:'box'})},
-	'createFolder': function(args, opts) {
-		var url = '/folders'
+	'GetAccountTree': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_account_tree&folder_id={folderId}&params={params}'
 		args = args || {}
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
 		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		if (args['params'] == null) args['params'] = "nozip"
+		var rgx = new RegExp('\{params\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['params'])
+			if (args['params']) delete args['params']
+		}
+		if (url.indexOf('[/params]') !== -1) {
+			url = url.replace('[/params]', '/' + args['params'])
+			if (args['params']) delete args['params']
+		}
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/params]') !== -1) url = url.replace('[/params]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'Retrivefolderitems': function(args, opts) {
-		var url = '/folders/{folder_id}/items'
+	'CreateFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=create_folder&parent_id={parentId}&name={name}&share={share}'
 		args = args || {}
-		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
-		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (args['parentId'] == null) args['parentId'] = "0"
+		var rgx = new RegExp('\{parentId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+			url = url.replace(rgx, args['parentId'])
+			if (args['parentId']) delete args['parentId']
 		}
-		if (url.indexOf('[/folder_id]') !== -1) {
-			url = url.replace('[/folder_id]', '/' + args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+		if (url.indexOf('[/parentId]') !== -1) {
+			url = url.replace('[/parentId]', '/' + args['parentId'])
+			if (args['parentId']) delete args['parentId']
 		}
-		var rgx = new RegExp('\{fields\}', 'g')
+		if (args['name'] == null) args['name'] = "newfolder"
+		var rgx = new RegExp('\{name\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields'])
-			if (args['fields']) delete args['fields']
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
 		}
-		if (url.indexOf('[/fields]') !== -1) {
-			url = url.replace('[/fields]', '/' + args['fields'])
-			if (args['fields']) delete args['fields']
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
 		}
-		var rgx = new RegExp('\{limit\}', 'g')
+		if (args['share'] == null) args['share'] = "1"
+		var rgx = new RegExp('\{share\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
+			url = url.replace(rgx, args['share'])
+			if (args['share']) delete args['share']
 		}
-		if (url.indexOf('[/limit]') !== -1) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
+		if (url.indexOf('[/share]') !== -1) {
+			url = url.replace('[/share]', '/' + args['share'])
+			if (args['share']) delete args['share']
 		}
-		var rgx = new RegExp('\{offset\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['offset'])
-			if (args['offset']) delete args['offset']
-		}
-		if (url.indexOf('[/offset]') !== -1) {
-			url = url.replace('[/offset]', '/' + args['offset'])
-			if (args['offset']) delete args['offset']
-		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (url.indexOf('[/parentId]') !== -1) url = url.replace('[/parentId]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/share]') !== -1) url = url.replace('[/share]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
 	},
-	'GetFolderInfo': function(args, opts) {
-		var url = '/folders/{folder_id}'
+	'MoveFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=move&target={target}&target_id={targetId}&destination_id={destinationId}'
 		args = args || {}
-		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
-		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/folder_id]') !== -1) {
-			url = url.replace('[/folder_id]', '/' + args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['destination_id'] == null) args['destination_id'] = "1"
+		var rgx = new RegExp('\{destination_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/destination_id]') !== -1) {
+			url = url.replace('[/destination_id]', '/' + args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/destination_id]') !== -1) url = url.replace('[/destination_id]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
 	},
-	'UpdateFolderInfo': function(args, opts) {
-		var url = '/folders/{folder_id}'
+	'CopyFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=copy&target={target}&target_id={targetId}&destination_id={destinationId}'
 		args = args || {}
-		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
-		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/folder_id]') !== -1) {
-			url = url.replace('[/folder_id]', '/' + args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'put',params:args}, opts)
+		if (args['destination_id'] == null) args['destination_id'] = "1"
+		var rgx = new RegExp('\{destination_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/destination_id]') !== -1) {
+			url = url.replace('[/destination_id]', '/' + args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/destination_id]') !== -1) url = url.replace('[/destination_id]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
 	},
-	'deletefolders': function(args, opts) {
-		var url = '/folders/{folder_id}'
+	'RenameFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=rename&target={target}&target_id={targetId}&new_name={newName}'
 		args = args || {}
-		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
-		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/folder_id]') !== -1) {
-			url = url.replace('[/folder_id]', '/' + args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		var rgx = new RegExp('\{recursive\}', 'g')
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['recursive'])
-			if (args['recursive']) delete args['recursive']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/recursive]') !== -1) {
-			url = url.replace('[/recursive]', '/' + args['recursive'])
-			if (args['recursive']) delete args['recursive']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+		if (args['newName'] == null) args['newName'] = "newfolder"
+		var rgx = new RegExp('\{newName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['newName'])
+			if (args['newName']) delete args['newName']
+		}
+		if (url.indexOf('[/newName]') !== -1) {
+			url = url.replace('[/newName]', '/' + args['newName'])
+			if (args['newName']) delete args['newName']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/newName]') !== -1) url = url.replace('[/newName]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
 	},
-	'copyFolder': function(args, opts) {
-		var url = '/folders/{folder_id}/copy'
+	'DeleteFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=delete&target={target}&target_id={targetId}'
 		args = args || {}
-		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
-		var rgx = new RegExp('\{folder_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/folder_id]') !== -1) {
-			url = url.replace('[/folder_id]', '/' + args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'DELETE',params:args}, opts)
 	},
-	'CopyFile': function(args, opts) {
-		var url = '/files/{file_id}/copy'
+	'GetFileInfo': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_file_info&file_id={fileId}'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
+		if (args['fileId'] == null) args['fileId'] = "0"
+		var rgx = new RegExp('\{fileId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
+			url = url.replace(rgx, args['fileId'])
+			if (args['fileId']) delete args['fileId']
 		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
+		if (url.indexOf('[/fileId]') !== -1) {
+			url = url.replace('[/fileId]', '/' + args['fileId'])
+			if (args['fileId']) delete args['fileId']
 		}
-		var rgx = new RegExp('\{undefined\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		if (url.indexOf('[/fileId]') !== -1) url = url.replace('[/fileId]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'GetFile': function(args, opts) {
-		var url = '/files/{file_id}'
+	'SetDescription': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=set_description&target={target}&target_id={targetId}&description={description}'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		var rgx = new RegExp('\{If-None-Match\}', 'g')
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['If-None-Match'])
-			if (args['If-None-Match']) delete args['If-None-Match']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/If-None-Match]') !== -1) {
-			url = url.replace('[/If-None-Match]', '/' + args['If-None-Match'])
-			if (args['If-None-Match']) delete args['If-None-Match']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (args['description'] == null) throw new Error('description is a required parameter')
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
 	},
-	'PutFile': function(args, opts) {
-		var url = '/files/{file_id}'
+	'PublicShare': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=public_share&target={target}&target_id={targetId}&password={password}&message={message}&emails'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'put',params:args}, opts)
+		if (args['password'] == null) throw new Error('password is a required parameter')
+		var rgx = new RegExp('\{password\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['password'])
+			if (args['password']) delete args['password']
+		}
+		if (url.indexOf('[/password]') !== -1) {
+			url = url.replace('[/password]', '/' + args['password'])
+			if (args['password']) delete args['password']
+		}
+		if (args['message'] == null) args['message'] = "hey"
+		var rgx = new RegExp('\{message\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
 	},
-	'DeleteFile': function(args, opts) {
-		var url = '/files/{file_id}'
+	'PublicUnShare': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=public_unshare&target={target}&target_id={targetId}'
 		args = args || {}
-		var rgx = new RegExp('\{If-Match\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['If-Match'])
-			if (args['If-Match']) delete args['If-Match']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/If-Match]') !== -1) {
-			url = url.replace('[/If-Match]', '/' + args['If-Match'])
-			if (args['If-Match']) delete args['If-Match']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
 	},
-	'GetContentFile': function(args, opts) {
-		var url = '/files/{file_id}/content'
+	'PrivateShare': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=private_share&target={target}&target_id={targetId}&emails'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
 	},
-	'UploadPostFile': function(args, opts) {
-		var url = '/files/{file_id}/content'
+	'GetRequestFriends': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=request_friends&emails'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
-		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
-		}
-		var rgx = new RegExp('\{If-Match\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['If-Match'])
-			if (args['If-Match']) delete args['If-Match']
-		}
-		if (url.indexOf('[/If-Match]') !== -1) {
-			url = url.replace('[/If-Match]', '/' + args['If-Match'])
-			if (args['If-Match']) delete args['If-Match']
-		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'UploadPostFile': function(args, opts) {
-		var url = '/files/content'
+	'RequestFriends': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=request_friends&emails'
 		args = args || {}
-		var rgx = new RegExp('\{Content-MD5 \}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['Content-MD5 '])
-			if (args['Content-MD5 ']) delete args['Content-MD5 ']
-		}
-		if (url.indexOf('[/Content-MD5 ]') !== -1) {
-			url = url.replace('[/Content-MD5 ]', '/' + args['Content-MD5 '])
-			if (args['Content-MD5 ']) delete args['Content-MD5 ']
-		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'CommentGetFile': function(args, opts) {
-		var url = '/files/{file_id}/comments'
+	'GetFriends': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_friends&params'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
-		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
-		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'GetFileVersion': function(args, opts) {
-		var url = '/files/{file_id}/versions'
+	'AddToMyBox': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=add_to_mybox&file_id={fileId}&public_name={publicName}&folder_id={folderId}&tags'
 		args = args || {}
-		if (args['file_id'] == null) throw new Error('file_id is a required parameter')
-		var rgx = new RegExp('\{file_id\}', 'g')
+		if (args['fileId'] == null) args['fileId'] = "0"
+		var rgx = new RegExp('\{fileId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['file_id'])
-			if (args['file_id']) delete args['file_id']
+			url = url.replace(rgx, args['fileId'])
+			if (args['fileId']) delete args['fileId']
 		}
-		if (url.indexOf('[/file_id]') !== -1) {
-			url = url.replace('[/file_id]', '/' + args['file_id'])
-			if (args['file_id']) delete args['file_id']
+		if (url.indexOf('[/fileId]') !== -1) {
+			url = url.replace('[/fileId]', '/' + args['fileId'])
+			if (args['fileId']) delete args['fileId']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (args['publicName'] == null) args['publicName'] = "0"
+		var rgx = new RegExp('\{publicName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['publicName'])
+			if (args['publicName']) delete args['publicName']
+		}
+		if (url.indexOf('[/publicName]') !== -1) {
+			url = url.replace('[/publicName]', '/' + args['publicName'])
+			if (args['publicName']) delete args['publicName']
+		}
+		if (url.indexOf('[/fileId]') !== -1) url = url.replace('[/fileId]', '')
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/publicName]') !== -1) url = url.replace('[/publicName]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'SharedItems': function(args, opts) {
-		var url = '/shared_items'
+	'ToggleFolderEmail': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=toggle_folder_email&folder_id={folderId}&enable={enable}'
 		args = args || {}
-		if (args['shared_link'] == null) throw new Error('shared_link is a required parameter')
-		var rgx = new RegExp('\{shared_link\}', 'g')
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['shared_link'])
-			if (args['shared_link']) delete args['shared_link']
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
 		}
-		if (url.indexOf('[/shared_link]') !== -1) {
-			url = url.replace('[/shared_link]', '/' + args['shared_link'])
-			if (args['shared_link']) delete args['shared_link']
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
 		}
-		if (args['shared_link_password'] == null) throw new Error('shared_link_password is a required parameter')
-		var rgx = new RegExp('\{shared_link_password\}', 'g')
+		if (args['enable'] == null) args['enable'] = "0"
+		var rgx = new RegExp('\{enable\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['shared_link_password'])
-			if (args['shared_link_password']) delete args['shared_link_password']
+			url = url.replace(rgx, args['enable'])
+			if (args['enable']) delete args['enable']
 		}
-		if (url.indexOf('[/shared_link_password]') !== -1) {
-			url = url.replace('[/shared_link_password]', '/' + args['shared_link_password'])
-			if (args['shared_link_password']) delete args['shared_link_password']
+		if (url.indexOf('[/enable]') !== -1) {
+			url = url.replace('[/enable]', '/' + args['enable'])
+			if (args['enable']) delete args['enable']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/enable]') !== -1) url = url.replace('[/enable]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'commentPOST': function(args, opts) {
-		var url = '/files/{id}/comments'
+	'AddToTags': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=add_to_tag&tags={testTag}&target={target}&target_id={targetId}'
 		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
 		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
 		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'CommentResponse': function(args, opts) {
-		var url = '/comments/{comment_id}'
+	'ExportTags': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=export_tags'
 		args = args || {}
-		if (args['comment_id'] == null) throw new Error('comment_id is a required parameter')
-		var rgx = new RegExp('\{comment_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['comment_id'])
-			if (args['comment_id']) delete args['comment_id']
-		}
-		if (url.indexOf('[/comment_id]') !== -1) {
-			url = url.replace('[/comment_id]', '/' + args['comment_id'])
-			if (args['comment_id']) delete args['comment_id']
-		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'comment': function(args, opts) {
-		var url = '/comments/{comment_id}'
+	'GetComments': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_comments&target={target}&target_id={targetId}'
 		args = args || {}
-		if (args['comment_id'] == null) throw new Error('comment_id is a required parameter')
-		var rgx = new RegExp('\{comment_id\}', 'g')
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['comment_id'])
-			if (args['comment_id']) delete args['comment_id']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/comment_id]') !== -1) {
-			url = url.replace('[/comment_id]', '/' + args['comment_id'])
-			if (args['comment_id']) delete args['comment_id']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		return http({provider:'box',url:url,method:'put',params:args}, opts)
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'commentDELETE': function(args, opts) {
-		var url = '/comments/{comment_id}'
+	'AddComments': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=add_comment&target={target}&target_id={targetId}&message={message}'
 		args = args || {}
-		if (args['comment_id'] == null) throw new Error('comment_id is a required parameter')
-		var rgx = new RegExp('\{comment_id\}', 'g')
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['comment_id'])
-			if (args['comment_id']) delete args['comment_id']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/comment_id]') !== -1) {
-			url = url.replace('[/comment_id]', '/' + args['comment_id'])
-			if (args['comment_id']) delete args['comment_id']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'delete',params:args}, opts)
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['message'] == null) args['message'] = "file"
+		var rgx = new RegExp('\{message\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
 	},
-	'newDiscussion': function(args, opts) {
-		var url = '/discussions'
+	'DeleteComment': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=delete_comment&target_id={targetId}'
 		args = args || {}
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		return http({provider:'box',url:url,method:'DELETE',params:args}, opts)
 	},
-	'updateDiscussion': function(args, opts) {
-		var url = '/discussions/{discussion_id}'
+	'GetVersions': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_versions&target={target}&target_id={targetId}'
 		args = args || {}
-		if (args['discussion_id'] == null) throw new Error('discussion_id is a required parameter')
-		var rgx = new RegExp('\{discussion_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['discussion_id'])
-			if (args['discussion_id']) delete args['discussion_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/discussion_id]') !== -1) {
-			url = url.replace('[/discussion_id]', '/' + args['discussion_id'])
-			if (args['discussion_id']) delete args['discussion_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
 		}
-		return http({provider:'box',url:url,method:'put',params:args}, opts)
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'getDiscussionComments': function(args, opts) {
-		var url = '/discussions/{discussion_id}/comments'
+	'MakeCurrentVersion': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=make_current_version&target={target}&target_id={targetId}&version_id={versionId}'
 		args = args || {}
-		if (args['discussion_id'] == null) throw new Error('discussion_id is a required parameter')
-		var rgx = new RegExp('\{discussion_id\}', 'g')
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['discussion_id'])
-			if (args['discussion_id']) delete args['discussion_id']
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		if (url.indexOf('[/discussion_id]') !== -1) {
-			url = url.replace('[/discussion_id]', '/' + args['discussion_id'])
-			if (args['discussion_id']) delete args['discussion_id']
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	},
-	'addDiscussionComment': function(args, opts) {
-		var url = '/discussions/{discussion_id}/comments'
+	'Search': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=search&query={query}&sort={sort}&page={pageNum}&per_page={perPage}&direction={direction}&params={params}'
 		args = args || {}
-		if (args['discussion_id'] == null) throw new Error('discussion_id is a required parameter')
-		var rgx = new RegExp('\{discussion_id\}', 'g')
+		if (args['page'] == null) args['page'] = "0"
+		var rgx = new RegExp('\{page\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['discussion_id'])
-			if (args['discussion_id']) delete args['discussion_id']
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
 		}
-		if (url.indexOf('[/discussion_id]') !== -1) {
-			url = url.replace('[/discussion_id]', '/' + args['discussion_id'])
-			if (args['discussion_id']) delete args['discussion_id']
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
 		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['per_page'] == null) args['per_page'] = "10"
+		var rgx = new RegExp('\{per_page\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['per_page'])
+			if (args['per_page']) delete args['per_page']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/per_page]') !== -1) {
+			url = url.replace('[/per_page]', '/' + args['per_page'])
+			if (args['per_page']) delete args['per_page']
 		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
-	},
-	'getPendingCollaborationItems': function(args, opts) {
-		var url = '/collaborations'
-		args = args || {}
-		if (args['status'] == null) throw new Error('status is a required parameter')
-		var rgx = new RegExp('\{status\}', 'g')
+		if (args['query'] == null) args['query'] = "file"
+		var rgx = new RegExp('\{query\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['status'])
-			if (args['status']) delete args['status']
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
 		}
-		if (url.indexOf('[/status]') !== -1) {
-			url = url.replace('[/status]', '/' + args['status'])
-			if (args['status']) delete args['status']
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
-	},
-	'createCollaboration': function(args, opts) {
-		var url = '/collaborations'
-		args = args || {}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
+		if (args['direction'] == null) args['direction'] = "asc"
+		var rgx = new RegExp('\{direction\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
+			url = url.replace(rgx, args['direction'])
+			if (args['direction']) delete args['direction']
 		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
+		if (url.indexOf('[/direction]') !== -1) {
+			url = url.replace('[/direction]', '/' + args['direction'])
+			if (args['direction']) delete args['direction']
 		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
-	},
-	'getCollaborationItems': function(args, opts) {
-		var url = '/collaborations/{collaborations_id}'
-		args = args || {}
-		if (args['collaborations_id'] == null) throw new Error('collaborations_id is a required parameter')
-		var rgx = new RegExp('\{collaborations_id\}', 'g')
+		if (args['sort'] == null) args['sort'] = "relevance"
+		var rgx = new RegExp('\{sort\}', 'g')
 		if (url.match(rgx)) {
-			url = url.replace(rgx, args['collaborations_id'])
-			if (args['collaborations_id']) delete args['collaborations_id']
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
 		}
-		if (url.indexOf('[/collaborations_id]') !== -1) {
-			url = url.replace('[/collaborations_id]', '/' + args['collaborations_id'])
-			if (args['collaborations_id']) delete args['collaborations_id']
+		if (url.indexOf('[/sort]') !== -1) {
+			url = url.replace('[/sort]', '/' + args['sort'])
+			if (args['sort']) delete args['sort']
 		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
-	},
-	'editCollaborationItems': function(args, opts) {
-		var url = '/collaborations/{collaborations_id}'
-		args = args || {}
-		if (args['collaborations_id'] == null) throw new Error('collaborations_id is a required parameter')
-		var rgx = new RegExp('\{collaborations_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['collaborations_id'])
-			if (args['collaborations_id']) delete args['collaborations_id']
-		}
-		if (url.indexOf('[/collaborations_id]') !== -1) {
-			url = url.replace('[/collaborations_id]', '/' + args['collaborations_id'])
-			if (args['collaborations_id']) delete args['collaborations_id']
-		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		return http({provider:'box',url:url,method:'put',params:args}, opts)
-	},
-	'deleteCollaboration': function(args, opts) {
-		var url = '/collaborations/{collaborations_id}'
-		args = args || {}
-		if (args['collaborations_id'] == null) throw new Error('collaborations_id is a required parameter')
-		var rgx = new RegExp('\{collaborations_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['collaborations_id'])
-			if (args['collaborations_id']) delete args['collaborations_id']
-		}
-		if (url.indexOf('[/collaborations_id]') !== -1) {
-			url = url.replace('[/collaborations_id]', '/' + args['collaborations_id'])
-			if (args['collaborations_id']) delete args['collaborations_id']
-		}
-		return http({provider:'box',url:url,method:'delete',params:args}, opts)
-	},
-	'GetEvents': function(args, opts) {
-		var url = '/events'
-		args = args || {}
-		var rgx = new RegExp('\{stream_position\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['stream_position'])
-			if (args['stream_position']) delete args['stream_position']
-		}
-		if (url.indexOf('[/stream_position]') !== -1) {
-			url = url.replace('[/stream_position]', '/' + args['stream_position'])
-			if (args['stream_position']) delete args['stream_position']
-		}
-		var rgx = new RegExp('\{stream_type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['stream_type'])
-			if (args['stream_type']) delete args['stream_type']
-		}
-		if (url.indexOf('[/stream_type]') !== -1) {
-			url = url.replace('[/stream_type]', '/' + args['stream_type'])
-			if (args['stream_type']) delete args['stream_type']
-		}
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/limit]') !== -1) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		var rgx = new RegExp('\{offset\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['offset'])
-			if (args['offset']) delete args['offset']
-		}
-		if (url.indexOf('[/offset]') !== -1) {
-			url = url.replace('[/offset]', '/' + args['offset'])
-			if (args['offset']) delete args['offset']
-		}
-		var rgx = new RegExp('\{event_type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['event_type'])
-			if (args['event_type']) delete args['event_type']
-		}
-		if (url.indexOf('[/event_type]') !== -1) {
-			url = url.replace('[/event_type]', '/' + args['event_type'])
-			if (args['event_type']) delete args['event_type']
-		}
-		var rgx = new RegExp('\{created_after\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['created_after'])
-			if (args['created_after']) delete args['created_after']
-		}
-		if (url.indexOf('[/created_after]') !== -1) {
-			url = url.replace('[/created_after]', '/' + args['created_after'])
-			if (args['created_after']) delete args['created_after']
-		}
-		var rgx = new RegExp('\{created_before\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['created_before'])
-			if (args['created_before']) delete args['created_before']
-		}
-		if (url.indexOf('[/created_before]') !== -1) {
-			url = url.replace('[/created_before]', '/' + args['created_before'])
-			if (args['created_before']) delete args['created_before']
-		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
-	},
-	'userResponse': function(args, opts) {
-		var url = '/users'
-		args = args || {}
-		var rgx = new RegExp('\{filter_term\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['filter_term'])
-			if (args['filter_term']) delete args['filter_term']
-		}
-		if (url.indexOf('[/filter_term]') !== -1) {
-			url = url.replace('[/filter_term]', '/' + args['filter_term'])
-			if (args['filter_term']) delete args['filter_term']
-		}
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/limit]') !== -1) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		var rgx = new RegExp('\{offset\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['offset'])
-			if (args['offset']) delete args['offset']
-		}
-		if (url.indexOf('[/offset]') !== -1) {
-			url = url.replace('[/offset]', '/' + args['offset'])
-			if (args['offset']) delete args['offset']
-		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
-	},
-	'userDtlsClass': function(args, opts) {
-		var url = '/users'
-		args = args || {}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		return http({provider:'box',url:url,method:'post',params:args}, opts)
-	},
-	'userResponse': function(args, opts) {
-		var url = '/users/{user_id}'
-		args = args || {}
-		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
-		var rgx = new RegExp('\{user_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['user_id'])
-			if (args['user_id']) delete args['user_id']
-		}
-		if (url.indexOf('[/user_id]') !== -1) {
-			url = url.replace('[/user_id]', '/' + args['user_id'])
-			if (args['user_id']) delete args['user_id']
-		}
-		return http({provider:'box',url:url,method:'get',params:args}, opts)
-	},
-	'userDELETE': function(args, opts) {
-		var url = '/users/{user_id}'
-		args = args || {}
-		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
-		var rgx = new RegExp('\{user_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['user_id'])
-			if (args['user_id']) delete args['user_id']
-		}
-		if (url.indexOf('[/user_id]') !== -1) {
-			url = url.replace('[/user_id]', '/' + args['user_id'])
-			if (args['user_id']) delete args['user_id']
-		}
-		var rgx = new RegExp('\{notify\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['notify'])
-			if (args['notify']) delete args['notify']
-		}
-		if (url.indexOf('[/notify]') !== -1) {
-			url = url.replace('[/notify]', '/' + args['notify'])
-			if (args['notify']) delete args['notify']
-		}
-		var rgx = new RegExp('\{force\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['force'])
-			if (args['force']) delete args['force']
-		}
-		if (url.indexOf('[/force]') !== -1) {
-			url = url.replace('[/force]', '/' + args['force'])
-			if (args['force']) delete args['force']
-		}
-		return http({provider:'box',url:url,method:'delete',params:args}, opts)
-	},
-	'userDtlsClass': function(args, opts) {
-		var url = '/users/me'
-		args = args || {}
-	'moveUserFolder': function(args, opts) {
-		var url = '/users/{user_id}/folders/{folder_id}'
-		args = args || {}
-		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
-		var rgx = new RegExp('\{user_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['user_id'])
-			if (args['user_id']) delete args['user_id']
-		}
-		if (url.indexOf('[/user_id]') !== -1) {
-			url = url.replace('[/user_id]', '/' + args['user_id'])
-			if (args['user_id']) delete args['user_id']
-		}
-		if (args['folder_id'] == null) throw new Error('folder_id is a required parameter')
-		var rgx = new RegExp('\{folder_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
-		}
-		if (url.indexOf('[/folder_id]') !== -1) {
-			url = url.replace('[/folder_id]', '/' + args['folder_id'])
-			if (args['folder_id']) delete args['folder_id']
-		}
-		if (args['undefined'] == null) throw new Error('undefined is a required parameter')
-		var rgx = new RegExp('\{undefined\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (url.indexOf('[/undefined]') !== -1) {
-			url = url.replace('[/undefined]', '/' + args['undefined'])
-			if (args['undefined']) delete args['undefined']
-		}
-		if (args['notify'] == null) throw new Error('notify is a required parameter')
-		var rgx = new RegExp('\{notify\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['notify'])
-			if (args['notify']) delete args['notify']
-		}
-		if (url.indexOf('[/notify]') !== -1) {
-			url = url.replace('[/notify]', '/' + args['notify'])
-			if (args['notify']) delete args['notify']
-		}
-		return http({provider:'box',url:url,method:'put',params:args}, opts)
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
+		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
 	}
 })
