@@ -1,0 +1,380 @@
+({
+	auth:function(){return auth({provider:'groupon_api2'})},
+	'getApiVersion': function(args, opts) {
+		var url = 'https://api.groupon.com//status.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		var rgx = new RegExp('\{device_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['device_id'])
+			if (args['device_id']) delete args['device_id']
+		}
+		if (url.indexOf('[/device_id]') !== -1) {
+			url = url.replace('[/device_id]', '/' + args['device_id'])
+			if (args['device_id']) delete args['device_id']
+		}
+		var rgx = new RegExp('\{user_agent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_agent'])
+			if (args['user_agent']) delete args['user_agent']
+		}
+		if (url.indexOf('[/user_agent]') !== -1) {
+			url = url.replace('[/user_agent]', '/' + args['user_agent'])
+			if (args['user_agent']) delete args['user_agent']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/device_id]') !== -1) url = url.replace('[/device_id]', '')
+		if (url.indexOf('[/user_agent]') !== -1) url = url.replace('[/user_agent]', '')
+		return http({provider:'groupon_api2',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getDivisions': function(args, opts) {
+		var url = 'https://api.groupon.com//divisions.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['client_id'] == null) args['client_id'] = "enter_your_client_id_please"
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['show'] == null) args['show'] = "all"
+		var rgx = new RegExp('\{show\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['show'])
+			if (args['show']) delete args['show']
+		}
+		if (url.indexOf('[/show]') !== -1) {
+			url = url.replace('[/show]', '/' + args['show'])
+			if (args['show']) delete args['show']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/show]') !== -1) url = url.replace('[/show]', '')
+		return http({provider:'groupon_api2',url:url,method:'GET',params:args}, opts)
+	},
+	'getRecentCommentaries': function(args, opts) {
+		var url = 'https://api.groupon.com//groupon_says.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['client_id'] == null) args['client_id'] = "enter_your_client_id_please "
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['limit'] == null) args['limit'] = "10"
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{random\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['random'])
+			if (args['random']) delete args['random']
+		}
+		if (url.indexOf('[/random]') !== -1) {
+			url = url.replace('[/random]', '/' + args['random'])
+			if (args['random']) delete args['random']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/random]') !== -1) url = url.replace('[/random]', '')
+		return http({provider:'groupon_api2',url:url,method:'GET',params:args}, opts)
+	},
+	'getDeal': function(args, opts) {
+		var url = 'https://api.groupon.com//deals/{id}.{format}'
+		args = args || {}
+		if (args['id'] == null) args['id'] = "paddy-longs-beer-pub-1"
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['client_id'] == null) args['client_id'] = "enter_your_client_id_please"
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['show'] == null) args['show'] = "all"
+		var rgx = new RegExp('\{show\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['show'])
+			if (args['show']) delete args['show']
+		}
+		if (url.indexOf('[/show]') !== -1) {
+			url = url.replace('[/show]', '/' + args['show'])
+			if (args['show']) delete args['show']
+		}
+		var rgx = new RegExp('\{email_address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email_address'])
+			if (args['email_address']) delete args['email_address']
+		}
+		if (url.indexOf('[/email_address]') !== -1) {
+			url = url.replace('[/email_address]', '/' + args['email_address'])
+			if (args['email_address']) delete args['email_address']
+		}
+		var rgx = new RegExp('\{area\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['area'])
+			if (args['area']) delete args['area']
+		}
+		if (url.indexOf('[/area]') !== -1) {
+			url = url.replace('[/area]', '/' + args['area'])
+			if (args['area']) delete args['area']
+		}
+		var rgx = new RegExp('\{referral_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['referral_id'])
+			if (args['referral_id']) delete args['referral_id']
+		}
+		if (url.indexOf('[/referral_id]') !== -1) {
+			url = url.replace('[/referral_id]', '/' + args['referral_id'])
+			if (args['referral_id']) delete args['referral_id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/show]') !== -1) url = url.replace('[/show]', '')
+		if (url.indexOf('[/email_address]') !== -1) url = url.replace('[/email_address]', '')
+		if (url.indexOf('[/area]') !== -1) url = url.replace('[/area]', '')
+		if (url.indexOf('[/referral_id]') !== -1) url = url.replace('[/referral_id]', '')
+		return http({provider:'groupon_api2',url:url,method:'GET',params:args}, opts)
+	},
+	'getDeals': function(args, opts) {
+		var url = 'https://api.groupon.com//deals.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['client_id'] == null) args['client_id'] = "enter_your_client_id_please "
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['show'] == null) args['show'] = "all"
+		var rgx = new RegExp('\{show\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['show'])
+			if (args['show']) delete args['show']
+		}
+		if (url.indexOf('[/show]') !== -1) {
+			url = url.replace('[/show]', '/' + args['show'])
+			if (args['show']) delete args['show']
+		}
+		var rgx = new RegExp('\{email_address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email_address'])
+			if (args['email_address']) delete args['email_address']
+		}
+		if (url.indexOf('[/email_address]') !== -1) {
+			url = url.replace('[/email_address]', '/' + args['email_address'])
+			if (args['email_address']) delete args['email_address']
+		}
+		var rgx = new RegExp('\{area\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['area'])
+			if (args['area']) delete args['area']
+		}
+		if (url.indexOf('[/area]') !== -1) {
+			url = url.replace('[/area]', '/' + args['area'])
+			if (args['area']) delete args['area']
+		}
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		var rgx = new RegExp('\{lng\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lng'])
+			if (args['lng']) delete args['lng']
+		}
+		if (url.indexOf('[/lng]') !== -1) {
+			url = url.replace('[/lng]', '/' + args['lng'])
+			if (args['lng']) delete args['lng']
+		}
+		var rgx = new RegExp('\{radius\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['radius'])
+			if (args['radius']) delete args['radius']
+		}
+		if (url.indexOf('[/radius]') !== -1) {
+			url = url.replace('[/radius]', '/' + args['radius'])
+			if (args['radius']) delete args['radius']
+		}
+		var rgx = new RegExp('\{division_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['division_id'])
+			if (args['division_id']) delete args['division_id']
+		}
+		if (url.indexOf('[/division_id]') !== -1) {
+			url = url.replace('[/division_id]', '/' + args['division_id'])
+			if (args['division_id']) delete args['division_id']
+		}
+		var rgx = new RegExp('\{device_token\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['device_token'])
+			if (args['device_token']) delete args['device_token']
+		}
+		if (url.indexOf('[/device_token]') !== -1) {
+			url = url.replace('[/device_token]', '/' + args['device_token'])
+			if (args['device_token']) delete args['device_token']
+		}
+		var rgx = new RegExp('\{subscriber_id \}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subscriber_id '])
+			if (args['subscriber_id ']) delete args['subscriber_id ']
+		}
+		if (url.indexOf('[/subscriber_id ]') !== -1) {
+			url = url.replace('[/subscriber_id ]', '/' + args['subscriber_id '])
+			if (args['subscriber_id ']) delete args['subscriber_id ']
+		}
+		var rgx = new RegExp('\{affiliate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['affiliate'])
+			if (args['affiliate']) delete args['affiliate']
+		}
+		if (url.indexOf('[/affiliate]') !== -1) {
+			url = url.replace('[/affiliate]', '/' + args['affiliate'])
+			if (args['affiliate']) delete args['affiliate']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/show]') !== -1) url = url.replace('[/show]', '')
+		if (url.indexOf('[/email_address]') !== -1) url = url.replace('[/email_address]', '')
+		if (url.indexOf('[/area]') !== -1) url = url.replace('[/area]', '')
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/lng]') !== -1) url = url.replace('[/lng]', '')
+		if (url.indexOf('[/radius]') !== -1) url = url.replace('[/radius]', '')
+		if (url.indexOf('[/division_id]') !== -1) url = url.replace('[/division_id]', '')
+		if (url.indexOf('[/device_token]') !== -1) url = url.replace('[/device_token]', '')
+		if (url.indexOf('[/subscriber_id ]') !== -1) url = url.replace('[/subscriber_id ]', '')
+		if (url.indexOf('[/affiliate]') !== -1) url = url.replace('[/affiliate]', '')
+		return http({provider:'groupon_api2',url:url,method:'GET',params:args}, opts)
+	},
+	'getListedDealPosts': function(args, opts) {
+		var url = 'https://api.groupon.com//deals/{deal_id}/posts.{format}'
+		args = args || {}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['client_id'] == null) args['client_id'] = "enter_your_client_id_please"
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['deal_id'] == null) args['deal_id'] = "troya-restaurant-san-francisco"
+		var rgx = new RegExp('\{deal_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['deal_id'])
+			if (args['deal_id']) delete args['deal_id']
+		}
+		if (url.indexOf('[/deal_id]') !== -1) {
+			url = url.replace('[/deal_id]', '/' + args['deal_id'])
+			if (args['deal_id']) delete args['deal_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/deal_id]') !== -1) url = url.replace('[/deal_id]', '')
+		return http({provider:'groupon_api2',url:url,method:'GET',params:args}, opts)
+	}
+})

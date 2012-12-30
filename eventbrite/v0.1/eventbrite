@@ -1,0 +1,2049 @@
+({
+	auth:function(){return auth({provider:'eventbrite'})},
+	'event_search': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_search'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		var rgx = new RegExp('\{keywords\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['keywords'])
+			if (args['keywords']) delete args['keywords']
+		}
+		if (url.indexOf('[/keywords]') !== -1) {
+			url = url.replace('[/keywords]', '/' + args['keywords'])
+			if (args['keywords']) delete args['keywords']
+		}
+		var rgx = new RegExp('\{category\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['category'])
+			if (args['category']) delete args['category']
+		}
+		if (url.indexOf('[/category]') !== -1) {
+			url = url.replace('[/category]', '/' + args['category'])
+			if (args['category']) delete args['category']
+		}
+		var rgx = new RegExp('\{address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['address'])
+			if (args['address']) delete args['address']
+		}
+		if (url.indexOf('[/address]') !== -1) {
+			url = url.replace('[/address]', '/' + args['address'])
+			if (args['address']) delete args['address']
+		}
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (url.indexOf('[/city]') !== -1) {
+			url = url.replace('[/city]', '/' + args['city'])
+			if (args['city']) delete args['city']
+		}
+		var rgx = new RegExp('\{region\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/region]') !== -1) {
+			url = url.replace('[/region]', '/' + args['region'])
+			if (args['region']) delete args['region']
+		}
+		var rgx = new RegExp('\{postal_code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postal_code'])
+			if (args['postal_code']) delete args['postal_code']
+		}
+		if (url.indexOf('[/postal_code]') !== -1) {
+			url = url.replace('[/postal_code]', '/' + args['postal_code'])
+			if (args['postal_code']) delete args['postal_code']
+		}
+		var rgx = new RegExp('\{country\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['country'])
+			if (args['country']) delete args['country']
+		}
+		if (url.indexOf('[/country]') !== -1) {
+			url = url.replace('[/country]', '/' + args['country'])
+			if (args['country']) delete args['country']
+		}
+		var rgx = new RegExp('\{within\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['within'])
+			if (args['within']) delete args['within']
+		}
+		if (url.indexOf('[/within]') !== -1) {
+			url = url.replace('[/within]', '/' + args['within'])
+			if (args['within']) delete args['within']
+		}
+		var rgx = new RegExp('\{within_unit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['within_unit'])
+			if (args['within_unit']) delete args['within_unit']
+		}
+		if (url.indexOf('[/within_unit]') !== -1) {
+			url = url.replace('[/within_unit]', '/' + args['within_unit'])
+			if (args['within_unit']) delete args['within_unit']
+		}
+		var rgx = new RegExp('\{latitude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['latitude'])
+			if (args['latitude']) delete args['latitude']
+		}
+		if (url.indexOf('[/latitude]') !== -1) {
+			url = url.replace('[/latitude]', '/' + args['latitude'])
+			if (args['latitude']) delete args['latitude']
+		}
+		var rgx = new RegExp('\{longitude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['longitude'])
+			if (args['longitude']) delete args['longitude']
+		}
+		if (url.indexOf('[/longitude]') !== -1) {
+			url = url.replace('[/longitude]', '/' + args['longitude'])
+			if (args['longitude']) delete args['longitude']
+		}
+		var rgx = new RegExp('\{date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['date'])
+			if (args['date']) delete args['date']
+		}
+		if (url.indexOf('[/date]') !== -1) {
+			url = url.replace('[/date]', '/' + args['date'])
+			if (args['date']) delete args['date']
+		}
+		var rgx = new RegExp('\{date_created\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['date_created'])
+			if (args['date_created']) delete args['date_created']
+		}
+		if (url.indexOf('[/date_created]') !== -1) {
+			url = url.replace('[/date_created]', '/' + args['date_created'])
+			if (args['date_created']) delete args['date_created']
+		}
+		var rgx = new RegExp('\{date_modified\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['date_modified'])
+			if (args['date_modified']) delete args['date_modified']
+		}
+		if (url.indexOf('[/date_modified]') !== -1) {
+			url = url.replace('[/date_modified]', '/' + args['date_modified'])
+			if (args['date_modified']) delete args['date_modified']
+		}
+		var rgx = new RegExp('\{organizer\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['organizer'])
+			if (args['organizer']) delete args['organizer']
+		}
+		if (url.indexOf('[/organizer]') !== -1) {
+			url = url.replace('[/organizer]', '/' + args['organizer'])
+			if (args['organizer']) delete args['organizer']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		if (url.indexOf('[/max]') !== -1) {
+			url = url.replace('[/max]', '/' + args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{count_only\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count_only'])
+			if (args['count_only']) delete args['count_only']
+		}
+		if (url.indexOf('[/count_only]') !== -1) {
+			url = url.replace('[/count_only]', '/' + args['count_only'])
+			if (args['count_only']) delete args['count_only']
+		}
+		var rgx = new RegExp('\{sort_by\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort_by'])
+			if (args['sort_by']) delete args['sort_by']
+		}
+		if (url.indexOf('[/sort_by]') !== -1) {
+			url = url.replace('[/sort_by]', '/' + args['sort_by'])
+			if (args['sort_by']) delete args['sort_by']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{since_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		if (url.indexOf('[/since_id]') !== -1) {
+			url = url.replace('[/since_id]', '/' + args['since_id'])
+			if (args['since_id']) delete args['since_id']
+		}
+		var rgx = new RegExp('\{tracking_link\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tracking_link'])
+			if (args['tracking_link']) delete args['tracking_link']
+		}
+		if (url.indexOf('[/tracking_link]') !== -1) {
+			url = url.replace('[/tracking_link]', '/' + args['tracking_link'])
+			if (args['tracking_link']) delete args['tracking_link']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/keywords]') !== -1) url = url.replace('[/keywords]', '')
+		if (url.indexOf('[/category]') !== -1) url = url.replace('[/category]', '')
+		if (url.indexOf('[/address]') !== -1) url = url.replace('[/address]', '')
+		if (url.indexOf('[/city]') !== -1) url = url.replace('[/city]', '')
+		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
+		if (url.indexOf('[/postal_code]') !== -1) url = url.replace('[/postal_code]', '')
+		if (url.indexOf('[/country]') !== -1) url = url.replace('[/country]', '')
+		if (url.indexOf('[/within]') !== -1) url = url.replace('[/within]', '')
+		if (url.indexOf('[/within_unit]') !== -1) url = url.replace('[/within_unit]', '')
+		if (url.indexOf('[/latitude]') !== -1) url = url.replace('[/latitude]', '')
+		if (url.indexOf('[/longitude]') !== -1) url = url.replace('[/longitude]', '')
+		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
+		if (url.indexOf('[/date_created]') !== -1) url = url.replace('[/date_created]', '')
+		if (url.indexOf('[/date_modified]') !== -1) url = url.replace('[/date_modified]', '')
+		if (url.indexOf('[/organizer]') !== -1) url = url.replace('[/organizer]', '')
+		if (url.indexOf('[/max]') !== -1) url = url.replace('[/max]', '')
+		if (url.indexOf('[/count_only]') !== -1) url = url.replace('[/count_only]', '')
+		if (url.indexOf('[/sort_by]') !== -1) url = url.replace('[/sort_by]', '')
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/since_id]') !== -1) url = url.replace('[/since_id]', '')
+		if (url.indexOf('[/tracking_link]') !== -1) url = url.replace('[/tracking_link]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'event_get': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_get'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'event_new': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_new'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['title'] == null) throw new Error('title is a required parameter')
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (args['start_date'] == null) throw new Error('start_date is a required parameter')
+		var rgx = new RegExp('\{start_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		if (url.indexOf('[/start_date]') !== -1) {
+			url = url.replace('[/start_date]', '/' + args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		if (args['end_date'] == null) throw new Error('end_date is a required parameter')
+		var rgx = new RegExp('\{end_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (url.indexOf('[/end_date]') !== -1) {
+			url = url.replace('[/end_date]', '/' + args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (args['timezone'] == null) throw new Error('timezone is a required parameter')
+		var rgx = new RegExp('\{timezone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['timezone'])
+			if (args['timezone']) delete args['timezone']
+		}
+		if (url.indexOf('[/timezone]') !== -1) {
+			url = url.replace('[/timezone]', '/' + args['timezone'])
+			if (args['timezone']) delete args['timezone']
+		}
+		var rgx = new RegExp('\{privacy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['privacy'])
+			if (args['privacy']) delete args['privacy']
+		}
+		if (url.indexOf('[/privacy]') !== -1) {
+			url = url.replace('[/privacy]', '/' + args['privacy'])
+			if (args['privacy']) delete args['privacy']
+		}
+		var rgx = new RegExp('\{personalized_url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personalized_url'])
+			if (args['personalized_url']) delete args['personalized_url']
+		}
+		if (url.indexOf('[/personalized_url]') !== -1) {
+			url = url.replace('[/personalized_url]', '/' + args['personalized_url'])
+			if (args['personalized_url']) delete args['personalized_url']
+		}
+		var rgx = new RegExp('\{venue_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venue_id'])
+			if (args['venue_id']) delete args['venue_id']
+		}
+		if (url.indexOf('[/venue_id]') !== -1) {
+			url = url.replace('[/venue_id]', '/' + args['venue_id'])
+			if (args['venue_id']) delete args['venue_id']
+		}
+		var rgx = new RegExp('\{organizer_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['organizer_id'])
+			if (args['organizer_id']) delete args['organizer_id']
+		}
+		if (url.indexOf('[/organizer_id]') !== -1) {
+			url = url.replace('[/organizer_id]', '/' + args['organizer_id'])
+			if (args['organizer_id']) delete args['organizer_id']
+		}
+		var rgx = new RegExp('\{capacity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['capacity'])
+			if (args['capacity']) delete args['capacity']
+		}
+		if (url.indexOf('[/capacity]') !== -1) {
+			url = url.replace('[/capacity]', '/' + args['capacity'])
+			if (args['capacity']) delete args['capacity']
+		}
+		var rgx = new RegExp('\{currency\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['currency'])
+			if (args['currency']) delete args['currency']
+		}
+		if (url.indexOf('[/currency]') !== -1) {
+			url = url.replace('[/currency]', '/' + args['currency'])
+			if (args['currency']) delete args['currency']
+		}
+		var rgx = new RegExp('\{status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['status'])
+			if (args['status']) delete args['status']
+		}
+		if (url.indexOf('[/status]') !== -1) {
+			url = url.replace('[/status]', '/' + args['status'])
+			if (args['status']) delete args['status']
+		}
+		var rgx = new RegExp('\{custom_header\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['custom_header'])
+			if (args['custom_header']) delete args['custom_header']
+		}
+		if (url.indexOf('[/custom_header]') !== -1) {
+			url = url.replace('[/custom_header]', '/' + args['custom_header'])
+			if (args['custom_header']) delete args['custom_header']
+		}
+		var rgx = new RegExp('\{custom_footer\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['custom_footer'])
+			if (args['custom_footer']) delete args['custom_footer']
+		}
+		if (url.indexOf('[/custom_footer]') !== -1) {
+			url = url.replace('[/custom_footer]', '/' + args['custom_footer'])
+			if (args['custom_footer']) delete args['custom_footer']
+		}
+		var rgx = new RegExp('\{background_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['background_color'])
+			if (args['background_color']) delete args['background_color']
+		}
+		if (url.indexOf('[/background_color]') !== -1) {
+			url = url.replace('[/background_color]', '/' + args['background_color'])
+			if (args['background_color']) delete args['background_color']
+		}
+		var rgx = new RegExp('\{text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text_color'])
+			if (args['text_color']) delete args['text_color']
+		}
+		if (url.indexOf('[/text_color]') !== -1) {
+			url = url.replace('[/text_color]', '/' + args['text_color'])
+			if (args['text_color']) delete args['text_color']
+		}
+		var rgx = new RegExp('\{title_text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title_text_color'])
+			if (args['title_text_color']) delete args['title_text_color']
+		}
+		if (url.indexOf('[/title_text_color]') !== -1) {
+			url = url.replace('[/title_text_color]', '/' + args['title_text_color'])
+			if (args['title_text_color']) delete args['title_text_color']
+		}
+		var rgx = new RegExp('\{box_background_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_background_color'])
+			if (args['box_background_color']) delete args['box_background_color']
+		}
+		if (url.indexOf('[/box_background_color]') !== -1) {
+			url = url.replace('[/box_background_color]', '/' + args['box_background_color'])
+			if (args['box_background_color']) delete args['box_background_color']
+		}
+		var rgx = new RegExp('\{box_text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_text_color'])
+			if (args['box_text_color']) delete args['box_text_color']
+		}
+		if (url.indexOf('[/box_text_color]') !== -1) {
+			url = url.replace('[/box_text_color]', '/' + args['box_text_color'])
+			if (args['box_text_color']) delete args['box_text_color']
+		}
+		var rgx = new RegExp('\{box_border_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_border_color'])
+			if (args['box_border_color']) delete args['box_border_color']
+		}
+		if (url.indexOf('[/box_border_color]') !== -1) {
+			url = url.replace('[/box_border_color]', '/' + args['box_border_color'])
+			if (args['box_border_color']) delete args['box_border_color']
+		}
+		var rgx = new RegExp('\{box_header_background_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_header_background_color'])
+			if (args['box_header_background_color']) delete args['box_header_background_color']
+		}
+		if (url.indexOf('[/box_header_background_color]') !== -1) {
+			url = url.replace('[/box_header_background_color]', '/' + args['box_header_background_color'])
+			if (args['box_header_background_color']) delete args['box_header_background_color']
+		}
+		var rgx = new RegExp('\{box_header_text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_header_text_color'])
+			if (args['box_header_text_color']) delete args['box_header_text_color']
+		}
+		if (url.indexOf('[/box_header_text_color]') !== -1) {
+			url = url.replace('[/box_header_text_color]', '/' + args['box_header_text_color'])
+			if (args['box_header_text_color']) delete args['box_header_text_color']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		if (url.indexOf('[/start_date]') !== -1) url = url.replace('[/start_date]', '')
+		if (url.indexOf('[/end_date]') !== -1) url = url.replace('[/end_date]', '')
+		if (url.indexOf('[/timezone]') !== -1) url = url.replace('[/timezone]', '')
+		if (url.indexOf('[/privacy]') !== -1) url = url.replace('[/privacy]', '')
+		if (url.indexOf('[/personalized_url]') !== -1) url = url.replace('[/personalized_url]', '')
+		if (url.indexOf('[/venue_id]') !== -1) url = url.replace('[/venue_id]', '')
+		if (url.indexOf('[/organizer_id]') !== -1) url = url.replace('[/organizer_id]', '')
+		if (url.indexOf('[/capacity]') !== -1) url = url.replace('[/capacity]', '')
+		if (url.indexOf('[/currency]') !== -1) url = url.replace('[/currency]', '')
+		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
+		if (url.indexOf('[/custom_header]') !== -1) url = url.replace('[/custom_header]', '')
+		if (url.indexOf('[/custom_footer]') !== -1) url = url.replace('[/custom_footer]', '')
+		if (url.indexOf('[/background_color]') !== -1) url = url.replace('[/background_color]', '')
+		if (url.indexOf('[/text_color]') !== -1) url = url.replace('[/text_color]', '')
+		if (url.indexOf('[/title_text_color]') !== -1) url = url.replace('[/title_text_color]', '')
+		if (url.indexOf('[/box_background_color]') !== -1) url = url.replace('[/box_background_color]', '')
+		if (url.indexOf('[/box_text_color]') !== -1) url = url.replace('[/box_text_color]', '')
+		if (url.indexOf('[/box_border_color]') !== -1) url = url.replace('[/box_border_color]', '')
+		if (url.indexOf('[/box_header_background_color]') !== -1) url = url.replace('[/box_header_background_color]', '')
+		if (url.indexOf('[/box_header_text_color]') !== -1) url = url.replace('[/box_header_text_color]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'event_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		var rgx = new RegExp('\{start_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		if (url.indexOf('[/start_date]') !== -1) {
+			url = url.replace('[/start_date]', '/' + args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		var rgx = new RegExp('\{end_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (url.indexOf('[/end_date]') !== -1) {
+			url = url.replace('[/end_date]', '/' + args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		var rgx = new RegExp('\{timezone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['timezone'])
+			if (args['timezone']) delete args['timezone']
+		}
+		if (url.indexOf('[/timezone]') !== -1) {
+			url = url.replace('[/timezone]', '/' + args['timezone'])
+			if (args['timezone']) delete args['timezone']
+		}
+		var rgx = new RegExp('\{privacy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['privacy'])
+			if (args['privacy']) delete args['privacy']
+		}
+		if (url.indexOf('[/privacy]') !== -1) {
+			url = url.replace('[/privacy]', '/' + args['privacy'])
+			if (args['privacy']) delete args['privacy']
+		}
+		var rgx = new RegExp('\{personalized_url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personalized_url'])
+			if (args['personalized_url']) delete args['personalized_url']
+		}
+		if (url.indexOf('[/personalized_url]') !== -1) {
+			url = url.replace('[/personalized_url]', '/' + args['personalized_url'])
+			if (args['personalized_url']) delete args['personalized_url']
+		}
+		var rgx = new RegExp('\{venue_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venue_id'])
+			if (args['venue_id']) delete args['venue_id']
+		}
+		if (url.indexOf('[/venue_id]') !== -1) {
+			url = url.replace('[/venue_id]', '/' + args['venue_id'])
+			if (args['venue_id']) delete args['venue_id']
+		}
+		var rgx = new RegExp('\{organizer_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['organizer_id'])
+			if (args['organizer_id']) delete args['organizer_id']
+		}
+		if (url.indexOf('[/organizer_id]') !== -1) {
+			url = url.replace('[/organizer_id]', '/' + args['organizer_id'])
+			if (args['organizer_id']) delete args['organizer_id']
+		}
+		var rgx = new RegExp('\{capacity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['capacity'])
+			if (args['capacity']) delete args['capacity']
+		}
+		if (url.indexOf('[/capacity]') !== -1) {
+			url = url.replace('[/capacity]', '/' + args['capacity'])
+			if (args['capacity']) delete args['capacity']
+		}
+		var rgx = new RegExp('\{currency\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['currency'])
+			if (args['currency']) delete args['currency']
+		}
+		if (url.indexOf('[/currency]') !== -1) {
+			url = url.replace('[/currency]', '/' + args['currency'])
+			if (args['currency']) delete args['currency']
+		}
+		var rgx = new RegExp('\{status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['status'])
+			if (args['status']) delete args['status']
+		}
+		if (url.indexOf('[/status]') !== -1) {
+			url = url.replace('[/status]', '/' + args['status'])
+			if (args['status']) delete args['status']
+		}
+		var rgx = new RegExp('\{custom_header\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['custom_header'])
+			if (args['custom_header']) delete args['custom_header']
+		}
+		if (url.indexOf('[/custom_header]') !== -1) {
+			url = url.replace('[/custom_header]', '/' + args['custom_header'])
+			if (args['custom_header']) delete args['custom_header']
+		}
+		var rgx = new RegExp('\{custom_footer\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['custom_footer'])
+			if (args['custom_footer']) delete args['custom_footer']
+		}
+		if (url.indexOf('[/custom_footer]') !== -1) {
+			url = url.replace('[/custom_footer]', '/' + args['custom_footer'])
+			if (args['custom_footer']) delete args['custom_footer']
+		}
+		var rgx = new RegExp('\{background_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['background_color'])
+			if (args['background_color']) delete args['background_color']
+		}
+		if (url.indexOf('[/background_color]') !== -1) {
+			url = url.replace('[/background_color]', '/' + args['background_color'])
+			if (args['background_color']) delete args['background_color']
+		}
+		var rgx = new RegExp('\{text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text_color'])
+			if (args['text_color']) delete args['text_color']
+		}
+		if (url.indexOf('[/text_color]') !== -1) {
+			url = url.replace('[/text_color]', '/' + args['text_color'])
+			if (args['text_color']) delete args['text_color']
+		}
+		var rgx = new RegExp('\{title_text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title_text_color'])
+			if (args['title_text_color']) delete args['title_text_color']
+		}
+		if (url.indexOf('[/title_text_color]') !== -1) {
+			url = url.replace('[/title_text_color]', '/' + args['title_text_color'])
+			if (args['title_text_color']) delete args['title_text_color']
+		}
+		var rgx = new RegExp('\{box_background_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_background_color'])
+			if (args['box_background_color']) delete args['box_background_color']
+		}
+		if (url.indexOf('[/box_background_color]') !== -1) {
+			url = url.replace('[/box_background_color]', '/' + args['box_background_color'])
+			if (args['box_background_color']) delete args['box_background_color']
+		}
+		var rgx = new RegExp('\{box_text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_text_color'])
+			if (args['box_text_color']) delete args['box_text_color']
+		}
+		if (url.indexOf('[/box_text_color]') !== -1) {
+			url = url.replace('[/box_text_color]', '/' + args['box_text_color'])
+			if (args['box_text_color']) delete args['box_text_color']
+		}
+		var rgx = new RegExp('\{box_border_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_border_color'])
+			if (args['box_border_color']) delete args['box_border_color']
+		}
+		if (url.indexOf('[/box_border_color]') !== -1) {
+			url = url.replace('[/box_border_color]', '/' + args['box_border_color'])
+			if (args['box_border_color']) delete args['box_border_color']
+		}
+		var rgx = new RegExp('\{box_header_background_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_header_background_color'])
+			if (args['box_header_background_color']) delete args['box_header_background_color']
+		}
+		if (url.indexOf('[/box_header_background_color]') !== -1) {
+			url = url.replace('[/box_header_background_color]', '/' + args['box_header_background_color'])
+			if (args['box_header_background_color']) delete args['box_header_background_color']
+		}
+		var rgx = new RegExp('\{box_header_text_color\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['box_header_text_color'])
+			if (args['box_header_text_color']) delete args['box_header_text_color']
+		}
+		if (url.indexOf('[/box_header_text_color]') !== -1) {
+			url = url.replace('[/box_header_text_color]', '/' + args['box_header_text_color'])
+			if (args['box_header_text_color']) delete args['box_header_text_color']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		if (url.indexOf('[/start_date]') !== -1) url = url.replace('[/start_date]', '')
+		if (url.indexOf('[/end_date]') !== -1) url = url.replace('[/end_date]', '')
+		if (url.indexOf('[/timezone]') !== -1) url = url.replace('[/timezone]', '')
+		if (url.indexOf('[/privacy]') !== -1) url = url.replace('[/privacy]', '')
+		if (url.indexOf('[/personalized_url]') !== -1) url = url.replace('[/personalized_url]', '')
+		if (url.indexOf('[/venue_id]') !== -1) url = url.replace('[/venue_id]', '')
+		if (url.indexOf('[/organizer_id]') !== -1) url = url.replace('[/organizer_id]', '')
+		if (url.indexOf('[/capacity]') !== -1) url = url.replace('[/capacity]', '')
+		if (url.indexOf('[/currency]') !== -1) url = url.replace('[/currency]', '')
+		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
+		if (url.indexOf('[/custom_header]') !== -1) url = url.replace('[/custom_header]', '')
+		if (url.indexOf('[/custom_footer]') !== -1) url = url.replace('[/custom_footer]', '')
+		if (url.indexOf('[/background_color]') !== -1) url = url.replace('[/background_color]', '')
+		if (url.indexOf('[/text_color]') !== -1) url = url.replace('[/text_color]', '')
+		if (url.indexOf('[/title_text_color]') !== -1) url = url.replace('[/title_text_color]', '')
+		if (url.indexOf('[/box_background_color]') !== -1) url = url.replace('[/box_background_color]', '')
+		if (url.indexOf('[/box_text_color]') !== -1) url = url.replace('[/box_text_color]', '')
+		if (url.indexOf('[/box_border_color]') !== -1) url = url.replace('[/box_border_color]', '')
+		if (url.indexOf('[/box_header_background_color]') !== -1) url = url.replace('[/box_header_background_color]', '')
+		if (url.indexOf('[/box_header_text_color]') !== -1) url = url.replace('[/box_header_text_color]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'event_copy': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_copy'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (args['event_name'] == null) throw new Error('event_name is a required parameter')
+		var rgx = new RegExp('\{event_name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_name'])
+			if (args['event_name']) delete args['event_name']
+		}
+		if (url.indexOf('[/event_name]') !== -1) {
+			url = url.replace('[/event_name]', '/' + args['event_name'])
+			if (args['event_name']) delete args['event_name']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		if (url.indexOf('[/event_name]') !== -1) url = url.replace('[/event_name]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_list_events': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_list_events'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/email]') !== -1) {
+			url = url.replace('[/email]', '/' + args['email'])
+			if (args['email']) delete args['email']
+		}
+		var rgx = new RegExp('\{do_not_display\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['do_not_display'])
+			if (args['do_not_display']) delete args['do_not_display']
+		}
+		if (url.indexOf('[/do_not_display]') !== -1) {
+			url = url.replace('[/do_not_display]', '/' + args['do_not_display'])
+			if (args['do_not_display']) delete args['do_not_display']
+		}
+		var rgx = new RegExp('\{event_statuses\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_statuses'])
+			if (args['event_statuses']) delete args['event_statuses']
+		}
+		if (url.indexOf('[/event_statuses]') !== -1) {
+			url = url.replace('[/event_statuses]', '/' + args['event_statuses'])
+			if (args['event_statuses']) delete args['event_statuses']
+		}
+		var rgx = new RegExp('\{asc_or_desc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['asc_or_desc'])
+			if (args['asc_or_desc']) delete args['asc_or_desc']
+		}
+		if (url.indexOf('[/asc_or_desc]') !== -1) {
+			url = url.replace('[/asc_or_desc]', '/' + args['asc_or_desc'])
+			if (args['asc_or_desc']) delete args['asc_or_desc']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
+		if (url.indexOf('[/do_not_display]') !== -1) url = url.replace('[/do_not_display]', '')
+		if (url.indexOf('[/event_statuses]') !== -1) url = url.replace('[/event_statuses]', '')
+		if (url.indexOf('[/asc_or_desc]') !== -1) url = url.replace('[/asc_or_desc]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'ticket_new': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//ticket_new'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		var rgx = new RegExp('\{is_donation\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['is_donation'])
+			if (args['is_donation']) delete args['is_donation']
+		}
+		if (url.indexOf('[/is_donation]') !== -1) {
+			url = url.replace('[/is_donation]', '/' + args['is_donation'])
+			if (args['is_donation']) delete args['is_donation']
+		}
+		if (args['name'] == null) throw new Error('name is a required parameter')
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (args['price'] == null) throw new Error('price is a required parameter')
+		var rgx = new RegExp('\{price\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['price'])
+			if (args['price']) delete args['price']
+		}
+		if (url.indexOf('[/price]') !== -1) {
+			url = url.replace('[/price]', '/' + args['price'])
+			if (args['price']) delete args['price']
+		}
+		var rgx = new RegExp('\{quantity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['quantity'])
+			if (args['quantity']) delete args['quantity']
+		}
+		if (url.indexOf('[/quantity]') !== -1) {
+			url = url.replace('[/quantity]', '/' + args['quantity'])
+			if (args['quantity']) delete args['quantity']
+		}
+		var rgx = new RegExp('\{start_sales\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start_sales'])
+			if (args['start_sales']) delete args['start_sales']
+		}
+		if (url.indexOf('[/start_sales]') !== -1) {
+			url = url.replace('[/start_sales]', '/' + args['start_sales'])
+			if (args['start_sales']) delete args['start_sales']
+		}
+		var rgx = new RegExp('\{end_sales\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['end_sales'])
+			if (args['end_sales']) delete args['end_sales']
+		}
+		if (url.indexOf('[/end_sales]') !== -1) {
+			url = url.replace('[/end_sales]', '/' + args['end_sales'])
+			if (args['end_sales']) delete args['end_sales']
+		}
+		var rgx = new RegExp('\{include_fee\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_fee'])
+			if (args['include_fee']) delete args['include_fee']
+		}
+		if (url.indexOf('[/include_fee]') !== -1) {
+			url = url.replace('[/include_fee]', '/' + args['include_fee'])
+			if (args['include_fee']) delete args['include_fee']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (url.indexOf('[/min]') !== -1) {
+			url = url.replace('[/min]', '/' + args['min'])
+			if (args['min']) delete args['min']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		if (url.indexOf('[/max]') !== -1) {
+			url = url.replace('[/max]', '/' + args['max'])
+			if (args['max']) delete args['max']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		if (url.indexOf('[/is_donation]') !== -1) url = url.replace('[/is_donation]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		if (url.indexOf('[/price]') !== -1) url = url.replace('[/price]', '')
+		if (url.indexOf('[/quantity]') !== -1) url = url.replace('[/quantity]', '')
+		if (url.indexOf('[/start_sales]') !== -1) url = url.replace('[/start_sales]', '')
+		if (url.indexOf('[/end_sales]') !== -1) url = url.replace('[/end_sales]', '')
+		if (url.indexOf('[/include_fee]') !== -1) url = url.replace('[/include_fee]', '')
+		if (url.indexOf('[/min]') !== -1) url = url.replace('[/min]', '')
+		if (url.indexOf('[/max]') !== -1) url = url.replace('[/max]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'ticket_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//ticket_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{is_donation\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['is_donation'])
+			if (args['is_donation']) delete args['is_donation']
+		}
+		if (url.indexOf('[/is_donation]') !== -1) {
+			url = url.replace('[/is_donation]', '/' + args['is_donation'])
+			if (args['is_donation']) delete args['is_donation']
+		}
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		var rgx = new RegExp('\{price\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['price'])
+			if (args['price']) delete args['price']
+		}
+		if (url.indexOf('[/price]') !== -1) {
+			url = url.replace('[/price]', '/' + args['price'])
+			if (args['price']) delete args['price']
+		}
+		var rgx = new RegExp('\{quantity\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['quantity'])
+			if (args['quantity']) delete args['quantity']
+		}
+		if (url.indexOf('[/quantity]') !== -1) {
+			url = url.replace('[/quantity]', '/' + args['quantity'])
+			if (args['quantity']) delete args['quantity']
+		}
+		var rgx = new RegExp('\{start_sales\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start_sales'])
+			if (args['start_sales']) delete args['start_sales']
+		}
+		if (url.indexOf('[/start_sales]') !== -1) {
+			url = url.replace('[/start_sales]', '/' + args['start_sales'])
+			if (args['start_sales']) delete args['start_sales']
+		}
+		var rgx = new RegExp('\{end_sales\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['end_sales'])
+			if (args['end_sales']) delete args['end_sales']
+		}
+		if (url.indexOf('[/end_sales]') !== -1) {
+			url = url.replace('[/end_sales]', '/' + args['end_sales'])
+			if (args['end_sales']) delete args['end_sales']
+		}
+		var rgx = new RegExp('\{include_fee\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['include_fee'])
+			if (args['include_fee']) delete args['include_fee']
+		}
+		if (url.indexOf('[/include_fee]') !== -1) {
+			url = url.replace('[/include_fee]', '/' + args['include_fee'])
+			if (args['include_fee']) delete args['include_fee']
+		}
+		var rgx = new RegExp('\{min\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min'])
+			if (args['min']) delete args['min']
+		}
+		if (url.indexOf('[/min]') !== -1) {
+			url = url.replace('[/min]', '/' + args['min'])
+			if (args['min']) delete args['min']
+		}
+		var rgx = new RegExp('\{max\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max'])
+			if (args['max']) delete args['max']
+		}
+		if (url.indexOf('[/max]') !== -1) {
+			url = url.replace('[/max]', '/' + args['max'])
+			if (args['max']) delete args['max']
+		}
+		var rgx = new RegExp('\{hide\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hide'])
+			if (args['hide']) delete args['hide']
+		}
+		if (url.indexOf('[/hide]') !== -1) {
+			url = url.replace('[/hide]', '/' + args['hide'])
+			if (args['hide']) delete args['hide']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/is_donation]') !== -1) url = url.replace('[/is_donation]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		if (url.indexOf('[/price]') !== -1) url = url.replace('[/price]', '')
+		if (url.indexOf('[/quantity]') !== -1) url = url.replace('[/quantity]', '')
+		if (url.indexOf('[/start_sales]') !== -1) url = url.replace('[/start_sales]', '')
+		if (url.indexOf('[/end_sales]') !== -1) url = url.replace('[/end_sales]', '')
+		if (url.indexOf('[/include_fee]') !== -1) url = url.replace('[/include_fee]', '')
+		if (url.indexOf('[/min]') !== -1) url = url.replace('[/min]', '')
+		if (url.indexOf('[/max]') !== -1) url = url.replace('[/max]', '')
+		if (url.indexOf('[/hide]') !== -1) url = url.replace('[/hide]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'event_list_attendees': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_list_attendees'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
+		var rgx = new RegExp('\{do_not_display\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['do_not_display'])
+			if (args['do_not_display']) delete args['do_not_display']
+		}
+		if (url.indexOf('[/do_not_display]') !== -1) {
+			url = url.replace('[/do_not_display]', '/' + args['do_not_display'])
+			if (args['do_not_display']) delete args['do_not_display']
+		}
+		var rgx = new RegExp('\{show_full_barcodes\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['show_full_barcodes'])
+			if (args['show_full_barcodes']) delete args['show_full_barcodes']
+		}
+		if (url.indexOf('[/show_full_barcodes]') !== -1) {
+			url = url.replace('[/show_full_barcodes]', '/' + args['show_full_barcodes'])
+			if (args['show_full_barcodes']) delete args['show_full_barcodes']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/do_not_display]') !== -1) url = url.replace('[/do_not_display]', '')
+		if (url.indexOf('[/show_full_barcodes]') !== -1) url = url.replace('[/show_full_barcodes]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'venue_get': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//venue_get'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'venue_new': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//venue_new'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['organizer_id'] == null) throw new Error('organizer_id is a required parameter')
+		var rgx = new RegExp('\{organizer_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['organizer_id'])
+			if (args['organizer_id']) delete args['organizer_id']
+		}
+		if (url.indexOf('[/organizer_id]') !== -1) {
+			url = url.replace('[/organizer_id]', '/' + args['organizer_id'])
+			if (args['organizer_id']) delete args['organizer_id']
+		}
+		if (args['venue'] == null) throw new Error('venue is a required parameter')
+		var rgx = new RegExp('\{venue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venue'])
+			if (args['venue']) delete args['venue']
+		}
+		if (url.indexOf('[/venue]') !== -1) {
+			url = url.replace('[/venue]', '/' + args['venue'])
+			if (args['venue']) delete args['venue']
+		}
+		var rgx = new RegExp('\{adress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['adress'])
+			if (args['adress']) delete args['adress']
+		}
+		if (url.indexOf('[/adress]') !== -1) {
+			url = url.replace('[/adress]', '/' + args['adress'])
+			if (args['adress']) delete args['adress']
+		}
+		var rgx = new RegExp('\{adress_2\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['adress_2'])
+			if (args['adress_2']) delete args['adress_2']
+		}
+		if (url.indexOf('[/adress_2]') !== -1) {
+			url = url.replace('[/adress_2]', '/' + args['adress_2'])
+			if (args['adress_2']) delete args['adress_2']
+		}
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (url.indexOf('[/city]') !== -1) {
+			url = url.replace('[/city]', '/' + args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (args['region'] == null) throw new Error('region is a required parameter')
+		var rgx = new RegExp('\{region\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/region]') !== -1) {
+			url = url.replace('[/region]', '/' + args['region'])
+			if (args['region']) delete args['region']
+		}
+		var rgx = new RegExp('\{postal_code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postal_code'])
+			if (args['postal_code']) delete args['postal_code']
+		}
+		if (url.indexOf('[/postal_code]') !== -1) {
+			url = url.replace('[/postal_code]', '/' + args['postal_code'])
+			if (args['postal_code']) delete args['postal_code']
+		}
+		if (args['country_code'] == null) throw new Error('country_code is a required parameter')
+		var rgx = new RegExp('\{country_code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['country_code'])
+			if (args['country_code']) delete args['country_code']
+		}
+		if (url.indexOf('[/country_code]') !== -1) {
+			url = url.replace('[/country_code]', '/' + args['country_code'])
+			if (args['country_code']) delete args['country_code']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/organizer_id]') !== -1) url = url.replace('[/organizer_id]', '')
+		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
+		if (url.indexOf('[/adress]') !== -1) url = url.replace('[/adress]', '')
+		if (url.indexOf('[/adress_2]') !== -1) url = url.replace('[/adress_2]', '')
+		if (url.indexOf('[/city]') !== -1) url = url.replace('[/city]', '')
+		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
+		if (url.indexOf('[/postal_code]') !== -1) url = url.replace('[/postal_code]', '')
+		if (url.indexOf('[/country_code]') !== -1) url = url.replace('[/country_code]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'venue_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//venue_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{venue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['venue'])
+			if (args['venue']) delete args['venue']
+		}
+		if (url.indexOf('[/venue]') !== -1) {
+			url = url.replace('[/venue]', '/' + args['venue'])
+			if (args['venue']) delete args['venue']
+		}
+		var rgx = new RegExp('\{adress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['adress'])
+			if (args['adress']) delete args['adress']
+		}
+		if (url.indexOf('[/adress]') !== -1) {
+			url = url.replace('[/adress]', '/' + args['adress'])
+			if (args['adress']) delete args['adress']
+		}
+		var rgx = new RegExp('\{adress_2\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['adress_2'])
+			if (args['adress_2']) delete args['adress_2']
+		}
+		if (url.indexOf('[/adress_2]') !== -1) {
+			url = url.replace('[/adress_2]', '/' + args['adress_2'])
+			if (args['adress_2']) delete args['adress_2']
+		}
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (url.indexOf('[/city]') !== -1) {
+			url = url.replace('[/city]', '/' + args['city'])
+			if (args['city']) delete args['city']
+		}
+		var rgx = new RegExp('\{region\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['region'])
+			if (args['region']) delete args['region']
+		}
+		if (url.indexOf('[/region]') !== -1) {
+			url = url.replace('[/region]', '/' + args['region'])
+			if (args['region']) delete args['region']
+		}
+		var rgx = new RegExp('\{postal_code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postal_code'])
+			if (args['postal_code']) delete args['postal_code']
+		}
+		if (url.indexOf('[/postal_code]') !== -1) {
+			url = url.replace('[/postal_code]', '/' + args['postal_code'])
+			if (args['postal_code']) delete args['postal_code']
+		}
+		var rgx = new RegExp('\{country_code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['country_code'])
+			if (args['country_code']) delete args['country_code']
+		}
+		if (url.indexOf('[/country_code]') !== -1) {
+			url = url.replace('[/country_code]', '/' + args['country_code'])
+			if (args['country_code']) delete args['country_code']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
+		if (url.indexOf('[/adress]') !== -1) url = url.replace('[/adress]', '')
+		if (url.indexOf('[/adress_2]') !== -1) url = url.replace('[/adress_2]', '')
+		if (url.indexOf('[/city]') !== -1) url = url.replace('[/city]', '')
+		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
+		if (url.indexOf('[/postal_code]') !== -1) url = url.replace('[/postal_code]', '')
+		if (url.indexOf('[/country_code]') !== -1) url = url.replace('[/country_code]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_list_venues': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_list_venues'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'organizer_list_events': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//organizer_list_events'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'organizer_get': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//organizer_get'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'organizer_new': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//organizer_new'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['name'] == null) throw new Error('name is a required parameter')
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'organizer_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//organizer_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_list_organizers': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_list_organizers'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_list_tickets': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_list_tickets'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_get': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_get'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/email]') !== -1) {
+			url = url.replace('[/email]', '/' + args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_new': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_new'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['email'] == null) throw new Error('email is a required parameter')
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/email]') !== -1) {
+			url = url.replace('[/email]', '/' + args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (args['passwd'] == null) throw new Error('passwd is a required parameter')
+		var rgx = new RegExp('\{passwd\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['passwd'])
+			if (args['passwd']) delete args['passwd']
+		}
+		if (url.indexOf('[/passwd]') !== -1) {
+			url = url.replace('[/passwd]', '/' + args['passwd'])
+			if (args['passwd']) delete args['passwd']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
+		if (url.indexOf('[/passwd]') !== -1) url = url.replace('[/passwd]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'user_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//user_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		var rgx = new RegExp('\{new_email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['new_email'])
+			if (args['new_email']) delete args['new_email']
+		}
+		if (url.indexOf('[/new_email]') !== -1) {
+			url = url.replace('[/new_email]', '/' + args['new_email'])
+			if (args['new_email']) delete args['new_email']
+		}
+		var rgx = new RegExp('\{new_password\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['new_password'])
+			if (args['new_password']) delete args['new_password']
+		}
+		if (url.indexOf('[/new_password]') !== -1) {
+			url = url.replace('[/new_password]', '/' + args['new_password'])
+			if (args['new_password']) delete args['new_password']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/new_email]') !== -1) url = url.replace('[/new_email]', '')
+		if (url.indexOf('[/new_password]') !== -1) url = url.replace('[/new_password]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'event_list_discounts': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//event_list_discounts'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'discount_new': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//discount_new'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (args['code'] == null) throw new Error('code is a required parameter')
+		var rgx = new RegExp('\{code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['code'])
+			if (args['code']) delete args['code']
+		}
+		if (url.indexOf('[/code]') !== -1) {
+			url = url.replace('[/code]', '/' + args['code'])
+			if (args['code']) delete args['code']
+		}
+		var rgx = new RegExp('\{amount_off\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['amount_off'])
+			if (args['amount_off']) delete args['amount_off']
+		}
+		if (url.indexOf('[/amount_off]') !== -1) {
+			url = url.replace('[/amount_off]', '/' + args['amount_off'])
+			if (args['amount_off']) delete args['amount_off']
+		}
+		var rgx = new RegExp('\{percent_off\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['percent_off'])
+			if (args['percent_off']) delete args['percent_off']
+		}
+		if (url.indexOf('[/percent_off]') !== -1) {
+			url = url.replace('[/percent_off]', '/' + args['percent_off'])
+			if (args['percent_off']) delete args['percent_off']
+		}
+		var rgx = new RegExp('\{tickets\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tickets'])
+			if (args['tickets']) delete args['tickets']
+		}
+		if (url.indexOf('[/tickets]') !== -1) {
+			url = url.replace('[/tickets]', '/' + args['tickets'])
+			if (args['tickets']) delete args['tickets']
+		}
+		var rgx = new RegExp('\{quantity_available\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['quantity_available'])
+			if (args['quantity_available']) delete args['quantity_available']
+		}
+		if (url.indexOf('[/quantity_available]') !== -1) {
+			url = url.replace('[/quantity_available]', '/' + args['quantity_available'])
+			if (args['quantity_available']) delete args['quantity_available']
+		}
+		var rgx = new RegExp('\{start_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		if (url.indexOf('[/start_date]') !== -1) {
+			url = url.replace('[/start_date]', '/' + args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		var rgx = new RegExp('\{end_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (url.indexOf('[/end_date]') !== -1) {
+			url = url.replace('[/end_date]', '/' + args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		if (url.indexOf('[/code]') !== -1) url = url.replace('[/code]', '')
+		if (url.indexOf('[/amount_off]') !== -1) url = url.replace('[/amount_off]', '')
+		if (url.indexOf('[/percent_off]') !== -1) url = url.replace('[/percent_off]', '')
+		if (url.indexOf('[/tickets]') !== -1) url = url.replace('[/tickets]', '')
+		if (url.indexOf('[/quantity_available]') !== -1) url = url.replace('[/quantity_available]', '')
+		if (url.indexOf('[/start_date]') !== -1) url = url.replace('[/start_date]', '')
+		if (url.indexOf('[/end_date]') !== -1) url = url.replace('[/end_date]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'discount_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//discount_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{code\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['code'])
+			if (args['code']) delete args['code']
+		}
+		if (url.indexOf('[/code]') !== -1) {
+			url = url.replace('[/code]', '/' + args['code'])
+			if (args['code']) delete args['code']
+		}
+		var rgx = new RegExp('\{amount_off\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['amount_off'])
+			if (args['amount_off']) delete args['amount_off']
+		}
+		if (url.indexOf('[/amount_off]') !== -1) {
+			url = url.replace('[/amount_off]', '/' + args['amount_off'])
+			if (args['amount_off']) delete args['amount_off']
+		}
+		var rgx = new RegExp('\{percent_off\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['percent_off'])
+			if (args['percent_off']) delete args['percent_off']
+		}
+		if (url.indexOf('[/percent_off]') !== -1) {
+			url = url.replace('[/percent_off]', '/' + args['percent_off'])
+			if (args['percent_off']) delete args['percent_off']
+		}
+		var rgx = new RegExp('\{tickets\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tickets'])
+			if (args['tickets']) delete args['tickets']
+		}
+		if (url.indexOf('[/tickets]') !== -1) {
+			url = url.replace('[/tickets]', '/' + args['tickets'])
+			if (args['tickets']) delete args['tickets']
+		}
+		var rgx = new RegExp('\{quantity_available\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['quantity_available'])
+			if (args['quantity_available']) delete args['quantity_available']
+		}
+		if (url.indexOf('[/quantity_available]') !== -1) {
+			url = url.replace('[/quantity_available]', '/' + args['quantity_available'])
+			if (args['quantity_available']) delete args['quantity_available']
+		}
+		var rgx = new RegExp('\{start_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		if (url.indexOf('[/start_date]') !== -1) {
+			url = url.replace('[/start_date]', '/' + args['start_date'])
+			if (args['start_date']) delete args['start_date']
+		}
+		var rgx = new RegExp('\{end_date\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (url.indexOf('[/end_date]') !== -1) {
+			url = url.replace('[/end_date]', '/' + args['end_date'])
+			if (args['end_date']) delete args['end_date']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/code]') !== -1) url = url.replace('[/code]', '')
+		if (url.indexOf('[/amount_off]') !== -1) url = url.replace('[/amount_off]', '')
+		if (url.indexOf('[/percent_off]') !== -1) url = url.replace('[/percent_off]', '')
+		if (url.indexOf('[/tickets]') !== -1) url = url.replace('[/tickets]', '')
+		if (url.indexOf('[/quantity_available]') !== -1) url = url.replace('[/quantity_available]', '')
+		if (url.indexOf('[/start_date]') !== -1) url = url.replace('[/start_date]', '')
+		if (url.indexOf('[/end_date]') !== -1) url = url.replace('[/end_date]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	},
+	'payment_update': function(args, opts) {
+		var url = 'https://www.eventbrite.com/{data-type}//payment_update'
+		args = args || {}
+		if (args['data-type'] == null) args['data-type'] = "json"
+		var rgx = new RegExp('\{data-type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (url.indexOf('[/data-type]') !== -1) {
+			url = url.replace('[/data-type]', '/' + args['data-type'])
+			if (args['data-type']) delete args['data-type']
+		}
+		if (args['event_id'] == null) throw new Error('event_id is a required parameter')
+		var rgx = new RegExp('\{event_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		if (url.indexOf('[/event_id]') !== -1) {
+			url = url.replace('[/event_id]', '/' + args['event_id'])
+			if (args['event_id']) delete args['event_id']
+		}
+		var rgx = new RegExp('\{accept_paypal\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accept_paypal'])
+			if (args['accept_paypal']) delete args['accept_paypal']
+		}
+		if (url.indexOf('[/accept_paypal]') !== -1) {
+			url = url.replace('[/accept_paypal]', '/' + args['accept_paypal'])
+			if (args['accept_paypal']) delete args['accept_paypal']
+		}
+		var rgx = new RegExp('\{paypal_email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['paypal_email'])
+			if (args['paypal_email']) delete args['paypal_email']
+		}
+		if (url.indexOf('[/paypal_email]') !== -1) {
+			url = url.replace('[/paypal_email]', '/' + args['paypal_email'])
+			if (args['paypal_email']) delete args['paypal_email']
+		}
+		var rgx = new RegExp('\{accept_google\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accept_google'])
+			if (args['accept_google']) delete args['accept_google']
+		}
+		if (url.indexOf('[/accept_google]') !== -1) {
+			url = url.replace('[/accept_google]', '/' + args['accept_google'])
+			if (args['accept_google']) delete args['accept_google']
+		}
+		var rgx = new RegExp('\{google_merchant_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['google_merchant_id'])
+			if (args['google_merchant_id']) delete args['google_merchant_id']
+		}
+		if (url.indexOf('[/google_merchant_id]') !== -1) {
+			url = url.replace('[/google_merchant_id]', '/' + args['google_merchant_id'])
+			if (args['google_merchant_id']) delete args['google_merchant_id']
+		}
+		var rgx = new RegExp('\{google_merchant_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['google_merchant_key'])
+			if (args['google_merchant_key']) delete args['google_merchant_key']
+		}
+		if (url.indexOf('[/google_merchant_key]') !== -1) {
+			url = url.replace('[/google_merchant_key]', '/' + args['google_merchant_key'])
+			if (args['google_merchant_key']) delete args['google_merchant_key']
+		}
+		var rgx = new RegExp('\{accept_check\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accept_check'])
+			if (args['accept_check']) delete args['accept_check']
+		}
+		if (url.indexOf('[/accept_check]') !== -1) {
+			url = url.replace('[/accept_check]', '/' + args['accept_check'])
+			if (args['accept_check']) delete args['accept_check']
+		}
+		var rgx = new RegExp('\{instructions_check\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['instructions_check'])
+			if (args['instructions_check']) delete args['instructions_check']
+		}
+		if (url.indexOf('[/instructions_check]') !== -1) {
+			url = url.replace('[/instructions_check]', '/' + args['instructions_check'])
+			if (args['instructions_check']) delete args['instructions_check']
+		}
+		var rgx = new RegExp('\{accept_cash\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accept_cash'])
+			if (args['accept_cash']) delete args['accept_cash']
+		}
+		if (url.indexOf('[/accept_cash]') !== -1) {
+			url = url.replace('[/accept_cash]', '/' + args['accept_cash'])
+			if (args['accept_cash']) delete args['accept_cash']
+		}
+		var rgx = new RegExp('\{instructions_cash\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['instructions_cash'])
+			if (args['instructions_cash']) delete args['instructions_cash']
+		}
+		if (url.indexOf('[/instructions_cash]') !== -1) {
+			url = url.replace('[/instructions_cash]', '/' + args['instructions_cash'])
+			if (args['instructions_cash']) delete args['instructions_cash']
+		}
+		var rgx = new RegExp('\{accept_invoice\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['accept_invoice'])
+			if (args['accept_invoice']) delete args['accept_invoice']
+		}
+		if (url.indexOf('[/accept_invoice]') !== -1) {
+			url = url.replace('[/accept_invoice]', '/' + args['accept_invoice'])
+			if (args['accept_invoice']) delete args['accept_invoice']
+		}
+		var rgx = new RegExp('\{instructions_invoice\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['instructions_invoice'])
+			if (args['instructions_invoice']) delete args['instructions_invoice']
+		}
+		if (url.indexOf('[/instructions_invoice]') !== -1) {
+			url = url.replace('[/instructions_invoice]', '/' + args['instructions_invoice'])
+			if (args['instructions_invoice']) delete args['instructions_invoice']
+		}
+		if (url.indexOf('[/data-type]') !== -1) url = url.replace('[/data-type]', '')
+		if (url.indexOf('[/event_id]') !== -1) url = url.replace('[/event_id]', '')
+		if (url.indexOf('[/accept_paypal]') !== -1) url = url.replace('[/accept_paypal]', '')
+		if (url.indexOf('[/paypal_email]') !== -1) url = url.replace('[/paypal_email]', '')
+		if (url.indexOf('[/accept_google]') !== -1) url = url.replace('[/accept_google]', '')
+		if (url.indexOf('[/google_merchant_id]') !== -1) url = url.replace('[/google_merchant_id]', '')
+		if (url.indexOf('[/google_merchant_key]') !== -1) url = url.replace('[/google_merchant_key]', '')
+		if (url.indexOf('[/accept_check]') !== -1) url = url.replace('[/accept_check]', '')
+		if (url.indexOf('[/instructions_check]') !== -1) url = url.replace('[/instructions_check]', '')
+		if (url.indexOf('[/accept_cash]') !== -1) url = url.replace('[/accept_cash]', '')
+		if (url.indexOf('[/instructions_cash]') !== -1) url = url.replace('[/instructions_cash]', '')
+		if (url.indexOf('[/accept_invoice]') !== -1) url = url.replace('[/accept_invoice]', '')
+		if (url.indexOf('[/instructions_invoice]') !== -1) url = url.replace('[/instructions_invoice]', '')
+		return http({provider:'eventbrite',url:url,method:'GET',params:args}, opts)
+	}
+})

@@ -1,0 +1,322 @@
+({
+	auth:function(){return auth({provider:'rhapsody'})},
+	'get.artist': function(args, opts) {
+		var url = 'http://feeds.rhapsody.com/{artist}/data.xml'
+		args = args || {}
+		if (args['artist'] == null) throw new Error('artist is a required parameter')
+		var rgx = new RegExp('\{artist\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['artist'])
+			if (args['artist']) delete args['artist']
+		}
+		if (url.indexOf('[/artist]') !== -1) {
+			url = url.replace('[/artist]', '/' + args['artist'])
+			if (args['artist']) delete args['artist']
+		}
+		if (url.indexOf('[/artist]') !== -1) url = url.replace('[/artist]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get.album': function(args, opts) {
+		var url = 'http://feeds.rhapsody.com/{artist}/{album}/data.xml'
+		args = args || {}
+		if (args['artist'] == null) throw new Error('artist is a required parameter')
+		var rgx = new RegExp('\{artist\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['artist'])
+			if (args['artist']) delete args['artist']
+		}
+		if (url.indexOf('[/artist]') !== -1) {
+			url = url.replace('[/artist]', '/' + args['artist'])
+			if (args['artist']) delete args['artist']
+		}
+		if (args['album'] == null) throw new Error('album is a required parameter')
+		var rgx = new RegExp('\{album\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['album'])
+			if (args['album']) delete args['album']
+		}
+		if (url.indexOf('[/album]') !== -1) {
+			url = url.replace('[/album]', '/' + args['album'])
+			if (args['album']) delete args['album']
+		}
+		if (url.indexOf('[/artist]') !== -1) url = url.replace('[/artist]', '')
+		if (url.indexOf('[/album]') !== -1) url = url.replace('[/album]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get.all.genres': function(args, opts) {
+		var url = 'http://feeds.rhapsody.com/data.xml'
+		args = args || {}
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get.genre': function(args, opts) {
+		var url = 'http://feeds.rhapsody.com/{genre}/data.xml'
+		args = args || {}
+		if (args['genre'] == null) throw new Error('genre is a required parameter')
+		var rgx = new RegExp('\{genre\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['genre'])
+			if (args['genre']) delete args['genre']
+		}
+		if (url.indexOf('[/genre]') !== -1) {
+			url = url.replace('[/genre]', '/' + args['genre'])
+			if (args['genre']) delete args['genre']
+		}
+		if (url.indexOf('[/genre]') !== -1) url = url.replace('[/genre]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get.subgenre': function(args, opts) {
+		var url = 'http://feeds.rhapsody.com/{genre}/{subgenre}/data.xml'
+		args = args || {}
+		if (args['genre'] == null) throw new Error('genre is a required parameter')
+		var rgx = new RegExp('\{genre\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['genre'])
+			if (args['genre']) delete args['genre']
+		}
+		if (url.indexOf('[/genre]') !== -1) {
+			url = url.replace('[/genre]', '/' + args['genre'])
+			if (args['genre']) delete args['genre']
+		}
+		if (args['subgenre'] == null) throw new Error('subgenre is a required parameter')
+		var rgx = new RegExp('\{subgenre\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subgenre'])
+			if (args['subgenre']) delete args['subgenre']
+		}
+		if (url.indexOf('[/subgenre]') !== -1) {
+			url = url.replace('[/subgenre]', '/' + args['subgenre'])
+			if (args['subgenre']) delete args['subgenre']
+		}
+		if (url.indexOf('[/genre]') !== -1) url = url.replace('[/genre]', '')
+		if (url.indexOf('[/subgenre]') !== -1) url = url.replace('[/subgenre]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'artist.search': function(args, opts) {
+		var url = 'http://realsearch.real.com/search'
+		args = args || {}
+		if (args['query'] == null) throw new Error('query is a required parameter')
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		var rgx = new RegExp('\{size\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['size'])
+			if (args['size']) delete args['size']
+		}
+		if (url.indexOf('[/size]') !== -1) {
+			url = url.replace('[/size]', '/' + args['size'])
+			if (args['size']) delete args['size']
+		}
+		var rgx = new RegExp('\{pagination\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		if (url.indexOf('[/pagination]') !== -1) {
+			url = url.replace('[/pagination]', '/' + args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		var rgx = new RegExp('\{availability\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (url.indexOf('[/availability]') !== -1) {
+			url = url.replace('[/availability]', '/' + args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (args['searchtype'] == null) args['searchtype'] = "RhapArtist"
+		var rgx = new RegExp('\{searchtype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/searchtype]') !== -1) {
+			url = url.replace('[/searchtype]', '/' + args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
+		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
+		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
+		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'album.search': function(args, opts) {
+		var url = 'http://realsearch.real.com/search'
+		args = args || {}
+		if (args['query'] == null) throw new Error('query is a required parameter')
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		var rgx = new RegExp('\{size\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['size'])
+			if (args['size']) delete args['size']
+		}
+		if (url.indexOf('[/size]') !== -1) {
+			url = url.replace('[/size]', '/' + args['size'])
+			if (args['size']) delete args['size']
+		}
+		var rgx = new RegExp('\{pagination\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		if (url.indexOf('[/pagination]') !== -1) {
+			url = url.replace('[/pagination]', '/' + args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		var rgx = new RegExp('\{availability\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (url.indexOf('[/availability]') !== -1) {
+			url = url.replace('[/availability]', '/' + args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (args['searchtype'] == null) args['searchtype'] = "RhapAlbum"
+		var rgx = new RegExp('\{searchtype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/searchtype]') !== -1) {
+			url = url.replace('[/searchtype]', '/' + args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
+		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
+		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
+		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'keyword.search': function(args, opts) {
+		var url = 'http://realsearch.real.com/search'
+		args = args || {}
+		if (args['query'] == null) throw new Error('query is a required parameter')
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		var rgx = new RegExp('\{size\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['size'])
+			if (args['size']) delete args['size']
+		}
+		if (url.indexOf('[/size]') !== -1) {
+			url = url.replace('[/size]', '/' + args['size'])
+			if (args['size']) delete args['size']
+		}
+		var rgx = new RegExp('\{pagination\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		if (url.indexOf('[/pagination]') !== -1) {
+			url = url.replace('[/pagination]', '/' + args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		var rgx = new RegExp('\{availability\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (url.indexOf('[/availability]') !== -1) {
+			url = url.replace('[/availability]', '/' + args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (args['searchtype'] == null) args['searchtype'] = "RhapKeyword"
+		var rgx = new RegExp('\{searchtype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/searchtype]') !== -1) {
+			url = url.replace('[/searchtype]', '/' + args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
+		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
+		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
+		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'track.search': function(args, opts) {
+		var url = 'http://realsearch.real.com/search'
+		args = args || {}
+		if (args['query'] == null) throw new Error('query is a required parameter')
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		var rgx = new RegExp('\{size\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['size'])
+			if (args['size']) delete args['size']
+		}
+		if (url.indexOf('[/size]') !== -1) {
+			url = url.replace('[/size]', '/' + args['size'])
+			if (args['size']) delete args['size']
+		}
+		var rgx = new RegExp('\{pagination\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		if (url.indexOf('[/pagination]') !== -1) {
+			url = url.replace('[/pagination]', '/' + args['pagination'])
+			if (args['pagination']) delete args['pagination']
+		}
+		var rgx = new RegExp('\{availability\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (url.indexOf('[/availability]') !== -1) {
+			url = url.replace('[/availability]', '/' + args['availability'])
+			if (args['availability']) delete args['availability']
+		}
+		if (args['searchtype'] == null) args['searchtype'] = "RhapTrack"
+		var rgx = new RegExp('\{searchtype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/searchtype]') !== -1) {
+			url = url.replace('[/searchtype]', '/' + args['searchtype'])
+			if (args['searchtype']) delete args['searchtype']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
+		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
+		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
+		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
+		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+	}
+})

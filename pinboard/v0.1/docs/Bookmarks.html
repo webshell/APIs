@@ -1,0 +1,267 @@
+<h1>Pinboard API: Bookmarks</h1>
+<p>These methods are relative to the tag 'Bookmarks'</p><h3>postAdd</h3>
+<p>Add a new bookmark.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>The URL of the item.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>description</td>
+			<td>Title of the item. This field is unfortunately named 'description' for backwards compatibility with the delicious API.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>extended</td>
+			<td>Description of the item. Called 'extended' for backwards compatibility with delicious API.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>tags</td>
+			<td>List of up to 100 tags.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>dt</td>
+			<td>Creation time for this bookmark. Defaults to current time. Datestamps more than 10 minutes ahead of server time will be reset to current server time.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>replace</td>
+			<td>Replace any existing bookmark with this URL. Default is yes. If set to no, will throw an error if bookmark exists.</td>
+			<td>yes</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>shared</td>
+			<td>Make bookmark public. Default is "yes" unless user has enabled the "save all bookmarks as private" user setting, in which case default is "no".</td>
+			<td>yes</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>toread</td>
+			<td>Marks the bookmark as unread. Default is "no".</td>
+			<td>no</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>postsDelete</h3>
+<p>Delete a bookmark.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>The URL of the item.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>postGet</h3>
+<p>Returns one or more posts on a single day matching the arguments. If no date or url is given, date of most recent bookmark will be used.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tag</td>
+			<td>Filter by up to three tags.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>dt</td>
+			<td>Return results bookmarked on this day.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>url</td>
+			<td>Return bookmark for this URL.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>meta</td>
+			<td>Include a change detection signature in a meta attribute (yes/no).</td>
+			<td>yes</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>postDates</h3>
+<p>Returns a list of dates with the number of posts at each date.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tag</td>
+			<td>Filter by up to three tags.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>postRecent</h3>
+<p>Returns a list of the user's most recent posts, filtered by tag.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tag</td>
+			<td>Filter by up to three tags.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>count</td>
+			<td>Number of results to return. Default is 15, max is 100.</td>
+			<td>15</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>postAll</h3>
+<p>Returns all bookmarks in the user's account.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tag</td>
+			<td>Filter by up to three tags.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>start</td>
+			<td>Offset value (default is 0).</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>results</td>
+			<td>Number of results to return. Default is all.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>fromdt</td>
+			<td>Return only bookmarks created after this time.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>todt</td>
+			<td>Return only bookmarks created before this time.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>meta</td>
+			<td>Include a change detection signature for each bookmark.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>postSuggest</h3>
+<p>Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url; recommended tags are drawn from the user's own tags.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>The URL of the item.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>

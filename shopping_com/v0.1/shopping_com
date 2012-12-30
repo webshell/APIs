@@ -1,0 +1,1051 @@
+({
+	auth:function(){return auth({provider:'shopping_com'})},
+	'generalsearch_keyword': function(args, opts) {
+		var url = 'http://sandbox.api.shopping.com/publisher/3.0/rest//GeneralSearch'
+		args = args || {}
+		var rgx = new RegExp('\{subTrackingId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) {
+			url = url.replace('[/subTrackingId]', '/' + args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		var rgx = new RegExp('\{visitorUserAgent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		if (url.indexOf('[/visitorUserAgent]') !== -1) {
+			url = url.replace('[/visitorUserAgent]', '/' + args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		var rgx = new RegExp('\{visitorIPAddress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (url.indexOf('[/visitorIPAddress]') !== -1) {
+			url = url.replace('[/visitorIPAddress]', '/' + args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (args['keyword'] == null) throw new Error('keyword is a required parameter')
+		var rgx = new RegExp('\{keyword\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['keyword'])
+			if (args['keyword']) delete args['keyword']
+		}
+		if (url.indexOf('[/keyword]') !== -1) {
+			url = url.replace('[/keyword]', '/' + args['keyword'])
+			if (args['keyword']) delete args['keyword']
+		}
+		var rgx = new RegExp('\{categoryId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		if (url.indexOf('[/categoryId]') !== -1) {
+			url = url.replace('[/categoryId]', '/' + args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		var rgx = new RegExp('\{attributeValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['attributeValue'])
+			if (args['attributeValue']) delete args['attributeValue']
+		}
+		if (url.indexOf('[/attributeValue]') !== -1) {
+			url = url.replace('[/attributeValue]', '/' + args['attributeValue'])
+			if (args['attributeValue']) delete args['attributeValue']
+		}
+		var rgx = new RegExp('\{showAllValuesForAttr\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllValuesForAttr'])
+			if (args['showAllValuesForAttr']) delete args['showAllValuesForAttr']
+		}
+		if (url.indexOf('[/showAllValuesForAttr]') !== -1) {
+			url = url.replace('[/showAllValuesForAttr]', '/' + args['showAllValuesForAttr'])
+			if (args['showAllValuesForAttr']) delete args['showAllValuesForAttr']
+		}
+		var rgx = new RegExp('\{groupItemsByCategory\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['groupItemsByCategory'])
+			if (args['groupItemsByCategory']) delete args['groupItemsByCategory']
+		}
+		if (url.indexOf('[/groupItemsByCategory]') !== -1) {
+			url = url.replace('[/groupItemsByCategory]', '/' + args['groupItemsByCategory'])
+			if (args['groupItemsByCategory']) delete args['groupItemsByCategory']
+		}
+		var rgx = new RegExp('\{numCategories\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numCategories'])
+			if (args['numCategories']) delete args['numCategories']
+		}
+		if (url.indexOf('[/numCategories]') !== -1) {
+			url = url.replace('[/numCategories]', '/' + args['numCategories'])
+			if (args['numCategories']) delete args['numCategories']
+		}
+		var rgx = new RegExp('\{numItems\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numItems'])
+			if (args['numItems']) delete args['numItems']
+		}
+		if (url.indexOf('[/numItems]') !== -1) {
+			url = url.replace('[/numItems]', '/' + args['numItems'])
+			if (args['numItems']) delete args['numItems']
+		}
+		var rgx = new RegExp('\{pageNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageNumber'])
+			if (args['pageNumber']) delete args['pageNumber']
+		}
+		if (url.indexOf('[/pageNumber]') !== -1) {
+			url = url.replace('[/pageNumber]', '/' + args['pageNumber'])
+			if (args['pageNumber']) delete args['pageNumber']
+		}
+		var rgx = new RegExp('\{showProductOffers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductOffers'])
+			if (args['showProductOffers']) delete args['showProductOffers']
+		}
+		if (url.indexOf('[/showProductOffers]') !== -1) {
+			url = url.replace('[/showProductOffers]', '/' + args['showProductOffers'])
+			if (args['showProductOffers']) delete args['showProductOffers']
+		}
+		var rgx = new RegExp('\{numOffersPerProduct\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numOffersPerProduct'])
+			if (args['numOffersPerProduct']) delete args['numOffersPerProduct']
+		}
+		if (url.indexOf('[/numOffersPerProduct]') !== -1) {
+			url = url.replace('[/numOffersPerProduct]', '/' + args['numOffersPerProduct'])
+			if (args['numOffersPerProduct']) delete args['numOffersPerProduct']
+		}
+		var rgx = new RegExp('\{showProductSpecs\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductSpecs'])
+			if (args['showProductSpecs']) delete args['showProductSpecs']
+		}
+		if (url.indexOf('[/showProductSpecs]') !== -1) {
+			url = url.replace('[/showProductSpecs]', '/' + args['showProductSpecs'])
+			if (args['showProductSpecs']) delete args['showProductSpecs']
+		}
+		var rgx = new RegExp('\{showProductReviews\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductReviews'])
+			if (args['showProductReviews']) delete args['showProductReviews']
+		}
+		if (url.indexOf('[/showProductReviews]') !== -1) {
+			url = url.replace('[/showProductReviews]', '/' + args['showProductReviews'])
+			if (args['showProductReviews']) delete args['showProductReviews']
+		}
+		var rgx = new RegExp('\{numReviewsPerProduct\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numReviewsPerProduct'])
+			if (args['numReviewsPerProduct']) delete args['numReviewsPerProduct']
+		}
+		if (url.indexOf('[/numReviewsPerProduct]') !== -1) {
+			url = url.replace('[/numReviewsPerProduct]', '/' + args['numReviewsPerProduct'])
+			if (args['numReviewsPerProduct']) delete args['numReviewsPerProduct']
+		}
+		var rgx = new RegExp('\{productReviewsPageNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsPageNumber'])
+			if (args['productReviewsPageNumber']) delete args['productReviewsPageNumber']
+		}
+		if (url.indexOf('[/productReviewsPageNumber]') !== -1) {
+			url = url.replace('[/productReviewsPageNumber]', '/' + args['productReviewsPageNumber'])
+			if (args['productReviewsPageNumber']) delete args['productReviewsPageNumber']
+		}
+		var rgx = new RegExp('\{postalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		if (url.indexOf('[/postalCode]') !== -1) {
+			url = url.replace('[/postalCode]', '/' + args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		var rgx = new RegExp('\{doKeywordNormalization\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['doKeywordNormalization'])
+			if (args['doKeywordNormalization']) delete args['doKeywordNormalization']
+		}
+		if (url.indexOf('[/doKeywordNormalization]') !== -1) {
+			url = url.replace('[/doKeywordNormalization]', '/' + args['doKeywordNormalization'])
+			if (args['doKeywordNormalization']) delete args['doKeywordNormalization']
+		}
+		var rgx = new RegExp('\{doSkipping\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['doSkipping'])
+			if (args['doSkipping']) delete args['doSkipping']
+		}
+		if (url.indexOf('[/doSkipping]') !== -1) {
+			url = url.replace('[/doSkipping]', '/' + args['doSkipping'])
+			if (args['doSkipping']) delete args['doSkipping']
+		}
+		var rgx = new RegExp('\{showSoftProducts\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showSoftProducts'])
+			if (args['showSoftProducts']) delete args['showSoftProducts']
+		}
+		if (url.indexOf('[/showSoftProducts]') !== -1) {
+			url = url.replace('[/showSoftProducts]', '/' + args['showSoftProducts'])
+			if (args['showSoftProducts']) delete args['showSoftProducts']
+		}
+		var rgx = new RegExp('\{showProductsWithoutOffers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductsWithoutOffers'])
+			if (args['showProductsWithoutOffers']) delete args['showProductsWithoutOffers']
+		}
+		if (url.indexOf('[/showProductsWithoutOffers]') !== -1) {
+			url = url.replace('[/showProductsWithoutOffers]', '/' + args['showProductsWithoutOffers'])
+			if (args['showProductsWithoutOffers']) delete args['showProductsWithoutOffers']
+		}
+		var rgx = new RegExp('\{showAllMatchingCategories\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) {
+			url = url.replace('[/showAllMatchingCategories]', '/' + args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		var rgx = new RegExp('\{numAttributes\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numAttributes'])
+			if (args['numAttributes']) delete args['numAttributes']
+		}
+		if (url.indexOf('[/numAttributes]') !== -1) {
+			url = url.replace('[/numAttributes]', '/' + args['numAttributes'])
+			if (args['numAttributes']) delete args['numAttributes']
+		}
+		var rgx = new RegExp('\{numAttributesWithValues\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numAttributesWithValues'])
+			if (args['numAttributesWithValues']) delete args['numAttributesWithValues']
+		}
+		if (url.indexOf('[/numAttributesWithValues]') !== -1) {
+			url = url.replace('[/numAttributesWithValues]', '/' + args['numAttributesWithValues'])
+			if (args['numAttributesWithValues']) delete args['numAttributesWithValues']
+		}
+		var rgx = new RegExp('\{numValuesPerAttribute\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numValuesPerAttribute'])
+			if (args['numValuesPerAttribute']) delete args['numValuesPerAttribute']
+		}
+		if (url.indexOf('[/numValuesPerAttribute]') !== -1) {
+			url = url.replace('[/numValuesPerAttribute]', '/' + args['numValuesPerAttribute'])
+			if (args['numValuesPerAttribute']) delete args['numValuesPerAttribute']
+		}
+		var rgx = new RegExp('\{hybridSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hybridSortType'])
+			if (args['hybridSortType']) delete args['hybridSortType']
+		}
+		if (url.indexOf('[/hybridSortType]') !== -1) {
+			url = url.replace('[/hybridSortType]', '/' + args['hybridSortType'])
+			if (args['hybridSortType']) delete args['hybridSortType']
+		}
+		var rgx = new RegExp('\{hybridSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hybridSortOrder'])
+			if (args['hybridSortOrder']) delete args['hybridSortOrder']
+		}
+		if (url.indexOf('[/hybridSortOrder]') !== -1) {
+			url = url.replace('[/hybridSortOrder]', '/' + args['hybridSortOrder'])
+			if (args['hybridSortOrder']) delete args['hybridSortOrder']
+		}
+		var rgx = new RegExp('\{productSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productSortType'])
+			if (args['productSortType']) delete args['productSortType']
+		}
+		if (url.indexOf('[/productSortType]') !== -1) {
+			url = url.replace('[/productSortType]', '/' + args['productSortType'])
+			if (args['productSortType']) delete args['productSortType']
+		}
+		var rgx = new RegExp('\{productSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productSortOrder'])
+			if (args['productSortOrder']) delete args['productSortOrder']
+		}
+		if (url.indexOf('[/productSortOrder]') !== -1) {
+			url = url.replace('[/productSortOrder]', '/' + args['productSortOrder'])
+			if (args['productSortOrder']) delete args['productSortOrder']
+		}
+		var rgx = new RegExp('\{offerSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		if (url.indexOf('[/offerSortType]') !== -1) {
+			url = url.replace('[/offerSortType]', '/' + args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		var rgx = new RegExp('\{offerSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		if (url.indexOf('[/offerSortOrder]') !== -1) {
+			url = url.replace('[/offerSortOrder]', '/' + args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		var rgx = new RegExp('\{showSmartBuy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		if (url.indexOf('[/showSmartBuy]') !== -1) {
+			url = url.replace('[/showSmartBuy]', '/' + args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		var rgx = new RegExp('\{numFeatured\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		if (url.indexOf('[/numFeatured]') !== -1) {
+			url = url.replace('[/numFeatured]', '/' + args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		var rgx = new RegExp('\{productReviewSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		if (url.indexOf('[/productReviewSortType]') !== -1) {
+			url = url.replace('[/productReviewSortType]', '/' + args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		var rgx = new RegExp('\{productReviewsSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) {
+			url = url.replace('[/productReviewsSortOrder]', '/' + args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) url = url.replace('[/subTrackingId]', '')
+		if (url.indexOf('[/visitorUserAgent]') !== -1) url = url.replace('[/visitorUserAgent]', '')
+		if (url.indexOf('[/visitorIPAddress]') !== -1) url = url.replace('[/visitorIPAddress]', '')
+		if (url.indexOf('[/keyword]') !== -1) url = url.replace('[/keyword]', '')
+		if (url.indexOf('[/categoryId]') !== -1) url = url.replace('[/categoryId]', '')
+		if (url.indexOf('[/attributeValue]') !== -1) url = url.replace('[/attributeValue]', '')
+		if (url.indexOf('[/showAllValuesForAttr]') !== -1) url = url.replace('[/showAllValuesForAttr]', '')
+		if (url.indexOf('[/groupItemsByCategory]') !== -1) url = url.replace('[/groupItemsByCategory]', '')
+		if (url.indexOf('[/numCategories]') !== -1) url = url.replace('[/numCategories]', '')
+		if (url.indexOf('[/numItems]') !== -1) url = url.replace('[/numItems]', '')
+		if (url.indexOf('[/pageNumber]') !== -1) url = url.replace('[/pageNumber]', '')
+		if (url.indexOf('[/showProductOffers]') !== -1) url = url.replace('[/showProductOffers]', '')
+		if (url.indexOf('[/numOffersPerProduct]') !== -1) url = url.replace('[/numOffersPerProduct]', '')
+		if (url.indexOf('[/showProductSpecs]') !== -1) url = url.replace('[/showProductSpecs]', '')
+		if (url.indexOf('[/showProductReviews]') !== -1) url = url.replace('[/showProductReviews]', '')
+		if (url.indexOf('[/numReviewsPerProduct]') !== -1) url = url.replace('[/numReviewsPerProduct]', '')
+		if (url.indexOf('[/productReviewsPageNumber]') !== -1) url = url.replace('[/productReviewsPageNumber]', '')
+		if (url.indexOf('[/postalCode]') !== -1) url = url.replace('[/postalCode]', '')
+		if (url.indexOf('[/doKeywordNormalization]') !== -1) url = url.replace('[/doKeywordNormalization]', '')
+		if (url.indexOf('[/doSkipping]') !== -1) url = url.replace('[/doSkipping]', '')
+		if (url.indexOf('[/showSoftProducts]') !== -1) url = url.replace('[/showSoftProducts]', '')
+		if (url.indexOf('[/showProductsWithoutOffers]') !== -1) url = url.replace('[/showProductsWithoutOffers]', '')
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) url = url.replace('[/showAllMatchingCategories]', '')
+		if (url.indexOf('[/numAttributes]') !== -1) url = url.replace('[/numAttributes]', '')
+		if (url.indexOf('[/numAttributesWithValues]') !== -1) url = url.replace('[/numAttributesWithValues]', '')
+		if (url.indexOf('[/numValuesPerAttribute]') !== -1) url = url.replace('[/numValuesPerAttribute]', '')
+		if (url.indexOf('[/hybridSortType]') !== -1) url = url.replace('[/hybridSortType]', '')
+		if (url.indexOf('[/hybridSortOrder]') !== -1) url = url.replace('[/hybridSortOrder]', '')
+		if (url.indexOf('[/productSortType]') !== -1) url = url.replace('[/productSortType]', '')
+		if (url.indexOf('[/productSortOrder]') !== -1) url = url.replace('[/productSortOrder]', '')
+		if (url.indexOf('[/offerSortType]') !== -1) url = url.replace('[/offerSortType]', '')
+		if (url.indexOf('[/offerSortOrder]') !== -1) url = url.replace('[/offerSortOrder]', '')
+		if (url.indexOf('[/showSmartBuy]') !== -1) url = url.replace('[/showSmartBuy]', '')
+		if (url.indexOf('[/numFeatured]') !== -1) url = url.replace('[/numFeatured]', '')
+		if (url.indexOf('[/productReviewSortType]') !== -1) url = url.replace('[/productReviewSortType]', '')
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) url = url.replace('[/productReviewsSortOrder]', '')
+		return http({provider:'shopping_com',url:url,method:'GET',params:args}, opts)
+	},
+	'generalsearch_category': function(args, opts) {
+		var url = 'http://sandbox.api.shopping.com/publisher/3.0/rest//GeneralSearch'
+		args = args || {}
+		var rgx = new RegExp('\{subTrackingId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) {
+			url = url.replace('[/subTrackingId]', '/' + args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		var rgx = new RegExp('\{visitorUserAgent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		if (url.indexOf('[/visitorUserAgent]') !== -1) {
+			url = url.replace('[/visitorUserAgent]', '/' + args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		var rgx = new RegExp('\{visitorIPAddress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (url.indexOf('[/visitorIPAddress]') !== -1) {
+			url = url.replace('[/visitorIPAddress]', '/' + args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (args['categoryId'] == null) throw new Error('categoryId is a required parameter')
+		var rgx = new RegExp('\{categoryId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		if (url.indexOf('[/categoryId]') !== -1) {
+			url = url.replace('[/categoryId]', '/' + args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		var rgx = new RegExp('\{keyword\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['keyword'])
+			if (args['keyword']) delete args['keyword']
+		}
+		if (url.indexOf('[/keyword]') !== -1) {
+			url = url.replace('[/keyword]', '/' + args['keyword'])
+			if (args['keyword']) delete args['keyword']
+		}
+		var rgx = new RegExp('\{attributeValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['attributeValue'])
+			if (args['attributeValue']) delete args['attributeValue']
+		}
+		if (url.indexOf('[/attributeValue]') !== -1) {
+			url = url.replace('[/attributeValue]', '/' + args['attributeValue'])
+			if (args['attributeValue']) delete args['attributeValue']
+		}
+		var rgx = new RegExp('\{showAllValuesForAttr\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllValuesForAttr'])
+			if (args['showAllValuesForAttr']) delete args['showAllValuesForAttr']
+		}
+		if (url.indexOf('[/showAllValuesForAttr]') !== -1) {
+			url = url.replace('[/showAllValuesForAttr]', '/' + args['showAllValuesForAttr'])
+			if (args['showAllValuesForAttr']) delete args['showAllValuesForAttr']
+		}
+		var rgx = new RegExp('\{numItems\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numItems'])
+			if (args['numItems']) delete args['numItems']
+		}
+		if (url.indexOf('[/numItems]') !== -1) {
+			url = url.replace('[/numItems]', '/' + args['numItems'])
+			if (args['numItems']) delete args['numItems']
+		}
+		var rgx = new RegExp('\{pageNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageNumber'])
+			if (args['pageNumber']) delete args['pageNumber']
+		}
+		if (url.indexOf('[/pageNumber]') !== -1) {
+			url = url.replace('[/pageNumber]', '/' + args['pageNumber'])
+			if (args['pageNumber']) delete args['pageNumber']
+		}
+		var rgx = new RegExp('\{showProductOffers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductOffers'])
+			if (args['showProductOffers']) delete args['showProductOffers']
+		}
+		if (url.indexOf('[/showProductOffers]') !== -1) {
+			url = url.replace('[/showProductOffers]', '/' + args['showProductOffers'])
+			if (args['showProductOffers']) delete args['showProductOffers']
+		}
+		var rgx = new RegExp('\{numOffersPerProduct\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numOffersPerProduct'])
+			if (args['numOffersPerProduct']) delete args['numOffersPerProduct']
+		}
+		if (url.indexOf('[/numOffersPerProduct]') !== -1) {
+			url = url.replace('[/numOffersPerProduct]', '/' + args['numOffersPerProduct'])
+			if (args['numOffersPerProduct']) delete args['numOffersPerProduct']
+		}
+		var rgx = new RegExp('\{showProductSpecs\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductSpecs'])
+			if (args['showProductSpecs']) delete args['showProductSpecs']
+		}
+		if (url.indexOf('[/showProductSpecs]') !== -1) {
+			url = url.replace('[/showProductSpecs]', '/' + args['showProductSpecs'])
+			if (args['showProductSpecs']) delete args['showProductSpecs']
+		}
+		var rgx = new RegExp('\{showProductReviews\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductReviews'])
+			if (args['showProductReviews']) delete args['showProductReviews']
+		}
+		if (url.indexOf('[/showProductReviews]') !== -1) {
+			url = url.replace('[/showProductReviews]', '/' + args['showProductReviews'])
+			if (args['showProductReviews']) delete args['showProductReviews']
+		}
+		var rgx = new RegExp('\{numReviewsPerProduct\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numReviewsPerProduct'])
+			if (args['numReviewsPerProduct']) delete args['numReviewsPerProduct']
+		}
+		if (url.indexOf('[/numReviewsPerProduct]') !== -1) {
+			url = url.replace('[/numReviewsPerProduct]', '/' + args['numReviewsPerProduct'])
+			if (args['numReviewsPerProduct']) delete args['numReviewsPerProduct']
+		}
+		var rgx = new RegExp('\{productReviewsPageNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsPageNumber'])
+			if (args['productReviewsPageNumber']) delete args['productReviewsPageNumber']
+		}
+		if (url.indexOf('[/productReviewsPageNumber]') !== -1) {
+			url = url.replace('[/productReviewsPageNumber]', '/' + args['productReviewsPageNumber'])
+			if (args['productReviewsPageNumber']) delete args['productReviewsPageNumber']
+		}
+		var rgx = new RegExp('\{postalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		if (url.indexOf('[/postalCode]') !== -1) {
+			url = url.replace('[/postalCode]', '/' + args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		var rgx = new RegExp('\{showSoftProducts\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showSoftProducts'])
+			if (args['showSoftProducts']) delete args['showSoftProducts']
+		}
+		if (url.indexOf('[/showSoftProducts]') !== -1) {
+			url = url.replace('[/showSoftProducts]', '/' + args['showSoftProducts'])
+			if (args['showSoftProducts']) delete args['showSoftProducts']
+		}
+		var rgx = new RegExp('\{showProductsWithoutOffers\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductsWithoutOffers'])
+			if (args['showProductsWithoutOffers']) delete args['showProductsWithoutOffers']
+		}
+		if (url.indexOf('[/showProductsWithoutOffers]') !== -1) {
+			url = url.replace('[/showProductsWithoutOffers]', '/' + args['showProductsWithoutOffers'])
+			if (args['showProductsWithoutOffers']) delete args['showProductsWithoutOffers']
+		}
+		var rgx = new RegExp('\{showOffersOnly\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showOffersOnly'])
+			if (args['showOffersOnly']) delete args['showOffersOnly']
+		}
+		if (url.indexOf('[/showOffersOnly]') !== -1) {
+			url = url.replace('[/showOffersOnly]', '/' + args['showOffersOnly'])
+			if (args['showOffersOnly']) delete args['showOffersOnly']
+		}
+		var rgx = new RegExp('\{showAllMatchingCategories\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) {
+			url = url.replace('[/showAllMatchingCategories]', '/' + args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		var rgx = new RegExp('\{numAttributes\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numAttributes'])
+			if (args['numAttributes']) delete args['numAttributes']
+		}
+		if (url.indexOf('[/numAttributes]') !== -1) {
+			url = url.replace('[/numAttributes]', '/' + args['numAttributes'])
+			if (args['numAttributes']) delete args['numAttributes']
+		}
+		var rgx = new RegExp('\{numAttributesWithValues\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numAttributesWithValues'])
+			if (args['numAttributesWithValues']) delete args['numAttributesWithValues']
+		}
+		if (url.indexOf('[/numAttributesWithValues]') !== -1) {
+			url = url.replace('[/numAttributesWithValues]', '/' + args['numAttributesWithValues'])
+			if (args['numAttributesWithValues']) delete args['numAttributesWithValues']
+		}
+		var rgx = new RegExp('\{numValuesPerAttribute\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numValuesPerAttribute'])
+			if (args['numValuesPerAttribute']) delete args['numValuesPerAttribute']
+		}
+		if (url.indexOf('[/numValuesPerAttribute]') !== -1) {
+			url = url.replace('[/numValuesPerAttribute]', '/' + args['numValuesPerAttribute'])
+			if (args['numValuesPerAttribute']) delete args['numValuesPerAttribute']
+		}
+		var rgx = new RegExp('\{hybridSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hybridSortType'])
+			if (args['hybridSortType']) delete args['hybridSortType']
+		}
+		if (url.indexOf('[/hybridSortType]') !== -1) {
+			url = url.replace('[/hybridSortType]', '/' + args['hybridSortType'])
+			if (args['hybridSortType']) delete args['hybridSortType']
+		}
+		var rgx = new RegExp('\{hybridSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hybridSortOrder'])
+			if (args['hybridSortOrder']) delete args['hybridSortOrder']
+		}
+		if (url.indexOf('[/hybridSortOrder]') !== -1) {
+			url = url.replace('[/hybridSortOrder]', '/' + args['hybridSortOrder'])
+			if (args['hybridSortOrder']) delete args['hybridSortOrder']
+		}
+		var rgx = new RegExp('\{productSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productSortType'])
+			if (args['productSortType']) delete args['productSortType']
+		}
+		if (url.indexOf('[/productSortType]') !== -1) {
+			url = url.replace('[/productSortType]', '/' + args['productSortType'])
+			if (args['productSortType']) delete args['productSortType']
+		}
+		var rgx = new RegExp('\{productSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productSortOrder'])
+			if (args['productSortOrder']) delete args['productSortOrder']
+		}
+		if (url.indexOf('[/productSortOrder]') !== -1) {
+			url = url.replace('[/productSortOrder]', '/' + args['productSortOrder'])
+			if (args['productSortOrder']) delete args['productSortOrder']
+		}
+		var rgx = new RegExp('\{offerSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		if (url.indexOf('[/offerSortType]') !== -1) {
+			url = url.replace('[/offerSortType]', '/' + args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		var rgx = new RegExp('\{offerSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		if (url.indexOf('[/offerSortOrder]') !== -1) {
+			url = url.replace('[/offerSortOrder]', '/' + args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		var rgx = new RegExp('\{showSmartBuy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		if (url.indexOf('[/showSmartBuy]') !== -1) {
+			url = url.replace('[/showSmartBuy]', '/' + args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		var rgx = new RegExp('\{numFeatured\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		if (url.indexOf('[/numFeatured]') !== -1) {
+			url = url.replace('[/numFeatured]', '/' + args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		var rgx = new RegExp('\{productReviewSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		if (url.indexOf('[/productReviewSortType]') !== -1) {
+			url = url.replace('[/productReviewSortType]', '/' + args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		var rgx = new RegExp('\{productReviewsSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) {
+			url = url.replace('[/productReviewsSortOrder]', '/' + args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) url = url.replace('[/subTrackingId]', '')
+		if (url.indexOf('[/visitorUserAgent]') !== -1) url = url.replace('[/visitorUserAgent]', '')
+		if (url.indexOf('[/visitorIPAddress]') !== -1) url = url.replace('[/visitorIPAddress]', '')
+		if (url.indexOf('[/categoryId]') !== -1) url = url.replace('[/categoryId]', '')
+		if (url.indexOf('[/keyword]') !== -1) url = url.replace('[/keyword]', '')
+		if (url.indexOf('[/attributeValue]') !== -1) url = url.replace('[/attributeValue]', '')
+		if (url.indexOf('[/showAllValuesForAttr]') !== -1) url = url.replace('[/showAllValuesForAttr]', '')
+		if (url.indexOf('[/numItems]') !== -1) url = url.replace('[/numItems]', '')
+		if (url.indexOf('[/pageNumber]') !== -1) url = url.replace('[/pageNumber]', '')
+		if (url.indexOf('[/showProductOffers]') !== -1) url = url.replace('[/showProductOffers]', '')
+		if (url.indexOf('[/numOffersPerProduct]') !== -1) url = url.replace('[/numOffersPerProduct]', '')
+		if (url.indexOf('[/showProductSpecs]') !== -1) url = url.replace('[/showProductSpecs]', '')
+		if (url.indexOf('[/showProductReviews]') !== -1) url = url.replace('[/showProductReviews]', '')
+		if (url.indexOf('[/numReviewsPerProduct]') !== -1) url = url.replace('[/numReviewsPerProduct]', '')
+		if (url.indexOf('[/productReviewsPageNumber]') !== -1) url = url.replace('[/productReviewsPageNumber]', '')
+		if (url.indexOf('[/postalCode]') !== -1) url = url.replace('[/postalCode]', '')
+		if (url.indexOf('[/showSoftProducts]') !== -1) url = url.replace('[/showSoftProducts]', '')
+		if (url.indexOf('[/showProductsWithoutOffers]') !== -1) url = url.replace('[/showProductsWithoutOffers]', '')
+		if (url.indexOf('[/showOffersOnly]') !== -1) url = url.replace('[/showOffersOnly]', '')
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) url = url.replace('[/showAllMatchingCategories]', '')
+		if (url.indexOf('[/numAttributes]') !== -1) url = url.replace('[/numAttributes]', '')
+		if (url.indexOf('[/numAttributesWithValues]') !== -1) url = url.replace('[/numAttributesWithValues]', '')
+		if (url.indexOf('[/numValuesPerAttribute]') !== -1) url = url.replace('[/numValuesPerAttribute]', '')
+		if (url.indexOf('[/hybridSortType]') !== -1) url = url.replace('[/hybridSortType]', '')
+		if (url.indexOf('[/hybridSortOrder]') !== -1) url = url.replace('[/hybridSortOrder]', '')
+		if (url.indexOf('[/productSortType]') !== -1) url = url.replace('[/productSortType]', '')
+		if (url.indexOf('[/productSortOrder]') !== -1) url = url.replace('[/productSortOrder]', '')
+		if (url.indexOf('[/offerSortType]') !== -1) url = url.replace('[/offerSortType]', '')
+		if (url.indexOf('[/offerSortOrder]') !== -1) url = url.replace('[/offerSortOrder]', '')
+		if (url.indexOf('[/showSmartBuy]') !== -1) url = url.replace('[/showSmartBuy]', '')
+		if (url.indexOf('[/numFeatured]') !== -1) url = url.replace('[/numFeatured]', '')
+		if (url.indexOf('[/productReviewSortType]') !== -1) url = url.replace('[/productReviewSortType]', '')
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) url = url.replace('[/productReviewsSortOrder]', '')
+		return http({provider:'shopping_com',url:url,method:'GET',params:args}, opts)
+	},
+	'generalsearch_product': function(args, opts) {
+		var url = 'http://sandbox.api.shopping.com/publisher/3.0/rest//GeneralSearch'
+		args = args || {}
+		var rgx = new RegExp('\{subTrackingId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) {
+			url = url.replace('[/subTrackingId]', '/' + args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		var rgx = new RegExp('\{visitorUserAgent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		if (url.indexOf('[/visitorUserAgent]') !== -1) {
+			url = url.replace('[/visitorUserAgent]', '/' + args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		var rgx = new RegExp('\{visitorIPAddress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (url.indexOf('[/visitorIPAddress]') !== -1) {
+			url = url.replace('[/visitorIPAddress]', '/' + args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (args['productId'] == null) throw new Error('productId is a required parameter')
+		var rgx = new RegExp('\{productId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productId'])
+			if (args['productId']) delete args['productId']
+		}
+		if (url.indexOf('[/productId]') !== -1) {
+			url = url.replace('[/productId]', '/' + args['productId'])
+			if (args['productId']) delete args['productId']
+		}
+		var rgx = new RegExp('\{numItems\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numItems'])
+			if (args['numItems']) delete args['numItems']
+		}
+		if (url.indexOf('[/numItems]') !== -1) {
+			url = url.replace('[/numItems]', '/' + args['numItems'])
+			if (args['numItems']) delete args['numItems']
+		}
+		var rgx = new RegExp('\{pageNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageNumber'])
+			if (args['pageNumber']) delete args['pageNumber']
+		}
+		if (url.indexOf('[/pageNumber]') !== -1) {
+			url = url.replace('[/pageNumber]', '/' + args['pageNumber'])
+			if (args['pageNumber']) delete args['pageNumber']
+		}
+		var rgx = new RegExp('\{showProductSpecs\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductSpecs'])
+			if (args['showProductSpecs']) delete args['showProductSpecs']
+		}
+		if (url.indexOf('[/showProductSpecs]') !== -1) {
+			url = url.replace('[/showProductSpecs]', '/' + args['showProductSpecs'])
+			if (args['showProductSpecs']) delete args['showProductSpecs']
+		}
+		var rgx = new RegExp('\{showProductReviews\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showProductReviews'])
+			if (args['showProductReviews']) delete args['showProductReviews']
+		}
+		if (url.indexOf('[/showProductReviews]') !== -1) {
+			url = url.replace('[/showProductReviews]', '/' + args['showProductReviews'])
+			if (args['showProductReviews']) delete args['showProductReviews']
+		}
+		var rgx = new RegExp('\{numReviewsPerProduct\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numReviewsPerProduct'])
+			if (args['numReviewsPerProduct']) delete args['numReviewsPerProduct']
+		}
+		if (url.indexOf('[/numReviewsPerProduct]') !== -1) {
+			url = url.replace('[/numReviewsPerProduct]', '/' + args['numReviewsPerProduct'])
+			if (args['numReviewsPerProduct']) delete args['numReviewsPerProduct']
+		}
+		var rgx = new RegExp('\{productReviewsPageNumber\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsPageNumber'])
+			if (args['productReviewsPageNumber']) delete args['productReviewsPageNumber']
+		}
+		if (url.indexOf('[/productReviewsPageNumber]') !== -1) {
+			url = url.replace('[/productReviewsPageNumber]', '/' + args['productReviewsPageNumber'])
+			if (args['productReviewsPageNumber']) delete args['productReviewsPageNumber']
+		}
+		var rgx = new RegExp('\{postalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		if (url.indexOf('[/postalCode]') !== -1) {
+			url = url.replace('[/postalCode]', '/' + args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		var rgx = new RegExp('\{showOffersOnly\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showOffersOnly'])
+			if (args['showOffersOnly']) delete args['showOffersOnly']
+		}
+		if (url.indexOf('[/showOffersOnly]') !== -1) {
+			url = url.replace('[/showOffersOnly]', '/' + args['showOffersOnly'])
+			if (args['showOffersOnly']) delete args['showOffersOnly']
+		}
+		var rgx = new RegExp('\{showAllMatchingCategories\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) {
+			url = url.replace('[/showAllMatchingCategories]', '/' + args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		var rgx = new RegExp('\{offerSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		if (url.indexOf('[/offerSortType]') !== -1) {
+			url = url.replace('[/offerSortType]', '/' + args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		var rgx = new RegExp('\{offerSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		if (url.indexOf('[/offerSortOrder]') !== -1) {
+			url = url.replace('[/offerSortOrder]', '/' + args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		var rgx = new RegExp('\{showSmartBuy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		if (url.indexOf('[/showSmartBuy]') !== -1) {
+			url = url.replace('[/showSmartBuy]', '/' + args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		var rgx = new RegExp('\{numFeatured\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		if (url.indexOf('[/numFeatured]') !== -1) {
+			url = url.replace('[/numFeatured]', '/' + args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		var rgx = new RegExp('\{productReviewSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		if (url.indexOf('[/productReviewSortType]') !== -1) {
+			url = url.replace('[/productReviewSortType]', '/' + args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		var rgx = new RegExp('\{productReviewsSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) {
+			url = url.replace('[/productReviewsSortOrder]', '/' + args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) url = url.replace('[/subTrackingId]', '')
+		if (url.indexOf('[/visitorUserAgent]') !== -1) url = url.replace('[/visitorUserAgent]', '')
+		if (url.indexOf('[/visitorIPAddress]') !== -1) url = url.replace('[/visitorIPAddress]', '')
+		if (url.indexOf('[/productId]') !== -1) url = url.replace('[/productId]', '')
+		if (url.indexOf('[/numItems]') !== -1) url = url.replace('[/numItems]', '')
+		if (url.indexOf('[/pageNumber]') !== -1) url = url.replace('[/pageNumber]', '')
+		if (url.indexOf('[/showProductSpecs]') !== -1) url = url.replace('[/showProductSpecs]', '')
+		if (url.indexOf('[/showProductReviews]') !== -1) url = url.replace('[/showProductReviews]', '')
+		if (url.indexOf('[/numReviewsPerProduct]') !== -1) url = url.replace('[/numReviewsPerProduct]', '')
+		if (url.indexOf('[/productReviewsPageNumber]') !== -1) url = url.replace('[/productReviewsPageNumber]', '')
+		if (url.indexOf('[/postalCode]') !== -1) url = url.replace('[/postalCode]', '')
+		if (url.indexOf('[/showOffersOnly]') !== -1) url = url.replace('[/showOffersOnly]', '')
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) url = url.replace('[/showAllMatchingCategories]', '')
+		if (url.indexOf('[/offerSortType]') !== -1) url = url.replace('[/offerSortType]', '')
+		if (url.indexOf('[/offerSortOrder]') !== -1) url = url.replace('[/offerSortOrder]', '')
+		if (url.indexOf('[/showSmartBuy]') !== -1) url = url.replace('[/showSmartBuy]', '')
+		if (url.indexOf('[/numFeatured]') !== -1) url = url.replace('[/numFeatured]', '')
+		if (url.indexOf('[/productReviewSortType]') !== -1) url = url.replace('[/productReviewSortType]', '')
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) url = url.replace('[/productReviewsSortOrder]', '')
+		return http({provider:'shopping_com',url:url,method:'GET',params:args}, opts)
+	},
+	'generalsearch_offer': function(args, opts) {
+		var url = 'http://sandbox.api.shopping.com/publisher/3.0/rest//GeneralSearch'
+		args = args || {}
+		var rgx = new RegExp('\{subTrackingId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) {
+			url = url.replace('[/subTrackingId]', '/' + args['subTrackingId'])
+			if (args['subTrackingId']) delete args['subTrackingId']
+		}
+		var rgx = new RegExp('\{visitorUserAgent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		if (url.indexOf('[/visitorUserAgent]') !== -1) {
+			url = url.replace('[/visitorUserAgent]', '/' + args['visitorUserAgent'])
+			if (args['visitorUserAgent']) delete args['visitorUserAgent']
+		}
+		var rgx = new RegExp('\{visitorIPAddress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		if (url.indexOf('[/visitorIPAddress]') !== -1) {
+			url = url.replace('[/visitorIPAddress]', '/' + args['visitorIPAddress'])
+			if (args['visitorIPAddress']) delete args['visitorIPAddress']
+		}
+		var rgx = new RegExp('\{groupItemsByCategory\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['groupItemsByCategory'])
+			if (args['groupItemsByCategory']) delete args['groupItemsByCategory']
+		}
+		if (url.indexOf('[/groupItemsByCategory]') !== -1) {
+			url = url.replace('[/groupItemsByCategory]', '/' + args['groupItemsByCategory'])
+			if (args['groupItemsByCategory']) delete args['groupItemsByCategory']
+		}
+		var rgx = new RegExp('\{postalCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		if (url.indexOf('[/postalCode]') !== -1) {
+			url = url.replace('[/postalCode]', '/' + args['postalCode'])
+			if (args['postalCode']) delete args['postalCode']
+		}
+		var rgx = new RegExp('\{showAllMatchingCategories\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) {
+			url = url.replace('[/showAllMatchingCategories]', '/' + args['showAllMatchingCategories'])
+			if (args['showAllMatchingCategories']) delete args['showAllMatchingCategories']
+		}
+		var rgx = new RegExp('\{offerSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		if (url.indexOf('[/offerSortType]') !== -1) {
+			url = url.replace('[/offerSortType]', '/' + args['offerSortType'])
+			if (args['offerSortType']) delete args['offerSortType']
+		}
+		var rgx = new RegExp('\{offerSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		if (url.indexOf('[/offerSortOrder]') !== -1) {
+			url = url.replace('[/offerSortOrder]', '/' + args['offerSortOrder'])
+			if (args['offerSortOrder']) delete args['offerSortOrder']
+		}
+		var rgx = new RegExp('\{showSmartBuy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		if (url.indexOf('[/showSmartBuy]') !== -1) {
+			url = url.replace('[/showSmartBuy]', '/' + args['showSmartBuy'])
+			if (args['showSmartBuy']) delete args['showSmartBuy']
+		}
+		var rgx = new RegExp('\{numFeatured\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		if (url.indexOf('[/numFeatured]') !== -1) {
+			url = url.replace('[/numFeatured]', '/' + args['numFeatured'])
+			if (args['numFeatured']) delete args['numFeatured']
+		}
+		var rgx = new RegExp('\{productReviewSortType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		if (url.indexOf('[/productReviewSortType]') !== -1) {
+			url = url.replace('[/productReviewSortType]', '/' + args['productReviewSortType'])
+			if (args['productReviewSortType']) delete args['productReviewSortType']
+		}
+		var rgx = new RegExp('\{productReviewsSortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) {
+			url = url.replace('[/productReviewsSortOrder]', '/' + args['productReviewsSortOrder'])
+			if (args['productReviewsSortOrder']) delete args['productReviewsSortOrder']
+		}
+		if (url.indexOf('[/subTrackingId]') !== -1) url = url.replace('[/subTrackingId]', '')
+		if (url.indexOf('[/visitorUserAgent]') !== -1) url = url.replace('[/visitorUserAgent]', '')
+		if (url.indexOf('[/visitorIPAddress]') !== -1) url = url.replace('[/visitorIPAddress]', '')
+		if (url.indexOf('[/groupItemsByCategory]') !== -1) url = url.replace('[/groupItemsByCategory]', '')
+		if (url.indexOf('[/postalCode]') !== -1) url = url.replace('[/postalCode]', '')
+		if (url.indexOf('[/showAllMatchingCategories]') !== -1) url = url.replace('[/showAllMatchingCategories]', '')
+		if (url.indexOf('[/offerSortType]') !== -1) url = url.replace('[/offerSortType]', '')
+		if (url.indexOf('[/offerSortOrder]') !== -1) url = url.replace('[/offerSortOrder]', '')
+		if (url.indexOf('[/showSmartBuy]') !== -1) url = url.replace('[/showSmartBuy]', '')
+		if (url.indexOf('[/numFeatured]') !== -1) url = url.replace('[/numFeatured]', '')
+		if (url.indexOf('[/productReviewSortType]') !== -1) url = url.replace('[/productReviewSortType]', '')
+		if (url.indexOf('[/productReviewsSortOrder]') !== -1) url = url.replace('[/productReviewsSortOrder]', '')
+		return http({provider:'shopping_com',url:url,method:'GET',params:args}, opts)
+	},
+	'categorytree': function(args, opts) {
+		var url = 'http://sandbox.api.shopping.com/publisher/3.0/rest//CategoryTree'
+		args = args || {}
+		var rgx = new RegExp('\{categoryId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		if (url.indexOf('[/categoryId]') !== -1) {
+			url = url.replace('[/categoryId]', '/' + args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		var rgx = new RegExp('\{showAllDescendants\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['showAllDescendants'])
+			if (args['showAllDescendants']) delete args['showAllDescendants']
+		}
+		if (url.indexOf('[/showAllDescendants]') !== -1) {
+			url = url.replace('[/showAllDescendants]', '/' + args['showAllDescendants'])
+			if (args['showAllDescendants']) delete args['showAllDescendants']
+		}
+		if (url.indexOf('[/categoryId]') !== -1) url = url.replace('[/categoryId]', '')
+		if (url.indexOf('[/showAllDescendants]') !== -1) url = url.replace('[/showAllDescendants]', '')
+		return http({provider:'shopping_com',url:url,method:'GET',params:args}, opts)
+	}
+})

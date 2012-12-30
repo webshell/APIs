@@ -1,0 +1,222 @@
+<h1>Facecom API: Recognition Engine</h1>
+<p>These methods are relative to the tag 'Recognition Engine'</p><h3>faces.detect</h3>
+<p>Returns tags for detected faces in one or more photos, with geometric information of the tag, eyes, nose and mouth, as well as various attributes such as gender, is wearing glasses, and is smiling.<br/>			</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>urls</td>
+			<td>Comma separated list of JPG photos</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>detector</td>
+			<td>Set the face detector work mode: Normal (default) or Aggressive. Aggressive mode may find a bit more faces, and is also slower. Usage of this detector counts as two Normal detections.</td>
+			<td>Normal</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>attributes</td>
+			<td>Can be all, none or a list of specific comma-separated attributes (see list of available attributes on the return values page. Unless specified, it returns the default 3 attributes of gender, glasses and smiling. The face attribute, marking whether there's a face present is always returned.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback_url</td>
+			<td>Asynchronously invoke the method, and POST the response to the specified url. Suitable for calling lengthy operations. Reponse is POSTed to the callback_url as JSON/XML in a field called 'data'. If response is not required "no-reply" constant may be used.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>faces.recognize</h3>
+<p>Attempts to detect and recognize one or more user IDs' faces, in one or more photos. For each detected face, the face.com engine will return the most likely user IDs, or empty result for unrecognized faces. In addition, each tag includes a threshold score - any score below this number is considered a low-probability hit.<br/>			</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>uids</td>
+			<td>Comma separated list of user IDs to search for in the photos passed in the request</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>urls</td>
+			<td>Comma separated list of JPG photos</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>namespace</td>
+			<td>Default user namespace to be used for all users specified in the short-hand syntax (just the user ID, without the '@namespace')</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>detector</td>
+			<td>Set the face detector work mode: Normal (default) or Aggressive. Aggressive mode may find a bit more faces, and is also slower. Usage of this detector counts as two Normal detections.</td>
+			<td>Normal</td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>attributes</td>
+			<td>Can be all, none or a list of specific comma-separated attributes (see list of available attributes on the return values page. Unless specified, it returns the default 3 attributes of gender, glasses and smiling. The face attribute, marking whether there's a face present is always returned.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback_url</td>
+			<td>Asynchronously invoke the method, and POST the response to the specified url. Suitable for calling lengthy operations. Reponse is POSTed to the callback_url as JSON/XML in a field called 'data'. If response is not required "no-reply" constant may be used.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>faces.train</h3>
+<p>Calls the training procedure for the specified UIDs, and reports back changes.<br/>			</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>uids</td>
+			<td>Comma separated list of user IDs to search for in the photos passed in the request</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>namespace</td>
+			<td>Default user namespace to be used for all users specified in the short-hand syntax (just the user ID, without the '@namespace')</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback_url</td>
+			<td>Asynchronously invoke the method, and POST the response to the specified url. Suitable for calling lengthy operations. Reponse is POSTed to the callback_url as JSON/XML in a field called 'data'. If response is not required "no-reply" constant may be used.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>faces.status</h3>
+<p>Reports training set status for the specified UIDs.<br/>			</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>uids</td>
+			<td>Comma separated list of user IDs to search for in the photos passed in the request</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>namespace</td>
+			<td>Default user namespace to be used for all users specified in the short-hand syntax (just the user ID, without the '@namespace')</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>callback_url</td>
+			<td>Asynchronously invoke the method, and POST the response to the specified url. Suitable for calling lengthy operations. Reponse is POSTed to the callback_url as JSON/XML in a field called 'data'. If response is not required "no-reply" constant may be used.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>

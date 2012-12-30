@@ -1,0 +1,483 @@
+({
+	auth:function(){return auth({provider:'infoconnect'})},
+	'getCompany': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/companies/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{resourcetype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		if (url.indexOf('[/resourcetype]') !== -1) {
+			url = url.replace('[/resourcetype]', '/' + args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/resourcetype]') !== -1) url = url.replace('[/resourcetype]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'GET',params:args}, opts)
+	},
+	'getCompanies': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/companies'
+		args = args || {}
+		var rgx = new RegExp('\{resourcetype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		if (url.indexOf('[/resourcetype]') !== -1) {
+			url = url.replace('[/resourcetype]', '/' + args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (url.indexOf('[/city]') !== -1) {
+			url = url.replace('[/city]', '/' + args['city'])
+			if (args['city']) delete args['city']
+		}
+		var rgx = new RegExp('\{companyname\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['companyname'])
+			if (args['companyname']) delete args['companyname']
+		}
+		if (url.indexOf('[/companyname]') !== -1) {
+			url = url.replace('[/companyname]', '/' + args['companyname'])
+			if (args['companyname']) delete args['companyname']
+		}
+		var rgx = new RegExp('\{ein\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ein'])
+			if (args['ein']) delete args['ein']
+		}
+		if (url.indexOf('[/ein]') !== -1) {
+			url = url.replace('[/ein]', '/' + args['ein'])
+			if (args['ein']) delete args['ein']
+		}
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/email]') !== -1) {
+			url = url.replace('[/email]', '/' + args['email'])
+			if (args['email']) delete args['email']
+		}
+		var rgx = new RegExp('\{firstname\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['firstname'])
+			if (args['firstname']) delete args['firstname']
+		}
+		if (url.indexOf('[/firstname]') !== -1) {
+			url = url.replace('[/firstname]', '/' + args['firstname'])
+			if (args['firstname']) delete args['firstname']
+		}
+		var rgx = new RegExp('\{lastname\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lastname'])
+			if (args['lastname']) delete args['lastname']
+		}
+		if (url.indexOf('[/lastname]') !== -1) {
+			url = url.replace('[/lastname]', '/' + args['lastname'])
+			if (args['lastname']) delete args['lastname']
+		}
+		var rgx = new RegExp('\{phone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		if (url.indexOf('[/phone]') !== -1) {
+			url = url.replace('[/phone]', '/' + args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		var rgx = new RegExp('\{postalcode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postalcode'])
+			if (args['postalcode']) delete args['postalcode']
+		}
+		if (url.indexOf('[/postalcode]') !== -1) {
+			url = url.replace('[/postalcode]', '/' + args['postalcode'])
+			if (args['postalcode']) delete args['postalcode']
+		}
+		var rgx = new RegExp('\{stateprovince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['stateprovince'])
+			if (args['stateprovince']) delete args['stateprovince']
+		}
+		if (url.indexOf('[/stateprovince]') !== -1) {
+			url = url.replace('[/stateprovince]', '/' + args['stateprovince'])
+			if (args['stateprovince']) delete args['stateprovince']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/resourcetype]') !== -1) url = url.replace('[/resourcetype]', '')
+		if (url.indexOf('[/city]') !== -1) url = url.replace('[/city]', '')
+		if (url.indexOf('[/companyname]') !== -1) url = url.replace('[/companyname]', '')
+		if (url.indexOf('[/ein]') !== -1) url = url.replace('[/ein]', '')
+		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
+		if (url.indexOf('[/firstname]') !== -1) url = url.replace('[/firstname]', '')
+		if (url.indexOf('[/lastname]') !== -1) url = url.replace('[/lastname]', '')
+		if (url.indexOf('[/phone]') !== -1) url = url.replace('[/phone]', '')
+		if (url.indexOf('[/postalcode]') !== -1) url = url.replace('[/postalcode]', '')
+		if (url.indexOf('[/stateprovince]') !== -1) url = url.replace('[/stateprovince]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'GET',params:args}, opts)
+	},
+	'searchCompanies': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/companies/search'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'POST',params:args}, opts)
+	},
+	'countCompanies': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/companies/counts'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'POST',params:args}, opts)
+	},
+	'getPerson': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/people/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{resourcetype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		if (url.indexOf('[/resourcetype]') !== -1) {
+			url = url.replace('[/resourcetype]', '/' + args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/resourcetype]') !== -1) url = url.replace('[/resourcetype]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'GET',params:args}, opts)
+	},
+	'getPeople': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/people'
+		args = args || {}
+		var rgx = new RegExp('\{resourcetype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		if (url.indexOf('[/resourcetype]') !== -1) {
+			url = url.replace('[/resourcetype]', '/' + args['resourcetype'])
+			if (args['resourcetype']) delete args['resourcetype']
+		}
+		var rgx = new RegExp('\{city\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['city'])
+			if (args['city']) delete args['city']
+		}
+		if (url.indexOf('[/city]') !== -1) {
+			url = url.replace('[/city]', '/' + args['city'])
+			if (args['city']) delete args['city']
+		}
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/email]') !== -1) {
+			url = url.replace('[/email]', '/' + args['email'])
+			if (args['email']) delete args['email']
+		}
+		var rgx = new RegExp('\{emailsha1upper\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['emailsha1upper'])
+			if (args['emailsha1upper']) delete args['emailsha1upper']
+		}
+		if (url.indexOf('[/emailsha1upper]') !== -1) {
+			url = url.replace('[/emailsha1upper]', '/' + args['emailsha1upper'])
+			if (args['emailsha1upper']) delete args['emailsha1upper']
+		}
+		var rgx = new RegExp('\{includehistoricalemail\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['includehistoricalemail'])
+			if (args['includehistoricalemail']) delete args['includehistoricalemail']
+		}
+		if (url.indexOf('[/includehistoricalemail]') !== -1) {
+			url = url.replace('[/includehistoricalemail]', '/' + args['includehistoricalemail'])
+			if (args['includehistoricalemail']) delete args['includehistoricalemail']
+		}
+		var rgx = new RegExp('\{firstname\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['firstname'])
+			if (args['firstname']) delete args['firstname']
+		}
+		if (url.indexOf('[/firstname]') !== -1) {
+			url = url.replace('[/firstname]', '/' + args['firstname'])
+			if (args['firstname']) delete args['firstname']
+		}
+		var rgx = new RegExp('\{lastname\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lastname'])
+			if (args['lastname']) delete args['lastname']
+		}
+		if (url.indexOf('[/lastname]') !== -1) {
+			url = url.replace('[/lastname]', '/' + args['lastname'])
+			if (args['lastname']) delete args['lastname']
+		}
+		var rgx = new RegExp('\{phone\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		if (url.indexOf('[/phone]') !== -1) {
+			url = url.replace('[/phone]', '/' + args['phone'])
+			if (args['phone']) delete args['phone']
+		}
+		var rgx = new RegExp('\{postalcode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postalcode'])
+			if (args['postalcode']) delete args['postalcode']
+		}
+		if (url.indexOf('[/postalcode]') !== -1) {
+			url = url.replace('[/postalcode]', '/' + args['postalcode'])
+			if (args['postalcode']) delete args['postalcode']
+		}
+		var rgx = new RegExp('\{stateprovince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['stateprovince'])
+			if (args['stateprovince']) delete args['stateprovince']
+		}
+		if (url.indexOf('[/stateprovince]') !== -1) {
+			url = url.replace('[/stateprovince]', '/' + args['stateprovince'])
+			if (args['stateprovince']) delete args['stateprovince']
+		}
+		var rgx = new RegExp('\{limit\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/resourcetype]') !== -1) url = url.replace('[/resourcetype]', '')
+		if (url.indexOf('[/city]') !== -1) url = url.replace('[/city]', '')
+		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
+		if (url.indexOf('[/emailsha1upper]') !== -1) url = url.replace('[/emailsha1upper]', '')
+		if (url.indexOf('[/includehistoricalemail]') !== -1) url = url.replace('[/includehistoricalemail]', '')
+		if (url.indexOf('[/firstname]') !== -1) url = url.replace('[/firstname]', '')
+		if (url.indexOf('[/lastname]') !== -1) url = url.replace('[/lastname]', '')
+		if (url.indexOf('[/phone]') !== -1) url = url.replace('[/phone]', '')
+		if (url.indexOf('[/postalcode]') !== -1) url = url.replace('[/postalcode]', '')
+		if (url.indexOf('[/stateprovince]') !== -1) url = url.replace('[/stateprovince]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'GET',params:args}, opts)
+	},
+	'searchPeople': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/people/search'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'POST',params:args}, opts)
+	},
+	'countPeople': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/people/counts'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'POST',params:args}, opts)
+	},
+	'match': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v3/match'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'POST',params:args}, opts)
+	},
+	'getSic': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/sics/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'GET',params:args}, opts)
+	},
+	'getSics': function(args, opts) {
+		var url = 'https://api.infoconnect.com/v1/sics'
+		args = args || {}
+		if (args['keyword'] == null) args['keyword'] = "barber"
+		var rgx = new RegExp('\{keyword\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['keyword'])
+			if (args['keyword']) delete args['keyword']
+		}
+		if (url.indexOf('[/keyword]') !== -1) {
+			url = url.replace('[/keyword]', '/' + args['keyword'])
+			if (args['keyword']) delete args['keyword']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/keyword]') !== -1) url = url.replace('[/keyword]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'infoconnect',url:url,method:'GET',params:args}, opts)
+	}
+})

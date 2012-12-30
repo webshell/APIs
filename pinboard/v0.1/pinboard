@@ -1,0 +1,350 @@
+({
+	auth:function(){return auth({provider:'pinboard'})},
+	'postUpdate': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/update'
+		args = args || {}
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postAdd': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/add'
+		args = args || {}
+		if (args['url'] == null) throw new Error('url is a required parameter')
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (args['description'] == null) throw new Error('description is a required parameter')
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		var rgx = new RegExp('\{extended\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['extended'])
+			if (args['extended']) delete args['extended']
+		}
+		if (url.indexOf('[/extended]') !== -1) {
+			url = url.replace('[/extended]', '/' + args['extended'])
+			if (args['extended']) delete args['extended']
+		}
+		var rgx = new RegExp('\{tags\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		if (url.indexOf('[/tags]') !== -1) {
+			url = url.replace('[/tags]', '/' + args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		var rgx = new RegExp('\{dt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['dt'])
+			if (args['dt']) delete args['dt']
+		}
+		if (url.indexOf('[/dt]') !== -1) {
+			url = url.replace('[/dt]', '/' + args['dt'])
+			if (args['dt']) delete args['dt']
+		}
+		var rgx = new RegExp('\{replace\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['replace'])
+			if (args['replace']) delete args['replace']
+		}
+		if (url.indexOf('[/replace]') !== -1) {
+			url = url.replace('[/replace]', '/' + args['replace'])
+			if (args['replace']) delete args['replace']
+		}
+		var rgx = new RegExp('\{shared\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['shared'])
+			if (args['shared']) delete args['shared']
+		}
+		if (url.indexOf('[/shared]') !== -1) {
+			url = url.replace('[/shared]', '/' + args['shared'])
+			if (args['shared']) delete args['shared']
+		}
+		var rgx = new RegExp('\{toread\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['toread'])
+			if (args['toread']) delete args['toread']
+		}
+		if (url.indexOf('[/toread]') !== -1) {
+			url = url.replace('[/toread]', '/' + args['toread'])
+			if (args['toread']) delete args['toread']
+		}
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		if (url.indexOf('[/extended]') !== -1) url = url.replace('[/extended]', '')
+		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
+		if (url.indexOf('[/dt]') !== -1) url = url.replace('[/dt]', '')
+		if (url.indexOf('[/replace]') !== -1) url = url.replace('[/replace]', '')
+		if (url.indexOf('[/shared]') !== -1) url = url.replace('[/shared]', '')
+		if (url.indexOf('[/toread]') !== -1) url = url.replace('[/toread]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postsDelete': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/delete'
+		args = args || {}
+		if (args['url'] == null) throw new Error('url is a required parameter')
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postGet': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/get'
+		args = args || {}
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		var rgx = new RegExp('\{dt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['dt'])
+			if (args['dt']) delete args['dt']
+		}
+		if (url.indexOf('[/dt]') !== -1) {
+			url = url.replace('[/dt]', '/' + args['dt'])
+			if (args['dt']) delete args['dt']
+		}
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		var rgx = new RegExp('\{meta\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['meta'])
+			if (args['meta']) delete args['meta']
+		}
+		if (url.indexOf('[/meta]') !== -1) {
+			url = url.replace('[/meta]', '/' + args['meta'])
+			if (args['meta']) delete args['meta']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		if (url.indexOf('[/dt]') !== -1) url = url.replace('[/dt]', '')
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
+		if (url.indexOf('[/meta]') !== -1) url = url.replace('[/meta]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postDates': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/dates'
+		args = args || {}
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postRecent': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/recent'
+		args = args || {}
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postAll': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/all'
+		args = args || {}
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		var rgx = new RegExp('\{start\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['start'])
+			if (args['start']) delete args['start']
+		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
+		var rgx = new RegExp('\{results\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['results'])
+			if (args['results']) delete args['results']
+		}
+		if (url.indexOf('[/results]') !== -1) {
+			url = url.replace('[/results]', '/' + args['results'])
+			if (args['results']) delete args['results']
+		}
+		var rgx = new RegExp('\{fromdt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fromdt'])
+			if (args['fromdt']) delete args['fromdt']
+		}
+		if (url.indexOf('[/fromdt]') !== -1) {
+			url = url.replace('[/fromdt]', '/' + args['fromdt'])
+			if (args['fromdt']) delete args['fromdt']
+		}
+		var rgx = new RegExp('\{todt\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['todt'])
+			if (args['todt']) delete args['todt']
+		}
+		if (url.indexOf('[/todt]') !== -1) {
+			url = url.replace('[/todt]', '/' + args['todt'])
+			if (args['todt']) delete args['todt']
+		}
+		var rgx = new RegExp('\{meta\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['meta'])
+			if (args['meta']) delete args['meta']
+		}
+		if (url.indexOf('[/meta]') !== -1) {
+			url = url.replace('[/meta]', '/' + args['meta'])
+			if (args['meta']) delete args['meta']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/results]') !== -1) url = url.replace('[/results]', '')
+		if (url.indexOf('[/fromdt]') !== -1) url = url.replace('[/fromdt]', '')
+		if (url.indexOf('[/todt]') !== -1) url = url.replace('[/todt]', '')
+		if (url.indexOf('[/meta]') !== -1) url = url.replace('[/meta]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'postSuggest': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/posts/suggest'
+		args = args || {}
+		if (args['url'] == null) throw new Error('url is a required parameter')
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'getTags': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/tags/get'
+		args = args || {}
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'deleteTags': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/tags/delete'
+		args = args || {}
+		if (args['tag'] == null) throw new Error('tag is a required parameter')
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'renameTag': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/tags/rename'
+		args = args || {}
+		if (args['old'] == null) throw new Error('old is a required parameter')
+		var rgx = new RegExp('\{old\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['old'])
+			if (args['old']) delete args['old']
+		}
+		if (url.indexOf('[/old]') !== -1) {
+			url = url.replace('[/old]', '/' + args['old'])
+			if (args['old']) delete args['old']
+		}
+		if (args['new'] == null) throw new Error('new is a required parameter')
+		var rgx = new RegExp('\{new\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['new'])
+			if (args['new']) delete args['new']
+		}
+		if (url.indexOf('[/new]') !== -1) {
+			url = url.replace('[/new]', '/' + args['new'])
+			if (args['new']) delete args['new']
+		}
+		if (url.indexOf('[/old]') !== -1) url = url.replace('[/old]', '')
+		if (url.indexOf('[/new]') !== -1) url = url.replace('[/new]', '')
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	},
+	'userSecret': function(args, opts) {
+		var url = 'https://api.pinboard.in/v1/user/secret'
+		args = args || {}
+		return http({provider:'pinboard',url:url,method:'GET',params:args}, opts)
+	}
+})

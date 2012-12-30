@@ -1,0 +1,844 @@
+({
+	auth:function(){return auth({provider:'instagram'})},
+	'get_users': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/{user-id}'
+		args = args || {}
+		if (args['user-id'] == null) throw new Error('user-id is a required parameter')
+		var rgx = new RegExp('\{user-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) {
+			url = url.replace('[/user-id]', '/' + args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_users_feed': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/self/feed'
+		args = args || {}
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (url.indexOf('[/max_id]') !== -1) {
+			url = url.replace('[/max_id]', '/' + args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		var rgx = new RegExp('\{min_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		if (url.indexOf('[/min_id]') !== -1) {
+			url = url.replace('[/min_id]', '/' + args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/max_id]') !== -1) url = url.replace('[/max_id]', '')
+		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_users_media_recent': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/{user-id}/media/recent'
+		args = args || {}
+		if (args['user-id'] == null) throw new Error('user-id is a required parameter')
+		var rgx = new RegExp('\{user-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) {
+			url = url.replace('[/user-id]', '/' + args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (url.indexOf('[/max_id]') !== -1) {
+			url = url.replace('[/max_id]', '/' + args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		var rgx = new RegExp('\{min_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		if (url.indexOf('[/min_id]') !== -1) {
+			url = url.replace('[/min_id]', '/' + args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{min_timestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_timestamp'])
+			if (args['min_timestamp']) delete args['min_timestamp']
+		}
+		if (url.indexOf('[/min_timestamp]') !== -1) {
+			url = url.replace('[/min_timestamp]', '/' + args['min_timestamp'])
+			if (args['min_timestamp']) delete args['min_timestamp']
+		}
+		var rgx = new RegExp('\{max_timestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_timestamp'])
+			if (args['max_timestamp']) delete args['max_timestamp']
+		}
+		if (url.indexOf('[/max_timestamp]') !== -1) {
+			url = url.replace('[/max_timestamp]', '/' + args['max_timestamp'])
+			if (args['max_timestamp']) delete args['max_timestamp']
+		}
+		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
+		if (url.indexOf('[/max_id]') !== -1) url = url.replace('[/max_id]', '')
+		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/min_timestamp]') !== -1) url = url.replace('[/min_timestamp]', '')
+		if (url.indexOf('[/max_timestamp]') !== -1) url = url.replace('[/max_timestamp]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_users_liked_feed': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/self/media/liked'
+		args = args || {}
+		var rgx = new RegExp('\{max_like_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_like_id'])
+			if (args['max_like_id']) delete args['max_like_id']
+		}
+		if (url.indexOf('[/max_like_id]') !== -1) {
+			url = url.replace('[/max_like_id]', '/' + args['max_like_id'])
+			if (args['max_like_id']) delete args['max_like_id']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/max_like_id]') !== -1) url = url.replace('[/max_like_id]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_users_search': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/search'
+		args = args || {}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_users_follows': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/{user-id}/follows'
+		args = args || {}
+		if (args['user-id'] == null) throw new Error('user-id is a required parameter')
+		var rgx = new RegExp('\{user-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) {
+			url = url.replace('[/user-id]', '/' + args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_users_followed_by': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/{user-id}/followed-by'
+		args = args || {}
+		if (args['user-id'] == null) throw new Error('user-id is a required parameter')
+		var rgx = new RegExp('\{user-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) {
+			url = url.replace('[/user-id]', '/' + args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_incoming_requests': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/self/requested-by'
+		args = args || {}
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_relationship': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/{user-id}/relationship'
+		args = args || {}
+		if (args['user-id'] == null) throw new Error('user-id is a required parameter')
+		var rgx = new RegExp('\{user-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) {
+			url = url.replace('[/user-id]', '/' + args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'post_relationship': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//users/{user-id}/relationship'
+		args = args || {}
+		if (args['user-id'] == null) throw new Error('user-id is a required parameter')
+		var rgx = new RegExp('\{user-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) {
+			url = url.replace('[/user-id]', '/' + args['user-id'])
+			if (args['user-id']) delete args['user-id']
+		}
+		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'get_media': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_media_search': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/search'
+		args = args || {}
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		var rgx = new RegExp('\{lng\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lng'])
+			if (args['lng']) delete args['lng']
+		}
+		if (url.indexOf('[/lng]') !== -1) {
+			url = url.replace('[/lng]', '/' + args['lng'])
+			if (args['lng']) delete args['lng']
+		}
+		var rgx = new RegExp('\{max_timestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_timestamp'])
+			if (args['max_timestamp']) delete args['max_timestamp']
+		}
+		if (url.indexOf('[/max_timestamp]') !== -1) {
+			url = url.replace('[/max_timestamp]', '/' + args['max_timestamp'])
+			if (args['max_timestamp']) delete args['max_timestamp']
+		}
+		var rgx = new RegExp('\{min_timestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_timestamp'])
+			if (args['min_timestamp']) delete args['min_timestamp']
+		}
+		if (url.indexOf('[/min_timestamp]') !== -1) {
+			url = url.replace('[/min_timestamp]', '/' + args['min_timestamp'])
+			if (args['min_timestamp']) delete args['min_timestamp']
+		}
+		var rgx = new RegExp('\{distance\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/distance]') !== -1) {
+			url = url.replace('[/distance]', '/' + args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/lng]') !== -1) url = url.replace('[/lng]', '')
+		if (url.indexOf('[/max_timestamp]') !== -1) url = url.replace('[/max_timestamp]', '')
+		if (url.indexOf('[/min_timestamp]') !== -1) url = url.replace('[/min_timestamp]', '')
+		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_media_popular': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/popular'
+		args = args || {}
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_media_comments': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{media-id}/comments'
+		args = args || {}
+		if (args['media-id'] == null) throw new Error('media-id is a required parameter')
+		var rgx = new RegExp('\{media-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) {
+			url = url.replace('[/media-id]', '/' + args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'post_media_comments': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{media-id}/comments'
+		args = args || {}
+		if (args['media-id'] == null) throw new Error('media-id is a required parameter')
+		var rgx = new RegExp('\{media-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) {
+			url = url.replace('[/media-id]', '/' + args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'delete_media_comments': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{media-id}/comments/{comment-id}'
+		args = args || {}
+		if (args['media-id'] == null) throw new Error('media-id is a required parameter')
+		var rgx = new RegExp('\{media-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) {
+			url = url.replace('[/media-id]', '/' + args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (args['comment-id'] == null) throw new Error('comment-id is a required parameter')
+		var rgx = new RegExp('\{comment-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment-id'])
+			if (args['comment-id']) delete args['comment-id']
+		}
+		if (url.indexOf('[/comment-id]') !== -1) {
+			url = url.replace('[/comment-id]', '/' + args['comment-id'])
+			if (args['comment-id']) delete args['comment-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
+		if (url.indexOf('[/comment-id]') !== -1) url = url.replace('[/comment-id]', '')
+		return http({provider:'instagram',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_media_likes': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{media-id}/likes'
+		args = args || {}
+		if (args['media-id'] == null) throw new Error('media-id is a required parameter')
+		var rgx = new RegExp('\{media-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) {
+			url = url.replace('[/media-id]', '/' + args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'post_media_likes': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{media-id}/likes'
+		args = args || {}
+		if (args['media-id'] == null) throw new Error('media-id is a required parameter')
+		var rgx = new RegExp('\{media-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) {
+			url = url.replace('[/media-id]', '/' + args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'delete_media_likes': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//media/{media-id}/likes'
+		args = args || {}
+		if (args['media-id'] == null) throw new Error('media-id is a required parameter')
+		var rgx = new RegExp('\{media-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) {
+			url = url.replace('[/media-id]', '/' + args['media-id'])
+			if (args['media-id']) delete args['media-id']
+		}
+		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
+		return http({provider:'instagram',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_tags': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//tags/{tag-name}'
+		args = args || {}
+		if (args['tag-name'] == null) throw new Error('tag-name is a required parameter')
+		var rgx = new RegExp('\{tag-name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag-name'])
+			if (args['tag-name']) delete args['tag-name']
+		}
+		if (url.indexOf('[/tag-name]') !== -1) {
+			url = url.replace('[/tag-name]', '/' + args['tag-name'])
+			if (args['tag-name']) delete args['tag-name']
+		}
+		if (url.indexOf('[/tag-name]') !== -1) url = url.replace('[/tag-name]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_tags_media_recent': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//tags/{tag-name}/media/recent'
+		args = args || {}
+		if (args['tag-name'] == null) throw new Error('tag-name is a required parameter')
+		var rgx = new RegExp('\{tag-name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag-name'])
+			if (args['tag-name']) delete args['tag-name']
+		}
+		if (url.indexOf('[/tag-name]') !== -1) {
+			url = url.replace('[/tag-name]', '/' + args['tag-name'])
+			if (args['tag-name']) delete args['tag-name']
+		}
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (url.indexOf('[/max_id]') !== -1) {
+			url = url.replace('[/max_id]', '/' + args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		var rgx = new RegExp('\{min_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		if (url.indexOf('[/min_id]') !== -1) {
+			url = url.replace('[/min_id]', '/' + args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		if (url.indexOf('[/tag-name]') !== -1) url = url.replace('[/tag-name]', '')
+		if (url.indexOf('[/max_id]') !== -1) url = url.replace('[/max_id]', '')
+		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_tags_search': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//tags/search'
+		args = args || {}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_locations': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//locations/{location-id}'
+		args = args || {}
+		if (args['location-id'] == null) throw new Error('location-id is a required parameter')
+		var rgx = new RegExp('\{location-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['location-id'])
+			if (args['location-id']) delete args['location-id']
+		}
+		if (url.indexOf('[/location-id]') !== -1) {
+			url = url.replace('[/location-id]', '/' + args['location-id'])
+			if (args['location-id']) delete args['location-id']
+		}
+		if (url.indexOf('[/location-id]') !== -1) url = url.replace('[/location-id]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_locations_media_recent': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//locations/{location-id}/media/recent'
+		args = args || {}
+		if (args['location-id'] == null) throw new Error('location-id is a required parameter')
+		var rgx = new RegExp('\{location-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['location-id'])
+			if (args['location-id']) delete args['location-id']
+		}
+		if (url.indexOf('[/location-id]') !== -1) {
+			url = url.replace('[/location-id]', '/' + args['location-id'])
+			if (args['location-id']) delete args['location-id']
+		}
+		var rgx = new RegExp('\{max_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		if (url.indexOf('[/max_id]') !== -1) {
+			url = url.replace('[/max_id]', '/' + args['max_id'])
+			if (args['max_id']) delete args['max_id']
+		}
+		var rgx = new RegExp('\{min_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		if (url.indexOf('[/min_id]') !== -1) {
+			url = url.replace('[/min_id]', '/' + args['min_id'])
+			if (args['min_id']) delete args['min_id']
+		}
+		var rgx = new RegExp('\{min_timestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['min_timestamp'])
+			if (args['min_timestamp']) delete args['min_timestamp']
+		}
+		if (url.indexOf('[/min_timestamp]') !== -1) {
+			url = url.replace('[/min_timestamp]', '/' + args['min_timestamp'])
+			if (args['min_timestamp']) delete args['min_timestamp']
+		}
+		var rgx = new RegExp('\{max_timestamp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['max_timestamp'])
+			if (args['max_timestamp']) delete args['max_timestamp']
+		}
+		if (url.indexOf('[/max_timestamp]') !== -1) {
+			url = url.replace('[/max_timestamp]', '/' + args['max_timestamp'])
+			if (args['max_timestamp']) delete args['max_timestamp']
+		}
+		if (url.indexOf('[/location-id]') !== -1) url = url.replace('[/location-id]', '')
+		if (url.indexOf('[/max_id]') !== -1) url = url.replace('[/max_id]', '')
+		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
+		if (url.indexOf('[/min_timestamp]') !== -1) url = url.replace('[/min_timestamp]', '')
+		if (url.indexOf('[/max_timestamp]') !== -1) url = url.replace('[/max_timestamp]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'get_locations_search': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//locations/search'
+		args = args || {}
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		var rgx = new RegExp('\{lng\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lng'])
+			if (args['lng']) delete args['lng']
+		}
+		if (url.indexOf('[/lng]') !== -1) {
+			url = url.replace('[/lng]', '/' + args['lng'])
+			if (args['lng']) delete args['lng']
+		}
+		var rgx = new RegExp('\{foursquare_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['foursquare_id'])
+			if (args['foursquare_id']) delete args['foursquare_id']
+		}
+		if (url.indexOf('[/foursquare_id]') !== -1) {
+			url = url.replace('[/foursquare_id]', '/' + args['foursquare_id'])
+			if (args['foursquare_id']) delete args['foursquare_id']
+		}
+		var rgx = new RegExp('\{foursquare_v2_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['foursquare_v2_id'])
+			if (args['foursquare_v2_id']) delete args['foursquare_v2_id']
+		}
+		if (url.indexOf('[/foursquare_v2_id]') !== -1) {
+			url = url.replace('[/foursquare_v2_id]', '/' + args['foursquare_v2_id'])
+			if (args['foursquare_v2_id']) delete args['foursquare_v2_id']
+		}
+		var rgx = new RegExp('\{distance\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/distance]') !== -1) {
+			url = url.replace('[/distance]', '/' + args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/lng]') !== -1) url = url.replace('[/lng]', '')
+		if (url.indexOf('[/foursquare_id]') !== -1) url = url.replace('[/foursquare_id]', '')
+		if (url.indexOf('[/foursquare_v2_id]') !== -1) url = url.replace('[/foursquare_v2_id]', '')
+		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'post_subscriptions_user': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//subscriptions'
+		args = args || {}
+		if (args['verify_token'] == null) throw new Error('verify_token is a required parameter')
+		var rgx = new RegExp('\{verify_token\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) {
+			url = url.replace('[/verify_token]', '/' + args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (args['client_id'] == null) throw new Error('client_id is a required parameter')
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['client_secret'] == null) throw new Error('client_secret is a required parameter')
+		var rgx = new RegExp('\{client_secret\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_secret]') !== -1) {
+			url = url.replace('[/client_secret]', '/' + args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'post_subscriptions_tag': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//subscriptions'
+		args = args || {}
+		if (args['verify_token'] == null) throw new Error('verify_token is a required parameter')
+		var rgx = new RegExp('\{verify_token\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) {
+			url = url.replace('[/verify_token]', '/' + args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (args['client_id'] == null) throw new Error('client_id is a required parameter')
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['client_secret'] == null) throw new Error('client_secret is a required parameter')
+		var rgx = new RegExp('\{client_secret\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_secret]') !== -1) {
+			url = url.replace('[/client_secret]', '/' + args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'post_subscriptions_location': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//subscriptions'
+		args = args || {}
+		if (args['verify_token'] == null) throw new Error('verify_token is a required parameter')
+		var rgx = new RegExp('\{verify_token\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) {
+			url = url.replace('[/verify_token]', '/' + args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (args['client_id'] == null) throw new Error('client_id is a required parameter')
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['client_secret'] == null) throw new Error('client_secret is a required parameter')
+		var rgx = new RegExp('\{client_secret\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_secret]') !== -1) {
+			url = url.replace('[/client_secret]', '/' + args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'post_subscriptions_geography': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//subscriptions'
+		args = args || {}
+		if (args['verify_token'] == null) throw new Error('verify_token is a required parameter')
+		var rgx = new RegExp('\{verify_token\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) {
+			url = url.replace('[/verify_token]', '/' + args['verify_token'])
+			if (args['verify_token']) delete args['verify_token']
+		}
+		if (args['client_id'] == null) throw new Error('client_id is a required parameter')
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['client_secret'] == null) throw new Error('client_secret is a required parameter')
+		var rgx = new RegExp('\{client_secret\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_secret]') !== -1) {
+			url = url.replace('[/client_secret]', '/' + args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+	},
+	'get_subscriptions': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//subscriptions'
+		args = args || {}
+		if (args['client_id'] == null) throw new Error('client_id is a required parameter')
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['client_secret'] == null) throw new Error('client_secret is a required parameter')
+		var rgx = new RegExp('\{client_secret\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_secret]') !== -1) {
+			url = url.replace('[/client_secret]', '/' + args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
+		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+	},
+	'delete_subscriptions': function(args, opts) {
+		var url = 'https://api.instagram.com/v1//subscriptions'
+		args = args || {}
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{object\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['object'])
+			if (args['object']) delete args['object']
+		}
+		if (url.indexOf('[/object]') !== -1) {
+			url = url.replace('[/object]', '/' + args['object'])
+			if (args['object']) delete args['object']
+		}
+		if (args['client_id'] == null) throw new Error('client_id is a required parameter')
+		var rgx = new RegExp('\{client_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (url.indexOf('[/client_id]') !== -1) {
+			url = url.replace('[/client_id]', '/' + args['client_id'])
+			if (args['client_id']) delete args['client_id']
+		}
+		if (args['client_secret'] == null) throw new Error('client_secret is a required parameter')
+		var rgx = new RegExp('\{client_secret\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/client_secret]') !== -1) {
+			url = url.replace('[/client_secret]', '/' + args['client_secret'])
+			if (args['client_secret']) delete args['client_secret']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/object]') !== -1) url = url.replace('[/object]', '')
+		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
+		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
+		return http({provider:'instagram',url:url,method:'DELETE',params:args}, opts)
+	}
+})

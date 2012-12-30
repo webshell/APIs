@@ -1,0 +1,1226 @@
+({
+	auth:function(){return auth({provider:'soundcloud_sandbox'})},
+	'get_tracks': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks.{format}'
+		args = args || {}
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{tags\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		if (url.indexOf('[/tags]') !== -1) {
+			url = url.replace('[/tags]', '/' + args['tags'])
+			if (args['tags']) delete args['tags']
+		}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{bpm-from\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['bpm-from'])
+			if (args['bpm-from']) delete args['bpm-from']
+		}
+		if (url.indexOf('[/bpm-from]') !== -1) {
+			url = url.replace('[/bpm-from]', '/' + args['bpm-from'])
+			if (args['bpm-from']) delete args['bpm-from']
+		}
+		var rgx = new RegExp('\{bpm-to\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['bpm-to'])
+			if (args['bpm-to']) delete args['bpm-to']
+		}
+		if (url.indexOf('[/bpm-to]') !== -1) {
+			url = url.replace('[/bpm-to]', '/' + args['bpm-to'])
+			if (args['bpm-to']) delete args['bpm-to']
+		}
+		var rgx = new RegExp('\{duration-from\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['duration-from'])
+			if (args['duration-from']) delete args['duration-from']
+		}
+		if (url.indexOf('[/duration-from]') !== -1) {
+			url = url.replace('[/duration-from]', '/' + args['duration-from'])
+			if (args['duration-from']) delete args['duration-from']
+		}
+		var rgx = new RegExp('\{duration-to\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['duration-to'])
+			if (args['duration-to']) delete args['duration-to']
+		}
+		if (url.indexOf('[/duration-to]') !== -1) {
+			url = url.replace('[/duration-to]', '/' + args['duration-to'])
+			if (args['duration-to']) delete args['duration-to']
+		}
+		var rgx = new RegExp('\{created_at-from\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['created_at-from'])
+			if (args['created_at-from']) delete args['created_at-from']
+		}
+		if (url.indexOf('[/created_at-from]') !== -1) {
+			url = url.replace('[/created_at-from]', '/' + args['created_at-from'])
+			if (args['created_at-from']) delete args['created_at-from']
+		}
+		var rgx = new RegExp('\{created_at-to\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['created_at-to'])
+			if (args['created_at-to']) delete args['created_at-to']
+		}
+		if (url.indexOf('[/created_at-to]') !== -1) {
+			url = url.replace('[/created_at-to]', '/' + args['created_at-to'])
+			if (args['created_at-to']) delete args['created_at-to']
+		}
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		if (url.indexOf('[/ids]') !== -1) {
+			url = url.replace('[/ids]', '/' + args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{ids\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		if (url.indexOf('[/ids]') !== -1) {
+			url = url.replace('[/ids]', '/' + args['ids'])
+			if (args['ids']) delete args['ids']
+		}
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/bpm-from]') !== -1) url = url.replace('[/bpm-from]', '')
+		if (url.indexOf('[/bpm-to]') !== -1) url = url.replace('[/bpm-to]', '')
+		if (url.indexOf('[/duration-from]') !== -1) url = url.replace('[/duration-from]', '')
+		if (url.indexOf('[/duration-to]') !== -1) url = url.replace('[/duration-to]', '')
+		if (url.indexOf('[/created_at-from]') !== -1) url = url.replace('[/created_at-from]', '')
+		if (url.indexOf('[/created_at-to]') !== -1) url = url.replace('[/created_at-to]', '')
+		if (url.indexOf('[/ids]') !== -1) url = url.replace('[/ids]', '')
+		if (url.indexOf('[/ids]') !== -1) url = url.replace('[/ids]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'post_tracks': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks.{format}'
+		args = args || {}
+		if (args['title'] == null) args['title'] = "A Track Title"
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (args['asset_data'] == null) throw new Error('asset_data is a required parameter')
+		var rgx = new RegExp('\{asset_data\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['asset_data'])
+			if (args['asset_data']) delete args['asset_data']
+		}
+		if (url.indexOf('[/asset_data]') !== -1) {
+			url = url.replace('[/asset_data]', '/' + args['asset_data'])
+			if (args['asset_data']) delete args['asset_data']
+		}
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/asset_data]') !== -1) url = url.replace('[/asset_data]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'POST',params:args}, opts)
+	},
+	'get_track': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'put_track': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}.{format}'
+		args = args || {}
+		if (args['title'] == null) args['title'] = "A Track Title"
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (args['asset_data'] == null) throw new Error('asset_data is a required parameter')
+		var rgx = new RegExp('\{asset_data\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['asset_data'])
+			if (args['asset_data']) delete args['asset_data']
+		}
+		if (url.indexOf('[/asset_data]') !== -1) {
+			url = url.replace('[/asset_data]', '/' + args['asset_data'])
+			if (args['asset_data']) delete args['asset_data']
+		}
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/asset_data]') !== -1) url = url.replace('[/asset_data]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'delete_track': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_track_comments': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/comments.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'post_track_comments': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/comments.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'POST',params:args}, opts)
+	},
+	'get_track_permissions': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/permissions.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'put_track_permissions': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/permissions.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'get_track_secret-token': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/secret-token.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'put_track_secret_token': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/secret-token.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'get_users': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users.{format}'
+		args = args || {}
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_tracks': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/tracks.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_comments': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/comments.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_followings': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_following': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'put_user_followings': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'delete_user_followings': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_user_followers': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followers.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_follower': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followers/{contact_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_favorites': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/favorites.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'put_user_favorites': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/favorites/{track_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'delete_user_favorites': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/favorites/{track_id}.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_user_groups': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/groups.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_user_playlists': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/playlists.{format}'
+		args = args || {}
+		if (args['user_id'] == null) args['user_id'] = "183"
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_me': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'put_me': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'get_me_tracks': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/tracks.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_me_comments': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/comments.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_me_followings': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/followings.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_me_following': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/followings/{contact_id}.{format}'
+		args = args || {}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'put_me_followings': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/followings/{contact_id}.{format}'
+		args = args || {}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'delete_me_followings': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/followings/{contact_id}.{format}'
+		args = args || {}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_me_followers': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/followers.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_me_follower': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/followers/{contact_id}.{format}'
+		args = args || {}
+		if (args['contact_id'] == null) args['contact_id'] = "183"
+		var rgx = new RegExp('\{contact_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_me_favorites': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/favorites.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'put_me_favorites': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/favorites/{track_id}.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+	},
+	'delete_me_favorites': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/favorites/{track_id}.{format}'
+		args = args || {}
+		if (args['track_id'] == null) args['track_id'] = "291"
+		var rgx = new RegExp('\{track_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+	},
+	'get_me_groups': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/groups.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_me_playlists': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/me/playlists.{format}'
+		args = args || {}
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+	},
+	'get_playlists': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/playlists.{format}'
+		args = args || {}
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{filter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_playlist': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/playlists/{playlist_id}.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_groups': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups.{format}'
+		args = args || {}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_group': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_group_users': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/users.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_group_moderators': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/moderators.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_group_members': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/members.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_group_contributors': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/contributors.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_group_tracks': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/tracks.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'get_comment': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/comments/{comment_id}.{format}'
+		args = args || {}
+		if (args['playlist_id'] == null) args['playlist_id'] = "18"
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'resolve': function(args, opts) {
+		var url = 'https://api.sandbox-soundcloud.com/resolve.{format}'
+		args = args || {}
+		if (args['url'] == null) args['url'] = "http://soundcloud.com/forss"
+		var rgx = new RegExp('\{url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (args['consumer_key'] == null) args['consumer_key'] = "apigee"
+		var rgx = new RegExp('\{consumer_key\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/consumer_key]') !== -1) {
+			url = url.replace('[/consumer_key]', '/' + args['consumer_key'])
+			if (args['consumer_key']) delete args['consumer_key']
+		}
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
+		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
+		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+	}
+})

@@ -1,0 +1,428 @@
+({
+	auth:function(){return auth({provider:'salesforce'})},
+	'getVersions': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/'
+		args = args || {}
+		return http({provider:'salesforce',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getResources': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'getObjects': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'getBasicObjectMetadata': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['sobject'] == null) throw new Error('sobject is a required parameter')
+		var rgx = new RegExp('\{sobject\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/sobject]') !== -1) {
+			url = url.replace('[/sobject]', '/' + args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'createObject': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['sobject'] == null) throw new Error('sobject is a required parameter')
+		var rgx = new RegExp('\{sobject\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/sobject]') !== -1) {
+			url = url.replace('[/sobject]', '/' + args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
+		return http({provider:'salesforce',url:url,method:'POST',params:args}, opts)
+	},
+	'getAllObjectMetadata': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/describe'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['sobject'] == null) throw new Error('sobject is a required parameter')
+		var rgx = new RegExp('\{sobject\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/sobject]') !== -1) {
+			url = url.replace('[/sobject]', '/' + args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'getObject': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/{id}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['sobject'] == null) throw new Error('sobject is a required parameter')
+		var rgx = new RegExp('\{sobject\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/sobject]') !== -1) {
+			url = url.replace('[/sobject]', '/' + args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'deleteObject': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/{id}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['sobject'] == null) throw new Error('sobject is a required parameter')
+		var rgx = new RegExp('\{sobject\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/sobject]') !== -1) {
+			url = url.replace('[/sobject]', '/' + args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'salesforce',url:url,method:'DELETE',params:args}, opts)
+	},
+	'getObjectBlobField': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/{id}/{blobField}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['sobject'] == null) throw new Error('sobject is a required parameter')
+		var rgx = new RegExp('\{sobject\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (url.indexOf('[/sobject]') !== -1) {
+			url = url.replace('[/sobject]', '/' + args['sobject'])
+			if (args['sobject']) delete args['sobject']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['blobField'] == null) throw new Error('blobField is a required parameter')
+		var rgx = new RegExp('\{blobField\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blobField'])
+			if (args['blobField']) delete args['blobField']
+		}
+		if (url.indexOf('[/blobField]') !== -1) {
+			url = url.replace('[/blobField]', '/' + args['blobField'])
+			if (args['blobField']) delete args['blobField']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/blobField]') !== -1) url = url.replace('[/blobField]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'getUserPasswordExpirationStatus': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/User/{id}/password'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'setUserPassword': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/User/{id}/password'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'salesforce',url:url,method:'POST',params:args}, opts)
+	},
+	'resetUserPassword': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/User/{id}/password'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'salesforce',url:url,method:'DELETE',params:args}, opts)
+	},
+	'executeSoqlQuery': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/query'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['q'] == null) args['q'] = "SELECT+name+from+Account"
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'getQueryResultBatch': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/query/{id}'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	},
+	'executeSoqlSearch': function(args, opts) {
+		var url = 'https://na14.salesforce.com/services/data/{version}/search'
+		args = args || {}
+		if (args['version'] == null) args['version'] = "v24.0"
+		var rgx = new RegExp('\{version\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (url.indexOf('[/version]') !== -1) {
+			url = url.replace('[/version]', '/' + args['version'])
+			if (args['version']) delete args['version']
+		}
+		if (args['q'] == null) args['q'] = "FIND+%7Btest%7D"
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		return http({provider:'salesforce',url:url,method:'GET',params:args}, opts)
+	}
+})

@@ -1,0 +1,128 @@
+({
+	auth:function(){return auth({provider:'smsified'})},
+	'send_smsmessage': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/{senderAddress}/requests'
+		args = args || {}
+		if (args['address'] == null) args['address'] = "1234567890"
+		var rgx = new RegExp('\{address\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['address'])
+			if (args['address']) delete args['address']
+		}
+		if (url.indexOf('[/address]') !== -1) {
+			url = url.replace('[/address]', '/' + args['address'])
+			if (args['address']) delete args['address']
+		}
+		if (args['message'] == null) throw new Error('message is a required parameter')
+		var rgx = new RegExp('\{message\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		var rgx = new RegExp('\{notifyURL\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['notifyURL'])
+			if (args['notifyURL']) delete args['notifyURL']
+		}
+		if (url.indexOf('[/notifyURL]') !== -1) {
+			url = url.replace('[/notifyURL]', '/' + args['notifyURL'])
+			if (args['notifyURL']) delete args['notifyURL']
+		}
+		if (url.indexOf('[/address]') !== -1) url = url.replace('[/address]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		if (url.indexOf('[/notifyURL]') !== -1) url = url.replace('[/notifyURL]', '')
+		return http({provider:'smsified',url:url,method:'POST',params:args}, opts)
+	},
+	'delivery_status': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/{senderAddress}/requests/{requestId}/deliveryInfos'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	},
+	'set_outbound_subscribe': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/{senderAddress}/subscriptions'
+		args = args || {}
+		if (args['notifyURL'] == null) throw new Error('notifyURL is a required parameter')
+		var rgx = new RegExp('\{notifyURL\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['notifyURL'])
+			if (args['notifyURL']) delete args['notifyURL']
+		}
+		if (url.indexOf('[/notifyURL]') !== -1) {
+			url = url.replace('[/notifyURL]', '/' + args['notifyURL'])
+			if (args['notifyURL']) delete args['notifyURL']
+		}
+		if (url.indexOf('[/notifyURL]') !== -1) url = url.replace('[/notifyURL]', '')
+		return http({provider:'smsified',url:url,method:'POST',params:args}, opts)
+	},
+	'view_outbound_subscribe': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/subscriptions?senderAddress={senderAddress}'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	},
+	'delete_outbound_subscribe': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/subscriptions/{subscriptionId}'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'DELETE',params:args}, opts)
+	},
+	'set_inbound_subscribe': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/inbound/subscriptions'
+		args = args || {}
+		if (args['destinationAddress'] == null) throw new Error('destinationAddress is a required parameter')
+		var rgx = new RegExp('\{destinationAddress\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['destinationAddress'])
+			if (args['destinationAddress']) delete args['destinationAddress']
+		}
+		if (url.indexOf('[/destinationAddress]') !== -1) {
+			url = url.replace('[/destinationAddress]', '/' + args['destinationAddress'])
+			if (args['destinationAddress']) delete args['destinationAddress']
+		}
+		if (args['notifyURL'] == null) throw new Error('notifyURL is a required parameter')
+		var rgx = new RegExp('\{notifyURL\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['notifyURL'])
+			if (args['notifyURL']) delete args['notifyURL']
+		}
+		if (url.indexOf('[/notifyURL]') !== -1) {
+			url = url.replace('[/notifyURL]', '/' + args['notifyURL'])
+			if (args['notifyURL']) delete args['notifyURL']
+		}
+		if (url.indexOf('[/destinationAddress]') !== -1) url = url.replace('[/destinationAddress]', '')
+		if (url.indexOf('[/notifyURL]') !== -1) url = url.replace('[/notifyURL]', '')
+		return http({provider:'smsified',url:url,method:'POST',params:args}, opts)
+	},
+	'view_inbound_subscribe': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/inbound/subscriptions?destinationAddress={destinationAddress}'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	},
+	'delete_inbound_subscribe': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/smsmessaging/inbound/subscriptions/{subscriptionId}'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'DELETE',params:args}, opts)
+	},
+	'reporting_allmessages': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/messages'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	},
+	'reporting_individual': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/messages/{messageId}'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	},
+	'reporting_FilteredByDate': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/messages?startDate=2011-02-14&endDate=2011-02-15'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	},
+	'reporting_FilteredByStatusDirection': function(args, opts) {
+		var url = 'https://api.smsified.com/v1/messages?status=fail&direction=in'
+		args = args || {}
+		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
+	}
+})

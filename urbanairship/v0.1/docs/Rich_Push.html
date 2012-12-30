@@ -1,0 +1,372 @@
+<h1>Urbanairship API: Rich Push</h1>
+<p>These methods are relative to the tag 'Rich Push'</p><h3>createUser</h3>
+<p>Creates a new user and return the credentials. Optionally, include a JSON payload (using content-type application/json) with this request to specify additional data. If a tag is included that does not already exist for your account, it will be created. The application���s device token must be included to use Apple���s Push Notification Service to alert the user that a new message has arrived. Aliases are a convenient way to send messages to your users as you don���t have to store the user ID. However, do not use aliases to send sensitive information. The UDID is used to disambiguate aliases. If a user is created with an alias, and then the application is deleted from the device and re-installed, there could be two users with the same alias with the same device token; this can result in duplicate messages. If a second user is created with the same alias and UDID, the original user���s alias is blanked to avoid duplicates. If the UDID differs, both users will have the same alias, to allow a single user to receive messages on multiple devices (e.g., iPhone and iPad).</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>modifyUser</h3>
+<p>Creates a new user and return the credentials. Optionally, include a JSON payload (using content-type application/json) with this request to specify additional data. If a tag is included that does not already exist for your account, it will be created. The application���s device token must be included to use Apple���s Push Notification Service to alert the user that a new message has arrived. Aliases are a convenient way to send messages to your users as you don���t have to store the user ID. However, do not use aliases to send sensitive information. The UDID is used to disambiguate aliases. If a user is created with an alias, and then the application is deleted from the device and re-installed, there could be two users with the same alias with the same device token; this can result in duplicate messages. If a second user is created with the same alias and UDID, the original user���s alias is blanked to avoid duplicates. If the UDID differs, both users will have the same alias, to allow a single user to receive messages on multiple devices (e.g., iPhone and iPad).</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>deleteUser</h3>
+<p>Deletes an user.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>resetUserCredentials</h3>
+<p>Returns a JSON payload with the new credentials. Note that this will not change the username of the user, just the password.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>sendUserMessage</h3>
+<p>Sends a message. All fields except message are optional, but at least one of tags, users or aliases must be specified. Much like the push API, we have a batch API call that can make sending multiple messages easier. It���s located at /api/airmail/send/batch/ and accepts a list of messages in the same format as the standard push call.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>broadcastBlackberryMessage</h3>
+<p>Sends a message to all users (broadcast). Only message is required. The message will be sent out to every registered user. Badge numbers will be handled automatically as long as the push key is present.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>listUserMessages</h3>
+<p>Returns a list of messages and some metadata about them. It will also include some metadata about the user.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>full_list</td>
+			<td>Get the full message included in this list (which might take a while to download).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>since</td>
+			<td>Return only new items. Example: since=some_message_id will return all messages sent after the message ID of some_message_id.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>listUserUnreadMessages</h3>
+<p>Returns a list of unread message IDs and their URLs.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>markUserUnreadMessagesAsRead</h3>
+<p>Marks multiple messages as read at once. If a message has already been marked as read, it will be silently skipped.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>getUserMessage</h3>
+<p>Gets a message.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>message_id</td>
+			<td>The message ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>deleteUserMessage</h3>
+<p>Deletes a message.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>message_id</td>
+			<td>The message ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>getUserMessageBody</h3>
+<p>Gets a message's body.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>message_id</td>
+			<td>The message ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>markUserMessageAsRead</h3>
+<p>Marks a message as read.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>message_id</td>
+			<td>The message ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>deleteUserMessages</h3>
+<p>Deletes multiple messages at once. If a message has already been deleted, it will be silently skipped.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The user ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>

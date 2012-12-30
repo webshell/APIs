@@ -1,0 +1,315 @@
+<h1>Urbanairship API: Push iOS</h1>
+<p>These methods are relative to the tag 'Push iOS'</p><h3>registerDeviceTokens</h3>
+<p>Registers a device token.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>token</td>
+			<td>Device tokens should be represented as an uppercase string, 64 characters long, without spaces or other separators. An example device token is: FE66489F304DC75B8D6E8200DFF8A456E8DAEACEC428B427E9518741C92C6660.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>getDeviceToken</h3>
+<p>Gets a device token���s alias.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>token</td>
+			<td>Device tokens should be represented as an uppercase string, 64 characters long, without spaces or other separators. An example device token is: FE66489F304DC75B8D6E8200DFF8A456E8DAEACEC428B427E9518741C92C6660.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>disableDeviceToken</h3>
+<p>Marks the device token as inactive. No notifications will be delivered to it until a PUT is executed again. The DELETE returns HTTP 204 No Content, and needs no payload. When a token is deleted in this manner, any alias or tags will be cleared.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>token</td>
+			<td>Device tokens should be represented as an uppercase string, 64 characters long, without spaces or other separators. An example device token is: FE66489F304DC75B8D6E8200DFF8A456E8DAEACEC428B427E9518741C92C6660.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>pushNotification</h3>
+<p>Sends a push notification to one or more users.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>cancelScheduledNotification</h3>
+<p>Cancels a scheduled notification.  A successful delete will have an HTTP status code of 204. If the scheduled notification does not exist, has already been successfully deleted, or was sent, the status code will be 404.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>notification</td>
+			<td>Scheduled notification ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>bulkDeleteScheduledNotifications</h3>
+<p>Bulk deletes scheduled notifications. If you include URLs or aliases for scheduled notifications that don���t exist or have already been sent, they will be ignored. Any device token in the cancel_device_tokens payload will have every notification that is sent to it removed. This will not prevent it from receiving scheduled notifications to tags or broadcast messages.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>changeScheduledNotificationAlias</h3>
+<p>Changes a scheduled notification alias. Aliases for scheduled notifications are unique per Urban Airship application, so you might want to hash the aliases with a device ID or use some other mechanism to ensure uniqueness. The only other limit is that they must be 255 characters or less.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>alias</td>
+			<td>Scheduled notification alias.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>removeScheduledNotificationAlias</h3>
+<p>Deletes a scheduled notification alias.  If you attempt to schedule an aliased scheduled notification with an alias that already exists for your application, it will overwrite the existing one.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>alias</td>
+			<td>Scheduled notification alias.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>pushNotificationBatch</h3>
+<p>Sends the given notification to all listed device tokens. For certain large operations that require unique messages to a variety of users it is inconvenient to send multiple requests. We have a batch API that takes care of that.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>broadcastNotification</h3>
+<p>Sends the given notification to all registered device tokens for the application.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>Content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>getHourlyMessageCounts</h3>
+<p>Returns hourly message counts for your application. By default, results are returned in JSON. For CSV, either add the header:Accept:text/csv or append &format=csv to the query string. Times are in UTC, and data is provided for each push platform (currently: iOS, BlackBerry, Android, and C2DM, in that order). The statistics system is updated every 15 minutes, so the final count for an hour will be done at the latest 15 minutes after the hour is done.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>start</td>
+			<td>Start date in UTC format. Example: 2009-06-22.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>end</td>
+			<td>End date in UTC format. Example: 2009-06-22+06:00.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>listDeviceTokens</h3>
+<p>Gets information about all of your device tokens. If your application has a large number of device tokens, we���ll paginate the request for you. By default, we paginate at 5000 device tokens. You can receive the next page simply by retrieving the URL from "next_page" - in this way it is easy to export all of your device tokens and all their data.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The page number.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>limit</td>
+			<td>The total items to return. By default, we paginate at 5000 device tokens.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>countDeviceTokens</h3>
+<p>Gets the number of device tokens you have registered.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+	</tbody>
+
+</table>
+<h3>listInvalidDeviceTokens</h3>
+<p>Gets what device tokens are now invalid. Apple informs us when a push notification is sent to a device that can���t receive it because the application has been uninstalled. We mark the device token as inactive and immediately stop sending notifications to that device. Once a day is a good interval for querying the feedback service, but you can do it more often to save on bandwidth from unnecessary notifications. In the response, what does marked_inactive_on mean? Apple sends a timestamp for each device token returned via the feedback service. Since a device can be off the network for a while, this can be a point in the recent past. In order to make this API work smoothly for you, we record the timestamp we marked as inactive. This means you only need to query for data since the last time you queried. Once a day is a good timeframe, or once a week for very small or infrequently used applications. A few times a day is good for applications with heavy use.</p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>since</td>
+			<td>Since timestamp in ISO 8601 format. Example: 2012-03-01+13:00:00.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>

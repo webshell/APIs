@@ -1,0 +1,177 @@
+({
+	auth:function(){return auth({provider:'wow'})},
+	'getCharacter': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/character/{realm}/{characterName}'
+		args = args || {}
+		if (args['realm'] == null) throw new Error('realm is a required parameter')
+		var rgx = new RegExp('\{realm\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (url.indexOf('[/realm]') !== -1) {
+			url = url.replace('[/realm]', '/' + args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (args['characterName'] == null) throw new Error('characterName is a required parameter')
+		var rgx = new RegExp('\{characterName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['characterName'])
+			if (args['characterName']) delete args['characterName']
+		}
+		if (url.indexOf('[/characterName]') !== -1) {
+			url = url.replace('[/characterName]', '/' + args['characterName'])
+			if (args['characterName']) delete args['characterName']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
+		if (url.indexOf('[/characterName]') !== -1) url = url.replace('[/characterName]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getGuild': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/guild/{realm}/{guildName}'
+		args = args || {}
+		if (args['realm'] == null) throw new Error('realm is a required parameter')
+		var rgx = new RegExp('\{realm\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (url.indexOf('[/realm]') !== -1) {
+			url = url.replace('[/realm]', '/' + args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (args['guildName'] == null) throw new Error('guildName is a required parameter')
+		var rgx = new RegExp('\{guildName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['guildName'])
+			if (args['guildName']) delete args['guildName']
+		}
+		if (url.indexOf('[/guildName]') !== -1) {
+			url = url.replace('[/guildName]', '/' + args['guildName'])
+			if (args['guildName']) delete args['guildName']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
+		if (url.indexOf('[/guildName]') !== -1) url = url.replace('[/guildName]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getRealmsStatus': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/realm/status'
+		args = args || {}
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getRealmAuctions': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/auction/data/{realm}'
+		args = args || {}
+		if (args['realm'] == null) throw new Error('realm is a required parameter')
+		var rgx = new RegExp('\{realm\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (url.indexOf('[/realm]') !== -1) {
+			url = url.replace('[/realm]', '/' + args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getItem': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/item/{itemId}'
+		args = args || {}
+		if (args['itemId'] == null) throw new Error('itemId is a required parameter')
+		var rgx = new RegExp('\{itemId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['itemId'])
+			if (args['itemId']) delete args['itemId']
+		}
+		if (url.indexOf('[/itemId]') !== -1) {
+			url = url.replace('[/itemId]', '/' + args['itemId'])
+			if (args['itemId']) delete args['itemId']
+		}
+		if (url.indexOf('[/itemId]') !== -1) url = url.replace('[/itemId]', '')
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getArenaTeam': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/arena/{realm}/{teamSize}/{teamName}'
+		args = args || {}
+		if (args['realm'] == null) throw new Error('realm is a required parameter')
+		var rgx = new RegExp('\{realm\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (url.indexOf('[/realm]') !== -1) {
+			url = url.replace('[/realm]', '/' + args['realm'])
+			if (args['realm']) delete args['realm']
+		}
+		if (args['teamSize'] == null) throw new Error('teamSize is a required parameter')
+		var rgx = new RegExp('\{teamSize\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['teamSize'])
+			if (args['teamSize']) delete args['teamSize']
+		}
+		if (url.indexOf('[/teamSize]') !== -1) {
+			url = url.replace('[/teamSize]', '/' + args['teamSize'])
+			if (args['teamSize']) delete args['teamSize']
+		}
+		if (args['teamName'] == null) throw new Error('teamName is a required parameter')
+		var rgx = new RegExp('\{teamName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['teamName'])
+			if (args['teamName']) delete args['teamName']
+		}
+		if (url.indexOf('[/teamName]') !== -1) {
+			url = url.replace('[/teamName]', '/' + args['teamName'])
+			if (args['teamName']) delete args['teamName']
+		}
+		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
+		if (url.indexOf('[/teamSize]') !== -1) url = url.replace('[/teamSize]', '')
+		if (url.indexOf('[/teamName]') !== -1) url = url.replace('[/teamName]', '')
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getCharacterRaces': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/data/character/races'
+		args = args || {}
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getCharacterClasses': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/data/character/classes'
+		args = args || {}
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getGuildRewards': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/data/guild/rewards'
+		args = args || {}
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getGuildPerks': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/data/guild/perks'
+		args = args || {}
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getItemClasses': function(args, opts) {
+		var url = 'https://us.battle.net/api/wow/data/item/classes'
+		args = args || {}
+		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+	}
+})

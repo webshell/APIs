@@ -1,0 +1,420 @@
+({
+	auth:function(){return auth({provider:'orkut'})},
+	'orkut.acl.delete': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/activities/{activityId}/acl/{userId}'
+		args = args || {}
+		if (args['activityId'] == null) throw new Error('activityId is a required parameter')
+		var rgx = new RegExp('\{activityId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) {
+			url = url.replace('[/activityId]', '/' + args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) url = url.replace('[/activityId]', '')
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		return http({provider:'orkut',url:url,method:'DELETE',params:args}, opts)
+	},
+	'orkut.activities.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/people/{userId}/activities/{collection}'
+		args = args || {}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (args['collection'] == null) throw new Error('collection is a required parameter')
+		var rgx = new RegExp('\{collection\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['collection'])
+			if (args['collection']) delete args['collection']
+		}
+		if (url.indexOf('[/collection]') !== -1) {
+			url = url.replace('[/collection]', '/' + args['collection'])
+			if (args['collection']) delete args['collection']
+		}
+		var rgx = new RegExp('\{hl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		if (url.indexOf('[/hl]') !== -1) {
+			url = url.replace('[/hl]', '/' + args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		var rgx = new RegExp('\{maxResults\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		if (url.indexOf('[/maxResults]') !== -1) {
+			url = url.replace('[/maxResults]', '/' + args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		var rgx = new RegExp('\{pageToken\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		if (url.indexOf('[/pageToken]') !== -1) {
+			url = url.replace('[/pageToken]', '/' + args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		if (url.indexOf('[/collection]') !== -1) url = url.replace('[/collection]', '')
+		if (url.indexOf('[/hl]') !== -1) url = url.replace('[/hl]', '')
+		if (url.indexOf('[/maxResults]') !== -1) url = url.replace('[/maxResults]', '')
+		if (url.indexOf('[/pageToken]') !== -1) url = url.replace('[/pageToken]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	},
+	'orkut.activities.delete': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/activities/{activityId}'
+		args = args || {}
+		if (args['activityId'] == null) throw new Error('activityId is a required parameter')
+		var rgx = new RegExp('\{activityId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) {
+			url = url.replace('[/activityId]', '/' + args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) url = url.replace('[/activityId]', '')
+		return http({provider:'orkut',url:url,method:'DELETE',params:args}, opts)
+	},
+	'orkut.activityVisibility.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/activities/{activityId}/visibility'
+		args = args || {}
+		if (args['activityId'] == null) throw new Error('activityId is a required parameter')
+		var rgx = new RegExp('\{activityId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) {
+			url = url.replace('[/activityId]', '/' + args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/activityId]') !== -1) url = url.replace('[/activityId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	},
+	'orkut.activityVisibility.update': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/activities/{activityId}/visibility'
+		args = args || {}
+		if (args['activityId'] == null) throw new Error('activityId is a required parameter')
+		var rgx = new RegExp('\{activityId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) {
+			url = url.replace('[/activityId]', '/' + args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/activityId]') !== -1) url = url.replace('[/activityId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'orkut',url:url,method:'PUT',params:args}, opts)
+	},
+	'orkut.badges.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/people/{userId}/badges'
+		args = args || {}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	},
+	'orkut.badges.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/people/{userId}/badges/{badgeId}'
+		args = args || {}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (args['badgeId'] == null) throw new Error('badgeId is a required parameter')
+		var rgx = new RegExp('\{badgeId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['badgeId'])
+			if (args['badgeId']) delete args['badgeId']
+		}
+		if (url.indexOf('[/badgeId]') !== -1) {
+			url = url.replace('[/badgeId]', '/' + args['badgeId'])
+			if (args['badgeId']) delete args['badgeId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		if (url.indexOf('[/badgeId]') !== -1) url = url.replace('[/badgeId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	},
+	'orkut.comments.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/activities/{activityId}/comments'
+		args = args || {}
+		if (args['activityId'] == null) throw new Error('activityId is a required parameter')
+		var rgx = new RegExp('\{activityId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) {
+			url = url.replace('[/activityId]', '/' + args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{hl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		if (url.indexOf('[/hl]') !== -1) {
+			url = url.replace('[/hl]', '/' + args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		var rgx = new RegExp('\{maxResults\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		if (url.indexOf('[/maxResults]') !== -1) {
+			url = url.replace('[/maxResults]', '/' + args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		var rgx = new RegExp('\{orderBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['orderBy'])
+			if (args['orderBy']) delete args['orderBy']
+		}
+		if (url.indexOf('[/orderBy]') !== -1) {
+			url = url.replace('[/orderBy]', '/' + args['orderBy'])
+			if (args['orderBy']) delete args['orderBy']
+		}
+		var rgx = new RegExp('\{pageToken\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		if (url.indexOf('[/pageToken]') !== -1) {
+			url = url.replace('[/pageToken]', '/' + args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		if (url.indexOf('[/activityId]') !== -1) url = url.replace('[/activityId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/hl]') !== -1) url = url.replace('[/hl]', '')
+		if (url.indexOf('[/maxResults]') !== -1) url = url.replace('[/maxResults]', '')
+		if (url.indexOf('[/orderBy]') !== -1) url = url.replace('[/orderBy]', '')
+		if (url.indexOf('[/pageToken]') !== -1) url = url.replace('[/pageToken]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	},
+	'orkut.comments.insert': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/activities/{activityId}/comments'
+		args = args || {}
+		if (args['activityId'] == null) throw new Error('activityId is a required parameter')
+		var rgx = new RegExp('\{activityId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		if (url.indexOf('[/activityId]') !== -1) {
+			url = url.replace('[/activityId]', '/' + args['activityId'])
+			if (args['activityId']) delete args['activityId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/activityId]') !== -1) url = url.replace('[/activityId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'orkut',url:url,method:'POST',params:args}, opts)
+	},
+	'orkut.comments.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/comments/{commentId}'
+		args = args || {}
+		if (args['commentId'] == null) throw new Error('commentId is a required parameter')
+		var rgx = new RegExp('\{commentId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		if (url.indexOf('[/commentId]') !== -1) {
+			url = url.replace('[/commentId]', '/' + args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		var rgx = new RegExp('\{hl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		if (url.indexOf('[/hl]') !== -1) {
+			url = url.replace('[/hl]', '/' + args['hl'])
+			if (args['hl']) delete args['hl']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/commentId]') !== -1) url = url.replace('[/commentId]', '')
+		if (url.indexOf('[/hl]') !== -1) url = url.replace('[/hl]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	},
+	'orkut.comments.delete': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/comments/{commentId}'
+		args = args || {}
+		if (args['commentId'] == null) throw new Error('commentId is a required parameter')
+		var rgx = new RegExp('\{commentId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		if (url.indexOf('[/commentId]') !== -1) {
+			url = url.replace('[/commentId]', '/' + args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		if (url.indexOf('[/commentId]') !== -1) url = url.replace('[/commentId]', '')
+		return http({provider:'orkut',url:url,method:'DELETE',params:args}, opts)
+	},
+	'orkut.counters.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/orkut/v2/people/{userId}/counters'
+		args = args || {}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'orkut',url:url,method:'GET',params:args}, opts)
+	}
+})
