@@ -1,7 +1,6 @@
 <h1>Factual API: Core API</h1>
 <p>These methods are relative to the tag 'Core API'</p><h3>read</h3>
 <p>Reads rows of data from the specified table. Read requests may optionally include row filters, geo filters, and full-text-search filters as well offset/limit filters that can be used for paging. Specify any combination of full-text-search (q), geo, or row filters. Offset and limit are supported for paging. If you require a count of the total rows fitting our query, and don't mind incurring the performance cost, specify include_count=true. NOTE: If the filters, geo, or q parameters are declared and you pass a null value for any of those parameters your request will proceed as if those parameters were not passed at all.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -17,69 +16,59 @@
 			<td>places-v3</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>filters</td>
 			<td>Restrict the data returned to conform to specific conditions, e.g., "parametric search". Documentation on filters is here: http://developer.factual.com/display/docs/Core+API+-+Row+Filters.</td>
 			<td>{"last_name":"Smith"}</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>include_count</td>
 			<td>Include a count of the total number of rows in the dataset that conform to the request based on included filters. Requesting the row count will increase the time required to return a response. The default behavior is to NOT include a row count.</td>
 			<td>false</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>geo</td>
 			<td>For tables with latitude/longitude data, restrict data to be returned to be within a geographical range based. Documentation on filters is here: http://developer.factual.com/display/docs/Core+API+-+Geo+Filters. Maximum value for $meters is 20000. While Factual doesn't have an address to lat/lng encoder, we highly recommend Pete Warden's Data Science Toolkit (http://www.datasciencetoolkit.org/).</td>
 			<td>{"$circle":{"$center":[35.001,-18.221],"$meters":5000}}</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>limit</td>
 			<td>Maximum number of rows to return. Default is 20. The system maximum is 50. For higher limits please contact Factual, however consider requesting a download (http://www.factual.com/devtools/downloads) of the data if your use case is requesting more data in a single query than is required to fulfill a single end-user's request.</td>
 			<td>20</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>q</td>
 			<td>Full text search query string. Documentation for search filters are here: http://developer.factual.com/display/docs/Core+API+-+Search+Filters.</td>
 			<td>Coffee,Tea</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>offset</td>
 			<td>Number of rows to skip before returning a page of data. Maximum value is 500 minus any value provided under limit. Default is 0.</td>
 			<td>0</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>select</td>
 			<td>What fields to include in the query.  Note that the order of fields will not necessarily be preserved in the resulting JSON response due to the nature of JSON hashes.</td>
 			<td>*</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>sort</td>
 			<td>The field (or secondary fields) to sort data on, as well as the direction of sort. Supports $distance as a sort option if a geo-filter is specified. Supports $relevance as a sort option if a full text search is specified either using the q parameter or using the $search operator in the filter parameter.  By default, any query with a full text search will be sorted by relevance.  Any query with a geo filter will be sorted by distance from the reference point.  If both a geo filter and full text search are present, the default will be relevance followed by distance.</td>
 			<td>name:asc</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>facets</h3>
 <p>Returns row counts for Factual tables, grouped by facets of the data.  For example, you may want to query all businesses within 1 mile of a location and for a count of those businesses by category. Not all fields are configured to return facet counts.  To determine what fields you can return facets for, use the schema call.  The faceted attribute of the schema will let you know. The facet API call is virtually identical to the read API call, except that it returns row counts (by facet) rather than rows of data.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -95,62 +84,53 @@
 			<td>restaurants-us</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>select</td>
 			<td>The fields to return faceted counts for.</td>
 			<td>locality,region</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>filters</td>
 			<td>Restrict the data returned to conform to specific conditions, e.g., "parametric search". Documentation on filters is here: http://developer.factual.com/display/docs/Core+API+-+Row+Filters.</td>
 			<td>{"last_name":"Smith"}</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>geo</td>
 			<td>Restrict data to be returned to be within a geographical range based. Documentation on geo filters is here: http://developer.factual.com/display/docs/Core+API+-+Geo+Filters. Maximum value for $meters is 20000. While Factual doesn't have an address to lat/lng encoder, we highly recommend Pete Warden's Data Science Toolkit (http://www.datasciencetoolkit.org).</td>
 			<td>{"$circle":{"$center":[35.001,-18.221],"$meters":5000}}</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>include_count</td>
 			<td>Include a count of the total number of row counts returned. Requesting the row count will increase the time required to return a response. The default behavior is to NOT include a row count.</td>
 			<td>false</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>limit</td>
 			<td>Maximum number of facet counts to return in the response. Default is 20. Max is 50.</td>
 			<td>20</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>min_count</td>
 			<td>For each facet count, the minimum count it must show in order to be returned in the response. Must be zero or greater. The default is 1.</td>
 			<td>1</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>q</td>
 			<td>Full text search query string. Documentation for search filters are here: http://developer.factual.com/display/docs/Core+API+-+Search+Filters.</td>
 			<td>Coffee,Tea</td>
 			<td>true</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>schema</h3>
 <p>Returns the schema for a Factual table view. The schema includes:<br/>- Table view meta-data: Name, description, view id, list of fields schema version, and whether or not the table is geo and/or full-text searchable.<br/>- Field meta-data (for each field): name, optional aliase(s), datatype, whether the field is full-text-searchable.<br/>               </p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -166,13 +146,11 @@
 			<td>restaurants-us</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>multi</h3>
 <p>The multi API call enables making multiple API GET requests on the same connection.  Multi supports the read, crosswalk, resolve, and facets API calls.<br/>               </p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -188,7 +166,6 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>

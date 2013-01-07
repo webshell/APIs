@@ -1,11 +1,11 @@
 ({
 	auth:function(){return auth({provider:'pivotaltracker'})},
-	'get_tokens_active': function(args, opts) {
+	'getTokensActive': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//tokens/active'
 		args = args || {}
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'post_tokens_active': function(args, opts) {
+	'postTokensActive': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//tokens/active'
 		args = args || {}
 		if (args['username'] == null) throw new Error('username is a required parameter')
@@ -32,7 +32,7 @@
 		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
-	'get_activities': function(args, opts) {
+	'getActivities': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//activities'
 		args = args || {}
 		var rgx = new RegExp('\{limit\}', 'g')
@@ -67,7 +67,7 @@
 		if (url.indexOf('[/newer_than_version]') !== -1) url = url.replace('[/newer_than_version]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_project_activities': function(args, opts) {
+	'getProjectActivities': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/activities'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -103,7 +103,7 @@
 		if (url.indexOf('[/occurred_since_date]') !== -1) url = url.replace('[/occurred_since_date]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_single_project': function(args, opts) {
+	'getSingleProject': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -119,17 +119,17 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_all_projects': function(args, opts) {
+	'getAllProjects': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects'
 		args = args || {}
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'post_add_project': function(args, opts) {
+	'postAddProject': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects'
 		args = args || {}
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'get_all_memberships': function(args, opts) {
+	'getAllMemberships': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/memberships'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -145,7 +145,7 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'post_add_membership': function(args, opts) {
+	'postAddMembership': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/memberships'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -161,7 +161,7 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'get_membership_info': function(args, opts) {
+	'getMembershipInfo': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/memberships/{MEMBERSHIP_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -188,7 +188,7 @@
 		if (url.indexOf('[/MEMBERSHIP_ID]') !== -1) url = url.replace('[/MEMBERSHIP_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'delete_remove_membership': function(args, opts) {
+	'deleteRemoveMembership': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/memberships/{MEMBERSHIP_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -215,7 +215,7 @@
 		if (url.indexOf('[/MEMBERSHIP_ID]') !== -1) url = url.replace('[/MEMBERSHIP_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'DELETE',params:args}, opts)
 	},
-	'get_iterations': function(args, opts) {
+	'getIterations': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/iterations'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -231,7 +231,7 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_iterations_done': function(args, opts) {
+	'getIterationsDone': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/iterations/done'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -267,7 +267,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_iterations_current': function(args, opts) {
+	'getIterationsCurrent': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/iterations/current'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -283,7 +283,7 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_iterations_backlog': function(args, opts) {
+	'getIterationsBacklog': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/iterations/backlog'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -319,7 +319,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_iterations_current_backlog': function(args, opts) {
+	'getIterationsCurrentBacklog': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/iterations/current_backlog'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -355,7 +355,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_story': function(args, opts) {
+	'getStory': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -382,7 +382,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'get_all_stories': function(args, opts) {
+	'getAllStories': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -428,7 +428,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'post_add_story': function(args, opts) {
+	'postAddStory': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -444,7 +444,7 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'put_story': function(args, opts) {
+	'putStory': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -471,7 +471,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'PUT',params:args}, opts)
 	},
-	'delete_story': function(args, opts) {
+	'deleteStory': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -498,7 +498,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'DELETE',params:args}, opts)
 	},
-	'post_add_note': function(args, opts) {
+	'postAddNote': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/notes'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -525,7 +525,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'PUT',params:args}, opts)
 	},
-	'put_deliver_all_finished': function(args, opts) {
+	'putDeliverAllFinished': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/deliver_all_finished'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -541,7 +541,7 @@
 		if (url.indexOf('[/PROJECT_ID]') !== -1) url = url.replace('[/PROJECT_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'post_move_stories': function(args, opts) {
+	'postMoveStories': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/moves'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -568,7 +568,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'get_view_task': function(args, opts) {
+	'getViewTask': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/tasks/{TASK_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -606,7 +606,7 @@
 		if (url.indexOf('[/TASK_ID]') !== -1) url = url.replace('[/TASK_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'put_update_task': function(args, opts) {
+	'putUpdateTask': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/tasks/{TASK_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -644,7 +644,7 @@
 		if (url.indexOf('[/TASK_ID]') !== -1) url = url.replace('[/TASK_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'PUT',params:args}, opts)
 	},
-	'delete_task': function(args, opts) {
+	'deleteTask': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/tasks/{TASK_ID}'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -682,7 +682,7 @@
 		if (url.indexOf('[/TASK_ID]') !== -1) url = url.replace('[/TASK_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'DELETE',params:args}, opts)
 	},
-	'get_all_tasks': function(args, opts) {
+	'getAllTasks': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/tasks'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -709,7 +709,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'GET',params:args}, opts)
 	},
-	'post_add_task': function(args, opts) {
+	'postAddTask': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/tasks'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -736,7 +736,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'post_upload_attachment': function(args, opts) {
+	'postUploadAttachment': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//projects/{PROJECT_ID}/stories/{STORY_ID}/attachments'
 		args = args || {}
 		if (args['PROJECT_ID'] == null) throw new Error('PROJECT_ID is a required parameter')
@@ -763,7 +763,7 @@
 		if (url.indexOf('[/STORY_ID]') !== -1) url = url.replace('[/STORY_ID]', '')
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)
 	},
-	'post_source_commits': function(args, opts) {
+	'postSourceCommits': function(args, opts) {
 		var url = 'https://www.pivotaltracker.com/services/v3//source_commits'
 		args = args || {}
 		return http({provider:'pivotaltracker',url:url,method:'POST',params:args}, opts)

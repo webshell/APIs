@@ -1,7 +1,6 @@
 <h1>Postmark API: EMails</h1>
 <p>These methods are relative to the tag 'EMails'</p><h3>sendEmail</h3>
 <p>Sends e-mails. Currently Postmark supports JSON message format. The mail message format is:<br/><br/>{<br/>    "From" : "sender@example.com",<br/>    "To" : "receiver@example.com",<br/>    "Cc" : "copied@example.com",<br/>    "Bcc": "blank-copied@example.com",<br/>    "Subject" : "Test",<br/>    "Tag" : "Invitation",<br/>    "HtmlBody" : "<b>Hello</b>",<br/>    "TextBody" : "Hello",<br/>    "ReplyTo" : "reply@example.com",<br/>    "Headers" : [{ "Name" : "CUSTOM-HEADER", "Value" : "value" }],<br/>    "Attachments": [<br/>        {<br/>             "Name": "readme.txt",<br/>             "Content": "dGVzdCBjb250ZW50",<br/>             "ContentType": "text/plain"<br/>        },<br/>        {<br/>            "Name": "report.pdf",<br/>            "Content": "dGVzdCBjb250ZW50",<br/>            "ContentType": "application/octet-stream"<br/>        }<br/>    ]<br/>}<br/><br/>You should pass the json encoded message in the body of the request. Both from and to accept name, in the format of John Doe <email@example.com>. You can provide HtmlBody for html formatted messages, TextBody for plain text, or both for multipart. Multipart sends html with a text version for clients that don���t support html. Passing headers is optional.<br/><br/>1. You should have a registered and confirmed sender signature with the sender email. Otherwise you will receive HTTP Response 422 (Unprocessable Entity).<br/>2. It is possible to override the Name in the sender signature through the API. This is useful if you want to use member���s information in the email while keeping your from email address. just pass the name in the From parameter, From: "John Smith <sender@example.com>".<br/>3. You can pass multiple recipient addresses in the ���To��� field and the optional ���Cc��� and ���Bcc��� fields. Separate multiple addresses with a comma. Note that Postmark has a limit of twenty recipients per message in total. You need to take care not to exceed that limit. Otherwise you will get an error.<br/>4. You can categorize outgoing email using the optional Tag property. If you use different tags for the different types of emails your application generates, you will be able to get detailed statistics for them through the Postmark user interface.<br/><br/>Attachments<br/>Attachments are specified in the Attachments array property. An attachment is an object that has to provide the file name (via the Name property), the content type (ContentType property) and the actual binary data (Content property) that has to be sent with the message.<br/><br/>The name is the actual file name that will be displayed to the message recipient. Note that the file extension is important. To eliminate the possibility of spreading viruses or spyware we allow only a number of file types. That is, instead of using a list of forbidden files and risking an unanticipated file type spreading infections, we have taken the opposite approach ��� we whitelist document file types that we are certain are safe. Here is the list of allowed files:<br/><br/>- Media files: gif, jpg, jpeg, png, swf, flv, avi, mpg, mp3, mp4, ogv, wav, rm, mov, psd, ai, tif, tiff<br/>- Documents: txt, rtf, htm, html, pdf, epub, mobi, doc, docx, ppt, pptx, xls, xlsx, ps, eps, iif<br/>- Miscellaneous: log, csv, ics, xml, zip<br/><br/>Contact us if you feel we need to whitelist a file that your application needs.<br/><br/>The content type is the MIME content type that email clients use to interpret various attachments such as: text/plain, text/html, image/jpeg, etc. Your code can either detect it by the file extension, use a third party library to infer it, ask the user to provide it or just default to application/octet-stream.<br/><br/>The binary data has to be transmitted as a base64-encoded string. Most programming languages and libraries have this built in e.g. Java, .NET, PHP, Ruby.<br/><br/>You can use SSL encryption by issuing requests to https://api.postmarkapp.com/email.<br/><br/>Success<br/>If all goes well, you will get back a JSON message looking a lot like:<br/><br/>{<br/>    "ErrorCode" : 0,<br/>    "Message" : "OK",<br/>    "MessageID" : "b7bc2f4a-e38e-4336-af7d-e6c392c2f817",<br/>    "SubmittedAt" : "2010-11-26T12:01:05.1794748-05:00",<br/>    "To" : "receiver@example.com"<br/>}<br/><br/>Note the MessageID property. You can log it in your system and use it to associate the message you just sent to a possible bounce that you obtained from a bounce web hook or the bounce API.<br/>               </p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -17,20 +16,17 @@
 			<td>application/json</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>Accept</td>
 			<td>The accepted type for the response. Must be set to application/json, text/json, or text/x-json.</td>
 			<td>application/json</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>sendEmailBatch</h3>
 <p>While Postmark is focused on transactional email, we understand that developers with higher volumes or processing time constraints need to send their messages in batches. To facilitate this we provide a batching endpoint that permits you to send up to 500 well-formed Postmark messages in a single API call.<br/>                    <br/>The format of the batched message is a JSON array containing multiple message requests like the following example:<br/>[<br/>    {From: 'sender@example.com', To: 'receiver1@example.com', Subject: 'Postmark test #1', HtmlBody: '<html><body><strong>Hello</strong> dear Postmark user.</body></html>'},<br/>    {From: 'sender@example.com', To: 'receiver2@example.com', Subject: 'Postmark test #2', HtmlBody: '<html><body><strong>Hello</strong> dear Postmark user.</body></html>'}<br/>]<br/><br/>You can use SSL encryption by issuing requests to https://api.postmarkapp.com/email/batch.<br/><br/>Similarly, you will receive a matching JSON array containing each response for the messages you sent in your batched call:<br/><br/>[<br/>    {<br/>        "ErrorCode" : 0,<br/>        "Message" : "OK",<br/>        "MessageID" : "b7bc2f4a-e38e-4336-af7d-e6c392c2f817",<br/>        "SubmittedAt" : "2010-11-26T12:01:05.1794748-05:00",<br/>        "To" : "receiver1@example.com"<br/>    },<br/>    {<br/>        "ErrorCode" : 0,<br/>        "Message" : "OK",<br/>        "MessageID" : "e2ecbbfc-fe12-463d-b933-9fe22915106d",<br/>        "SubmittedAt" : "2010-11-26T12:01:05.1794748-05:00",<br/>        "To" : "receiver2@example.com"<br/>    },<br/>]<br/>               </p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -46,14 +42,12 @@
 			<td>application/json</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>Accept</td>
 			<td>The accepted type for the response. Must be set to application/json, text/json, or text/x-json.</td>
 			<td>application/json</td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>

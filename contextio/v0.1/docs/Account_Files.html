@@ -1,7 +1,6 @@
 <h1>Contextio API: Account Files</h1>
 <p>These methods are relative to the tag 'Account Files'</p><h3>listAccountFiles</h3>
 <p>Lists files found as email attachments. List filters: each of the email, to, from, cc and bcc parameters can be set to a comma-separated list of email addresses. These multiple addresses are treated as an OR combination. You can set more than one parameter when doing this call. Multiple parameters are treated as an AND combination.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -17,104 +16,89 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>file_name</td>
 			<td>Search for files based on their name. You can filter names using typical shell wildcards such as *, ? and [] or regular expressions by enclosing the search expression in a leading / and trailing /. For example, *.pdf would give you all PDF files while /\.jpe?g$/ would return all files whose name ends with .jpg or .jpeg.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>email</td>
 			<td>Email address of the contact for whom you want the latest files exchanged with. By "exchanged with contact X" we mean any email received from contact X, sent to contact X or sent by anyone to both contact X and the source owner.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>to</td>
 			<td>Email address of a contact files have been sent to.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>from</td>
 			<td>Email address of a contact files have been received from.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>cc</td>
 			<td>Email address of a contact CC'ed on the messages.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>bcc</td>
 			<td>Email address of a contact BCC'ed on the messages.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>date_before</td>
 			<td>Only include files attached to messages sent before a given timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>date_after</td>
 			<td>Only include files attached to messages sent after a given timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>indexed_before</td>
 			<td>Only include files attached to messages indexed before a given timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>indexed_after</td>
 			<td>Only include files attached to messages indexed after a given timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>group_by_revisions</td>
 			<td>If set to 1, the list will do an intelligent grouping of files to reflect occurrences of the same document. The grouping algorithm is exactly the same as the one used to get file revisions but only the occurrences matching the filters applied to the list will be included in the results.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>limit</td>
 			<td>The maximum number of results to return.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>offset</td>
 			<td>Start the list at this offset (zero-based).</td>
 			<td></td>
 			<td>true</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>getAccountFile</h3>
 <p>Gets information about a given file.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -130,20 +114,17 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>fileId</td>
 			<td>Unique id of a file.</td>
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>listComparableAccountFiles</h3>
 <p>Lists files that can be compared with a given file.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -159,20 +140,17 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>fileId</td>
 			<td>Unique id of a file.</td>
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>getAccountFileContent</h3>
 <p>Downloads a given file. Returns the content a given attachment. On-demand data retrieval: since we do not keep full copies of attachments on our servers, the file has to be retrieved from the IMAP server when this call is made. If the IMAP server is unreachable at the time the call is made, this call will return an error.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -188,20 +166,17 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>fileId</td>
 			<td>Unique id of a file.</td>
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>listAccountFileRelatedFiles</h3>
 <p>Lists other files related to a given file. Returns a list of files that are related to the given file. Currently, relation between files is based on how similar their names are.</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -217,20 +192,17 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>fileId</td>
 			<td>Unique id of a file.</td>
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>
 <h3>listAccountFileRevisions</h3>
 <p>Lists other revisions of a given file. Returns a list of revisions attached to other emails in the mailbox for a given file. Two files are considered revisions of the same document if their file names are identical outside of revision indicators such as dates, author initials, version numbers and keywords like "final" or "draft".</p>
-<p>[object Object]</p>
 <p><em>Authentication required</em></p>
 <table class="table">
 	<thead>
@@ -246,14 +218,12 @@
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 		<tr>
 			<td>fileId</td>
 			<td>Unique id of a file.</td>
 			<td></td>
 			<td>false</td>
 		</tr>
-			<td></td>
 	</tbody>
 
 </table>

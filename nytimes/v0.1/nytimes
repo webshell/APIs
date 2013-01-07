@@ -1,6 +1,6 @@
 ({
 	auth:function(){return auth({provider:'nytimes'})},
-	'article_search': function(args, opts) {
+	'articleSearch': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//search/v1/article'
 		args = args || {}
 		if (args['query'] == null) throw new Error('query is a required parameter')
@@ -97,7 +97,7 @@
 		if (url.indexOf('[/rank]') !== -1) url = url.replace('[/rank]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_best_seller_list': function(args, opts) {
+	'getBestSellerList': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//books/{version}/lists{.format}'
 		args = args || {}
 		var rgx = new RegExp('\{.format\}', 'g')
@@ -185,7 +185,7 @@
 		if (url.indexOf('[/sort-order]') !== -1) url = url.replace('[/sort-order]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'search_best_seller_lists': function(args, opts) {
+	'searchBestSellerLists': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//books/{version}/lists{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -353,7 +353,7 @@
 		if (url.indexOf('[/sort-order]') !== -1) url = url.replace('[/sort-order]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_best_seller_history': function(args, opts) {
+	'getBestSellerHistory': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//books/{version}/lists/best-sellers/history{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -480,7 +480,7 @@
 		if (url.indexOf('[/sort-order]') !== -1) url = url.replace('[/sort-order]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_best_seller_list_names': function(args, opts) {
+	'getBestSellerListNames': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//books/{version}/lists/names{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -517,7 +517,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'candidate_search': function(args, opts) {
+	'candidateSearch': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/candidates/search{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -586,7 +586,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'candidate_details': function(args, opts) {
+	'candidateDetails': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/candidates/{fec-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -655,7 +655,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'candidate_leaders': function(args, opts) {
+	'candidateLeaders': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/candidates/leaders/{category}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -724,7 +724,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'state_candidates': function(args, opts) {
+	'stateCandidates': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/seats/{state}/{chamber}/{district}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -813,7 +813,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'new_candidates': function(args, opts) {
+	'newCandidates': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/candidates/new{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -871,7 +871,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committee_search': function(args, opts) {
+	'committeeSearch': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/search{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -940,7 +940,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committee_details': function(args, opts) {
+	'committeeDetails': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1009,7 +1009,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'new_committees': function(args, opts) {
+	'newCommittees': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/new{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1067,7 +1067,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committee_contributions': function(args, opts) {
+	'committeeContributions': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1146,7 +1146,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committee_contributions_to_candidate': function(args, opts) {
+	'committeeContributionsToCandidate': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/contributions/candidates/{candidate-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1226,7 +1226,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committee_filings': function(args, opts) {
+	'committeeFilings': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/{fec-id}/filings{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1295,7 +1295,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'leadership_committees': function(args, opts) {
+	'leadershipCommittees': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/committees/leadership{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1353,7 +1353,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'presidential_candidate_totals': function(args, opts) {
+	'presidentialCandidateTotals': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/president/totals{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1411,7 +1411,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'presidential_candidate_details': function(args, opts) {
+	'presidentialCandidateDetails': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/president/candidates/{candidate-name-or-committeeID}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1480,7 +1480,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'presidential_state_zip_totals': function(args, opts) {
+	'presidentialStateZipTotals': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/president/{resource-type}/{location}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1560,7 +1560,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'presidential_donor_information': function(args, opts) {
+	'presidentialDonorInformation': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/president/contributions/donorsearch{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1638,7 +1638,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'electronic_filings_by_date': function(args, opts) {
+	'electronicFilingsByDate': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/filings/{year}/{month}/{day}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1729,7 +1729,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'electronic_filing_form_types': function(args, opts) {
+	'electronicFilingFormTypes': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/filings/types{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1787,7 +1787,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'electronic_filings_by_type': function(args, opts) {
+	'electronicFilingsByType': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//elections/us/{version}/finances/{campaign-cycle}/filings/types/{form-type-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -1856,7 +1856,7 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'recent_comments': function(args, opts) {
+	'recentComments': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//community/{version}/comments/recent{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -1923,7 +1923,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'random_comments': function(args, opts) {
+	'randomComments': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//community/{version}/comments/random{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -1960,7 +1960,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'comments_by_date': function(args, opts) {
+	'commentsByDate': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//community/{version}/comments/by-date/{date}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -2028,7 +2028,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'comments_by_user_id': function(args, opts) {
+	'commentsByUserId': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//community/{version}/comments/user/id/{user-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -2096,7 +2096,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'comments_by_url': function(args, opts) {
+	'commentsByUrl': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//community/{version}/comments/url/{match-type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -2175,7 +2175,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'member_lists': function(args, opts) {
+	'memberLists': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2254,7 +2254,7 @@
 		if (url.indexOf('[/district]') !== -1) url = url.replace('[/district]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'member_bio_roles': function(args, opts) {
+	'memberBioRoles': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{member-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2302,7 +2302,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'new_members': function(args, opts) {
+	'newMembers': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/new{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2339,7 +2339,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'current_members': function(args, opts) {
+	'currentMembers': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{chamber}/{state}/{district}/current{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2408,7 +2408,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'members_leaving': function(args, opts) {
+	'membersLeaving': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/{chamber}/members/leaving{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2467,7 +2467,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'member_positions': function(args, opts) {
+	'memberPositions': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{member-id}/votes{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2515,7 +2515,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'compare_members': function(args, opts) {
+	'compareMembers': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{first-member-id}/votes/{second-member-id}/{congress-number}/{chamber}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2596,7 +2596,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bills_cosponsored_by_member': function(args, opts) {
+	'billsCosponsoredByMember': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2655,7 +2655,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'member_sponsorship_comparison': function(args, opts) {
+	'memberSponsorshipComparison': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{member-id-1}/bills/{member-id-2}/{congress-number}/{chamber}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2736,7 +2736,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'member_floor_appearances': function(args, opts) {
+	'memberFloorAppearances': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{member-id}/floor_appearances{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2784,7 +2784,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'roll_call_votes': function(args, opts) {
+	'rollCallVotes': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/{chamber}/sessions/{session-number}/votes/{roll-call-number}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2865,7 +2865,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'votes_by_type': function(args, opts) {
+	'votesByType': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/{chamber}/votes/{vote-type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -2935,7 +2935,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'votes_by_type_year_month': function(args, opts) {
+	'votesByTypeYearMonth': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{chamber}/votes/{year}/{month}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3005,7 +3005,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'votes_by_type_date_range': function(args, opts) {
+	'votesByTypeDateRange': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{chamber}/votes/{start-date}/{end-date}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3075,7 +3075,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'nomination_votes': function(args, opts) {
+	'nominationVotes': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/nominations{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3123,7 +3123,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'recent_bills': function(args, opts) {
+	'recentBills': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/{chamber}/bills/{type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3193,7 +3193,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bills_by_member': function(args, opts) {
+	'billsByMember': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/members/{member-id}/bills/{type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3252,7 +3252,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bill_details': function(args, opts) {
+	'billDetails': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3311,7 +3311,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bill_subjects_amendments_related': function(args, opts) {
+	'billSubjectsAmendmentsRelated': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/{resource}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3370,7 +3370,7 @@
 		if (url.indexOf('[/.format]') !== -1) url = url.replace('[/.format]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bill_cosponsors': function(args, opts) {
+	'billCosponsors': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/bills/{bill-id}/cosponsors{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3429,7 +3429,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'nominee_lists': function(args, opts) {
+	'nomineeLists': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/nominees/{nomination-category}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3488,7 +3488,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'nominee_details': function(args, opts) {
+	'nomineeDetails': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/nominees/{nominee-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3547,7 +3547,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'nominees_by_state': function(args, opts) {
+	'nomineesByState': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/nominees/state/{state}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3606,7 +3606,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'state_party_counts': function(args, opts) {
+	'statePartyCounts': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/states/members/party{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3643,7 +3643,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committees_and_committee_members': function(args, opts) {
+	'committeesAndCommitteeMembers': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{congress-number}/{chamber}/committees/{committee-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3712,7 +3712,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'chamber_schedule': function(args, opts) {
+	'chamberSchedule': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/us/legislative/congress/{chamber}/schedule{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -3760,7 +3760,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_districts': function(args, opts) {
+	'getDistricts': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/districts{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -3817,7 +3817,7 @@
 		if (url.indexOf('[/lng]') !== -1) url = url.replace('[/lng]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_most_popular': function(args, opts) {
+	'getMostPopular': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//mostpopular/{version}/{resource-type}/{section}/{share-types}/{time-period}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -3906,7 +3906,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_reviews_by_keyword': function(args, opts) {
+	'getReviewsByKeyword': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//movies/{version}/reviews/search{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4043,7 +4043,7 @@
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_reviews_critics_picks': function(args, opts) {
+	'getReviewsCriticsPicks': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//movies/{version}/reviews/{resource-path}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4111,7 +4111,7 @@
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_reviews_by_reviewer': function(args, opts) {
+	'getReviewsByReviewer': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//movies/{version}/reviews/reviewer/{reviewer-name}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4189,7 +4189,7 @@
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_reviewers': function(args, opts) {
+	'getReviewers': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//movies/{version}/critics/{resource-type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4237,7 +4237,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'members_by_chamber': function(args, opts) {
+	'membersByChamber': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/{year}/{chamber}/members{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4296,7 +4296,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'member_details': function(args, opts) {
+	'memberDetails': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/members/{member-name}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4344,7 +4344,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'current_member_by_district': function(args, opts) {
+	'currentMemberByDistrict': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/{chamber}/{district}/current{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4403,7 +4403,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committees_by_chamber': function(args, opts) {
+	'committeesByChamber': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/{year}/{chamber}/committees{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4462,7 +4462,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'committee_membership': function(args, opts) {
+	'committeeMembership': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/{year}/{chamber}/committees/{committee-name}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4532,7 +4532,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'recent_bills_ny': function(args, opts) {
+	'recentBillsNy': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/{year}/{chamber}/bills/{type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4602,7 +4602,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bills_by_member_ny': function(args, opts) {
+	'billsByMemberNy': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/members/{member-name}/bills/{type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4661,7 +4661,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'bill_details_ny': function(args, opts) {
+	'billDetailsNy': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//politics/{version}/ny/legislative/{year}/bills/{bill-id}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4720,7 +4720,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'listings_percentiles': function(args, opts) {
+	'listingsPercentiles': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//real-estate/{version}/listings/percentile/{percentile-value}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4821,7 +4821,7 @@
 		if (url.indexOf('[/geo-extent-value]') !== -1) url = url.replace('[/geo-extent-value]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'listings_counts': function(args, opts) {
+	'listingsCounts': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//real-estate/{version}/listings/count{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -4942,7 +4942,7 @@
 		if (url.indexOf('[/loft]') !== -1) url = url.replace('[/loft]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'sales_percentiles': function(args, opts) {
+	'salesPercentiles': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//real-estate/{version}/sales/percentile/{percentile-value}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -5033,7 +5033,7 @@
 		if (url.indexOf('[/geo-extent-value]') !== -1) url = url.replace('[/geo-extent-value]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'sales_counts': function(args, opts) {
+	'salesCounts': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//real-estate/{version}/sales/count{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v2"
@@ -5134,7 +5134,7 @@
 		if (url.indexOf('[/geo-summary-level]') !== -1) url = url.replace('[/geo-summary-level]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'building_types': function(args, opts) {
+	'buildingTypes': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//real-estate/v2/building-types{.format}'
 		args = args || {}
 		var rgx = new RegExp('\{.format\}', 'g')
@@ -5196,7 +5196,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'recent_news': function(args, opts) {
+	'recentNews': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//news/{version}/content/{source}/{section}/{time-period}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -5285,7 +5285,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'specific_news_item': function(args, opts) {
+	'specificNewsItem': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//news/{version}/content{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -5333,7 +5333,7 @@
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'section_list': function(args, opts) {
+	'sectionList': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//news/{version}/content/section-list{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v3"
@@ -5370,7 +5370,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'user_data': function(args, opts) {
+	'userData': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//timespeople/api/{version}/user/{user-id}/{data-type}{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v1"
@@ -5430,7 +5430,7 @@
 		if (url.indexOf('[/api-key]') !== -1) url = url.replace('[/api-key]', '')
 		return http({provider:'nytimes',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'user_id': function(args, opts) {
+	'userId': function(args, opts) {
 		var url = 'http://api.nytimes.com/svc//timespeople/api/{version}/user/{hash}/id{.format}'
 		args = args || {}
 		if (args['version'] == null) args['version'] = "v1"

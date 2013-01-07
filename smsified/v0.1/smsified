@@ -1,6 +1,6 @@
 ({
 	auth:function(){return auth({provider:'smsified'})},
-	'send_smsmessage': function(args, opts) {
+	'sendSmsmessage': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/{senderAddress}/requests'
 		args = args || {}
 		if (args['address'] == null) args['address'] = "1234567890"
@@ -37,12 +37,12 @@
 		if (url.indexOf('[/notifyURL]') !== -1) url = url.replace('[/notifyURL]', '')
 		return http({provider:'smsified',url:url,method:'POST',params:args}, opts)
 	},
-	'delivery_status': function(args, opts) {
+	'deliveryStatus': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/{senderAddress}/requests/{requestId}/deliveryInfos'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
 	},
-	'set_outbound_subscribe': function(args, opts) {
+	'setOutboundSubscribe': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/{senderAddress}/subscriptions'
 		args = args || {}
 		if (args['notifyURL'] == null) throw new Error('notifyURL is a required parameter')
@@ -58,17 +58,17 @@
 		if (url.indexOf('[/notifyURL]') !== -1) url = url.replace('[/notifyURL]', '')
 		return http({provider:'smsified',url:url,method:'POST',params:args}, opts)
 	},
-	'view_outbound_subscribe': function(args, opts) {
+	'viewOutboundSubscribe': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/subscriptions?senderAddress={senderAddress}'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
 	},
-	'delete_outbound_subscribe': function(args, opts) {
+	'deleteOutboundSubscribe': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/outbound/subscriptions/{subscriptionId}'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'DELETE',params:args}, opts)
 	},
-	'set_inbound_subscribe': function(args, opts) {
+	'setInboundSubscribe': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/inbound/subscriptions'
 		args = args || {}
 		if (args['destinationAddress'] == null) throw new Error('destinationAddress is a required parameter')
@@ -95,22 +95,22 @@
 		if (url.indexOf('[/notifyURL]') !== -1) url = url.replace('[/notifyURL]', '')
 		return http({provider:'smsified',url:url,method:'POST',params:args}, opts)
 	},
-	'view_inbound_subscribe': function(args, opts) {
+	'viewInboundSubscribe': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/inbound/subscriptions?destinationAddress={destinationAddress}'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
 	},
-	'delete_inbound_subscribe': function(args, opts) {
+	'deleteInboundSubscribe': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/smsmessaging/inbound/subscriptions/{subscriptionId}'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'DELETE',params:args}, opts)
 	},
-	'reporting_allmessages': function(args, opts) {
+	'reportingAllmessages': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/messages'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)
 	},
-	'reporting_individual': function(args, opts) {
+	'reportingIndividual': function(args, opts) {
 		var url = 'https://api.smsified.com/v1/messages/{messageId}'
 		args = args || {}
 		return http({provider:'smsified',url:url,method:'GET',params:args}, opts)

@@ -21,7 +21,7 @@
 		args = args || {}
 		return http({provider:'nodester',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'post_user': function(args, opts) {
+	'postUser': function(args, opts) {
 		var url = 'http://nodester.com//user'
 		args = args || {}
 		if (args['coupon'] == null) throw new Error('coupon is a required parameter')
@@ -81,7 +81,7 @@
 		if (url.indexOf('[/rsakey]') !== -1) url = url.replace('[/rsakey]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
-	'put_user': function(args, opts) {
+	'putUser': function(args, opts) {
 		var url = 'http://api.nodester.com//user'
 		args = args || {}
 		var rgx = new RegExp('\{password\}', 'g')
@@ -106,12 +106,12 @@
 		if (url.indexOf('[/rsakey]') !== -1) url = url.replace('[/rsakey]', '')
 		return http({provider:'nodester',url:url,method:'PUT',params:args, auth:'none'}, opts)
 	},
-	'delete_user': function(args, opts) {
+	'deleteUser': function(args, opts) {
 		var url = 'http://api.nodester.com//user'
 		args = args || {}
 		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
 	},
-	'post_app': function(args, opts) {
+	'postApp': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -138,7 +138,7 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
 	},
-	'put_app_update': function(args, opts) {
+	'putAppUpdate': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -165,7 +165,7 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		return http({provider:'nodester',url:url,method:'PUT',params:args}, opts)
 	},
-	'put_app_startstop': function(args, opts) {
+	'putAppStartstop': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -192,7 +192,7 @@
 		if (url.indexOf('[/running]') !== -1) url = url.replace('[/running]', '')
 		return http({provider:'nodester',url:url,method:'PUT',params:args}, opts)
 	},
-	'delete_app': function(args, opts) {
+	'deleteApp': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -208,7 +208,7 @@
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
 	},
-	'app_info': function(args, opts) {
+	'appInfo': function(args, opts) {
 		var url = 'http://api.nodester.com//app/{appname}'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -235,7 +235,7 @@
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
 	},
-	'app_logs': function(args, opts) {
+	'appLogs': function(args, opts) {
 		var url = 'http://api.nodester.com//applogs/{appname}'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -262,7 +262,7 @@
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
 	},
-	'put_env': function(args, opts) {
+	'putEnv': function(args, opts) {
 		var url = 'http://api.nodester.com//env'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -300,7 +300,7 @@
 		if (url.indexOf('[/value]') !== -1) url = url.replace('[/value]', '')
 		return http({provider:'nodester',url:url,method:'PUT',params:args}, opts)
 	},
-	'delete_env': function(args, opts) {
+	'deleteEnv': function(args, opts) {
 		var url = 'http://api.nodester.com//env'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -327,7 +327,7 @@
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
 		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
 	},
-	'get_env': function(args, opts) {
+	'getEnv': function(args, opts) {
 		var url = 'http://api.nodester.com//env'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -359,7 +359,7 @@
 		args = args || {}
 		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
 	},
-	'npm_install': function(args, opts) {
+	'npmInstall': function(args, opts) {
 		var url = 'http://api.nodester.com//npm'
 		args = args || {}
 		if (args['action'] == null) args['action'] = "install"
@@ -397,7 +397,7 @@
 		if (url.indexOf('[/package]') !== -1) url = url.replace('[/package]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
 	},
-	'npm_update': function(args, opts) {
+	'npmUpdate': function(args, opts) {
 		var url = 'http://api.nodester.com//npm'
 		args = args || {}
 		if (args['action'] == null) args['action'] = "update"
@@ -435,7 +435,7 @@
 		if (url.indexOf('[/package]') !== -1) url = url.replace('[/package]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
 	},
-	'npm_uninstall': function(args, opts) {
+	'npmUninstall': function(args, opts) {
 		var url = 'http://api.nodester.com//npm'
 		args = args || {}
 		if (args['action'] == null) args['action'] = "uninstall"
@@ -473,7 +473,7 @@
 		if (url.indexOf('[/package]') !== -1) url = url.replace('[/package]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
 	},
-	'post_appdomains': function(args, opts) {
+	'postAppdomains': function(args, opts) {
 		var url = 'http://api.nodester.com//appdomains'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -500,7 +500,7 @@
 		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
 	},
-	'delete_appdomains': function(args, opts) {
+	'deleteAppdomains': function(args, opts) {
 		var url = 'http://api.nodester.com//appdomains'
 		args = args || {}
 		if (args['appname'] == null) throw new Error('appname is a required parameter')
@@ -527,12 +527,12 @@
 		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
 		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
 	},
-	'get_appdomains': function(args, opts) {
+	'getAppdomains': function(args, opts) {
 		var url = 'http://api.nodester.com//appdomains'
 		args = args || {}
 		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
 	},
-	'post_reset_password': function(args, opts) {
+	'postResetPassword': function(args, opts) {
 		var url = 'http://api.nodester.com//reset_password'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
@@ -548,7 +548,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		return http({provider:'nodester',url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
-	'put_reset_password': function(args, opts) {
+	'putResetPassword': function(args, opts) {
 		var url = 'http://api.nodester.com//reset_password/{token}'
 		args = args || {}
 		if (args['token'] == null) throw new Error('token is a required parameter')
