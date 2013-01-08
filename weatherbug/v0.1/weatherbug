@@ -1,0 +1,669 @@
+({
+	auth:function(){return auth({provider:'weatherbug'})},
+	'search.location.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLocationsXML.aspx'
+		args = args || {}
+		if (args['SearchString'] == null) throw new Error('SearchString is a required parameter')
+		var rgx = new RegExp('\{SearchString\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SearchString'])
+			if (args['SearchString']) delete args['SearchString']
+		}
+		if (url.indexOf('[/SearchString]') !== -1) {
+			url = url.replace('[/SearchString]', '/' + args['SearchString'])
+			if (args['SearchString']) delete args['SearchString']
+		}
+		if (url.indexOf('[/SearchString]') !== -1) url = url.replace('[/SearchString]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'search.location.names': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLocationsXML.aspx'
+		args = args || {}
+		if (args['SearchString'] == null) throw new Error('SearchString is a required parameter')
+		var rgx = new RegExp('\{SearchString\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['SearchString'])
+			if (args['SearchString']) delete args['SearchString']
+		}
+		if (url.indexOf('[/SearchString]') !== -1) {
+			url = url.replace('[/SearchString]', '/' + args['SearchString'])
+			if (args['SearchString']) delete args['SearchString']
+		}
+		if (url.indexOf('[/SearchString]') !== -1) url = url.replace('[/SearchString]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'search.stations.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getStationsXML.aspx'
+		args = args || {}
+		if (args['zipCode'] == null) throw new Error('zipCode is a required parameter')
+		var rgx = new RegExp('\{zipCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) {
+			url = url.replace('[/zipCode]', '/' + args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'search.stations.citycode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getStationsXML.aspx'
+		args = args || {}
+		if (args['cityCode'] == null) throw new Error('cityCode is a required parameter')
+		var rgx = new RegExp('\{cityCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/cityCode]') !== -1) {
+			url = url.replace('[/cityCode]', '/' + args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'search.stations.lat.long': function(args, opts) {
+		var url = 'http://api.wxbug.net/getStationsXML.aspx'
+		args = args || {}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/long]') !== -1) {
+			url = url.replace('[/long]', '/' + args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'live.weather.stationid': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['stationid'] == null) throw new Error('stationid is a required parameter')
+		var rgx = new RegExp('\{stationid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['stationid'])
+			if (args['stationid']) delete args['stationid']
+		}
+		if (url.indexOf('[/stationid]') !== -1) {
+			url = url.replace('[/stationid]', '/' + args['stationid'])
+			if (args['stationid']) delete args['stationid']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/stationid]') !== -1) url = url.replace('[/stationid]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'live.weather.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['zipCode'] == null) throw new Error('zipCode is a required parameter')
+		var rgx = new RegExp('\{zipCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) {
+			url = url.replace('[/zipCode]', '/' + args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'live.weather.citycode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['cityCode'] == null) throw new Error('cityCode is a required parameter')
+		var rgx = new RegExp('\{cityCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/cityCode]') !== -1) {
+			url = url.replace('[/cityCode]', '/' + args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'live.weather.lat.long': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/long]') !== -1) {
+			url = url.replace('[/long]', '/' + args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'compact.live.weather.stationid': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['stationid'] == null) throw new Error('stationid is a required parameter')
+		var rgx = new RegExp('\{stationid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['stationid'])
+			if (args['stationid']) delete args['stationid']
+		}
+		if (url.indexOf('[/stationid]') !== -1) {
+			url = url.replace('[/stationid]', '/' + args['stationid'])
+			if (args['stationid']) delete args['stationid']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/stationid]') !== -1) url = url.replace('[/stationid]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'compact.live.weather.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['zipCode'] == null) throw new Error('zipCode is a required parameter')
+		var rgx = new RegExp('\{zipCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) {
+			url = url.replace('[/zipCode]', '/' + args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'compact.live.weather.citycode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['cityCode'] == null) throw new Error('cityCode is a required parameter')
+		var rgx = new RegExp('\{cityCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/cityCode]') !== -1) {
+			url = url.replace('[/cityCode]', '/' + args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'compact.live.weather.lat.long': function(args, opts) {
+		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/long]') !== -1) {
+			url = url.replace('[/long]', '/' + args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'forescat.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getForecastRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['zipCode'] == null) throw new Error('zipCode is a required parameter')
+		var rgx = new RegExp('\{zipCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) {
+			url = url.replace('[/zipCode]', '/' + args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'forescat.citycode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getForecastRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['cityCode'] == null) throw new Error('cityCode is a required parameter')
+		var rgx = new RegExp('\{cityCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/cityCode]') !== -1) {
+			url = url.replace('[/cityCode]', '/' + args['cityCode'])
+			if (args['cityCode']) delete args['cityCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'forescat.lat.long': function(args, opts) {
+		var url = 'http://api.wxbug.net/getForecastRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/long]') !== -1) {
+			url = url.replace('[/long]', '/' + args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'camera.list.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getCamerasXML.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['zipCode'] == null) throw new Error('zipCode is a required parameter')
+		var rgx = new RegExp('\{zipCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) {
+			url = url.replace('[/zipCode]', '/' + args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'camera.list.lat.long': function(args, opts) {
+		var url = 'http://api.wxbug.net/getCamerasXML.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		var rgx = new RegExp('\{OutputType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (url.indexOf('[/OutputType]') !== -1) {
+			url = url.replace('[/OutputType]', '/' + args['OutputType'])
+			if (args['OutputType']) delete args['OutputType']
+		}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/long]') !== -1) {
+			url = url.replace('[/long]', '/' + args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'alerts.zipcode': function(args, opts) {
+		var url = 'http://api.wxbug.net/getAlertsRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (args['zipCode'] == null) throw new Error('zipCode is a required parameter')
+		var rgx = new RegExp('\{zipCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/zipCode]') !== -1) {
+			url = url.replace('[/zipCode]', '/' + args['zipCode'])
+			if (args['zipCode']) delete args['zipCode']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	},
+	'alerts.lat.long': function(args, opts) {
+		var url = 'http://api.wxbug.net/getAlertsRSS.aspx'
+		args = args || {}
+		var rgx = new RegExp('\{UnitType\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) {
+			url = url.replace('[/UnitType]', '/' + args['UnitType'])
+			if (args['UnitType']) delete args['UnitType']
+		}
+		if (args['lat'] == null) throw new Error('lat is a required parameter')
+		var rgx = new RegExp('\{lat\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (url.indexOf('[/lat]') !== -1) {
+			url = url.replace('[/lat]', '/' + args['lat'])
+			if (args['lat']) delete args['lat']
+		}
+		if (args['long'] == null) throw new Error('long is a required parameter')
+		var rgx = new RegExp('\{long\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/long]') !== -1) {
+			url = url.replace('[/long]', '/' + args['long'])
+			if (args['long']) delete args['long']
+		}
+		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
+		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
+		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
+		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+	}
+})

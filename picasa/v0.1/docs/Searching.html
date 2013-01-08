@@ -1,0 +1,298 @@
+<h1>Picasa API: Searching</h1>
+<p>These methods are relative to the tag 'Searching'</p><h3>picasa.user.tags.photos.search</h3>
+<p>Searches for all photos belonging to userID that are tagged with the specified comma-separated tags.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>userID</td>
+			<td>The Picasa User ID. The string "default" can be used in place of a real user ID, in which case the ID of the user whose credentials authenticated the request is used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>kind</td>
+			<td>Picasa Web Albums-specific query parameter for kind queries.</td>
+			<td>photo</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>access</td>
+			<td>Visibility parameter.<br/>Applicable values:<br/>- all: Shows all data, both public and private. Requires authentication. Default for the owner, and only the owner can specify this value.<br/>- private: Shows only private data.    Requires authentication. Only the owner can specify this value.<br/>- public: Shows only public data. Does not require authentication. Most often used by an authenticated user to see only the publicly visible photos, corresponding to "View My Public Gallery" in the Picasa Web Albums GUI.<br/>- visible: Shows all data the user has access to, including both all public photos or albums and any photos or albums that the owner has explicitly given the authenticated user rights to (using ACLs).   Does not require authentication. Default for unauthenticated requests and for non-owners. For unauthenticated requests, this is the same as public. For authenticated non-owners, this returns the data that the owner has given them access to. For authenticated requests from the owner, this is the same as all.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>alt</td>
+			<td>Alternative representation type. If you don't specify an alt parameter, the service returns an Atom feed. This is equivalent to alt=atom.<br/>Applicable values:<br/>- rss: returns an RSS 2.0 result feed (for reads only). When you request data from a service in RSS format, the service supplies a feed (or other representation of the resource) in RSS format. If there's no equivalent RSS property for a given Data API property, the service uses the Atom property, labeling it with an appropriate namespace to indicate that it's an extension to RSS.<br/>- json: returns a JSON representation of the feed. More information<br/>- json-in-script: Requests a response that wraps JSON in a script tag. More information<br/>- atom-in-script: Requests an Atom response that wraps an XML string in a script tag.<br/>- rss-in-script: Requests an RSS response that wraps an XML string in a script tag.<br/>- atom-service: Requests an Atom service document that describes the feed.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>bbox</td>
+			<td>Bounding-box search of geo coordinates. Searches for data in the specified bounding box. The coordinates should be in the following order: west, south, east, north.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Response filter Returns only the requested portions of the resource representation, for improved performance and efficiency, rather than the full resource representation.<br/>For example:<br/>http://www.example.com/feeds?fields=link,entry(@gd:etag,id,updated,link[@rel='edit']))<br/>When it receives this request, the server returns a response that contains only only link and entry elements for the feed. In addition, the entry elements returned are partial entries that contain only ETag, ID, updated, and edit link relations.<br/>The fields value must be URL encoded, as with all query parameter values. This parameter is currently an experimental feature.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>imgmax</td>
+			<td>Image size parameter. Valid with album or photo kinds; specifies what image size to use for the media:content. Only a single value may be specified. Refer to the list of valid values below.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>l</td>
+			<td>Named search of geo data. Searches for data in the named location. An example location would be London.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max-results</td>
+			<td>Maximum number of results to be retrieved. For any service that has a default max-results value (to limit default feed size), you can specify a very large number if you want to receive the entire feed.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prettyprint</td>
+			<td>Returns an XML response with identations and line breaks. If prettyprint=true, the XML returned by the server will be human readable (pretty printed). Default: false</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start-index</td>
+			<td>1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>tag</td>
+			<td>Tag filter parameter. Filters photos in the user-based and album-based feeds by the specified tag.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>thumbsize</td>
+			<td>Thumbnail size parameter. Valid with album or photo kinds; specifies what image size to use for thumbnails. Multiple values may be specified using a comma-delimited list. If multiple values are specified, multiple media:thumbnail elements will be returned in the feed. Refer to the list of valid values below.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>GData-Version</td>
+			<td>The API version. Current version is 2.</td>
+			<td>2</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>picasa.user.album.tags.photos.search</h3>
+<p>Searches for all photos in albumID belonging to userID that are tagged with the specified comma-separated tags.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>userID</td>
+			<td>The Picasa User ID. The string "default" can be used in place of a real user ID, in which case the ID of the user whose credentials authenticated the request is used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>albumID</td>
+			<td>The album ID.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>kind</td>
+			<td>Picasa Web Albums-specific query parameter for kind queries.</td>
+			<td>photo</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>access</td>
+			<td>Visibility parameter.<br/>Applicable values:<br/>- all: Shows all data, both public and private. Requires authentication. Default for the owner, and only the owner can specify this value.<br/>- private: Shows only private data.    Requires authentication. Only the owner can specify this value.<br/>- public: Shows only public data. Does not require authentication. Most often used by an authenticated user to see only the publicly visible photos, corresponding to "View My Public Gallery" in the Picasa Web Albums GUI.<br/>- visible: Shows all data the user has access to, including both all public photos or albums and any photos or albums that the owner has explicitly given the authenticated user rights to (using ACLs).   Does not require authentication. Default for unauthenticated requests and for non-owners. For unauthenticated requests, this is the same as public. For authenticated non-owners, this returns the data that the owner has given them access to. For authenticated requests from the owner, this is the same as all.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>alt</td>
+			<td>Alternative representation type. If you don't specify an alt parameter, the service returns an Atom feed. This is equivalent to alt=atom.<br/>Applicable values:<br/>- rss: returns an RSS 2.0 result feed (for reads only). When you request data from a service in RSS format, the service supplies a feed (or other representation of the resource) in RSS format. If there's no equivalent RSS property for a given Data API property, the service uses the Atom property, labeling it with an appropriate namespace to indicate that it's an extension to RSS.<br/>- json: returns a JSON representation of the feed. More information<br/>- json-in-script: Requests a response that wraps JSON in a script tag. More information<br/>- atom-in-script: Requests an Atom response that wraps an XML string in a script tag.<br/>- rss-in-script: Requests an RSS response that wraps an XML string in a script tag.<br/>- atom-service: Requests an Atom service document that describes the feed.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>bbox</td>
+			<td>Bounding-box search of geo coordinates. Searches for data in the specified bounding box. The coordinates should be in the following order: west, south, east, north.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Response filter Returns only the requested portions of the resource representation, for improved performance and efficiency, rather than the full resource representation.<br/>For example:<br/>http://www.example.com/feeds?fields=link,entry(@gd:etag,id,updated,link[@rel='edit']))<br/>When it receives this request, the server returns a response that contains only only link and entry elements for the feed. In addition, the entry elements returned are partial entries that contain only ETag, ID, updated, and edit link relations.<br/>The fields value must be URL encoded, as with all query parameter values. This parameter is currently an experimental feature.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>imgmax</td>
+			<td>Image size parameter. Valid with album or photo kinds; specifies what image size to use for the media:content. Only a single value may be specified. Refer to the list of valid values below.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>l</td>
+			<td>Named search of geo data. Searches for data in the named location. An example location would be London.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max-results</td>
+			<td>Maximum number of results to be retrieved. For any service that has a default max-results value (to limit default feed size), you can specify a very large number if you want to receive the entire feed.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prettyprint</td>
+			<td>Returns an XML response with identations and line breaks. If prettyprint=true, the XML returned by the server will be human readable (pretty printed). Default: false</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start-index</td>
+			<td>1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>tag</td>
+			<td>Tag filter parameter. Filters photos in the user-based and album-based feeds by the specified tag.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>thumbsize</td>
+			<td>Thumbnail size parameter. Valid with album or photo kinds; specifies what image size to use for thumbnails. Multiple values may be specified using a comma-delimited list. If multiple values are specified, multiple media:thumbnail elements will be returned in the feed. Refer to the list of valid values below.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>GData-Version</td>
+			<td>The API version. Current version is 2.</td>
+			<td>2</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>picasa.user.albums.photos.search</h3>
+<p>Searches photos uploaded by other users, as long as they are in a public album.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>q</td>
+			<td>Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.<br/>To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase". To exclude entries that match a given term, use the form q=-term. The search is case-insensitive.<br/>Example: to search for all entries that contain the exact phrase "Elizabeth Bennet" and the word "Darcy" but don't contain the word "Austen", use the following query: ?q="Elizabeth Bennet" Darcy -Austen<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>kind</td>
+			<td>Picasa Web Albums-specific query parameter for kind queries.<br/>Applicable values:<br/>- album: Feed includes some or all of the albums the specified user has in their gallery. Which albums are returned depends on the visibility value specified.   User-based feed<br/>- photo: Feed includes the photos in an album (album-based), recent photos uploaded by a user (user-based) or photos uploaded by all users (community search).   Album-based, user-based and community search feeds<br/>- comment: Feed includes the comments that have been made on a photo.  Photo-based and user-based feeds<br/>- tag: Includes all tags associated with the specified user, album, or photo. For user-based and album-based feeds, the tags include a weight value indicating how often they occurred.    User-based, album-based, and photo-based feeds<br/>- user: Feed includes entries representing users.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>access</td>
+			<td>Visibility parameter.<br/>Applicable values:<br/>- all: Shows all data, both public and private. Requires authentication. Default for the owner, and only the owner can specify this value.<br/>- private: Shows only private data.    Requires authentication. Only the owner can specify this value.<br/>- public: Shows only public data. Does not require authentication. Most often used by an authenticated user to see only the publicly visible photos, corresponding to "View My Public Gallery" in the Picasa Web Albums GUI.<br/>- visible: Shows all data the user has access to, including both all public photos or albums and any photos or albums that the owner has explicitly given the authenticated user rights to (using ACLs).   Does not require authentication. Default for unauthenticated requests and for non-owners. For unauthenticated requests, this is the same as public. For authenticated non-owners, this returns the data that the owner has given them access to. For authenticated requests from the owner, this is the same as all.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>alt</td>
+			<td>Alternative representation type. If you don't specify an alt parameter, the service returns an Atom feed. This is equivalent to alt=atom.<br/>Applicable values:<br/>- rss: returns an RSS 2.0 result feed (for reads only). When you request data from a service in RSS format, the service supplies a feed (or other representation of the resource) in RSS format. If there's no equivalent RSS property for a given Data API property, the service uses the Atom property, labeling it with an appropriate namespace to indicate that it's an extension to RSS.<br/>- json: returns a JSON representation of the feed. More information<br/>- json-in-script: Requests a response that wraps JSON in a script tag. More information<br/>- atom-in-script: Requests an Atom response that wraps an XML string in a script tag.<br/>- rss-in-script: Requests an RSS response that wraps an XML string in a script tag.<br/>- atom-service: Requests an Atom service document that describes the feed.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>bbox</td>
+			<td>Bounding-box search of geo coordinates. Searches for data in the specified bounding box. The coordinates should be in the following order: west, south, east, north.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields</td>
+			<td>Response filter Returns only the requested portions of the resource representation, for improved performance and efficiency, rather than the full resource representation.<br/>For example:<br/>http://www.example.com/feeds?fields=link,entry(@gd:etag,id,updated,link[@rel='edit']))<br/>When it receives this request, the server returns a response that contains only only link and entry elements for the feed. In addition, the entry elements returned are partial entries that contain only ETag, ID, updated, and edit link relations.<br/>The fields value must be URL encoded, as with all query parameter values. This parameter is currently an experimental feature.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>imgmax</td>
+			<td>Image size parameter. Valid with album or photo kinds; specifies what image size to use for the media:content. Only a single value may be specified. Refer to the list of valid values below.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>l</td>
+			<td>Named search of geo data. Searches for data in the named location. An example location would be London.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max-results</td>
+			<td>Maximum number of results to be retrieved. For any service that has a default max-results value (to limit default feed size), you can specify a very large number if you want to receive the entire feed.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prettyprint</td>
+			<td>Returns an XML response with identations and line breaks. If prettyprint=true, the XML returned by the server will be human readable (pretty printed). Default: false</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>start-index</td>
+			<td>1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>tag</td>
+			<td>Tag filter parameter. Filters photos in the user-based and album-based feeds by the specified tag.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>thumbsize</td>
+			<td>Thumbnail size parameter. Valid with album or photo kinds; specifies what image size to use for thumbnails. Multiple values may be specified using a comma-delimited list. If multiple values are specified, multiple media:thumbnail elements will be returned in the feed. Refer to the list of valid values below.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>GData-Version</td>
+			<td>The API version. Current version is 2.</td>
+			<td>2</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

@@ -1,0 +1,178 @@
+<h1>Gomilo API: Milo Endpoints</h1>
+<p>These methods are relative to the tag 'Milo Endpoints'</p><h3>storeAddresses</h3>
+<p>The Store Addresses endpoint returns information about stores in a particular location. You must specify a location <br/>		 (see Specifying Location in Requests), and can optionally limit the results to stores from a particular merchant.<br/>   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>Get your API key from x.com</td>
+			<td>5d385058ba1e0f1046d0ff05c5795807</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>postal_code</td>
+			<td>Specifies the mandatory location to search for store addresses</td>
+			<td>94031</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>radius</td>
+			<td>Specifies the mandatory radius to search for store addresses [0..30]</td>
+			<td>10</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>merchant_ids</td>
+			<td>Optional merchant IDs</td>
+			<td>1779,1609</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>phones</td>
+			<td>Optional phone numbers</td>
+			<td>9995551234,5551234567</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>products</h3>
+<p>The Products endpoint returns detailed product data. It accepts optional location parameters (see Specifying Location in Requests) <br/>		  and has two methods of specifying which products to return (by ID or by search parameters). <br/>		  You can also optionally specify a sort order and pagination options.<br/>    </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>Get your API key from x.com</td>
+			<td>5d385058ba1e0f1046d0ff05c5795807</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>q</td>
+			<td>Search string</td>
+			<td>iphone</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min_price</td>
+			<td>Minimum price in cents</td>
+			<td>13500</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max_price</td>
+			<td>Maximum price in cents</td>
+			<td>35000</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min_rating</td>
+			<td>Minimum rating (0 to 5)</td>
+			<td>1</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max_rating</td>
+			<td>Maximum rating (0 to 5)</td>
+			<td>5</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>category_ids</td>
+			<td>Comma separated category IDs</td>
+			<td>3,5,67</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>merchant_ids</td>
+			<td>Comma separated merchant IDs</td>
+			<td>1779,1609</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>on_sale</td>
+			<td>Is the item on sale</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>is_deal</td>
+			<td>Is the item on deal</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort_by</td>
+			<td>The default sort order is descending</td>
+			<td>relevance</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>Page number (positive integer)</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>per_page</td>
+			<td>Results per page greater than zero. Default 20</td>
+			<td>20</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>show</td>
+			<td>Controls the fields to display</td>
+			<td>SaleBrandPidEpidPurlMidsSpecDesc</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>availability</h3>
+<p>The Availability endpoint provides specific availability (inventory) data on a per-store, per-product basis. It requires a location (see Location) and a product ID to be specified and can optionally take a JSONP callback function name. Doing so will cause the response to be in HTML format, consisting of script tags wrapping the callbacks. The default format is a sequence of JSON expressions with no wrapping. The radius parameter has no effect for this endpoint.<br/>   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>key</td>
+			<td>Get your API key from x.com</td>
+			<td>5d385058ba1e0f1046d0ff05c5795807</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>product_id</td>
+			<td>Mandatory product ID</td>
+			<td>9418020</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>postal_code</td>
+			<td>Specifies the mandatory location to search for store addresses</td>
+			<td>94587</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>Callback function</td>
+			<td>showCallback</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

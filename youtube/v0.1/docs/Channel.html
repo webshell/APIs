@@ -1,0 +1,80 @@
+<h1>Youtube API: Channel</h1>
+<p>These methods are relative to the tag 'Channel'</p><h3>searchChannels</h3>
+<p>You can search for channels matching a user-specified search term by sending a GET request to the following URL and using the q query parameter to specify a search term. YouTube could match the search term to the channel name, description or other channel-related fields.<br/><br/>				 </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>projection</td>
+			<td>All API requests must specify a projection. Most developers who are using this documentation will use the api projection. However, if you are developing applications for mobile devices, you can substitute mobile for api in any of the sample requests described in the API documentation. Similarly, if you prefer to use the base projection, which is well suited to feed readers, you can substitute base for api in any of the sample requests described in the API documentation.<br/>			 </td>
+			<td>api</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>author</td>
+			<td>In a search request, the author parameter restricts the search to videos uploaded by a particular YouTube user. Note that if you use this parameter when requesting a standard feed, then YouTube will retrieve the standard feed and then filter the response to only include videos uploaded by the specified author. For example, if you request the "Top Rated" feed for user GoogleDevelopers, the API will retrieve the top-rated feed and return a response containing videos in that feed uploaded by user GoogleDevelopers. The API will not return a list of that user's videos ordered by rating. <br/><br/>In a request for a user activity feed, the author parameter contains a comma-separated list of up to 20 YouTube usernames. The API response will contain activities performed by any of those users.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>The callback parameter identifies the callback function to which the API response will be sent. If the value of the alt parameter is jsonc or json-in-script, and you specify a value for the callback parameter, then the API response will be wrapped in a call to the specified function. This parameter is required if the value of the alt parameter is json-in-script.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>field</td>
+			<td>The fields parameter serves one or both of the following purposes:<br/>It identifies the data fields that should be included in a partial API response.<br/>It specifies conditions that should be used to filter the result set.<br/>The parameter value is formatted using a syntax inspired by XPath as described in the Formatting the fields parameter value section. That section also explains how conditions specified in the parameter value are applied since the API handles filters identified in the fields parameter value differently than filters identified in other query parameters, such as the category or q parameters.<br/><br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>fields-language</td>
+			<td>The fields-language parameter is being used temporarily to force the API server to apply new syntax rules affecting requests to retrieve partial API responses. The rules determine whether a tag's text content is returned in a partial response. They also let you filter results based on the presence of an element that does not contain text content. For example, you could retrieve all entries containing the 'app:control' tag, which has subtags but does not contain text content. The new rules are explained in detail in the release notes for August 31, 2010.<br/><br/><br/><br/>To use the new syntax rules for partial API responses, or to filter results based on the presence of an element that does not contain text content, set the fields-language parameter value to r2. (This is the only valid value for this parameter.)<br/><br/>Note: Following a testing period, the new syntax rules will apply to all requests for partial API responses, and the API server will ignore the fields-language parameter.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max-results</td>
+			<td>The max-results parameter specifies the maximum number of results that should be included in the result set. This parameter works in conjunction with the start-index parameter to determine which results to return. For example, to request the second set of 10 results – i.e. results 11-20 – set the max-results parameter to 10 and the start-index parameter to 11. The default value of this parameter is 25, and the maximum value is 50. However, for displaying lists of videos, we recommend that you set the max-results parameter to 10.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>prettyprint</td>
+			<td>The prettyprint parameter lets you request an XML response formatted with indentations and line breaks. Set the parameter's value to true to have the response formatted as such. The default parameter value is false.<br/>					</td>
+			<td>true</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>start-index</td>
+			<td>The start-index parameter specifies the index of the first matching result that should be included in the result set. This parameter uses a one-based index, meaning the first result is 1, the second result is 2 and so forth. This parameter works in conjunction with the max-results parameter to determine which results to return. For example, to request the second set of 10 results – i.e. results 11-20 – set the start-index parameter to 11 and the max-results parameter to 10.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>strict</td>
+			<td>The strict parameter can be used to instruct YouTube to reject an API request if the request contains invalid request parameters. The default API behavior is to ignore invalid request parameters. If you want YouTube to reject API requests that contain invalid parameters, set the strict parameter value to true. For example, YouTube would reject the following request because "foo" is not a valid request parameter.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>v</td>
+			<td>The v parameter specifies the version of the API that YouTube should use to handle the API request. Your request can specify the desired API version using either the v parameter or the GData-Version HTTP request header. All Google-provided client libraries always select a major API version. If your request does not specify an API version, YouTube will handle your request using API version 1. Please see the API versioning section for more information about specifying an API version.<br/><br/>The current API version is 2. Setting the v parameter value (or the GData-Version HTTP request header value) to 2 allows your application to access features that may not be available in previous API versions. For example, captions are only supported in API version 2, and the API supports some different parameters in version 2 than it did in version 1.<br/>					</td>
+			<td>2</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>q</td>
+			<td>The q parameter specifies a search query term. YouTube will search all video metadata for videos matching the term. Video metadata includes titles, keywords, descriptions, authors' usernames, and categories.<br/><br/>Note that any spaces, quotes or other punctuation in the parameter value must be URL-escaped.<br/><br/>To search for an exact phrase, enclose the phrase in quotation marks. For example, to search for videos matching the phrase "spy plane", set the q parameter to %22spy+plane%22.<br/><br/>Your request can also use the Boolean NOT (-) and OR (|) operators to exclude videos or to find videos that are associated with one of several search terms. For example, to search for videos matching either "boating" or "sailing", set the q parameter to boating%7Csailing. (Note that the pipe character must be URL-escaped.) Similarly, to search for videos matching either "boating" or "sailing" but not "fishing", set the q parameter to boating&7Csailing+-fishing.<br/>					</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

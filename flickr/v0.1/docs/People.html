@@ -1,0 +1,249 @@
+<h1>Flickr API: People</h1>
+<p>These methods are relative to the tag 'People'</p><h3>flickrPeopleFindByEmail</h3>
+<p>Return a user's NSID, given their email address<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>find_email</td>
+			<td>The email address of the user to find (may be primary or secondary).<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleFindByUsername</h3>
+<p>Return a user's NSID, given their username.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>username</td>
+			<td>The username of the user to lookup.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleGetInfo</h3>
+<p>Get information about a user.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The NSID of the user to fetch information about.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleGetPhotos</h3>
+<p>Return photos from the given user's photostream. Only photos visible to the calling user will be returned. This method must be authenticated; to return public photos for a user, use flickr.people.getPublicPhotos.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The NSID of the user whose photos to return. A value of "me" will return the calling user's photos.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>safe_search</td>
+			<td>Safe search setting. Accepted values: 1 (safe), 2 (moderate), 3 (restricted)<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min_upload_date</td>
+			<td>Minimum upload date. Photos with an upload date greater than or equal to this value will be returned. The date should be in the form of a unix timestamp.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max_upload_date</td>
+			<td>Maximum upload date. Photos with an upload date less than or equal to this value will be returned. The date should be in the form of a unix timestamp.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min_taken_date</td>
+			<td>Minimum taken date. Photos with an taken date greater than or equal to this value will be returned. The date should be in the form of a mysql datetime.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max_taken_date</td>
+			<td>Maximum taken date. Photos with an taken date less than or equal to this value will be returned. The date should be in the form of a mysql datetime.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>content_type</td>
+			<td>Content type setting. Accepted values: 1 (photos only), 2 (screenshots only), 3 ('other' only), 4 (photos and screenshots), 5 (screenshots and 'other'), 6 (photos and 'other'), 7 (photos, screenshots, and 'other') (all)<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>privacy_filter</td>
+			<td>Return photos only matching a certain privacy level. This only applies when making an authenticated call to view photos you own. Valid values are: 1 (public photos), 2 (private photos visible to friends), 3 (private photos visible to family), 4 (private photos visible to friends and family), 5 (completely private photos)<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>extras</td>
+			<td>A comma-delimited list of extra information to fetch for each returned record. Currently supported fields are: description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_z, url_l, url_o<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>per_page</td>
+			<td>Number of photos to return per page. If this argument is omitted, it defaults to 100. The maximum allowed value is 500.<br/>                       </td>
+			<td>100</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The page of results to return. If this argument is omitted, it defaults to 1.<br/>                       </td>
+			<td>1</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleGetPhotosOf</h3>
+<p>Returns a list of photos containing a particular Flickr member.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The NSID of the user you want to find photos of. A value of "me" will search against photos of the calling user, for authenticated calls.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>owner_id</td>
+			<td>An NSID of a Flickr member. This will restrict the list of photos to those taken by that member.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>extras</td>
+			<td>A comma-delimited list of extra information to fetch for each returned record. Currently supported fields are: description, license, date_upload, date_taken, date_person_added, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_z, url_l, url_o<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>per_page</td>
+			<td>Number of photos to return per page. If this argument is omitted, it defaults to 100. The maximum allowed value is 500.<br/>                       </td>
+			<td>100</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The page of results to return. If this argument is omitted, it defaults to 1.<br/>                       </td>
+			<td>1</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleGetPublicGroups</h3>
+<p>Returns the list of public groups a user is a member of.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The NSID of the user to fetch groups for.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleGetPublicPhotos</h3>
+<p>Get a list of public photos for the given user.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>user_id</td>
+			<td>The NSID of the user whose photos to return.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>safe_search</td>
+			<td>Safe search setting. Accepted values: 1 (safe), 2 (moderate), 3 (restricted). Note: Un-authed calls can only see Safe content.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>extras</td>
+			<td>A comma-delimited list of extra information to fetch for each returned record. Currently supported fields are: description, license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_z, url_l, url_o<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>per_page</td>
+			<td>Number of photos to return per page. If this argument is omitted, it defaults to 100. The maximum allowed value is 500.<br/>                       </td>
+			<td>100</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The page of results to return. If this argument is omitted, it defaults to 1.<br/>                       </td>
+			<td>1</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>flickrPeopleGetUploadStatus</h3>
+<p>Returns information for the calling user related to photo uploads.<br/>               </p>
+<p><em>Authentication required</em></p>
+	</tbody>
+
+</table>

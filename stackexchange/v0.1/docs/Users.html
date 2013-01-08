@@ -53,7 +53,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the user object:<br/>						  <br/>						  reputation – reputation<br/>						  creation – creation_date<br/>						  name – display_name<br/>						  modified – last_modified_date<br/>						  reputation is the default sort.<br/>					</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -62,6 +62,18 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>inname</td>
+			<td>The inname parameter lets consumers filter the results down to just those users with a certain substring in their display name. For example, inname=kevin will return all users with both users named simply "Kevin" or those with Kevin as one of (or part of) their names; such as "Kevin Montrose".</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -120,7 +132,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the user object:<br/>					    <br/>					    reputation – reputation<br/>					    creation – creation_date<br/>					    name – display_name<br/>					    modified – last_modified_date<br/>					    reputation is the default sort.<br/>					 </td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -129,6 +141,79 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meGet</h3>
+<p>Returns the user associated with the passed access_token.<br/>		      <br/>		      This method returns a user.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the user object:<br/>					    <br/>					    reputation – reputation<br/>					    creation – creation_date<br/>					    name – display_name<br/>					    modified – last_modified_date<br/>					    reputation is the default sort.<br/>					 </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -148,18 +233,6 @@
 			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
 			<td></td>
 			<td>false</td>
-		</tr>
-		<tr>
-			<td>body</td>
-			<td>When "true", a post's body will be included in the response.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response.</td>
-			<td></td>
-			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
@@ -199,7 +272,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the answer object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -208,6 +281,79 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meAnswersGet</h3>
+<p>Returns the answers owned by the user associated with the given access_token.<br/><br/>				  This method returns a list of answers.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the answer object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -226,6 +372,127 @@
 			<td>id</td>
 			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
 			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>For ranks, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver&min=silver for just silver, and min=bronze for just bronze.<br/>					    <br/>					    rank is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meBadgesGet</h3>
+<p>Returns the badges earned by the user associated with the given access_token.<br/>				  <br/>				  This method returns a list of badges.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>For ranks, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver&min=silver for just silver, and min=bronze for just bronze.<br/>					    <br/>					    rank is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
 			<td>false</td>
 		</tr>
 	</tbody>
@@ -285,7 +552,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the comment object:<br/>					    <br/>					    creation – creation_date<br/>					    votes – score<br/>					    creation is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -294,6 +561,79 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meCommentsGet</h3>
+<p>Returns the comments owned by the user associated with the given access_token.<br/>				  <br/>				  This method returns a list of comments.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the comment object:<br/>					    <br/>					    creation – creation_date<br/>					    votes – score<br/>					    creation is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -358,7 +698,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the comment object:<br/><br/>						  creation – creation_date<br/>						  votes – score<br/>						  creation is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -368,11 +708,17 @@
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
-<h3>userFavoritesGet</h3>
-<p>Get the questions that users in id have favorited.<br/><br/>					This method is effectively a view onto a user's favorites tab.<br/>			</p>
+<h3>meCommentsToUserGet</h3>
+<p>Returns the comments owned by the user associated with the given access_token that are in reply to the user identified by {toId}.<br/>				  <br/>				  This method returns a list of comments.<br/>				  <br/>			</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -382,28 +728,10 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>id</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td>toid</td>
+			<td>id of the user referred to.</td>
 			<td></td>
 			<td>false</td>
-		</tr>
-		<tr>
-			<td>answers</td>
-			<td>When "true", the answers to a question will be returned.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>body</td>
-			<td>When "true", a post's body will be included in the response.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response.</td>
-			<td></td>
-			<td>true</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
@@ -443,7 +771,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the comment object:<br/><br/>						  creation – creation_date<br/>						  votes – score<br/>						  creation is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -452,6 +780,152 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userFavoritesGet</h3>
+<p>Get the questions that users in id have favorited.<br/><br/>					This method is effectively a view onto a user's favorites tab.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  added – when the user favorited the question<br/>						  activity is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meFavoritesGet</h3>
+<p>Returns the questions favorites by the user associated with the given access_token.<br/>				  <br/>				  This method returns a list of questions.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  added – when the user favorited the question<br/>						  activity is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -510,7 +984,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the comment object:<br/><br/>						  creation – creation_date<br/>						  votes – score<br/>					</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -519,6 +993,345 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meMentionedGet</h3>
+<p>Returns the comments mentioning the user associated with the given access_token.<br/>				  <br/>				  This method returns a list of comments.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the comment object:<br/><br/>						  creation – creation_date<br/>						  votes – score<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userMergesGet</h3>
+<p>Returns a record of merges that have occurred involving the passed account ids.<br/>				  <br/>				  This method allows you to take now invalid account ids and find what account they've become, or take currently valid account ids and find which ids were equivalent in the past.<br/>				  <br/>				  This is most useful when confirming that an account_id is in fact "new" to an application.<br/>				  <br/>				  Account merges can happen for a wide range of reasons, applications should not make assumptions that merges have particular causes.<br/><br/>				  Note that accounts are managed at a network level, users on a site may be merged due to an account level merge but there is no guarantee that a merge has an effect on any particular site.<br/>				  <br/>				  This method returns a list of account_merge.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meMergesGet</h3>
+<p>Returns a record of merges that have occurred involving a user identified by an access_token.<br/>				  <br/>				  This method allows you to take now invalid account ids and find what account they've become, or take currently valid account ids and find which ids were equivalent in the past.<br/>				  <br/>				  This is most useful when confirming that an account_id is in fact "new" to an application.<br/><br/>				  Account merges can happen for a wide range of reasons, applications should not make assumptions that merges have particular causes.<br/>				  <br/>				  Note that accounts are managed at a network level, users on a site may be merged due to an account level merge but there is no guarantee that a merge has an effect on any particular site.<br/>				  <br/>				  This method returns a list of account_merge.<br/>				  <br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userNotificationsGet</h3>
+<p>Returns a user's notifications.<br/><br/>				 This method requires an access_token, with a scope containing "read_inbox".<br/>				 <br/>				 This method returns a list of notifications.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meNotificationsGet</h3>
+<p>Returns a user's notifications, given an access_token.<br/>		      <br/>		      This method requires an access_token, with a scope containing "read_inbox".<br/>		      <br/>		      This method returns a list of notifications.<br/>		      <br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userNotificationsUnreadGet</h3>
+<p>Returns a user's unread notifications.<br/>				  <br/>				  This method requires an access_token, with a scope containing "read_inbox".<br/>				  <br/>				  This method returns a list of notifications.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meNotificationsUnreadGet</h3>
+<p>Returns a user's unread notifications, given an access_token.<br/>		      <br/>		      This method requires an access_token, with a scope containing "read_inbox".<br/>		      <br/>		      This method returns a list of notifications.		      <br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userPrivilegesGet</h3>
+<p>Returns the privileges a user has.<br/>				  <br/>				  Applications are encouraged to calculate privileges themselves, without repeated queries to this method. A simple check against the results returned by /privileges and user.user_type would be sufficient.<br/>				  <br/>				  {id} can contain only a single, to find it programatically look for user_id on user or shallow_user objects.<br/>				  <br/>				  This method returns a list of privileges.<br/>				  <br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>mePrivilegesGet</h3>
+<p>Returns the privileges the user identified by access_token has.<br/>		      <br/>		      This method returns a list of privileges.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -540,22 +1353,144 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>answers</td>
-			<td>When "true", the answers to a question will be returned.</td>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>body</td>
-			<td>When "true", a post's body will be included in the response.</td>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response.</td>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meQuestionsGet</h3>
+<p>Returns the questions owned by the user associated with the given access_token.<br/>				  <br/>				  This method returns a list of questions.			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userQuestionsFeaturedGet</h3>
+<p>Gets the questions on which the users in {id} have active bounties.<br/>				  <br/>				  {id} can contain up to 100 semicolon delimited ids, to find ids programatically look for user_id on user or shallow_user objects.<br/>				 </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
@@ -595,7 +1530,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -604,6 +1539,79 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meQuestionsFeaturedGet</h3>
+<p>Returns the questions that have active bounties offered by the user associated with the given access_token.<br/><br/>				This method returns a list of questions.</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -625,23 +1633,72 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>answers</td>
-			<td>When "true", the answers to a question will be returned.</td>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>body</td>
-			<td>When "true", a post's body will be included in the response.</td>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response.</td>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meQuestionsNoAnswersGet</h3>
+<p>Returns the questions owned by the user associated with the given access_token that have no answers.<br/>				  <br/>				  This method returns a list of questions.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
 		<tr>
 			<td>fromdate</td>
 			<td>Unix timestamp of the minimum creation date on a returned item.</td>
@@ -680,7 +1737,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.<br/>					</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -689,6 +1746,12 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -710,23 +1773,72 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>answers</td>
-			<td>When "true", the answers to a question will be returned.</td>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>body</td>
-			<td>When "true", a post's body will be included in the response.</td>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response.</td>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meQuestionsUnacceptedGet</h3>
+<p>Returns the questions owned by the user associated with the given access_token that have no accepted answer.<br/>				  <br/>				  This method returns a list of questions.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
 		<tr>
 			<td>fromdate</td>
 			<td>Unix timestamp of the minimum creation date on a returned item.</td>
@@ -765,7 +1877,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.<br/>					</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -774,6 +1886,12 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -795,23 +1913,72 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>answers</td>
-			<td>When "true", the answers to a question will be returned.</td>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>body</td>
-			<td>When "true", a post's body will be included in the response.</td>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>comments</td>
-			<td>When "true", any comments on a post will be included in the response.</td>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meQuestionsUnansweredGet</h3>
+<p>Returns the questions owned by the user associated with the given access_token that are not considered answered.<br/><br/>				  This method returns a list of questions.<br/><br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
 		<tr>
 			<td>fromdate</td>
 			<td>Unix timestamp of the minimum creation date on a returned item.</td>
@@ -850,7 +2017,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  activity is the default sort.<br/>					</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -859,6 +2026,12 @@
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -903,11 +2076,22 @@
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
-<h3>userTagsGet</h3>
-<p>Returns the tags the users identified in id have been active in.<br/><br/>					This route corresponds roughly to user's stats tab, but does not include tag scores. A subset of tag scores are available (on a single user basis) in /users/{id}/top-answer-tags and /users/{id}/top-question-tags.<br/>			</p>
+<h3>meReputationGet</h3>
+<p>Returns the reputation changed for the user associated with the given access_token.<br/><br/>				  This method returns a list of reputation changes.<br/>			</p>
+	</tbody>
+
+</table>
+<h3>userReputationHistoryGet</h3>
+<p>Returns users' public reputation history.<br/>				  <br/>				  This method returns a list of reputation_history.<br/><br/>			</p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -923,10 +2107,142 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>filter</td>
-			<td>Required text in returned tags.</td>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meReputationHistoryGet</h3>
+<p>Returns user's public reputation history.<br/>				  <br/>				  This method returns a list of reputation_history.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userFullReputationHistoryGet</h3>
+<p>Returns a user's full reputation history, including private events.<br/>				  <br/>				  This method requires an access_token, with a scope containing "private_info".<br/>				  <br/>				  This method returns a list of reputation_history.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meFullReputationHistoryGet</h3>
+<p>Returns user's full reputation history, including private events.<br/>		      <br/>		      This method returns a list of reputation_history.<br/>		   </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userSuggestedEditGet</h3>
+<p>Returns the suggested edits a users in {id} have submitted.<br/><br/>				  {id} can contain up to 100 semicolon delimited ids, to find ids programatically look for user_id on user or shallow_user objects.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
 		</tr>
 		<tr>
 			<td>fromdate</td>
@@ -966,7 +2282,7 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the suggested_edit object:<br/><br/>						  creation – creation_date<br/>						  approval – approval_date<br/>						  Does not return unapproved suggested_edits<br/>						  rejection – rejection_date<br/>						  Does not return unrejected suggested_edits<br/>						  creation is the default sort.<br/>					</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -976,10 +2292,224 @@
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meSuggestedEditGet</h3>
+<p>Returns the suggested edits the user identified by access_token has submitted.<br/>				  <br/>				  This method returns a list of suggested-edits.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the suggested_edit object:<br/><br/>						  creation – creation_date<br/>						  approval – approval_date<br/>						  Does not return unapproved suggested_edits<br/>						  rejection – rejection_date<br/>						  Does not return unrejected suggested_edits<br/>						  creation is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userTagsGet</h3>
+<p>Returns the tags the users identified in id have been active in.<br/><br/>					This route corresponds roughly to user's stats tab, but does not include tag scores. A subset of tag scores are available (on a single user basis) in /users/{id}/top-answer-tags and /users/{id}/top-question-tags.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the tag object:<br/>						  <br/>						  popular – count<br/>						  activity – the creation_date of the last question asked with the tag<br/>						  name – name<br/>						  popular is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meTagsGet</h3>
+<p>Returns the tags the user identified by the access_token passed is active in.<br/>				  <br/>				  This method returns a list of tags.<br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the tag object:<br/>						  <br/>						  popular – count<br/>						  activity – the creation_date of the last question asked with the tag<br/>						  name – name<br/>						  popular is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
 <h3>userTopTaggedAnswersGet</h3>
+<p>Returns the top 30 answers a user has posted in response to questions with the given tags.<br/>			    <br/>			    {id} can contain a single id, to find it programatically look for user_id on user or shallow_user objects. {tags} is limited to 5 tags, passing more will result in an error.<br/>			 </p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1001,22 +2531,137 @@
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>body</td>
-			<td>whether or not to return the answers' bodies.</td>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>comments</td>
-			<td>whether or not to return comments on the answers.</td>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the answer object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      activity is the default sort.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meTopTaggedAnswersGet</h3>
+<p>Returns the top 30 answers the user associated with the given access_token has posted in response to questions with the given tags.<br/>			    <br/>			    This method returns a list of answers.<br/>			 </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tags</td>
+			<td>a semi-colon delimitted list of tags the questions the answers are on must have.<br/>			    This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the answer object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      activity is the default sort.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
 </table>
 <h3>userTopTaggedQuestionsGet</h3>
-<p>Returns the top 30 questions a user has asked with the given tags.<br/>			</p>
+<p>Returns the top 30 questions a user has asked with the given tags.<br/>		   </p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1033,27 +2678,136 @@
 		</tr>
 		<tr>
 			<td>tags</td>
-			<td>a semi-colon delimitted list of tags the questions the answers are on must have.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon</td>
+			<td>a semi-colon delimitted list of tags the questions the answers are on must have.<br/>		      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon</td>
 			<td></td>
 			<td>false</td>
 		</tr>
 		<tr>
-			<td>answers</td>
-			<td>whether or not to return the answers to the questions.</td>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>body</td>
-			<td>whether or not to return the answers' bodies.</td>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
-			<td>comments</td>
-			<td>whether or not to return comments on the answers.</td>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the answer object:<br/>			  <br/>			  activity – last_activity_date<br/>			  creation – creation_date<br/>			  votes – score<br/>			  activity is the default sort.<br/>		</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meTopTaggedQuestionsGet</h3>
+<p>Returns the top 30 questions the user associated with the given access_token has posted in response to questions with the given tags.<br/>		      <br/>		      This method returns a list of questions.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tags</td>
+			<td>a semi-colon delimitted list of tags the questions the answers are on must have.<br/>		      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the answer object:<br/>			  <br/>			  activity – last_activity_date<br/>			  creation – creation_date<br/>			  votes – score<br/>			  activity is the default sort.<br/>		</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 
@@ -1098,11 +2852,60 @@
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meTimelinesGet</h3>
+<p>Returns a subset of the actions the user identified by the passed access_token has taken on the site.<br/>		      <br/>		      This method returns a list of user timeline objects.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
 <h3>userTopAnswerTagsGet</h3>
-<p>Returns a single user's top 30 tags by answer score.<br/><br/>					This a subset of the data returned on a user's stats tab.<br/>			</p>
+<p>Returns a single user's top tags by answer score.<br/><br/>		      This a subset of the data returned on a user's stats tab.<br/>		      <br/>		      {id} can contain a single id, to find it programatically look for user_id on user or shallow_user objects.<br/>		      <br/>		      This method returns a list of top_tag objects.<br/>		   </p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1115,13 +2918,62 @@
 			<td>id</td>
 			<td>the id of a user</td>
 			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meTopAnswerTagsGet</h3>
+<p>Returns the user identified by access_token's top 30 tags by answer score.<br/>		      <br/>		      This method returns a list of top tag objects.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
 			<td>false</td>
 		</tr>
 	</tbody>
 
 </table>
 <h3>userTopQuestionTagsGet</h3>
-<p>Returns a single user's top 30 tags by question score.<br/><br/>					This a subset of the data returned on a user's stats tab.<br/>			</p>
+<p>Returns a single user's top tags by question score.<br/><br/>		      This a subset of the data returned on a user's stats tab.<br/>		      <br/>		      {id} can contain a single id, to find it programatically look for user_id on user or shallow_user objects.<br/>		      <br/>		      This method returns a list of top_tag objects.<br/>		   </p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1136,11 +2988,29 @@
 			<td></td>
 			<td>false</td>
 		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
 	</tbody>
 
 </table>
-<h3>moderatorsGet</h3>
-<p>Gets those users on a site who can exercise moderation powers.<br/><br/>					Note, employees of Stack Overflow will be returned if they have been granted moderation powers on a site even if they have never been appointed or elected explicitly. This method checks abilities, not the manner in which they were obtained.<br/>			</p>
+<h3>meTopQuestionTagsGet</h3>
+<p>Returns the user identified by access_token's top 30 tags by question score.<br/>		      <br/>		      This method returns a list of top tag objects.<br/>		      <br/>		   </p>
 <table class="table">
 	<thead>
 		<th>Parameter name</th>
@@ -1150,11 +3020,104 @@
 	</thead>
 	<tbody>
 		<tr>
-			<td>filter</td>
-			<td>Required text in returned tags.</td>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userWritePermissionGet</h3>
+<p>Returns the write permissions a user has via the api.<br/>		      <br/>		      The Stack Exchange API gives users the ability to create, edit, and delete certain types. This method returns whether the passed user is capable of performing those actions at all, as well as how many times a day they can.<br/>		      <br/>		      This method does not consider the user's current quota (ie. if they've already exhausted it for today) nor any additional restrictions on write access, such as editing deleted comments.<br/>		      <br/>		      This method returns a list of write_permissions.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>the id of a user</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meWritePermissionsGet</h3>
+<p>Returns the write permissions a user has via the api, given an access token.<br/><br/>		      The Stack Exchange API gives users the ability to create, edit, and delete certain types. This method returns whether the passed user is capable of performing those actions at all, as well as how many times a day they can.<br/>		      <br/>		      This method does not consider the user's current quota (ie. if they've already exhausted it for today) nor any additional restrictions on write access, such as editing deleted comments.<br/>		      <br/>		      This method returns a list of write_permissions.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>moderatorsGet</h3>
+<p>Gets those users on a site who can exercise moderation powers.<br/>		      <br/>		      Note, employees of Stack Overflow will be returned if they have been granted moderation powers on a site even if they have never been appointed or elected explicitly. This method checks abilities, not the manner in which they were obtained.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
 		<tr>
 			<td>fromdate</td>
 			<td>Unix timestamp of the minimum creation date on a returned item.</td>
@@ -1193,13 +3156,294 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>The sorts accepted by this method operate on the follow fields of the user object:<br/>			  <br/>			  reputation – reputation<br/>			  creation – creation_date<br/>						  name – display_name<br/>			  modified – last_modified_date<br/>			  reputation is the default sort.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>todate</td>
 			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>moderatorsElectedGet</h3>
+<p>Returns those users on a site who both have moderator powers, and were actually elected.<br/><br/>		      This method excludes Stack Exchange Inc. employees, unless they were actually elected moderators on a site (which can only have happened prior to their employment).<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The sorts accepted by this method operate on the follow fields of the user object:<br/>			  <br/>			  reputation – reputation<br/>			  creation – creation_date<br/>			  name – display_name<br/>			  modified – last_modified_date<br/>			  reputation is the default sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userInboxGet</h3>
+<p>Returns a user's inbox.<br/><br/>		      This method requires an access_token, with a scope containing "read_inbox".<br/>		      <br/>		      This method is effectively an alias for /inbox. It is provided for consumers who make strong assumptions about operating within the context of a single site rather than the Stack Exchange network as a whole.<br/>		      <br/>		      {id} can contain a single id, to find it programatically look for user_id on user or shallow_user objects.<br/>		      <br/>		      This method returns a list of inbox items.<br/>		   </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>the id of a user</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meInboxGet</h3>
+<p>Returns the user identified by access_token's inbox.<br/><br/>		      This method requires an access_token, with a scope containing "read_inbox".<br/>		      <br/>		      This method returns a list of inbox items.<br/>		   </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userInboxUnreadGet</h3>
+<p>Returns the unread items in a user's inbox.<br/>		      <br/>		      This method requires an access_token, with a scope containing "read_inbox".<br/>		      <br/>		      This method is effectively an alias for /inbox/unread. It is provided for consumers who make strong assumptions about operating within the context of a single site rather than the Stack Exchange network as a whole.<br/>		      <br/>		      {id} can contain a single id, to find it programatically look for user_id on user or shallow_user objects.<br/>		      <br/>		      This method returns a list of inbox items.<br/>		   </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>the id of a user</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>since</td>
+			<td>Unix timestamp of since date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meInboxUnreadGet</h3>
+<p>Returns the unread items in the user identified by access_token's inbox.<br/>		      <br/>		      This method requires an access_token, with a scope containing "read_inbox".<br/>		      <br/>		      This method returns a list of inbox items.<br/>		   </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>since</td>
+			<td>Unix timestamp of since date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>userAssociatedGet</h3>
+<p>Returns all of a user's associated accounts, given their account_ids in {id}.<br/>		      <br/>		      {id} can contain up to 100 semicolon delimited ids, to find ids programatically look for account_id on user objects.<br/>		      <br/>		      This method returns a list of network_users.<br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>{id} can contain up to 100 semicolon delimited ids, to find ids programatically look for account_id on user objects.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>meAssociatedGet</h3>
+<p>Returns all of a user's associated accounts, given an access_token for them.<br/>		      <br/>		      This method returns a list of network users.<br/><br/>		   </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
 			<td></td>
 			<td>true</td>
 		</tr>

@@ -1,0 +1,1366 @@
+({
+	auth:function(){return auth({provider:'constantcontact'})},
+	'contacts.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'contacts.add': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+	},
+	'contacts.search.by.email': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['email'] == null) throw new Error('email is a required parameter')
+		var rgx = new RegExp('\{email\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/email]') !== -1) {
+			url = url.replace('[/email]', '/' + args['email'])
+			if (args['email']) delete args['email']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'contacts.search.by.list.types': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['updatedsince'] == null) throw new Error('updatedsince is a required parameter')
+		var rgx = new RegExp('\{updatedsince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedsince'])
+			if (args['updatedsince']) delete args['updatedsince']
+		}
+		if (url.indexOf('[/updatedsince]') !== -1) {
+			url = url.replace('[/updatedsince]', '/' + args['updatedsince'])
+			if (args['updatedsince']) delete args['updatedsince']
+		}
+		if (args['listtype'] == null) throw new Error('listtype is a required parameter')
+		var rgx = new RegExp('\{listtype\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['listtype'])
+			if (args['listtype']) delete args['listtype']
+		}
+		if (url.indexOf('[/listtype]') !== -1) {
+			url = url.replace('[/listtype]', '/' + args['listtype'])
+			if (args['listtype']) delete args['listtype']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/updatedsince]') !== -1) url = url.replace('[/updatedsince]', '')
+		if (url.indexOf('[/listtype]') !== -1) url = url.replace('[/listtype]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'contacts.search.by.list.id': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['updatedsince'] == null) throw new Error('updatedsince is a required parameter')
+		var rgx = new RegExp('\{updatedsince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedsince'])
+			if (args['updatedsince']) delete args['updatedsince']
+		}
+		if (url.indexOf('[/updatedsince]') !== -1) {
+			url = url.replace('[/updatedsince]', '/' + args['updatedsince'])
+			if (args['updatedsince']) delete args['updatedsince']
+		}
+		if (args['listid'] == null) throw new Error('listid is a required parameter')
+		var rgx = new RegExp('\{listid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['listid'])
+			if (args['listid']) delete args['listid']
+		}
+		if (url.indexOf('[/listid]') !== -1) {
+			url = url.replace('[/listid]', '/' + args['listid'])
+			if (args['listid']) delete args['listid']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/updatedsince]') !== -1) url = url.replace('[/updatedsince]', '')
+		if (url.indexOf('[/listid]') !== -1) url = url.replace('[/listid]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'contacts.get': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['contact-id'] == null) throw new Error('contact-id is a required parameter')
+		var rgx = new RegExp('\{contact-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/contact-id]') !== -1) {
+			url = url.replace('[/contact-id]', '/' + args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'contacts.update': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['contact-id'] == null) throw new Error('contact-id is a required parameter')
+		var rgx = new RegExp('\{contact-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/contact-id]') !== -1) {
+			url = url.replace('[/contact-id]', '/' + args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+	},
+	'contacts.opting.out': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['contact-id'] == null) throw new Error('contact-id is a required parameter')
+		var rgx = new RegExp('\{contact-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/contact-id]') !== -1) {
+			url = url.replace('[/contact-id]', '/' + args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
+		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+	},
+	'contacts.events': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}/events/'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['contact-id'] == null) throw new Error('contact-id is a required parameter')
+		var rgx = new RegExp('\{contact-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/contact-id]') !== -1) {
+			url = url.replace('[/contact-id]', '/' + args['contact-id'])
+			if (args['contact-id']) delete args['contact-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'lists.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'lists.add': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+	},
+	'lists.get': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['list-id'] == null) throw new Error('list-id is a required parameter')
+		var rgx = new RegExp('\{list-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/list-id]') !== -1) {
+			url = url.replace('[/list-id]', '/' + args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'lists.update': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['list-id'] == null) throw new Error('list-id is a required parameter')
+		var rgx = new RegExp('\{list-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/list-id]') !== -1) {
+			url = url.replace('[/list-id]', '/' + args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+	},
+	'lists.delete': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['list-id'] == null) throw new Error('list-id is a required parameter')
+		var rgx = new RegExp('\{list-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/list-id]') !== -1) {
+			url = url.replace('[/list-id]', '/' + args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
+		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+	},
+	'lists.members': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}/members'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['list-id'] == null) throw new Error('list-id is a required parameter')
+		var rgx = new RegExp('\{list-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/list-id]') !== -1) {
+			url = url.replace('[/list-id]', '/' + args['list-id'])
+			if (args['list-id']) delete args['list-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'campaigns.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'campaigns.search.status': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['status'] == null) throw new Error('status is a required parameter')
+		var rgx = new RegExp('\{status\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['status'])
+			if (args['status']) delete args['status']
+		}
+		if (url.indexOf('[/status]') !== -1) {
+			url = url.replace('[/status]', '/' + args['status'])
+			if (args['status']) delete args['status']
+		}
+		var rgx = new RegExp('\{refresh\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['refresh'])
+			if (args['refresh']) delete args['refresh']
+		}
+		if (url.indexOf('[/refresh]') !== -1) {
+			url = url.replace('[/refresh]', '/' + args['refresh'])
+			if (args['refresh']) delete args['refresh']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
+		if (url.indexOf('[/refresh]') !== -1) url = url.replace('[/refresh]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'campaigns.refresh.results': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['refresh'] == null) args['refresh'] = "true"
+		var rgx = new RegExp('\{refresh\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['refresh'])
+			if (args['refresh']) delete args['refresh']
+		}
+		if (url.indexOf('[/refresh]') !== -1) {
+			url = url.replace('[/refresh]', '/' + args['refresh'])
+			if (args['refresh']) delete args['refresh']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/refresh]') !== -1) url = url.replace('[/refresh]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'campaigns.add': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+	},
+	'campaigns.get': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['campaign-id'] == null) throw new Error('campaign-id is a required parameter')
+		var rgx = new RegExp('\{campaign-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/campaign-id]') !== -1) {
+			url = url.replace('[/campaign-id]', '/' + args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'campaigns.update': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['campaign-id'] == null) throw new Error('campaign-id is a required parameter')
+		var rgx = new RegExp('\{campaign-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/campaign-id]') !== -1) {
+			url = url.replace('[/campaign-id]', '/' + args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+	},
+	'campaigns.delete': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['campaign-id'] == null) throw new Error('campaign-id is a required parameter')
+		var rgx = new RegExp('\{campaign-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/campaign-id]') !== -1) {
+			url = url.replace('[/campaign-id]', '/' + args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
+		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+	},
+	'campaigns.events': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}/events/'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['campaign-id'] == null) throw new Error('campaign-id is a required parameter')
+		var rgx = new RegExp('\{campaign-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/campaign-id]') !== -1) {
+			url = url.replace('[/campaign-id]', '/' + args['campaign-id'])
+			if (args['campaign-id']) delete args['campaign-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.add': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+	},
+	'events.get': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.list.registrants': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.get.registrant': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.list.guests': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/guests'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.guest.details': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/guests/{guest-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (args['guest-id'] == null) throw new Error('guest-id is a required parameter')
+		var rgx = new RegExp('\{guest-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['guest-id'])
+			if (args['guest-id']) delete args['guest-id']
+		}
+		if (url.indexOf('[/guest-id]') !== -1) {
+			url = url.replace('[/guest-id]', '/' + args['guest-id'])
+			if (args['guest-id']) delete args['guest-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		if (url.indexOf('[/guest-id]') !== -1) url = url.replace('[/guest-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.get.attendance.status': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/attendancestatus'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.update.attendance.status': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/attendancestatus'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+	},
+	'events.get.payment.status': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/paymentstatus'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'events.update.payment.status': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/paymentstatus'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['event-id'] == null) throw new Error('event-id is a required parameter')
+		var rgx = new RegExp('\{event-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (url.indexOf('[/event-id]') !== -1) {
+			url = url.replace('[/event-id]', '/' + args['event-id'])
+			if (args['event-id']) delete args['event-id']
+		}
+		if (args['registrant-id'] == null) throw new Error('registrant-id is a required parameter')
+		var rgx = new RegExp('\{registrant-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (url.indexOf('[/registrant-id]') !== -1) {
+			url = url.replace('[/registrant-id]', '/' + args['registrant-id'])
+			if (args['registrant-id']) delete args['registrant-id']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
+		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+	},
+	'activities.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/activities'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'activities.add': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/activities'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+	},
+	'activities.get': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/activities/{activity-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['activity-id'] == null) throw new Error('activity-id is a required parameter')
+		var rgx = new RegExp('\{activity-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['activity-id'])
+			if (args['activity-id']) delete args['activity-id']
+		}
+		if (url.indexOf('[/activity-id]') !== -1) {
+			url = url.replace('[/activity-id]', '/' + args['activity-id'])
+			if (args['activity-id']) delete args['activity-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/activity-id]') !== -1) url = url.replace('[/activity-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'account.list.email.addresses': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/settings/emailaddresses'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'account.get.email.details': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/settings/emailaddresses/{email-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['email-id'] == null) throw new Error('email-id is a required parameter')
+		var rgx = new RegExp('\{email-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['email-id'])
+			if (args['email-id']) delete args['email-id']
+		}
+		if (url.indexOf('[/email-id]') !== -1) {
+			url = url.replace('[/email-id]', '/' + args['email-id'])
+			if (args['email-id']) delete args['email-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/email-id]') !== -1) url = url.replace('[/email-id]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'folders.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/atom+xml"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'images.list': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['folder-id'] == null) throw new Error('folder-id is a required parameter')
+		var rgx = new RegExp('\{folder-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (url.indexOf('[/folder-id]') !== -1) {
+			url = url.replace('[/folder-id]', '/' + args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/atom+xml"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'images.delete.all': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['folder-id'] == null) throw new Error('folder-id is a required parameter')
+		var rgx = new RegExp('\{folder-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (url.indexOf('[/folder-id]') !== -1) {
+			url = url.replace('[/folder-id]', '/' + args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
+		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+	},
+	'images.get': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images/{image-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['folder-id'] == null) throw new Error('folder-id is a required parameter')
+		var rgx = new RegExp('\{folder-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (url.indexOf('[/folder-id]') !== -1) {
+			url = url.replace('[/folder-id]', '/' + args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (args['image-id'] == null) throw new Error('image-id is a required parameter')
+		var rgx = new RegExp('\{image-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['image-id'])
+			if (args['image-id']) delete args['image-id']
+		}
+		if (url.indexOf('[/image-id]') !== -1) {
+			url = url.replace('[/image-id]', '/' + args['image-id'])
+			if (args['image-id']) delete args['image-id']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/atom+xml"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/atom+xml"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
+		if (url.indexOf('[/image-id]') !== -1) url = url.replace('[/image-id]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+	},
+	'images.delete': function(args, opts) {
+		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images/{image-id}'
+		args = args || {}
+		if (args['username'] == null) throw new Error('username is a required parameter')
+		var rgx = new RegExp('\{username\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (url.indexOf('[/username]') !== -1) {
+			url = url.replace('[/username]', '/' + args['username'])
+			if (args['username']) delete args['username']
+		}
+		if (args['folder-id'] == null) throw new Error('folder-id is a required parameter')
+		var rgx = new RegExp('\{folder-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (url.indexOf('[/folder-id]') !== -1) {
+			url = url.replace('[/folder-id]', '/' + args['folder-id'])
+			if (args['folder-id']) delete args['folder-id']
+		}
+		if (args['image-id'] == null) throw new Error('image-id is a required parameter')
+		var rgx = new RegExp('\{image-id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['image-id'])
+			if (args['image-id']) delete args['image-id']
+		}
+		if (url.indexOf('[/image-id]') !== -1) {
+			url = url.replace('[/image-id]', '/' + args['image-id'])
+			if (args['image-id']) delete args['image-id']
+		}
+		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
+		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
+		if (url.indexOf('[/image-id]') !== -1) url = url.replace('[/image-id]', '')
+		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+	}
+})

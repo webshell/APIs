@@ -1,0 +1,395 @@
+({
+	auth:function(){return auth({provider:'postmark'})},
+	'sendEmail': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/email'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'POST',params:args}, opts)
+	},
+	'sendEmailBatch': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/email/batch'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'POST',params:args}, opts)
+	},
+	'getDeliveryStats': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/deliverystats'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+	},
+	'getBounces': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/bounces'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		var rgx = new RegExp('\{type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
+			if (args['type']) delete args['type']
+		}
+		var rgx = new RegExp('\{inactive\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['inactive'])
+			if (args['inactive']) delete args['inactive']
+		}
+		if (url.indexOf('[/inactive]') !== -1) {
+			url = url.replace('[/inactive]', '/' + args['inactive'])
+			if (args['inactive']) delete args['inactive']
+		}
+		var rgx = new RegExp('\{emailFilter\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['emailFilter'])
+			if (args['emailFilter']) delete args['emailFilter']
+		}
+		if (url.indexOf('[/emailFilter]') !== -1) {
+			url = url.replace('[/emailFilter]', '/' + args['emailFilter'])
+			if (args['emailFilter']) delete args['emailFilter']
+		}
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (args['count'] == null) args['count'] = "25"
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (args['offset'] == null) args['offset'] = "0"
+		var rgx = new RegExp('\{offset\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/offset]') !== -1) {
+			url = url.replace('[/offset]', '/' + args['offset'])
+			if (args['offset']) delete args['offset']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
+		if (url.indexOf('[/inactive]') !== -1) url = url.replace('[/inactive]', '')
+		if (url.indexOf('[/emailFilter]') !== -1) url = url.replace('[/emailFilter]', '')
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
+		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+	},
+	'getBounce': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/bounces/{bounceID}'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (args['bounceID'] == null) throw new Error('bounceID is a required parameter')
+		var rgx = new RegExp('\{bounceID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['bounceID'])
+			if (args['bounceID']) delete args['bounceID']
+		}
+		if (url.indexOf('[/bounceID]') !== -1) {
+			url = url.replace('[/bounceID]', '/' + args['bounceID'])
+			if (args['bounceID']) delete args['bounceID']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/bounceID]') !== -1) url = url.replace('[/bounceID]', '')
+		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+	},
+	'getBounceDump': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/bounces/{bounceID}/dump'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (args['bounceID'] == null) throw new Error('bounceID is a required parameter')
+		var rgx = new RegExp('\{bounceID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['bounceID'])
+			if (args['bounceID']) delete args['bounceID']
+		}
+		if (url.indexOf('[/bounceID]') !== -1) {
+			url = url.replace('[/bounceID]', '/' + args['bounceID'])
+			if (args['bounceID']) delete args['bounceID']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/bounceID]') !== -1) url = url.replace('[/bounceID]', '')
+		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+	},
+	'getBouncesTags': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/bounces/tags'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+	},
+	'activateBounce': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/bounces/{bounceID}/activate'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (args['bounceID'] == null) throw new Error('bounceID is a required parameter')
+		var rgx = new RegExp('\{bounceID\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['bounceID'])
+			if (args['bounceID']) delete args['bounceID']
+		}
+		if (url.indexOf('[/bounceID]') !== -1) {
+			url = url.replace('[/bounceID]', '/' + args['bounceID'])
+			if (args['bounceID']) delete args['bounceID']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		if (url.indexOf('[/bounceID]') !== -1) url = url.replace('[/bounceID]', '')
+		return http({provider:'postmark',url:url,method:'PUT',params:args}, opts)
+	},
+	'getServerSettings': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/server'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+	},
+	'setServerSettings': function(args, opts) {
+		var url = 'https://api.postmarkapp.com/server'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'POST',params:args}, opts)
+	},
+	'filterSpam': function(args, opts) {
+		var url = 'http://spamcheck.postmarkapp.com/filter'
+		args = args || {}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (args['Accept'] == null) args['Accept'] = "application/json"
+		var rgx = new RegExp('\{Accept\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Accept]') !== -1) {
+			url = url.replace('[/Accept]', '/' + args['Accept'])
+			if (args['Accept']) delete args['Accept']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
+		return http({provider:'postmark',url:url,method:'POST',params:args, auth:'none'}, opts)
+	}
+})

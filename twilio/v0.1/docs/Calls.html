@@ -1,0 +1,191 @@
+<h1>Twilio API: Calls</h1>
+<p>These methods are relative to the tag 'Calls'</p><h3>getCall</h3>
+<p>Returns the single Call resource identified by {CallSid}.</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>AccountSid</td>
+			<td>Represents the unique id of the Account responsible for this caller Id</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>CallSid</td>
+			<td>A 34 character string that uniquely idetifies this resource</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getCallList</h3>
+<p>
+					Returns a list of phone calls made to and from the account identified by {AccountSid}, sorted by DateUpdated with
+					most-recent calls first.
+				</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>AccountSid</td>
+			<td>Represents the unique id of the Account responsible for this caller Id</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>To</td>
+			<td>Only show calls to this phone number.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>From</td>
+			<td>Only show calls from this phone number.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>Status</td>
+			<td>
+					Only show calls currently in this status. May be queued, ringing, in-progress, completed, failed, busy, or no-answer.
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>StartTime</td>
+			<td>
+					Only show calls that started on this date, given as YYYY-MM-DD. Also supports inequalities, such as StartTime(less than
+					or equal to)YYYY-MM-DD for calls that started at or before midnight on a date, and StartTime(greater than or equal
+					to)YYYY-MM-DD for calls that started at or after midnight on a date.
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>EndTime</td>
+			<td>
+					Only show calls that ended on this date, given as YYYY-MM-DD. Also supoprts inequalities, such as EndTime(less than or
+					equal to)YYYY-MM-DD for calls that ended at or before midnight on a date, and EndTime(greater than or equal
+					to)YYYY-MM-DD for calls that end at or after midnight on a date.
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getRecordingListForCall</h3>
+<p>Returns a recording list for the {CallSid}</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>AccountSid</td>
+			<td>Represents the unique id of the Account responsible for this caller Id</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>CallSid</td>
+			<td>Show only recordings made during the call given by this sid.</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>DateCreated</td>
+			<td>
+					Only show recordings created on the given date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such
+					as DateCreated(less than or equal to)YYYY-MM-DD for recordings generated at or before midnight on a date, and
+					DateCreated(greater than or equal to)YYYY-MM-DD for recordings generated at or after midnight on a date.
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getNotificationListForCall</h3>
+<p>Returns a notification list</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>format</td>
+			<td></td>
+			<td>json</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>AccountSid</td>
+			<td>Represents the unique id of the Account responsible for this caller Id</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>CallSid</td>
+			<td>A 34 character string that uniquely identifies this resource</td>
+			<td>undefined</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>Log</td>
+			<td>Only show notifications for this log, using the integer log values shown above.</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>MessageDate</td>
+			<td>
+					Only show notifications for this date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such as
+					MessageDate(less than or equal to)YYYY-MM-DD for messages logged at or before midnight on a date, and
+					MessageDate(greater than or equal to)YYYY-MM-DD for messages logged at or after midnight on a date. When performing a
+					date range query with day-granularity make sure the right endpoint is midnight of the next day (e.g. to construct a
+					range query for all calls on YYYY-MM-DD use MessageDate(greater than or equal to)YYYY-MM-DD(and)MessageDate(less
+					than)YYYY-MM-(DD+1)).
+				</td>
+			<td>undefined</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>

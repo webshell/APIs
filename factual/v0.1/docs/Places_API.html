@@ -1,0 +1,155 @@
+<h1>Factual API: Places API</h1>
+<p>These methods are relative to the tag 'Places API'</p><h3>geocode</h3>
+<p>A reverse geocoder: you provide us with a longitude and latitude, we'll return the nearest valid address.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>geo</td>
+			<td>A geographic point. Coordinate order is latitude, longitude.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>geopulse</h3>
+<p>Factual Geopulse provides point-based access to geographic attributes: you provide a long/lat coordinate pair, we provide everything we can know about that geography.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>geo</td>
+			<td>A valid JSON point object. The coordinate order is latitude, longitude</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>select</td>
+			<td>A comma-delimited string listing the desired pulses, enumerated below</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>match</h3>
+<p>Match your data to Factual's.  The Factual Match endpoint will simply return the Factual ID of the data that matches your data; we return no data if we cannot identify your entity unequivocally.  If you require both the Factual ID and entity data for the place, see Resolve.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>values</td>
+			<td>A JSON hash of key value pairs representing the data that will be matched against. Accepts any Global Local parameters (http://blog.factual.com/factuals-global-local-schema) in most combinations</td>
+			<td>{'name':'McDonalds','address':'10451 Santa Monica Blvd','locality':'Los Angeles','region':'CA'}</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>monetize</h3>
+<p>The Monetize API enables you to access offers that Factual has aggregated from various third party offer originators (currently Groupon, LivingSocial, Yelp, GrubHub and Signpost) and earn money based on conversions.  The way it works is Factual snaps offers to Factual Places.  These offers and related places are exposed in the Monetize API, which is accessible through the same API structure as Factual's Core API.  As your users convert (i.e. purchase a deal, order from an online menu), Factual will relay to you a healthy commission from the third party offer originators.  To be clear, such payment is based on the actual conversions driven by a given developer.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>filters</td>
+			<td>Restrict the data returned to conform to specific conditions, e.g., "parametric search". Documentation on filters is here: http://developer.factual.com/display/docs/Core+API+-+Row+Filters.</td>
+			<td>{"last_name":"Smith"}</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_count</td>
+			<td>Include a count of the total number of rows in the dataset that conform to the request based on included filters. Requesting the row count will increase the time required to return a response. The default behavior is to NOT include a row count.</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>geo</td>
+			<td>For tables with latitude/longitude data, restrict data to be returned to be within a geographical range based. Documentation on filters is here: http://developer.factual.com/display/docs/Core+API+-+Geo+Filters. Maximum value for $meters is 20000. While Factual doesn't have an address to l\<br/>at/lng encoder, we highly recommend Pete Warden's Data Science Toolkit (http://www.datasciencetoolkit.org/).</td>
+			<td>{"$circle":{"$center":[35.001,-18.221],"$meters":5000}}</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Maximum number of rows to return. Default is 20. The system maximum is 50. For higher limits please contact Factual, however consider requesting a download (http://www.factual.com/devtools/downloads) of the data if your use case is requesting more data in a single query than is required t\<br/>o fulfill a single end-user's request.</td>
+			<td>20</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>q</td>
+			<td>Full text search query string. Documentation for search filters are here: http://developer.factual.com/display/docs/Core+API+-+Search+Filters.</td>
+			<td>Coffee,Tea</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>Number of rows to skip before returning a page of data. Maximum value is 500 minus any value provided under limit. Default is 0.</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>select</td>
+			<td>What fields to include in the query.  Note that the order of fields will not necessarily be preserved in the resulting JSON response due to the nature of JSON hashes.</td>
+			<td>*</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>The field (or secondary fields) to sort data on, as well as the direction of sort. Supports $distance as a sort option if a geo-filter is specified. Supports $relevance as a sort option if a full text search is specified either using the q parameter or using the $search operator in the fi\<br/>lter parameter.  By default, any query with a full text search will be sorted by relevance.  Any query with a geo filter will be sorted by distance from the reference point.  If both a geo filter and full text search are present, the default will be relevance followed by distance.</td>
+			<td>name:asc</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>resolve</h3>
+<p>Resolve is an entity resolution API that makes partial records complete, matches one entity against another, and assists in de-duping and normalizing datasets. Resolve is designed to work with whatever you throw at it, but the more parameters you provide, the better we can resolve your attributes to an entity.<br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>values</td>
+			<td>A JSON hash of key value pairs representing the data that will be resolved against. Accepts any Global Local parameters (http://blog.factual.com/factuals-global-local-schema) in most combinations</td>
+			<td>{'name':'McDonalds','address':'10451 Santa Monica Blvd','locality':'Los Angeles','region':'CA'}</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>debug</td>
+			<td>Enables toggling on a debug mode for Resolve that returns all potential candidates for resolution and meta-data regarding resolution quality.</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>

@@ -1,0 +1,3596 @@
+({
+	auth:function(){return auth({provider:'myspace'})},
+	'activities.getUserActivities': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/activities/{personId}/{selector}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		var rgx = new RegExp('\{updatedSince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/updatedSince]') !== -1) {
+			url = url.replace('[/updatedSince]', '/' + args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/updatedSince]') !== -1) url = url.replace('[/updatedSince]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'activities.createUserActivity': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/activities/{personId}/@self'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'activities.getSupportedFields': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/activities/@supportedFields'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		var rgx = new RegExp('\{updatedSince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/updatedSince]') !== -1) {
+			url = url.replace('[/updatedSince]', '/' + args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/updatedSince]') !== -1) url = url.replace('[/updatedSince]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'activities.getSupportedVerbs': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/activities/@supportedVerbs'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		var rgx = new RegExp('\{updatedSince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/updatedSince]') !== -1) {
+			url = url.replace('[/updatedSince]', '/' + args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/updatedSince]') !== -1) url = url.replace('[/updatedSince]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'activities.getSupportedObjectTypes': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/activities/@supportedObjectTypes'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		var rgx = new RegExp('\{updatedSince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/updatedSince]') !== -1) {
+			url = url.replace('[/updatedSince]', '/' + args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/updatedSince]') !== -1) url = url.replace('[/updatedSince]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'activities.getApplicationActivities': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/activities/{personId}/{selector}/{appId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (args['appId'] == null) args['appId'] = "@app"
+		var rgx = new RegExp('\{appId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		if (url.indexOf('[/appId]') !== -1) {
+			url = url.replace('[/appId]', '/' + args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		var rgx = new RegExp('\{updatedSince\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/updatedSince]') !== -1) {
+			url = url.replace('[/updatedSince]', '/' + args['updatedSince'])
+			if (args['updatedSince']) delete args['updatedSince']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/appId]') !== -1) url = url.replace('[/appId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/updatedSince]') !== -1) url = url.replace('[/updatedSince]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'albums.getSupportedFields': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/albums/@supportedFields'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'albums.getCurrentUserAlbums': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/albums/{personId}/@self'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'albums.addAlbum': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/albums/{personId}/@self'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'albums.getAlbum': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/albums/{personId}/@self/{albumId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) args['albumId'] = "@me"
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'albums.updateAlbum': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/albums/{personId}/@self/{albumId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) args['albumId'] = "@me"
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'PUT',params:args}, opts)
+	},
+	'groups.getSupportedFields': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/groups/@supportedFields'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'groups.getCurrentUserGroups.': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/groups/{personId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'notifications.send': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/notifications/{personId}/@self'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'appdata.getAllApplicationData': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/appdata/{personId}/{selector}/{appId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (args['appId'] == null) args['appId'] = "@app"
+		var rgx = new RegExp('\{appId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		if (url.indexOf('[/appId]') !== -1) {
+			url = url.replace('[/appId]', '/' + args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/appId]') !== -1) url = url.replace('[/appId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'appdata.addApplicationData': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/appdata/{personId}/{selector}/{appId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (args['appId'] == null) args['appId'] = "@app"
+		var rgx = new RegExp('\{appId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		if (url.indexOf('[/appId]') !== -1) {
+			url = url.replace('[/appId]', '/' + args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/appId]') !== -1) url = url.replace('[/appId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'appdata.deleteApplicationData': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/appdata/{personId}/{selector}/{appId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (args['appId'] == null) args['appId'] = "@app"
+		var rgx = new RegExp('\{appId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		if (url.indexOf('[/appId]') !== -1) {
+			url = url.replace('[/appId]', '/' + args['appId'])
+			if (args['appId']) delete args['appId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/appId]') !== -1) url = url.replace('[/appId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'myspace',url:url,method:'DELETE',params:args}, opts)
+	},
+	'people.getSupportedFields': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/people/@supportedFields'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'people.getUserData': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/people/{personId}/{selector}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'people.getFriendData': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/people/{personId}/{selector}/{friendId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (args['friendId'] == null) throw new Error('friendId is a required parameter')
+		var rgx = new RegExp('\{friendId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['friendId'])
+			if (args['friendId']) delete args['friendId']
+		}
+		if (url.indexOf('[/friendId]') !== -1) {
+			url = url.replace('[/friendId]', '/' + args['friendId'])
+			if (args['friendId']) delete args['friendId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/friendId]') !== -1) url = url.replace('[/friendId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'profilecomments.get': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/profilecomments/{personId}/@self'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'search.getPeople': function(args, opts) {
+		var url = 'http://api.myspace.com/opensearch/people'
+		args = args || {}
+		if (args['searchTerms'] == null) throw new Error('searchTerms is a required parameter')
+		var rgx = new RegExp('\{searchTerms\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchTerms'])
+			if (args['searchTerms']) delete args['searchTerms']
+		}
+		if (url.indexOf('[/searchTerms]') !== -1) {
+			url = url.replace('[/searchTerms]', '/' + args['searchTerms'])
+			if (args['searchTerms']) delete args['searchTerms']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{countryCode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['countryCode'])
+			if (args['countryCode']) delete args['countryCode']
+		}
+		if (url.indexOf('[/countryCode]') !== -1) {
+			url = url.replace('[/countryCode]', '/' + args['countryCode'])
+			if (args['countryCode']) delete args['countryCode']
+		}
+		var rgx = new RegExp('\{culture\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['culture'])
+			if (args['culture']) delete args['culture']
+		}
+		if (url.indexOf('[/culture]') !== -1) {
+			url = url.replace('[/culture]', '/' + args['culture'])
+			if (args['culture']) delete args['culture']
+		}
+		var rgx = new RegExp('\{distance\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		if (url.indexOf('[/distance]') !== -1) {
+			url = url.replace('[/distance]', '/' + args['distance'])
+			if (args['distance']) delete args['distance']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{gender\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['gender'])
+			if (args['gender']) delete args['gender']
+		}
+		if (url.indexOf('[/gender]') !== -1) {
+			url = url.replace('[/gender]', '/' + args['gender'])
+			if (args['gender']) delete args['gender']
+		}
+		var rgx = new RegExp('\{hasPhoto\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['hasPhoto'])
+			if (args['hasPhoto']) delete args['hasPhoto']
+		}
+		if (url.indexOf('[/hasPhoto]') !== -1) {
+			url = url.replace('[/hasPhoto]', '/' + args['hasPhoto'])
+			if (args['hasPhoto']) delete args['hasPhoto']
+		}
+		var rgx = new RegExp('\{latitude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['latitude'])
+			if (args['latitude']) delete args['latitude']
+		}
+		if (url.indexOf('[/latitude]') !== -1) {
+			url = url.replace('[/latitude]', '/' + args['latitude'])
+			if (args['latitude']) delete args['latitude']
+		}
+		var rgx = new RegExp('\{location\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['location'])
+			if (args['location']) delete args['location']
+		}
+		if (url.indexOf('[/location]') !== -1) {
+			url = url.replace('[/location]', '/' + args['location'])
+			if (args['location']) delete args['location']
+		}
+		var rgx = new RegExp('\{longitude\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['longitude'])
+			if (args['longitude']) delete args['longitude']
+		}
+		if (url.indexOf('[/longitude]') !== -1) {
+			url = url.replace('[/longitude]', '/' + args['longitude'])
+			if (args['longitude']) delete args['longitude']
+		}
+		var rgx = new RegExp('\{minAge\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['minAge'])
+			if (args['minAge']) delete args['minAge']
+		}
+		if (url.indexOf('[/minAge]') !== -1) {
+			url = url.replace('[/minAge]', '/' + args['minAge'])
+			if (args['minAge']) delete args['minAge']
+		}
+		var rgx = new RegExp('\{maxAge\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['maxAge'])
+			if (args['maxAge']) delete args['maxAge']
+		}
+		if (url.indexOf('[/maxAge]') !== -1) {
+			url = url.replace('[/maxAge]', '/' + args['maxAge'])
+			if (args['maxAge']) delete args['maxAge']
+		}
+		var rgx = new RegExp('\{searchBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchBy'])
+			if (args['searchBy']) delete args['searchBy']
+		}
+		if (url.indexOf('[/searchBy]') !== -1) {
+			url = url.replace('[/searchBy]', '/' + args['searchBy'])
+			if (args['searchBy']) delete args['searchBy']
+		}
+		var rgx = new RegExp('\{startPage\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startPage'])
+			if (args['startPage']) delete args['startPage']
+		}
+		if (url.indexOf('[/startPage]') !== -1) {
+			url = url.replace('[/startPage]', '/' + args['startPage'])
+			if (args['startPage']) delete args['startPage']
+		}
+		if (url.indexOf('[/searchTerms]') !== -1) url = url.replace('[/searchTerms]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/countryCode]') !== -1) url = url.replace('[/countryCode]', '')
+		if (url.indexOf('[/culture]') !== -1) url = url.replace('[/culture]', '')
+		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/gender]') !== -1) url = url.replace('[/gender]', '')
+		if (url.indexOf('[/hasPhoto]') !== -1) url = url.replace('[/hasPhoto]', '')
+		if (url.indexOf('[/latitude]') !== -1) url = url.replace('[/latitude]', '')
+		if (url.indexOf('[/location]') !== -1) url = url.replace('[/location]', '')
+		if (url.indexOf('[/longitude]') !== -1) url = url.replace('[/longitude]', '')
+		if (url.indexOf('[/minAge]') !== -1) url = url.replace('[/minAge]', '')
+		if (url.indexOf('[/maxAge]') !== -1) url = url.replace('[/maxAge]', '')
+		if (url.indexOf('[/searchBy]') !== -1) url = url.replace('[/searchBy]', '')
+		if (url.indexOf('[/startPage]') !== -1) url = url.replace('[/startPage]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'search.getImages': function(args, opts) {
+		var url = 'http://api.myspace.com/opensearch/images'
+		args = args || {}
+		if (args['searchTerms'] == null) throw new Error('searchTerms is a required parameter')
+		var rgx = new RegExp('\{searchTerms\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchTerms'])
+			if (args['searchTerms']) delete args['searchTerms']
+		}
+		if (url.indexOf('[/searchTerms]') !== -1) {
+			url = url.replace('[/searchTerms]', '/' + args['searchTerms'])
+			if (args['searchTerms']) delete args['searchTerms']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{culture\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['culture'])
+			if (args['culture']) delete args['culture']
+		}
+		if (url.indexOf('[/culture]') !== -1) {
+			url = url.replace('[/culture]', '/' + args['culture'])
+			if (args['culture']) delete args['culture']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{sortBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sortBy'])
+			if (args['sortBy']) delete args['sortBy']
+		}
+		if (url.indexOf('[/sortBy]') !== -1) {
+			url = url.replace('[/sortBy]', '/' + args['sortBy'])
+			if (args['sortBy']) delete args['sortBy']
+		}
+		var rgx = new RegExp('\{sortOrder\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sortOrder'])
+			if (args['sortOrder']) delete args['sortOrder']
+		}
+		if (url.indexOf('[/sortOrder]') !== -1) {
+			url = url.replace('[/sortOrder]', '/' + args['sortOrder'])
+			if (args['sortOrder']) delete args['sortOrder']
+		}
+		var rgx = new RegExp('\{startPage\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startPage'])
+			if (args['startPage']) delete args['startPage']
+		}
+		if (url.indexOf('[/startPage]') !== -1) {
+			url = url.replace('[/startPage]', '/' + args['startPage'])
+			if (args['startPage']) delete args['startPage']
+		}
+		if (url.indexOf('[/searchTerms]') !== -1) url = url.replace('[/searchTerms]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/culture]') !== -1) url = url.replace('[/culture]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/sortBy]') !== -1) url = url.replace('[/sortBy]', '')
+		if (url.indexOf('[/sortOrder]') !== -1) url = url.replace('[/sortOrder]', '')
+		if (url.indexOf('[/startPage]') !== -1) url = url.replace('[/startPage]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'search.getVideos': function(args, opts) {
+		var url = 'http://api.myspace.com/opensearch/videos'
+		args = args || {}
+		if (args['searchTerms'] == null) throw new Error('searchTerms is a required parameter')
+		var rgx = new RegExp('\{searchTerms\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchTerms'])
+			if (args['searchTerms']) delete args['searchTerms']
+		}
+		if (url.indexOf('[/searchTerms]') !== -1) {
+			url = url.replace('[/searchTerms]', '/' + args['searchTerms'])
+			if (args['searchTerms']) delete args['searchTerms']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{culture\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['culture'])
+			if (args['culture']) delete args['culture']
+		}
+		if (url.indexOf('[/culture]') !== -1) {
+			url = url.replace('[/culture]', '/' + args['culture'])
+			if (args['culture']) delete args['culture']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startPage\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startPage'])
+			if (args['startPage']) delete args['startPage']
+		}
+		if (url.indexOf('[/startPage]') !== -1) {
+			url = url.replace('[/startPage]', '/' + args['startPage'])
+			if (args['startPage']) delete args['startPage']
+		}
+		var rgx = new RegExp('\{tag\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		if (url.indexOf('[/tag]') !== -1) {
+			url = url.replace('[/tag]', '/' + args['tag'])
+			if (args['tag']) delete args['tag']
+		}
+		var rgx = new RegExp('\{videoMode\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['videoMode'])
+			if (args['videoMode']) delete args['videoMode']
+		}
+		if (url.indexOf('[/videoMode]') !== -1) {
+			url = url.replace('[/videoMode]', '/' + args['videoMode'])
+			if (args['videoMode']) delete args['videoMode']
+		}
+		if (url.indexOf('[/searchTerms]') !== -1) url = url.replace('[/searchTerms]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/culture]') !== -1) url = url.replace('[/culture]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startPage]') !== -1) url = url.replace('[/startPage]', '')
+		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
+		if (url.indexOf('[/videoMode]') !== -1) url = url.replace('[/videoMode]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'streamSubscription.post': function(args, opts) {
+		var url = 'http://api.myspace.com/stream/subscription'
+		args = args || {}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'streamSubscription.get': function(args, opts) {
+		var url = 'http://api.myspace.com/stream/subscription/{subscriptionId}'
+		args = args || {}
+		if (args['subscriptionId'] == null) throw new Error('subscriptionId is a required parameter')
+		var rgx = new RegExp('\{subscriptionId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subscriptionId'])
+			if (args['subscriptionId']) delete args['subscriptionId']
+		}
+		if (url.indexOf('[/subscriptionId]') !== -1) {
+			url = url.replace('[/subscriptionId]', '/' + args['subscriptionId'])
+			if (args['subscriptionId']) delete args['subscriptionId']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/subscriptionId]') !== -1) url = url.replace('[/subscriptionId]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'streamSubscription.update': function(args, opts) {
+		var url = 'http://api.myspace.com/stream/subscription/{subscriptionId}'
+		args = args || {}
+		if (args['subscriptionId'] == null) throw new Error('subscriptionId is a required parameter')
+		var rgx = new RegExp('\{subscriptionId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subscriptionId'])
+			if (args['subscriptionId']) delete args['subscriptionId']
+		}
+		if (url.indexOf('[/subscriptionId]') !== -1) {
+			url = url.replace('[/subscriptionId]', '/' + args['subscriptionId'])
+			if (args['subscriptionId']) delete args['subscriptionId']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/subscriptionId]') !== -1) url = url.replace('[/subscriptionId]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'PUT',params:args}, opts)
+	},
+	'streamSubscription.delete': function(args, opts) {
+		var url = 'http://api.myspace.com/stream/subscription/{subscriptionId}'
+		args = args || {}
+		if (args['subscriptionId'] == null) throw new Error('subscriptionId is a required parameter')
+		var rgx = new RegExp('\{subscriptionId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['subscriptionId'])
+			if (args['subscriptionId']) delete args['subscriptionId']
+		}
+		if (url.indexOf('[/subscriptionId]') !== -1) {
+			url = url.replace('[/subscriptionId]', '/' + args['subscriptionId'])
+			if (args['subscriptionId']) delete args['subscriptionId']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/subscriptionId]') !== -1) url = url.replace('[/subscriptionId]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'myspace',url:url,method:'DELETE',params:args}, opts)
+	},
+	'streamSubscription.getAll': function(args, opts) {
+		var url = 'http://api.myspace.com/stream/subscription/@all'
+		args = args || {}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'streamSubscription.deleteAll': function(args, opts) {
+		var url = 'http://api.myspace.com/stream/subscription/@all'
+		args = args || {}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'myspace',url:url,method:'DELETE',params:args}, opts)
+	},
+	'mediaItems.getSupportedFields': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/@supportedFields'
+		args = args || {}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItems.list': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/{albumId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) throw new Error('albumId is a required parameter')
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItems.post': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/{albumId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) throw new Error('albumId is a required parameter')
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'mediaItems.get': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/{albumId}/{mediaItemId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) throw new Error('albumId is a required parameter')
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (args['mediaItemId'] == null) throw new Error('mediaItemId is a required parameter')
+		var rgx = new RegExp('\{mediaItemId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		if (url.indexOf('[/mediaItemId]') !== -1) {
+			url = url.replace('[/mediaItemId]', '/' + args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		if (url.indexOf('[/mediaItemId]') !== -1) url = url.replace('[/mediaItemId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItems.update': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/{albumId}/{mediaItemId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) throw new Error('albumId is a required parameter')
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (args['mediaItemId'] == null) throw new Error('mediaItemId is a required parameter')
+		var rgx = new RegExp('\{mediaItemId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		if (url.indexOf('[/mediaItemId]') !== -1) {
+			url = url.replace('[/mediaItemId]', '/' + args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		if (url.indexOf('[/mediaItemId]') !== -1) url = url.replace('[/mediaItemId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'PUT',params:args}, opts)
+	},
+	'mediaItems.videas.list': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/@videos'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItems.videos.post': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/@videos'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'mediaItems.video.get': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/@videos/{mediaItemId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['mediaItemId'] == null) throw new Error('mediaItemId is a required parameter')
+		var rgx = new RegExp('\{mediaItemId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		if (url.indexOf('[/mediaItemId]') !== -1) {
+			url = url.replace('[/mediaItemId]', '/' + args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/mediaItemId]') !== -1) url = url.replace('[/mediaItemId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItems.video.update': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@self/@videos/{mediaItemId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['mediaItemId'] == null) throw new Error('mediaItemId is a required parameter')
+		var rgx = new RegExp('\{mediaItemId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		if (url.indexOf('[/mediaItemId]') !== -1) {
+			url = url.replace('[/mediaItemId]', '/' + args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/mediaItemId]') !== -1) url = url.replace('[/mediaItemId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'PUT',params:args}, opts)
+	},
+	'mediaItems.video.supportedcategories': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@videos/@supportedcategories'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItems.video.category': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaItems/{personId}/@videos/@supportedcategories/{categoryId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['categoryId'] == null) throw new Error('categoryId is a required parameter')
+		var rgx = new RegExp('\{categoryId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		if (url.indexOf('[/categoryId]') !== -1) {
+			url = url.replace('[/categoryId]', '/' + args['categoryId'])
+			if (args['categoryId']) delete args['categoryId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/categoryId]') !== -1) url = url.replace('[/categoryId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'mediaItemsComments.get': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/mediaitemcomments/{personId}/@self/{albumId}/{mediaItemId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['albumId'] == null) throw new Error('albumId is a required parameter')
+		var rgx = new RegExp('\{albumId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (url.indexOf('[/albumId]') !== -1) {
+			url = url.replace('[/albumId]', '/' + args['albumId'])
+			if (args['albumId']) delete args['albumId']
+		}
+		if (args['mediaItemId'] == null) throw new Error('mediaItemId is a required parameter')
+		var rgx = new RegExp('\{mediaItemId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		if (url.indexOf('[/mediaItemId]') !== -1) {
+			url = url.replace('[/mediaItemId]', '/' + args['mediaItemId'])
+			if (args['mediaItemId']) delete args['mediaItemId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{msPrivacyLevel\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) {
+			url = url.replace('[/msPrivacyLevel]', '/' + args['msPrivacyLevel'])
+			if (args['msPrivacyLevel']) delete args['msPrivacyLevel']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/albumId]') !== -1) url = url.replace('[/albumId]', '')
+		if (url.indexOf('[/mediaItemId]') !== -1) url = url.replace('[/mediaItemId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/msPrivacyLevel]') !== -1) url = url.replace('[/msPrivacyLevel]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.getSupportedMoods': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/@supportedMood'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.addMood': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/@supportedMood'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	},
+	'statusmood.getMood': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/@supportedMood/{moodId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['moodId'] == null) throw new Error('moodId is a required parameter')
+		var rgx = new RegExp('\{moodId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['moodId'])
+			if (args['moodId']) delete args['moodId']
+		}
+		if (url.indexOf('[/moodId]') !== -1) {
+			url = url.replace('[/moodId]', '/' + args['moodId'])
+			if (args['moodId']) delete args['moodId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/moodId]') !== -1) url = url.replace('[/moodId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.updateMood': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/@supportedMood/{moodId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['moodId'] == null) throw new Error('moodId is a required parameter')
+		var rgx = new RegExp('\{moodId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['moodId'])
+			if (args['moodId']) delete args['moodId']
+		}
+		if (url.indexOf('[/moodId]') !== -1) {
+			url = url.replace('[/moodId]', '/' + args['moodId'])
+			if (args['moodId']) delete args['moodId']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/moodId]') !== -1) url = url.replace('[/moodId]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'PUT',params:args}, opts)
+	},
+	'statusmood.getStatusUser': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/{selector}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.updateStatusUser': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/{selector}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'PUT',params:args}, opts)
+	},
+	'statusmood.getUserHistory': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/{selector}/history'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.getStatusFriend': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/{selector}/{friendId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['friendId'] == null) throw new Error('friendId is a required parameter')
+		var rgx = new RegExp('\{friendId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['friendId'])
+			if (args['friendId']) delete args['friendId']
+		}
+		if (url.indexOf('[/friendId]') !== -1) {
+			url = url.replace('[/friendId]', '/' + args['friendId'])
+			if (args['friendId']) delete args['friendId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/friendId]') !== -1) url = url.replace('[/friendId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.getFriendHistory': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmood/{personId}/{selector}/{friendId}/history'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['friendId'] == null) throw new Error('friendId is a required parameter')
+		var rgx = new RegExp('\{friendId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['friendId'])
+			if (args['friendId']) delete args['friendId']
+		}
+		if (url.indexOf('[/friendId]') !== -1) {
+			url = url.replace('[/friendId]', '/' + args['friendId'])
+			if (args['friendId']) delete args['friendId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/friendId]') !== -1) url = url.replace('[/friendId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		return http({provider:'myspace',url:url,method:'GET',params:args}, opts)
+	},
+	'statusmood.postComment': function(args, opts) {
+		var url = 'http://api.myspace.com/1.0/statusmoodcomments/{personId}/@self/{statusId}'
+		args = args || {}
+		if (args['personId'] == null) args['personId'] = "@me"
+		var rgx = new RegExp('\{personId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (url.indexOf('[/personId]') !== -1) {
+			url = url.replace('[/personId]', '/' + args['personId'])
+			if (args['personId']) delete args['personId']
+		}
+		if (args['statusId'] == null) throw new Error('statusId is a required parameter')
+		var rgx = new RegExp('\{statusId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['statusId'])
+			if (args['statusId']) delete args['statusId']
+		}
+		if (url.indexOf('[/statusId]') !== -1) {
+			url = url.replace('[/statusId]', '/' + args['statusId'])
+			if (args['statusId']) delete args['statusId']
+		}
+		if (args['selector'] == null) throw new Error('selector is a required parameter')
+		var rgx = new RegExp('\{selector\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		if (url.indexOf('[/selector]') !== -1) {
+			url = url.replace('[/selector]', '/' + args['selector'])
+			if (args['selector']) delete args['selector']
+		}
+		var rgx = new RegExp('\{count\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['count'])
+			if (args['count']) delete args['count']
+		}
+		if (url.indexOf('[/count]') !== -1) {
+			url = url.replace('[/count]', '/' + args['count'])
+			if (args['count']) delete args['count']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		var rgx = new RegExp('\{filterBy\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		if (url.indexOf('[/filterBy]') !== -1) {
+			url = url.replace('[/filterBy]', '/' + args['filterBy'])
+			if (args['filterBy']) delete args['filterBy']
+		}
+		var rgx = new RegExp('\{filterOp\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		if (url.indexOf('[/filterOp]') !== -1) {
+			url = url.replace('[/filterOp]', '/' + args['filterOp'])
+			if (args['filterOp']) delete args['filterOp']
+		}
+		var rgx = new RegExp('\{filterValue\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		if (url.indexOf('[/filterValue]') !== -1) {
+			url = url.replace('[/filterValue]', '/' + args['filterValue'])
+			if (args['filterValue']) delete args['filterValue']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{startIndex\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (url.indexOf('[/startIndex]') !== -1) {
+			url = url.replace('[/startIndex]', '/' + args['startIndex'])
+			if (args['startIndex']) delete args['startIndex']
+		}
+		if (args['Content-Type'] == null) args['Content-Type'] = "application/json"
+		var rgx = new RegExp('\{Content-Type\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/Content-Type]') !== -1) {
+			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
+			if (args['Content-Type']) delete args['Content-Type']
+		}
+		if (url.indexOf('[/personId]') !== -1) url = url.replace('[/personId]', '')
+		if (url.indexOf('[/statusId]') !== -1) url = url.replace('[/statusId]', '')
+		if (url.indexOf('[/selector]') !== -1) url = url.replace('[/selector]', '')
+		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		if (url.indexOf('[/filterBy]') !== -1) url = url.replace('[/filterBy]', '')
+		if (url.indexOf('[/filterOp]') !== -1) url = url.replace('[/filterOp]', '')
+		if (url.indexOf('[/filterValue]') !== -1) url = url.replace('[/filterValue]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/startIndex]') !== -1) url = url.replace('[/startIndex]', '')
+		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
+		return http({provider:'myspace',url:url,method:'POST',params:args}, opts)
+	}
+})

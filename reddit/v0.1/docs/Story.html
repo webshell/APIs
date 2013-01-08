@@ -1,0 +1,298 @@
+<h1>Reddit API: Story</h1>
+<p>These methods are relative to the tag 'Story'</p><h3>submit</h3>
+<p>Submits a link/story. For submitting to work, the reddit_session cookie needs to be present in the request, or the answer to a CAPTCHA must be supplied.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>The link to submit, if the "kind" parameter is "link". Required if the story is a regular post.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>text</td>
+			<td>The text to submit, if the "kind" parameter is "self". Required if the story is a self post.<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>kind</td>
+			<td>Accepted values: link, self.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>sr</td>
+			<td>The subreddit to submit the link to.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>title</td>
+			<td>The text to appear as a link to the new story.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>r</td>
+			<td>The subreddit, again. (?)<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>share</h3>
+<p>Shares a link/story via email to a friend on the logged-in user's behalf. For sharing to work, the reddit_session cookie needs to be present in the request, or the answer to a CAPTCHA must be supplied.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>parent</td>
+			<td>The thing you want to share. See API docs for more details about things.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>share_from</td>
+			<td>The name of the person who is sending the message. Maximum 100 characters.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>replyto</td>
+			<td>The email address of the person who is sending the message.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>share_to</td>
+			<td>The email address of the recepient of the message.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>message</td>
+			<td>The text that precedes the link to the story in the message. Maximum 1000 characters.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>renderstyle</td>
+			<td>Presumably, the email format. Known accepted value: html<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_vote</h3>
+<p>Casts or rescinds a vote on a story/comment.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the thing you are voting for.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+		<tr>
+			<td>dir</td>
+			<td>The vote you are going to cast. Use 1 to vote up, 0 to rescind a vote, or -1 to vote down. Note that previous votes are not additive. If the user previously voted 1, voting -1 will change the vote to -1, not 0. Accepted values: -1 (downvote), 0 (neutral-vote), 1 (upvote)<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_fetch_title</h3>
+<p>Returns the title for a story, given its URL.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>The URL to fetch the title of.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_marknsfw</h3>
+<p>Marks a thing as NSFW.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the thing to mark.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_unmarknsfw</h3>
+<p>Marks a thing as SFW (unmarks as NSFW)<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the thing to unmark.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_save</h3>
+<p>Saves a post.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the post to save.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_unsave</h3>
+<p>Unsaves a post.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the post to unsave.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_hide</h3>
+<p>Hides a post.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the post to hide.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>
+<h3>post_unhide</h3>
+<p>Unhides a post.<br/>               </p>
+<p>[object Object]</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>The fullname of the post to unhide.<br/>                       </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+			<td></td>
+	</tbody>
+
+</table>

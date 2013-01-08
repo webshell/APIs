@@ -1,0 +1,303 @@
+({
+	auth:function(){return auth({provider:'yellowpages'})},
+	'getBusinessListingMap': function(args, opts) {
+		var url = 'http://api2.yp.com/listings/v1/listingmap'
+		args = args || {}
+		if (args['listingid'] == null) throw new Error('listingid is a required parameter')
+		var rgx = new RegExp('\{listingid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['listingid'])
+			if (args['listingid']) delete args['listingid']
+		}
+		if (url.indexOf('[/listingid]') !== -1) {
+			url = url.replace('[/listingid]', '/' + args['listingid'])
+			if (args['listingid']) delete args['listingid']
+		}
+		var rgx = new RegExp('\{pixel_width\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pixel_width'])
+			if (args['pixel_width']) delete args['pixel_width']
+		}
+		if (url.indexOf('[/pixel_width]') !== -1) {
+			url = url.replace('[/pixel_width]', '/' + args['pixel_width'])
+			if (args['pixel_width']) delete args['pixel_width']
+		}
+		var rgx = new RegExp('\{pixel_height\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pixel_height'])
+			if (args['pixel_height']) delete args['pixel_height']
+		}
+		if (url.indexOf('[/pixel_height]') !== -1) {
+			url = url.replace('[/pixel_height]', '/' + args['pixel_height'])
+			if (args['pixel_height']) delete args['pixel_height']
+		}
+		var rgx = new RegExp('\{image_format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['image_format'])
+			if (args['image_format']) delete args['image_format']
+		}
+		if (url.indexOf('[/image_format]') !== -1) {
+			url = url.replace('[/image_format]', '/' + args['image_format'])
+			if (args['image_format']) delete args['image_format']
+		}
+		var rgx = new RegExp('\{zoom\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['zoom'])
+			if (args['zoom']) delete args['zoom']
+		}
+		if (url.indexOf('[/zoom]') !== -1) {
+			url = url.replace('[/zoom]', '/' + args['zoom'])
+			if (args['zoom']) delete args['zoom']
+		}
+		var rgx = new RegExp('\{pan_vertical\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pan_vertical'])
+			if (args['pan_vertical']) delete args['pan_vertical']
+		}
+		if (url.indexOf('[/pan_vertical]') !== -1) {
+			url = url.replace('[/pan_vertical]', '/' + args['pan_vertical'])
+			if (args['pan_vertical']) delete args['pan_vertical']
+		}
+		var rgx = new RegExp('\{pan_horizontal\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pan_horizontal'])
+			if (args['pan_horizontal']) delete args['pan_horizontal']
+		}
+		if (url.indexOf('[/pan_horizontal]') !== -1) {
+			url = url.replace('[/pan_horizontal]', '/' + args['pan_horizontal'])
+			if (args['pan_horizontal']) delete args['pan_horizontal']
+		}
+		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
+		if (url.indexOf('[/pixel_width]') !== -1) url = url.replace('[/pixel_width]', '')
+		if (url.indexOf('[/pixel_height]') !== -1) url = url.replace('[/pixel_height]', '')
+		if (url.indexOf('[/image_format]') !== -1) url = url.replace('[/image_format]', '')
+		if (url.indexOf('[/zoom]') !== -1) url = url.replace('[/zoom]', '')
+		if (url.indexOf('[/pan_vertical]') !== -1) url = url.replace('[/pan_vertical]', '')
+		if (url.indexOf('[/pan_horizontal]') !== -1) url = url.replace('[/pan_horizontal]', '')
+		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+	},
+	'searchListings': function(args, opts) {
+		var url = 'http://api2.yp.com/listings/v1/search'
+		args = args || {}
+		if (args['term'] == null) throw new Error('term is a required parameter')
+		var rgx = new RegExp('\{term\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['term'])
+			if (args['term']) delete args['term']
+		}
+		if (url.indexOf('[/term]') !== -1) {
+			url = url.replace('[/term]', '/' + args['term'])
+			if (args['term']) delete args['term']
+		}
+		if (args['searchloc'] == null) throw new Error('searchloc is a required parameter')
+		var rgx = new RegExp('\{searchloc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchloc'])
+			if (args['searchloc']) delete args['searchloc']
+		}
+		if (url.indexOf('[/searchloc]') !== -1) {
+			url = url.replace('[/searchloc]', '/' + args['searchloc'])
+			if (args['searchloc']) delete args['searchloc']
+		}
+		var rgx = new RegExp('\{phonesearch\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['phonesearch'])
+			if (args['phonesearch']) delete args['phonesearch']
+		}
+		if (url.indexOf('[/phonesearch]') !== -1) {
+			url = url.replace('[/phonesearch]', '/' + args['phonesearch'])
+			if (args['phonesearch']) delete args['phonesearch']
+		}
+		var rgx = new RegExp('\{listingcount\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['listingcount'])
+			if (args['listingcount']) delete args['listingcount']
+		}
+		if (url.indexOf('[/listingcount]') !== -1) {
+			url = url.replace('[/listingcount]', '/' + args['listingcount'])
+			if (args['listingcount']) delete args['listingcount']
+		}
+		var rgx = new RegExp('\{shorturl\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['shorturl'])
+			if (args['shorturl']) delete args['shorturl']
+		}
+		if (url.indexOf('[/shorturl]') !== -1) {
+			url = url.replace('[/shorturl]', '/' + args['shorturl'])
+			if (args['shorturl']) delete args['shorturl']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		var rgx = new RegExp('\{pagenum\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pagenum'])
+			if (args['pagenum']) delete args['pagenum']
+		}
+		if (url.indexOf('[/pagenum]') !== -1) {
+			url = url.replace('[/pagenum]', '/' + args['pagenum'])
+			if (args['pagenum']) delete args['pagenum']
+		}
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/sort]') !== -1) {
+			url = url.replace('[/sort]', '/' + args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		var rgx = new RegExp('\{radius\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['radius'])
+			if (args['radius']) delete args['radius']
+		}
+		if (url.indexOf('[/radius]') !== -1) {
+			url = url.replace('[/radius]', '/' + args['radius'])
+			if (args['radius']) delete args['radius']
+		}
+		if (args['User-Agent'] == null) args['User-Agent'] = "Chrome"
+		var rgx = new RegExp('\{User-Agent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['User-Agent'])
+			if (args['User-Agent']) delete args['User-Agent']
+		}
+		if (url.indexOf('[/User-Agent]') !== -1) {
+			url = url.replace('[/User-Agent]', '/' + args['User-Agent'])
+			if (args['User-Agent']) delete args['User-Agent']
+		}
+		if (url.indexOf('[/term]') !== -1) url = url.replace('[/term]', '')
+		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
+		if (url.indexOf('[/phonesearch]') !== -1) url = url.replace('[/phonesearch]', '')
+		if (url.indexOf('[/listingcount]') !== -1) url = url.replace('[/listingcount]', '')
+		if (url.indexOf('[/shorturl]') !== -1) url = url.replace('[/shorturl]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/pagenum]') !== -1) url = url.replace('[/pagenum]', '')
+		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
+		if (url.indexOf('[/radius]') !== -1) url = url.replace('[/radius]', '')
+		if (url.indexOf('[/User-Agent]') !== -1) url = url.replace('[/User-Agent]', '')
+		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+	},
+	'getBusinessListingDetails': function(args, opts) {
+		var url = 'http://api2.yp.com/listings/v1/details'
+		args = args || {}
+		if (args['listingid'] == null) throw new Error('listingid is a required parameter')
+		var rgx = new RegExp('\{listingid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['listingid'])
+			if (args['listingid']) delete args['listingid']
+		}
+		if (url.indexOf('[/listingid]') !== -1) {
+			url = url.replace('[/listingid]', '/' + args['listingid'])
+			if (args['listingid']) delete args['listingid']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['User-Agent'] == null) args['User-Agent'] = "Chrome"
+		var rgx = new RegExp('\{User-Agent\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['User-Agent'])
+			if (args['User-Agent']) delete args['User-Agent']
+		}
+		if (url.indexOf('[/User-Agent]') !== -1) {
+			url = url.replace('[/User-Agent]', '/' + args['User-Agent'])
+			if (args['User-Agent']) delete args['User-Agent']
+		}
+		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/User-Agent]') !== -1) url = url.replace('[/User-Agent]', '')
+		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+	},
+	'getBusinessListingReviews': function(args, opts) {
+		var url = 'http://api2.yp.com/listings/v1/reviews'
+		args = args || {}
+		if (args['listingid'] == null) throw new Error('listingid is a required parameter')
+		var rgx = new RegExp('\{listingid\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['listingid'])
+			if (args['listingid']) delete args['listingid']
+		}
+		if (url.indexOf('[/listingid]') !== -1) {
+			url = url.replace('[/listingid]', '/' + args['listingid'])
+			if (args['listingid']) delete args['listingid']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+	},
+	'getCouponsNearLocation': function(args, opts) {
+		var url = 'http://api2.yp.com/content/v1/coupons'
+		args = args || {}
+		if (args['searchloc'] == null) throw new Error('searchloc is a required parameter')
+		var rgx = new RegExp('\{searchloc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchloc'])
+			if (args['searchloc']) delete args['searchloc']
+		}
+		if (url.indexOf('[/searchloc]') !== -1) {
+			url = url.replace('[/searchloc]', '/' + args['searchloc'])
+			if (args['searchloc']) delete args['searchloc']
+		}
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (args['term'] == null) throw new Error('term is a required parameter')
+		var rgx = new RegExp('\{term\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['term'])
+			if (args['term']) delete args['term']
+		}
+		if (url.indexOf('[/term]') !== -1) {
+			url = url.replace('[/term]', '/' + args['term'])
+			if (args['term']) delete args['term']
+		}
+		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/term]') !== -1) url = url.replace('[/term]', '')
+		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+	},
+	'getDealOfTheDayNearLocation': function(args, opts) {
+		var url = 'http://api2.yp.com/content/v1/deals'
+		args = args || {}
+		if (args['searchloc'] == null) throw new Error('searchloc is a required parameter')
+		var rgx = new RegExp('\{searchloc\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['searchloc'])
+			if (args['searchloc']) delete args['searchloc']
+		}
+		if (url.indexOf('[/searchloc]') !== -1) {
+			url = url.replace('[/searchloc]', '/' + args['searchloc'])
+			if (args['searchloc']) delete args['searchloc']
+		}
+		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
+		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+	}
+})

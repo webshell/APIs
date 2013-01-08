@@ -59,7 +59,152 @@
 		</tr>
 		<tr>
 			<td>sort</td>
-			<td>How a collection should be sorted. One of desc (default), or asc.</td>
+			<td>he sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  relevance – matches the relevance tab on the site itself<br/>						  Does not accept min or max<br/>						  activity is the default sort.<br/>					</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>advancedSearch</h3>
+<p>Searches a site for any questions which fit the given criteria.<br/>				  <br/>				  Search criteria are expressed using the following parameters:<br/>				  <br/>			</p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>nottagged</td>
+			<td>List of tags delimited by semi-colons that must not be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>tagged</td>
+			<td>List of tags delimited by semi-colons of which at least one must be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>text which must appear in returned questions' titles.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>he sorts accepted by this method operate on the follow fields of the question object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      relevance – matches the relevance tab on the site itself<br/>				      Does not accept min or max<br/>				      activity is the default sort.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>q</td>
+			<td>a free form text parameter, will match all question properties based on an undocumented algorithm.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>accepted</td>
+			<td>true to return only questions with accepted answers, false to return only those without. Omit to elide constraint.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>answers</td>
+			<td>the minimum number of answers returned questions must have.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>body</td>
+			<td>text which must appear in returned questions' bodies.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>closed</td>
+			<td>true to return only closed questions, false to return only open ones. Omit to elide constraint.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>migrated</td>
+			<td>true to return only questions migrated away from a site, false to return only those not. Omit to elide constraint.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>notice</td>
+			<td>true to return only questions with post notices, false to return only those without. Omit to elide constraint.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>user</td>
+			<td>the id of the user who must own the questions returned.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>url</td>
+			<td>a url which must be contained in a post, may include a wildcard.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>views</td>
+			<td>the minimum number of views returned questions must have.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>wiki</td>
+			<td>true to return only community wiki questions, false to return only non-community wiki ones. Omit to elide constraint</td>
 			<td></td>
 			<td>true</td>
 		</tr>
@@ -77,40 +222,76 @@
 	</thead>
 	<tbody>
 		<tr>
+			<td>fromdate</td>
+			<td>Unix timestamp of the minimum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>todate</td>
+			<td>Unix timestamp of the maximum creation date on a returned item.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
 			<td>nottagged</td>
-			<td>List of tags delimited by semi-colons that must not be on a question.<br/>							This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
+			<td>List of tags delimited by semi-colons that must not be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>tagged</td>
-			<td>List of tags delimited by semi-colons of which at least one must be on a question.<br/>							This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>answers</td>
-			<td>Include answers.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>body</td>
-			<td>Include question bodies.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>comments</td>
-			<td>Include comments on questions and answers.</td>
+			<td>List of tags delimited by semi-colons of which at least one must be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
 			<td></td>
 			<td>true</td>
 		</tr>
 		<tr>
 			<td>title</td>
-			<td>A title.</td>
+			<td>text which must appear in returned questions' titles.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>max</td>
+			<td>Maximum of the range to include in the response according to the current sort.</td>
 			<td></td>
 			<td>true</td>
+		</tr>
+		<tr>
+			<td>min</td>
+			<td>Minimum of the range to include in the response according to the current sort.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>order</td>
+			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>page</td>
+			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>pagesize</td>
+			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sort</td>
+			<td>he sorts accepted by this method operate on the follow fields of the question object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      relevance – matches the relevance tab on the site itself<br/>				      Does not accept min or max<br/>				      activity is the default sort.<br/>				   </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>site</td>
+			<td>To specified on which site you want to search. stackoverflow (default)</td>
+			<td>stackoverflow</td>
+			<td>false</td>
 		</tr>
 	</tbody>
 

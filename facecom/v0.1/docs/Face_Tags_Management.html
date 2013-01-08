@@ -1,0 +1,225 @@
+<h1>Facecom API: Face Tags Management</h1>
+<p>These methods are relative to the tag 'Face Tags Management'</p><h3>tags.get</h3>
+<p>Returns saved tags in one or more photos, or for the specified User ID(s). This method also accepts multiple filters for finding tags corresponding to a more specific criteria such as front-facing, recent, or where two or more users appear together in same photos.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>order</td>
+			<td>Specify 'recent' for latest tags, and 'random' to randomly select tags.</td>
+			<td>recent</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Set maximum limit for number of tags to return.)</td>
+			<td>5</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>together</td>
+			<td>When providing multiple uids, return only photos where ALL uids appear together in the photo(s).)</td>
+			<td>false</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter</td>
+			<td>Provide advanced facial geometry and attribute filtering.<br/>Where:<br/>uid - user id<br/>gender - male/female<br/>glasses - true/false<br/>smiling - true/false<br/>yaw - left/right/center OR range (x~y) of angle<br/>roll - left/right/center OR range (x~y) of angle<br/>pitch - up/down/center OR range (x~y) of angle<br/>size - range (x~y) of size in pixels<br/><br/>Separators:<br/>:  separates key:value pair<br/>,  separates filter component<br/>|  separates filter set for new person/group<br/>~ range (i.e. 40~100)<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>namespace</td>
+			<td>Default user namespace to be used for all users specified in the short-hand syntax (just the user ID, without the '@namespace')</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>tags.add</h3>
+<p>Add a (manual) face tag to a photo. Use this method to add face tags where those were not detected for completeness of your service. Manual tags are treated like automatic tags, except they are not used to train the system how a user looks like.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>url</td>
+			<td>Url of the JPG photo to add the tag to.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>x</td>
+			<td>The horizontal center position of the tag, as a percentage from 0 to 100, from the left of the photo.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>y</td>
+			<td>The vertical center position of the tag, as a percentage from 0 to 100, from the top of the photo.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>width</td>
+			<td>Width of the tag, as a percentage from 0 to 100 (height is currently the same as the width).</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>uid</td>
+			<td>The ID of the user being tagged.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>tagger_id</td>
+			<td>The ID of the user who's adding the tag.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>label</td>
+			<td>The display name of the user (usually First and Last name).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>password</td>
+			<td>For use when saving tags is a privileged action in your client-side application (must be enabled in application settings).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>tags.save</h3>
+<p>Saves a face tag. Use this method to save tags for training the face.com index, or for future use of the faces.detect and tags.get methods.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tids</td>
+			<td>One or more tag ids to associate with the passed uid. The tag id is a reference field in the response of faces.detect and faces.recognize methods.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>uid</td>
+			<td>the user ID of the user being tagged</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>tagger_id</td>
+			<td>The ID of the user who's adding the tag.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>label</td>
+			<td>The display name of the user (usually First and Last name).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>password</td>
+			<td>For use when saving tags is a privileged action in your client-side application (must be enabled in application settings).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>tags.remove</h3>
+<p>Remove a previously saved face tag from a photo.<br/>			</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>tids</td>
+			<td>List of the tag ids to remove. The tag ID (tid) is a reference field in the response of tags.get, faces.detect and faces.recognize.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>callback</td>
+			<td>JavaScript method to wrap a json-formatted response (for JSONP support, ignored if format=xml).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>password</td>
+			<td>For use when saving tags is a privileged action in your client-side application (must be enabled in application settings).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>user_auth</td>
+			<td>Signed-in facebook or twitter user credentials. Required only when specifying UIDsin these namespaces.<br/>Use name:value pairs, separated by comma:<br/>- fb_user:[facebook user id]<br/>- [Deprecated] fb_session:[facebook session id]<br/>- fb_oauth_token [facebook oauth 2.0 access token]<br/>and/or:<br/>- twitter_username:[twitter screen name]<br/>- twitter_password:[twitter password]<br/>or:<br/>- twitter_oauth_user:[twitter OAuth user]<br/>- twitter_oauth_secret:[twitter OAuth secret]<br/>- twitter_oauth_token:[twitter OAuth token]						<br/>				<br/>			</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>

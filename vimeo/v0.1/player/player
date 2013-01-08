@@ -1,0 +1,92 @@
+args = args || {};
+if (typeof args == 'string') {
+	args = {idVideo: args}
+}
+
+
+var url;
+if (args.url) {
+	url = args.url
+}
+else
+	url = 'http://player.vimeo.com/video/' + args.idVideo + '?api=1';
+
+jsClientApi({
+	name: "vimeo.player",
+	data: {
+		url: url,
+		width: args.width || '100%',
+		height: args.height || '300px',
+		params: {}
+	},
+	initialize: function(callback) {
+		$.getScript("http://webshell.local/lib/froogaloop.min.js", callback);
+	},
+	loaded: function() {
+
+	},
+	create: function(jsapi) {
+		this.player = $f($('#player' + this.data.pid)[0]);
+		var self = this;
+		this.player.addEvent('ready', function() {
+			self.ready(jsapi);
+		})
+		return false;
+	},
+	ready: function(jsapi) {
+		jsapi.ready();
+	},
+	interface: {
+		play: function() {
+			this.player.api('play');
+		},
+		pause: function() {
+			this.player.api('pause');
+		},
+		paused: function() {
+			return this.api('paused');
+		},
+		seekTo: function(seconds) {
+			this.player.api('seekTo', seconds);
+		},
+		unload: function() {
+			this.player.api('unload');
+		},
+		getCurrentTime: function() {
+			return this.player.api('getCurrentTime');
+		},
+		getDuration: function() {
+			return this.player.api('getDuration');
+		},
+		getVideoEmbedCode: function() {
+			return this.player.api('getVideoEmbedCode');
+		},
+		getVideoHeight: function() {
+			return this.player.api('getVideoHeight');
+		},
+		getVideoWidth: function() {
+			return this.player.api('getVideoWidth');
+		},
+		getVideoUrl: function() {
+			return this.player.api('getVideoUrl');
+		},
+		getColor: function() {
+			return this.player.api('getColor');
+		},
+		setColor: function(color) {
+			this.player.api('setColor', color);
+		},
+		setLoop: function(loop) {
+			this.player.api('setLoop', loop);
+		},
+		getVolume: function() {
+			return this.player.api('getVolume');
+		},
+		setVolume: function(volume) {
+			this.player.api('setVolume', volume);
+		},
+		addEvent: function(event, listener) {
+			this.player.addEvent(event, listener);
+		}
+	}
+}, { view: '<iframe id="player<%= data.pid %>" src="<%= data.url %>&player_id=player<%= data.pid %>" style="width: <%= data.width %>; height: <%= data.height %>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>' });

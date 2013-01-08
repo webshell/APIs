@@ -1,0 +1,382 @@
+({
+	auth:function(){return auth({provider:'blogger'})},
+	'blogger.users.blogs.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/users/{userId}/blogs'
+		args = args || {}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.comments.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (args['postId'] == null) throw new Error('postId is a required parameter')
+		var rgx = new RegExp('\{postId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postId'])
+			if (args['postId']) delete args['postId']
+		}
+		if (url.indexOf('[/postId]') !== -1) {
+			url = url.replace('[/postId]', '/' + args['postId'])
+			if (args['postId']) delete args['postId']
+		}
+		var rgx = new RegExp('\{fetchBodies\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fetchBodies'])
+			if (args['fetchBodies']) delete args['fetchBodies']
+		}
+		if (url.indexOf('[/fetchBodies]') !== -1) {
+			url = url.replace('[/fetchBodies]', '/' + args['fetchBodies'])
+			if (args['fetchBodies']) delete args['fetchBodies']
+		}
+		var rgx = new RegExp('\{maxResults\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		if (url.indexOf('[/maxResults]') !== -1) {
+			url = url.replace('[/maxResults]', '/' + args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		var rgx = new RegExp('\{pageToken\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		if (url.indexOf('[/pageToken]') !== -1) {
+			url = url.replace('[/pageToken]', '/' + args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		var rgx = new RegExp('\{startDate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startDate'])
+			if (args['startDate']) delete args['startDate']
+		}
+		if (url.indexOf('[/startDate]') !== -1) {
+			url = url.replace('[/startDate]', '/' + args['startDate'])
+			if (args['startDate']) delete args['startDate']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/postId]') !== -1) url = url.replace('[/postId]', '')
+		if (url.indexOf('[/fetchBodies]') !== -1) url = url.replace('[/fetchBodies]', '')
+		if (url.indexOf('[/maxResults]') !== -1) url = url.replace('[/maxResults]', '')
+		if (url.indexOf('[/pageToken]') !== -1) url = url.replace('[/pageToken]', '')
+		if (url.indexOf('[/startDate]') !== -1) url = url.replace('[/startDate]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.comments.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (args['postId'] == null) throw new Error('postId is a required parameter')
+		var rgx = new RegExp('\{postId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postId'])
+			if (args['postId']) delete args['postId']
+		}
+		if (url.indexOf('[/postId]') !== -1) {
+			url = url.replace('[/postId]', '/' + args['postId'])
+			if (args['postId']) delete args['postId']
+		}
+		if (args['commentId'] == null) throw new Error('commentId is a required parameter')
+		var rgx = new RegExp('\{commentId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		if (url.indexOf('[/commentId]') !== -1) {
+			url = url.replace('[/commentId]', '/' + args['commentId'])
+			if (args['commentId']) delete args['commentId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/postId]') !== -1) url = url.replace('[/postId]', '')
+		if (url.indexOf('[/commentId]') !== -1) url = url.replace('[/commentId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.pages.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		var rgx = new RegExp('\{fetchBodies\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fetchBodies'])
+			if (args['fetchBodies']) delete args['fetchBodies']
+		}
+		if (url.indexOf('[/fetchBodies]') !== -1) {
+			url = url.replace('[/fetchBodies]', '/' + args['fetchBodies'])
+			if (args['fetchBodies']) delete args['fetchBodies']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/fetchBodies]') !== -1) url = url.replace('[/fetchBodies]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.pages.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages/{pageId}'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (args['pageId'] == null) throw new Error('pageId is a required parameter')
+		var rgx = new RegExp('\{pageId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageId'])
+			if (args['pageId']) delete args['pageId']
+		}
+		if (url.indexOf('[/pageId]') !== -1) {
+			url = url.replace('[/pageId]', '/' + args['pageId'])
+			if (args['pageId']) delete args['pageId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/pageId]') !== -1) url = url.replace('[/pageId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.posts.list': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		var rgx = new RegExp('\{fetchBodies\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fetchBodies'])
+			if (args['fetchBodies']) delete args['fetchBodies']
+		}
+		if (url.indexOf('[/fetchBodies]') !== -1) {
+			url = url.replace('[/fetchBodies]', '/' + args['fetchBodies'])
+			if (args['fetchBodies']) delete args['fetchBodies']
+		}
+		var rgx = new RegExp('\{maxResults\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		if (url.indexOf('[/maxResults]') !== -1) {
+			url = url.replace('[/maxResults]', '/' + args['maxResults'])
+			if (args['maxResults']) delete args['maxResults']
+		}
+		var rgx = new RegExp('\{pageToken\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		if (url.indexOf('[/pageToken]') !== -1) {
+			url = url.replace('[/pageToken]', '/' + args['pageToken'])
+			if (args['pageToken']) delete args['pageToken']
+		}
+		var rgx = new RegExp('\{startDate\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['startDate'])
+			if (args['startDate']) delete args['startDate']
+		}
+		if (url.indexOf('[/startDate]') !== -1) {
+			url = url.replace('[/startDate]', '/' + args['startDate'])
+			if (args['startDate']) delete args['startDate']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/fetchBodies]') !== -1) url = url.replace('[/fetchBodies]', '')
+		if (url.indexOf('[/maxResults]') !== -1) url = url.replace('[/maxResults]', '')
+		if (url.indexOf('[/pageToken]') !== -1) url = url.replace('[/pageToken]', '')
+		if (url.indexOf('[/startDate]') !== -1) url = url.replace('[/startDate]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.posts.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}'
+		args = args || {}
+		if (args['blogId'] == null) throw new Error('blogId is a required parameter')
+		var rgx = new RegExp('\{blogId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (url.indexOf('[/blogId]') !== -1) {
+			url = url.replace('[/blogId]', '/' + args['blogId'])
+			if (args['blogId']) delete args['blogId']
+		}
+		if (args['postId'] == null) throw new Error('postId is a required parameter')
+		var rgx = new RegExp('\{postId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['postId'])
+			if (args['postId']) delete args['postId']
+		}
+		if (url.indexOf('[/postId]') !== -1) {
+			url = url.replace('[/postId]', '/' + args['postId'])
+			if (args['postId']) delete args['postId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/blogId]') !== -1) url = url.replace('[/blogId]', '')
+		if (url.indexOf('[/postId]') !== -1) url = url.replace('[/postId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	},
+	'blogger.blogs.users.get': function(args, opts) {
+		var url = 'https://www.googleapis.com/blogger/v2/users/{userId}'
+		args = args || {}
+		if (args['userId'] == null) throw new Error('userId is a required parameter')
+		var rgx = new RegExp('\{userId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		if (url.indexOf('[/userId]') !== -1) {
+			url = url.replace('[/userId]', '/' + args['userId'])
+			if (args['userId']) delete args['userId']
+		}
+		var rgx = new RegExp('\{fields\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/fields]') !== -1) {
+			url = url.replace('[/fields]', '/' + args['fields'])
+			if (args['fields']) delete args['fields']
+		}
+		if (url.indexOf('[/userId]') !== -1) url = url.replace('[/userId]', '')
+		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
+		return http({provider:'blogger',url:url,method:'GET',params:args}, opts)
+	}
+})

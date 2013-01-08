@@ -1,0 +1,385 @@
+<h1>Contextio API: Account Messages</h1>
+<p>These methods are relative to the tag 'Account Messages'</p><h3>listAccountMessages</h3>
+<p>Lists email messages for an account. List filters: each of the email, to, from, cc and bcc parameters can be set to a comma-separated list of email addresses. These multiple addresses are treated as an OR combination. You can set more than one parameter when doing this call. Multiple parameters are treated as an AND combination.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>subject</td>
+			<td>Get messages whose subject matches this search string. To use regular expressions instead of simple string matching, make sure the string starts and ends with /.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td>Email address of the contact for whom you want the latest messages exchanged with. By "exchanged with contact X" we mean any email received from contact X, sent to contact X or sent by anyone to both contact X and the source owner.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>to</td>
+			<td>Email address of a contact messages have been sent to.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>from</td>
+			<td>Email address of a contact messages have been received from.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>cc</td>
+			<td>Email address of a contact CC'ed on the messages.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>bcc</td>
+			<td>Email address of a contact BCC'ed on the messages.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>folder</td>
+			<td>Filter messages by the folder (or Gmail label). This parameter can be the complete folder name with the appropriate hierarchy delimiter for the mail server being queried (eg. Inbox/My folder) or the "symbolic name" of the folder (eg. \Starred). The symbolic name refers to attributes used to refer to special use folders in a language-independant way. See http://code.google.com/apis/gmail/imap/#xlist (Gmail specific) and RFC-6154.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>date_before</td>
+			<td>Only include messages before a given timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>date_after</td>
+			<td>Only include messages after a given timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>indexed_before</td>
+			<td>Only include messages indexed before a given timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>indexed_after</td>
+			<td>Only include messages indexed after a given timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_body</td>
+			<td>Set to 1 to include message bodies in the result. Since message bodies must be retrieved from the IMAP server, expect a performance hit when setting this parameter.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_headers</td>
+			<td>Can be set to 0 (default), 1 or raw. If set to 1, complete message headers, parsed into an array, are included in the results. If set to raw, the headers are also included but as a raw unparsed string. Since full original headers bodies must be retrieved from the IMAP server, expect a performance hit when setting this parameter.</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>include_flags</td>
+			<td>Set to 1 to include IMAP flags for this message in the result. Since message flags must be retrieved from the IMAP server, expect a performance hit when setting this parameter.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>body_type</td>
+			<td>Used when include_body is set to get only body parts of a given MIME-type (i.e. text/html).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>The maximum number of results to return.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>Start the list at this offset (zero-based).</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getAccountMessage</h3>
+<p>Gets the file, contact and other information about a given email message. As specified in the RFC822, the < and > at the beginning and end of the Message-ID are part of the value and should be included if you're putting an email_message_id in the url.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>copyMoveAccountMessage</h3>
+<p>Copies or moves a message. Allows you to copy or move a message between folders. If there are more than one sources on the account, you can use this call to copy/move the message between these sources. In this case, the dst_label parameter must identify the source you want to message to be copied/moved to.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>dst_folder</td>
+			<td>The folder within dst_source the message should be copied to.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>dst_source</td>
+			<td>Label of the source you want the message copied to. This field is required if you're moving a message that already exists in one source of the account to another source of that account. If you only want to move the message to a different folder within the same source, dst_folder is sufficient.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>move</td>
+			<td>By default, this calls copies the original message in the destination. Set this parameter to 1 to move instead of copy.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getAccountMessageBody</h3>
+<p>Fetches the message body of a given email. On-demand data retrieval: since we do not keep full copies of emails on our servers, this call triggers a connection to the IMAP server to fetch the message. One thing to point out is we do fetch messages in such a way that large files attached to a message won't make any difference in the response time. This call only returns text portions of messages, attachments aren't included. To get a list of attachments on the message, look for the files property in the response of a message instance. To download the content of these attachments, use the files/content call.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Many emails are sent with both rich text and plain text versions in the message body and by default, the response of this call will include both. It is possible to only get either the plain or rich text version by setting the type parameter to text/plain or text/html respectively.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getAccountMessageSource</h3>
+<p>Fetches the message source. Returns the raw RFC-822 message source for the message (including attachments) with no parsing or decoding to any portions of the message. On-demand data retrieval: since we do not keep full copies of emails on our servers, this call triggers a connection to the IMAP server to fetch the message. Attachments are part of the message source so they will impact how fast this call responds.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>listAccountMessageFlags</h3>
+<p>Lists message flags for an account. On-demand data retrieval: to ensure up-to-date values, flags are not cached by Context.IO. This call triggers a connection to the IMAP server to fetch the current message flags before it returns.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>setAccountMessageFlags</h3>
+<p>Sets message flags for a given email.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>seen</td>
+			<td>Message has been read. Set this parameter to 1 to set the flag, 0 to unset it.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>answered</td>
+			<td>Message has been answered. Set this parameter to 1 to set the flag, 0 to unset it.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>flagged</td>
+			<td>Message is "flagged" for urgent/special attention. Set this parameter to 1 to set the flag, 0 to unset it.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>deleted</td>
+			<td>Message is "deleted" for later removal. An alternative way of deleting messages is to move it to the Trash folder. Set this parameter to 1 to set the flag, 0 to unset it.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>draft</td>
+			<td>Message has not completed composition (marked as a draft). Set this parameter to 1 to set the flag, 0 to unset it.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>listAccountMessageHeaders</h3>
+<p>Lists complete headers of a given email message. On-demand data retrieval: since we do not keep full copies of emails on our servers, this call triggers a connection to the IMAP server to fetch the message headers.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getAccountMessageThread</h3>
+<p>Gets information about all messages of the thread a given message is in. This returns an array with the same structure as getting information on a single message for every message in the thread.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>message_id</td>
+			<td>Unique id of a message. This can be the message_id or email_message_id property of the message. The gmail_message_id (prefixed with gm-) can also be used.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

@@ -1,0 +1,165 @@
+<h1>Infoconnect API: People</h1>
+<p>These methods are relative to the tag 'People'</p><h3>getPerson</h3>
+<p>Retrieves details of the individual identified by the resource.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>A twelve digit Infogroup identification number. A number referencing the individual assigned by Infogroup. This number will always refer to a single individual and the reference will never change, unless the resource is permanently removed. Requesting a record by {id} will always return zero or one response.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>resourcetype</td>
+			<td>Identifies the resource type for the response. The default value basic returns a base resource type that is valid across all methods; the resource type parameter is not needed to produce this response. To get a more detailed response set the resource type parameter to enhanced. To retrieve resources with Id's only, set the resource type parameter to core. Additional ResourceTypes are Core, LifeStyle and TargetReady.</td>
+			<td>basic</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>Content-Type</td>
+			<td>The content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getPeople</h3>
+<p>Retrieves lists of people.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>resourcetype</td>
+			<td>Identifies the resource type for the response. The default value basic returns a base resource type that is valid across all methods; the resource type parameter is not needed to produce this response. To get a more detailed response set the resource type parameter to enhanced. To retrieve resources with Id's only, set the resource type parameter to core. Additional ResourceTypes are Core, LifeStyle and TargetReady.</td>
+			<td>basic</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>city</td>
+			<td>Filters through the People collection by city name.</td>
+			<td>Omaha</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>email</td>
+			<td>Filters through the People collection and returns resources with a case-insensitive email address match at the level.</td>
+			<td>johndoe@abcco.com</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>emailsha1upper</td>
+			<td>Filters through the People collection and returns resources with a case-insensitive email address match at the level. If used, must be a SHA1 hashed upper case email address.</td>
+			<td>9d2972490f8c6a9a3a8e052d6050f9d3fde2e54d</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>includehistoricalemail</td>
+			<td>IncludeHistoricalEmail can only be used in combination with Email or EmailSha1Upper. IncludeHistoricalEmail is used to retrieve historical records. Including this limits the ResourceType to Basic only. These records do not have an Id therefore cannot be used to return an Enhanced ResourceType. If used, must be True or False. Default is False.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>firstname</td>
+			<td>Filters through the People collection by the primary contact's first name.</td>
+			<td>bill</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>lastname</td>
+			<td>Filters through the People collection by the primary contact's last name.</td>
+			<td>doe</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>phone</td>
+			<td>Filters through the People collection and returns resources with an ten-digit phone number match.</td>
+			<td>5558675309</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>postalcode</td>
+			<td>Filters through the People collection by ZIP code or Postal code.</td>
+			<td>68046</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>stateprovince</td>
+			<td>Filters through the People collection by State or Province abbreviation.</td>
+			<td>NE</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>limit</td>
+			<td>Number of responses to return. If used, must be a number between 1 and 10. Default is 10.</td>
+			<td>10</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>offset</td>
+			<td>Number of responses to be skipped for generating the output. If used, must be a number between 0-100 minus limit. Default is 0.</td>
+			<td>0</td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>Content-Type</td>
+			<td>The content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>searchPeople</h3>
+<p>Retrieves details of resources matching a given set of search fields that are submitted along with the request.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>The content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>countPeople</h3>
+<p>Retrieves counts on resources matching a given set of search fields that are submitted along with the request.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Content-Type</td>
+			<td>The content type.</td>
+			<td>application/json</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

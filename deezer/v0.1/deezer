@@ -1,0 +1,3612 @@
+({
+	auth:function(){return auth({provider:'deezer'})},
+	'getAlbum': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//album/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getAlbumComments': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//album/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'postAlbumComments': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//album/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['comment'] == null) throw new Error('comment is a required parameter')
+		var rgx = new RegExp('\{comment\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment'])
+			if (args['comment']) delete args['comment']
+		}
+		if (url.indexOf('[/comment]') !== -1) {
+			url = url.replace('[/comment]', '/' + args['comment'])
+			if (args['comment']) delete args['comment']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'getAlbumFans': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//album/{id}/fans'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getAlbumTracks': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//album/{id}/tracks'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'rateAlbum': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//album/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['note'] == null) throw new Error('note is a required parameter')
+		var rgx = new RegExp('\{note\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['note'])
+			if (args['note']) delete args['note']
+		}
+		if (url.indexOf('[/note]') !== -1) {
+			url = url.replace('[/note]', '/' + args['note'])
+			if (args['note']) delete args['note']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'getArtist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getArtistTop': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/top'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getArtistAlbums': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/albums'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getArtistComments': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'postArtistComments': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['comment'] == null) throw new Error('comment is a required parameter')
+		var rgx = new RegExp('\{comment\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment'])
+			if (args['comment']) delete args['comment']
+		}
+		if (url.indexOf('[/comment]') !== -1) {
+			url = url.replace('[/comment]', '/' + args['comment'])
+			if (args['comment']) delete args['comment']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'getArtistFans': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/fans'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getArtistRelated': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/related'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getArtistRadio': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//artist/{id}/radio'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getComment': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//comment/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'editorial': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//editorial'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getEditorial': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//editorial/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getEditorialSelection': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//editorial/{id}/selection'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getEditorialCharts': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//editorial/{id}/charts'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'renameFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['title'] == null) throw new Error('title is a required parameter')
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'deleteFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'getFolderItems': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}/items'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addPlaylistInFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}/items'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'addAlbumInFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}/items'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{album_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (url.indexOf('[/album_id]') !== -1) {
+			url = url.replace('[/album_id]', '/' + args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/album_id]') !== -1) url = url.replace('[/album_id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'removePlaylistInFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}/items'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'removeAlbumInFolder': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//folder/{id}/items'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		var rgx = new RegExp('\{album_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (url.indexOf('[/album_id]') !== -1) {
+			url = url.replace('[/album_id]', '/' + args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/album_id]') !== -1) url = url.replace('[/album_id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'genre': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//genre'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getGenre': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//genre/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getAllArtistsByGenre': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//genre/{id}/artists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getAllRadiosByGenre': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//genre/{id}/radios'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getPlaylist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addPlaylist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'deletePlaylist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'getPlaylistComments': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addPlaylistComment': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/comments'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['comment'] == null) throw new Error('comment is a required parameter')
+		var rgx = new RegExp('\{comment\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['comment'])
+			if (args['comment']) delete args['comment']
+		}
+		if (url.indexOf('[/comment]') !== -1) {
+			url = url.replace('[/comment]', '/' + args['comment'])
+			if (args['comment']) delete args['comment']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'getPlaylistFans': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/fans'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getPlaylistTracks': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/tracks'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addPlaylistTracks': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/tracks'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['songs'] == null) throw new Error('songs is a required parameter')
+		var rgx = new RegExp('\{songs\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['songs'])
+			if (args['songs']) delete args['songs']
+		}
+		if (url.indexOf('[/songs]') !== -1) {
+			url = url.replace('[/songs]', '/' + args['songs'])
+			if (args['songs']) delete args['songs']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/songs]') !== -1) url = url.replace('[/songs]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'reorderPlaylistTracks': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/tracks'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['order'] == null) throw new Error('order is a required parameter')
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'removePlaylistTracks': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//playlist/{id}/tracks'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['songs'] == null) throw new Error('songs is a required parameter')
+		var rgx = new RegExp('\{songs\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['songs'])
+			if (args['songs']) delete args['songs']
+		}
+		if (url.indexOf('[/songs]') !== -1) {
+			url = url.replace('[/songs]', '/' + args['songs'])
+			if (args['songs']) delete args['songs']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/songs]') !== -1) url = url.replace('[/songs]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'radio': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//radio'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getRadio': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//radio/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'radioByGenre': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//radio/genres'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'topRadio': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//radio/top'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'radioTracks': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//radio/tracks'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'search': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//search'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'searchAlbum': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//search/album'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'searchArtist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//search/artist'
+		args = args || {}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['q'] == null) throw new Error('q is a required parameter')
+		var rgx = new RegExp('\{q\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
+			if (args['q']) delete args['q']
+		}
+		var rgx = new RegExp('\{order\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getTrack': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//track/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getUser': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getUserAlbums': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/albums'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addUserAlbums': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/albums'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['album_id'] == null) throw new Error('album_id is a required parameter')
+		var rgx = new RegExp('\{album_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (url.indexOf('[/album_id]') !== -1) {
+			url = url.replace('[/album_id]', '/' + args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/album_id]') !== -1) url = url.replace('[/album_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'removeUserAlbums': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/albums'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['album_id'] == null) throw new Error('album_id is a required parameter')
+		var rgx = new RegExp('\{album_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		if (url.indexOf('[/album_id]') !== -1) {
+			url = url.replace('[/album_id]', '/' + args['album_id'])
+			if (args['album_id']) delete args['album_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/album_id]') !== -1) url = url.replace('[/album_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'getUserArtist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/artists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addUserArtist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/artists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['artist_id'] == null) throw new Error('artist_id is a required parameter')
+		var rgx = new RegExp('\{artist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['artist_id'])
+			if (args['artist_id']) delete args['artist_id']
+		}
+		if (url.indexOf('[/artist_id]') !== -1) {
+			url = url.replace('[/artist_id]', '/' + args['artist_id'])
+			if (args['artist_id']) delete args['artist_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/artist_id]') !== -1) url = url.replace('[/artist_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'removeUserArtist': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/artists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['artist_id'] == null) throw new Error('artist_id is a required parameter')
+		var rgx = new RegExp('\{artist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['artist_id'])
+			if (args['artist_id']) delete args['artist_id']
+		}
+		if (url.indexOf('[/artist_id]') !== -1) {
+			url = url.replace('[/artist_id]', '/' + args['artist_id'])
+			if (args['artist_id']) delete args['artist_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/artist_id]') !== -1) url = url.replace('[/artist_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'getUserCharts': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/charts'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getUserFolders': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/folders'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'createUserFolders': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/folders'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['title'] == null) throw new Error('title is a required parameter')
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'getUserFollowings': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/followings'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'followUser': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/followings'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'unfollowUser': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/followings'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
+		var rgx = new RegExp('\{user_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'getUserFollowers': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/followers'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getUserPermissions': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/permissions'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'getUserPersonalSongs': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/personal_songs'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'uploadPersonalSong': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/personal_songs'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'getUserPlaylists': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/playlists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'createUserPlaylists': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/playlists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['title'] == null) throw new Error('title is a required parameter')
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'addUserPlaylists': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/playlists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'removeUserPlaylists': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/playlists'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
+		var rgx = new RegExp('\{playlist_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	},
+	'getUserRadios': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/radios'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
+	},
+	'addUserRadio': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/radios'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['radio_id'] == null) throw new Error('radio_id is a required parameter')
+		var rgx = new RegExp('\{radio_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['radio_id'])
+			if (args['radio_id']) delete args['radio_id']
+		}
+		if (url.indexOf('[/radio_id]') !== -1) {
+			url = url.replace('[/radio_id]', '/' + args['radio_id'])
+			if (args['radio_id']) delete args['radio_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/radio_id]') !== -1) url = url.replace('[/radio_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+	},
+	'removeUserRadios': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0//user/{id}/radios'
+		args = args || {}
+		if (args['id'] == null) throw new Error('id is a required parameter')
+		var rgx = new RegExp('\{id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (args['output'] == null) args['output'] = "json"
+		var rgx = new RegExp('\{output\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (url.indexOf('[/output]') !== -1) {
+			url = url.replace('[/output]', '/' + args['output'])
+			if (args['output']) delete args['output']
+		}
+		if (args['radio_id'] == null) throw new Error('radio_id is a required parameter')
+		var rgx = new RegExp('\{radio_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['radio_id'])
+			if (args['radio_id']) delete args['radio_id']
+		}
+		if (url.indexOf('[/radio_id]') !== -1) {
+			url = url.replace('[/radio_id]', '/' + args['radio_id'])
+			if (args['radio_id']) delete args['radio_id']
+		}
+		var rgx = new RegExp('\{index\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['index'])
+			if (args['index']) delete args['index']
+		}
+		if (url.indexOf('[/index]') !== -1) {
+			url = url.replace('[/index]', '/' + args['index'])
+			if (args['index']) delete args['index']
+		}
+		var rgx = new RegExp('\{nb-items\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/nb-items]') !== -1) {
+			url = url.replace('[/nb-items]', '/' + args['nb-items'])
+			if (args['nb-items']) delete args['nb-items']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/output]') !== -1) url = url.replace('[/output]', '')
+		if (url.indexOf('[/radio_id]') !== -1) url = url.replace('[/radio_id]', '')
+		if (url.indexOf('[/index]') !== -1) url = url.replace('[/index]', '')
+		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
+		return http({provider:'deezer',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+	}
+})

@@ -1,0 +1,203 @@
+<h1>Contextio API: Account WebHooks</h1>
+<p>These methods are relative to the tag 'Account WebHooks'</p><h3>listAccountWebhooks</h3>
+<p>List WebHooks configured for an account.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>createAccountWebhook</h3>
+<p>Creates a new WebHook on an account.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>callback_url</td>
+			<td>A valid URL Context.IO calls when a matching message is found. The callback URL is called with an HTTP POST where the request body is a JSON string that is exactly what accounts/messages would return for that message.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>failure_notif_url</td>
+			<td>A valid URL Context.IO calls if the WebHooks fails and will no longer be active. That may happen if, for example, the server becomes unreachable or if it closes an IDLE connection and we can't re-establish it. The call will be an HTTP GET with the webhook_id passed as a parameter called id.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>filter_to</td>
+			<td>Check for new messages sent to a given name or email address.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_from</td>
+			<td>Check for new messages received from a given name or email address.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_cc</td>
+			<td>Check for new messages where a given name or email address is cc'ed.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_subject</td>
+			<td>Check for new messages with a subject matching a given string or regular expresion.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_thread</td>
+			<td>Check for new messages in a given thread. Value can be a gmail_thread_id or the email_message_id or message_id of an existing message currently in the thread.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_new_important</td>
+			<td>Check for new messages automatically tagged as important by the Gmail Priority Inbox algorithm. To trace all messages marked as important (including those manually set by the user), use filter_folder_added with value \Important. Note the leading back-slash character in the value, it is required to keep this specific to Gmail Priority Inbox. Otherwise any message placed in a folder called "Important" would trigger the WebHook.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_file_name</td>
+			<td>Check for new messages where a file whose name matches the given string is attached. Supports wildcards and regular expressions like the file_name parameter of the files list call.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_file_revisions</td>
+			<td>Check for new message where a new revision of a given file is attached. The value should be a file_id, see getting file revisions for more info.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_folder_added</td>
+			<td>Check for messages filed in a given folder. On Gmail, this is equivalent to having a label applied to a message. The value should be the complete name (including parents if applicable) of the folder you want to track.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>filter_folder_removed</td>
+			<td>Check for messages removed from a given folder. On Gmail, this is equivalent to having a label removed from a message. The value should be the complete name (including parents if applicable) of the folder you want to track.</td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>sync_period</td>
+			<td>Desired maximum delay between the moment the email comes in the user's mailbox and the time we call the callback_url. To have your callback_url called as soon as possible (typically, this means within a minute after the event occurred in the mailbox), set this parameter to immediate or 0. Other possible values are 30m, 1h, 4h, 12h and 24h (default) meaning 30 minutes, 1 hour, 4 hours, 12 hours and 24 hours respectively. This parameter only works on Pro Mailboxes. For Basic Mailboxes, the delay is forced to 24h. However, manually triggering a sync will also trigger WebHooks if applicable.</td>
+			<td>24h</td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>getAccountWebhook</h3>
+<p>Gets properties of a given WebHook.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>webhook_id</td>
+			<td>Unique id of the webhook instance.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>cancelAccountWebhook</h3>
+<p>Cancels a WebHook.</p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>webhook_id</td>
+			<td>Unique id of the webhook instance.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>modifyAccountWebhook</h3>
+<p>Changes properties of a given WebHook. The only property of a WebHook that can be changed is it's active property. If you want to change the filters or callback urls, delete it and create a new one.<br/>Changing the active property can be useful in two cases:<br/>- Pause/resume WebHooks: If your application needs up-to-date information when users are logged in the best option is to keep a WebHook with no filters on that account that will be resumed (setting active to 1) when the user logs in and paused (setting active to 0) when the user logs out of your app.<br/>- Acting upon a failure notification: If a WebHook fails, your failure_notif_url is called (see creating a WebHook) an its active property becomes 0. Set the active property back to 1 to get it working again.                <br/>               </p>
+<p><em>Authentication required</em></p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>id</td>
+			<td>Unique id of an account accessible through your API key.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>webhook_id</td>
+			<td>Unique id of the webhook instance.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>active</td>
+			<td>The active property of a WebHook allows you to pause (set to 0) or resume (set to 1) it.</td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

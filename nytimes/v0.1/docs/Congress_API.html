@@ -1,0 +1,993 @@
+<h1>Nytimes API: Congress API</h1>
+<p>These methods are relative to the tag 'Congress API'</p><h3>memberLists</h3>
+<p>Retrieves a list of members of a particular chamber in a particular Congress.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the members served. Format: House of Representatives: 102���112, Senate: 80���112. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td>Limits the list of members by state. Format: Two-letter state code (e.g., CA)<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>district</td>
+			<td>Limits the list of members by district (House only). If you specify a district, you must also specify a state. If the district number you specify is higher than the total number of districts for that state, a 404 response will be returned. Note: Member list responses include district numbers. Format: House of Representatives district number<br/>                       </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>memberBioRoles</h3>
+<p>Retrieves biographical and Congressional role information for a particular member of Congress.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id</td>
+			<td>The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>newMembers</h3>
+<p>Returns a list of the most recent new members of the current Congress.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>currentMembers</h3>
+<p>Returns the current members of Congress for a particular chamber.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate. When chamber=senate, this request returns both current senators, if available. When chamber=house, this request returns the current occupant of the district seat.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td>Format: Two-letter state abbreviation<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>district</td>
+			<td>Only required for House requests. If you specify a district in a Senate request, it will be ignored. Specify the district number; for "at large" districts (Alaska, Delaware, Montana, North Dakota, South Dakota, Vermont and Wyoming), specify the number 1. Format: House of Representatives district number<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>membersLeaving</h3>
+<p>Returns a list of members who have left the Senate or House or have announced plans to do so.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the members served. Accepted values: 111, 112. Data for previous Congresses will be added soon.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>memberPositions</h3>
+<p>Retrieves the most recent vote positions for a specific member of the House of Representatives or Senate.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id</td>
+			<td>The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>compareMembers</h3>
+<p>Compares two members' vote positions in a particular Congress and chamber. Responses include four calculated values, showing the number and percentage of votes in which the members took the same position or opposing positions.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>first-member-id</td>
+			<td>The unique ID number of the first member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>second-member-id</td>
+			<td>The unique ID number of the second member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress in which the members served. For a table of years and session numbers, see the official site of the U.S. Senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101���112, House: 102���112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101���112, House: 102���112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>billsCosponsoredByMember</h3>
+<p>Returns bill cosponsorship data for a particular member.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id</td>
+			<td>The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Accepted values: cosponsored, withdrawn. "cosponsored" returns the 20 bills most recently cosponsored by member-id. "withdrawn" returns the 20 most recently withdrawn cosponsorships for member-id.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>memberSponsorshipComparison</h3>
+<p>Compares bill sponsorship between two members who served in the same Congress and chamber.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id-1</td>
+			<td>The unique ID number of the first member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id-2</td>
+			<td>The unique ID number of the second member you want to compare. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress in which the members served. For a table of years and session numbers, see the official site of the U.S. Senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101���112, House: 102���112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate. If the two members did not serve together in the Congress and chamber you specify, an error will be returned. Accepted values: Senate: 101���112, House: 102���112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>memberFloorAppearances</h3>
+<p>Returns information about a particular member's appearances on the House or Senate floor. Responses provide data from the C-SPAN Congressional Chronicle, including transcripts and (where available) video of the speech.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id</td>
+			<td>The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>rollCallVotes</h3>
+<p>Returns a specific roll-call vote, including a complete list of member positions.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the vote was taken. Accepted values: House of Representatives: 102���112, Senate: 101���112. Vote data for the 112th Congress will be updated regularly, as it becomes available. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>session-number</td>
+			<td>Accepted values: 1, 2, [special session number]. For a detailed list of Congressional sessions, see the Congressional Directory.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>roll-call-number</td>
+			<td>To get roll-call numbers, see the official sites of the U.S. Senate and U.S. House of Representatives.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>votesByType</h3>
+<p>Returns vote information in four categories: missed votes, party votes, lone no votes and perfect votes.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the vote was taken. Accepted values: House of Representatives: 102���112, Senate: 101���112. Vote data for the 112th Congress will be updated regularly, as it becomes available. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>vote-type</td>
+			<td>Accepted values: missed_votes, party_votes, loneno, perfect. See API docs for more info.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>votesByTypeYearMonth</h3>
+<p>Returns all votes in a particular month.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>year</td>
+			<td>Accepted values: House of Representatives: 1991 (102nd Congress) to present, Senate: 1989 (101st Congress) to present. For a table of years and session numbers, see the official site of the U.S. Senate. Format: YYYY<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>month</td>
+			<td>Format: MM<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>votesByTypeDateRange</h3>
+<p>Returns all votes in a in a particular date range (fewer than 30 days).<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>start-date</td>
+			<td>Accepted values: House of Representatives: 1991 (102nd Congress) to present, Senate: 1989 (101st Congress) to present. The number of days from start-date to end-date cannot exceed 30. For a table of years and session numbers, see the official site of the U.S. Senate. Format: YYYY-MM-DD<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>end-date</td>
+			<td>Accepted values: House of Representatives: 1991 (102nd Congress) to present, Senate: 1989 (101st Congress) to present. The number of days from start-date to end-date cannot exceed 30. For a table of years and session numbers, see the official site of the U.S. Senate. Format: YYYY-MM-DD<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>nominationVotes</h3>
+<p>Returns Senate votes on presidential nominations.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the nomination votes were taken. Accepted values: 101-112. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>recentBills</h3>
+<p>Returns 20 most recent bills by type. For the current Congress, "recent bills" can be one of four types (see the descriptions below). For previous Congresses, "recent bills" means the last 20 bills of that Congress.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the bill was introduced/updated. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Accepted values: introduced, updated, passed, major. See API docs for more info.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>billsByMember</h3>
+<p>Returns the 20 bills most recently introduced or updated by a particular member. Results can include more than one Congress.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>member-id</td>
+			<td>The member's unique ID number. To find a member's ID number, get the list of members for the appropriate House or Senate. You can also use the Biographical Directory of the United States Congress to get a member's ID. In search results, each member's name is linked to a record by index ID (e.g., http://bioguide.congress.gov/scripts/biodisplay.pl?index=C001041). Use the index ID as member-id in your request. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>Accepted values: introduced, updated. When type = introduced, the  introduced_date determines the set of recent bills. When type = updated, the latest_major_action_date determines the result set.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>billDetails</h3>
+<p>Returns additional details about a particular bill, including actions taken.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the bill was introduced/updated. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>bill-id</td>
+			<td>The bill's unique ID number. Bill ID numbers are included in bill summary responses as url_number. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>billSubjectsAmendmentsRelated</h3>
+<p>Returns bill subject terms, amendments or related bills.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the bill was introduced/updated. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>bill-id</td>
+			<td>The bill's unique ID number. Bill ID numbers are included in bill summary responses as url_number. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>resource</td>
+			<td>Accepted values: subjects, amendments, related.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>billCosponsors</h3>
+<p>Returns information about the cosponsors of a particular bill.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress during which the bill was introduced. Accepted values: 105-112. For a table of years and session numbers, see the official site of the U.S. Senate.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>bill-id</td>
+			<td>The bill's unique ID number. Bill ID numbers are included in bill summary responses as url_number. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>nomineeLists</h3>
+<p>Returns lists of presidential nominations for civilian positions.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress in which the nomination was made. Accepted values: 107-112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>nomination-category</td>
+			<td>The type of nomination you want to retrieve. Accepted values: received, updated, confirmed, withdrawn. For new nominations, use received.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>nomineeDetails</h3>
+<p>Returns details about a particular presidential civilian nomination.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress in which the nomination was made. Accepted values: 107-112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>nominee-id</td>
+			<td>The PN ID for the nomination. To find a PN ID, get a list of nominees. Format: alphanumeric<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>nomineesByState</h3>
+<p>Returns the 20 most recent nominees from a particular state.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>The number of the Congress in which the nomination was made. Accepted values: 107-112.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>state</td>
+			<td>Format: Two-letter state abbreviation.<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>statePartyCounts</h3>
+<p>Returns party membership counts for all states (current Congress only).<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>committeesAndCommitteeMembers</h3>
+<p>Returns a list of Senate or House committees or the members of a particular committee.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>congress-number</td>
+			<td>Accepted values: 110-112. (data for earlier Congresses will be available soon)<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>committee-id</td>
+			<td>A specific House or Senate committee. Use this parameter to get a committee roster. To get a full list of committees including ID values (but excluding member data), simply omit this parameter (i.e., end the URI at committees[.format]). Format: committee abbreviation. Optional.<br/>               </td>
+			<td></td>
+			<td>true</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>
+<h3>chamberSchedule</h3>
+<p>Returns today's schedule for the House or Senate.<br/>               </p>
+<table class="table">
+	<thead>
+		<th>Parameter name</th>
+		<th>Description</th>
+		<th>Default</th>
+		<th>Optionnal</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>version</td>
+			<td>The current version is v3. Version 2 is no longer supported. (Version 1 is for internal use only.)<br/>               </td>
+			<td>v3</td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>chamber</td>
+			<td>Accepted values: house, senate<br/>               </td>
+			<td></td>
+			<td>false</td>
+		</tr>
+		<tr>
+			<td>api-key</td>
+			<td>API Key for Congress API.<br/>                       </td>
+			<td>65551def4f298d7b18824aca7ebe3b75:1:64325990</td>
+			<td>false</td>
+		</tr>
+	</tbody>
+
+</table>

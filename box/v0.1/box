@@ -1,0 +1,684 @@
+({
+	auth:function(){return auth({provider:'box'})},
+	'GetAccountTree': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_account_tree&folder_id={folderId}&params={params}'
+		args = args || {}
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (args['params'] == null) args['params'] = "nozip"
+		var rgx = new RegExp('\{params\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['params'])
+			if (args['params']) delete args['params']
+		}
+		if (url.indexOf('[/params]') !== -1) {
+			url = url.replace('[/params]', '/' + args['params'])
+			if (args['params']) delete args['params']
+		}
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/params]') !== -1) url = url.replace('[/params]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'CreateFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=create_folder&parent_id={parentId}&name={name}&share={share}'
+		args = args || {}
+		if (args['parentId'] == null) args['parentId'] = "0"
+		var rgx = new RegExp('\{parentId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['parentId'])
+			if (args['parentId']) delete args['parentId']
+		}
+		if (url.indexOf('[/parentId]') !== -1) {
+			url = url.replace('[/parentId]', '/' + args['parentId'])
+			if (args['parentId']) delete args['parentId']
+		}
+		if (args['name'] == null) args['name'] = "newfolder"
+		var rgx = new RegExp('\{name\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (url.indexOf('[/name]') !== -1) {
+			url = url.replace('[/name]', '/' + args['name'])
+			if (args['name']) delete args['name']
+		}
+		if (args['share'] == null) args['share'] = "1"
+		var rgx = new RegExp('\{share\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['share'])
+			if (args['share']) delete args['share']
+		}
+		if (url.indexOf('[/share]') !== -1) {
+			url = url.replace('[/share]', '/' + args['share'])
+			if (args['share']) delete args['share']
+		}
+		if (url.indexOf('[/parentId]') !== -1) url = url.replace('[/parentId]', '')
+		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
+		if (url.indexOf('[/share]') !== -1) url = url.replace('[/share]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+	},
+	'MoveFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=move&target={target}&target_id={targetId}&destination_id={destinationId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['destination_id'] == null) args['destination_id'] = "1"
+		var rgx = new RegExp('\{destination_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/destination_id]') !== -1) {
+			url = url.replace('[/destination_id]', '/' + args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/destination_id]') !== -1) url = url.replace('[/destination_id]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+	},
+	'CopyFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=copy&target={target}&target_id={targetId}&destination_id={destinationId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['destination_id'] == null) args['destination_id'] = "1"
+		var rgx = new RegExp('\{destination_id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/destination_id]') !== -1) {
+			url = url.replace('[/destination_id]', '/' + args['destination_id'])
+			if (args['destination_id']) delete args['destination_id']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/destination_id]') !== -1) url = url.replace('[/destination_id]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+	},
+	'RenameFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=rename&target={target}&target_id={targetId}&new_name={newName}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['newName'] == null) args['newName'] = "newfolder"
+		var rgx = new RegExp('\{newName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['newName'])
+			if (args['newName']) delete args['newName']
+		}
+		if (url.indexOf('[/newName]') !== -1) {
+			url = url.replace('[/newName]', '/' + args['newName'])
+			if (args['newName']) delete args['newName']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/newName]') !== -1) url = url.replace('[/newName]', '')
+		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+	},
+	'DeleteFolder': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=delete&target={target}&target_id={targetId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'DELETE',params:args}, opts)
+	},
+	'GetFileInfo': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_file_info&file_id={fileId}'
+		args = args || {}
+		if (args['fileId'] == null) args['fileId'] = "0"
+		var rgx = new RegExp('\{fileId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fileId'])
+			if (args['fileId']) delete args['fileId']
+		}
+		if (url.indexOf('[/fileId]') !== -1) {
+			url = url.replace('[/fileId]', '/' + args['fileId'])
+			if (args['fileId']) delete args['fileId']
+		}
+		if (url.indexOf('[/fileId]') !== -1) url = url.replace('[/fileId]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'SetDescription': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=set_description&target={target}&target_id={targetId}&description={description}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['description'] == null) throw new Error('description is a required parameter')
+		var rgx = new RegExp('\{description\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/description]') !== -1) {
+			url = url.replace('[/description]', '/' + args['description'])
+			if (args['description']) delete args['description']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+	},
+	'PublicShare': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=public_share&target={target}&target_id={targetId}&password={password}&message={message}&emails'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['password'] == null) throw new Error('password is a required parameter')
+		var rgx = new RegExp('\{password\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['password'])
+			if (args['password']) delete args['password']
+		}
+		if (url.indexOf('[/password]') !== -1) {
+			url = url.replace('[/password]', '/' + args['password'])
+			if (args['password']) delete args['password']
+		}
+		if (args['message'] == null) args['message'] = "hey"
+		var rgx = new RegExp('\{message\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+	},
+	'PublicUnShare': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=public_unshare&target={target}&target_id={targetId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+	},
+	'PrivateShare': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=private_share&target={target}&target_id={targetId}&emails'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "newfolder"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+	},
+	'GetRequestFriends': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=request_friends&emails'
+		args = args || {}
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'RequestFriends': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=request_friends&emails'
+		args = args || {}
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'GetFriends': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_friends&params'
+		args = args || {}
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'AddToMyBox': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=add_to_mybox&file_id={fileId}&public_name={publicName}&folder_id={folderId}&tags'
+		args = args || {}
+		if (args['fileId'] == null) args['fileId'] = "0"
+		var rgx = new RegExp('\{fileId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['fileId'])
+			if (args['fileId']) delete args['fileId']
+		}
+		if (url.indexOf('[/fileId]') !== -1) {
+			url = url.replace('[/fileId]', '/' + args['fileId'])
+			if (args['fileId']) delete args['fileId']
+		}
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (args['publicName'] == null) args['publicName'] = "0"
+		var rgx = new RegExp('\{publicName\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['publicName'])
+			if (args['publicName']) delete args['publicName']
+		}
+		if (url.indexOf('[/publicName]') !== -1) {
+			url = url.replace('[/publicName]', '/' + args['publicName'])
+			if (args['publicName']) delete args['publicName']
+		}
+		if (url.indexOf('[/fileId]') !== -1) url = url.replace('[/fileId]', '')
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/publicName]') !== -1) url = url.replace('[/publicName]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'ToggleFolderEmail': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=toggle_folder_email&folder_id={folderId}&enable={enable}'
+		args = args || {}
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (args['enable'] == null) args['enable'] = "0"
+		var rgx = new RegExp('\{enable\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['enable'])
+			if (args['enable']) delete args['enable']
+		}
+		if (url.indexOf('[/enable]') !== -1) {
+			url = url.replace('[/enable]', '/' + args['enable'])
+			if (args['enable']) delete args['enable']
+		}
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/enable]') !== -1) url = url.replace('[/enable]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'AddToTags': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=add_to_tag&tags={testTag}&target={target}&target_id={targetId}'
+		args = args || {}
+		if (args['folderId'] == null) args['folderId'] = "0"
+		var rgx = new RegExp('\{folderId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) {
+			url = url.replace('[/folderId]', '/' + args['folderId'])
+			if (args['folderId']) delete args['folderId']
+		}
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'ExportTags': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=export_tags'
+		args = args || {}
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'GetComments': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_comments&target={target}&target_id={targetId}'
+		args = args || {}
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'AddComments': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=add_comment&target={target}&target_id={targetId}&message={message}'
+		args = args || {}
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['message'] == null) args['message'] = "file"
+		var rgx = new RegExp('\{message\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/message]') !== -1) {
+			url = url.replace('[/message]', '/' + args['message'])
+			if (args['message']) delete args['message']
+		}
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
+		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+	},
+	'DeleteComment': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=delete_comment&target_id={targetId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		return http({provider:'box',url:url,method:'DELETE',params:args}, opts)
+	},
+	'GetVersions': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=get_versions&target={target}&target_id={targetId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'MakeCurrentVersion': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=make_current_version&target={target}&target_id={targetId}&version_id={versionId}'
+		args = args || {}
+		if (args['targetId'] == null) args['targetId'] = "0"
+		var rgx = new RegExp('\{targetId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (url.indexOf('[/targetId]') !== -1) {
+			url = url.replace('[/targetId]', '/' + args['targetId'])
+			if (args['targetId']) delete args['targetId']
+		}
+		if (args['target'] == null) args['target'] = "file"
+		var rgx = new RegExp('\{target\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/target]') !== -1) {
+			url = url.replace('[/target]', '/' + args['target'])
+			if (args['target']) delete args['target']
+		}
+		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
+		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	},
+	'Search': function(args, opts) {
+		var url = 'https://www.box.net/api/1.0/rest/?action=search&query={query}&sort={sort}&page={pageNum}&per_page={perPage}&direction={direction}&params={params}'
+		args = args || {}
+		if (args['page'] == null) args['page'] = "0"
+		var rgx = new RegExp('\{page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (url.indexOf('[/page]') !== -1) {
+			url = url.replace('[/page]', '/' + args['page'])
+			if (args['page']) delete args['page']
+		}
+		if (args['per_page'] == null) args['per_page'] = "10"
+		var rgx = new RegExp('\{per_page\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['per_page'])
+			if (args['per_page']) delete args['per_page']
+		}
+		if (url.indexOf('[/per_page]') !== -1) {
+			url = url.replace('[/per_page]', '/' + args['per_page'])
+			if (args['per_page']) delete args['per_page']
+		}
+		if (args['query'] == null) args['query'] = "file"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['direction'] == null) args['direction'] = "asc"
+		var rgx = new RegExp('\{direction\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['direction'])
+			if (args['direction']) delete args['direction']
+		}
+		if (url.indexOf('[/direction]') !== -1) {
+			url = url.replace('[/direction]', '/' + args['direction'])
+			if (args['direction']) delete args['direction']
+		}
+		if (args['sort'] == null) args['sort'] = "relevance"
+		var rgx = new RegExp('\{sort\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/sort]') !== -1) {
+			url = url.replace('[/sort]', '/' + args['sort'])
+			if (args['sort']) delete args['sort']
+		}
+		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
+		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
+		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
+		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+	}
+})

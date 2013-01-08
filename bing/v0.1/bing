@@ -1,0 +1,345 @@
+({
+	auth:function(){return auth({provider:'bing'})},
+	'webSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=web%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "web"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'imageSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=image%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "image"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'newsSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=news%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "news"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'instantanswerSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=instantanswer%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "instantanswer"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'spellSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=spell%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "spell"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'phonebookSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=phonebook%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "phonebook"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'relatedsearchSearch1': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=relatedsearch%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "relatedsearch"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'adSearch': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=ad%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "ad"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	},
+	'relatedsearchSearch2': function(args, opts) {
+		var url = 'http://api.search.live.net/{format}.aspx?sources=web+image%26query={query}'
+		args = args || {}
+		if (args['query'] == null) args['query'] = "sushi"
+		var rgx = new RegExp('\{query\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (args['sources'] == null) args['sources'] = "web+images"
+		var rgx = new RegExp('\{sources\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (url.indexOf('[/sources]') !== -1) {
+			url = url.replace('[/sources]', '/' + args['sources'])
+			if (args['sources']) delete args['sources']
+		}
+		if (args['format'] == null) args['format'] = "json"
+		var rgx = new RegExp('\{format\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/sources]') !== -1) url = url.replace('[/sources]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'bing',url:url,method:'GET',params:args}, opts)
+	}
+})
