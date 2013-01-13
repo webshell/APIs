@@ -1,174 +1,336 @@
-<h1>Twitter API: Tweets</h1>
-<p>These methods are relative to the tag 'Tweets'</p><h3>showStatus</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">showStatus</span>
+</div>
+<div class="meta">
 <p>Returns a single Tweet, specified by the id parameter. The Tweet's author will also be embedded within the tweet.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The numerical ID of the desired Tweet.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_my_retweet</td>
-			<td>When set to either true, t or 1, any Tweets returned that have been retweeted by the authenticating user will include an additional current_user_retweet node, containing the ID of the source status for the retweet.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>include_entities</td>
-			<td>The entities node will be disincluded when set to false.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>tweet</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The numerical ID of the desired Tweet.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=trim_user placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</p>
+</div>
+<div class="name">
+<span class="parameter-name">trim_user</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=include_my_retweet placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When set to either true, t or 1, any Tweets returned that have been retweeted by the authenticating user will include an additional current_user_retweet node, containing the ID of the source status for the retweet.</p>
+</div>
+<div class="name">
+<span class="parameter-name">include_my_retweet</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=include_entities placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The entities node will be disincluded when set to false.</p>
+</div>
+<div class="name">
+<span class="parameter-name">include_entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">tweet</span>
+</div>
+<div class="meta">
 <p>Updates the authenticating user's current status, also known as tweeting. To upload an image to accompany the tweet, use POST statuses/update_with_media.<br/><br/>For each update attempt, the update text is compared with the authenticating user's recent tweets. Any attempt that would result in duplication will be blocked, resulting in a 403 error. Therefore, a user cannot submit the same status twice in a row.<br/><br/>While not rate limited by the API a user is limited in the number of tweets they can create at a time. If the number of updates posted by the user reaches the current allowed limit this method will return an HTTP 403 error.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>status</td>
-			<td>The text of your status update, typically up to 140 characters. URL encode as necessary. t.co link wrapping may effect character counts.<br/><br/>There are some special commands in this field to be aware of. For instance, preceding a message with "D " or "M " and following it with a screen name can create a direct message to that user if the relationship allows for it.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>place_id</td>
-			<td>A place in the world. These IDs can be retrieved from apis.twitter.reverseGeocode.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>long</td>
-			<td>The longitude of the location this tweet refers to. The valid ranges for longitude is -180.0 to +180.0 (East is positive) inclusive. This parameter will be ignored if outside that range, if it is not a number, if geo_enabled is disabled, or if there not a corresponding lat parameter.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>in_reply_to_status_id</td>
-			<td>The ID of an existing status that the update is in reply to.<br/><br/>                Note:: This parameter will be ignored unless the author of the tweet this parameter references is mentioned within the status text. Therefore, you must include @username, where username is the author of the referenced tweet, within the update.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>display_coordinates</td>
-			<td>Whether or not to put a pin on the exact coordinates a tweet has been sent from.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>lat</td>
-			<td>The latitude of the location this tweet refers to. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive. It will also be ignored if there isn't a corresponding long parameter.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>destroyStatus</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=status placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The text of your status update, typically up to 140 characters. URL encode as necessary. t.co link wrapping may effect character counts.<br/><br/>There are some special commands in this field to be aware of. For instance, preceding a message with "D " or "M " and following it with a screen name can create a direct message to that user if the relationship allows for it.</p>
+</div>
+<div class="name">
+<span class="parameter-name">status</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=place_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A place in the world. These IDs can be retrieved from apis.twitter.reverseGeocode.</p>
+</div>
+<div class="name">
+<span class="parameter-name">place_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=long placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The longitude of the location this tweet refers to. The valid ranges for longitude is -180.0 to +180.0 (East is positive) inclusive. This parameter will be ignored if outside that range, if it is not a number, if geo_enabled is disabled, or if there not a corresponding lat parameter.</p>
+</div>
+<div class="name">
+<span class="parameter-name">long</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=in_reply_to_status_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of an existing status that the update is in reply to.<br/><br/>                Note:: This parameter will be ignored unless the author of the tweet this parameter references is mentioned within the status text. Therefore, you must include @username, where username is the author of the referenced tweet, within the update.</p>
+</div>
+<div class="name">
+<span class="parameter-name">in_reply_to_status_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=display_coordinates placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Whether or not to put a pin on the exact coordinates a tweet has been sent from.</p>
+</div>
+<div class="name">
+<span class="parameter-name">display_coordinates</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=lat placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The latitude of the location this tweet refers to. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive. It will also be ignored if there isn't a corresponding long parameter.</p>
+</div>
+<div class="name">
+<span class="parameter-name">lat</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=trim_user placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</p>
+</div>
+<div class="name">
+<span class="parameter-name">trim_user</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">destroyStatus</span>
+</div>
+<div class="meta">
 <p>Destroys the status specified by the required ID parameter. The authenticating user must be the author of the specified status. Returns the destroyed status if successful.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The numerical ID of the desired status.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>retweet</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The numerical ID of the desired status.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=trim_user placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</p>
+</div>
+<div class="name">
+<span class="parameter-name">trim_user</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">retweet</span>
+</div>
+<div class="meta">
 <p>Retweets a tweet. Returns the original tweet with retweet details embedded.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The numerical ID of the desired status.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>retweets</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The numerical ID of the desired status.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=trim_user placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</p>
+</div>
+<div class="name">
+<span class="parameter-name">trim_user</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">retweets</span>
+</div>
+<div class="meta">
 <p>Returns up to 100 of the first retweets of a given tweet.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The numerical ID of the desired status.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>count</td>
-			<td>Specifies the number of records to retrieve. Must be less than or equal to 100.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>trim_user</td>
-			<td>When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The numerical ID of the desired status.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=count placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Specifies the number of records to retrieve. Must be less than or equal to 100.</p>
+</div>
+<div class="name">
+<span class="parameter-name">count</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=trim_user placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When set to either true, t or 1, each tweet returned in a timeline will include a user object including only the status authors numerical ID. Omit this parameter to receive the complete user object.</p>
+</div>
+<div class="name">
+<span class="parameter-name">trim_user</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>

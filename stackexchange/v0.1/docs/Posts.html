@@ -1,294 +1,616 @@
-<h1>Stackexchange API: Posts</h1>
-<p>These methods are relative to the tag 'Posts'</p><h3>postsList</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">postsList</span>
+</div>
+<div class="meta">
 <p>Fetches all posts (questions and answers) on the site.<br/><br/>					In many ways this method is the union of /questions and /answers, returning both sets of data albeit only the common fields.<br/><br/>					Most applications should use the question or answer specific methods, but /posts is available for those rare cases where any activity is of intereset. Examples of such queries would be: "all posts on Jan. 1st 2011" or "top 10 posts by score of all time".<br/><br/>					It is possible to create moderately complex queries using sort, min, max, fromdate, and todate.<br/>					This method returns a list of posts.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>The sorts accepted by this method operate on the follow fields of the post object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  <br/>						  activity is the default sort.<br/><br/>					</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td></td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>postsGet</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=fromdate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the minimum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">fromdate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=max placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=min placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Minimum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">min</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=order placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How the current sort should be ordered. One of desc (default), or asc.</p>
+</div>
+<div class="name">
+<span class="parameter-name">order</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=page placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pagesize placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=sort placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The sorts accepted by this method operate on the follow fields of the post object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  <br/>						  activity is the default sort.<br/><br/>					</p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=todate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the maximum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">todate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=site placeholder="stackoverflow">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">postsGet</span>
+</div>
+<div class="meta">
 <p>Fetches a set of posts by ids.<br/><br/>					This method is meant for grabbing an object when unsure whether an id identifies a question or an answer. This is most common with user entered data.<br/><br/>					{id} can contain up to 100 semicolon delimited ids, to find ids programatically look for post_id, answer_id, or question_id on post, answer, and question objects respectively.<br/><br/>					It is possible to create moderately complex queries using sort, min, max, fromdate, and todate.<br/>					This method returns a list of posts.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>The sorts accepted by this method operate on the follow fields of the post object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  <br/>						  activity is the default sort.<br/><br/>					</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td></td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>newComment</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=fromdate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the minimum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">fromdate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=max placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=min placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Minimum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">min</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=order placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How the current sort should be ordered. One of desc (default), or asc.</p>
+</div>
+<div class="name">
+<span class="parameter-name">order</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=page placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pagesize placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=sort placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The sorts accepted by this method operate on the follow fields of the post object:<br/><br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  <br/>						  activity is the default sort.<br/><br/>					</p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=todate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the maximum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">todate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=site placeholder="stackoverflow">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">newComment</span>
+</div>
+<div class="meta">
 <p>Create a new comment.<br/><br/>					Use an access_token with write_access to create a new comment on a post.<br/><br/>					This method return the created comment.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>Post id.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>body</td>
-			<td>Comment body.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>preview</td>
-			<td></td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>postsRevisions</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Post id.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=body placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Comment body.</p>
+</div>
+<div class="name">
+<span class="parameter-name">body</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=preview placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+</p>
+</div>
+<div class="name">
+<span class="parameter-name">preview</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">postsRevisions</span>
+</div>
+<div class="meta">
 <p>Returns edit revisions for the posts identified in ids.<br/><br/>					{id} can contain up to 100 semicolon delimited ids, to find ids programatically look for post_id, answer_id, or question_id on post, answer, and question objects respectively.<br/><br/>					This method returns a list of revisions.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td></td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>postsSuggestedEdits</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=fromdate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the minimum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">fromdate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=page placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pagesize placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=todate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the maximum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">todate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=site placeholder="stackoverflow">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">postsSuggestedEdits</span>
+</div>
+<div class="meta">
 <p>Returns suggsted edits on the posts identified in ids.<br/><br/>					creation - creation_date<br/>					approval - approval_date<br/>					rejection - rejection_date<br/>					creation is the default sort.<br/><br/>					{id} can contain up to 100 semicolon delimited ids, to find ids programatically look for post_id, answer_id, or question_id on post, answer, and question objects respectively.<br/>					This method returns a list of suggested-edits.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>creation – creation_date<br/>						  approval – approval_date<br/>						  rejection – rejection_date<br/>					</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td></td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=order placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How the current sort should be ordered. One of desc (default), or asc.</p>
+</div>
+<div class="name">
+<span class="parameter-name">order</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=sort placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+creation – creation_date<br/>						  approval – approval_date<br/>						  rejection – rejection_date<br/>					</p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=max placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=min placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Minimum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">min</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=fromdate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the minimum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">fromdate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=page placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pagesize placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=todate placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the maximum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">todate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=site placeholder="stackoverflow">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>

@@ -1,523 +1,1122 @@
-<h1>Eventbrite API: Events</h1>
-<p>These methods are relative to the tag 'Events'</p><h3>eventSearch</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">eventSearch</span>
+</div>
+<div class="meta">
 <p>This method uses our search index to find publicly listed events.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>keywords</td>
-			<td>The search keywords. To run an OR search, you need this format: ���keywords=google%20OR%20multimedia���. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>category</td>
-			<td>Event categories (comma seperated): conference, conventions, entertainment, fundraisers, meetings, other, performances, reunions, sales, seminars, social, sports, tradeshows, travel, religion, fairs, food, music, recreation. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>address</td>
-			<td>The venue address. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>city</td>
-			<td>The venue city. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>region</td>
-			<td>The venue state/province/county/territory depending on the country. 2-letter state code is required for US addresses. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>postal_code</td>
-			<td>The postal/zip code of the venue. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>country</td>
-			<td>2-letter country code, according to the ISO 3166 format. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>within</td>
-			<td>If ���within��� is set and the ���city��� or ���zipcode��� resolve to a specific geolocation, the search will be restricted to the specified within radius. The sorting default will be set to ���distance���. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>within_unit</td>
-			<td>If within is set, you can specify the unit to use: ���M��� for miles, or ���K��� for kilometers. By default, the API will use miles. Optional.<br/>                       </td>
-			<td>M</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>latitude</td>
-			<td>If ���within��� is set you can limit your search to wgs84 coordinates (latitude, longitude). Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>longitude</td>
-			<td>If ���within��� is set you can limit your search to wgs84 coordinates (latitude, longitude). Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>date</td>
-			<td>The event start date. Limit the list of results to a date range, specified by a label or by exact dates. Currently supported labels include: ���All���, ���Future���, ���Past���, ���Today���, ���Yesterday���, ���Last Week���, ���This Week���, ���Next week���, ���This Month���, ���Next Month��� and months by name, e.g. ���October���. Exact date ranges take the form ���YYYY-MM-DD YYYY-MM-DD���, e.g. ���2008-04-25 2008-04-27���. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>date_created</td>
-			<td>The date range the event was created, specified by a label or by exact dates. Currently supported labels include: ���All���, ���Future���, ���Past���, ���Today���, ���Yesterday���, ���Last Week���, ���This Week���, ���Next week���, ���This Month���, ���Next Month��� and months by name, e.g. ���October���. Exact date ranges take the form ���YYYY-MM-DD YYYY-MM-DD���, e.g. ���2008-04-25 2008-04-27���. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>date_modified</td>
-			<td>The date range the event was modified, specified by a label or by exact dates. Currently supported labels include: ���All���, ���Future���, ���Past���, ���Today���, ���Yesterday���, ���Last Week���, ���This Week���, ���Next week���, ���This Month���, ���Next Month��� and months by name, e.g. ���October���. Exact date ranges take the form ���YYYY-MM-DD YYYY-MM-DD���, e.g. ���2008-04-25 2008-04-27���. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organizer</td>
-			<td>The organizer name. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Limit the number of events returned. Maximum limit is 100 events per page. Default is 10. Optional.<br/>                       </td>
-			<td>10</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>count_only</td>
-			<td>Only return the total number of events (���true��� or ���false���). Default is ���false���. Optional.<br/>                       </td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort_by</td>
-			<td>Sort the list of events by ���id���, ���date���, ���name���, ���city���. The default is ���date���. Optional.<br/>                       </td>
-			<td>date</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>Allows for paging through the results of a query. Default is 1. Optional.<br/>                       </td>
-			<td>1</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>since_id</td>
-			<td>Returns events with id greater than ���since_id��� value. Default is 1. Optional.<br/>                       </td>
-			<td>1</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>tracking_link</td>
-			<td>The tracking link code to add to the event URLs. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>eventGet</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=keywords placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The search keywords. To run an OR search, you need this format: ���keywords=google%20OR%20multimedia���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">keywords</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=category placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Event categories (comma seperated): conference, conventions, entertainment, fundraisers, meetings, other, performances, reunions, sales, seminars, social, sports, tradeshows, travel, religion, fairs, food, music, recreation. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">category</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=address placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue address. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">address</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=city placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue city. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">city</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=region placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue state/province/county/territory depending on the country. 2-letter state code is required for US addresses. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">region</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=postal_code placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The postal/zip code of the venue. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">postal_code</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=country placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+2-letter country code, according to the ISO 3166 format. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">country</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=within placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If ���within��� is set and the ���city��� or ���zipcode��� resolve to a specific geolocation, the search will be restricted to the specified within radius. The sorting default will be set to ���distance���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">within</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=within_unit placeholder="M">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If within is set, you can specify the unit to use: ���M��� for miles, or ���K��� for kilometers. By default, the API will use miles. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">within_unit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=latitude placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If ���within��� is set you can limit your search to wgs84 coordinates (latitude, longitude). Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">latitude</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=longitude placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If ���within��� is set you can limit your search to wgs84 coordinates (latitude, longitude). Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">longitude</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=date placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event start date. Limit the list of results to a date range, specified by a label or by exact dates. Currently supported labels include: ���All���, ���Future���, ���Past���, ���Today���, ���Yesterday���, ���Last Week���, ���This Week���, ���Next week���, ���This Month���, ���Next Month��� and months by name, e.g. ���October���. Exact date ranges take the form ���YYYY-MM-DD YYYY-MM-DD���, e.g. ���2008-04-25 2008-04-27���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">date</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=date_created placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The date range the event was created, specified by a label or by exact dates. Currently supported labels include: ���All���, ���Future���, ���Past���, ���Today���, ���Yesterday���, ���Last Week���, ���This Week���, ���Next week���, ���This Month���, ���Next Month��� and months by name, e.g. ���October���. Exact date ranges take the form ���YYYY-MM-DD YYYY-MM-DD���, e.g. ���2008-04-25 2008-04-27���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">date_created</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=date_modified placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The date range the event was modified, specified by a label or by exact dates. Currently supported labels include: ���All���, ���Future���, ���Past���, ���Today���, ���Yesterday���, ���Last Week���, ���This Week���, ���Next week���, ���This Month���, ���Next Month��� and months by name, e.g. ���October���. Exact date ranges take the form ���YYYY-MM-DD YYYY-MM-DD���, e.g. ���2008-04-25 2008-04-27���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">date_modified</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=organizer placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The organizer name. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">organizer</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=max placeholder="10">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Limit the number of events returned. Maximum limit is 100 events per page. Default is 10. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=count_only placeholder="false">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Only return the total number of events (���true��� or ���false���). Default is ���false���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">count_only</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=sort_by placeholder="date">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Sort the list of events by ���id���, ���date���, ���name���, ���city���. The default is ���date���. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">sort_by</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=page placeholder="1">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Allows for paging through the results of a query. Default is 1. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=since_id placeholder="1">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Returns events with id greater than ���since_id��� value. Default is 1. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">since_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=tracking_link placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The tracking link code to add to the event URLs. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">tracking_link</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">eventGet</span>
+</div>
+<div class="meta">
 <p>This method returns the data for a given event. Only public events are viewable if no authentication is passed.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>event_id</td>
-			<td>The ID of the requested event.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>eventNew</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=event_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of the requested event.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">event_id</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">eventNew</span>
+</div>
+<div class="meta">
 <p>This method creates a new event. It returns the ID of the newly created event.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>title</td>
-			<td>The event title. 255 characters max.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>description</td>
-			<td>The event description. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>start_date</td>
-			<td>The event start date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>end_date</td>
-			<td>The event end date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>timezone</td>
-			<td>The event time zone in relation to GMT (e.g., ���GMT+01���, ���GMT+02���, ���GMT-01���).<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>privacy</td>
-			<td>0 for a private event, 1 for a public event. If not provided, will default to 0. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>personalized_url</td>
-			<td>The event registration URL. If you pass ���testevent���, the event will be accessible at ���http://testevent.eventbrite.com���.  This string is limited to 255 characters max. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>venue_id</td>
-			<td>The event venue ID. The venue must have been previously created using /venue_new. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organizer_id</td>
-			<td>The event organizer ID. The organizer must have been previously created using /organizer_new. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>capacity</td>
-			<td>The maximum number of people who can attend the event. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>currency</td>
-			<td>The event currency in ISO 4217 format (e.g., ���USD���, ���EUR���). Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>status</td>
-			<td>The event status. Allowed values are ���draft���, ���live��� for new events. If not provided, status will be ���draft���, meaning that the event registration page will not be available publicly. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>custom_header</td>
-			<td>Custom HTML header for your registration page. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>custom_footer</td>
-			<td>Custom HTML footer for your registration page. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>background_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>title_text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_background_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_border_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_header_background_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_header_text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>eventUpdate</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=title placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event title. 255 characters max.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">title</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=description placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event description. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">description</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=start_date placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event start date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">start_date</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=end_date placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event end date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">end_date</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=timezone placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event time zone in relation to GMT (e.g., ���GMT+01���, ���GMT+02���, ���GMT-01���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">timezone</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=privacy placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+0 for a private event, 1 for a public event. If not provided, will default to 0. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">privacy</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=personalized_url placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event registration URL. If you pass ���testevent���, the event will be accessible at ���http://testevent.eventbrite.com���.  This string is limited to 255 characters max. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">personalized_url</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event venue ID. The venue must have been previously created using /venue_new. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">venue_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=organizer_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event organizer ID. The organizer must have been previously created using /organizer_new. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">organizer_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=capacity placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The maximum number of people who can attend the event. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">capacity</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=currency placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event currency in ISO 4217 format (e.g., ���USD���, ���EUR���). Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">currency</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=status placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event status. Allowed values are ���draft���, ���live��� for new events. If not provided, status will be ���draft���, meaning that the event registration page will not be available publicly. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">status</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=custom_header placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom HTML header for your registration page. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">custom_header</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=custom_footer placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom HTML footer for your registration page. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">custom_footer</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=background_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">background_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=title_text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">title_text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_background_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_background_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_border_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_border_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_header_background_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_header_background_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_header_text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_header_text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">eventUpdate</span>
+</div>
+<div class="meta">
 <p>This method updates an existing event. Only the fields passed as arguments will be modified. This method returns the ID of the modified event.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>event_id</td>
-			<td>The ID of the event to update.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>title</td>
-			<td>The event title. 255 characters max.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>description</td>
-			<td>The event description.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>start_date</td>
-			<td>The event start date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>end_date</td>
-			<td>The event end date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>timezone</td>
-			<td>The event time zone in relation to GMT (e.g., ���GMT+01���, ���GMT+02���, ���GMT-01���) or US Time Zone (���PT���  or ���US/Pacific���, ���MT���   or ���US/Mountain���, ���CT���   or ���US/Central��� or ���ET���  or ���US/Eastern���).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>privacy</td>
-			<td>0 for a private event, 1 for a public event.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>personalized_url</td>
-			<td>The event registration URL subdomain.  Your event will be available at http://<personalized_url>.eventbrite.com.  This string is limited to 255 characters max.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>venue_id</td>
-			<td>The event venue ID. The venue must have been previously created using /venue_new.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organizer_id</td>
-			<td>The event organizer ID. The organizer must have been previously created using /organizer_new.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>capacity</td>
-			<td>The maximum number of people who can attend the event.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>currency</td>
-			<td>The event currency in ISO 4217 format (e.g., ���USD���, ���EUR���).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>status</td>
-			<td>The event status. Allowed values are ���draft���, ���live��� for new events.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>custom_header</td>
-			<td>Custom HTML header for your registration page.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>custom_footer</td>
-			<td>Custom HTML footer for your registration page.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>background_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>title_text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_background_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_border_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_header_background_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>box_header_text_color</td>
-			<td>Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>eventCopy</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=event_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of the event to update.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">event_id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=title placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event title. 255 characters max.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">title</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=description placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event description.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">description</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=start_date placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event start date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">start_date</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=end_date placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event end date and time, in ISO 8601 format (e.g., ���2007-12-31 23:59:59���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">end_date</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=timezone placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event time zone in relation to GMT (e.g., ���GMT+01���, ���GMT+02���, ���GMT-01���) or US Time Zone (���PT���  or ���US/Pacific���, ���MT���   or ���US/Mountain���, ���CT���   or ���US/Central��� or ���ET���  or ���US/Eastern���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">timezone</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=privacy placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+0 for a private event, 1 for a public event.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">privacy</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=personalized_url placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event registration URL subdomain.  Your event will be available at http://<personalized_url>.eventbrite.com.  This string is limited to 255 characters max.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">personalized_url</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event venue ID. The venue must have been previously created using /venue_new.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">venue_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=organizer_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event organizer ID. The organizer must have been previously created using /organizer_new.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">organizer_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=capacity placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The maximum number of people who can attend the event.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">capacity</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=currency placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event currency in ISO 4217 format (e.g., ���USD���, ���EUR���).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">currency</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=status placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The event status. Allowed values are ���draft���, ���live��� for new events.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">status</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=custom_header placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom HTML header for your registration page.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">custom_header</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=custom_footer placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom HTML footer for your registration page.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">custom_footer</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=background_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">background_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=title_text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">title_text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_background_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_background_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_border_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_border_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_header_background_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_header_background_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=box_header_text_color placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Custom hexadecimal color for your registration page. Format: FFFFFF *without* the pound.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">box_header_text_color</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">eventCopy</span>
+</div>
+<div class="meta">
 <p>This method duplicates an existing event, returning the ID of the new event.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>event_id</td>
-			<td>The ID of the existing event.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>event_name</td>
-			<td>A new name for this copy of the Event.  255 character limit.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>userListEvents</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=event_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of the existing event.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">event_id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=event_name placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A new name for this copy of the Event.  255 character limit.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">event_name</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">userListEvents</span>
+</div>
+<div class="meta">
 <p>This method lists the events created by this user. Only public events are returned if no authentication is passed.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>email</td>
-			<td>The user email. Defaults to the authenticated user if not provided. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>do_not_display</td>
-			<td>Comma separated list without spaces. Valid options include: description, venue, logo, style, organizer, tickets. Example: "do_not_display=venue,logo,style". If you leave this field blank, it will return everything. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>event_statuses</td>
-			<td>Comma separated list without spaces. Valid options include: live, started, ended. Example: "event_statuses=live,started". If you leave this field blank, it will return everything. Also note that the ���ended��� option will only return events that have ended in the last 7 days. Optional.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>asc_or_desc</td>
-			<td>Valid options include ���asc��� or results in ascending order or ���desc��� or descending order based on event start_date. Defaults to asc. Optional.<br/>                       </td>
-			<td>asc</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=email placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The user email. Defaults to the authenticated user if not provided. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">email</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=do_not_display placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Comma separated list without spaces. Valid options include: description, venue, logo, style, organizer, tickets. Example: "do_not_display=venue,logo,style". If you leave this field blank, it will return everything. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">do_not_display</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=event_statuses placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Comma separated list without spaces. Valid options include: live, started, ended. Example: "event_statuses=live,started". If you leave this field blank, it will return everything. Also note that the ���ended��� option will only return events that have ended in the last 7 days. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">event_statuses</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=asc_or_desc placeholder="asc">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid options include ���asc��� or results in ascending order or ���desc��� or descending order based on event start_date. Defaults to asc. Optional.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">asc_or_desc</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>

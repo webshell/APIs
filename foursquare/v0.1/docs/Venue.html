@@ -1,410 +1,675 @@
-<h1>Foursquare API: Venue</h1>
-<p>These methods are relative to the tag 'Venue'</p><h3>getVenue</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getVenue</span>
+</div>
+<div class="meta">
+<p>Gives details about a venue, including location, mayorship, tags, tips, specials, and category<br/>					Authenticated users will also receive information about who is here now.If the venue ID given <br/>					is one that has been merged into another "master" venue, the response will show data about the <br/>					"master" instead of giving you an error. <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Gives details about a venue, including location, mayorship, tags, tips, specials, and category
-					Authenticated users will also receive information about who is here now.If the venue ID given 
-					is one that has been merged into another "master" venue, the response will show data about the 
-					"master" instead of giving you an error. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>ID of venue to retrieve.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>addVenue</h3>
+ID of venue to retrieve.</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">addVenue</span>
+</div>
+<div class="meta">
+<p>Allows users to add a new venue.<br/>					If this method returns an error, give the user the option to edit her inputs.<br/>					In addition to this, give users the ability to say "never mind, check-in here anyway" <br/>					and perform a manual ("venueless") checkin by specifying just the venue name. This is <br/>					rare, but there's a chance you'll see this case if the user wants to force a duplicate venue.<br/>					All fields are optional, but one of either a valid address or a geolat/geolong pair must be <br/>					provided. We recommend that developers provide a geolat/geolong pair in every case.<br/>					Caller may also, optionally, pass in a category (primarycategoryid) to which you want this <br/>					venue assigned. You can browse a full list of categories using the /categories method. On <br/>					adding venue, we recommend that applications show the user this hierarchy and allow them to <br/>					choose something suitable. <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=name placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Allows users to add a new venue.
-					If this method returns an error, give the user the option to edit her inputs.
-					In addition to this, give users the ability to say "never mind, check-in here anyway" 
-					and perform a manual ("venueless") checkin by specifying just the venue name. This is 
-					rare, but there's a chance you'll see this case if the user wants to force a duplicate venue.
-					All fields are optional, but one of either a valid address or a geolat/geolong pair must be 
-					provided. We recommend that developers provide a geolat/geolong pair in every case.
-					Caller may also, optionally, pass in a category (primarycategoryid) to which you want this 
-					venue assigned. You can browse a full list of categories using the /categories method. On 
-					adding venue, we recommend that applications show the user this hierarchy and allow them to 
-					choose something suitable. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>name</td>
-			<td>The name of the venue.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>address</td>
-			<td>The address of the venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>crossStreet</td>
-			<td>The nearest intersecting street or streets.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>city</td>
-			<td>The city name where this venue is.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>state</td>
-			<td>The nearest state or province to the venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>zip</td>
-			<td>The zip or postal code for the venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>phone</td>
-			<td>The phone number of the venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>ll</td>
-			<td>Latitude and longitude of the venue, as accurate as is known.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>primaryCategoryId</td>
-			<td>The ID of the category to which you want to assign this venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getCategories</h3>
+The name of the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">name</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=address placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Returns a hierarchical list of categories applied to venues. 
-					Note that top-level categories do not have IDs because they cannot be assigned to a venue. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-	</tbody>
-
-</table>
-<h3>searchVenue</h3>
+The address of the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">address</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=crossStreet placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Returns a list of venues near the current location, optionally matching the search term.
-					If lat and long is provided, each venue includes a distance. If authenticated, the method 
-					will return venue metadata related to you and your friends. If you do not authenticate, 
-					you will not get this data. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>ll</td>
-			<td>Latitude and longitude of the user's location, so response can include distance.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>llAcc</td>
-			<td>Accuracy of latitude and longitude, in meters.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>alt</td>
-			<td>Altitude of the user's location, in meters.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>altAcc</td>
-			<td>Accuracy of the user's altitude, in meters.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>query</td>
-			<td>A search term to be applied against titles.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>Number of results to return, up to 500.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getVenueDetails</h3>
+The nearest intersecting street or streets.</p>
+</div>
+<div class="name">
+<span class="parameter-name">crossStreet</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=city placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Provides a count of how many people are at a given venue, plus the first page
-					of the users there, friends-first, and if the current user is authenticated. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>ID of venue to retrieve</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getVenueTips</h3>
+The city name where this venue is.</p>
+</div>
+<div class="name">
+<span class="parameter-name">city</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=state placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Returns tips for a venue. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>The venue where you want to add this tip.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>One of recent or popular.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getVenuePhotos</h3>
+The nearest state or province to the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">state</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=zip placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Returns photos for a venue.
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>The venue you want photos for.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>group</td>
-			<td>
-					Pass checkin for photos added by friends on their recent checkins. Pass venue for public photos added to the venue by
-					anyone. Use multi to fetch both.
-				</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>Number of results to return, up to 500.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offset</td>
-			<td>Used to page through results.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>markToDo</h3>
+The zip or postal code for the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">zip</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=phone placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Allows you to mark a venue to-do, with optional text.
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>The venue you want to mark to-do.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>text</td>
-			<td>The text of the tip.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>flagVenue</h3>
+The phone number of the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">phone</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=ll placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Allows users to indicate a venue is incorrect in some way.
-					Flags are pushed into a moderation queue. If a closed flag 
-					is approved, the venue will no longer show up in search results. 
-					Moderators will attempt to correct cases of mislocated or duplicate 
-					venues as appropriate. If the user has the correct address for a 
-					mislocated venue, use proposeedit instead. 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>The venue id for which an edit is being proposed.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>problem</td>
-			<td>One of mislocated, closed, duplicate.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>editVenue</h3>
+Latitude and longitude of the venue, as accurate as is known.</p>
+</div>
+<div class="name">
+<span class="parameter-name">ll</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=primaryCategoryId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Allows you to propose a change to a venue.If the user knows a correct address, use this method to save it. 
-					Otherwise, use flag to flag the venue instead (you need not specify a new address or geolat/geolong in that case). 
-                </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>VENUE_ID</td>
-			<td>The venue id for which an edit is being proposed.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>name</td>
-			<td>The name of the venue.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>address</td>
-			<td>The address of the venue.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>crossStreet</td>
-			<td>The nearest intersecting street or streets.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>city</td>
-			<td>The city name where this venue is.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>state</td>
-			<td>The nearest state or province to the venue.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>zip</td>
-			<td>The zip or postal code for the venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>phone</td>
-			<td>The phone number of the venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>ll</td>
-			<td>Latitude and longitude of the venue, as accurate as is known.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>primaryCategoryId</td>
-			<td>The ID of the category to which you want to assign this venue.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
+The ID of the category to which you want to assign this venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">primaryCategoryId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getCategories</span>
+</div>
+<div class="meta">
+<p>Returns a hierarchical list of categories applied to venues. <br/>					Note that top-level categories do not have IDs because they cannot be assigned to a venue. <br/>               </p>
+</div>
+<hr>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">searchVenue</span>
+</div>
+<div class="meta">
+<p>Returns a list of venues near the current location, optionally matching the search term.<br/>					If lat and long is provided, each venue includes a distance. If authenticated, the method <br/>					will return venue metadata related to you and your friends. If you do not authenticate, <br/>					you will not get this data. <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=ll placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Latitude and longitude of the user's location, so response can include distance.</p>
+</div>
+<div class="name">
+<span class="parameter-name">ll</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=llAcc placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Accuracy of latitude and longitude, in meters.</p>
+</div>
+<div class="name">
+<span class="parameter-name">llAcc</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=alt placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Altitude of the user's location, in meters.</p>
+</div>
+<div class="name">
+<span class="parameter-name">alt</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=altAcc placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Accuracy of the user's altitude, in meters.</p>
+</div>
+<div class="name">
+<span class="parameter-name">altAcc</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=query placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A search term to be applied against titles.</p>
+</div>
+<div class="name">
+<span class="parameter-name">query</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=limit placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Number of results to return, up to 500.</p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getVenueDetails</span>
+</div>
+<div class="meta">
+<p>Provides a count of how many people are at a given venue, plus the first page<br/>					of the users there, friends-first, and if the current user is authenticated. <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+ID of venue to retrieve</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getVenueTips</span>
+</div>
+<div class="meta">
+<p>Returns tips for a venue. <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue where you want to add this tip.</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=sort placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+One of recent or popular.</p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getVenuePhotos</span>
+</div>
+<div class="meta">
+<p>Returns photos for a venue.<br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue you want photos for.</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=group placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Pass checkin for photos added by friends on their recent checkins. Pass venue for public photos added to the venue by<br/>					anyone. Use multi to fetch both.<br/>			</p>
+</div>
+<div class="name">
+<span class="parameter-name">group</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=limit placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Number of results to return, up to 500.</p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offset placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to page through results.</p>
+</div>
+<div class="name">
+<span class="parameter-name">offset</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">markToDo</span>
+</div>
+<div class="meta">
+<p>Allows you to mark a venue to-do, with optional text.<br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue you want to mark to-do.</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=text placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The text of the tip.</p>
+</div>
+<div class="name">
+<span class="parameter-name">text</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">flagVenue</span>
+</div>
+<div class="meta">
+<p>Allows users to indicate a venue is incorrect in some way.<br/>					Flags are pushed into a moderation queue. If a closed flag <br/>					is approved, the venue will no longer show up in search results. <br/>					Moderators will attempt to correct cases of mislocated or duplicate <br/>					venues as appropriate. If the user has the correct address for a <br/>					mislocated venue, use proposeedit instead. <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue id for which an edit is being proposed.</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=problem placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+One of mislocated, closed, duplicate.</p>
+</div>
+<div class="name">
+<span class="parameter-name">problem</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">editVenue</span>
+</div>
+<div class="meta">
+<p>Allows you to propose a change to a venue.If the user knows a correct address, use this method to save it. <br/>					Otherwise, use flag to flag the venue instead (you need not specify a new address or geolat/geolong in that case). <br/>               </p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=venue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The venue id for which an edit is being proposed.</p>
+</div>
+<div class="name">
+<span class="parameter-name">venue</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=name placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The name of the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">name</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=address placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The address of the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">address</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=crossStreet placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The nearest intersecting street or streets.</p>
+</div>
+<div class="name">
+<span class="parameter-name">crossStreet</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=city placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The city name where this venue is.</p>
+</div>
+<div class="name">
+<span class="parameter-name">city</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=state placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The nearest state or province to the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">state</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=zip placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The zip or postal code for the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">zip</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=phone placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The phone number of the venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">phone</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=ll placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Latitude and longitude of the venue, as accurate as is known.</p>
+</div>
+<div class="name">
+<span class="parameter-name">ll</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=primaryCategoryId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of the category to which you want to assign this venue.</p>
+</div>
+<div class="name">
+<span class="parameter-name">primaryCategoryId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>

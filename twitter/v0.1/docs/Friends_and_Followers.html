@@ -1,75 +1,148 @@
-<h1>Twitter API: Friends and Followers</h1>
-<p>These methods are relative to the tag 'Friends and Followers'</p><h3>friends</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">friends</span>
+</div>
+<div class="meta">
 <p>Returns a cursored collection of user IDs for every user the specified user is following (otherwise known as their "friends").<br/><br/>At this time, results are ordered with the most recent following first — however, this ordering is subject to unannounced change and eventual consistency issues. Results are given in groups of 5,000 user IDs and multiple "pages" of results can be navigated through using the next_cursor value in subsequent requests. See Using cursors to navigate collections for more information.<br/><br/>This method is especially powerful when used in conjunction with GET users/lookup, a method that allows you to convert user IDs into full user objects in bulk. Either a screen_name or a user_id must be provided.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>screen_name</td>
-			<td>The screen name of the user for whom to befriend.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>user_id</td>
-			<td>The ID of the user for whom to befriend.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>cursor</td>
-			<td>Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.<br/>               </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>stringify_ids</td>
-			<td>Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>followers</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=screen_name placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The screen name of the user for whom to befriend.</p>
+</div>
+<div class="name">
+<span class="parameter-name">screen_name</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=user_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of the user for whom to befriend.</p>
+</div>
+<div class="name">
+<span class="parameter-name">user_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=cursor placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.<br/>               </p>
+</div>
+<div class="name">
+<span class="parameter-name">cursor</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=stringify_ids placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</p>
+</div>
+<div class="name">
+<span class="parameter-name">stringify_ids</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">followers</span>
+</div>
+<div class="meta">
 <p>Returns a cursored collection of user IDs for every user following the specified user.<br/><br/>At this time, results are ordered with the most recent following first — however, this ordering is subject to unannounced change and eventual consistency issues. Results are given in groups of 5,000 user IDs and multiple "pages" of results can be navigated through using the next_cursor value in subsequent requests. See Using cursors to navigate collections for more information.<br/><br/>This method is especially powerful when used in conjunction with GET users/lookup, a method that allows you to convert user IDs into full user objects in bulk.</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>screen_name</td>
-			<td>The screen name of the user for whom to befriend.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>user_id</td>
-			<td>The ID of the user for whom to befriend.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>cursor</td>
-			<td>Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.<br/>               </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>stringify_ids</td>
-			<td>Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=screen_name placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The screen name of the user for whom to befriend.</p>
+</div>
+<div class="name">
+<span class="parameter-name">screen_name</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=user_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The ID of the user for whom to befriend.</p>
+</div>
+<div class="name">
+<span class="parameter-name">user_id</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=cursor placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.<br/>               </p>
+</div>
+<div class="name">
+<span class="parameter-name">cursor</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=stringify_ids placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</p>
+</div>
+<div class="name">
+<span class="parameter-name">stringify_ids</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>

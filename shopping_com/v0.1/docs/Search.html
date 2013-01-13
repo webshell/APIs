@@ -1,657 +1,1468 @@
-<h1>Shopping_com API: Search</h1>
-<p>These methods are relative to the tag 'Search'</p><h3>generalsearchKeyword</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">generalsearchKeyword</span>
+</div>
+<div class="meta">
 <p>Searches for products by keyword. See API docs for request parameters/format.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>subTrackingId</td>
-			<td>User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorUserAgent</td>
-			<td>The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorIPAddress</td>
-			<td>The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>keyword</td>
-			<td>The simplest and most popular way to query Shopping.com is to request results using keywords. Results can vary widely depending on the corresponding options and the keyword(s) used. For example, searching for a keyword like "Sony" may return items in many different categories while searching for "digital cameras" may return items from a single category (if skipping is enabled). Multiple keywords (and/or attribute values) may be submitted to further constrain the results.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>categoryId</td>
-			<td>Used to restrict query results to a given category. There are two classes of category: leaf-level categories contain products and offers, whereas parent-level categories contain only other categories. Searches on parent-level categories must be additionally constrained by at least one keyword.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>attributeValue</td>
-			<td>Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showAllValuesForAttr</td>
-			<td>Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>groupItemsByCategory</td>
-			<td>Control whether or not items are separated into different categories. By default, searches don't separate items by category. Instead, a single category (with id "0") is returned containing items from different categories.<br/>                       </td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numCategories</td>
-			<td>When a search result contains multiple categories, the API will return up to 5 matching categories (within the relevance thresholds). If you would like more (or fewer) categories returned (still within the relevance thresholds), use the numCategories parameter. If, on the other hand, you would like to return all matching categories, regardless of relevance, use the showAllMatchingCategories parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numItems</td>
-			<td>Control how many products and/or offers are returned within a category as well as the number of offers returned within a single product result. The only case where this parameter is not used is in the case where the showProductOffers option is being used to return offers for multiple products. In that case, the numOffersPerProduct parameter is the equivalent.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pageNumber</td>
-			<td>Set which page of results to return. When more results are available than are returned in a single query (indicated by a difference between the matchedCount and returnedCount) additional pages of results can be requested using the pageNumber parameter. Pagination currently only works for items returned by a leaf-level category search, a keyword search resulting in items across multiple categories, or the offers returned by a product ID search. You currently cannot paginate any results of a groupItemsByCategory=true keyword-only search, nor can you paginate the offers returned for each product when using the showProductOffers parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductOffers</td>
-			<td>Control whether or not offers are returned for each product in multi-product results. Normally when the API returns a product item, the offers for that product are not returned, unless the search engine has skipped to a single product. Instead, the API provides the product ID, which can be used to make a follow-up request for offers using a search by product ID query. If instead you would like offers included with every product returned, you can use the showProductOffers parameter.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numOffersPerProduct</td>
-			<td>If the showProductOffers option is true, this parameter controls how many offers will be returned for each product when a search returns multiple products.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductSpecs</td>
-			<td>Product specifications include data about products from the Shopping.com catalog, including things such as MPN/UPC, weight, dimensions, or other features which may be unique to the specific product.  Generally, when products are returned in SDC API results, they only include a few details about the product itself, and then possibly a list of store offers.   This parameter will control the inclusion of complete specifications for the returned products in addition to any other information (offers, reviews) you have requested.<br/>                            You can also do a side by side comparison of any number of products, simply by providing multiple productId parameters in the request, or by using this parameter along with a request which returns multiple products (generally, products should be from the same category, as a comparison of products from different categories would generally not be meaningful.)  Finally, if you only want product specifications, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductReviews</td>
-			<td>Reviews are provided for many of the products in the Shopping.com catalog courtesy of the Epinions community.  This parameter will allow you to retrieve product reviews with every product returned by the API (if available).  Each reviews section will contain the overall (average) rating, as well as a list of individual ratings, including the 'pros', 'cons', 'bottom line', and a short snippet of the full review text.  As with product specifications, if you only want product reviews, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                            Any individual review displayed must include a link to the ���full review��� (which will be provided in the API response) as well as attribution to Epinions through the display of a logo (http://img.shopping.com/wtb/logos/logo_www.epinions.com.gif) and language that states "provided by Epinions".  Also, the complete reviews information must be presented as it is returned by the API and cannot be altered.  Finally, reviews content must be enabled by your account manager, upon acceptance of an amendment to the original API agreement (which they will provide.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numReviewsPerProduct</td>
-			<td>If the showProductReviews option is true, this parameter controls how many reviews will be returned for each product in the API results.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsPageNumber</td>
-			<td>Set which page of reviews to return for each product. When more reviews are available than are returned for a particular product, or list of products (indicated by a difference between the matchedReviewCount and returnedReviewCount) additional pages of reviews can be requested using the reviewsPageNumber parameter.  Generally, reviews pagination only makes sense in the context of a single product, as reviews will be paginated for all products present in the response (if applicable.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>postalCode</td>
-			<td>Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>doKeywordNormalization</td>
-			<td>Control whether or not submitted keywords should be "normalized" by the search engine. Normalization consists of several steps including spell checking, stemming, tokenization and special character removal.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>doSkipping</td>
-			<td>Control whether or not the Shopping.com search engine should "skip" directly to the most relevant category or product as a result of a keyword search, rather than providing a wider (but less relevant) selection of results across multiple categories. With skipping disabled, the set of categories returned by the API will still be limited to the most relevant. If instead, you would like to see all categories in which the keyword was found (not limited by relevance thresholds), use the showAllMatchingCategories parameter.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showSoftProducts</td>
-			<td>Control whether or not "soft products" are returned. "Soft Productization" allows SDC to create more of a structured experience around soft goods such as shoes and fragrances, much like that used for hard goods such as electronics. This parameter can be used to disable Soft Productization, and receive only offers in soft categories (i.e. no products.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductsWithoutOffers</td>
-			<td>Control whether or not results should include all products which match your search criteria, regardless of whether any store offers currently exist for those products. Normally, products without offers are excluded from search results.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showAllMatchingCategories</td>
-			<td>Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numAttributes</td>
-			<td>The number of attributes to return in results which contain only one category. For any result composed of a single category containing a list of products or offers (not for the same product), the Shopping.com API may provide attributes for filtering the results to more manageable sizes. By default, the API will return 0 attributes, which can be changed by using this parameter. However, any attributes above 5 will not include values unless you also set the numAttributesWithValues parameter. Note that attributes are never returned for offers under a single product, only for items at the category level.<br/>                       </td>
-			<td>0</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numAttributesWithValues</td>
-			<td>Control the number of attributes for which values will be returned. Requesting attributes without values (i.e. setting this parameter to a smaller value than numAttributes,) allows you to present the user with more filtering options while saving space on the page. By default, up to 5 attributes will include values.<br/>                       </td>
-			<td>5</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numValuesPerAttribute</td>
-			<td>Control the number of values to include with each attribute. Attribute values can be used to filter the list of items in a query result. By default, 5 values will be provided for each of the first 5 attributes returned.<br/>                       </td>
-			<td>5</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>hybridSortType</td>
-			<td>Control how to sort results containing both products and offers. The API will return items ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing a mix of products and offers, use the hybridSortType parameter to control the type of sorting, and the hybridSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>hybridSortOrder</td>
-			<td>Control whether results containing a mix of products and offers will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productSortType</td>
-			<td>Control how to sort results containing only products. The API will return products ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only products, use the productSortType parameter to control the type of sorting, and the productSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productSortOrder</td>
-			<td>Control whether results containing only products will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortType</td>
-			<td>Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortOrder</td>
-			<td>Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showSmartBuy</td>
-			<td>Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numFeatured</td>
-			<td>Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </td>
-			<td>3</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewSortType</td>
-			<td>Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </td>
-			<td>review-date</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsSortOrder</td>
-			<td>Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>generalsearchCategory</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=subTrackingId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">subTrackingId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorUserAgent placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorUserAgent</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorIPAddress placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorIPAddress</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=keyword placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The simplest and most popular way to query Shopping.com is to request results using keywords. Results can vary widely depending on the corresponding options and the keyword(s) used. For example, searching for a keyword like "Sony" may return items in many different categories while searching for "digital cameras" may return items from a single category (if skipping is enabled). Multiple keywords (and/or attribute values) may be submitted to further constrain the results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">keyword</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=categoryId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to restrict query results to a given category. There are two classes of category: leaf-level categories contain products and offers, whereas parent-level categories contain only other categories. Searches on parent-level categories must be additionally constrained by at least one keyword.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">categoryId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=attributeValue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">attributeValue</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showAllValuesForAttr placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showAllValuesForAttr</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=groupItemsByCategory placeholder="false">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not items are separated into different categories. By default, searches don't separate items by category. Instead, a single category (with id "0") is returned containing items from different categories.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">groupItemsByCategory</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numCategories placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+When a search result contains multiple categories, the API will return up to 5 matching categories (within the relevance thresholds). If you would like more (or fewer) categories returned (still within the relevance thresholds), use the numCategories parameter. If, on the other hand, you would like to return all matching categories, regardless of relevance, use the showAllMatchingCategories parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numCategories</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numItems placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how many products and/or offers are returned within a category as well as the number of offers returned within a single product result. The only case where this parameter is not used is in the case where the showProductOffers option is being used to return offers for multiple products. In that case, the numOffersPerProduct parameter is the equivalent.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numItems</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pageNumber placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set which page of results to return. When more results are available than are returned in a single query (indicated by a difference between the matchedCount and returnedCount) additional pages of results can be requested using the pageNumber parameter. Pagination currently only works for items returned by a leaf-level category search, a keyword search resulting in items across multiple categories, or the offers returned by a product ID search. You currently cannot paginate any results of a groupItemsByCategory=true keyword-only search, nor can you paginate the offers returned for each product when using the showProductOffers parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">pageNumber</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductOffers placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not offers are returned for each product in multi-product results. Normally when the API returns a product item, the offers for that product are not returned, unless the search engine has skipped to a single product. Instead, the API provides the product ID, which can be used to make a follow-up request for offers using a search by product ID query. If instead you would like offers included with every product returned, you can use the showProductOffers parameter.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductOffers</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numOffersPerProduct placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If the showProductOffers option is true, this parameter controls how many offers will be returned for each product when a search returns multiple products.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numOffersPerProduct</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductSpecs placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Product specifications include data about products from the Shopping.com catalog, including things such as MPN/UPC, weight, dimensions, or other features which may be unique to the specific product.  Generally, when products are returned in SDC API results, they only include a few details about the product itself, and then possibly a list of store offers.   This parameter will control the inclusion of complete specifications for the returned products in addition to any other information (offers, reviews) you have requested.<br/>                            You can also do a side by side comparison of any number of products, simply by providing multiple productId parameters in the request, or by using this parameter along with a request which returns multiple products (generally, products should be from the same category, as a comparison of products from different categories would generally not be meaningful.)  Finally, if you only want product specifications, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductSpecs</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductReviews placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Reviews are provided for many of the products in the Shopping.com catalog courtesy of the Epinions community.  This parameter will allow you to retrieve product reviews with every product returned by the API (if available).  Each reviews section will contain the overall (average) rating, as well as a list of individual ratings, including the 'pros', 'cons', 'bottom line', and a short snippet of the full review text.  As with product specifications, if you only want product reviews, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                            Any individual review displayed must include a link to the ���full review��� (which will be provided in the API response) as well as attribution to Epinions through the display of a logo (http://img.shopping.com/wtb/logos/logo_www.epinions.com.gif) and language that states "provided by Epinions".  Also, the complete reviews information must be presented as it is returned by the API and cannot be altered.  Finally, reviews content must be enabled by your account manager, upon acceptance of an amendment to the original API agreement (which they will provide.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductReviews</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numReviewsPerProduct placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If the showProductReviews option is true, this parameter controls how many reviews will be returned for each product in the API results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numReviewsPerProduct</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsPageNumber placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set which page of reviews to return for each product. When more reviews are available than are returned for a particular product, or list of products (indicated by a difference between the matchedReviewCount and returnedReviewCount) additional pages of reviews can be requested using the reviewsPageNumber parameter.  Generally, reviews pagination only makes sense in the context of a single product, as reviews will be paginated for all products present in the response (if applicable.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsPageNumber</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=postalCode placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">postalCode</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=doKeywordNormalization placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not submitted keywords should be "normalized" by the search engine. Normalization consists of several steps including spell checking, stemming, tokenization and special character removal.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">doKeywordNormalization</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=doSkipping placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not the Shopping.com search engine should "skip" directly to the most relevant category or product as a result of a keyword search, rather than providing a wider (but less relevant) selection of results across multiple categories. With skipping disabled, the set of categories returned by the API will still be limited to the most relevant. If instead, you would like to see all categories in which the keyword was found (not limited by relevance thresholds), use the showAllMatchingCategories parameter.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">doSkipping</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showSoftProducts placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not "soft products" are returned. "Soft Productization" allows SDC to create more of a structured experience around soft goods such as shoes and fragrances, much like that used for hard goods such as electronics. This parameter can be used to disable Soft Productization, and receive only offers in soft categories (i.e. no products.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showSoftProducts</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductsWithoutOffers placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not results should include all products which match your search criteria, regardless of whether any store offers currently exist for those products. Normally, products without offers are excluded from search results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductsWithoutOffers</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showAllMatchingCategories placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showAllMatchingCategories</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numAttributes placeholder="0">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of attributes to return in results which contain only one category. For any result composed of a single category containing a list of products or offers (not for the same product), the Shopping.com API may provide attributes for filtering the results to more manageable sizes. By default, the API will return 0 attributes, which can be changed by using this parameter. However, any attributes above 5 will not include values unless you also set the numAttributesWithValues parameter. Note that attributes are never returned for offers under a single product, only for items at the category level.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numAttributes</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numAttributesWithValues placeholder="5">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control the number of attributes for which values will be returned. Requesting attributes without values (i.e. setting this parameter to a smaller value than numAttributes,) allows you to present the user with more filtering options while saving space on the page. By default, up to 5 attributes will include values.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numAttributesWithValues</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numValuesPerAttribute placeholder="5">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control the number of values to include with each attribute. Attribute values can be used to filter the list of items in a query result. By default, 5 values will be provided for each of the first 5 attributes returned.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numValuesPerAttribute</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=hybridSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort results containing both products and offers. The API will return items ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing a mix of products and offers, use the hybridSortType parameter to control the type of sorting, and the hybridSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">hybridSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=hybridSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing a mix of products and offers will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">hybridSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort results containing only products. The API will return products ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only products, use the productSortType parameter to control the type of sorting, and the productSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing only products will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showSmartBuy placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showSmartBuy</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numFeatured placeholder="3">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numFeatured</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewSortType placeholder="review-date">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">generalsearchCategory</span>
+</div>
+<div class="meta">
 <p>Searches for products by category. See API docs for request parameters/format.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>subTrackingId</td>
-			<td>User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorUserAgent</td>
-			<td>The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorIPAddress</td>
-			<td>The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>categoryId</td>
-			<td>Used to restrict query results to a given category. There are two classes of category: leaf-level categories contain products and offers, whereas parent-level categories contain only other categories. Searches on parent-level categories must be additionally constrained by at least one keyword. Note: When performing a category search without an additional keyword, only leaf level category IDs are allowed.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>keyword</td>
-			<td>The simplest and most popular way to query Shopping.com is to request results using keywords. Results can vary widely depending on the corresponding options and the keyword(s) used. For example, searching for a keyword like "Sony" may return items in many different categories while searching for "digital cameras" may return items from a single category (if skipping is enabled). Multiple keywords (and/or attribute values) may be submitted to further constrain the results.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>attributeValue</td>
-			<td>Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showAllValuesForAttr</td>
-			<td>Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numItems</td>
-			<td>Control how many products and/or offers are returned within a category as well as the number of offers returned within a single product result. The only case where this parameter is not used is in the case where the showProductOffers option is being used to return offers for multiple products. In that case, the numOffersPerProduct parameter is the equivalent.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pageNumber</td>
-			<td>Set which page of results to return. When more results are available than are returned in a single query (indicated by a difference between the matchedCount and returnedCount) additional pages of results can be requested using the pageNumber parameter. Pagination currently only works for items returned by a leaf-level category search, a keyword search resulting in items across multiple categories, or the offers returned by a product ID search. You currently cannot paginate any results of a groupItemsByCategory=true keyword-only search, nor can you paginate the offers returned for each product when using the showProductOffers parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductOffers</td>
-			<td>Control whether or not offers are returned for each product in multi-product results. Normally when the API returns a product item, the offers for that product are not returned, unless the search engine has skipped to a single product. Instead, the API provides the product ID, which can be used to make a follow-up request for offers using a search by product ID query. If instead you would like offers included with every product returned, you can use the showProductOffers parameter.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numOffersPerProduct</td>
-			<td>If the showProductOffers option is true, this parameter controls how many offers will be returned for each product when a search returns multiple products.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductSpecs</td>
-			<td>Product specifications include data about products from the Shopping.com catalog, including things such as MPN/UPC, weight, dimensions, or other features which may be unique to the specific product.  Generally, when products are returned in SDC API results, they only include a few details about the product itself, and then possibly a list of store offers.   This parameter will control the inclusion of complete specifications for the returned products in addition to any other information (offers, reviews) you have requested.<br/>                            You can also do a side by side comparison of any number of products, simply by providing multiple productId parameters in the request, or by using this parameter along with a request which returns multiple products (generally, products should be from the same category, as a comparison of products from different categories would generally not be meaningful.)  Finally, if you only want product specifications, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductReviews</td>
-			<td>Reviews are provided for many of the products in the Shopping.com catalog courtesy of the Epinions community.  This parameter will allow you to retrieve product reviews with every product returned by the API (if available).  Each reviews section will contain the overall (average) rating, as well as a list of individual ratings, including the 'pros', 'cons', 'bottom line', and a short snippet of the full review text.  As with product specifications, if you only want product reviews, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                            Any individual review displayed must include a link to the ���full review��� (which will be provided in the API response) as well as attribution to Epinions through the display of a logo (http://img.shopping.com/wtb/logos/logo_www.epinions.com.gif) and language that states "provided by Epinions".  Also, the complete reviews information must be presented as it is returned by the API and cannot be altered.  Finally, reviews content must be enabled by your account manager, upon acceptance of an amendment to the original API agreement (which they will provide.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numReviewsPerProduct</td>
-			<td>If the showProductReviews option is true, this parameter controls how many reviews will be returned for each product in the API results.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsPageNumber</td>
-			<td>Set which page of reviews to return for each product. When more reviews are available than are returned for a particular product, or list of products (indicated by a difference between the matchedReviewCount and returnedReviewCount) additional pages of reviews can be requested using the reviewsPageNumber parameter.  Generally, reviews pagination only makes sense in the context of a single product, as reviews will be paginated for all products present in the response (if applicable.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>postalCode</td>
-			<td>Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showSoftProducts</td>
-			<td>Control whether or not "soft products" are returned. "Soft Productization" allows SDC to create more of a structured experience around soft goods such as shoes and fragrances, much like that used for hard goods such as electronics. This parameter can be used to disable Soft Productization, and receive only offers in soft categories (i.e. no products.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductsWithoutOffers</td>
-			<td>Control whether or not results should include all products which match your search criteria, regardless of whether any store offers currently exist for those products. Normally, products without offers are excluded from search results.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showOffersOnly</td>
-			<td>Control whether search results should return only offers (i.e. no product information.) At the moment, showOffersOnly does not support searches across multiple categories, which means you can limit the search to offers only when searching by leaf-level category or product ID.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showAllMatchingCategories</td>
-			<td>Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numAttributes</td>
-			<td>The number of attributes to return in results which contain only one category. For any result composed of a single category containing a list of products or offers (not for the same product), the Shopping.com API may provide attributes for filtering the results to more manageable sizes. By default, the API will return 0 attributes, which can be changed by using this parameter. However, any attributes above 5 will not include values unless you also set the numAttributesWithValues parameter. Note that attributes are never returned for offers under a single product, only for items at the category level.<br/>                       </td>
-			<td>0</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numAttributesWithValues</td>
-			<td>Control the number of attributes for which values will be returned. Requesting attributes without values (i.e. setting this parameter to a smaller value than numAttributes,) allows you to present the user with more filtering options while saving space on the page. By default, up to 5 attributes will include values.<br/>                       </td>
-			<td>5</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numValuesPerAttribute</td>
-			<td>Control the number of values to include with each attribute. Attribute values can be used to filter the list of items in a query result. By default, 5 values will be provided for each of the first 5 attributes returned.<br/>                       </td>
-			<td>5</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>hybridSortType</td>
-			<td>Control how to sort results containing both products and offers. The API will return items ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing a mix of products and offers, use the hybridSortType parameter to control the type of sorting, and the hybridSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>hybridSortOrder</td>
-			<td>Control whether results containing a mix of products and offers will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productSortType</td>
-			<td>Control how to sort results containing only products. The API will return products ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only products, use the productSortType parameter to control the type of sorting, and the productSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productSortOrder</td>
-			<td>Control whether results containing only products will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortType</td>
-			<td>Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortOrder</td>
-			<td>Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showSmartBuy</td>
-			<td>Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numFeatured</td>
-			<td>Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </td>
-			<td>3</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewSortType</td>
-			<td>Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </td>
-			<td>review-date</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsSortOrder</td>
-			<td>Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>generalsearchProduct</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=subTrackingId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">subTrackingId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorUserAgent placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorUserAgent</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorIPAddress placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorIPAddress</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=categoryId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to restrict query results to a given category. There are two classes of category: leaf-level categories contain products and offers, whereas parent-level categories contain only other categories. Searches on parent-level categories must be additionally constrained by at least one keyword. Note: When performing a category search without an additional keyword, only leaf level category IDs are allowed.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">categoryId</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=keyword placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The simplest and most popular way to query Shopping.com is to request results using keywords. Results can vary widely depending on the corresponding options and the keyword(s) used. For example, searching for a keyword like "Sony" may return items in many different categories while searching for "digital cameras" may return items from a single category (if skipping is enabled). Multiple keywords (and/or attribute values) may be submitted to further constrain the results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">keyword</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=attributeValue placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">attributeValue</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showAllValuesForAttr placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Used to filter query results based on item properties. Shopping.com API queries may return a list of attribute values, which can be used to filter a given list of items to a more manageable set. The resulting list can be further filtered by supplying additional attribute values. Searches by attribute value can be mixed with searches by keywords to help the user filter results to the desired item(s). Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showAllValuesForAttr</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numItems placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how many products and/or offers are returned within a category as well as the number of offers returned within a single product result. The only case where this parameter is not used is in the case where the showProductOffers option is being used to return offers for multiple products. In that case, the numOffersPerProduct parameter is the equivalent.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numItems</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pageNumber placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set which page of results to return. When more results are available than are returned in a single query (indicated by a difference between the matchedCount and returnedCount) additional pages of results can be requested using the pageNumber parameter. Pagination currently only works for items returned by a leaf-level category search, a keyword search resulting in items across multiple categories, or the offers returned by a product ID search. You currently cannot paginate any results of a groupItemsByCategory=true keyword-only search, nor can you paginate the offers returned for each product when using the showProductOffers parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">pageNumber</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductOffers placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not offers are returned for each product in multi-product results. Normally when the API returns a product item, the offers for that product are not returned, unless the search engine has skipped to a single product. Instead, the API provides the product ID, which can be used to make a follow-up request for offers using a search by product ID query. If instead you would like offers included with every product returned, you can use the showProductOffers parameter.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductOffers</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numOffersPerProduct placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If the showProductOffers option is true, this parameter controls how many offers will be returned for each product when a search returns multiple products.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numOffersPerProduct</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductSpecs placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Product specifications include data about products from the Shopping.com catalog, including things such as MPN/UPC, weight, dimensions, or other features which may be unique to the specific product.  Generally, when products are returned in SDC API results, they only include a few details about the product itself, and then possibly a list of store offers.   This parameter will control the inclusion of complete specifications for the returned products in addition to any other information (offers, reviews) you have requested.<br/>                            You can also do a side by side comparison of any number of products, simply by providing multiple productId parameters in the request, or by using this parameter along with a request which returns multiple products (generally, products should be from the same category, as a comparison of products from different categories would generally not be meaningful.)  Finally, if you only want product specifications, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductSpecs</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductReviews placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Reviews are provided for many of the products in the Shopping.com catalog courtesy of the Epinions community.  This parameter will allow you to retrieve product reviews with every product returned by the API (if available).  Each reviews section will contain the overall (average) rating, as well as a list of individual ratings, including the 'pros', 'cons', 'bottom line', and a short snippet of the full review text.  As with product specifications, if you only want product reviews, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                            Any individual review displayed must include a link to the ���full review��� (which will be provided in the API response) as well as attribution to Epinions through the display of a logo (http://img.shopping.com/wtb/logos/logo_www.epinions.com.gif) and language that states "provided by Epinions".  Also, the complete reviews information must be presented as it is returned by the API and cannot be altered.  Finally, reviews content must be enabled by your account manager, upon acceptance of an amendment to the original API agreement (which they will provide.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductReviews</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numReviewsPerProduct placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If the showProductReviews option is true, this parameter controls how many reviews will be returned for each product in the API results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numReviewsPerProduct</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsPageNumber placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set which page of reviews to return for each product. When more reviews are available than are returned for a particular product, or list of products (indicated by a difference between the matchedReviewCount and returnedReviewCount) additional pages of reviews can be requested using the reviewsPageNumber parameter.  Generally, reviews pagination only makes sense in the context of a single product, as reviews will be paginated for all products present in the response (if applicable.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsPageNumber</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=postalCode placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">postalCode</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showSoftProducts placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not "soft products" are returned. "Soft Productization" allows SDC to create more of a structured experience around soft goods such as shoes and fragrances, much like that used for hard goods such as electronics. This parameter can be used to disable Soft Productization, and receive only offers in soft categories (i.e. no products.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showSoftProducts</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductsWithoutOffers placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not results should include all products which match your search criteria, regardless of whether any store offers currently exist for those products. Normally, products without offers are excluded from search results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductsWithoutOffers</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showOffersOnly placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether search results should return only offers (i.e. no product information.) At the moment, showOffersOnly does not support searches across multiple categories, which means you can limit the search to offers only when searching by leaf-level category or product ID.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showOffersOnly</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showAllMatchingCategories placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showAllMatchingCategories</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numAttributes placeholder="0">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of attributes to return in results which contain only one category. For any result composed of a single category containing a list of products or offers (not for the same product), the Shopping.com API may provide attributes for filtering the results to more manageable sizes. By default, the API will return 0 attributes, which can be changed by using this parameter. However, any attributes above 5 will not include values unless you also set the numAttributesWithValues parameter. Note that attributes are never returned for offers under a single product, only for items at the category level.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numAttributes</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numAttributesWithValues placeholder="5">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control the number of attributes for which values will be returned. Requesting attributes without values (i.e. setting this parameter to a smaller value than numAttributes,) allows you to present the user with more filtering options while saving space on the page. By default, up to 5 attributes will include values.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numAttributesWithValues</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numValuesPerAttribute placeholder="5">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control the number of values to include with each attribute. Attribute values can be used to filter the list of items in a query result. By default, 5 values will be provided for each of the first 5 attributes returned.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numValuesPerAttribute</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=hybridSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort results containing both products and offers. The API will return items ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing a mix of products and offers, use the hybridSortType parameter to control the type of sorting, and the hybridSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">hybridSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=hybridSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing a mix of products and offers will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">hybridSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort results containing only products. The API will return products ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only products, use the productSortType parameter to control the type of sorting, and the productSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing only products will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showSmartBuy placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showSmartBuy</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numFeatured placeholder="3">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numFeatured</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewSortType placeholder="review-date">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">generalsearchProduct</span>
+</div>
+<div class="meta">
 <p>Searches for products by product. See API docs for request parameters/format.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>subTrackingId</td>
-			<td>User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorUserAgent</td>
-			<td>The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorIPAddress</td>
-			<td>The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productId</td>
-			<td>Searching by productId returns offers for a specific product. For a valid product ID, the API will return a single category, containing a single product, containing a list of offers.  Multiple productId parameters may be provided in a single request.<br/>                       </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>numItems</td>
-			<td>Control how many products and/or offers are returned within a category as well as the number of offers returned within a single product result. The only case where this parameter is not used is in the case where the showProductOffers option is being used to return offers for multiple products. In that case, the numOffersPerProduct parameter is the equivalent.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pageNumber</td>
-			<td>Set which page of results to return. When more results are available than are returned in a single query (indicated by a difference between the matchedCount and returnedCount) additional pages of results can be requested using the pageNumber parameter. Pagination currently only works for items returned by a leaf-level category search, a keyword search resulting in items across multiple categories, or the offers returned by a product ID search. You currently cannot paginate any results of a groupItemsByCategory=true keyword-only search, nor can you paginate the offers returned for each product when using the showProductOffers parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductSpecs</td>
-			<td>Product specifications include data about products from the Shopping.com catalog, including things such as MPN/UPC, weight, dimensions, or other features which may be unique to the specific product.  Generally, when products are returned in SDC API results, they only include a few details about the product itself, and then possibly a list of store offers.   This parameter will control the inclusion of complete specifications for the returned products in addition to any other information (offers, reviews) you have requested.<br/>                            You can also do a side by side comparison of any number of products, simply by providing multiple productId parameters in the request, or by using this parameter along with a request which returns multiple products (generally, products should be from the same category, as a comparison of products from different categories would generally not be meaningful.)  Finally, if you only want product specifications, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showProductReviews</td>
-			<td>Reviews are provided for many of the products in the Shopping.com catalog courtesy of the Epinions community.  This parameter will allow you to retrieve product reviews with every product returned by the API (if available).  Each reviews section will contain the overall (average) rating, as well as a list of individual ratings, including the 'pros', 'cons', 'bottom line', and a short snippet of the full review text.  As with product specifications, if you only want product reviews, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                            Any individual review displayed must include a link to the ���full review��� (which will be provided in the API response) as well as attribution to Epinions through the display of a logo (http://img.shopping.com/wtb/logos/logo_www.epinions.com.gif) and language that states "provided by Epinions".  Also, the complete reviews information must be presented as it is returned by the API and cannot be altered.  Finally, reviews content must be enabled by your account manager, upon acceptance of an amendment to the original API agreement (which they will provide.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numReviewsPerProduct</td>
-			<td>If the showProductReviews option is true, this parameter controls how many reviews will be returned for each product in the API results.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsPageNumber</td>
-			<td>Set which page of reviews to return for each product. When more reviews are available than are returned for a particular product, or list of products (indicated by a difference between the matchedReviewCount and returnedReviewCount) additional pages of reviews can be requested using the reviewsPageNumber parameter.  Generally, reviews pagination only makes sense in the context of a single product, as reviews will be paginated for all products present in the response (if applicable.)<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>postalCode</td>
-			<td>Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showOffersOnly</td>
-			<td>Control whether search results should return only offers (i.e. no product information.) At the moment, showOffersOnly does not support searches across multiple categories, which means you can limit the search to offers only when searching by leaf-level category or product ID.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showAllMatchingCategories</td>
-			<td>Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortType</td>
-			<td>Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortOrder</td>
-			<td>Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showSmartBuy</td>
-			<td>Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numFeatured</td>
-			<td>Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </td>
-			<td>3</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewSortType</td>
-			<td>Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </td>
-			<td>review-date</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsSortOrder</td>
-			<td>Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>generalsearchOffer</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=subTrackingId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">subTrackingId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorUserAgent placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorUserAgent</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorIPAddress placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorIPAddress</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Searching by productId returns offers for a specific product. For a valid product ID, the API will return a single category, containing a single product, containing a list of offers.  Multiple productId parameters may be provided in a single request.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productId</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numItems placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how many products and/or offers are returned within a category as well as the number of offers returned within a single product result. The only case where this parameter is not used is in the case where the showProductOffers option is being used to return offers for multiple products. In that case, the numOffersPerProduct parameter is the equivalent.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numItems</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=pageNumber placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set which page of results to return. When more results are available than are returned in a single query (indicated by a difference between the matchedCount and returnedCount) additional pages of results can be requested using the pageNumber parameter. Pagination currently only works for items returned by a leaf-level category search, a keyword search resulting in items across multiple categories, or the offers returned by a product ID search. You currently cannot paginate any results of a groupItemsByCategory=true keyword-only search, nor can you paginate the offers returned for each product when using the showProductOffers parameter. Note: Only available in the context of a multiple category result, with groupItemsByCategory=false (or undefined).<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">pageNumber</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductSpecs placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Product specifications include data about products from the Shopping.com catalog, including things such as MPN/UPC, weight, dimensions, or other features which may be unique to the specific product.  Generally, when products are returned in SDC API results, they only include a few details about the product itself, and then possibly a list of store offers.   This parameter will control the inclusion of complete specifications for the returned products in addition to any other information (offers, reviews) you have requested.<br/>                            You can also do a side by side comparison of any number of products, simply by providing multiple productId parameters in the request, or by using this parameter along with a request which returns multiple products (generally, products should be from the same category, as a comparison of products from different categories would generally not be meaningful.)  Finally, if you only want product specifications, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductSpecs</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showProductReviews placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Reviews are provided for many of the products in the Shopping.com catalog courtesy of the Epinions community.  This parameter will allow you to retrieve product reviews with every product returned by the API (if available).  Each reviews section will contain the overall (average) rating, as well as a list of individual ratings, including the 'pros', 'cons', 'bottom line', and a short snippet of the full review text.  As with product specifications, if you only want product reviews, and don't care about the store offers for those products, remember to set the parameter 'showProductOffers' to false (or set 'numItems' to 0 if making a single productId request.)<br/>                            Any individual review displayed must include a link to the ���full review��� (which will be provided in the API response) as well as attribution to Epinions through the display of a logo (http://img.shopping.com/wtb/logos/logo_www.epinions.com.gif) and language that states "provided by Epinions".  Also, the complete reviews information must be presented as it is returned by the API and cannot be altered.  Finally, reviews content must be enabled by your account manager, upon acceptance of an amendment to the original API agreement (which they will provide.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showProductReviews</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numReviewsPerProduct placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If the showProductReviews option is true, this parameter controls how many reviews will be returned for each product in the API results.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numReviewsPerProduct</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsPageNumber placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set which page of reviews to return for each product. When more reviews are available than are returned for a particular product, or list of products (indicated by a difference between the matchedReviewCount and returnedReviewCount) additional pages of reviews can be requested using the reviewsPageNumber parameter.  Generally, reviews pagination only makes sense in the context of a single product, as reviews will be paginated for all products present in the response (if applicable.)<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsPageNumber</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=postalCode placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">postalCode</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showOffersOnly placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether search results should return only offers (i.e. no product information.) At the moment, showOffersOnly does not support searches across multiple categories, which means you can limit the search to offers only when searching by leaf-level category or product ID.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showOffersOnly</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showAllMatchingCategories placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showAllMatchingCategories</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showSmartBuy placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showSmartBuy</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numFeatured placeholder="3">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numFeatured</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewSortType placeholder="review-date">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">generalsearchOffer</span>
+</div>
+<div class="meta">
 <p>Searches for products by offer. See API docs for request parameters/format.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>subTrackingId</td>
-			<td>User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorUserAgent</td>
-			<td>The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>visitorIPAddress</td>
-			<td>The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>groupItemsByCategory</td>
-			<td>Control whether or not items are separated into different categories. By default, searches don't separate items by category. Instead, a single category (with id "0") is returned containing items from different categories.<br/>                       </td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>postalCode</td>
-			<td>Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showAllMatchingCategories</td>
-			<td>Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortType</td>
-			<td>Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offerSortOrder</td>
-			<td>Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>showSmartBuy</td>
-			<td>Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>numFeatured</td>
-			<td>Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </td>
-			<td>3</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewSortType</td>
-			<td>Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </td>
-			<td>review-date</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>productReviewsSortOrder</td>
-			<td>Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=subTrackingId placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+User generated ID used to further break down traffic sources beyond SDC campaign level tracking. You may choose any arbitrary character sequence (up to 36 characters), and use as many different IDs as required.  Please note that you must contact your account manager to have reporting enabled for this sub-tracking ID - otherwise the parameter will simply be ignored.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">subTrackingId</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorUserAgent placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The browser user-agent of the visitor to which this data is being presented.  This data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorUserAgent</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=visitorIPAddress placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The IP address of the visitor to which this data is being presented.  Like visitorUserAgent, this data helps Shopping.com to differentiate real users from web crawlers or robots.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">visitorIPAddress</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=groupItemsByCategory placeholder="false">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not items are separated into different categories. By default, searches don't separate items by category. Instead, a single category (with id "0") is returned containing items from different categories.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">groupItemsByCategory</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=postalCode placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the postal code of the current user, for tax and shipping purposes. Tax and shipping costs will be provided along with each offer returned by the API (when available) if a valid postal code is included in the request. These costs will be added to the offer's base price to calculate a total price, which is then used for sorting by price.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">postalCode</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showAllMatchingCategories placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not this query will return all matching categories, regardless of relevance. When performing a keyword search, the Shopping.com API will normally return 0 or more matching categories up to a relevance threshold. This means that even if the search engine finds 100 categories matching the keyword, it may only return a fraction of those if it determines that the remaining categories are outside of the relevance threshold. Setting the numCategories parameter to 100 will not change this behavior, as numCategories is overruled by relevance thresholds.<br/>                            If you would like to see all matching categories (sorted alphabetically), regardless of relevance thresholds, use the showAllMatchingCategories parameter. Keep in mind, however, that due to the large number of categories normally returned, the API will not return items per category for this type of result. If, on the other hand, your keyword search has skipped to a single category, and you would simply like to see results from more than that one category (still subject to relevance thresholds), use the doSkipping parameter instead.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showAllMatchingCategories</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortType placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the method of sorting offers. The API will return offers ordered to maximize yield by default. If you would like to use a different type of ordering (e.g. the user requested to sort by price) for results containing only offers, use the offerSortType parameter to control the type of sorting, and the offerSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offerSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether results containing only offers will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">offerSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=showSmartBuy placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether or not the lowest-price offer from a trusted store will be flagged. The Shopping.com Smart Buy is the lowest offer from a trusted store within the list of offers for any given product. By enabling the showSmartBuy parameter, the offer matching these criteria (if one exists) will be marked as the smartBuy. Additionally, if using the "featured-store" offer sort type, the smartBuy will be moved to the first position below any featured offers.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">showSmartBuy</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=numFeatured placeholder="3">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Set the maximum number of featured stores to include in a result containing a list of offers, when using the 'featured-store' offer sort type. By default, up to 3 featured stores will be included.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">numFeatured</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewSortType placeholder="review-date">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control how to sort product reviews listings. The API will return product reviews ordered by review date by default. If you would like to use a different type of ordering (e.g. the user requested to sort by rating) for product reviews, use the productReviewsSortType parameter to control the type of sorting, and the productReviewsSortOrder to control the direction of sorting.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewSortType</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=productReviewsSortOrder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Control whether product reviews listings will be sorted in ascending or descending order.<br/>                       </p>
+</div>
+<div class="name">
+<span class="parameter-name">productReviewsSortOrder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>

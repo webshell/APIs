@@ -1,7 +1,7 @@
 ({
 	auth:function(){return auth({provider:'freebase'})},
 	'search': function(args, opts) {
-		var url = 'search'
+		var url = 'https://www.googleapis.com/freebase/v1/search'
 		args = args || {}
 		if (args['query'] == null) throw new Error('query is a required parameter')
 		var rgx = new RegExp('\{query\}', 'g')
@@ -9,9 +9,17 @@
 			url = url.replace(rgx, args['query'])
 			if (args['query']) delete args['query']
 		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
 		var rgx = new RegExp('\{callback\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
 			if (args['callback']) delete args['callback']
 		}
 		var rgx = new RegExp('\{domain\}', 'g')
@@ -19,9 +27,17 @@
 			url = url.replace(rgx, args['domain'])
 			if (args['domain']) delete args['domain']
 		}
+		if (url.indexOf('[/domain]') !== -1) {
+			url = url.replace('[/domain]', '/' + args['domain'])
+			if (args['domain']) delete args['domain']
+		}
 		var rgx = new RegExp('\{exact\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['exact'])
+			if (args['exact']) delete args['exact']
+		}
+		if (url.indexOf('[/exact]') !== -1) {
+			url = url.replace('[/exact]', '/' + args['exact'])
 			if (args['exact']) delete args['exact']
 		}
 		var rgx = new RegExp('\{filter\}', 'g')
@@ -29,9 +45,17 @@
 			url = url.replace(rgx, args['filter'])
 			if (args['filter']) delete args['filter']
 		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		var rgx = new RegExp('\{html_escape\}', 'g')
@@ -39,14 +63,26 @@
 			url = url.replace(rgx, args['html_escape'])
 			if (args['html_escape']) delete args['html_escape']
 		}
+		if (url.indexOf('[/html_escape]') !== -1) {
+			url = url.replace('[/html_escape]', '/' + args['html_escape'])
+			if (args['html_escape']) delete args['html_escape']
+		}
 		var rgx = new RegExp('\{indent\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['indent'])
 			if (args['indent']) delete args['indent']
 		}
+		if (url.indexOf('[/indent]') !== -1) {
+			url = url.replace('[/indent]', '/' + args['indent'])
+			if (args['indent']) delete args['indent']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
 		var rgx = new RegExp('\{mql_output\}', 'g')
@@ -54,9 +90,17 @@
 			url = url.replace(rgx, args['mql_output'])
 			if (args['mql_output']) delete args['mql_output']
 		}
+		if (url.indexOf('[/mql_output]') !== -1) {
+			url = url.replace('[/mql_output]', '/' + args['mql_output'])
+			if (args['mql_output']) delete args['mql_output']
+		}
 		var rgx = new RegExp('\{prefixed\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['prefixed'])
+			if (args['prefixed']) delete args['prefixed']
+		}
+		if (url.indexOf('[/prefixed]') !== -1) {
+			url = url.replace('[/prefixed]', '/' + args['prefixed'])
 			if (args['prefixed']) delete args['prefixed']
 		}
 		var rgx = new RegExp('\{start\}', 'g')
@@ -64,9 +108,17 @@
 			url = url.replace(rgx, args['start'])
 			if (args['start']) delete args['start']
 		}
+		if (url.indexOf('[/start]') !== -1) {
+			url = url.replace('[/start]', '/' + args['start'])
+			if (args['start']) delete args['start']
+		}
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['type'])
+			if (args['type']) delete args['type']
+		}
+		if (url.indexOf('[/type]') !== -1) {
+			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
 		var rgx = new RegExp('\{lang\}', 'g')
@@ -74,15 +126,37 @@
 			url = url.replace(rgx, args['lang'])
 			if (args['lang']) delete args['lang']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/lang]') !== -1) {
+			url = url.replace('[/lang]', '/' + args['lang'])
+			if (args['lang']) delete args['lang']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
+		if (url.indexOf('[/exact]') !== -1) url = url.replace('[/exact]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/html_escape]') !== -1) url = url.replace('[/html_escape]', '')
+		if (url.indexOf('[/indent]') !== -1) url = url.replace('[/indent]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		if (url.indexOf('[/mql_output]') !== -1) url = url.replace('[/mql_output]', '')
+		if (url.indexOf('[/prefixed]') !== -1) url = url.replace('[/prefixed]', '')
+		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
+		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
+		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'mqlread': function(args, opts) {
-		var url = 'mqlread'
+		var url = 'https://www.googleapis.com/freebase/v1/mqlread'
 		args = args || {}
 		if (args['query'] == null) throw new Error('query is a required parameter')
 		var rgx = new RegExp('\{query\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
 			if (args['query']) delete args['query']
 		}
 		var rgx = new RegExp('\{as_of_time\}', 'g')
@@ -90,9 +164,17 @@
 			url = url.replace(rgx, args['as_of_time'])
 			if (args['as_of_time']) delete args['as_of_time']
 		}
+		if (url.indexOf('[/as_of_time]') !== -1) {
+			url = url.replace('[/as_of_time]', '/' + args['as_of_time'])
+			if (args['as_of_time']) delete args['as_of_time']
+		}
 		var rgx = new RegExp('\{callback\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['callback'])
+			if (args['callback']) delete args['callback']
+		}
+		if (url.indexOf('[/callback]') !== -1) {
+			url = url.replace('[/callback]', '/' + args['callback'])
 			if (args['callback']) delete args['callback']
 		}
 		var rgx = new RegExp('\{cursor\}', 'g')
@@ -100,9 +182,17 @@
 			url = url.replace(rgx, args['cursor'])
 			if (args['cursor']) delete args['cursor']
 		}
+		if (url.indexOf('[/cursor]') !== -1) {
+			url = url.replace('[/cursor]', '/' + args['cursor'])
+			if (args['cursor']) delete args['cursor']
+		}
 		var rgx = new RegExp('\{html_escape\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['html_escape'])
+			if (args['html_escape']) delete args['html_escape']
+		}
+		if (url.indexOf('[/html_escape]') !== -1) {
+			url = url.replace('[/html_escape]', '/' + args['html_escape'])
 			if (args['html_escape']) delete args['html_escape']
 		}
 		var rgx = new RegExp('\{indent\}', 'g')
@@ -110,9 +200,17 @@
 			url = url.replace(rgx, args['indent'])
 			if (args['indent']) delete args['indent']
 		}
+		if (url.indexOf('[/indent]') !== -1) {
+			url = url.replace('[/indent]', '/' + args['indent'])
+			if (args['indent']) delete args['indent']
+		}
 		var rgx = new RegExp('\{lang\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['lang'])
+			if (args['lang']) delete args['lang']
+		}
+		if (url.indexOf('[/lang]') !== -1) {
+			url = url.replace('[/lang]', '/' + args['lang'])
 			if (args['lang']) delete args['lang']
 		}
 		var rgx = new RegExp('\{cost\}', 'g')
@@ -120,15 +218,32 @@
 			url = url.replace(rgx, args['cost'])
 			if (args['cost']) delete args['cost']
 		}
+		if (url.indexOf('[/cost]') !== -1) {
+			url = url.replace('[/cost]', '/' + args['cost'])
+			if (args['cost']) delete args['cost']
+		}
 		var rgx = new RegExp('\{uniqueness_failure\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['uniqueness_failure'])
 			if (args['uniqueness_failure']) delete args['uniqueness_failure']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/uniqueness_failure]') !== -1) {
+			url = url.replace('[/uniqueness_failure]', '/' + args['uniqueness_failure'])
+			if (args['uniqueness_failure']) delete args['uniqueness_failure']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		if (url.indexOf('[/as_of_time]') !== -1) url = url.replace('[/as_of_time]', '')
+		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
+		if (url.indexOf('[/cursor]') !== -1) url = url.replace('[/cursor]', '')
+		if (url.indexOf('[/html_escape]') !== -1) url = url.replace('[/html_escape]', '')
+		if (url.indexOf('[/indent]') !== -1) url = url.replace('[/indent]', '')
+		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
+		if (url.indexOf('[/cost]') !== -1) url = url.replace('[/cost]', '')
+		if (url.indexOf('[/uniqueness_failure]') !== -1) url = url.replace('[/uniqueness_failure]', '')
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'mqlwrite': function(args, opts) {
-		var url = 'mqlwrite'
+		var url = 'https://www.googleapis.com/freebase/v1/mqlwrite'
 		args = args || {}
 		if (args['query'] == null) throw new Error('query is a required parameter')
 		var rgx = new RegExp('\{query\}', 'g')
@@ -136,10 +251,15 @@
 			url = url.replace(rgx, args['query'])
 			if (args['query']) delete args['query']
 		}
-		return http({provider:'freebase',url:url,method:'POST',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/query]') !== -1) {
+			url = url.replace('[/query]', '/' + args['query'])
+			if (args['query']) delete args['query']
+		}
+		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
+		return http({provider:'freebase',url:url,method:'POST',params:args, auth:'manual'}, opts)
 	},
 	'topic': function(args, opts) {
-		var url = 'topic{id}'
+		var url = 'https://www.googleapis.com/freebase/v1/topic{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -147,9 +267,17 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
 		var rgx = new RegExp('\{lang\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['lang'])
+			if (args['lang']) delete args['lang']
+		}
+		if (url.indexOf('[/lang]') !== -1) {
+			url = url.replace('[/lang]', '/' + args['lang'])
 			if (args['lang']) delete args['lang']
 		}
 		var rgx = new RegExp('\{filter\}', 'g')
@@ -157,20 +285,36 @@
 			url = url.replace(rgx, args['filter'])
 			if (args['filter']) delete args['filter']
 		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
 			if (args['limit']) delete args['limit']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/limit]') !== -1) {
+			url = url.replace('[/limit]', '/' + args['limit'])
+			if (args['limit']) delete args['limit']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'text': function(args, opts) {
-		var url = 'text{id}'
+		var url = 'https://www.googleapis.com/freebase/v1/text{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['id'])
+			if (args['id']) delete args['id']
+		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
 			if (args['id']) delete args['id']
 		}
 		var rgx = new RegExp('\{format\}', 'g')
@@ -178,9 +322,17 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
 		var rgx = new RegExp('\{lang\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['lang'])
+			if (args['lang']) delete args['lang']
+		}
+		if (url.indexOf('[/lang]') !== -1) {
+			url = url.replace('[/lang]', '/' + args['lang'])
 			if (args['lang']) delete args['lang']
 		}
 		var rgx = new RegExp('\{maxlength\}', 'g')
@@ -188,10 +340,18 @@
 			url = url.replace(rgx, args['maxlength'])
 			if (args['maxlength']) delete args['maxlength']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/maxlength]') !== -1) {
+			url = url.replace('[/maxlength]', '/' + args['maxlength'])
+			if (args['maxlength']) delete args['maxlength']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
+		if (url.indexOf('[/maxlength]') !== -1) url = url.replace('[/maxlength]', '')
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'image': function(args, opts) {
-		var url = 'image{id}'
+		var url = 'https://www.googleapis.com/freebase/v1/image{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -199,9 +359,17 @@
 			url = url.replace(rgx, args['id'])
 			if (args['id']) delete args['id']
 		}
+		if (url.indexOf('[/id]') !== -1) {
+			url = url.replace('[/id]', '/' + args['id'])
+			if (args['id']) delete args['id']
+		}
 		var rgx = new RegExp('\{fallbackid\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['fallbackid'])
+			if (args['fallbackid']) delete args['fallbackid']
+		}
+		if (url.indexOf('[/fallbackid]') !== -1) {
+			url = url.replace('[/fallbackid]', '/' + args['fallbackid'])
 			if (args['fallbackid']) delete args['fallbackid']
 		}
 		var rgx = new RegExp('\{maxheight\}', 'g')
@@ -209,9 +377,17 @@
 			url = url.replace(rgx, args['maxheight'])
 			if (args['maxheight']) delete args['maxheight']
 		}
+		if (url.indexOf('[/maxheight]') !== -1) {
+			url = url.replace('[/maxheight]', '/' + args['maxheight'])
+			if (args['maxheight']) delete args['maxheight']
+		}
 		var rgx = new RegExp('\{maxwidth\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['maxwidth'])
+			if (args['maxwidth']) delete args['maxwidth']
+		}
+		if (url.indexOf('[/maxwidth]') !== -1) {
+			url = url.replace('[/maxwidth]', '/' + args['maxwidth'])
 			if (args['maxwidth']) delete args['maxwidth']
 		}
 		var rgx = new RegExp('\{mode\}', 'g')
@@ -219,11 +395,25 @@
 			url = url.replace(rgx, args['mode'])
 			if (args['mode']) delete args['mode']
 		}
+		if (url.indexOf('[/mode]') !== -1) {
+			url = url.replace('[/mode]', '/' + args['mode'])
+			if (args['mode']) delete args['mode']
+		}
 		var rgx = new RegExp('\{pad\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['pad'])
 			if (args['pad']) delete args['pad']
 		}
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth: "none"}, opts)
+		if (url.indexOf('[/pad]') !== -1) {
+			url = url.replace('[/pad]', '/' + args['pad'])
+			if (args['pad']) delete args['pad']
+		}
+		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
+		if (url.indexOf('[/fallbackid]') !== -1) url = url.replace('[/fallbackid]', '')
+		if (url.indexOf('[/maxheight]') !== -1) url = url.replace('[/maxheight]', '')
+		if (url.indexOf('[/maxwidth]') !== -1) url = url.replace('[/maxwidth]', '')
+		if (url.indexOf('[/mode]') !== -1) url = url.replace('[/mode]', '')
+		if (url.indexOf('[/pad]') !== -1) url = url.replace('[/pad]', '')
+		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

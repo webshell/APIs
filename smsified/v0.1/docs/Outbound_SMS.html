@@ -1,71 +1,119 @@
-<h1>Smsified API: Outbound SMS</h1>
-<p>These methods are relative to the tag 'Outbound SMS'</p><h3>sendSmsmessage</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">sendSmsmessage</span>
+</div>
+<div class="meta">
 <p>Sends a 160 character SMS message from your SMSified phone number to any US mobile number.<br/>	   </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>address</td>
-			<td>Specifies the 10-digit phone number to send the SMS message to.</td>
-			<td>1234567890</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>message</td>
-			<td>Specifies the 160 character SMS message to deliver.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>notifyURL</td>
-			<td>If you want to set a callback URL for your SMS, you would use the notifyURL parameter, which will allow you to receive status information about the sent SMS (including the destination address, sender's address, the message itself and the status code). If the message was successfully delivered, the code field will always read 0; if the SMS could not be delivered, possibly due to exceeded rate limits or a bad phone number, there are a variety of additional codes to help you identify the problem.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>deliveryStatus</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=address placeholder="1234567890">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Specifies the 10-digit phone number to send the SMS message to.</p>
+</div>
+<div class="name">
+<span class="parameter-name">address</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=message placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Specifies the 160 character SMS message to deliver.</p>
+</div>
+<div class="name">
+<span class="parameter-name">message</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=notifyURL placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+If you want to set a callback URL for your SMS, you would use the notifyURL parameter, which will allow you to receive status information about the sent SMS (including the destination address, sender's address, the message itself and the status code). If the message was successfully delivered, the code field will always read 0; if the SMS could not be delivered, possibly due to exceeded rate limits or a bad phone number, there are a variety of additional codes to help you identify the problem.</p>
+</div>
+<div class="name">
+<span class="parameter-name">notifyURL</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">deliveryStatus</span>
+</div>
+<div class="meta">
 <p>If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.<br/>	   </p>
-<p><em>Authentication required</em></p>
-	</tbody>
-
-</table>
-<h3>setOutboundSubscribe</h3>
+</div>
+<hr>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">setOutboundSubscribe</span>
+</div>
+<div class="meta">
 <p>If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.<br/>	   </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>notifyURL</td>
-			<td>Instead of setting a callback URL using the notifyURL parameter every time you send a text message, you can set an outbound subscription. With a subscription, you set the callback URL one time and tie it to the phone number, then every time a text message goes out, you'll receive the delivery notification automatically. If you set a value for notifyURL when you send a text message and also have an active subscription, the delivery info will be sent to both URLs.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>viewOutboundSubscribe</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=notifyURL placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Instead of setting a callback URL using the notifyURL parameter every time you send a text message, you can set an outbound subscription. With a subscription, you set the callback URL one time and tie it to the phone number, then every time a text message goes out, you'll receive the delivery notification automatically. If you set a value for notifyURL when you send a text message and also have an active subscription, the delivery info will be sent to both URLs.</p>
+</div>
+<div class="name">
+<span class="parameter-name">notifyURL</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">viewOutboundSubscribe</span>
+</div>
+<div class="meta">
 <p>If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely. Note: If you omit the senderAddress, you'll see a list of all your outbound subscriptions.<br/>	   </p>
-<p><em>Authentication required</em></p>
-	</tbody>
-
-</table>
-<h3>deleteOutboundSubscribe</h3>
+</div>
+<hr>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method DELETE">DELETE</span><span class="route">deleteOutboundSubscribe</span>
+</div>
+<div class="meta">
 <p>If you want to check your delivery status before all your messages may have sent out (especially useful if you send an SMS to multiple addresses), you can pull a Delivery Status report using the requestId displayed in Response JSON. This is different than the other reporting options, as it functions in realtime - reporting only shows messages once they've successfully sent to the network or failed completely.<br/>	   </p>
-<p><em>Authentication required</em></p>
-	</tbody>
-
-</table>
+</div>
+<hr>
+</div>

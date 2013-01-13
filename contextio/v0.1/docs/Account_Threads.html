@@ -1,137 +1,288 @@
-<h1>Contextio API: Account Threads</h1>
-<p>These methods are relative to the tag 'Account Threads'</p><h3>listAccountThreads</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">listAccountThreads</span>
+</div>
+<div class="meta">
 <p>Lists threads on an account.</p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>Unique id of an account accessible through your API key.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>subject</td>
-			<td>Get threads with messages whose subject matches this search string. To use regular expressions instead of simple string matching, make sure the string starts and ends with /.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>email</td>
-			<td>Email address of the contact for whom you want the latest threads. This value is interpreted as received from email X, sent to email X or sent by anyone to both email X and the source owner.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>to</td>
-			<td>Get threads with at least one message sent to this email address.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>from</td>
-			<td>Get threads with at least one message sent from this email address.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>cc</td>
-			<td>Get threads with at least one message having this email address CC'ed.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>bcc</td>
-			<td>Get threads with at least one message having this email address BCC'ed.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>folder</td>
-			<td>Filter threads by the folder (or Gmail label). This parameter can be the complete folder name with the appropriate hierarchy delimiter for the mail server being queried (eg. Inbox/My folder) or the "symbolic name" of the folder (eg. \Starred). The symbolic name refers to attributes used to refer to special use folders in a language-independant way. See http://code.google.com/apis/gmail/imap/#xlist (Gmail specific) and RFC-6154.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>indexed_before</td>
-			<td>Get threads with at least one message indexed before this timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>indexed_after</td>
-			<td>Get threads with at least one message indexed after this timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>active_before</td>
-			<td>Get threads with at least one message dated before this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>active_after</td>
-			<td>Get threads with at least one message dated after this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>started_before</td>
-			<td>Get threads whose first message is dated before this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>started_after</td>
-			<td>Get threads whose first message is dated after this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</td>
-			<td>0</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>The maximum number of results to return.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>offset</td>
-			<td>Start the list at this offset (zero-based).</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getAccountThread</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unique id of an account accessible through your API key.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=subject placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with messages whose subject matches this search string. To use regular expressions instead of simple string matching, make sure the string starts and ends with /.</p>
+</div>
+<div class="name">
+<span class="parameter-name">subject</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=email placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Email address of the contact for whom you want the latest threads. This value is interpreted as received from email X, sent to email X or sent by anyone to both email X and the source owner.</p>
+</div>
+<div class="name">
+<span class="parameter-name">email</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=to placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message sent to this email address.</p>
+</div>
+<div class="name">
+<span class="parameter-name">to</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=from placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message sent from this email address.</p>
+</div>
+<div class="name">
+<span class="parameter-name">from</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=cc placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message having this email address CC'ed.</p>
+</div>
+<div class="name">
+<span class="parameter-name">cc</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=bcc placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message having this email address BCC'ed.</p>
+</div>
+<div class="name">
+<span class="parameter-name">bcc</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=folder placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Filter threads by the folder (or Gmail label). This parameter can be the complete folder name with the appropriate hierarchy delimiter for the mail server being queried (eg. Inbox/My folder) or the "symbolic name" of the folder (eg. \Starred). The symbolic name refers to attributes used to refer to special use folders in a language-independant way. See http://code.google.com/apis/gmail/imap/#xlist (Gmail specific) and RFC-6154.</p>
+</div>
+<div class="name">
+<span class="parameter-name">folder</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=indexed_before placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message indexed before this timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</p>
+</div>
+<div class="name">
+<span class="parameter-name">indexed_before</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=indexed_after placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message indexed after this timestamp. This is not the same as the date of the email, it is the time Context.IO indexed this message.</p>
+</div>
+<div class="name">
+<span class="parameter-name">indexed_after</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=active_before placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message dated before this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</p>
+</div>
+<div class="name">
+<span class="parameter-name">active_before</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=active_after placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads with at least one message dated after this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</p>
+</div>
+<div class="name">
+<span class="parameter-name">active_after</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=started_before placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads whose first message is dated before this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</p>
+</div>
+<div class="name">
+<span class="parameter-name">started_before</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=started_after placeholder="0">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Get threads whose first message is dated after this timestamp. The value this filter is applied to is the Date: header of the message which refers to the time the message is sent from the origin.</p>
+</div>
+<div class="name">
+<span class="parameter-name">started_after</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=limit placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The maximum number of results to return.</p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=offset placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Start the list at this offset (zero-based).</p>
+</div>
+<div class="name">
+<span class="parameter-name">offset</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getAccountThread</span>
+</div>
+<div class="meta">
 <p>Returns files, contacts and messages on a given thread. The purpose is to allow Gmail extensions to easily retrieve data when users's load a conversation in the Gmail UI. Hence, threads are identified by the value of their Gmail thread prefixed with "gm-".<br/>For example, if the URL of a conversation in the Gmail UI is https://mail.google.com/mail/u/0/#mbox/13119ab37f00b826, you would obtain the details about this thread by calling:<br/>GET https://api.context.io/2.0/accounts/<accountId>/threads/gm-13119ab37f00b826<br/><br/>What about threads on non-Gmail mailboxes?<br/>You can retrieve thread information for any message using the Thread resource of that message.<br/>               </p>
-<p><em>Authentication required</em></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>Unique id of an account accessible through your API key.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>thread_id</td>
-			<td>A gmail_thread_id prefixed with gm-.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Test console</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unique id of an account accessible through your API key.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+<input type="text" name=thread_id placeholder="">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A gmail_thread_id prefixed with gm-.</p>
+</div>
+<div class="name">
+<span class="parameter-name">thread_id</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
