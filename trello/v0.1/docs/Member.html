@@ -1,939 +1,1793 @@
-<h1>Trello API: Member</h1>
-<p>These methods are relative to the tag 'Member'</p><h3>getMember</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMember</span>
+</div>
+<div class="meta">
 <p>Get a member !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>actions</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions_entities</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions_limit</td>
-			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>action_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>cards</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>card_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>card_members</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>card_member_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>card_attachments</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>card_attachment_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>boards</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      members<br/>	      organization<br/>	      public<br/>	      open<br/>	      closed<br/>	      pinned<br/>	      unpinned<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_actions</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_actions_entities</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_actions_format</td>
-			<td>Valid Values: One of:<br/>	      count<br/>	      list<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_actions_since</td>
-			<td>Valid Values: A date, null or lastView<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_actions_limit</td>
-			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_action_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_lists</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_organization</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>board_organization_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>boardsInvited</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      members<br/>	      organization<br/>	      public<br/>	      open<br/>	      closed<br/>	      pinned<br/>	      unpinned<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>boardsInvited_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organizations</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      members<br/>	      public<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organization_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organization_paid_account</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organizationsInvited</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organizationsInvited_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notifications</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addedAttachmentToCard<br/>	      addedToBoard<br/>	      addedToCard<br/>	      addedMemberToCard<br/>	      addAdminToBoard<br/>	      addAdminToOrganization<br/>	      changeCard<br/>	      closeBoard<br/>	      commentCard<br/>	      createdCard<br/>	      invitedToBoard<br/>	      invitedToOrganization<br/>	      removedFromBoard<br/>	      removedFromCard<br/>	      removedMemberFromCard<br/>	      removedFromOrganization<br/>	      mentionedOnCard<br/>	      updateCheckItemStateOnCard<br/>	      makeAdminOfBoard<br/>	      makeAdminOfOrganization<br/>	      cardDueSoon<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notifications_entities</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notifications_limit</td>
-			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notification_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      unread<br/>	      type<br/>	      date<br/>	      data<br/>	      idMemberCreator<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notification_memberCreator</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notification_memberCreator_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>tokens</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	      avatarSource<br/>	      confirmed<br/>	      email<br/>	      gravatarHash<br/>	      idBoards<br/>	      idBoardsInvited<br/>	      idBoardsPinned<br/>	      idOrganizations<br/>	      idOrganizationsInvited<br/>	      idPremOrgsAdmin<br/>	      loginTypes<br/>	      prefs<br/>	      status<br/>	      trophies<br/>	      uploadedAvatarHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberWithField</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions_entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 1 to 1000<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions_limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">action_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">cards</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">card_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">card_members</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">card_member_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">card_attachments</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">card_attachment_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      members<br/>	      organization<br/>	      public<br/>	      open<br/>	      closed<br/>	      pinned<br/>	      unpinned<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">boards</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_actions</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_actions_entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      count<br/>	      list<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_actions_format</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A date, null or lastView<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_actions_since</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 1 to 1000<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_actions_limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_action_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      open<br/>	      closed<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_lists</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_organization</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">board_organization_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      members<br/>	      organization<br/>	      public<br/>	      open<br/>	      closed<br/>	      pinned<br/>	      unpinned<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">boardsInvited</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">boardsInvited_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      members<br/>	      public<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organizations</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organization_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organization_paid_account</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organizationsInvited</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organizationsInvited_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addedAttachmentToCard<br/>	      addedToBoard<br/>	      addedToCard<br/>	      addedMemberToCard<br/>	      addAdminToBoard<br/>	      addAdminToOrganization<br/>	      changeCard<br/>	      closeBoard<br/>	      commentCard<br/>	      createdCard<br/>	      invitedToBoard<br/>	      invitedToOrganization<br/>	      removedFromBoard<br/>	      removedFromCard<br/>	      removedMemberFromCard<br/>	      removedFromOrganization<br/>	      mentionedOnCard<br/>	      updateCheckItemStateOnCard<br/>	      makeAdminOfBoard<br/>	      makeAdminOfOrganization<br/>	      cardDueSoon<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">notifications</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">notifications_entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 1 to 1000<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">notifications_limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      unread<br/>	      type<br/>	      date<br/>	      data<br/>	      idMemberCreator<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">notification_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">notification_memberCreator</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">notification_memberCreator_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">tokens</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	      avatarSource<br/>	      confirmed<br/>	      email<br/>	      gravatarHash<br/>	      idBoards<br/>	      idBoardsInvited<br/>	      idBoardsPinned<br/>	      idOrganizations<br/>	      idOrganizationsInvited<br/>	      idPremOrgsAdmin<br/>	      loginTypes<br/>	      prefs<br/>	      status<br/>	      trophies<br/>	      uploadedAvatarHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberWithField</span>
+</div>
+<div class="meta">
 <p>Get a member with field !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>field</td>
-			<td>Valid Values: One of:<br/>	  avatarHash<br/>	  bio<br/>	  fullName<br/>	  initials<br/>	  status<br/>	  url<br/>	  username<br/>	  avatarSource<br/>	  confirmed<br/>	  email<br/>	  gravatarHash<br/>	  idBoards<br/>	  idBoardsInvited<br/>	  idBoardsPinned<br/>	  idOrganizations<br/>	  idOrganizationsInvited<br/>	  idPremOrgsAdmin<br/>	  loginTypes<br/>	  prefs<br/>	  status<br/>	  trophies<br/>	  uploadedAvatarHash<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberAction</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	  avatarHash<br/>	  bio<br/>	  fullName<br/>	  initials<br/>	  status<br/>	  url<br/>	  username<br/>	  avatarSource<br/>	  confirmed<br/>	  email<br/>	  gravatarHash<br/>	  idBoards<br/>	  idBoardsInvited<br/>	  idBoardsPinned<br/>	  idOrganizations<br/>	  idOrganizationsInvited<br/>	  idPremOrgsAdmin<br/>	  loginTypes<br/>	  prefs<br/>	  status<br/>	  trophies<br/>	  uploadedAvatarHash<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">field</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberAction</span>
+</div>
+<div class="meta">
 <p>Get a member action !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>entities</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>since</td>
-			<td>Valid Values: A date, null or lastView<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>before</td>
-			<td>Valid Values: A date or null<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>Valid Values: a number from 0 to 100<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>idModels</td>
-			<td>Valid Values: Only return actions related to these model ids<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberBoard</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 1 to 1000<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A date, null or lastView<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">since</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A date or null<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">before</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 0 to 100<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: Only return actions related to these model ids<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">idModels</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberBoard</span>
+</div>
+<div class="meta">
 <p>Get a member board !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      members<br/>	      organization<br/>	      public<br/>	      open<br/>	      closed<br/>	      pinned<br/>	      unpinned<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions_entities</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions_limit</td>
-			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions_format</td>
-			<td>Valid Values: One of:<br/>	      count<br/>	      list<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>actions_since</td>
-			<td>Valid Values: A date, null or lastView<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>action_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organization</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>organization_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>lists</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberBoardWithFilter</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      members<br/>	      organization<br/>	      public<br/>	      open<br/>	      closed<br/>	      pinned<br/>	      unpinned<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions_entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 1 to 1000<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions_limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      count<br/>	      list<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions_format</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A date, null or lastView<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions_since</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      idMemberCreator<br/>	      data<br/>	      type<br/>	      date<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">action_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organization</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">organization_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      open<br/>	      closed<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">lists</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberBoardWithFilter</span>
+</div>
+<div class="meta">
 <p>Get a member board with filter !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	  none<br/>	  members<br/>	  organization<br/>	  public<br/>	  open<br/>	  closed<br/>	  pinned<br/>	  unpinned<br/>	  all<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberBoardInvited</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	  none<br/>	  members<br/>	  organization<br/>	  public<br/>	  open<br/>	  closed<br/>	  pinned<br/>	  unpinned<br/>	  all<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberBoardInvited</span>
+</div>
+<div class="meta">
 <p>Get a member board with filter !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberBoardInvitedWithField</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      desc<br/>	      closed<br/>	      idOrganization<br/>	      invited<br/>	      pinned<br/>	      url<br/>	      prefs<br/>	      invitations<br/>	      memberships<br/>	      subscribed<br/>	      labelNames<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberBoardInvitedWithField</span>
+</div>
+<div class="meta">
 <p>Get a member boardInvited with field !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>field</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	  name<br/>	  desc<br/>	  closed<br/>	  idOrganization<br/>	  invited<br/>	  pinned<br/>	  url<br/>	  prefs<br/>	  invitations<br/>	  memberships<br/>	  subscribed<br/>	  labelNames<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberCard</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	  name<br/>	  desc<br/>	  closed<br/>	  idOrganization<br/>	  invited<br/>	  pinned<br/>	  url<br/>	  prefs<br/>	  invitations<br/>	  memberships<br/>	  subscribed<br/>	  labelNames<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">field</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberCard</span>
+</div>
+<div class="meta">
 <p>Get a member card !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>actions</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>attachments</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>attachment_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>members</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>member_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>checkItemStates</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>checklists</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberCardWithFilter</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addAttachmentToCard<br/>	      addChecklistToCard<br/>	      addMemberToBoard<br/>	      addMemberToCard<br/>	      addMemberToOrganization<br/>	      addToOrganizationBoard<br/>	      commentCard<br/>	      copyCommentCard<br/>	      convertToCardFromCheckItem<br/>	      copyBoard<br/>	      createBoard<br/>	      createCard<br/>	      copyCard<br/>	      createList<br/>	      createOrganization<br/>	      deleteAttachmentFromCard<br/>	      deleteBoardInvitation<br/>	      deleteOrganizationInvitation<br/>	      makeAdminOfBoard<br/>	      makeNormalMemberOfBoard<br/>	      makeNormalMemberOfOrganization<br/>	      makeObserverOfBoard<br/>	      memberJoinedTrello<br/>	      moveCardFromBoard<br/>	      moveListFromBoard<br/>	      moveCardToBoard<br/>	      moveListToBoard<br/>	      removeAdminFromBoard<br/>	      removeAdminFromOrganization<br/>	      removeChecklistFromCard<br/>	      removeFromOrganizationBoard<br/>	      removeMemberFromCard<br/>	      updateBoard<br/>	      updateCard<br/>	      updateCheckItemStateOnCard<br/>	      updateChecklist<br/>	      updateMember<br/>	      updateOrganization<br/>	      updateCard:idList<br/>	      updateCard:closed<br/>	      updateCard:desc<br/>	      updateCard:name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">actions</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">attachments</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      bytes<br/>	      date<br/>	      idMember<br/>	      isUpload<br/>	      mimeType<br/>	      name<br/>	      previews<br/>	      url<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">attachment_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">members</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">member_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">checkItemStates</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">checklists</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      visible<br/>	      open<br/>	      closed<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      badges<br/>	      checkItemStates<br/>	      closed<br/>	      desc<br/>	      due<br/>	      idBoard<br/>	      idChecklists<br/>	      idList<br/>	      idMembers<br/>	      idShort<br/>	      idAttachmentCover<br/>	      manualCoverAttachment<br/>	      labels<br/>	      name<br/>	      pos<br/>	      subscribed<br/>	      url<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberCardWithFilter</span>
+</div>
+<div class="meta">
 <p>Get a member card with filter !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	  none<br/>	  visible<br/>	  open<br/>	  closed<br/>	  all<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberNotifications</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	  none<br/>	  visible<br/>	  open<br/>	  closed<br/>	  all<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberNotifications</span>
+</div>
+<div class="meta">
 <p>Get a member notification !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>entities</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      addedAttachmentToCard<br/>	      addedToBoard<br/>	      addedToCard<br/>	      addedMemberToCard<br/>	      addAdminToBoard<br/>	      addAdminToOrganization<br/>	      changeCard<br/>	      closeBoard<br/>	      commentCard<br/>	      createdCard<br/>	      invitedToBoard<br/>	      invitedToOrganization<br/>	      removedFromBoard<br/>	      removedFromCard<br/>	      removedMemberFromCard<br/>	      removedFromOrganization<br/>	      mentionedOnCard<br/>	      updateCheckItemStateOnCard<br/>	      makeAdminOfBoard<br/>	      makeAdminOfOrganization<br/>	      cardDueSoon<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>read_filter</td>
-			<td>Valid Values: One of:<br/>	      read<br/>	      unread<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      unread<br/>	      type<br/>	      date<br/>	      data<br/>	      idMemberCreator<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>Valid Values: a number from 1 to 1000<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>Valid Values: a number from 0 to 100<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>before</td>
-			<td>Valid Values: An id, or null<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>since</td>
-			<td>Valid Values: An id, or null<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>memberCreator</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>memberCreator_fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberNotificationWithFilter</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">entities</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      addedAttachmentToCard<br/>	      addedToBoard<br/>	      addedToCard<br/>	      addedMemberToCard<br/>	      addAdminToBoard<br/>	      addAdminToOrganization<br/>	      changeCard<br/>	      closeBoard<br/>	      commentCard<br/>	      createdCard<br/>	      invitedToBoard<br/>	      invitedToOrganization<br/>	      removedFromBoard<br/>	      removedFromCard<br/>	      removedMemberFromCard<br/>	      removedFromOrganization<br/>	      mentionedOnCard<br/>	      updateCheckItemStateOnCard<br/>	      makeAdminOfBoard<br/>	      makeAdminOfOrganization<br/>	      cardDueSoon<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      read<br/>	      unread<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">read_filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      unread<br/>	      type<br/>	      date<br/>	      data<br/>	      idMemberCreator<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 1 to 1000<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: a number from 0 to 100<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: An id, or null<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">before</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: An id, or null<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">since</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">memberCreator</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      avatarHash<br/>	      bio<br/>	      fullName<br/>	      initials<br/>	      status<br/>	      url<br/>	      username<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">memberCreator_fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberNotificationWithFilter</span>
+</div>
+<div class="meta">
 <p>Get a member notification with filter !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	  addedAttachmentToCard<br/>	  addedToBoard<br/>	  addedToCard<br/>	  addedMemberToCard<br/>	  addAdminToBoard<br/>	  addAdminToOrganization<br/>	  changeCard<br/>	  closeBoard<br/>	  commentCard<br/>	  createdCard<br/>	  invitedToBoard<br/>	  invitedToOrganization<br/>	  removedFromBoard<br/>	  removedFromCard<br/>	  removedMemberFromCard<br/>	  removedFromOrganization<br/>	  mentionedOnCard<br/>	  updateCheckItemStateOnCard<br/>	  makeAdminOfBoard<br/>	  makeAdminOfOrganization<br/>	  cardDueSoon<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberOrganizations</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	  addedAttachmentToCard<br/>	  addedToBoard<br/>	  addedToCard<br/>	  addedMemberToCard<br/>	  addAdminToBoard<br/>	  addAdminToOrganization<br/>	  changeCard<br/>	  closeBoard<br/>	  commentCard<br/>	  createdCard<br/>	  invitedToBoard<br/>	  invitedToOrganization<br/>	  removedFromBoard<br/>	  removedFromCard<br/>	  removedMemberFromCard<br/>	  removedFromOrganization<br/>	  mentionedOnCard<br/>	  updateCheckItemStateOnCard<br/>	  makeAdminOfBoard<br/>	  makeAdminOfOrganization<br/>	  cardDueSoon<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberOrganizations</span>
+</div>
+<div class="meta">
 <p>Get a member organization !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      members<br/>	      public<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>paid_account</td>
-			<td>Valid Values:<br/>	      true<br/>	      false<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberOrganizationWithFilter</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      members<br/>	      public<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values:<br/>	      true<br/>	      false<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">paid_account</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberOrganizationWithFilter</span>
+</div>
+<div class="meta">
 <p>Get a member organization with filter !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	  none<br/>	  members<br/>	  public<br/>	  all<br/></td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberOrganizationInvited</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	  none<br/>	  members<br/>	  public<br/>	  all<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberOrganizationInvited</span>
+</div>
+<div class="meta">
 <p>Get a member organizationInvited !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>fields</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberOrganizationInvitedWithField</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	      name<br/>	      displayName<br/>	      desc<br/>	      idBoards<br/>	      invited<br/>	      invitations<br/>	      memberships<br/>	      prefs<br/>	      powerUps<br/>	      url<br/>	      website<br/>	      logoHash<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fields</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberOrganizationInvitedWithField</span>
+</div>
+<div class="meta">
 <p>Get a member organizationInvited with field !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>field</td>
-			<td>Valid Values: all or a comma-separated list of:<br/>	  name<br/>	  displayName<br/>	  desc<br/>	  idBoards<br/>	  invited<br/>	  invitations<br/>	  memberships<br/>	  prefs<br/>	  powerUps<br/>	  url<br/>	  website<br/>	  logoHash<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>getMemberToken</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: all or a comma-separated list of:<br/>	  name<br/>	  displayName<br/>	  desc<br/>	  idBoards<br/>	  invited<br/>	  invitations<br/>	  memberships<br/>	  prefs<br/>	  powerUps<br/>	  url<br/>	  website<br/>	  logoHash<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">field</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">getMemberToken</span>
+</div>
+<div class="meta">
 <p>Get a member token !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>putMember</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: One of:<br/>	      none<br/>	      all<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method PUT">PUT</span><span class="route">putMember</span>
+</div>
+<div class="meta">
 <p>Put a member !<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>fullName</td>
-			<td>Valid Values: A string with a length of at least 4. Cannot begin or end with a space.<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>initials</td>
-			<td>Valid Values: A string with a length from 1 to 4. Cannot begin or end with a space<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>bio</td>
-			<td>Valid Values: A user ID or name<br/>	   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>putMemberBio</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A string with a length of at least 4. Cannot begin or end with a space.<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">fullName</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A string with a length from 1 to 4. Cannot begin or end with a space<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">initials</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A user ID or name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">bio</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method PUT">PUT</span><span class="route">putMemberBio</span>
+</div>
+<div class="meta">
 <p>Put a member bio!<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>Valid Values: A user ID or name<br/>	   </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>putMemberFullName</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A user ID or name<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">value</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method PUT">PUT</span><span class="route">putMemberFullName</span>
+</div>
+<div class="meta">
 <p>Put a member FullName!<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>Valid Values: A string with a length of at least 4. Cannot begin or end with a space.<br/>	   </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>putMemberInitials</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A string with a length of at least 4. Cannot begin or end with a space.<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">value</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method PUT">PUT</span><span class="route">putMemberInitials</span>
+</div>
+<div class="meta">
 <p>Put a member Initials!<br/></p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>idMember</td>
-			<td>The id Member or Username !<br/></td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>value</td>
-			<td>Valid Values: A string with a length from 1 to 4. Cannot begin or end with a space<br/>	   </td>
-			<td></td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id Member or Username !<br/></p>
+</div>
+<div class="name">
+<span class="parameter-name">idMember</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Valid Values: A string with a length from 1 to 4. Cannot begin or end with a space<br/>	   </p>
+</div>
+<div class="name">
+<span class="parameter-name">value</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>

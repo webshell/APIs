@@ -1,319 +1,568 @@
-<h1>Freebase API: Freebase</h1>
-<p>These methods are relative to the tag 'Freebase'</p><h3>search</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">search</span>
+</div>
+<div class="meta">
+<p>Find entities by keyword search.<br/>			</p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Find entities by keyword search.
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>query</td>
-			<td>The text you want to match against freebase entities.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>callback</td>
-			<td>JS method name for JSONP callbacks.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>domain</td>
-			<td>A comma separated list of domain IDs. Search results must include these domains.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>exact</td>
-			<td>Matches only the name, and keys 'exactly'. No normalization of any kind is done at indexing and query time. The text is only broken up on space characters.</td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>A Filter s-expression.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>format</td>
-			<td>The keyword "classic" to return the same information the original search API would have</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>html_escape</td>
-			<td>Whether or not to escape entities.</td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>indent</td>
-			<td>Whether to indent the json.</td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>Return up to this number of results. (integer >= 1)</td>
-			<td>20</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>mql_output</td>
-			<td>A MQL query thats extracts entity information.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>prefixed</td>
-			<td>Whether or not to match by name prefix (used for autosuggest).</td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>start</td>
-			<td>Allows paging through results. (integer >= 0)</td>
-			<td>0</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>type</td>
-			<td>A comma seperated list of type IDs. Search results must include these types.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>lang</td>
-			<td>The language you are searching in. Can pass multiple languages.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>mqlread</h3>
+The text you want to match against freebase entities.</p>
+</div>
+<div class="name">
+<span class="parameter-name">query</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Retrieve detailed structured data about entities or collections of entities using the Metaweb Query Language (MQL).
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>query</td>
-			<td>A valid MQL query in the json format.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>as_of_time</td>
-			<td>Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>callback</td>
-			<td>JS method name for JSONP callbacks.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>cursor</td>
-			<td>Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>html_escape</td>
-			<td>Whether or not to escape entities.</td>
-			<td>true</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>indent</td>
-			<td>How many spaces to indent the JSON. (integer 0-10)</td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>lang</td>
-			<td>Return strings in the language requested (if a given object has no name in the requested language, null will be returned).</td>
-			<td>/lang/en</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>cost</td>
-			<td>Whether or not to show the costs.</td>
-			<td>false</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>uniqueness_failure</td>
-			<td>How MQL responds to uniqueness failures.</td>
-			<td>hard</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>mqlwrite</h3>
+JS method name for JSONP callbacks.</p>
+</div>
+<div class="name">
+<span class="parameter-name">callback</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Perform insertions, deletions and updates of Metaweb Query Language (MQL).
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>query</td>
-			<td>A valid MQL query in the json format.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>topic</h3>
+A comma separated list of domain IDs. Search results must include these domains.</p>
+</div>
+<div class="name">
+<span class="parameter-name">domain</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+false</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					The Freebase Topic API is a web service that will return all the known facts for a given topic including images and text blurbs.
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The id of the entity that you want a description for.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>lang</td>
-			<td>The desired language of the content.</td>
-			<td>/lang/en</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>filter</td>
-			<td>Specific types or properties which you want to return values for.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>limit</td>
-			<td>The maximum number of property values to return.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>text</h3>
+Matches only the name, and keys 'exactly'. No normalization of any kind is done at indexing and query time. The text is only broken up on space characters.</p>
+</div>
+<div class="name">
+<span class="parameter-name">exact</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Get short textual descriptions for entities.
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The id of the entity that you want a description for.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>format</td>
-			<td>Sanitizing transformation.</td>
-			<td>raw</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>lang</td>
-			<td>The desired language of the content.</td>
-			<td>/lang/en</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>maxlength</td>
-			<td>The max number of characters to return. Valid only for 'plain' format. (integer 0-4,294,967,295)</td>
-			<td>200</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>image</h3>
+A Filter s-expression.</p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+true</div>
+<div class="description">
+<span class="parameter-type">string</span>
 <p>
-					Get representative thumbnail images for entities.
-				</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>id</td>
-			<td>The id of an entity for which you want an image. Alternatively, you may pass the id of the content node for a specific image.</td>
-			<td>undefined</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>fallbackid</td>
-			<td>Use the image associated with this secondary id if no image is associated with the primary id.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>maxheight</td>
-			<td>Maximum height in pixels for resulting image. (integer 0 - 4,096)</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>maxwidth</td>
-			<td>Maximum width in pixels for resulting image. (integer 0 - 4,096)</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>mode</td>
-			<td>Method used to scale or crop image.</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pad</td>
-			<td>Whether the resulting image should be padded up to the requested dimensions. (boolean as 0 or 1)</td>
-			<td>undefined</td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
+Whether or not to escape entities.</p>
+</div>
+<div class="name">
+<span class="parameter-name">html_escape</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+false</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Whether to indent the json.</p>
+</div>
+<div class="name">
+<span class="parameter-name">indent</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+20</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Return up to this number of results. (integer >= 1)</p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A MQL query thats extracts entity information.</p>
+</div>
+<div class="name">
+<span class="parameter-name">mql_output</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+false</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Whether or not to match by name prefix (used for autosuggest).</p>
+</div>
+<div class="name">
+<span class="parameter-name">prefixed</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+0</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Allows paging through results. (integer >= 0)</p>
+</div>
+<div class="name">
+<span class="parameter-name">start</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A comma seperated list of type IDs. Search results must include these types.</p>
+</div>
+<div class="name">
+<span class="parameter-name">type</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The language you are searching in. Can pass multiple languages.</p>
+</div>
+<div class="name">
+<span class="parameter-name">lang</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">mqlread</span>
+</div>
+<div class="meta">
+<p>Retrieve detailed structured data about entities or collections of entities using the Metaweb Query Language (MQL).<br/>			</p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A valid MQL query in the json format.</p>
+</div>
+<div class="name">
+<span class="parameter-name">query</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").</p>
+</div>
+<div class="name">
+<span class="parameter-name">as_of_time</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+JS method name for JSONP callbacks.</p>
+</div>
+<div class="name">
+<span class="parameter-name">callback</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.</p>
+</div>
+<div class="name">
+<span class="parameter-name">cursor</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+true</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Whether or not to escape entities.</p>
+</div>
+<div class="name">
+<span class="parameter-name">html_escape</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+false</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How many spaces to indent the JSON. (integer 0-10)</p>
+</div>
+<div class="name">
+<span class="parameter-name">indent</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+/lang/en</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Return strings in the language requested (if a given object has no name in the requested language, null will be returned).</p>
+</div>
+<div class="name">
+<span class="parameter-name">lang</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+false</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Whether or not to show the costs.</p>
+</div>
+<div class="name">
+<span class="parameter-name">cost</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+hard</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How MQL responds to uniqueness failures.</p>
+</div>
+<div class="name">
+<span class="parameter-name">uniqueness_failure</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method POST">POST</span><span class="route">mqlwrite</span>
+</div>
+<div class="meta">
+<p>Perform insertions, deletions and updates of Metaweb Query Language (MQL).<br/>			</p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A valid MQL query in the json format.</p>
+</div>
+<div class="name">
+<span class="parameter-name">query</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">topic</span>
+</div>
+<div class="meta">
+<p>The Freebase Topic API is a web service that will return all the known facts for a given topic including images and text blurbs.<br/>			</p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id of the entity that you want a description for.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+/lang/en</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The desired language of the content.</p>
+</div>
+<div class="name">
+<span class="parameter-name">lang</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Specific types or properties which you want to return values for.</p>
+</div>
+<div class="name">
+<span class="parameter-name">filter</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The maximum number of property values to return.</p>
+</div>
+<div class="name">
+<span class="parameter-name">limit</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">text</span>
+</div>
+<div class="meta">
+<p>Get short textual descriptions for entities.<br/>			</p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id of the entity that you want a description for.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+/lang/en</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The desired language of the content.</p>
+</div>
+<div class="name">
+<span class="parameter-name">lang</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+200</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The max number of characters to return. Valid only for 'plain' format. (integer 0-4,294,967,295)</p>
+</div>
+<div class="name">
+<span class="parameter-name">maxlength</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">image</span>
+</div>
+<div class="meta">
+<p>Get representative thumbnail images for entities.<br/>			</p>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The id of an entity for which you want an image. Alternatively, you may pass the id of the content node for a specific image.</p>
+</div>
+<div class="name">
+<span class="parameter-name">id</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Use the image associated with this secondary id if no image is associated with the primary id.</p>
+</div>
+<div class="name">
+<span class="parameter-name">fallbackid</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum height in pixels for resulting image. (integer 0 - 4,096)</p>
+</div>
+<div class="name">
+<span class="parameter-name">maxheight</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum width in pixels for resulting image. (integer 0 - 4,096)</p>
+</div>
+<div class="name">
+<span class="parameter-name">maxwidth</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Method used to scale or crop image.</p>
+</div>
+<div class="name">
+<span class="parameter-name">mode</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Whether the resulting image should be padded up to the requested dimensions. (boolean as 0 or 1)</p>
+</div>
+<div class="name">
+<span class="parameter-name">pad</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>

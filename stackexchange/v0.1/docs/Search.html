@@ -1,298 +1,611 @@
-<h1>Stackexchange API: Search</h1>
-<p>These methods are relative to the tag 'Search'</p><h3>search</h3>
+<body>
+ <div class="apicontainer">
+<div class="main api-profile">
+ <div class="constraint">
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">search</span>
+</div>
+<div class="meta">
 <p>Searches a site for any questions which fit the given criteria.<br/><br/>					This method is intentionally quite limited. For more general searching, you should use a proper internet search engine restricted to the domain of the site in question.<br/><br/>					At least one of tagged or intitle must be set on this method. nottagged is only used if tagged is also set, for performance reasons.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>nottagged</td>
-			<td>List of tags delimited by semi-colons that must not be on a question.<br/>							This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>tagged</td>
-			<td>List of tags delimited by semi-colons of which at least one must be on a question.<br/>							This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>intitle</td>
-			<td>A string that must appear verbatim in the title of a question.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>he sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  relevance – matches the relevance tab on the site itself<br/>						  Does not accept min or max<br/>						  activity is the default sort.<br/>					</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td>To specified on which site you want to search. stackoverflow (default)</td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>advancedSearch</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+List of tags delimited by semi-colons that must not be on a question.<br/>							This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+</div>
+<div class="name">
+<span class="parameter-name">nottagged</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+List of tags delimited by semi-colons of which at least one must be on a question.<br/>							This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+</div>
+<div class="name">
+<span class="parameter-name">tagged</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+A string that must appear verbatim in the title of a question.</p>
+</div>
+<div class="name">
+<span class="parameter-name">intitle</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Minimum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">min</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How the current sort should be ordered. One of desc (default), or asc.</p>
+</div>
+<div class="name">
+<span class="parameter-name">order</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+he sorts accepted by this method operate on the follow fields of the question object:<br/>						  <br/>						  activity – last_activity_date<br/>						  creation – creation_date<br/>						  votes – score<br/>						  relevance – matches the relevance tab on the site itself<br/>						  Does not accept min or max<br/>						  activity is the default sort.<br/>					</p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+stackoverflow</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+To specified on which site you want to search. stackoverflow (default)</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">advancedSearch</span>
+</div>
+<div class="meta">
 <p>Searches a site for any questions which fit the given criteria.<br/>				  <br/>				  Search criteria are expressed using the following parameters:<br/>				  <br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>nottagged</td>
-			<td>List of tags delimited by semi-colons that must not be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>tagged</td>
-			<td>List of tags delimited by semi-colons of which at least one must be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>title</td>
-			<td>text which must appear in returned questions' titles.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>he sorts accepted by this method operate on the follow fields of the question object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      relevance – matches the relevance tab on the site itself<br/>				      Does not accept min or max<br/>				      activity is the default sort.<br/>				   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td>To specified on which site you want to search. stackoverflow (default)</td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>q</td>
-			<td>a free form text parameter, will match all question properties based on an undocumented algorithm.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>accepted</td>
-			<td>true to return only questions with accepted answers, false to return only those without. Omit to elide constraint.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>answers</td>
-			<td>the minimum number of answers returned questions must have.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>body</td>
-			<td>text which must appear in returned questions' bodies.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>closed</td>
-			<td>true to return only closed questions, false to return only open ones. Omit to elide constraint.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>migrated</td>
-			<td>true to return only questions migrated away from a site, false to return only those not. Omit to elide constraint.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>notice</td>
-			<td>true to return only questions with post notices, false to return only those without. Omit to elide constraint.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>user</td>
-			<td>the id of the user who must own the questions returned.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>url</td>
-			<td>a url which must be contained in a post, may include a wildcard.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>views</td>
-			<td>the minimum number of views returned questions must have.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>wiki</td>
-			<td>true to return only community wiki questions, false to return only non-community wiki ones. Omit to elide constraint</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-	</tbody>
-
-</table>
-<h3>similar</h3>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+List of tags delimited by semi-colons that must not be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+</div>
+<div class="name">
+<span class="parameter-name">nottagged</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+List of tags delimited by semi-colons of which at least one must be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+</div>
+<div class="name">
+<span class="parameter-name">tagged</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+text which must appear in returned questions' titles.</p>
+</div>
+<div class="name">
+<span class="parameter-name">title</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Minimum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">min</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How the current sort should be ordered. One of desc (default), or asc.</p>
+</div>
+<div class="name">
+<span class="parameter-name">order</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+he sorts accepted by this method operate on the follow fields of the question object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      relevance – matches the relevance tab on the site itself<br/>				      Does not accept min or max<br/>				      activity is the default sort.<br/>				   </p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+stackoverflow</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+To specified on which site you want to search. stackoverflow (default)</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+a free form text parameter, will match all question properties based on an undocumented algorithm.</p>
+</div>
+<div class="name">
+<span class="parameter-name">q</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+true to return only questions with accepted answers, false to return only those without. Omit to elide constraint.</p>
+</div>
+<div class="name">
+<span class="parameter-name">accepted</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+the minimum number of answers returned questions must have.</p>
+</div>
+<div class="name">
+<span class="parameter-name">answers</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+text which must appear in returned questions' bodies.</p>
+</div>
+<div class="name">
+<span class="parameter-name">body</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+true to return only closed questions, false to return only open ones. Omit to elide constraint.</p>
+</div>
+<div class="name">
+<span class="parameter-name">closed</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+true to return only questions migrated away from a site, false to return only those not. Omit to elide constraint.</p>
+</div>
+<div class="name">
+<span class="parameter-name">migrated</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+true to return only questions with post notices, false to return only those without. Omit to elide constraint.</p>
+</div>
+<div class="name">
+<span class="parameter-name">notice</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+the id of the user who must own the questions returned.</p>
+</div>
+<div class="name">
+<span class="parameter-name">user</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+a url which must be contained in a post, may include a wildcard.</p>
+</div>
+<div class="name">
+<span class="parameter-name">url</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+the minimum number of views returned questions must have.</p>
+</div>
+<div class="name">
+<span class="parameter-name">views</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+true to return only community wiki questions, false to return only non-community wiki ones. Omit to elide constraint</p>
+</div>
+<div class="name">
+<span class="parameter-name">wiki</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+</div>
+</div>
+<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
+<div class="title">
+<span class="method GET">GET</span><span class="route">similar</span>
+</div>
+<div class="meta">
 <p>Returns questions which are similar to a hypothetical one based solely on a title.<br/><br/>					This method is roughly equivalent to a site's related questions suggestion on the ask page.<br/><br/>					This method is useful for correlating data outside of a Stack Exchange site with similar content within one.<br/>			</p>
-<table class="table">
-	<thead>
-		<th>Parameter name</th>
-		<th>Description</th>
-		<th>Default</th>
-		<th>Optionnal</th>
-	</thead>
-	<tbody>
-		<tr>
-			<td>fromdate</td>
-			<td>Unix timestamp of the minimum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>todate</td>
-			<td>Unix timestamp of the maximum creation date on a returned item.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>nottagged</td>
-			<td>List of tags delimited by semi-colons that must not be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>tagged</td>
-			<td>List of tags delimited by semi-colons of which at least one must be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>title</td>
-			<td>text which must appear in returned questions' titles.</td>
-			<td></td>
-			<td>false</td>
-		</tr>
-		<tr>
-			<td>max</td>
-			<td>Maximum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>min</td>
-			<td>Minimum of the range to include in the response according to the current sort.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>order</td>
-			<td>How the current sort should be ordered. One of desc (default), or asc.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>page</td>
-			<td>The pagination offset for the current collection. Affected by the specified pagesize.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>pagesize</td>
-			<td>The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>sort</td>
-			<td>he sorts accepted by this method operate on the follow fields of the question object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      relevance – matches the relevance tab on the site itself<br/>				      Does not accept min or max<br/>				      activity is the default sort.<br/>				   </td>
-			<td></td>
-			<td>true</td>
-		</tr>
-		<tr>
-			<td>site</td>
-			<td>To specified on which site you want to search. stackoverflow (default)</td>
-			<td>stackoverflow</td>
-			<td>false</td>
-		</tr>
-	</tbody>
-
-</table>
+</div>
+<hr>
+<div class="parameters">
+<div class="titles">
+<div class="console">Default</div>
+<div class="description">Description</div>
+<div class="name">Parameter</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the minimum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">fromdate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Unix timestamp of the maximum creation date on a returned item.</p>
+</div>
+<div class="name">
+<span class="parameter-name">todate</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+List of tags delimited by semi-colons that must not be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+</div>
+<div class="name">
+<span class="parameter-name">nottagged</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+List of tags delimited by semi-colons of which at least one must be on a question.<br/>				      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+</div>
+<div class="name">
+<span class="parameter-name">tagged</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+text which must appear in returned questions' titles.</p>
+</div>
+<div class="name">
+<span class="parameter-name">title</span>
+<p class="required">Required</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Maximum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">max</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+Minimum of the range to include in the response according to the current sort.</p>
+</div>
+<div class="name">
+<span class="parameter-name">min</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+How the current sort should be ordered. One of desc (default), or asc.</p>
+</div>
+<div class="name">
+<span class="parameter-name">order</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The pagination offset for the current collection. Affected by the specified pagesize.</p>
+</div>
+<div class="name">
+<span class="parameter-name">page</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+</div>
+<div class="name">
+<span class="parameter-name">pagesize</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+he sorts accepted by this method operate on the follow fields of the question object:<br/>				      <br/>				      activity – last_activity_date<br/>				      creation – creation_date<br/>				      votes – score<br/>				      relevance – matches the relevance tab on the site itself<br/>				      Does not accept min or max<br/>				      activity is the default sort.<br/>				   </p>
+</div>
+<div class="name">
+<span class="parameter-name">sort</span>
+<p class="optional">Optional</p>
+</div>
+</div>
+<div class="parameter">
+<div class="console">
+stackoverflow</div>
+<div class="description">
+<span class="parameter-type">string</span>
+<p>
+To specified on which site you want to search. stackoverflow (default)</p>
+</div>
+<div class="name">
+<span class="parameter-name">site</span>
+<p class="required">Required</p>
+</div>
+</div>
+</div>
+</div>
