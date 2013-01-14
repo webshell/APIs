@@ -1,16 +1,24 @@
 ({
 	auth:function(){return auth({provider:'soundcloud'})},
 	'getTracks': function(args, opts) {
-		var url = 'tracks.{format}'
+		var url = 'https://api.soundcloud.com/tracks.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
 		var rgx = new RegExp('\{q\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
 			if (args['q']) delete args['q']
 		}
 		var rgx = new RegExp('\{tags\}', 'g')
@@ -18,14 +26,26 @@
 			url = url.replace(rgx, args['tags'])
 			if (args['tags']) delete args['tags']
 		}
+		if (url.indexOf('[/tags]') !== -1) {
+			url = url.replace('[/tags]', '/' + args['tags'])
+			if (args['tags']) delete args['tags']
+		}
 		var rgx = new RegExp('\{filter\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['filter'])
 			if (args['filter']) delete args['filter']
 		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
 		var rgx = new RegExp('\{order\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
 			if (args['order']) delete args['order']
 		}
 		var rgx = new RegExp('\{bpm-from\}', 'g')
@@ -33,9 +53,17 @@
 			url = url.replace(rgx, args['bpm-from'])
 			if (args['bpm-from']) delete args['bpm-from']
 		}
+		if (url.indexOf('[/bpm-from]') !== -1) {
+			url = url.replace('[/bpm-from]', '/' + args['bpm-from'])
+			if (args['bpm-from']) delete args['bpm-from']
+		}
 		var rgx = new RegExp('\{bpm-to\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['bpm-to'])
+			if (args['bpm-to']) delete args['bpm-to']
+		}
+		if (url.indexOf('[/bpm-to]') !== -1) {
+			url = url.replace('[/bpm-to]', '/' + args['bpm-to'])
 			if (args['bpm-to']) delete args['bpm-to']
 		}
 		var rgx = new RegExp('\{duration-from\}', 'g')
@@ -43,9 +71,17 @@
 			url = url.replace(rgx, args['duration-from'])
 			if (args['duration-from']) delete args['duration-from']
 		}
+		if (url.indexOf('[/duration-from]') !== -1) {
+			url = url.replace('[/duration-from]', '/' + args['duration-from'])
+			if (args['duration-from']) delete args['duration-from']
+		}
 		var rgx = new RegExp('\{duration-to\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['duration-to'])
+			if (args['duration-to']) delete args['duration-to']
+		}
+		if (url.indexOf('[/duration-to]') !== -1) {
+			url = url.replace('[/duration-to]', '/' + args['duration-to'])
 			if (args['duration-to']) delete args['duration-to']
 		}
 		var rgx = new RegExp('\{created_at-from\}', 'g')
@@ -53,9 +89,17 @@
 			url = url.replace(rgx, args['created_at-from'])
 			if (args['created_at-from']) delete args['created_at-from']
 		}
+		if (url.indexOf('[/created_at-from]') !== -1) {
+			url = url.replace('[/created_at-from]', '/' + args['created_at-from'])
+			if (args['created_at-from']) delete args['created_at-from']
+		}
 		var rgx = new RegExp('\{created_at-to\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['created_at-to'])
+			if (args['created_at-to']) delete args['created_at-to']
+		}
+		if (url.indexOf('[/created_at-to]') !== -1) {
+			url = url.replace('[/created_at-to]', '/' + args['created_at-to'])
 			if (args['created_at-to']) delete args['created_at-to']
 		}
 		var rgx = new RegExp('\{ids\}', 'g')
@@ -63,9 +107,17 @@
 			url = url.replace(rgx, args['ids'])
 			if (args['ids']) delete args['ids']
 		}
+		if (url.indexOf('[/ids]') !== -1) {
+			url = url.replace('[/ids]', '/' + args['ids'])
+			if (args['ids']) delete args['ids']
+		}
 		var rgx = new RegExp('\{genres\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['genres'])
+			if (args['genres']) delete args['genres']
+		}
+		if (url.indexOf('[/genres]') !== -1) {
+			url = url.replace('[/genres]', '/' + args['genres'])
 			if (args['genres']) delete args['genres']
 		}
 		var rgx = new RegExp('\{order\}', 'g')
@@ -73,14 +125,36 @@
 			url = url.replace(rgx, args['order'])
 			if (args['order']) delete args['order']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/order]') !== -1) {
+			url = url.replace('[/order]', '/' + args['order'])
+			if (args['order']) delete args['order']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		if (url.indexOf('[/bpm-from]') !== -1) url = url.replace('[/bpm-from]', '')
+		if (url.indexOf('[/bpm-to]') !== -1) url = url.replace('[/bpm-to]', '')
+		if (url.indexOf('[/duration-from]') !== -1) url = url.replace('[/duration-from]', '')
+		if (url.indexOf('[/duration-to]') !== -1) url = url.replace('[/duration-to]', '')
+		if (url.indexOf('[/created_at-from]') !== -1) url = url.replace('[/created_at-from]', '')
+		if (url.indexOf('[/created_at-to]') !== -1) url = url.replace('[/created_at-to]', '')
+		if (url.indexOf('[/ids]') !== -1) url = url.replace('[/ids]', '')
+		if (url.indexOf('[/genres]') !== -1) url = url.replace('[/genres]', '')
+		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'postTracks': function(args, opts) {
-		var url = 'tracks.{format}'
+		var url = 'https://api.soundcloud.com/tracks.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['title'] == null) throw new Error('title is a required parameter')
@@ -89,20 +163,35 @@
 			url = url.replace(rgx, args['title'])
 			if (args['title']) delete args['title']
 		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
 		if (args['asset_data'] == null) throw new Error('asset_data is a required parameter')
 		var rgx = new RegExp('\{asset_data\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['asset_data'])
 			if (args['asset_data']) delete args['asset_data']
 		}
-		return http({provider:'soundcloud',url:url,method:'POST',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/asset_data]') !== -1) {
+			url = url.replace('[/asset_data]', '/' + args['asset_data'])
+			if (args['asset_data']) delete args['asset_data']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/asset_data]') !== -1) url = url.replace('[/asset_data]', '')
+		return http({provider:'soundcloud',url:url,method:'POST',params:args, auth:'manual'}, opts)
 	},
 	'getTrack': function(args, opts) {
-		var url = 'tracks/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -111,14 +200,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'putTrack': function(args, opts) {
-		var url = 'tracks/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['title'] == null) throw new Error('title is a required parameter')
@@ -127,20 +226,35 @@
 			url = url.replace(rgx, args['title'])
 			if (args['title']) delete args['title']
 		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
 		if (args['asset_data'] == null) throw new Error('asset_data is a required parameter')
 		var rgx = new RegExp('\{asset_data\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['asset_data'])
 			if (args['asset_data']) delete args['asset_data']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/asset_data]') !== -1) {
+			url = url.replace('[/asset_data]', '/' + args['asset_data'])
+			if (args['asset_data']) delete args['asset_data']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/asset_data]') !== -1) url = url.replace('[/asset_data]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'manual'}, opts)
 	},
 	'deleteTrack': function(args, opts) {
-		var url = 'tracks/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -149,14 +263,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth:'manual'}, opts)
 	},
 	'getTrackComments': function(args, opts) {
-		var url = 'tracks/{track_id}/comments.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}/comments.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -165,14 +289,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'postTrackComments': function(args, opts) {
-		var url = 'tracks/{track_id}/comments.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}/comments.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -181,14 +315,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'POST',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'POST',params:args, auth:'manual'}, opts)
 	},
 	'getTrackPermissions': function(args, opts) {
-		var url = 'tracks/{track_id}/permissions.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}/permissions.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -197,14 +341,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'putTrackPermissions': function(args, opts) {
-		var url = 'tracks/{track_id}/permissions.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}/permissions.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -213,14 +367,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'manual'}, opts)
 	},
 	'getTrackSecret-token': function(args, opts) {
-		var url = 'tracks/{track_id}/secret-token.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}/secret-token.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -229,14 +393,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'putTrackSecretToken': function(args, opts) {
-		var url = 'tracks/{track_id}/secret-token.{format}'
+		var url = 'https://api.soundcloud.com/tracks/{track_id}/secret-token.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -245,14 +419,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'manual'}, opts)
 	},
 	'getUsers': function(args, opts) {
-		var url = 'users.{format}'
+		var url = 'https://api.soundcloud.com/users.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{q\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
 			if (args['q']) delete args['q']
 		}
 		var rgx = new RegExp('\{format\}', 'g')
@@ -260,10 +444,16 @@
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUser': function(args, opts) {
-		var url = 'users/{user_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -271,15 +461,25 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserTracks': function(args, opts) {
-		var url = 'users/{user_id}/tracks.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/tracks.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -287,15 +487,25 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserComments': function(args, opts) {
-		var url = 'users/{user_id}/comments.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/comments.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -303,15 +513,25 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserFollowings': function(args, opts) {
-		var url = 'users/{user_id}/followings.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/followings.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -319,20 +539,34 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserFollowing': function(args, opts) {
-		var url = 'users/{user_id}/followings/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -341,20 +575,35 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'putUserFollowings': function(args, opts) {
-		var url = 'users/{user_id}/followings/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -363,20 +612,35 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'manual'}, opts)
 	},
 	'deleteUserFollowings': function(args, opts) {
-		var url = 'users/{user_id}/followings/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -385,15 +649,26 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth:'manual'}, opts)
 	},
 	'getUserFollowers': function(args, opts) {
-		var url = 'users/{user_id}/followers.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/followers.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -401,20 +676,34 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserFollower': function(args, opts) {
-		var url = 'users/{user_id}/followers/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/followers/{contact_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -423,15 +712,26 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserFavorites': function(args, opts) {
-		var url = 'users/{user_id}/favorites.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/favorites.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -439,20 +739,34 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'putUserFavorites': function(args, opts) {
-		var url = 'users/{user_id}/favorites/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/favorites/{track_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -461,20 +775,35 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'manual'}, opts)
 	},
 	'deleteUserFavorites': function(args, opts) {
-		var url = 'users/{user_id}/favorites/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/favorites/{track_id}.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -483,15 +812,26 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth:'manual'}, opts)
 	},
 	'getUserGroups': function(args, opts) {
-		var url = 'users/{user_id}/groups.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/groups.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -499,15 +839,25 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getUserPlaylists': function(args, opts) {
-		var url = 'users/{user_id}/playlists.{format}'
+		var url = 'https://api.soundcloud.com/users/{user_id}/playlists.{format}'
 		args = args || {}
 		if (args['user_id'] == null) throw new Error('user_id is a required parameter')
 		var rgx = new RegExp('\{user_id\}', 'g')
@@ -515,59 +865,93 @@
 			url = url.replace(rgx, args['user_id'])
 			if (args['user_id']) delete args['user_id']
 		}
+		if (url.indexOf('[/user_id]') !== -1) {
+			url = url.replace('[/user_id]', '/' + args['user_id'])
+			if (args['user_id']) delete args['user_id']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'me': function(args, opts) {
-		var url = 'me.{format}'
+		var url = 'https://api.soundcloud.com/me.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeTracks': function(args, opts) {
-		var url = 'me/tracks.{format}'
+		var url = 'https://api.soundcloud.com/me/tracks.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeComments': function(args, opts) {
-		var url = 'me/comments.{format}'
+		var url = 'https://api.soundcloud.com/me/comments.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeFollowings': function(args, opts) {
-		var url = 'me/followings.{format}'
+		var url = 'https://api.soundcloud.com/me/followings.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeFollowing': function(args, opts) {
-		var url = 'me/followings/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/me/followings/{contact_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -576,14 +960,24 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'putMeFollowings': function(args, opts) {
-		var url = 'me/followings/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/me/followings/{contact_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -592,14 +986,24 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteMeFollowings': function(args, opts) {
-		var url = 'me/followings/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/me/followings/{contact_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -608,24 +1012,39 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeFollowers': function(args, opts) {
-		var url = 'me/followers.{format}'
+		var url = 'https://api.soundcloud.com/me/followers.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeFollower': function(args, opts) {
-		var url = 'me/followers/{contact_id}.{format}'
+		var url = 'https://api.soundcloud.com/me/followers/{contact_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['contact_id'] == null) throw new Error('contact_id is a required parameter')
@@ -634,29 +1053,49 @@
 			url = url.replace(rgx, args['contact_id'])
 			if (args['contact_id']) delete args['contact_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/contact_id]') !== -1) {
+			url = url.replace('[/contact_id]', '/' + args['contact_id'])
+			if (args['contact_id']) delete args['contact_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getMeFavorites': function(args, opts) {
-		var url = 'me/favorites.{format}'
+		var url = 'https://api.soundcloud.com/me/favorites.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'putMeFavorites': function(args, opts) {
-		var url = 'me/favorites/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/me/favorites/{track_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -665,14 +1104,24 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteMeFavorites': function(args, opts) {
-		var url = 'me/favorites/{track_id}.{format}'
+		var url = 'https://api.soundcloud.com/me/favorites/{track_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['track_id'] == null) throw new Error('track_id is a required parameter')
@@ -681,39 +1130,63 @@
 			url = url.replace(rgx, args['track_id'])
 			if (args['track_id']) delete args['track_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/track_id]') !== -1) {
+			url = url.replace('[/track_id]', '/' + args['track_id'])
+			if (args['track_id']) delete args['track_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
+		return http({provider:'soundcloud',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'getMeGroups': function(args, opts) {
-		var url = 'me/groups.{format}'
+		var url = 'https://api.soundcloud.com/me/groups.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMePlaylists': function(args, opts) {
-		var url = 'me/playlists.{format}'
+		var url = 'https://api.soundcloud.com/me/playlists.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "oauth2"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getPlaylists': function(args, opts) {
-		var url = 'playlists.{format}'
+		var url = 'https://api.soundcloud.com/playlists.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		var rgx = new RegExp('\{q\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['q'])
+			if (args['q']) delete args['q']
+		}
+		if (url.indexOf('[/q]') !== -1) {
+			url = url.replace('[/q]', '/' + args['q'])
 			if (args['q']) delete args['q']
 		}
 		var rgx = new RegExp('\{filter\}', 'g')
@@ -721,19 +1194,35 @@
 			url = url.replace(rgx, args['filter'])
 			if (args['filter']) delete args['filter']
 		}
+		if (url.indexOf('[/filter]') !== -1) {
+			url = url.replace('[/filter]', '/' + args['filter'])
+			if (args['filter']) delete args['filter']
+		}
 		var rgx = new RegExp('\{license\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['license'])
 			if (args['license']) delete args['license']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/license]') !== -1) {
+			url = url.replace('[/license]', '/' + args['license'])
+			if (args['license']) delete args['license']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
+		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
+		if (url.indexOf('[/license]') !== -1) url = url.replace('[/license]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getPlaylist': function(args, opts) {
-		var url = 'playlists/{playlist_id}.{format}'
+		var url = 'https://api.soundcloud.com/playlists/{playlist_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -742,24 +1231,39 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroups': function(args, opts) {
-		var url = 'groups.{format}'
+		var url = 'https://api.soundcloud.com/groups.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
 			if (args['format']) delete args['format']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroup': function(args, opts) {
-		var url = 'groups/{group_id}.{format}'
+		var url = 'https://api.soundcloud.com/groups/{group_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -768,14 +1272,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroupUsers': function(args, opts) {
-		var url = 'groups/{group_id}/users.{format}'
+		var url = 'https://api.soundcloud.com/groups/{group_id}/users.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -784,14 +1298,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroupModerators': function(args, opts) {
-		var url = 'groups/{group_id}/moderators.{format}'
+		var url = 'https://api.soundcloud.com/groups/{group_id}/moderators.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -800,14 +1324,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroupMembers': function(args, opts) {
-		var url = 'groups/{group_id}/members.{format}'
+		var url = 'https://api.soundcloud.com/groups/{group_id}/members.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -816,14 +1350,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroupContributors': function(args, opts) {
-		var url = 'groups/{group_id}/contributors.{format}'
+		var url = 'https://api.soundcloud.com/groups/{group_id}/contributors.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -832,14 +1376,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getGroupTracks': function(args, opts) {
-		var url = 'groups/{group_id}/tracks.{format}'
+		var url = 'https://api.soundcloud.com/groups/{group_id}/tracks.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -848,14 +1402,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'getComment': function(args, opts) {
-		var url = 'comments/{comment_id}.{format}'
+		var url = 'https://api.soundcloud.com/comments/{comment_id}.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['playlist_id'] == null) throw new Error('playlist_id is a required parameter')
@@ -864,14 +1428,24 @@
 			url = url.replace(rgx, args['playlist_id'])
 			if (args['playlist_id']) delete args['playlist_id']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/playlist_id]') !== -1) {
+			url = url.replace('[/playlist_id]', '/' + args['playlist_id'])
+			if (args['playlist_id']) delete args['playlist_id']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'resolve': function(args, opts) {
-		var url = 'resolve.{format}'
+		var url = 'https://api.soundcloud.com/resolve.{format}'
 		args = args || {}
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
+			if (args['format']) delete args['format']
+		}
+		if (url.indexOf('[/format]') !== -1) {
+			url = url.replace('[/format]', '/' + args['format'])
 			if (args['format']) delete args['format']
 		}
 		if (args['url'] == null) throw new Error('url is a required parameter')
@@ -880,6 +1454,12 @@
 			url = url.replace(rgx, args['url'])
 			if (args['url']) delete args['url']
 		}
-		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth: "manual"}, opts)
+		if (url.indexOf('[/url]') !== -1) {
+			url = url.replace('[/url]', '/' + args['url'])
+			if (args['url']) delete args['url']
+		}
+		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
+		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
+		return http({provider:'soundcloud',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	}
 })

@@ -1,6 +1,6 @@
 ({
 	auth:function(){return auth({provider:'reddit'})},
-	'link_by_fullname': function(args, opts) {
+	'linkByFullname': function(args, opts) {
 		var url = 'http://www.reddit.com//by_id/{fullname}.{format}'
 		args = args || {}
 		if (args['fullname'] == null) throw new Error('fullname is a required parameter')
@@ -27,7 +27,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'link_by_fullname_comments': function(args, opts) {
+	'linkByFullnameComments': function(args, opts) {
 		var url = 'http://www.reddit.com//comments/{id36}.{format}'
 		args = args || {}
 		if (args['id36'] == null) throw new Error('id36 is a required parameter')
@@ -54,7 +54,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_info': function(args, opts) {
+	'getInfo': function(args, opts) {
 		var url = 'http://www.reddit.com//api/info.{format}'
 		args = args || {}
 		if (args['format'] == null) args['format'] = "json"
@@ -100,7 +100,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'post_expando': function(args, opts) {
+	'postExpando': function(args, opts) {
 		var url = 'http://www.reddit.com//api/expando'
 		args = args || {}
 		if (args['link_id'] == null) throw new Error('link_id is a required parameter')
@@ -165,7 +165,7 @@
 		if (url.indexOf('[/api_type]') !== -1) url = url.replace('[/api_type]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
-	'user_about': function(args, opts) {
+	'userAbout': function(args, opts) {
 		var url = 'http://www.reddit.com//user/{username}/about.json'
 		args = args || {}
 		if (args['username'] == null) throw new Error('username is a required parameter')
@@ -181,12 +181,12 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
-	'get_me': function(args, opts) {
+	'getMe': function(args, opts) {
 		var url = 'http://www.reddit.com//api/me.json'
 		args = args || {}
 		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
 	},
-	'get_mine': function(args, opts) {
+	'getMine': function(args, opts) {
 		var url = 'http://www.reddit.com//reddits/mine.{format}'
 		args = args || {}
 		if (args['format'] == null) args['format'] = "json"
@@ -202,7 +202,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
 	},
-	'post_register': function(args, opts) {
+	'postRegister': function(args, opts) {
 		var url = 'http://www.reddit.com//api/register'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
@@ -284,7 +284,7 @@
 		if (url.indexOf('[/reason]') !== -1) url = url.replace('[/reason]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_delete_user': function(args, opts) {
+	'postDeleteUser': function(args, opts) {
 		var url = 'http://www.reddit.com//api/delete_user'
 		args = args || {}
 		if (args['areyousure1'] == null) throw new Error('areyousure1 is a required parameter')
@@ -322,7 +322,7 @@
 		if (url.indexOf('[/areyousure2]') !== -1) url = url.replace('[/areyousure2]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_leavemoderator': function(args, opts) {
+	'postLeavemoderator': function(args, opts) {
 		var url = 'http://www.reddit.com//api/leavemoderator'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -338,7 +338,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_leavecontributor': function(args, opts) {
+	'postLeavecontributor': function(args, opts) {
 		var url = 'http://www.reddit.com//api/leavecontributor'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -354,7 +354,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_password': function(args, opts) {
+	'postPassword': function(args, opts) {
 		var url = 'http://www.reddit.com//api/password'
 		args = args || {}
 		if (args['name'] == null) throw new Error('name is a required parameter')
@@ -370,7 +370,7 @@
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_resetpassword': function(args, opts) {
+	'postResetpassword': function(args, opts) {
 		var url = 'http://www.reddit.com//api/resetpassword'
 		args = args || {}
 		if (args['reset'] == null) throw new Error('reset is a required parameter')
@@ -547,7 +547,7 @@
 		if (url.indexOf('[/renderstyle]') !== -1) url = url.replace('[/renderstyle]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_vote': function(args, opts) {
+	'postVote': function(args, opts) {
 		var url = 'http://www.reddit.com//api/vote'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -574,7 +574,7 @@
 		if (url.indexOf('[/dir]') !== -1) url = url.replace('[/dir]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_fetch_title': function(args, opts) {
+	'postFetchTitle': function(args, opts) {
 		var url = 'http://www.reddit.com//api/fetch_title'
 		args = args || {}
 		if (args['url'] == null) throw new Error('url is a required parameter')
@@ -590,7 +590,7 @@
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_marknsfw': function(args, opts) {
+	'postMarknsfw': function(args, opts) {
 		var url = 'http://www.reddit.com//api/marknsfw'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -606,7 +606,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_unmarknsfw': function(args, opts) {
+	'postUnmarknsfw': function(args, opts) {
 		var url = 'http://www.reddit.com//api/unmarknsfw'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -622,7 +622,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_save': function(args, opts) {
+	'postSave': function(args, opts) {
 		var url = 'http://www.reddit.com//api/save'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -638,7 +638,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_unsave': function(args, opts) {
+	'postUnsave': function(args, opts) {
 		var url = 'http://www.reddit.com//api/unsave'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -654,7 +654,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_hide': function(args, opts) {
+	'postHide': function(args, opts) {
 		var url = 'http://www.reddit.com//api/hide'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -670,7 +670,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_unhide': function(args, opts) {
+	'postUnhide': function(args, opts) {
 		var url = 'http://www.reddit.com//api/unhide'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -686,7 +686,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_del': function(args, opts) {
+	'postDel': function(args, opts) {
 		var url = 'http://www.reddit.com//api/del'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -702,7 +702,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_editusertext': function(args, opts) {
+	'postEditusertext': function(args, opts) {
 		var url = 'http://www.reddit.com//api/editusertext'
 		args = args || {}
 		if (args['thing_id'] == null) throw new Error('thing_id is a required parameter')
@@ -729,7 +729,7 @@
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_remove': function(args, opts) {
+	'postRemove': function(args, opts) {
 		var url = 'http://www.reddit.com//api/remove'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -745,7 +745,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_approve': function(args, opts) {
+	'postApprove': function(args, opts) {
 		var url = 'http://www.reddit.com//api/approve'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -761,7 +761,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_distinguish': function(args, opts) {
+	'postDistinguish': function(args, opts) {
 		var url = 'http://www.reddit.com//api/distinguish'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -788,7 +788,7 @@
 		if (url.indexOf('[/how]') !== -1) url = url.replace('[/how]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_compose': function(args, opts) {
+	'postCompose': function(args, opts) {
 		var url = 'http://www.reddit.com//api/compose'
 		args = args || {}
 		if (args['to'] == null) throw new Error('to is a required parameter')
@@ -837,7 +837,7 @@
 		if (url.indexOf('[/captcha]') !== -1) url = url.replace('[/captcha]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_collapse_message': function(args, opts) {
+	'postCollapseMessage': function(args, opts) {
 		var url = 'http://www.reddit.com//api/collapse_message'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -853,7 +853,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_uncollapse_message': function(args, opts) {
+	'postUncollapseMessage': function(args, opts) {
 		var url = 'http://www.reddit.com//api/uncollapse_message'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -869,7 +869,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_unread_message': function(args, opts) {
+	'postUnreadMessage': function(args, opts) {
 		var url = 'http://www.reddit.com//api/unread_message'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -885,7 +885,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_read_message': function(args, opts) {
+	'postReadMessage': function(args, opts) {
 		var url = 'http://www.reddit.com//api/read_message'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -901,7 +901,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_hide_message': function(args, opts) {
+	'postHideMessage': function(args, opts) {
 		var url = 'http://www.reddit.com//api/hide_message'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -917,7 +917,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_unhide_message': function(args, opts) {
+	'postUnhideMessage': function(args, opts) {
 		var url = 'http://www.reddit.com//api/unhide_message'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -933,7 +933,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_moremessages': function(args, opts) {
+	'postMoremessages': function(args, opts) {
 		var url = 'http://www.reddit.com//api/moremessages'
 		args = args || {}
 		if (args['parent_id'] == null) throw new Error('parent_id is a required parameter')
@@ -949,7 +949,7 @@
 		if (url.indexOf('[/parent_id]') !== -1) url = url.replace('[/parent_id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_comment': function(args, opts) {
+	'postComment': function(args, opts) {
 		var url = 'http://www.reddit.com//api/comment'
 		args = args || {}
 		if (args['parent'] == null) throw new Error('parent is a required parameter')
@@ -976,7 +976,7 @@
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_morechildren': function(args, opts) {
+	'postMorechildren': function(args, opts) {
 		var url = 'http://www.reddit.com//api/morechildren'
 		args = args || {}
 		if (args['link_id'] == null) throw new Error('link_id is a required parameter')
@@ -1036,7 +1036,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_friend': function(args, opts) {
+	'postFriend': function(args, opts) {
 		var url = 'http://www.reddit.com//api/friend'
 		args = args || {}
 		var rgx = new RegExp('\{name\}', 'g')
@@ -1083,7 +1083,7 @@
 		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_unfriend': function(args, opts) {
+	'postUnfriend': function(args, opts) {
 		var url = 'http://www.reddit.com//api/unfriend'
 		args = args || {}
 		var rgx = new RegExp('\{name\}', 'g')
@@ -1131,7 +1131,7 @@
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_friend_note': function(args, opts) {
+	'postFriendNote': function(args, opts) {
 		var url = 'http://www.reddit.com//api/friend_note'
 		args = args || {}
 		var rgx = new RegExp('\{name\}', 'g')
@@ -1156,7 +1156,7 @@
 		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_update': function(args, opts) {
+	'postUpdate': function(args, opts) {
 		var url = 'http://www.reddit.com//api/update'
 		args = args || {}
 		if (args['curpass'] == null) throw new Error('curpass is a required parameter')
@@ -1212,17 +1212,17 @@
 		if (url.indexOf('[/verify]') !== -1) url = url.replace('[/verify]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_tb_commentspanel_show': function(args, opts) {
+	'postTbCommentspanelShow': function(args, opts) {
 		var url = 'http://www.reddit.com//api/tb_commentspanel_show'
 		args = args || {}
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_tb_commentspanel_hide': function(args, opts) {
+	'postTbCommentspanelHide': function(args, opts) {
 		var url = 'http://www.reddit.com//api/tb_commentspanel_hide'
 		args = args || {}
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_site_admin': function(args, opts) {
+	'postSiteAdmin': function(args, opts) {
 		var url = 'http://www.reddit.com//api/site_admin'
 		args = args || {}
 		if (args['sr'] == null) throw new Error('sr is a required parameter')
@@ -1403,7 +1403,7 @@
 		if (url.indexOf('[/css_on_cname]') !== -1) url = url.replace('[/css_on_cname]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_subreddit_stylesheet': function(args, opts) {
+	'postSubredditStylesheet': function(args, opts) {
 		var url = 'http://www.reddit.com//api/subreddit_stylesheet'
 		args = args || {}
 		if (args['stylesheet_contents'] == null) throw new Error('stylesheet_contents is a required parameter')
@@ -1430,7 +1430,7 @@
 		if (url.indexOf('[/op]') !== -1) url = url.replace('[/op]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_delete_sr_img': function(args, opts) {
+	'postDeleteSrImg': function(args, opts) {
 		var url = 'http://www.reddit.com//api/delete_sr_img'
 		args = args || {}
 		if (args['img_name'] == null) throw new Error('img_name is a required parameter')
@@ -1446,7 +1446,7 @@
 		if (url.indexOf('[/img_name]') !== -1) url = url.replace('[/img_name]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_delete_sr_header': function(args, opts) {
+	'postDeleteSrHeader': function(args, opts) {
 		var url = 'http://www.reddit.com//api/delete_sr_header'
 		args = args || {}
 		if (args['img_name'] == null) throw new Error('img_name is a required parameter')
@@ -1462,12 +1462,12 @@
 		if (url.indexOf('[/img_name]') !== -1) url = url.replace('[/img_name]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'get_upload_sr_img': function(args, opts) {
+	'getUploadSrImg': function(args, opts) {
 		var url = 'http://www.reddit.com//api/upload_sr_img'
 		args = args || {}
 		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
 	},
-	'post_upload_sr_img': function(args, opts) {
+	'postUploadSrImg': function(args, opts) {
 		var url = 'http://www.reddit.com//api/upload_sr_img'
 		args = args || {}
 		if (args['name'] == null) throw new Error('name is a required parameter')
@@ -1516,7 +1516,7 @@
 		if (url.indexOf('[/sponsor]') !== -1) url = url.replace('[/sponsor]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_subscribe': function(args, opts) {
+	'postSubscribe': function(args, opts) {
 		var url = 'http://www.reddit.com//api/subscribe'
 		args = args || {}
 		if (args['action'] == null) throw new Error('action is a required parameter')
@@ -1543,7 +1543,7 @@
 		if (url.indexOf('[/sr]') !== -1) url = url.replace('[/sr]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_search_reddit_names': function(args, opts) {
+	'postSearchRedditNames': function(args, opts) {
 		var url = 'http://www.reddit.com//api/search_reddit_names'
 		args = args || {}
 		if (args['query'] == null) throw new Error('query is a required parameter')
@@ -1682,7 +1682,7 @@
 		if (url.indexOf('[/flair_csv]') !== -1) url = url.replace('[/flair_csv]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_feedback': function(args, opts) {
+	'postFeedback': function(args, opts) {
 		var url = 'http://www.reddit.com//api/feedback'
 		args = args || {}
 		if (args['name'] == null) throw new Error('name is a required parameter')
@@ -1731,7 +1731,7 @@
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_report': function(args, opts) {
+	'postReport': function(args, opts) {
 		var url = 'http://www.reddit.com//api/report'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
@@ -1747,7 +1747,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_searchfeedback': function(args, opts) {
+	'postSearchfeedback': function(args, opts) {
 		var url = 'http://www.reddit.com//api/searchfeedback'
 		args = args || {}
 		if (args['q'] == null) throw new Error('q is a required parameter')
@@ -1796,7 +1796,7 @@
 		if (url.indexOf('[/approval]') !== -1) url = url.replace('[/approval]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'get_bookmarklet': function(args, opts) {
+	'getBookmarklet': function(args, opts) {
 		var url = 'http://www.reddit.com//api/bookmarklet'
 		args = args || {}
 		if (args['what'] == null) throw new Error('what is a required parameter')
@@ -1823,7 +1823,7 @@
 		if (url.indexOf('[/u]') !== -1) url = url.replace('[/u]', '')
 		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
 	},
-	'post_edit_error': function(args, opts) {
+	'postEditError': function(args, opts) {
 		var url = 'http://www.reddit.com//api/edit_error'
 		args = args || {}
 		if (args['hexkey'] == null) throw new Error('hexkey is a required parameter')
@@ -1861,17 +1861,17 @@
 		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_noframe': function(args, opts) {
+	'postNoframe': function(args, opts) {
 		var url = 'http://www.reddit.com//api/noframe'
 		args = args || {}
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'post_frame': function(args, opts) {
+	'postFrame': function(args, opts) {
 		var url = 'http://www.reddit.com//api/frame'
 		args = args || {}
 		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
 	},
-	'get_gadget': function(args, opts) {
+	'getGadget': function(args, opts) {
 		var url = 'http://www.reddit.com//api/gadget'
 		args = args || {}
 		if (args['type'] == null) args['type'] = "click"
