@@ -1,7 +1,7 @@
 ({
 	auth:function(){return auth({provider:'github'})},
 	'gistListUser': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/gists'
+		var url = 'https://api.github.com/users/{user}/gists'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -17,22 +17,22 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistList': function(args, opts) {
-		var url = 'https://api.github.com//gists'
+		var url = 'https://api.github.com/gists'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'gistListPublic': function(args, opts) {
-		var url = 'https://api.github.com//gists/public'
+		var url = 'https://api.github.com/gists/public'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistListStarred': function(args, opts) {
-		var url = 'https://api.github.com//gists/starred'
+		var url = 'https://api.github.com/gists/starred'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'gistGet': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}'
+		var url = 'https://api.github.com/gists/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -48,7 +48,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistEdit': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}'
+		var url = 'https://api.github.com/gists/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -96,7 +96,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'gistDelete': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}'
+		var url = 'https://api.github.com/gists/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -112,7 +112,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'gistCreate': function(args, opts) {
-		var url = 'https://api.github.com//gists'
+		var url = 'https://api.github.com/gists'
 		args = args || {}
 		var rgx = new RegExp('\{description\}', 'g')
 		if (url.match(rgx)) {
@@ -149,7 +149,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'gistStarred': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}/star'
+		var url = 'https://api.github.com/gists/{id}/star'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -165,7 +165,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistStar': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}/star'
+		var url = 'https://api.github.com/gists/{id}/star'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -181,7 +181,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'gistUnstar': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}/star'
+		var url = 'https://api.github.com/gists/{id}/star'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -197,7 +197,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'gistFork': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}/fork'
+		var url = 'https://api.github.com/gists/{id}/fork'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -213,7 +213,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'gistListComments': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}/comments'
+		var url = 'https://api.github.com/gists/{id}/comments'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -229,7 +229,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistPostComment': function(args, opts) {
-		var url = 'https://api.github.com//gists/{id}/comments'
+		var url = 'https://api.github.com/gists/{id}/comments'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -256,7 +256,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'gistGetComment': function(args, opts) {
-		var url = 'https://api.github.com//gists/comments/{id}'
+		var url = 'https://api.github.com/gists/comments/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -272,7 +272,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistEditComment': function(args, opts) {
-		var url = 'https://api.github.com//gists/comments/{id}'
+		var url = 'https://api.github.com/gists/comments/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -299,7 +299,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'gistDeleteComment': function(args, opts) {
-		var url = 'https://api.github.com//gists/comments/{id}'
+		var url = 'https://api.github.com/gists/comments/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -315,7 +315,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'getBlob': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/blobs/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/blobs/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -353,7 +353,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createBlob': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/blobs'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/blobs'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -402,7 +402,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getCommit': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/commits/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -440,7 +440,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createBlob': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/commits'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/commits'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -559,7 +559,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/refs/{ref}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -597,7 +597,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getSubReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/refs/{ref}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -635,7 +635,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/refs/{ref}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -694,7 +694,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/refs/{ref}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -732,7 +732,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listReferences': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/refs'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -759,7 +759,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/refs'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -808,7 +808,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/tags/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/tags/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -846,7 +846,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/tags'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/tags'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -947,7 +947,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/trees/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/trees/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -985,7 +985,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getReference': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/trees/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/trees/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1033,7 +1033,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createTree': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/git/trees'
+		var url = 'https://api.github.com/repos/{user}/{repo}/git/trees'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1123,7 +1123,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listIssues': function(args, opts) {
-		var url = 'https://api.github.com//issues'
+		var url = 'https://api.github.com/issues'
 		args = args || {}
 		var rgx = new RegExp('\{filter\}', 'g')
 		if (url.match(rgx)) {
@@ -1188,7 +1188,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listRepoIssues': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1295,7 +1295,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createIssue': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1373,7 +1373,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getIssue': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1411,7 +1411,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createIssue': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1510,7 +1510,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'listIssueComments': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1548,7 +1548,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postIssueComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1597,7 +1597,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getIssueComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1646,7 +1646,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editIssueComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1706,7 +1706,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteIssueComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1755,7 +1755,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listIssueEvents': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/events'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1793,7 +1793,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listRepoEvents': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/events'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1820,7 +1820,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getIssueEvent': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/events/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/events/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1858,7 +1858,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listIssueLabels': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1896,7 +1896,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addIssueLabels': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1934,7 +1934,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'replaceIssueLabels': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -1972,7 +1972,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeIssueLabels': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2010,7 +2010,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteIssueLabel': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/{number}/labels/{name}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels/{name}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2059,7 +2059,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listLabels': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2086,7 +2086,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createLabel': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2135,7 +2135,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getLabel': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/labels/{name}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/labels/{name}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2173,7 +2173,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateLabel': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/labels/{name}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/labels/{name}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2233,7 +2233,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteLabel': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/labels/{name}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/labels/{name}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2271,7 +2271,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listMilestoneLabels': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/milestones/{number}/labels'
+		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}/labels'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2309,7 +2309,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listMilestones': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/milestones'
+		var url = 'https://api.github.com/repos/{user}/{repo}/milestones'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2336,7 +2336,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createMilestone': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/milestones'
+		var url = 'https://api.github.com/repos/{user}/{repo}/milestones'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2404,7 +2404,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getMilestone': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/milestones/{number}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2442,7 +2442,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateMilestone': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/milestones/{number}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2521,7 +2521,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteMilestone': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/milestones/{number}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2559,7 +2559,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listUserOrgs': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/orgs'
+		var url = 'https://api.github.com/users/{user}/orgs'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2575,7 +2575,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgs': function(args, opts) {
-		var url = 'https://api.github.com//users/orgs'
+		var url = 'https://api.github.com/users/orgs'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -2591,7 +2591,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getOrg': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}'
+		var url = 'https://api.github.com/orgs/{org}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2607,7 +2607,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editOrg': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}'
+		var url = 'https://api.github.com/orgs/{org}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2673,7 +2673,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'listOrgMembers': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/members'
+		var url = 'https://api.github.com/orgs/{org}/members'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2689,7 +2689,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getOrgMember': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/members/{user}'
+		var url = 'https://api.github.com/orgs/{org}/members/{user}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2716,7 +2716,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'removeOrgMember': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/members/{user}'
+		var url = 'https://api.github.com/orgs/{org}/members/{user}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2743,7 +2743,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listOrgPublicMembers': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/public_members'
+		var url = 'https://api.github.com/orgs/{org}/public_members'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2759,7 +2759,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkOrgPublicMember': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/public_members/{user}'
+		var url = 'https://api.github.com/orgs/{org}/public_members/{user}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2786,7 +2786,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'publicizeOrgMember': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/public_members/{user}'
+		var url = 'https://api.github.com/orgs/{org}/public_members/{user}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2813,7 +2813,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'concealOrgMember': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/public_members/{user}'
+		var url = 'https://api.github.com/orgs/{org}/public_members/{user}'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2840,7 +2840,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listOrgTeams': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/teams'
+		var url = 'https://api.github.com/orgs/{org}/teams'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2856,7 +2856,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createTeam': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/teams'
+		var url = 'https://api.github.com/orgs/{org}/teams'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -2903,7 +2903,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getTeam': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}'
+		var url = 'https://api.github.com/teams/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -2919,7 +2919,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editOrg': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}'
+		var url = 'https://api.github.com/teams/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -2956,7 +2956,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteTeam': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}'
+		var url = 'https://api.github.com/teams/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -2972,7 +2972,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listTeamMembers': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/members'
+		var url = 'https://api.github.com/teams/{id}/members'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -2988,7 +2988,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getTeamMember': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/members/{user}'
+		var url = 'https://api.github.com/teams/{id}/members/{user}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -3015,7 +3015,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'addTeamMember': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/members/{user}'
+		var url = 'https://api.github.com/teams/{id}/members/{user}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -3042,7 +3042,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeTeamMember': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/members/{user}'
+		var url = 'https://api.github.com/teams/{id}/members/{user}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -3069,7 +3069,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listTeamRepos': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/repos'
+		var url = 'https://api.github.com/teams/{id}/repos'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -3085,7 +3085,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getTeamRepo': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/repos/{user}/{repo}'
+		var url = 'https://api.github.com/teams/{id}/repos/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3123,7 +3123,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addTeamRepo': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/repos/{user}/{repo}'
+		var url = 'https://api.github.com/teams/{id}/repos/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3161,7 +3161,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeTeamRepo': function(args, opts) {
-		var url = 'https://api.github.com//teams/{id}/repos/{user}/{repo}'
+		var url = 'https://api.github.com/teams/{id}/repos/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3199,7 +3199,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listPullRequests': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3236,7 +3236,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createPullRequest': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3306,7 +3306,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'createPullRequestFromIssue': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3366,7 +3366,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'updatePullRequest': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3435,7 +3435,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'listPullRequestCommits': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/commits'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/commits'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3473,7 +3473,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listPullRequestFiles': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/files'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/files'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3511,7 +3511,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkPullRequestMerged': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/merge'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/merge'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3549,7 +3549,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'mergePullRequest': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/merge'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/merge'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3597,7 +3597,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'listPullRequestComments': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3635,7 +3635,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postPullRequestComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3684,7 +3684,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getPullRequestComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3733,7 +3733,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editPullRequestComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3793,7 +3793,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deletePullRequestComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/pulls/{number}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -3842,7 +3842,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listRepos': function(args, opts) {
-		var url = 'https://api.github.com//user/repos'
+		var url = 'https://api.github.com/user/repos'
 		args = args || {}
 		var rgx = new RegExp('\{type\}', 'g')
 		if (url.match(rgx)) {
@@ -3877,7 +3877,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'createRepo': function(args, opts) {
-		var url = 'https://api.github.com//user/repos'
+		var url = 'https://api.github.com/user/repos'
 		args = args || {}
 		if (args['name'] == null) throw new Error('name is a required parameter')
 		var rgx = new RegExp('\{name\}', 'g')
@@ -3963,7 +3963,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listUserRepos': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/repos'
+		var url = 'https://api.github.com/users/{user}/repos'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4009,7 +4009,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgRepos': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/repos'
+		var url = 'https://api.github.com/orgs/{org}/repos'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -4055,7 +4055,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createOrgRepo': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/repos'
+		var url = 'https://api.github.com/orgs/{org}/repos'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -4152,7 +4152,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getRepo': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}'
+		var url = 'https://api.github.com/repos/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4179,7 +4179,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateRepo': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}'
+		var url = 'https://api.github.com/repos/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4287,7 +4287,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteRepo': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}'
+		var url = 'https://api.github.com/repos/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4314,7 +4314,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listContributors': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/contributors'
+		var url = 'https://api.github.com/repos/{user}/{repo}/contributors'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4351,7 +4351,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listLanguages': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/languages'
+		var url = 'https://api.github.com/repos/{user}/{repo}/languages'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4378,7 +4378,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listTeams': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/teams'
+		var url = 'https://api.github.com/repos/{user}/{repo}/teams'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4405,7 +4405,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listTags': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/tags'
+		var url = 'https://api.github.com/repos/{user}/{repo}/tags'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4432,7 +4432,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listBranches': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/branches'
+		var url = 'https://api.github.com/repos/{user}/{repo}/branches'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4459,7 +4459,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getBranch': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/branches/{branch}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/branches/{branch}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4497,7 +4497,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listCollaborators': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/collaborators'
+		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4524,7 +4524,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkCollaborator': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/collaborators/{collaborator}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators/{collaborator}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4562,7 +4562,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addCollaborator': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/collaborators/{collaborator}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators/{collaborator}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4600,7 +4600,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeCollaborator': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/collaborators/{collaborator}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators/{collaborator}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4638,7 +4638,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listCommitsComments': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4665,7 +4665,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getCommitComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4703,7 +4703,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editCommitComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4752,7 +4752,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteCommitComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/comments/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/comments/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4790,7 +4790,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'none'}, opts)
 	},
 	'listCommitComments': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/commits/{sha}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4828,7 +4828,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postCommitComment': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/commits/{sha}/comments'
+		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}/comments'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4921,7 +4921,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getCommit': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/commits/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -4959,7 +4959,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listCommits': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/commits'
+		var url = 'https://api.github.com/repos/{user}/{repo}/commits'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5006,7 +5006,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getCommit': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/commits/{sha}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5044,7 +5044,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'compareCommits': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/compare/{base}...{head}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/compare/{base}...{head}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5093,7 +5093,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getReadme': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/readme'
+		var url = 'https://api.github.com/repos/{user}/{repo}/readme'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5130,7 +5130,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getContents': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/contents/{path}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/contents/{path}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5178,7 +5178,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getArchive': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/{archive_format}/{ref}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/{archive_format}/{ref}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5226,7 +5226,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listDownloads': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/downloads'
+		var url = 'https://api.github.com/repos/{user}/{repo}/downloads'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5253,7 +5253,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createDownload': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/downloads'
+		var url = 'https://api.github.com/repos/{user}/{repo}/downloads'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5322,7 +5322,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getDownload': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/downloads/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/downloads/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5360,7 +5360,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'deleteDownload': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/downloads/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/downloads/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5398,7 +5398,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listForks': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/forks'
+		var url = 'https://api.github.com/repos/{user}/{repo}/forks'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5435,7 +5435,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'fork': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/forks'
+		var url = 'https://api.github.com/repos/{user}/{repo}/forks'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5472,7 +5472,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listRepoKeys': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/keys'
+		var url = 'https://api.github.com/repos/{user}/{repo}/keys'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5499,7 +5499,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createRepoKey': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/keys'
+		var url = 'https://api.github.com/repos/{user}/{repo}/keys'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5546,7 +5546,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'getRepoKey': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/keys/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/keys/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5584,7 +5584,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editRepoKey': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/keys/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/keys/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5642,7 +5642,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteRepoKey': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/keys/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/keys/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5680,7 +5680,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listWatchers': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/watchers'
+		var url = 'https://api.github.com/repos/{user}/{repo}/watchers'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5707,7 +5707,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserWatched': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/watched'
+		var url = 'https://api.github.com/repos/{user}/watched'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5723,7 +5723,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listWatched': function(args, opts) {
-		var url = 'https://api.github.com//repos/watched'
+		var url = 'https://api.github.com/repos/watched'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5739,7 +5739,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkUserWatched': function(args, opts) {
-		var url = 'https://api.github.com//repos/watched/{user}/{repo}'
+		var url = 'https://api.github.com/repos/watched/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5766,7 +5766,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'watch': function(args, opts) {
-		var url = 'https://api.github.com//repos/watched/{user}/{repo}'
+		var url = 'https://api.github.com/repos/watched/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5793,7 +5793,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'unwatch': function(args, opts) {
-		var url = 'https://api.github.com//repos/watched/{user}/{repo}'
+		var url = 'https://api.github.com/repos/watched/{user}/{repo}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5820,12 +5820,12 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'hooks': function(args, opts) {
-		var url = 'https://api.github.com//hooks'
+		var url = 'https://api.github.com/hooks'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listHooks': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/hooks'
+		var url = 'https://api.github.com/repos/{user}/{repo}/hooks'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5852,7 +5852,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createHook': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/hooks'
+		var url = 'https://api.github.com/repos/{user}/{repo}/hooks'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5921,7 +5921,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getHook': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/hooks/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -5959,7 +5959,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editHook': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/hooks/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6059,7 +6059,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteHook': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/hooks/{id}'
+		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6097,7 +6097,7 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'testHook': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/hooks/{id}/test'
+		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}/test'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6135,7 +6135,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getUser': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}'
+		var url = 'https://api.github.com/users/{user}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6151,12 +6151,12 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'me': function(args, opts) {
-		var url = 'https://api.github.com//user'
+		var url = 'https://api.github.com/user'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:'github',url:url,method:'GET',params:args}, opts)
 	},
 	'editMe': function(args, opts) {
-		var url = 'https://api.github.com//user'
+		var url = 'https://api.github.com/user'
 		args = args || {}
 		if (args['name'] == null) throw new Error('name is a required parameter')
 		var rgx = new RegExp('\{name\}', 'g')
@@ -6233,22 +6233,22 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listEmails': function(args, opts) {
-		var url = 'https://api.github.com//user/emails'
+		var url = 'https://api.github.com/user/emails'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'addEmails': function(args, opts) {
-		var url = 'https://api.github.com//user/emails'
+		var url = 'https://api.github.com/user/emails'
 		args = args || {}
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'removeEmails': function(args, opts) {
-		var url = 'https://api.github.com//user/emails'
+		var url = 'https://api.github.com/user/emails'
 		args = args || {}
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listWatchers': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/followers'
+		var url = 'https://api.github.com/users/{user}/followers'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6275,12 +6275,12 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listWatched': function(args, opts) {
-		var url = 'https://api.github.com//user/followers'
+		var url = 'https://api.github.com/user/followers'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'listUserFollowing': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/following'
+		var url = 'https://api.github.com/users/{user}/following'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6296,12 +6296,12 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listFollowing': function(args, opts) {
-		var url = 'https://api.github.com//user/following'
+		var url = 'https://api.github.com/user/following'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'checkUserWatched': function(args, opts) {
-		var url = 'https://api.github.com//user/following/{user}'
+		var url = 'https://api.github.com/user/following/{user}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6317,7 +6317,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'follow': function(args, opts) {
-		var url = 'https://api.github.com//user/following/{user}'
+		var url = 'https://api.github.com/user/following/{user}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6333,7 +6333,7 @@
 		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'unfollow': function(args, opts) {
-		var url = 'https://api.github.com//user/following/{user}'
+		var url = 'https://api.github.com/user/following/{user}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6349,12 +6349,12 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listKeys': function(args, opts) {
-		var url = 'https://api.github.com//user/keys'
+		var url = 'https://api.github.com/user/keys'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'createKey': function(args, opts) {
-		var url = 'https://api.github.com//user/keys'
+		var url = 'https://api.github.com/user/keys'
 		args = args || {}
 		var rgx = new RegExp('\{title\}', 'g')
 		if (url.match(rgx)) {
@@ -6379,7 +6379,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getKey': function(args, opts) {
-		var url = 'https://api.github.com//user/keys/{id}'
+		var url = 'https://api.github.com/user/keys/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -6395,7 +6395,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'editKey': function(args, opts) {
-		var url = 'https://api.github.com//user/keys/{id}'
+		var url = 'https://api.github.com/user/keys/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -6431,7 +6431,7 @@
 		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteKey': function(args, opts) {
-		var url = 'https://api.github.com//user/keys/{id}'
+		var url = 'https://api.github.com/user/keys/{id}'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -6447,12 +6447,12 @@
 		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listEvents': function(args, opts) {
-		var url = 'https://api.github.com//events'
+		var url = 'https://api.github.com/events'
 		args = args || {}
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listRepoEvents': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/events'
+		var url = 'https://api.github.com/repos/{user}/{repo}/events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6479,7 +6479,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listIssuesEvents': function(args, opts) {
-		var url = 'https://api.github.com//repos/{user}/{repo}/issues/events'
+		var url = 'https://api.github.com/repos/{user}/{repo}/issues/events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6506,7 +6506,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listNetworksEvents': function(args, opts) {
-		var url = 'https://api.github.com//networks/{user}/{repo}/events'
+		var url = 'https://api.github.com/networks/{user}/{repo}/events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6533,7 +6533,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgPublicEvents': function(args, opts) {
-		var url = 'https://api.github.com//orgs/{org}/events'
+		var url = 'https://api.github.com/orgs/{org}/events'
 		args = args || {}
 		if (args['org'] == null) throw new Error('org is a required parameter')
 		var rgx = new RegExp('\{org\}', 'g')
@@ -6549,7 +6549,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserReceivedEvents': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/received_events'
+		var url = 'https://api.github.com/users/{user}/received_events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6565,7 +6565,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserPublicReceivedEvents': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/received_events/public'
+		var url = 'https://api.github.com/users/{user}/received_events/public'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6581,7 +6581,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserEvents': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/events'
+		var url = 'https://api.github.com/users/{user}/events'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6597,7 +6597,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserPublicEvents': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/events/public'
+		var url = 'https://api.github.com/users/{user}/events/public'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6613,7 +6613,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgEvents': function(args, opts) {
-		var url = 'https://api.github.com//users/{user}/events/orgs/{org}'
+		var url = 'https://api.github.com/users/{user}/events/orgs/{org}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6640,7 +6640,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'searchIssues': function(args, opts) {
-		var url = 'https://api.github.com//legacy/issues/search/{user}/{repo}/{state}/{keyword}'
+		var url = 'https://api.github.com/legacy/issues/search/{user}/{repo}/{state}/{keyword}'
 		args = args || {}
 		if (args['user'] == null) throw new Error('user is a required parameter')
 		var rgx = new RegExp('\{user\}', 'g')
@@ -6689,7 +6689,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'searchRepos': function(args, opts) {
-		var url = 'https://api.github.com//legacy/repos/search/{keyword}'
+		var url = 'https://api.github.com/legacy/repos/search/{keyword}'
 		args = args || {}
 		if (args['keyword'] == null) throw new Error('keyword is a required parameter')
 		var rgx = new RegExp('\{keyword\}', 'g')
@@ -6725,7 +6725,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'searchUsers': function(args, opts) {
-		var url = 'https://api.github.com//legacy/user/search/{keyword}'
+		var url = 'https://api.github.com/legacy/user/search/{keyword}'
 		args = args || {}
 		if (args['keyword'] == null) throw new Error('keyword is a required parameter')
 		var rgx = new RegExp('\{keyword\}', 'g')
@@ -6741,7 +6741,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'searchEmails': function(args, opts) {
-		var url = 'https://api.github.com//legacy/user/email/{email}'
+		var url = 'https://api.github.com/legacy/user/email/{email}'
 		args = args || {}
 		if (args['email'] == null) throw new Error('email is a required parameter')
 		var rgx = new RegExp('\{email\}', 'g')
@@ -6757,7 +6757,7 @@
 		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'markdown': function(args, opts) {
-		var url = 'https://api.github.com//markdown'
+		var url = 'https://api.github.com/markdown'
 		args = args || {}
 		if (args['text'] == null) throw new Error('text is a required parameter')
 		var rgx = new RegExp('\{text\}', 'g')
@@ -6793,7 +6793,7 @@
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'markdownRaw': function(args, opts) {
-		var url = 'https://api.github.com//markdown/raw'
+		var url = 'https://api.github.com/markdown/raw'
 		args = args || {}
 		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	}
