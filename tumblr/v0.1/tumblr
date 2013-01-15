@@ -1,7 +1,7 @@
 ({
-	auth:function(){auth({provider:'tumblr'})},
+	auth:function(){return auth({provider:'tumblr'})},
 	'blogInfo': function(args, opts) {
-		var url = 'blog/{base-hostname}/info'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/info'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -14,10 +14,10 @@
 			if (args['base-hostname']) delete args['base-hostname']
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'avatar': function(args, opts) {
-		var url = 'blog/{base-hostname}/avatar[/size]'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/avatar[/size]'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -29,7 +29,6 @@
 			url = url.replace('[/base-hostname]', '/' + args['base-hostname'])
 			if (args['base-hostname']) delete args['base-hostname']
 		}
-		if (args['size'] == null) args['size'] = "64"
 		var rgx = new RegExp('\{size\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['size'])
@@ -41,10 +40,10 @@
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'none'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'followers': function(args, opts) {
-		var url = 'blog/{base-hostname}/followers'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/followers'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -56,7 +55,6 @@
 			url = url.replace('[/base-hostname]', '/' + args['base-hostname'])
 			if (args['base-hostname']) delete args['base-hostname']
 		}
-		if (args['limit'] == null) args['limit'] = "20"
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
@@ -66,7 +64,6 @@
 			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -79,10 +76,10 @@
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
-	'getPosts': function(args, opts) {
-		var url = 'blog/{base-hostname}/posts[/type]'
+	'postsGet': function(args, opts) {
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/posts[/type]'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -99,7 +96,7 @@
 			url = url.replace(rgx, args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (url.indexOf('[/type]') !== -1 && args['type']) {
+		if (url.indexOf('[/type]') !== -1) {
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
@@ -121,7 +118,6 @@
 			url = url.replace('[/tag]', '/' + args['tag'])
 			if (args['tag']) delete args['tag']
 		}
-		if (args['limit'] == null) args['limit'] = "20"
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
@@ -131,7 +127,6 @@
 			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -141,7 +136,6 @@
 			url = url.replace('[/offset]', '/' + args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		if (args['reblog_info'] == null) args['reblog_info'] = "false"
 		var rgx = new RegExp('\{reblog_info\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['reblog_info'])
@@ -151,7 +145,6 @@
 			url = url.replace('[/reblog_info]', '/' + args['reblog_info'])
 			if (args['reblog_info']) delete args['reblog_info']
 		}
-		if (args['notes_info'] == null) args['notes_info'] = "false"
 		var rgx = new RegExp('\{notes_info\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['notes_info'])
@@ -179,10 +172,10 @@
 		if (url.indexOf('[/reblog_info]') !== -1) url = url.replace('[/reblog_info]', '')
 		if (url.indexOf('[/notes_info]') !== -1) url = url.replace('[/notes_info]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'manual'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'queuedPosts': function(args, opts) {
-		var url = 'blog/{base-hostname}/posts/queue'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/posts/queue'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -194,7 +187,6 @@
 			url = url.replace('[/base-hostname]', '/' + args['base-hostname'])
 			if (args['base-hostname']) delete args['base-hostname']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -204,7 +196,6 @@
 			url = url.replace('[/offset]', '/' + args['offset'])
 			if (args['offset']) delete args['offset']
 		}
-		if (args['limit'] == null) args['limit'] = "20"
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
@@ -227,10 +218,10 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'draftPosts': function(args, opts) {
-		var url = 'blog/{base-hostname}/posts/draft'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/posts/draft'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -253,10 +244,10 @@
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'draftPosts': function(args, opts) {
-		var url = 'blog/{base-hostname}/posts/submission'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/posts/submission'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -268,7 +259,6 @@
 			url = url.replace('[/base-hostname]', '/' + args['base-hostname'])
 			if (args['base-hostname']) delete args['base-hostname']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -290,10 +280,10 @@
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'postText': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -315,7 +305,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -352,7 +341,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -380,6 +368,16 @@
 			url = url.replace('[/title]', '/' + args['title'])
 			if (args['title']) delete args['title']
 		}
+		if (args['body'] == null) throw new Error('body is a required parameter')
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		if (url.indexOf('[/body]') !== -1) {
+			url = url.replace('[/body]', '/' + args['body'])
+			if (args['body']) delete args['body']
+		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
@@ -390,10 +388,10 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'manual'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postPhoto': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -415,7 +413,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -452,7 +449,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -521,10 +517,10 @@
 		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postQuote': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -546,7 +542,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -583,7 +578,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -631,10 +625,10 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/quote]') !== -1) url = url.replace('[/quote]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postLink': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -656,7 +650,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -693,7 +686,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -751,10 +743,10 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postChat': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -776,7 +768,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -813,7 +804,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -861,10 +851,10 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/conversation]') !== -1) url = url.replace('[/conversation]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postAudio': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -886,7 +876,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -923,7 +912,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -982,10 +970,10 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/external_url]') !== -1) url = url.replace('[/external_url]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postVideo': function(args, opts) {
-		var url = 'blog/{base-hostname}/post'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1007,7 +995,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1044,7 +1031,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1103,10 +1089,10 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/embed]') !== -1) url = url.replace('[/embed]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostText': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1128,7 +1114,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1165,7 +1150,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1224,10 +1208,10 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostPhoto': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1249,7 +1233,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1286,7 +1269,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1366,10 +1348,10 @@
 		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostQuote': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1391,7 +1373,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1428,7 +1409,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1487,10 +1467,10 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/quote]') !== -1) url = url.replace('[/quote]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostLink': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1512,7 +1492,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1549,7 +1528,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1618,10 +1596,10 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostChat': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1643,7 +1621,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1680,7 +1657,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1739,10 +1715,10 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/conversation]') !== -1) url = url.replace('[/conversation]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostAudio': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1764,7 +1740,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1801,7 +1776,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -1871,10 +1845,10 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/external_url]') !== -1) url = url.replace('[/external_url]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostVideo': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/edit'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/edit'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -1896,7 +1870,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -1933,7 +1906,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2003,10 +1975,10 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/embed]') !== -1) url = url.replace('[/embed]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostText': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2028,7 +2000,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2065,7 +2036,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2145,10 +2115,10 @@
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostPhoto': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2170,7 +2140,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2207,7 +2176,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2308,10 +2276,10 @@
 		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostQuote': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2333,7 +2301,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2370,7 +2337,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2450,10 +2416,10 @@
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
 		if (url.indexOf('[/quote]') !== -1) url = url.replace('[/quote]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostLink': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2475,7 +2441,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2512,7 +2477,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2602,10 +2566,10 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostChat': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2627,7 +2591,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2664,7 +2627,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2744,10 +2706,10 @@
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/conversation]') !== -1) url = url.replace('[/conversation]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostAudio': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2769,7 +2731,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2806,7 +2767,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -2897,10 +2857,10 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/external_url]') !== -1) url = url.replace('[/external_url]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostVideo': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/reblog'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -2922,7 +2882,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['state'] == null) args['state'] = "published"
 		var rgx = new RegExp('\{state\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['state'])
@@ -2959,7 +2918,6 @@
 			url = url.replace('[/date]', '/' + args['date'])
 			if (args['date']) delete args['date']
 		}
-		if (args['format'] == null) args['format'] = "html"
 		var rgx = new RegExp('\{format\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['format'])
@@ -3050,10 +3008,10 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/embed]') !== -1) url = url.replace('[/embed]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'deletePost': function(args, opts) {
-		var url = 'blog/{base-hostname}/post/delete'
+		var url = 'api.tumblr.com/v2/blog/{base-hostname}/post/delete'
 		args = args || {}
 		if (args['base-hostname'] == null) throw new Error('base-hostname is a required parameter')
 		var rgx = new RegExp('\{base-hostname\}', 'g')
@@ -3077,17 +3035,16 @@
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userInfo': function(args, opts) {
-		var url = 'user/info'
+		var url = 'api.tumblr.com/v2/user/info'
 		args = args || {}
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userDashboard': function(args, opts) {
-		var url = 'user/dashboard'
+		var url = 'api.tumblr.com/v2/user/dashboard'
 		args = args || {}
-		if (args['limit'] == null) args['limit'] = "20"
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
@@ -3097,7 +3054,6 @@
 			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -3116,7 +3072,6 @@
 			url = url.replace('[/type]', '/' + args['type'])
 			if (args['type']) delete args['type']
 		}
-		if (args['since_id'] == null) args['since_id'] = "0"
 		var rgx = new RegExp('\{since_id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['since_id'])
@@ -3126,7 +3081,6 @@
 			url = url.replace('[/since_id]', '/' + args['since_id'])
 			if (args['since_id']) delete args['since_id']
 		}
-		if (args['reblog_info'] == null) args['reblog_info'] = "false"
 		var rgx = new RegExp('\{reblog_info\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['reblog_info'])
@@ -3136,7 +3090,6 @@
 			url = url.replace('[/reblog_info]', '/' + args['reblog_info'])
 			if (args['reblog_info']) delete args['reblog_info']
 		}
-		if (args['notes_info'] == null) args['notes_info'] = "false"
 		var rgx = new RegExp('\{notes_info\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['notes_info'])
@@ -3152,12 +3105,11 @@
 		if (url.indexOf('[/since_id]') !== -1) url = url.replace('[/since_id]', '')
 		if (url.indexOf('[/reblog_info]') !== -1) url = url.replace('[/reblog_info]', '')
 		if (url.indexOf('[/notes_info]') !== -1) url = url.replace('[/notes_info]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userLikes': function(args, opts) {
-		var url = 'user/likes'
+		var url = 'api.tumblr.com/v2/user/likes'
 		args = args || {}
-		if (args['limit'] == null) args['limit'] = "20"
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
@@ -3167,7 +3119,6 @@
 			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -3179,12 +3130,11 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userFollowing': function(args, opts) {
-		var url = 'user/following'
+		var url = 'api.tumblr.com/v2/user/following'
 		args = args || {}
-		if (args['limit'] == null) args['limit'] = "20"
 		var rgx = new RegExp('\{limit\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['limit'])
@@ -3194,7 +3144,6 @@
 			url = url.replace('[/limit]', '/' + args['limit'])
 			if (args['limit']) delete args['limit']
 		}
-		if (args['offset'] == null) args['offset'] = "0"
 		var rgx = new RegExp('\{offset\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['offset'])
@@ -3206,10 +3155,10 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userFollow': function(args, opts) {
-		var url = 'user/follow'
+		var url = 'api.tumblr.com/v2/user/follow'
 		args = args || {}
 		if (args['url'] == null) throw new Error('url is a required parameter')
 		var rgx = new RegExp('\{url\}', 'g')
@@ -3222,10 +3171,10 @@
 			if (args['url']) delete args['url']
 		}
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userUnfollow': function(args, opts) {
-		var url = 'user/unfollow'
+		var url = 'api.tumblr.com/v2/user/unfollow'
 		args = args || {}
 		if (args['url'] == null) throw new Error('url is a required parameter')
 		var rgx = new RegExp('\{url\}', 'g')
@@ -3238,10 +3187,10 @@
 			if (args['url']) delete args['url']
 		}
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userLike': function(args, opts) {
-		var url = 'user/like'
+		var url = 'api.tumblr.com/v2/user/like'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -3265,10 +3214,10 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/reblog_key]') !== -1) url = url.replace('[/reblog_key]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userUnlike': function(args, opts) {
-		var url = 'user/unlike'
+		var url = 'api.tumblr.com/v2/user/unlike'
 		args = args || {}
 		if (args['id'] == null) throw new Error('id is a required parameter')
 		var rgx = new RegExp('\{id\}', 'g')
@@ -3292,10 +3241,10 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/reblog_key]') !== -1) url = url.replace('[/reblog_key]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userUnlike': function(args, opts) {
-		var url = 'tagged'
+		var url = 'api.tumblr.com/v2/tagged'
 		args = args || {}
 		if (args['tag'] == null) throw new Error('tag is a required parameter')
 		var rgx = new RegExp('\{tag\}', 'g')
@@ -3351,6 +3300,6 @@
 		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth: 'oauth1'}, opts)
+		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	}
 })
