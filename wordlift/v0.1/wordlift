@@ -1,0 +1,68 @@
+({
+	auth:function(){return auth({provider:'wordlift'})},
+	'createTask': function(args, opts) {
+		var url = 'https://api.idntik.it/api/proxy/call/api/tasks'
+		args = args || {}
+		if (args['Application-Id'] == null) args['Application-Id'] = "webshellkey"
+		var rgx = new RegExp('\{Application-Id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Application-Id'])
+			if (args['Application-Id']) delete args['Application-Id']
+		}
+		if (url.indexOf('[/Application-Id]') !== -1) {
+			url = url.replace('[/Application-Id]', '/' + args['Application-Id'])
+			if (args['Application-Id']) delete args['Application-Id']
+		}
+		if (args['Callback-Url'] == null) throw new Error('Callback-Url is a required parameter')
+		var rgx = new RegExp('\{Callback-Url\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Callback-Url'])
+			if (args['Callback-Url']) delete args['Callback-Url']
+		}
+		if (url.indexOf('[/Callback-Url]') !== -1) {
+			url = url.replace('[/Callback-Url]', '/' + args['Callback-Url'])
+			if (args['Callback-Url']) delete args['Callback-Url']
+		}
+		if (args['body'] == null) throw new Error('body is a required parameter')
+		var rgx = new RegExp('\{body\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['body'])
+			if (args['body']) delete args['body']
+		}
+		if (url.indexOf('[/body]') !== -1) {
+			url = url.replace('[/body]', '/' + args['body'])
+			if (args['body']) delete args['body']
+		}
+		if (url.indexOf('[/Application-Id]') !== -1) url = url.replace('[/Application-Id]', '')
+		if (url.indexOf('[/Callback-Url]') !== -1) url = url.replace('[/Callback-Url]', '')
+		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
+		return http({provider:'wordlift',url:url,method:'POST',params:args, auth:'none'}, opts)
+	},
+	'getTaskResults': function(args, opts) {
+		var url = 'https://api.idntik.it/api/proxy/{transactionId}/results'
+		args = args || {}
+		if (args['transactionId'] == null) throw new Error('transactionId is a required parameter')
+		var rgx = new RegExp('\{transactionId\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['transactionId'])
+			if (args['transactionId']) delete args['transactionId']
+		}
+		if (url.indexOf('[/transactionId]') !== -1) {
+			url = url.replace('[/transactionId]', '/' + args['transactionId'])
+			if (args['transactionId']) delete args['transactionId']
+		}
+		if (args['Application-Id'] == null) args['Application-Id'] = "webshellkey"
+		var rgx = new RegExp('\{Application-Id\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['Application-Id'])
+			if (args['Application-Id']) delete args['Application-Id']
+		}
+		if (url.indexOf('[/Application-Id]') !== -1) {
+			url = url.replace('[/Application-Id]', '/' + args['Application-Id'])
+			if (args['Application-Id']) delete args['Application-Id']
+		}
+		if (url.indexOf('[/transactionId]') !== -1) url = url.replace('[/transactionId]', '')
+		if (url.indexOf('[/Application-Id]') !== -1) url = url.replace('[/Application-Id]', '')
+		return http({provider:'wordlift',url:url,method:'GET',params:args, auth:'none'}, opts)
+	}
+})
