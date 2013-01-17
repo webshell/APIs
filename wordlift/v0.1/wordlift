@@ -3,7 +3,7 @@
 	'createTask': function(args, opts) {
 		var url = 'https://api.idntik.it/api/proxy/call/api/tasks'
 		args = args || {}
-		if (args['Application-Id'] == null) args['Application-Id'] = "webshellkey"
+		if (args['Application-Id'] == null) args['Application-Id'] = "wordlift"
 		var rgx = new RegExp('\{Application-Id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['Application-Id'])
@@ -13,13 +13,12 @@
 			url = url.replace('[/Application-Id]', '/' + args['Application-Id'])
 			if (args['Application-Id']) delete args['Application-Id']
 		}
-		if (args['Callback-Url'] == null) throw new Error('Callback-Url is a required parameter')
 		var rgx = new RegExp('\{Callback-Url\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['Callback-Url'])
 			if (args['Callback-Url']) delete args['Callback-Url']
 		}
-		if (url.indexOf('[/Callback-Url]') !== -1) {
+		if (url.indexOf('[/Callback-Url]') !== -1 && args['/Callback-Url']) {
 			url = url.replace('[/Callback-Url]', '/' + args['Callback-Url'])
 			if (args['Callback-Url']) delete args['Callback-Url']
 		}
@@ -51,7 +50,7 @@
 			url = url.replace('[/transactionId]', '/' + args['transactionId'])
 			if (args['transactionId']) delete args['transactionId']
 		}
-		if (args['Application-Id'] == null) args['Application-Id'] = "webshellkey"
+		if (args['Application-Id'] == null) args['Application-Id'] = "wordlift"
 		var rgx = new RegExp('\{Application-Id\}', 'g')
 		if (url.match(rgx)) {
 			url = url.replace(rgx, args['Application-Id'])
