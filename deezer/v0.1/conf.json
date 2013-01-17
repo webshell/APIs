@@ -8,19 +8,20 @@
     "oauth2": {
       "authorize": {
         "url":"https://connect.deezer.com/oauth/auth.php",
-        "format":"url",
+        "format":"json",
         "params": {
           "app_id":"{app_id}",
-          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cid={_cid}"
+	  "response_type":"code",
+          "redirect_uri":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cid={_cid}&perms={perms}"
 	  }
       },
       "access_token":{
         "url":"https://connect.deezer.com/oauth/access_token.php",
         "format":"url",
-        "field":"state",
         "params":{
 	  "app_id":"{app_id}",
           "secret":"{secret}",
+          "grant_type":"authorization_code",
  	  "code":"{_code}"
         }
       },
@@ -38,7 +39,12 @@
         {
           "name":"secret",
           "type":"string"
+        },
+        {
+          "name":"perms",
+          "type":"string"
         }
+ 
       ]
     }
   }
