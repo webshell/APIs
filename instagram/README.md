@@ -1,0 +1,1 @@
+Instagram is a photo sharing iPhone app and service. Users take photos and can share them with Instagram contacts, as well as friends on other social networks like Twitter and Facebook. The Instagram API provides access to user authentication, friend connections, photos and all the other elements of the iPhone app--including uploading new media.
