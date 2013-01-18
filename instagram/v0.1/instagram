@@ -14,7 +14,7 @@
 			if (args['user-id']) delete args['user-id']
 		}
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getUsersFeed': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/self/feed'
@@ -49,7 +49,7 @@
 		if (url.indexOf('[/max_id]') !== -1) url = url.replace('[/max_id]', '')
 		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getUsersMediaRecent': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/{user-id}/media/recent'
@@ -115,7 +115,7 @@
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/min_timestamp]') !== -1) url = url.replace('[/min_timestamp]', '')
 		if (url.indexOf('[/max_timestamp]') !== -1) url = url.replace('[/max_timestamp]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getUsersLikedFeed': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/self/media/liked'
@@ -140,7 +140,7 @@
 		}
 		if (url.indexOf('[/max_like_id]') !== -1) url = url.replace('[/max_like_id]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getUsersSearch': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/search'
@@ -166,7 +166,7 @@
 		}
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getUsersFollows': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/{user-id}/follows'
@@ -182,7 +182,7 @@
 			if (args['user-id']) delete args['user-id']
 		}
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getUsersFollowedBy': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/{user-id}/followed-by'
@@ -198,12 +198,12 @@
 			if (args['user-id']) delete args['user-id']
 		}
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getIncomingRequests': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/self/requested-by'
 		args = args || {}
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getRelationship': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/{user-id}/relationship'
@@ -219,7 +219,7 @@
 			if (args['user-id']) delete args['user-id']
 		}
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'postRelationship': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/users/{user-id}/relationship'
@@ -234,8 +234,18 @@
 			url = url.replace('[/user-id]', '/' + args['user-id'])
 			if (args['user-id']) delete args['user-id']
 		}
+		var rgx = new RegExp('\{action\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['action'])
+			if (args['action']) delete args['action']
+		}
+		if (url.indexOf('[/action]') !== -1 && args['/action']) {
+			url = url.replace('[/action]', '/' + args['action'])
+			if (args['action']) delete args['action']
+		}
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		if (url.indexOf('[/action]') !== -1) url = url.replace('[/action]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getMedia': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{id}'
@@ -251,7 +261,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMediaSearch': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/search'
@@ -306,12 +316,12 @@
 		if (url.indexOf('[/max_timestamp]') !== -1) url = url.replace('[/max_timestamp]', '')
 		if (url.indexOf('[/min_timestamp]') !== -1) url = url.replace('[/min_timestamp]', '')
 		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMediaPopular': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/popular'
 		args = args || {}
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getMediaComments': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{media-id}/comments'
@@ -327,7 +337,7 @@
 			if (args['media-id']) delete args['media-id']
 		}
 		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'postMediaComments': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{media-id}/comments'
@@ -342,8 +352,19 @@
 			url = url.replace('[/media-id]', '/' + args['media-id'])
 			if (args['media-id']) delete args['media-id']
 		}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
 		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteMediaComments': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{media-id}/comments/{comment-id}'
@@ -370,7 +391,7 @@
 		}
 		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
 		if (url.indexOf('[/comment-id]') !== -1) url = url.replace('[/comment-id]', '')
-		return http({provider:'instagram',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'getMediaLikes': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{media-id}/likes'
@@ -386,7 +407,7 @@
 			if (args['media-id']) delete args['media-id']
 		}
 		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'postMediaLikes': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{media-id}/likes'
@@ -402,7 +423,7 @@
 			if (args['media-id']) delete args['media-id']
 		}
 		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteMediaLikes': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/media/{media-id}/likes'
@@ -418,7 +439,7 @@
 			if (args['media-id']) delete args['media-id']
 		}
 		if (url.indexOf('[/media-id]') !== -1) url = url.replace('[/media-id]', '')
-		return http({provider:'instagram',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'getTags': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/tags/{tag-name}'
@@ -434,7 +455,7 @@
 			if (args['tag-name']) delete args['tag-name']
 		}
 		if (url.indexOf('[/tag-name]') !== -1) url = url.replace('[/tag-name]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getTagsMediaRecent': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/tags/{tag-name}/media/recent'
@@ -470,7 +491,7 @@
 		if (url.indexOf('[/tag-name]') !== -1) url = url.replace('[/tag-name]', '')
 		if (url.indexOf('[/max_id]') !== -1) url = url.replace('[/max_id]', '')
 		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getTagsSearch': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/tags/search'
@@ -486,7 +507,7 @@
 			if (args['q']) delete args['q']
 		}
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getLocations': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/locations/{location-id}'
@@ -502,7 +523,7 @@
 			if (args['location-id']) delete args['location-id']
 		}
 		if (url.indexOf('[/location-id]') !== -1) url = url.replace('[/location-id]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getLocationsMediaRecent': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/locations/{location-id}/media/recent'
@@ -558,7 +579,7 @@
 		if (url.indexOf('[/min_id]') !== -1) url = url.replace('[/min_id]', '')
 		if (url.indexOf('[/min_timestamp]') !== -1) url = url.replace('[/min_timestamp]', '')
 		if (url.indexOf('[/max_timestamp]') !== -1) url = url.replace('[/max_timestamp]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getLocationsSearch': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/locations/search'
@@ -613,7 +634,7 @@
 		if (url.indexOf('[/foursquare_id]') !== -1) url = url.replace('[/foursquare_id]', '')
 		if (url.indexOf('[/foursquare_v2_id]') !== -1) url = url.replace('[/foursquare_v2_id]', '')
 		if (url.indexOf('[/distance]') !== -1) url = url.replace('[/distance]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'postSubscriptionsUser': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/subscriptions'
@@ -651,7 +672,7 @@
 		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'postSubscriptionsTag': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/subscriptions'
@@ -689,7 +710,7 @@
 		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'postSubscriptionsLocation': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/subscriptions'
@@ -727,7 +748,7 @@
 		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'postSubscriptionsGeography': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/subscriptions'
@@ -765,7 +786,7 @@
 		if (url.indexOf('[/verify_token]') !== -1) url = url.replace('[/verify_token]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
-		return http({provider:'instagram',url:url,method:'POST',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getSubscriptions': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/subscriptions'
@@ -792,7 +813,7 @@
 		}
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
-		return http({provider:'instagram',url:url,method:'GET',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteSubscriptions': function(args, opts) {
 		var url = 'https://api.instagram.com/v1/subscriptions'
@@ -839,6 +860,6 @@
 		if (url.indexOf('[/object]') !== -1) url = url.replace('[/object]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/client_secret]') !== -1) url = url.replace('[/client_secret]', '')
-		return http({provider:'instagram',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:'instagram',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	}
 })

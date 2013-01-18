@@ -2349,6 +2349,11 @@
 		if (url.indexOf('[/nb-items]') !== -1) url = url.replace('[/nb-items]', '')
 		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
+	'me': function(args, opts) {
+		var url = 'https://api.deezer.com/2.0/user/me'
+		args = args || {}
+		return http({provider:'deezer',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+	},
 	'getUser': function(args, opts) {
 		var url = 'https://api.deezer.com/2.0/user/{id}'
 		args = args || {}
