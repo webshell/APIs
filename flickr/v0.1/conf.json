@@ -7,14 +7,17 @@
     "none":{},
     "oauth1":{
       "request_token":{
-        "url":"http://www.flickr.com/services/oauth//request_token",
+        "url":"http://www.flickr.com/services/oauth/request_token",
         "params":{
           "oauth_consumer_key":"{client_id}",
           "oauth_callback":"http://{_wsdomain}.webshell.local/name/{_name}?api={_id}&cid={_cid}"
         }
       },
       "authorize":{
-        "url":"http://www.flickr.com/services/oauth/authorize"
+        "url":"http://www.flickr.com/services/oauth/authorize",
+        "params":{
+          "perms":"{permissions}"
+        }
       },
       "access_token":{
         "url":"http://www.flickr.com/services/oauth/access_token",
@@ -25,7 +28,9 @@
       "request":{
         "format":"json",
 	"get":{
-		"api_key":"{client_id}"
+		"api_key":"{client_id}",
+    "format":"json",
+    "nojsoncallback":"1"
 	},
 	"put":{
 		"api_key":"{client_id}"
@@ -48,6 +53,16 @@
         {
           "name":"client_secret",
           "type":"string"
+        },
+        {
+          "name":"permissions",
+          "type":"string",
+          "cardinality":"1",
+          "values": {
+            "read":"Read access to the api",
+            "write":"Read and write access to the api",
+            "delete":"Read, write and deletion access to the api"
+          }
         }
       ]
     }
