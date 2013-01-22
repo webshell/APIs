@@ -1,0 +1,1 @@
+GitHub is a repository of public open source and private business code. It is a fast, efficient, distributed version control system ideal for the collaborative development of software. Use it to fork projects, send pull requests, monitor development.
