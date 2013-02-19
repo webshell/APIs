@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'foursquare'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getUser': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'searchUser': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/search'
@@ -79,12 +79,12 @@
 		if (url.indexOf('[/twitterSource]') !== -1) url = url.replace('[/twitterSource]', '')
 		if (url.indexOf('[/fbid]') !== -1) url = url.replace('[/fbid]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getRequests': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/requests'
 		args = args || {}
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBadges': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/badges'
@@ -100,7 +100,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getUserCheckins': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/checkins'
@@ -156,7 +156,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/afterTimestamp]') !== -1) url = url.replace('[/afterTimestamp]', '')
 		if (url.indexOf('[/beforeTimestamp]') !== -1) url = url.replace('[/beforeTimestamp]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFriends': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/friends'
@@ -172,7 +172,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getUserTips': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/tips'
@@ -208,7 +208,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/ll]') !== -1) url = url.replace('[/ll]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getTodos': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/todos'
@@ -245,7 +245,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/ll]') !== -1) url = url.replace('[/ll]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getVenueHistory': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/venuehistory'
@@ -261,7 +261,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'sendRequest': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/request'
@@ -277,7 +277,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'unfriendUser': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/unfriend'
@@ -293,7 +293,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'approveFriend': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/approve'
@@ -309,7 +309,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'denyFriend': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/deny'
@@ -325,7 +325,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'setPings': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/users/{user}/setpings'
@@ -352,7 +352,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/value]') !== -1) url = url.replace('[/value]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getVenue': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}'
@@ -368,7 +368,7 @@
 			if (args['venue']) delete args['venue']
 		}
 		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addVenue': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/add'
@@ -465,12 +465,12 @@
 		if (url.indexOf('[/phone]') !== -1) url = url.replace('[/phone]', '')
 		if (url.indexOf('[/ll]') !== -1) url = url.replace('[/ll]', '')
 		if (url.indexOf('[/primaryCategoryId]') !== -1) url = url.replace('[/primaryCategoryId]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getCategories': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/categories'
 		args = args || {}
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'searchVenue': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/search'
@@ -536,7 +536,7 @@
 		if (url.indexOf('[/altAcc]') !== -1) url = url.replace('[/altAcc]', '')
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getVenueDetails': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}/herenow'
@@ -552,7 +552,7 @@
 			if (args['venue']) delete args['venue']
 		}
 		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getVenueTips': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}/tips'
@@ -578,7 +578,7 @@
 		}
 		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getVenuePhotos': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}/photos'
@@ -625,7 +625,7 @@
 		if (url.indexOf('[/group]') !== -1) url = url.replace('[/group]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'markToDo': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}/marktodo'
@@ -651,7 +651,7 @@
 		}
 		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'flagVenue': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}/flag'
@@ -678,7 +678,7 @@
 		}
 		if (url.indexOf('[/venue]') !== -1) url = url.replace('[/venue]', '')
 		if (url.indexOf('[/problem]') !== -1) url = url.replace('[/problem]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'editVenue': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/venues/{venue}/proposeedit'
@@ -789,7 +789,7 @@
 		if (url.indexOf('[/phone]') !== -1) url = url.replace('[/phone]', '')
 		if (url.indexOf('[/ll]') !== -1) url = url.replace('[/ll]', '')
 		if (url.indexOf('[/primaryCategoryId]') !== -1) url = url.replace('[/primaryCategoryId]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getTip': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/tips/{tip}'
@@ -805,7 +805,7 @@
 			if (args['tip']) delete args['tip']
 		}
 		if (url.indexOf('[/tip]') !== -1) url = url.replace('[/tip]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addTip': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/tips/add'
@@ -842,7 +842,7 @@
 		if (url.indexOf('[/venueId]') !== -1) url = url.replace('[/venueId]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getTips': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/tips/search'
@@ -898,7 +898,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'markToDoTip': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/tips/{tip}/marktodo'
@@ -914,7 +914,7 @@
 			if (args['tip']) delete args['tip']
 		}
 		if (url.indexOf('[/tip]') !== -1) url = url.replace('[/tip]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'markdoneTip': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/tips/{tip}/markdone'
@@ -930,7 +930,7 @@
 			if (args['tip']) delete args['tip']
 		}
 		if (url.indexOf('[/tip]') !== -1) url = url.replace('[/tip]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'unmarkTip': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/tips/{tip}/unmark'
@@ -946,7 +946,7 @@
 			if (args['tip']) delete args['tip']
 		}
 		if (url.indexOf('[/tip]') !== -1) url = url.replace('[/tip]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getCheckinDetails': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/checkins/{checkin}'
@@ -962,7 +962,7 @@
 			if (args['checkin']) delete args['checkin']
 		}
 		if (url.indexOf('[/checkin]') !== -1) url = url.replace('[/checkin]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'checkin': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/checkins/add'
@@ -1049,7 +1049,7 @@
 		if (url.indexOf('[/llAcc]') !== -1) url = url.replace('[/llAcc]', '')
 		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
 		if (url.indexOf('[/altAcc]') !== -1) url = url.replace('[/altAcc]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getCheckins': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/checkins/recent'
@@ -1094,7 +1094,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/afterTimestamp]') !== -1) url = url.replace('[/afterTimestamp]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addCheckinComment': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/checkins/{checkin}/addcomment'
@@ -1121,7 +1121,7 @@
 		}
 		if (url.indexOf('[/checkin]') !== -1) url = url.replace('[/checkin]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'removeCheckinComment': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/checkins/{checkin}/deletecomment'
@@ -1148,7 +1148,7 @@
 		}
 		if (url.indexOf('[/checkin]') !== -1) url = url.replace('[/checkin]', '')
 		if (url.indexOf('[/commentId]') !== -1) url = url.replace('[/commentId]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getPhotoDetails': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/photos/{photo}'
@@ -1164,7 +1164,7 @@
 			if (args['photo']) delete args['photo']
 		}
 		if (url.indexOf('[/photo]') !== -1) url = url.replace('[/photo]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addPhoto': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/photos/add'
@@ -1249,7 +1249,7 @@
 		if (url.indexOf('[/llAcc]') !== -1) url = url.replace('[/llAcc]', '')
 		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
 		if (url.indexOf('[/altAcc]') !== -1) url = url.replace('[/altAcc]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getSpecialDetails': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/specials/{special}'
@@ -1265,7 +1265,7 @@
 			if (args['special']) delete args['special']
 		}
 		if (url.indexOf('[/special]') !== -1) url = url.replace('[/special]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getSpecials': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/specials/search'
@@ -1321,7 +1321,7 @@
 		if (url.indexOf('[/alt]') !== -1) url = url.replace('[/alt]', '')
 		if (url.indexOf('[/altAcc]') !== -1) url = url.replace('[/altAcc]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getSetting': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/settings/{setting}'
@@ -1337,12 +1337,12 @@
 			if (args['setting']) delete args['setting']
 		}
 		if (url.indexOf('[/setting]') !== -1) url = url.replace('[/setting]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getAllSettings': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/settings/all'
 		args = args || {}
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'setSetting': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/settings/{setting}/set'
@@ -1369,7 +1369,7 @@
 		}
 		if (url.indexOf('[/setting]') !== -1) url = url.replace('[/setting]', '')
 		if (url.indexOf('[/value]') !== -1) url = url.replace('[/value]', '')
-		return http({provider:'foursquare',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'multipleRequests': function(args, opts) {
 		var url = 'https://api.foursquare.com/v2/multi'
@@ -1385,6 +1385,6 @@
 			if (args['requests']) delete args['requests']
 		}
 		if (url.indexOf('[/requests]') !== -1) url = url.replace('[/requests]', '')
-		return http({provider:'foursquare',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

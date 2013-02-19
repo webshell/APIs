@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'heroku'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'listAddons': function(args, opts) {
 		var url = 'https://api.heroku.com/addons'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['Accept']) delete args['Accept']
 		}
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'listAppAddons': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/addons'
@@ -41,7 +41,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'installAppAddon': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/addons/{addon}'
@@ -79,7 +79,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/addon]') !== -1) url = url.replace('[/addon]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'upgradeAppAddon': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/addons/{addon}'
@@ -117,7 +117,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/addon]') !== -1) url = url.replace('[/addon]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'uninstallAppAddon': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/addons/{addon}'
@@ -155,7 +155,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/addon]') !== -1) url = url.replace('[/addon]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listApps': function(args, opts) {
 		var url = 'https://api.heroku.com/apps'
@@ -171,7 +171,7 @@
 			if (args['Accept']) delete args['Accept']
 		}
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createApp': function(args, opts) {
 		var url = 'https://api.heroku.com/apps'
@@ -187,7 +187,7 @@
 			if (args['Accept']) delete args['Accept']
 		}
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getAppInfo': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{name}'
@@ -214,7 +214,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'destroyApp': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{name}'
@@ -241,7 +241,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listCollaborators': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/collaborators'
@@ -268,7 +268,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'removeCollaborator': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/collaborators/{email}'
@@ -306,7 +306,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listConfigVars': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/config_vars'
@@ -333,7 +333,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addConfigVars': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/config_vars'
@@ -360,7 +360,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'removeConfigVar': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/config_vars/{key}'
@@ -398,7 +398,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listDomains': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/domains'
@@ -425,7 +425,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'removeDomain': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/domains/{domain_name}'
@@ -463,7 +463,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/domain_name]') !== -1) url = url.replace('[/domain_name]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listSSHkeys': function(args, opts) {
 		var url = 'https://api.heroku.com/user/keys'
@@ -479,7 +479,7 @@
 			if (args['Accept']) delete args['Accept']
 		}
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'associateSSHkey': function(args, opts) {
 		var url = 'https://api.heroku.com/user/keys'
@@ -495,7 +495,7 @@
 			if (args['Accept']) delete args['Accept']
 		}
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'removeSSHkey': function(args, opts) {
 		var url = 'https://api.heroku.com/user/keys/{key}'
@@ -522,7 +522,7 @@
 		}
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getAppLogs': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/logs'
@@ -600,7 +600,7 @@
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/tail]') !== -1) url = url.replace('[/tail]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'ListProcesses': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/ps'
@@ -627,7 +627,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'runOne-offProcess': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/ps'
@@ -675,7 +675,7 @@
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/command]') !== -1) url = url.replace('[/command]', '')
 		if (url.indexOf('[/attach]') !== -1) url = url.replace('[/attach]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'restartProcesses': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/ps/restart'
@@ -722,7 +722,7 @@
 		if (url.indexOf('[/ps]') !== -1) url = url.replace('[/ps]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'stopProcesses': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/ps/stop'
@@ -749,7 +749,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'scaleProcesses': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/ps/scale'
@@ -798,7 +798,7 @@
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/qty]') !== -1) url = url.replace('[/qty]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'listReleases': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/releases'
@@ -825,7 +825,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'rollbackToRelease': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/releases'
@@ -863,7 +863,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/rollback]') !== -1) url = url.replace('[/rollback]', '')
-		return http({provider:'heroku',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getReleaseInfo': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/releases/{release}'
@@ -901,7 +901,7 @@
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/release]') !== -1) url = url.replace('[/release]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'listStacks': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/stack'
@@ -928,7 +928,7 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'migrateApp': function(args, opts) {
 		var url = 'https://api.heroku.com/apps/{app}/stack'
@@ -955,6 +955,6 @@
 		}
 		if (url.indexOf('[/app]') !== -1) url = url.replace('[/app]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'heroku',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	}
 })

@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'skyrock'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'generalCheckRateLimit': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/check_rate_limit.{format}'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'userGet': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/get.{format}'
@@ -50,7 +50,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userListFriends': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_friends.{format}'
@@ -106,7 +106,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userListFriendsIds': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_friends_ids.{format}'
@@ -142,7 +142,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'userListBestFriends': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_best_friends.{format}'
@@ -178,7 +178,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'userListOnlineFriends': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_online_friends.{format}'
@@ -214,7 +214,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userSendFriendRequest': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/send_friend_request.{format}'
@@ -230,7 +230,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userAddToBestFriends': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/add_to_best_friends.{format}'
@@ -246,7 +246,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userRemoveFromBestFriends': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/remove_from_best_friends.{format}'
@@ -262,7 +262,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userRemoveFromFriends': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/remove_from_friends.{format}'
@@ -278,7 +278,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userListFriendRequests': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_friend_requests.{format}'
@@ -294,7 +294,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'yes'}, opts)
 	},
 	'userAcceptFriendRequest': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/accept_friend_request.{format}'
@@ -310,7 +310,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userDenyFriendRequest': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/deny_friend_request.{format}'
@@ -326,7 +326,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userIsFriend': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/is_friend.{format}'
@@ -364,7 +364,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user_1]') !== -1) url = url.replace('[/id_user_1]', '')
 		if (url.indexOf('[/id_user_2]') !== -1) url = url.replace('[/id_user_2]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'yes'}, opts)
 	},
 	'userGetCounters': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/get_counters.{format}'
@@ -380,7 +380,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'yes'}, opts)
 	},
 	'userListBlacklist': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_blacklist.{format}'
@@ -396,7 +396,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userAddUserToBlacklist': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/add_user_to_blacklist.{format}'
@@ -412,7 +412,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userRemoveUserFromBlacklist': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/remove_user_from_blacklist.{format}'
@@ -428,7 +428,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args, auth:'yes'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
 	},
 	'userListGroups': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/user/list_groups.{format}'
@@ -464,7 +464,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogGet': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/get.{format}'
@@ -510,7 +510,7 @@
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogSet': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/set.{format}'
@@ -526,7 +526,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogChangeAvatar': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/change_avatar.{format}'
@@ -553,7 +553,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogListPosts': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/list_posts.{format}'
@@ -619,7 +619,7 @@
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/with_secret]') !== -1) url = url.replace('[/with_secret]', '')
 		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogListOfflinePosts': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/list_offline_posts.{format}'
@@ -665,7 +665,7 @@
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/with_secret]') !== -1) url = url.replace('[/with_secret]', '')
 		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'blogNewPost': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/new_post.{format}'
@@ -681,7 +681,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogGetPost': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/get_post.{format}'
@@ -738,7 +738,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
 		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogSetPost': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/set_post.{format}'
@@ -754,7 +754,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogDeletePost': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/delete_post.{format}'
@@ -770,7 +770,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogListPostMedias': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/list_post_medias.{format}'
@@ -817,7 +817,7 @@
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogNewPostMedia': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/new_post_media.{format}'
@@ -833,7 +833,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogDeletePostMedia': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/delete_post_media.{format}'
@@ -849,7 +849,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'blogListPostComments': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/list_post_comments.{format}'
@@ -906,7 +906,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogGetPostComment': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/get_post_comment.{format}'
@@ -964,7 +964,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
 		if (url.indexOf('[/id_comment]') !== -1) url = url.replace('[/id_comment]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogListSkins': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/list_skins.{format}'
@@ -980,7 +980,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogListPictures': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/blog/list_pictures.{format}'
@@ -1026,7 +1026,7 @@
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'profileGet': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/get.{format}'
@@ -1072,7 +1072,7 @@
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'profileSet': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/set.{format}'
@@ -1088,7 +1088,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileAddAlbum': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/add_album.{format}'
@@ -1104,7 +1104,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileListAlbums': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/list_albums.{format}'
@@ -1140,7 +1140,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'profileSetAlbum': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/set_album.{format}'
@@ -1156,7 +1156,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileDeleteAlbum': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/delete_album.{format}'
@@ -1172,7 +1172,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileAddPicture': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/add_picture.{format}'
@@ -1188,7 +1188,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileListPictures': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/list_pictures.{format}'
@@ -1235,7 +1235,7 @@
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/id_album]') !== -1) url = url.replace('[/id_album]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'profileGetPicture': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/get_picture.{format}'
@@ -1273,7 +1273,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_album]') !== -1) url = url.replace('[/id_album]', '')
 		if (url.indexOf('[/id_picture]') !== -1) url = url.replace('[/id_picture]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'profileSetPicture': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/set_picture.{format}'
@@ -1289,7 +1289,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileDeletePicture': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/delete_picture.{format}'
@@ -1305,7 +1305,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileGetConfig': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/get_config.{format}'
@@ -1321,7 +1321,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'profileSetConfig': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/set_config.{format}'
@@ -1337,7 +1337,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileGetPropertyValues': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/get_property_values.{format}'
@@ -1364,7 +1364,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/property]') !== -1) url = url.replace('[/property]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'profileSetTags': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/set_tags.{format}'
@@ -1380,7 +1380,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'profileGetTags': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/get_tags.{format}'
@@ -1416,7 +1416,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'profileGetTagsTypes': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/profile/get_tags_types.{format}'
@@ -1432,7 +1432,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'moodListMoods': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/mood/list_moods.{format}'
@@ -1468,7 +1468,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'moodGetMood': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/mood/get_mood.{format}'
@@ -1504,7 +1504,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'moodSetMood': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/mood/set_mood.{format}'
@@ -1520,7 +1520,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'moodDeleteMood': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/mood/delete_mood.{format}'
@@ -1536,7 +1536,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'newsfeedSendEvent': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/newsfeed/send_event.{format}'
@@ -1552,7 +1552,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'newsfeedSendAlert': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/newsfeed/send_alert.{format}'
@@ -1568,7 +1568,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'newsfeedListEvents': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/newsfeed/list_events.{format}'
@@ -1595,7 +1595,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/events_category]') !== -1) url = url.replace('[/events_category]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'newsfeedListEventsTypes': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/newsfeed/list_events_types.{format}'
@@ -1611,7 +1611,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'newsfeedListAlerts': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/newsfeed/list_alerts.{format}'
@@ -1627,7 +1627,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'newsfeedListAlertsTypes': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/newsfeed/list_alerts_types.{format}'
@@ -1643,7 +1643,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'messageListThreads': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/list_threads.{format}'
@@ -1680,7 +1680,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'messageGetThread': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/get_thread.{format}'
@@ -1717,7 +1717,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id_thread]') !== -1) url = url.replace('[/id_thread]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'skyrock',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'messageSetThreadAsRead': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/set_thread_as_read.{format}'
@@ -1733,7 +1733,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'messageDeleteThread': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/delete_thread.{format}'
@@ -1749,7 +1749,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'messageDeleteMessage': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/delete_message.{format}'
@@ -1765,7 +1765,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'messageSendMessage': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/send_message.{format}'
@@ -1781,7 +1781,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'messageCreateThread': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/create_thread.{format}'
@@ -1797,7 +1797,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'messageReplyThread': function(args, opts) {
 		var url = 'https://api.skyrock.com/v2/message/reply_thread.{format}'
@@ -1813,6 +1813,6 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'skyrock',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	}
 })

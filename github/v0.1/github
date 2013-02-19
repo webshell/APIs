@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'github'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'gistListUser': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/gists'
 		args = args || {}
@@ -14,22 +14,22 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistList': function(args, opts) {
 		var url = 'https://api.github.com/gists'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'gistListPublic': function(args, opts) {
 		var url = 'https://api.github.com/gists/public'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistListStarred': function(args, opts) {
 		var url = 'https://api.github.com/gists/starred'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'gistGet': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}'
@@ -45,7 +45,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistEdit': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}'
@@ -93,7 +93,7 @@
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/public]') !== -1) url = url.replace('[/public]', '')
 		if (url.indexOf('[/files]') !== -1) url = url.replace('[/files]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'gistDelete': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}'
@@ -109,7 +109,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'gistCreate': function(args, opts) {
 		var url = 'https://api.github.com/gists'
@@ -146,7 +146,7 @@
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/public]') !== -1) url = url.replace('[/public]', '')
 		if (url.indexOf('[/files]') !== -1) url = url.replace('[/files]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'gistStarred': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}/star'
@@ -162,7 +162,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistStar': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}/star'
@@ -178,7 +178,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'gistUnstar': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}/star'
@@ -194,7 +194,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'gistFork': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}/fork'
@@ -210,7 +210,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'gistListComments': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}/comments'
@@ -226,7 +226,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistPostComment': function(args, opts) {
 		var url = 'https://api.github.com/gists/{id}/comments'
@@ -253,7 +253,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'gistGetComment': function(args, opts) {
 		var url = 'https://api.github.com/gists/comments/{id}'
@@ -269,7 +269,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'gistEditComment': function(args, opts) {
 		var url = 'https://api.github.com/gists/comments/{id}'
@@ -296,7 +296,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'gistDeleteComment': function(args, opts) {
 		var url = 'https://api.github.com/gists/comments/{id}'
@@ -312,7 +312,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'getBlob': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/blobs/{sha}'
@@ -350,7 +350,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createBlob': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/blobs'
@@ -399,7 +399,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/content]') !== -1) url = url.replace('[/content]', '')
 		if (url.indexOf('[/encoding]') !== -1) url = url.replace('[/encoding]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getCommit': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}'
@@ -437,7 +437,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createBlob': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/commits'
@@ -556,7 +556,7 @@
 		if (url.indexOf('[/committer.name]') !== -1) url = url.replace('[/committer.name]', '')
 		if (url.indexOf('[/committer.email]') !== -1) url = url.replace('[/committer.email]', '')
 		if (url.indexOf('[/committer.date]') !== -1) url = url.replace('[/committer.date]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
@@ -594,7 +594,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getSubReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
@@ -632,7 +632,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
@@ -691,7 +691,7 @@
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
 		if (url.indexOf('[/force]') !== -1) url = url.replace('[/force]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs/{ref}'
@@ -729,7 +729,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listReferences': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs'
@@ -756,7 +756,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/refs'
@@ -805,7 +805,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/tags/{sha}'
@@ -843,7 +843,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/tags'
@@ -944,7 +944,7 @@
 		if (url.indexOf('[/tagger.name]') !== -1) url = url.replace('[/tagger.name]', '')
 		if (url.indexOf('[/tagger.email]') !== -1) url = url.replace('[/tagger.email]', '')
 		if (url.indexOf('[/tagger.date]') !== -1) url = url.replace('[/tagger.date]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/trees/{sha}'
@@ -982,7 +982,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getReference': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/trees/{sha}'
@@ -1030,7 +1030,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
 		if (url.indexOf('[/recursive]') !== -1) url = url.replace('[/recursive]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createTree': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/git/trees'
@@ -1120,7 +1120,7 @@
 		if (url.indexOf('[/tree.type]') !== -1) url = url.replace('[/tree.type]', '')
 		if (url.indexOf('[/tree.sha]') !== -1) url = url.replace('[/tree.sha]', '')
 		if (url.indexOf('[/tree.content]') !== -1) url = url.replace('[/tree.content]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listIssues': function(args, opts) {
 		var url = 'https://api.github.com/issues'
@@ -1185,7 +1185,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
 		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listRepoIssues': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues'
@@ -1292,7 +1292,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
 		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createIssue': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues'
@@ -1370,7 +1370,7 @@
 		if (url.indexOf('[/assignee]') !== -1) url = url.replace('[/assignee]', '')
 		if (url.indexOf('[/milestone]') !== -1) url = url.replace('[/milestone]', '')
 		if (url.indexOf('[/labels]') !== -1) url = url.replace('[/labels]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getIssue': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}'
@@ -1408,7 +1408,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createIssue': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}'
@@ -1507,7 +1507,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/milestone]') !== -1) url = url.replace('[/milestone]', '')
 		if (url.indexOf('[/labels]') !== -1) url = url.replace('[/labels]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'listIssueComments': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments'
@@ -1545,7 +1545,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postIssueComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments'
@@ -1594,7 +1594,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getIssueComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments/{id}'
@@ -1643,7 +1643,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editIssueComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments/{id}'
@@ -1703,7 +1703,7 @@
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteIssueComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/comments/{id}'
@@ -1752,7 +1752,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listIssueEvents': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/events'
@@ -1790,7 +1790,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listRepoEvents': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/events'
@@ -1817,7 +1817,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getIssueEvent': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/events/{id}'
@@ -1855,7 +1855,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listIssueLabels': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
@@ -1893,7 +1893,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addIssueLabels': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
@@ -1931,7 +1931,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'replaceIssueLabels': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
@@ -1969,7 +1969,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeIssueLabels': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels'
@@ -2007,7 +2007,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteIssueLabel': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/{number}/labels/{name}'
@@ -2056,7 +2056,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listLabels': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/labels'
@@ -2083,7 +2083,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createLabel': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/labels'
@@ -2132,7 +2132,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/color]') !== -1) url = url.replace('[/color]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getLabel': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/labels/{name}'
@@ -2170,7 +2170,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateLabel': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/labels/{name}'
@@ -2230,7 +2230,7 @@
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/color]') !== -1) url = url.replace('[/color]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteLabel': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/labels/{name}'
@@ -2268,7 +2268,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listMilestoneLabels': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}/labels'
@@ -2306,7 +2306,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listMilestones': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/milestones'
@@ -2333,7 +2333,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createMilestone': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/milestones'
@@ -2401,7 +2401,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/due_on]') !== -1) url = url.replace('[/due_on]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getMilestone': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}'
@@ -2439,7 +2439,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateMilestone': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}'
@@ -2518,7 +2518,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/due_on]') !== -1) url = url.replace('[/due_on]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteMilestone': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/milestones/{number}'
@@ -2556,7 +2556,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listUserOrgs': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/orgs'
@@ -2572,7 +2572,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgs': function(args, opts) {
 		var url = 'https://api.github.com/users/orgs'
@@ -2588,7 +2588,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getOrg': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}'
@@ -2604,7 +2604,7 @@
 			if (args['org']) delete args['org']
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editOrg': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}'
@@ -2670,7 +2670,7 @@
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
 		if (url.indexOf('[/location]') !== -1) url = url.replace('[/location]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'listOrgMembers': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/members'
@@ -2686,7 +2686,7 @@
 			if (args['org']) delete args['org']
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getOrgMember': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/members/{user}'
@@ -2713,7 +2713,7 @@
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'removeOrgMember': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/members/{user}'
@@ -2740,7 +2740,7 @@
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listOrgPublicMembers': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/public_members'
@@ -2756,7 +2756,7 @@
 			if (args['org']) delete args['org']
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkOrgPublicMember': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/public_members/{user}'
@@ -2783,7 +2783,7 @@
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'publicizeOrgMember': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/public_members/{user}'
@@ -2810,7 +2810,7 @@
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'concealOrgMember': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/public_members/{user}'
@@ -2837,7 +2837,7 @@
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listOrgTeams': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/teams'
@@ -2853,7 +2853,7 @@
 			if (args['org']) delete args['org']
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createTeam': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/teams'
@@ -2900,7 +2900,7 @@
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/repo_names]') !== -1) url = url.replace('[/repo_names]', '')
 		if (url.indexOf('[/permission]') !== -1) url = url.replace('[/permission]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getTeam': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}'
@@ -2916,7 +2916,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editOrg': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}'
@@ -2953,7 +2953,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/permission]') !== -1) url = url.replace('[/permission]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteTeam': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}'
@@ -2969,7 +2969,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listTeamMembers': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/members'
@@ -2985,7 +2985,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'getTeamMember': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/members/{user}'
@@ -3012,7 +3012,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'addTeamMember': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/members/{user}'
@@ -3039,7 +3039,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeTeamMember': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/members/{user}'
@@ -3066,7 +3066,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listTeamRepos': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/repos'
@@ -3082,7 +3082,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getTeamRepo': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/repos/{user}/{repo}'
@@ -3120,7 +3120,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addTeamRepo': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/repos/{user}/{repo}'
@@ -3158,7 +3158,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeTeamRepo': function(args, opts) {
 		var url = 'https://api.github.com/teams/{id}/repos/{user}/{repo}'
@@ -3196,7 +3196,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listPullRequests': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls'
@@ -3233,7 +3233,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createPullRequest': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls'
@@ -3303,7 +3303,7 @@
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
 		if (url.indexOf('[/base]') !== -1) url = url.replace('[/base]', '')
 		if (url.indexOf('[/head]') !== -1) url = url.replace('[/head]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'createPullRequestFromIssue': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls'
@@ -3363,7 +3363,7 @@
 		if (url.indexOf('[/issue]') !== -1) url = url.replace('[/issue]', '')
 		if (url.indexOf('[/base]') !== -1) url = url.replace('[/base]', '')
 		if (url.indexOf('[/head]') !== -1) url = url.replace('[/head]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'updatePullRequest': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}'
@@ -3432,7 +3432,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'listPullRequestCommits': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/commits'
@@ -3470,7 +3470,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listPullRequestFiles': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/files'
@@ -3508,7 +3508,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkPullRequestMerged': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/merge'
@@ -3546,7 +3546,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'mergePullRequest': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/merge'
@@ -3594,7 +3594,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/commit_message]') !== -1) url = url.replace('[/commit_message]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'listPullRequestComments': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments'
@@ -3632,7 +3632,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postPullRequestComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments'
@@ -3681,7 +3681,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getPullRequestComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments/{id}'
@@ -3730,7 +3730,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editPullRequestComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments/{id}'
@@ -3790,7 +3790,7 @@
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deletePullRequestComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/pulls/{number}/comments/{id}'
@@ -3839,7 +3839,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/number]') !== -1) url = url.replace('[/number]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listRepos': function(args, opts) {
 		var url = 'https://api.github.com/user/repos'
@@ -3874,7 +3874,7 @@
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'createRepo': function(args, opts) {
 		var url = 'https://api.github.com/user/repos'
@@ -3960,7 +3960,7 @@
 		if (url.indexOf('[/has_wiki]') !== -1) url = url.replace('[/has_wiki]', '')
 		if (url.indexOf('[/has_downloads]') !== -1) url = url.replace('[/has_downloads]', '')
 		if (url.indexOf('[/team_id]') !== -1) url = url.replace('[/team_id]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listUserRepos': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/repos'
@@ -4006,7 +4006,7 @@
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgRepos': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/repos'
@@ -4052,7 +4052,7 @@
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createOrgRepo': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/repos'
@@ -4149,7 +4149,7 @@
 		if (url.indexOf('[/has_wiki]') !== -1) url = url.replace('[/has_wiki]', '')
 		if (url.indexOf('[/has_downloads]') !== -1) url = url.replace('[/has_downloads]', '')
 		if (url.indexOf('[/team_id]') !== -1) url = url.replace('[/team_id]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getRepo': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}'
@@ -4176,7 +4176,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'updateRepo': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}'
@@ -4284,7 +4284,7 @@
 		if (url.indexOf('[/has_wiki]') !== -1) url = url.replace('[/has_wiki]', '')
 		if (url.indexOf('[/has_downloads]') !== -1) url = url.replace('[/has_downloads]', '')
 		if (url.indexOf('[/team_id]') !== -1) url = url.replace('[/team_id]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteRepo': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}'
@@ -4311,7 +4311,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listContributors': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/contributors'
@@ -4348,7 +4348,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/anon]') !== -1) url = url.replace('[/anon]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listLanguages': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/languages'
@@ -4375,7 +4375,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listTeams': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/teams'
@@ -4402,7 +4402,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listTags': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/tags'
@@ -4429,7 +4429,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listBranches': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/branches'
@@ -4456,7 +4456,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getBranch': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/branches/{branch}'
@@ -4494,7 +4494,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/branch]') !== -1) url = url.replace('[/branch]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listCollaborators': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators'
@@ -4521,7 +4521,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkCollaborator': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators/{collaborator}'
@@ -4559,7 +4559,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/collaborator]') !== -1) url = url.replace('[/collaborator]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addCollaborator': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators/{collaborator}'
@@ -4597,7 +4597,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/collaborator]') !== -1) url = url.replace('[/collaborator]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'removeCollaborator': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/collaborators/{collaborator}'
@@ -4635,7 +4635,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/collaborator]') !== -1) url = url.replace('[/collaborator]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listCommitsComments': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/comments'
@@ -4662,7 +4662,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getCommitComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/comments/{id}'
@@ -4700,7 +4700,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editCommitComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/comments/{id}'
@@ -4749,7 +4749,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteCommitComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/comments/{id}'
@@ -4787,7 +4787,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'none'}, opts)
 	},
 	'listCommitComments': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}/comments'
@@ -4825,7 +4825,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postCommitComment': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}/comments'
@@ -4918,7 +4918,7 @@
 		if (url.indexOf('[/line]') !== -1) url = url.replace('[/line]', '')
 		if (url.indexOf('[/path]') !== -1) url = url.replace('[/path]', '')
 		if (url.indexOf('[/position]') !== -1) url = url.replace('[/position]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getCommit': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}'
@@ -4956,7 +4956,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listCommits': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/commits'
@@ -5003,7 +5003,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
 		if (url.indexOf('[/path]') !== -1) url = url.replace('[/path]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getCommit': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/commits/{sha}'
@@ -5041,7 +5041,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sha]') !== -1) url = url.replace('[/sha]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'compareCommits': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/compare/{base}...{head}'
@@ -5090,7 +5090,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/base]') !== -1) url = url.replace('[/base]', '')
 		if (url.indexOf('[/head]') !== -1) url = url.replace('[/head]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getReadme': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/readme'
@@ -5127,7 +5127,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getContents': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/contents/{path}'
@@ -5175,7 +5175,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/path]') !== -1) url = url.replace('[/path]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getArchive': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/{archive_format}/{ref}'
@@ -5223,7 +5223,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/archive_format]') !== -1) url = url.replace('[/archive_format]', '')
 		if (url.indexOf('[/ref]') !== -1) url = url.replace('[/ref]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listDownloads': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/downloads'
@@ -5250,7 +5250,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createDownload': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/downloads'
@@ -5319,7 +5319,7 @@
 		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/content_type]') !== -1) url = url.replace('[/content_type]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getDownload': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/downloads/{id}'
@@ -5357,7 +5357,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'deleteDownload': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/downloads/{id}'
@@ -5395,7 +5395,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listForks': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/forks'
@@ -5432,7 +5432,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'fork': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/forks'
@@ -5469,7 +5469,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listRepoKeys': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/keys'
@@ -5496,7 +5496,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createRepoKey': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/keys'
@@ -5543,7 +5543,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'getRepoKey': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/keys/{id}'
@@ -5581,7 +5581,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editRepoKey': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/keys/{id}'
@@ -5639,7 +5639,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteRepoKey': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/keys/{id}'
@@ -5677,7 +5677,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listWatchers': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/watchers'
@@ -5704,7 +5704,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserWatched': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/watched'
@@ -5720,7 +5720,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listWatched': function(args, opts) {
 		var url = 'https://api.github.com/repos/watched'
@@ -5736,7 +5736,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'checkUserWatched': function(args, opts) {
 		var url = 'https://api.github.com/repos/watched/{user}/{repo}'
@@ -5763,7 +5763,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'watch': function(args, opts) {
 		var url = 'https://api.github.com/repos/watched/{user}/{repo}'
@@ -5790,7 +5790,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'unwatch': function(args, opts) {
 		var url = 'https://api.github.com/repos/watched/{user}/{repo}'
@@ -5817,12 +5817,12 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'hooks': function(args, opts) {
 		var url = 'https://api.github.com/hooks'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listHooks': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/hooks'
@@ -5849,7 +5849,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'createHook': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/hooks'
@@ -5918,7 +5918,7 @@
 		if (url.indexOf('[/config]') !== -1) url = url.replace('[/config]', '')
 		if (url.indexOf('[/events]') !== -1) url = url.replace('[/events]', '')
 		if (url.indexOf('[/active]') !== -1) url = url.replace('[/active]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getHook': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}'
@@ -5956,7 +5956,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'editHook': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}'
@@ -6056,7 +6056,7 @@
 		if (url.indexOf('[/add_events]') !== -1) url = url.replace('[/add_events]', '')
 		if (url.indexOf('[/remove_events]') !== -1) url = url.replace('[/remove_events]', '')
 		if (url.indexOf('[/active]') !== -1) url = url.replace('[/active]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteHook': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}'
@@ -6094,7 +6094,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'testHook': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/hooks/{id}/test'
@@ -6132,7 +6132,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getUser': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}'
@@ -6148,12 +6148,12 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'me': function(args, opts) {
 		var url = 'https://api.github.com/user'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'editMe': function(args, opts) {
 		var url = 'https://api.github.com/user'
@@ -6230,22 +6230,22 @@
 		if (url.indexOf('[/location]') !== -1) url = url.replace('[/location]', '')
 		if (url.indexOf('[/hireable]') !== -1) url = url.replace('[/hireable]', '')
 		if (url.indexOf('[/bio]') !== -1) url = url.replace('[/bio]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'listEmails': function(args, opts) {
 		var url = 'https://api.github.com/user/emails'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'addEmails': function(args, opts) {
 		var url = 'https://api.github.com/user/emails'
 		args = args || {}
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'removeEmails': function(args, opts) {
 		var url = 'https://api.github.com/user/emails'
 		args = args || {}
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listWatchers': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/followers'
@@ -6272,12 +6272,12 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listWatched': function(args, opts) {
 		var url = 'https://api.github.com/user/followers'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'listUserFollowing': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/following'
@@ -6293,12 +6293,12 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listFollowing': function(args, opts) {
 		var url = 'https://api.github.com/user/following'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'checkUserWatched': function(args, opts) {
 		var url = 'https://api.github.com/user/following/{user}'
@@ -6314,7 +6314,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'follow': function(args, opts) {
 		var url = 'https://api.github.com/user/following/{user}'
@@ -6330,7 +6330,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'oauth2'}, opts)
 	},
 	'unfollow': function(args, opts) {
 		var url = 'https://api.github.com/user/following/{user}'
@@ -6346,12 +6346,12 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listKeys': function(args, opts) {
 		var url = 'https://api.github.com/user/keys'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'createKey': function(args, opts) {
 		var url = 'https://api.github.com/user/keys'
@@ -6376,7 +6376,7 @@
 		}
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'getKey': function(args, opts) {
 		var url = 'https://api.github.com/user/keys/{id}'
@@ -6392,7 +6392,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'editKey': function(args, opts) {
 		var url = 'https://api.github.com/user/keys/{id}'
@@ -6428,7 +6428,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
-		return http({provider:'github',url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'PATCH',params:args, auth:'oauth2'}, opts)
 	},
 	'deleteKey': function(args, opts) {
 		var url = 'https://api.github.com/user/keys/{id}'
@@ -6444,12 +6444,12 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'github',url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args, auth:'oauth2'}, opts)
 	},
 	'listEvents': function(args, opts) {
 		var url = 'https://api.github.com/events'
 		args = args || {}
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listRepoEvents': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/events'
@@ -6476,7 +6476,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listIssuesEvents': function(args, opts) {
 		var url = 'https://api.github.com/repos/{user}/{repo}/issues/events'
@@ -6503,7 +6503,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listNetworksEvents': function(args, opts) {
 		var url = 'https://api.github.com/networks/{user}/{repo}/events'
@@ -6530,7 +6530,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgPublicEvents': function(args, opts) {
 		var url = 'https://api.github.com/orgs/{org}/events'
@@ -6546,7 +6546,7 @@
 			if (args['org']) delete args['org']
 		}
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserReceivedEvents': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/received_events'
@@ -6562,7 +6562,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserPublicReceivedEvents': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/received_events/public'
@@ -6578,7 +6578,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserEvents': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/events'
@@ -6594,7 +6594,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listUserPublicEvents': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/events/public'
@@ -6610,7 +6610,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'listOrgEvents': function(args, opts) {
 		var url = 'https://api.github.com/users/{user}/events/orgs/{org}'
@@ -6637,7 +6637,7 @@
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/org]') !== -1) url = url.replace('[/org]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth2'}, opts)
 	},
 	'searchIssues': function(args, opts) {
 		var url = 'https://api.github.com/legacy/issues/search/{user}/{repo}/{state}/{keyword}'
@@ -6686,7 +6686,7 @@
 		if (url.indexOf('[/repo]') !== -1) url = url.replace('[/repo]', '')
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/keyword]') !== -1) url = url.replace('[/keyword]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'searchRepos': function(args, opts) {
 		var url = 'https://api.github.com/legacy/repos/search/{keyword}'
@@ -6722,7 +6722,7 @@
 		if (url.indexOf('[/keyword]') !== -1) url = url.replace('[/keyword]', '')
 		if (url.indexOf('[/language]') !== -1) url = url.replace('[/language]', '')
 		if (url.indexOf('[/start_page]') !== -1) url = url.replace('[/start_page]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'searchUsers': function(args, opts) {
 		var url = 'https://api.github.com/legacy/user/search/{keyword}'
@@ -6738,7 +6738,7 @@
 			if (args['keyword']) delete args['keyword']
 		}
 		if (url.indexOf('[/keyword]') !== -1) url = url.replace('[/keyword]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'searchEmails': function(args, opts) {
 		var url = 'https://api.github.com/legacy/user/email/{email}'
@@ -6754,7 +6754,7 @@
 			if (args['email']) delete args['email']
 		}
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		return http({provider:'github',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'markdown': function(args, opts) {
 		var url = 'https://api.github.com/markdown'
@@ -6790,11 +6790,11 @@
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		if (url.indexOf('[/mode]') !== -1) url = url.replace('[/mode]', '')
 		if (url.indexOf('[/context]') !== -1) url = url.replace('[/context]', '')
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	},
 	'markdownRaw': function(args, opts) {
 		var url = 'https://api.github.com/markdown/raw'
 		args = args || {}
-		return http({provider:'github',url:url,method:'POST',params:args, auth:'oauth2'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth2'}, opts)
 	}
 })

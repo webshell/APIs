@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'freebase'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'search': function(args, opts) {
 		var url = 'https://www.googleapis.com/freebase/v1/search'
 		args = args || {}
@@ -144,7 +144,7 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'mqlread': function(args, opts) {
 		var url = 'https://www.googleapis.com/freebase/v1/mqlread'
@@ -240,7 +240,7 @@
 		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
 		if (url.indexOf('[/cost]') !== -1) url = url.replace('[/cost]', '')
 		if (url.indexOf('[/uniqueness_failure]') !== -1) url = url.replace('[/uniqueness_failure]', '')
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'mqlwrite': function(args, opts) {
 		var url = 'https://www.googleapis.com/freebase/v1/mqlwrite'
@@ -256,7 +256,7 @@
 			if (args['query']) delete args['query']
 		}
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:'freebase',url:url,method:'POST',params:args, auth:'manual'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'manual'}, opts)
 	},
 	'topic': function(args, opts) {
 		var url = 'https://www.googleapis.com/freebase/v1/topic{id}'
@@ -302,7 +302,7 @@
 		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'text': function(args, opts) {
 		var url = 'https://www.googleapis.com/freebase/v1/text{id}'
@@ -348,7 +348,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
 		if (url.indexOf('[/maxlength]') !== -1) url = url.replace('[/maxlength]', '')
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'image': function(args, opts) {
 		var url = 'https://www.googleapis.com/freebase/v1/image{id}'
@@ -414,6 +414,6 @@
 		if (url.indexOf('[/maxwidth]') !== -1) url = url.replace('[/maxwidth]', '')
 		if (url.indexOf('[/mode]') !== -1) url = url.replace('[/mode]', '')
 		if (url.indexOf('[/pad]') !== -1) url = url.replace('[/pad]', '')
-		return http({provider:'freebase',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

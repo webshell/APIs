@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'reddit'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'linkByFullname': function(args, opts) {
 		var url = 'http://www.reddit.com/by_id/{fullname}.{format}'
 		args = args || {}
@@ -25,7 +25,7 @@
 		}
 		if (url.indexOf('[/fullname]') !== -1) url = url.replace('[/fullname]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'linkByFullnameComments': function(args, opts) {
 		var url = 'http://www.reddit.com/comments/{id36}.{format}'
@@ -52,7 +52,7 @@
 		}
 		if (url.indexOf('[/id36]') !== -1) url = url.replace('[/id36]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getInfo': function(args, opts) {
 		var url = 'http://www.reddit.com/api/info.{format}'
@@ -98,7 +98,7 @@
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postExpando': function(args, opts) {
 		var url = 'http://www.reddit.com/api/expando'
@@ -114,7 +114,7 @@
 			if (args['link_id']) delete args['link_id']
 		}
 		if (url.indexOf('[/link_id]') !== -1) url = url.replace('[/link_id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'login': function(args, opts) {
 		var url = 'http://www.reddit.com/api/login/{username}'
@@ -163,7 +163,7 @@
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
 		if (url.indexOf('[/passwd]') !== -1) url = url.replace('[/passwd]', '')
 		if (url.indexOf('[/api_type]') !== -1) url = url.replace('[/api_type]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'userAbout': function(args, opts) {
 		var url = 'http://www.reddit.com/user/{username}/about.json'
@@ -179,12 +179,12 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getMe': function(args, opts) {
 		var url = 'http://www.reddit.com/api/me.json'
 		args = args || {}
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMine': function(args, opts) {
 		var url = 'http://www.reddit.com/reddits/mine.{format}'
@@ -200,7 +200,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'postRegister': function(args, opts) {
 		var url = 'http://www.reddit.com/api/register'
@@ -282,7 +282,7 @@
 		if (url.indexOf('[/dest]') !== -1) url = url.replace('[/dest]', '')
 		if (url.indexOf('[/rem]') !== -1) url = url.replace('[/rem]', '')
 		if (url.indexOf('[/reason]') !== -1) url = url.replace('[/reason]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postDeleteUser': function(args, opts) {
 		var url = 'http://www.reddit.com/api/delete_user'
@@ -320,7 +320,7 @@
 		if (url.indexOf('[/areyousure1]') !== -1) url = url.replace('[/areyousure1]', '')
 		if (url.indexOf('[/areyousure2]') !== -1) url = url.replace('[/areyousure2]', '')
 		if (url.indexOf('[/areyousure2]') !== -1) url = url.replace('[/areyousure2]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postLeavemoderator': function(args, opts) {
 		var url = 'http://www.reddit.com/api/leavemoderator'
@@ -336,7 +336,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postLeavecontributor': function(args, opts) {
 		var url = 'http://www.reddit.com/api/leavecontributor'
@@ -352,7 +352,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postPassword': function(args, opts) {
 		var url = 'http://www.reddit.com/api/password'
@@ -368,7 +368,7 @@
 			if (args['name']) delete args['name']
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postResetpassword': function(args, opts) {
 		var url = 'http://www.reddit.com/api/resetpassword'
@@ -406,7 +406,7 @@
 		if (url.indexOf('[/reset]') !== -1) url = url.replace('[/reset]', '')
 		if (url.indexOf('[/passwd]') !== -1) url = url.replace('[/passwd]', '')
 		if (url.indexOf('[/passwd2]') !== -1) url = url.replace('[/passwd2]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'submit': function(args, opts) {
 		var url = 'http://www.reddit.com/api/submit'
@@ -475,7 +475,7 @@
 		if (url.indexOf('[/sr]') !== -1) url = url.replace('[/sr]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/r]') !== -1) url = url.replace('[/r]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'share': function(args, opts) {
 		var url = 'http://www.reddit.com/api/share'
@@ -545,7 +545,7 @@
 		if (url.indexOf('[/share_to]') !== -1) url = url.replace('[/share_to]', '')
 		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
 		if (url.indexOf('[/renderstyle]') !== -1) url = url.replace('[/renderstyle]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postVote': function(args, opts) {
 		var url = 'http://www.reddit.com/api/vote'
@@ -572,7 +572,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/dir]') !== -1) url = url.replace('[/dir]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postFetchTitle': function(args, opts) {
 		var url = 'http://www.reddit.com/api/fetch_title'
@@ -588,7 +588,7 @@
 			if (args['url']) delete args['url']
 		}
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postMarknsfw': function(args, opts) {
 		var url = 'http://www.reddit.com/api/marknsfw'
@@ -604,7 +604,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUnmarknsfw': function(args, opts) {
 		var url = 'http://www.reddit.com/api/unmarknsfw'
@@ -620,7 +620,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postSave': function(args, opts) {
 		var url = 'http://www.reddit.com/api/save'
@@ -636,7 +636,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUnsave': function(args, opts) {
 		var url = 'http://www.reddit.com/api/unsave'
@@ -652,7 +652,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postHide': function(args, opts) {
 		var url = 'http://www.reddit.com/api/hide'
@@ -668,7 +668,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUnhide': function(args, opts) {
 		var url = 'http://www.reddit.com/api/unhide'
@@ -684,7 +684,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postDel': function(args, opts) {
 		var url = 'http://www.reddit.com/api/del'
@@ -700,7 +700,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postEditusertext': function(args, opts) {
 		var url = 'http://www.reddit.com/api/editusertext'
@@ -727,7 +727,7 @@
 		}
 		if (url.indexOf('[/thing_id]') !== -1) url = url.replace('[/thing_id]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postRemove': function(args, opts) {
 		var url = 'http://www.reddit.com/api/remove'
@@ -743,7 +743,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postApprove': function(args, opts) {
 		var url = 'http://www.reddit.com/api/approve'
@@ -759,7 +759,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postDistinguish': function(args, opts) {
 		var url = 'http://www.reddit.com/api/distinguish'
@@ -786,7 +786,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/how]') !== -1) url = url.replace('[/how]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postCompose': function(args, opts) {
 		var url = 'http://www.reddit.com/api/compose'
@@ -835,7 +835,7 @@
 		if (url.indexOf('[/subject]') !== -1) url = url.replace('[/subject]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		if (url.indexOf('[/captcha]') !== -1) url = url.replace('[/captcha]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postCollapseMessage': function(args, opts) {
 		var url = 'http://www.reddit.com/api/collapse_message'
@@ -851,7 +851,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUncollapseMessage': function(args, opts) {
 		var url = 'http://www.reddit.com/api/uncollapse_message'
@@ -867,7 +867,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUnreadMessage': function(args, opts) {
 		var url = 'http://www.reddit.com/api/unread_message'
@@ -883,7 +883,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postReadMessage': function(args, opts) {
 		var url = 'http://www.reddit.com/api/read_message'
@@ -899,7 +899,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postHideMessage': function(args, opts) {
 		var url = 'http://www.reddit.com/api/hide_message'
@@ -915,7 +915,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUnhideMessage': function(args, opts) {
 		var url = 'http://www.reddit.com/api/unhide_message'
@@ -931,7 +931,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postMoremessages': function(args, opts) {
 		var url = 'http://www.reddit.com/api/moremessages'
@@ -947,7 +947,7 @@
 			if (args['parent_id']) delete args['parent_id']
 		}
 		if (url.indexOf('[/parent_id]') !== -1) url = url.replace('[/parent_id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postComment': function(args, opts) {
 		var url = 'http://www.reddit.com/api/comment'
@@ -974,7 +974,7 @@
 		}
 		if (url.indexOf('[/parent]') !== -1) url = url.replace('[/parent]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postMorechildren': function(args, opts) {
 		var url = 'http://www.reddit.com/api/morechildren'
@@ -1034,7 +1034,7 @@
 		if (url.indexOf('[/children]') !== -1) url = url.replace('[/children]', '')
 		if (url.indexOf('[/pv_hex]') !== -1) url = url.replace('[/pv_hex]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postFriend': function(args, opts) {
 		var url = 'http://www.reddit.com/api/friend'
@@ -1081,7 +1081,7 @@
 		if (url.indexOf('[/container]') !== -1) url = url.replace('[/container]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUnfriend': function(args, opts) {
 		var url = 'http://www.reddit.com/api/unfriend'
@@ -1129,7 +1129,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/container]') !== -1) url = url.replace('[/container]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postFriendNote': function(args, opts) {
 		var url = 'http://www.reddit.com/api/friend_note'
@@ -1154,7 +1154,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postUpdate': function(args, opts) {
 		var url = 'http://www.reddit.com/api/update'
@@ -1210,17 +1210,17 @@
 		if (url.indexOf('[/newpass]') !== -1) url = url.replace('[/newpass]', '')
 		if (url.indexOf('[/verpass]') !== -1) url = url.replace('[/verpass]', '')
 		if (url.indexOf('[/verify]') !== -1) url = url.replace('[/verify]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postTbCommentspanelShow': function(args, opts) {
 		var url = 'http://www.reddit.com/api/tb_commentspanel_show'
 		args = args || {}
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postTbCommentspanelHide': function(args, opts) {
 		var url = 'http://www.reddit.com/api/tb_commentspanel_hide'
 		args = args || {}
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postSiteAdmin': function(args, opts) {
 		var url = 'http://www.reddit.com/api/site_admin'
@@ -1401,7 +1401,7 @@
 		if (url.indexOf('[/sponsorship-name]') !== -1) url = url.replace('[/sponsorship-name]', '')
 		if (url.indexOf('[/sponsorship-url]') !== -1) url = url.replace('[/sponsorship-url]', '')
 		if (url.indexOf('[/css_on_cname]') !== -1) url = url.replace('[/css_on_cname]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postSubredditStylesheet': function(args, opts) {
 		var url = 'http://www.reddit.com/api/subreddit_stylesheet'
@@ -1428,7 +1428,7 @@
 		}
 		if (url.indexOf('[/stylesheet_contents]') !== -1) url = url.replace('[/stylesheet_contents]', '')
 		if (url.indexOf('[/op]') !== -1) url = url.replace('[/op]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postDeleteSrImg': function(args, opts) {
 		var url = 'http://www.reddit.com/api/delete_sr_img'
@@ -1444,7 +1444,7 @@
 			if (args['img_name']) delete args['img_name']
 		}
 		if (url.indexOf('[/img_name]') !== -1) url = url.replace('[/img_name]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postDeleteSrHeader': function(args, opts) {
 		var url = 'http://www.reddit.com/api/delete_sr_header'
@@ -1460,12 +1460,12 @@
 			if (args['img_name']) delete args['img_name']
 		}
 		if (url.indexOf('[/img_name]') !== -1) url = url.replace('[/img_name]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getUploadSrImg': function(args, opts) {
 		var url = 'http://www.reddit.com/api/upload_sr_img'
 		args = args || {}
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'postUploadSrImg': function(args, opts) {
 		var url = 'http://www.reddit.com/api/upload_sr_img'
@@ -1514,7 +1514,7 @@
 		if (url.indexOf('[/formid]') !== -1) url = url.replace('[/formid]', '')
 		if (url.indexOf('[/header]') !== -1) url = url.replace('[/header]', '')
 		if (url.indexOf('[/sponsor]') !== -1) url = url.replace('[/sponsor]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postSubscribe': function(args, opts) {
 		var url = 'http://www.reddit.com/api/subscribe'
@@ -1541,7 +1541,7 @@
 		}
 		if (url.indexOf('[/action]') !== -1) url = url.replace('[/action]', '')
 		if (url.indexOf('[/sr]') !== -1) url = url.replace('[/sr]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postSearchRedditNames': function(args, opts) {
 		var url = 'http://www.reddit.com/api/search_reddit_names'
@@ -1557,7 +1557,7 @@
 			if (args['query']) delete args['query']
 		}
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'flairlist': function(args, opts) {
 		var url = 'http://www.reddit.com/api/flairlist'
@@ -1606,7 +1606,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/after]') !== -1) url = url.replace('[/after]', '')
 		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'flair': function(args, opts) {
 		var url = 'http://www.reddit.com/api/flair'
@@ -1653,7 +1653,7 @@
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		if (url.indexOf('[/css_class]') !== -1) url = url.replace('[/css_class]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'flaircsv': function(args, opts) {
 		var url = 'http://www.reddit.com/api/flaircsv.json'
@@ -1680,7 +1680,7 @@
 		}
 		if (url.indexOf('[/r]') !== -1) url = url.replace('[/r]', '')
 		if (url.indexOf('[/flair_csv]') !== -1) url = url.replace('[/flair_csv]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postFeedback': function(args, opts) {
 		var url = 'http://www.reddit.com/api/feedback'
@@ -1729,7 +1729,7 @@
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
 		if (url.indexOf('[/reason]') !== -1) url = url.replace('[/reason]', '')
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postReport': function(args, opts) {
 		var url = 'http://www.reddit.com/api/report'
@@ -1745,7 +1745,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postSearchfeedback': function(args, opts) {
 		var url = 'http://www.reddit.com/api/searchfeedback'
@@ -1794,7 +1794,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/t]') !== -1) url = url.replace('[/t]', '')
 		if (url.indexOf('[/approval]') !== -1) url = url.replace('[/approval]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getBookmarklet': function(args, opts) {
 		var url = 'http://www.reddit.com/api/bookmarklet'
@@ -1821,7 +1821,7 @@
 		}
 		if (url.indexOf('[/what]') !== -1) url = url.replace('[/what]', '')
 		if (url.indexOf('[/u]') !== -1) url = url.replace('[/u]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'postEditError': function(args, opts) {
 		var url = 'http://www.reddit.com/api/edit_error'
@@ -1859,17 +1859,17 @@
 		if (url.indexOf('[/hexkey]') !== -1) url = url.replace('[/hexkey]', '')
 		if (url.indexOf('[/nickname]') !== -1) url = url.replace('[/nickname]', '')
 		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postNoframe': function(args, opts) {
 		var url = 'http://www.reddit.com/api/noframe'
 		args = args || {}
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postFrame': function(args, opts) {
 		var url = 'http://www.reddit.com/api/frame'
 		args = args || {}
-		return http({provider:'reddit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getGadget': function(args, opts) {
 		var url = 'http://www.reddit.com/api/gadget'
@@ -1896,6 +1896,6 @@
 		}
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/links]') !== -1) url = url.replace('[/links]', '')
-		return http({provider:'reddit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

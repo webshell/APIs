@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'boxcar'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'subscribeToProvider': function(args, opts) {
 		var url = 'https://boxcar.io/devices/providers/{provider_key}/notifications/subscribe'
 		args = args || {}
@@ -25,6 +25,6 @@
 		}
 		if (url.indexOf('[/provider_key]') !== -1) url = url.replace('[/provider_key]', '')
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		return http({provider:'boxcar',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	}
 })

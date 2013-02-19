@@ -1,9 +1,9 @@
 ({
-	auth:function(){return auth({provider:'salesforce_sandbox'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getVersions': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/'
 		args = args || {}
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getResources': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}'
@@ -19,7 +19,7 @@
 			if (args['version']) delete args['version']
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getObjects': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects'
@@ -35,7 +35,7 @@
 			if (args['version']) delete args['version']
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBasicObjectMetadata': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}'
@@ -62,7 +62,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createObject': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}'
@@ -89,7 +89,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getAllObjectMetadata': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/describe'
@@ -116,7 +116,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getObject': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/{id}'
@@ -164,7 +164,7 @@
 		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'deleteObject': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/{id}'
@@ -202,7 +202,7 @@
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/sobject]') !== -1) url = url.replace('[/sobject]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getObjectBlobField': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/{sobject}/{id}/{blobField}'
@@ -261,7 +261,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/blobField]') !== -1) url = url.replace('[/blobField]', '')
 		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getUserPasswordExpirationStatus': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/User/{id}/password'
@@ -288,7 +288,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'setUserPassword': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/User/{id}/password'
@@ -315,7 +315,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'resetUserPassword': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/sobjects/User/{id}/password'
@@ -342,7 +342,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'executeSoqlQuery': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/query'
@@ -369,7 +369,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getQueryResultBatch': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/query/{id}'
@@ -396,7 +396,7 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'executeSoqlSearch': function(args, opts) {
 		var url = 'https://na14.salesforce.com/services/data/{version}/search'
@@ -423,6 +423,6 @@
 		}
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'salesforce_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

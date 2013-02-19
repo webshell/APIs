@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'nodester'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'coupon': function(args, opts) {
 		var url = 'http://nodester.com//coupon'
 		args = args || {}
@@ -14,12 +14,12 @@
 			if (args['email']) delete args['email']
 		}
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'status': function(args, opts) {
 		var url = 'http://nodester.com//status'
 		args = args || {}
-		return http({provider:'nodester',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postUser': function(args, opts) {
 		var url = 'http://nodester.com//user'
@@ -79,7 +79,7 @@
 		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
 		if (url.indexOf('[/rsakey]') !== -1) url = url.replace('[/rsakey]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'putUser': function(args, opts) {
 		var url = 'http://api.nodester.com//user'
@@ -104,12 +104,12 @@
 		}
 		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
 		if (url.indexOf('[/rsakey]') !== -1) url = url.replace('[/rsakey]', '')
-		return http({provider:'nodester',url:url,method:'PUT',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'none'}, opts)
 	},
 	'deleteUser': function(args, opts) {
 		var url = 'http://api.nodester.com//user'
 		args = args || {}
-		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'postApp': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
@@ -136,7 +136,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'putAppUpdate': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
@@ -163,7 +163,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
-		return http({provider:'nodester',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'putAppStartstop': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
@@ -190,7 +190,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/running]') !== -1) url = url.replace('[/running]', '')
-		return http({provider:'nodester',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteApp': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
@@ -206,7 +206,7 @@
 			if (args['appname']) delete args['appname']
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
-		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'appInfo': function(args, opts) {
 		var url = 'http://api.nodester.com//app/{appname}'
@@ -233,7 +233,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
-		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'appLogs': function(args, opts) {
 		var url = 'http://api.nodester.com//applogs/{appname}'
@@ -260,7 +260,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
-		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'putEnv': function(args, opts) {
 		var url = 'http://api.nodester.com//env'
@@ -298,7 +298,7 @@
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
 		if (url.indexOf('[/value]') !== -1) url = url.replace('[/value]', '')
-		return http({provider:'nodester',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteEnv': function(args, opts) {
 		var url = 'http://api.nodester.com//env'
@@ -325,7 +325,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
-		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getEnv': function(args, opts) {
 		var url = 'http://api.nodester.com//env'
@@ -352,12 +352,12 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/key]') !== -1) url = url.replace('[/key]', '')
-		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'apps': function(args, opts) {
 		var url = 'http://api.nodester.com//app'
 		args = args || {}
-		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'npmInstall': function(args, opts) {
 		var url = 'http://api.nodester.com//npm'
@@ -395,7 +395,7 @@
 		if (url.indexOf('[/action]') !== -1) url = url.replace('[/action]', '')
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/package]') !== -1) url = url.replace('[/package]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'npmUpdate': function(args, opts) {
 		var url = 'http://api.nodester.com//npm'
@@ -433,7 +433,7 @@
 		if (url.indexOf('[/action]') !== -1) url = url.replace('[/action]', '')
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/package]') !== -1) url = url.replace('[/package]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'npmUninstall': function(args, opts) {
 		var url = 'http://api.nodester.com//npm'
@@ -471,7 +471,7 @@
 		if (url.indexOf('[/action]') !== -1) url = url.replace('[/action]', '')
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/package]') !== -1) url = url.replace('[/package]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'postAppdomains': function(args, opts) {
 		var url = 'http://api.nodester.com//appdomains'
@@ -498,7 +498,7 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'deleteAppdomains': function(args, opts) {
 		var url = 'http://api.nodester.com//appdomains'
@@ -525,12 +525,12 @@
 		}
 		if (url.indexOf('[/appname]') !== -1) url = url.replace('[/appname]', '')
 		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
-		return http({provider:'nodester',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getAppdomains': function(args, opts) {
 		var url = 'http://api.nodester.com//appdomains'
 		args = args || {}
-		return http({provider:'nodester',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'postResetPassword': function(args, opts) {
 		var url = 'http://api.nodester.com//reset_password'
@@ -546,7 +546,7 @@
 			if (args['user']) delete args['user']
 		}
 		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		return http({provider:'nodester',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	},
 	'putResetPassword': function(args, opts) {
 		var url = 'http://api.nodester.com//reset_password/{token}'
@@ -573,6 +573,6 @@
 		}
 		if (url.indexOf('[/token]') !== -1) url = url.replace('[/token]', '')
 		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
-		return http({provider:'nodester',url:url,method:'PUT',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args, auth:'none'}, opts)
 	}
 })

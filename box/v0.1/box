@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'box'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'GetAccountTree': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=get_account_tree&folder_id={folderId}&params={params}'
 		args = args || {}
@@ -25,7 +25,7 @@
 		}
 		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
 		if (url.indexOf('[/params]') !== -1) url = url.replace('[/params]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'CreateFolder': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=create_folder&parent_id={parentId}&name={name}&share={share}'
@@ -63,7 +63,7 @@
 		if (url.indexOf('[/parentId]') !== -1) url = url.replace('[/parentId]', '')
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/share]') !== -1) url = url.replace('[/share]', '')
-		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'MoveFolder': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=move&target={target}&target_id={targetId}&destination_id={destinationId}'
@@ -101,7 +101,7 @@
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/destination_id]') !== -1) url = url.replace('[/destination_id]', '')
-		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'CopyFolder': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=copy&target={target}&target_id={targetId}&destination_id={destinationId}'
@@ -139,7 +139,7 @@
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/destination_id]') !== -1) url = url.replace('[/destination_id]', '')
-		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'RenameFolder': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=rename&target={target}&target_id={targetId}&new_name={newName}'
@@ -177,7 +177,7 @@
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/newName]') !== -1) url = url.replace('[/newName]', '')
-		return http({provider:'box',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'DeleteFolder': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=delete&target={target}&target_id={targetId}'
@@ -204,7 +204,7 @@
 		}
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
-		return http({provider:'box',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'GetFileInfo': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=get_file_info&file_id={fileId}'
@@ -220,7 +220,7 @@
 			if (args['fileId']) delete args['fileId']
 		}
 		if (url.indexOf('[/fileId]') !== -1) url = url.replace('[/fileId]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'SetDescription': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=set_description&target={target}&target_id={targetId}&description={description}'
@@ -258,7 +258,7 @@
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'PublicShare': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=public_share&target={target}&target_id={targetId}&password={password}&message={message}&emails'
@@ -307,7 +307,7 @@
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/password]') !== -1) url = url.replace('[/password]', '')
 		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
-		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'PublicUnShare': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=public_unshare&target={target}&target_id={targetId}'
@@ -334,7 +334,7 @@
 		}
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
-		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'PrivateShare': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=private_share&target={target}&target_id={targetId}&emails'
@@ -361,22 +361,22 @@
 		}
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
-		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'GetRequestFriends': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=request_friends&emails'
 		args = args || {}
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'RequestFriends': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=request_friends&emails'
 		args = args || {}
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'GetFriends': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=get_friends&params'
 		args = args || {}
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'AddToMyBox': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=add_to_mybox&file_id={fileId}&public_name={publicName}&folder_id={folderId}&tags'
@@ -414,7 +414,7 @@
 		if (url.indexOf('[/fileId]') !== -1) url = url.replace('[/fileId]', '')
 		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
 		if (url.indexOf('[/publicName]') !== -1) url = url.replace('[/publicName]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'ToggleFolderEmail': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=toggle_folder_email&folder_id={folderId}&enable={enable}'
@@ -441,7 +441,7 @@
 		}
 		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
 		if (url.indexOf('[/enable]') !== -1) url = url.replace('[/enable]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'AddToTags': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=add_to_tag&tags={testTag}&target={target}&target_id={targetId}'
@@ -479,12 +479,12 @@
 		if (url.indexOf('[/folderId]') !== -1) url = url.replace('[/folderId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'ExportTags': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=export_tags'
 		args = args || {}
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'GetComments': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=get_comments&target={target}&target_id={targetId}'
@@ -511,7 +511,7 @@
 		}
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'AddComments': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=add_comment&target={target}&target_id={targetId}&message={message}'
@@ -549,7 +549,7 @@
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
-		return http({provider:'box',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'DeleteComment': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=delete_comment&target_id={targetId}'
@@ -565,7 +565,7 @@
 			if (args['targetId']) delete args['targetId']
 		}
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
-		return http({provider:'box',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'GetVersions': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=get_versions&target={target}&target_id={targetId}'
@@ -592,7 +592,7 @@
 		}
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'MakeCurrentVersion': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=make_current_version&target={target}&target_id={targetId}&version_id={versionId}'
@@ -619,7 +619,7 @@
 		}
 		if (url.indexOf('[/targetId]') !== -1) url = url.replace('[/targetId]', '')
 		if (url.indexOf('[/target]') !== -1) url = url.replace('[/target]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'Search': function(args, opts) {
 		var url = 'https://www.box.net/api/1.0/rest/?action=search&query={query}&sort={sort}&page={pageNum}&per_page={perPage}&direction={direction}&params={params}'
@@ -679,6 +679,6 @@
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
 		if (url.indexOf('[/direction]') !== -1) url = url.replace('[/direction]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'box',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

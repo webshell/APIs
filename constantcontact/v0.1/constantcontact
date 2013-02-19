@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'constantcontact'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'contacts.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contacts.add': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
@@ -41,7 +41,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'contacts.search.by.email': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
@@ -68,7 +68,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contacts.search.by.list.types': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
@@ -106,7 +106,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/updatedsince]') !== -1) url = url.replace('[/updatedsince]', '')
 		if (url.indexOf('[/listtype]') !== -1) url = url.replace('[/listtype]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contacts.search.by.list.id': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts'
@@ -144,7 +144,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/updatedsince]') !== -1) url = url.replace('[/updatedsince]', '')
 		if (url.indexOf('[/listid]') !== -1) url = url.replace('[/listid]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contacts.get': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}'
@@ -171,7 +171,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contacts.update': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}'
@@ -209,7 +209,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'contacts.opting.out': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}'
@@ -236,7 +236,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
-		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'contacts.events': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/contacts/{contact-id}/events/'
@@ -263,7 +263,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/contact-id]') !== -1) url = url.replace('[/contact-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'lists.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists'
@@ -279,7 +279,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'lists.add': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists'
@@ -306,7 +306,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'lists.get': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}'
@@ -333,7 +333,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'lists.update': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}'
@@ -371,7 +371,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'lists.delete': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}'
@@ -398,7 +398,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
-		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'lists.members': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/lists/{list-id}/members'
@@ -425,7 +425,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/list-id]') !== -1) url = url.replace('[/list-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'campaigns.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
@@ -441,7 +441,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'campaigns.search.status': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
@@ -478,7 +478,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
 		if (url.indexOf('[/refresh]') !== -1) url = url.replace('[/refresh]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'campaigns.refresh.results': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
@@ -505,7 +505,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/refresh]') !== -1) url = url.replace('[/refresh]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'campaigns.add': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns'
@@ -532,7 +532,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'campaigns.get': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}'
@@ -559,7 +559,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'campaigns.update': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}'
@@ -597,7 +597,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'campaigns.delete': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}'
@@ -624,7 +624,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
-		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'campaigns.events': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/campaigns/{campaign-id}/events/'
@@ -651,7 +651,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/campaign-id]') !== -1) url = url.replace('[/campaign-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events'
@@ -667,7 +667,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.add': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events'
@@ -694,7 +694,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'events.get': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}'
@@ -721,7 +721,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.list.registrants': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants'
@@ -748,7 +748,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.get.registrant': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}'
@@ -786,7 +786,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.list.guests': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/guests'
@@ -824,7 +824,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.guest.details': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/guests/{guest-id}'
@@ -873,7 +873,7 @@
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
 		if (url.indexOf('[/guest-id]') !== -1) url = url.replace('[/guest-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.get.attendance.status': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/attendancestatus'
@@ -911,7 +911,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.update.attendance.status': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/attendancestatus'
@@ -960,7 +960,7 @@
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'events.get.payment.status': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/paymentstatus'
@@ -998,7 +998,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'events.update.payment.status': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/events/{event-id}/registrants/{registrant-id}/paymentstatus'
@@ -1047,7 +1047,7 @@
 		if (url.indexOf('[/event-id]') !== -1) url = url.replace('[/event-id]', '')
 		if (url.indexOf('[/registrant-id]') !== -1) url = url.replace('[/registrant-id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'activities.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/activities'
@@ -1063,7 +1063,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'activities.add': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/activities'
@@ -1079,7 +1079,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'activities.get': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/activities/{activity-id}'
@@ -1106,7 +1106,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/activity-id]') !== -1) url = url.replace('[/activity-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'account.list.email.addresses': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/settings/emailaddresses'
@@ -1122,7 +1122,7 @@
 			if (args['username']) delete args['username']
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'account.get.email.details': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/settings/emailaddresses/{email-id}'
@@ -1149,7 +1149,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/email-id]') !== -1) url = url.replace('[/email-id]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'folders.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders'
@@ -1187,7 +1187,7 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'images.list': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images'
@@ -1236,7 +1236,7 @@
 		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'images.delete.all': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images'
@@ -1263,7 +1263,7 @@
 		}
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
-		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'images.get': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images/{image-id}'
@@ -1323,7 +1323,7 @@
 		if (url.indexOf('[/image-id]') !== -1) url = url.replace('[/image-id]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'constantcontact',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'images.delete': function(args, opts) {
 		var url = 'https://api.constantcontact.com/ws/customers/{username}/library/folders/{folder-id}/images/{image-id}'
@@ -1361,6 +1361,6 @@
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
 		if (url.indexOf('[/folder-id]') !== -1) url = url.replace('[/folder-id]', '')
 		if (url.indexOf('[/image-id]') !== -1) url = url.replace('[/image-id]', '')
-		return http({provider:'constantcontact',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	}
 })

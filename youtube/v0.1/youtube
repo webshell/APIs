@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'youtube'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'searchVideos': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/videos'
 		args = args || {}
@@ -437,7 +437,7 @@
 		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
 		if (url.indexOf('[/time]') !== -1) url = url.replace('[/time]', '')
 		if (url.indexOf('[/uploader]') !== -1) url = url.replace('[/uploader]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'videoResponse': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/videos/{videoID}/responses'
@@ -566,7 +566,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'deleteVideoResponse': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/videos/{videoID}/responses/{videoResponseID}'
@@ -604,7 +604,7 @@
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
 		if (url.indexOf('[/videoResponseID]') !== -1) url = url.replace('[/videoResponseID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'favoriteFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/favorites'
@@ -733,7 +733,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userDeleteFavorite': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/favorites/{favoriteVideoID}'
@@ -760,7 +760,7 @@
 		}
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/favoriteVideoID]') !== -1) url = url.replace('[/favoriteVideoID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'playlistFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/playlists/{playlistID}'
@@ -889,7 +889,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userPlaylistFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/playlists'
@@ -1018,7 +1018,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'RemoveVideoFromPlaylist': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/playlists/{playlistID}/{playlistEntryID}'
@@ -1158,7 +1158,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'deletePlaylist': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/playlists/{playlistID}'
@@ -1185,7 +1185,7 @@
 		}
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/playlistID]') !== -1) url = url.replace('[/playlistID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'watchLaterPlaylistGet': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/watch_later'
@@ -1314,7 +1314,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'deleteWatchLaterVideo': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/watch_later/{videoID}'
@@ -1341,7 +1341,7 @@
 		}
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'searchPlaylists': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/playlists/snippets'
@@ -1470,7 +1470,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userProfile': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}'
@@ -1599,7 +1599,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'usersContactFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/contacts'
@@ -1717,7 +1717,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'userUploadFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/uploads'
@@ -1846,7 +1846,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userRecommendations': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/recommendations'
@@ -1964,7 +1964,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'userActivityFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/events'
@@ -2103,7 +2103,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'usersActivityFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/events'
@@ -2242,7 +2242,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'userInbox': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/inbox'
@@ -2370,7 +2370,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'deleteMessage': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/inbox/{messageID}'
@@ -2397,7 +2397,7 @@
 		}
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/messageID]') !== -1) url = url.replace('[/messageID]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'subscriptionsFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/subscriptions'
@@ -2526,7 +2526,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'newSubscriptionVideo': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/newsubscriptionvideo'
@@ -2655,7 +2655,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'deleteSubscription': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/subscriptions/{subscriptionID}'
@@ -2682,7 +2682,7 @@
 		}
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/subscriptionID]') !== -1) url = url.replace('[/subscriptionID]', '')
-		return http({provider:'youtube',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'subtivityFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/default/subtivity'
@@ -2800,7 +2800,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'searchChannels': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/channels'
@@ -2929,7 +2929,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'featuredLiveEvents': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/charts/live/events/featured'
@@ -3057,7 +3057,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'currentLiveEvents': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/charts/live/events/live_now'
@@ -3185,7 +3185,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'upcomingLiveEvents': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/charts/live/events/upcoming'
@@ -3323,7 +3323,7 @@
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/time]') !== -1) url = url.replace('[/time]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'recentlyBroadcastedLiveEvents': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/charts/live/events/recently_broadcasted'
@@ -3451,7 +3451,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'recentlyEndedLiveEvents': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/users/{userID}/live/events'
@@ -3590,7 +3590,7 @@
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
 		if (url.indexOf('[/region]') !== -1) url = url.replace('[/region]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'videoCommentsFeeds': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/videos/{videoID}/comments'
@@ -3719,7 +3719,7 @@
 		if (url.indexOf('[/start-index]') !== -1) url = url.replace('[/start-index]', '')
 		if (url.indexOf('[/strict]') !== -1) url = url.replace('[/strict]', '')
 		if (url.indexOf('[/v]') !== -1) url = url.replace('[/v]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'deleteVideoComments': function(args, opts) {
 		var url = 'http://gdata.youtube.com/feeds/{projection}/videos/{videoID}/comments/{commentID}'
@@ -3757,6 +3757,6 @@
 		if (url.indexOf('[/projection]') !== -1) url = url.replace('[/projection]', '')
 		if (url.indexOf('[/videoID]') !== -1) url = url.replace('[/videoID]', '')
 		if (url.indexOf('[/commentID]') !== -1) url = url.replace('[/commentID]', '')
-		return http({provider:'youtube',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

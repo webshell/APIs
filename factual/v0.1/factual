@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'factual'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'read': function(args, opts) {
 		var url = 'http://api.v3.factual.com/t/{table_name}'
 		args = args || {}
@@ -94,7 +94,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/select]') !== -1) url = url.replace('[/select]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'facets': function(args, opts) {
 		var url = 'http://api.v3.factual.com/t/{table_name}/facets'
@@ -181,7 +181,7 @@
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/min_count]') !== -1) url = url.replace('[/min_count]', '')
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'schema': function(args, opts) {
 		var url = 'http://api.v3.factual.com/t/{table_name}/schema'
@@ -197,7 +197,7 @@
 			if (args['table_name']) delete args['table_name']
 		}
 		if (url.indexOf('[/table_name]') !== -1) url = url.replace('[/table_name]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'multi': function(args, opts) {
 		var url = 'http://api.v3.factual.com/multi'
@@ -213,7 +213,7 @@
 			if (args['queries']) delete args['queries']
 		}
 		if (url.indexOf('[/queries]') !== -1) url = url.replace('[/queries]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'geocode': function(args, opts) {
 		var url = 'http://api.v3.factual.com/places/geocode'
@@ -229,7 +229,7 @@
 			if (args['geo']) delete args['geo']
 		}
 		if (url.indexOf('[/geo]') !== -1) url = url.replace('[/geo]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'geopulse': function(args, opts) {
 		var url = 'http://api.v3.factual.com/places/geopulse'
@@ -256,7 +256,7 @@
 		}
 		if (url.indexOf('[/geo]') !== -1) url = url.replace('[/geo]', '')
 		if (url.indexOf('[/select]') !== -1) url = url.replace('[/select]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'match': function(args, opts) {
 		var url = 'http://api.v3.factual.com/places/match'
@@ -272,7 +272,7 @@
 			if (args['values']) delete args['values']
 		}
 		if (url.indexOf('[/values]') !== -1) url = url.replace('[/values]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'monetize': function(args, opts) {
 		var url = 'http://api.v3.factual.com/places/monetize'
@@ -357,7 +357,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/select]') !== -1) url = url.replace('[/select]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'resolve': function(args, opts) {
 		var url = 'http://api.v3.factual.com/places/resolve'
@@ -383,6 +383,6 @@
 		}
 		if (url.indexOf('[/values]') !== -1) url = url.replace('[/values]', '')
 		if (url.indexOf('[/debug]') !== -1) url = url.replace('[/debug]', '')
-		return http({provider:'factual',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

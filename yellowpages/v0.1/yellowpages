@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'yellowpages'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getBusinessListingMap': function(args, opts) {
 		var url = 'http://api2.yp.com/listings/v1/listingmap'
 		args = args || {}
@@ -74,7 +74,7 @@
 		if (url.indexOf('[/zoom]') !== -1) url = url.replace('[/zoom]', '')
 		if (url.indexOf('[/pan_vertical]') !== -1) url = url.replace('[/pan_vertical]', '')
 		if (url.indexOf('[/pan_horizontal]') !== -1) url = url.replace('[/pan_horizontal]', '')
-		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'searchListings': function(args, opts) {
 		var url = 'http://api2.yp.com/listings/v1/search'
@@ -182,7 +182,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/radius]') !== -1) url = url.replace('[/radius]', '')
 		if (url.indexOf('[/User-Agent]') !== -1) url = url.replace('[/User-Agent]', '')
-		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBusinessListingDetails': function(args, opts) {
 		var url = 'http://api2.yp.com/listings/v1/details'
@@ -219,7 +219,7 @@
 		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/User-Agent]') !== -1) url = url.replace('[/User-Agent]', '')
-		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBusinessListingReviews': function(args, opts) {
 		var url = 'http://api2.yp.com/listings/v1/reviews'
@@ -245,7 +245,7 @@
 		}
 		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getCouponsNearLocation': function(args, opts) {
 		var url = 'http://api2.yp.com/content/v1/coupons'
@@ -282,7 +282,7 @@
 		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/term]') !== -1) url = url.replace('[/term]', '')
-		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getDealOfTheDayNearLocation': function(args, opts) {
 		var url = 'http://api2.yp.com/content/v1/deals'
@@ -298,6 +298,6 @@
 			if (args['searchloc']) delete args['searchloc']
 		}
 		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
-		return http({provider:'yellowpages',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

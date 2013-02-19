@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'soundcloud_sandbox'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getTracks': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks.{format}'
 		args = args || {}
@@ -144,7 +144,7 @@
 		if (url.indexOf('[/ids]') !== -1) url = url.replace('[/ids]', '')
 		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postTracks': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks.{format}'
@@ -171,7 +171,7 @@
 		}
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/asset_data]') !== -1) url = url.replace('[/asset_data]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getTrack': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}.{format}'
@@ -198,7 +198,7 @@
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'putTrack': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}.{format}'
@@ -225,7 +225,7 @@
 		}
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/asset_data]') !== -1) url = url.replace('[/asset_data]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteTrack': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}.{format}'
@@ -241,7 +241,7 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getTrackComments': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/comments.{format}'
@@ -268,7 +268,7 @@
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'postTrackComments': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/comments.{format}'
@@ -284,7 +284,7 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getTrackPermissions': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/permissions.{format}'
@@ -311,7 +311,7 @@
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'putTrackPermissions': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/permissions.{format}'
@@ -327,7 +327,7 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getTrackSecret-token': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/secret-token.{format}'
@@ -343,7 +343,7 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'putTrackSecretToken': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/tracks/{track_id}/secret-token.{format}'
@@ -359,7 +359,7 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getUsers': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users.{format}'
@@ -385,7 +385,7 @@
 		}
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUser': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}.{format}'
@@ -412,7 +412,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserTracks': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/tracks.{format}'
@@ -439,7 +439,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserComments': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/comments.{format}'
@@ -466,7 +466,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserFollowings': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings.{format}'
@@ -493,7 +493,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserFollowing': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
@@ -531,7 +531,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'putUserFollowings': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
@@ -558,7 +558,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteUserFollowings': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followings/{contact_id}.{format}'
@@ -585,7 +585,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getUserFollowers': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followers.{format}'
@@ -612,7 +612,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserFollower': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/followers/{contact_id}.{format}'
@@ -650,7 +650,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserFavorites': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/favorites.{format}'
@@ -677,7 +677,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'putUserFavorites': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/favorites/{track_id}.{format}'
@@ -704,7 +704,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteUserFavorites': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/favorites/{track_id}.{format}'
@@ -731,7 +731,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getUserGroups': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/groups.{format}'
@@ -758,7 +758,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getUserPlaylists': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/users/{user_id}/playlists.{format}'
@@ -785,32 +785,32 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getMe': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'putMe': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getMeTracks': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/tracks.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMeComments': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/comments.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMeFollowings': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/followings.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMeFollowing': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/followings/{contact_id}.{format}'
@@ -826,7 +826,7 @@
 			if (args['contact_id']) delete args['contact_id']
 		}
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'putMeFollowings': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/followings/{contact_id}.{format}'
@@ -842,7 +842,7 @@
 			if (args['contact_id']) delete args['contact_id']
 		}
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteMeFollowings': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/followings/{contact_id}.{format}'
@@ -858,12 +858,12 @@
 			if (args['contact_id']) delete args['contact_id']
 		}
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getMeFollowers': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/followers.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMeFollower': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/followers/{contact_id}.{format}'
@@ -879,12 +879,12 @@
 			if (args['contact_id']) delete args['contact_id']
 		}
 		if (url.indexOf('[/contact_id]') !== -1) url = url.replace('[/contact_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMeFavorites': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/favorites.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'putMeFavorites': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/favorites/{track_id}.{format}'
@@ -900,7 +900,7 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteMeFavorites': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/favorites/{track_id}.{format}'
@@ -916,17 +916,17 @@
 			if (args['track_id']) delete args['track_id']
 		}
 		if (url.indexOf('[/track_id]') !== -1) url = url.replace('[/track_id]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getMeGroups': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/groups.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMePlaylists': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/me/playlists.{format}'
 		args = args || {}
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getPlaylists': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/playlists.{format}'
@@ -962,7 +962,7 @@
 		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getPlaylist': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/playlists/{playlist_id}.{format}'
@@ -989,7 +989,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroups': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups.{format}'
@@ -1005,7 +1005,7 @@
 			if (args['consumer_key']) delete args['consumer_key']
 		}
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroup': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}.{format}'
@@ -1032,7 +1032,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroupUsers': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/users.{format}'
@@ -1059,7 +1059,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroupModerators': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/moderators.{format}'
@@ -1086,7 +1086,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroupMembers': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/members.{format}'
@@ -1113,7 +1113,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroupContributors': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/contributors.{format}'
@@ -1140,7 +1140,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGroupTracks': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/groups/{group_id}/tracks.{format}'
@@ -1167,7 +1167,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getComment': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/comments/{comment_id}.{format}'
@@ -1194,7 +1194,7 @@
 		}
 		if (url.indexOf('[/playlist_id]') !== -1) url = url.replace('[/playlist_id]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'resolve': function(args, opts) {
 		var url = 'https://api.sandbox-soundcloud.com/resolve.{format}'
@@ -1221,6 +1221,6 @@
 		}
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/consumer_key]') !== -1) url = url.replace('[/consumer_key]', '')
-		return http({provider:'soundcloud_sandbox',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

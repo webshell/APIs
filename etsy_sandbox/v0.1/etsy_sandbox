@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'etsy_sandbox'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getCountry': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/countries/{country_id}'
 		args = args || {}
@@ -14,12 +14,12 @@
 			if (args['country_id']) delete args['country_id']
 		}
 		if (url.indexOf('[/country_id]') !== -1) url = url.replace('[/country_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllCountry': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/countries'
 		args = args || {}
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserFavoriteListings': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/listings'
@@ -55,7 +55,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findUserFavoriteListings': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/listings/{listing_id}'
@@ -82,7 +82,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createUserFavoriteListings': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/listings/{listing_id}'
@@ -109,7 +109,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'deleteUserFavoriteListings': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/listings/{listing_id}'
@@ -136,7 +136,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'findAllUserFavoriteUsers': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/users'
@@ -172,7 +172,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findUserFavoriteUsers': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/users/{target_user_id}'
@@ -199,7 +199,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/target_user_id]') !== -1) url = url.replace('[/target_user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createUserFavoriteUsers': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/users/{target_user_id}'
@@ -226,7 +226,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/target_user_id]') !== -1) url = url.replace('[/target_user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'deleteUserFavoriteUsers': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favorites/users/{target_user_id}'
@@ -253,7 +253,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/target_user_id]') !== -1) url = url.replace('[/target_user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'findAllFeaturedListingPickerActive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/pickers/'
@@ -278,7 +278,7 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFeaturedListingPicker': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/pickers/{featured_listing_picker_id}'
@@ -294,7 +294,7 @@
 			if (args['featured_listing_picker_id']) delete args['featured_listing_picker_id']
 		}
 		if (url.indexOf('[/featured_listing_picker_id]') !== -1) url = url.replace('[/featured_listing_picker_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllFeaturedListingPickerFeatured': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/pickers/{featured_listing_picker_id}/featured'
@@ -330,7 +330,7 @@
 		if (url.indexOf('[/featured_listing_picker_id]') !== -1) url = url.replace('[/featured_listing_picker_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllFeaturedListingPickerListings': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/pickers/{featured_listing_picker_id}/listings'
@@ -366,7 +366,7 @@
 		if (url.indexOf('[/featured_listing_picker_id]') !== -1) url = url.replace('[/featured_listing_picker_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllFeaturedListingPickerListingsActive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/pickers/{featured_listing_picker_id}/listings/active'
@@ -402,7 +402,7 @@
 		if (url.indexOf('[/featured_listing_picker_id]') !== -1) url = url.replace('[/featured_listing_picker_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllFeaturedListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/listings/'
@@ -427,7 +427,7 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllFeaturedListingActive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/listings/active'
@@ -452,7 +452,7 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFeaturedListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/listings/{featured_listing_id}'
@@ -468,7 +468,7 @@
 			if (args['featured_listing_id']) delete args['featured_listing_id']
 		}
 		if (url.indexOf('[/featured_listing_id]') !== -1) url = url.replace('[/featured_listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFeaturedListingAssociatedPicker': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/listings/{featured_listing_id}/picker'
@@ -484,7 +484,7 @@
 			if (args['featured_listing_id']) delete args['featured_listing_id']
 		}
 		if (url.indexOf('[/featured_listing_id]') !== -1) url = url.replace('[/featured_listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFeaturedListingListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/homepages/listings/{featured_listing_id}/listing'
@@ -500,7 +500,7 @@
 			if (args['featured_listing_id']) delete args['featured_listing_id']
 		}
 		if (url.indexOf('[/featured_listing_id]') !== -1) url = url.replace('[/featured_listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getListingImage': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/images/{listing_image_id}'
@@ -526,7 +526,7 @@
 		}
 		if (url.indexOf('[/listing_image_id]') !== -1) url = url.replace('[/listing_image_id]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'uploadListingImage': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/images'
@@ -553,7 +553,7 @@
 		}
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
 		if (url.indexOf('[/image]') !== -1) url = url.replace('[/image]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'deleteListingImage': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/images/{listing_image_id}'
@@ -580,7 +580,7 @@
 		}
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
 		if (url.indexOf('[/listing_image_id]') !== -1) url = url.replace('[/listing_image_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}'
@@ -596,7 +596,7 @@
 			if (args['listing_id']) delete args['listing_id']
 		}
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllListingImages': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/images'
@@ -612,7 +612,7 @@
 			if (args['listing_id']) delete args['listing_id']
 		}
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllListingFavoredBy': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/favored-by'
@@ -648,7 +648,7 @@
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllListingShippingInfo': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/shipping/info'
@@ -684,7 +684,7 @@
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getListingPaymentInfo': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/payments'
@@ -700,7 +700,7 @@
 			if (args['listing_id']) delete args['listing_id']
 		}
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllListingActive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/active'
@@ -825,7 +825,7 @@
 		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
 		if (url.indexOf('[/materials]') !== -1) url = url.replace('[/materials]', '')
 		if (url.indexOf('[/category]') !== -1) url = url.replace('[/category]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopListingsActive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/listings/active'
@@ -961,7 +961,7 @@
 		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
 		if (url.indexOf('[/materials]') !== -1) url = url.replace('[/materials]', '')
 		if (url.indexOf('[/category]') !== -1) url = url.replace('[/category]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings'
@@ -1052,7 +1052,7 @@
 		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
 		if (url.indexOf('[/shipping_template_id]') !== -1) url = url.replace('[/shipping_template_id]', '')
 		if (url.indexOf('[/shop_section_id]') !== -1) url = url.replace('[/shop_section_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}'
@@ -1168,7 +1168,7 @@
 		if (url.indexOf('[/shipping_template_id]') !== -1) url = url.replace('[/shipping_template_id]', '')
 		if (url.indexOf('[/shop_section_id]') !== -1) url = url.replace('[/shop_section_id]', '')
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteListing': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}'
@@ -1184,7 +1184,7 @@
 			if (args['listing_id']) delete args['listing_id']
 		}
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getOrder': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/orders/{order_id}'
@@ -1200,7 +1200,7 @@
 			if (args['order_id']) delete args['order_id']
 		}
 		if (url.indexOf('[/order_id]') !== -1) url = url.replace('[/order_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllOrderReceipts': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/orders/{order_id}/receipts'
@@ -1236,7 +1236,7 @@
 		if (url.indexOf('[/order_id]') !== -1) url = url.replace('[/order_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getReceipt': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/receipts/{receipt_id}'
@@ -1252,7 +1252,7 @@
 			if (args['receipt_id']) delete args['receipt_id']
 		}
 		if (url.indexOf('[/receipt_id]') !== -1) url = url.replace('[/receipt_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllReceiptTransactions': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/receipts/{receipt_id}/transactions'
@@ -1288,7 +1288,7 @@
 		if (url.indexOf('[/receipt_id]') !== -1) url = url.replace('[/receipt_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'updateReceipt': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/receipts/{receipt_id}'
@@ -1344,7 +1344,7 @@
 		if (url.indexOf('[/was_shipped]') !== -1) url = url.replace('[/was_shipped]', '')
 		if (url.indexOf('[/message_from_seller]') !== -1) url = url.replace('[/message_from_seller]', '')
 		if (url.indexOf('[/message_from_buyer]') !== -1) url = url.replace('[/message_from_buyer]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getRecommendedListings': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/recommended_listings'
@@ -1380,7 +1380,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/excluded_listing_ids]') !== -1) url = url.replace('[/excluded_listing_ids]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'registerRecommendedListingRejects': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/recommended_listings/rejects/{listing_ids}'
@@ -1407,7 +1407,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/listing_ids]') !== -1) url = url.replace('[/listing_ids]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'registerRecommendedListingViews': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/recommended_listings/views/{listing_ids}'
@@ -1434,7 +1434,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/listing_ids]') !== -1) url = url.replace('[/listing_ids]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getRegion': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/regions/{region_id}'
@@ -1450,12 +1450,12 @@
 			if (args['region_id']) delete args['region_id']
 		}
 		if (url.indexOf('[/region_id]') !== -1) url = url.replace('[/region_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllRegion': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/regions'
 		args = args || {}
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getShippingInfo': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/info/{shipping_info_id}'
@@ -1471,7 +1471,7 @@
 			if (args['shipping_info_id']) delete args['shipping_info_id']
 		}
 		if (url.indexOf('[/shipping_info_id]') !== -1) url = url.replace('[/shipping_info_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createShippingInfo': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/listings/{listing_id}/shipping/info'
@@ -1540,7 +1540,7 @@
 		if (url.indexOf('[/primary_cost]') !== -1) url = url.replace('[/primary_cost]', '')
 		if (url.indexOf('[/secondary_cost]') !== -1) url = url.replace('[/secondary_cost]', '')
 		if (url.indexOf('[/region_id]') !== -1) url = url.replace('[/region_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateShippingInfo': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/info/{shipping_info_id}'
@@ -1616,7 +1616,7 @@
 		if (url.indexOf('[/secondary_cost]') !== -1) url = url.replace('[/secondary_cost]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
 		if (url.indexOf('[/region_id]') !== -1) url = url.replace('[/region_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteShippingInfo': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/info/{shipping_info_id}'
@@ -1632,7 +1632,7 @@
 			if (args['shipping_info_id']) delete args['shipping_info_id']
 		}
 		if (url.indexOf('[/shipping_info_id]') !== -1) url = url.replace('[/shipping_info_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getShippingTemplateEntry': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/entries/{shipping_template_entry_id}'
@@ -1648,7 +1648,7 @@
 			if (args['shipping_template_entry_id']) delete args['shipping_template_entry_id']
 		}
 		if (url.indexOf('[/shipping_template_entry_id]') !== -1) url = url.replace('[/shipping_template_entry_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createShippingTemplateEntry': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/entries'
@@ -1706,7 +1706,7 @@
 		if (url.indexOf('[/primary_cost]') !== -1) url = url.replace('[/primary_cost]', '')
 		if (url.indexOf('[/secondary_cost]') !== -1) url = url.replace('[/secondary_cost]', '')
 		if (url.indexOf('[/destination_region_id]') !== -1) url = url.replace('[/destination_region_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateShippingTemplateEntry': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/entries/{shipping_template_entry_id}'
@@ -1752,7 +1752,7 @@
 		if (url.indexOf('[/destination_country_id]') !== -1) url = url.replace('[/destination_country_id]', '')
 		if (url.indexOf('[/primary_cost]') !== -1) url = url.replace('[/primary_cost]', '')
 		if (url.indexOf('[/secondary_cost]') !== -1) url = url.replace('[/secondary_cost]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteShippingTemplateEntry': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/entries/{shipping_template_entry_id}'
@@ -1768,7 +1768,7 @@
 			if (args['shipping_template_entry_id']) delete args['shipping_template_entry_id']
 		}
 		if (url.indexOf('[/shipping_template_entry_id]') !== -1) url = url.replace('[/shipping_template_entry_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getShippingTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/{shipping_template_id}'
@@ -1784,7 +1784,7 @@
 			if (args['shipping_template_id']) delete args['shipping_template_id']
 		}
 		if (url.indexOf('[/shipping_template_id]') !== -1) url = url.replace('[/shipping_template_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShippingTemplateEntries': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/{shipping_template_id}/entries'
@@ -1820,7 +1820,7 @@
 		if (url.indexOf('[/shipping_template_id]') !== -1) url = url.replace('[/shipping_template_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'deleteShippingTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/{shipping_template_id}'
@@ -1836,7 +1836,7 @@
 			if (args['shipping_template_id']) delete args['shipping_template_id']
 		}
 		if (url.indexOf('[/shipping_template_id]') !== -1) url = url.replace('[/shipping_template_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'createShippingTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates'
@@ -1905,7 +1905,7 @@
 		if (url.indexOf('[/primary_cost]') !== -1) url = url.replace('[/primary_cost]', '')
 		if (url.indexOf('[/secondary_cost]') !== -1) url = url.replace('[/secondary_cost]', '')
 		if (url.indexOf('[/destination_region_id]') !== -1) url = url.replace('[/destination_region_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateShippingTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shipping/templates/{shipping_template_id}'
@@ -1941,7 +1941,7 @@
 		if (url.indexOf('[/shipping_template_id]') !== -1) url = url.replace('[/shipping_template_id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/origin_country_id]') !== -1) url = url.replace('[/origin_country_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getShop': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}'
@@ -1957,7 +1957,7 @@
 			if (args['shop_id']) delete args['shop_id']
 		}
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopReceipts': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/receipts'
@@ -1993,7 +1993,7 @@
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopTransactions': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/transactions'
@@ -2029,7 +2029,7 @@
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopSections': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/sections'
@@ -2045,7 +2045,7 @@
 			if (args['shop_id']) delete args['shop_id']
 		}
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShops': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops'
@@ -2080,7 +2080,7 @@
 		if (url.indexOf('[/shop_name]') !== -1) url = url.replace('[/shop_name]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopListingsFeatured': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/listings/featured'
@@ -2116,7 +2116,7 @@
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopListingsInactive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/listings/inactive'
@@ -2152,7 +2152,7 @@
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllShopListingsExpired': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/listings/expired'
@@ -2188,7 +2188,7 @@
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getShopListingInactive': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/listings/inactive/{listing_id}'
@@ -2215,7 +2215,7 @@
 		}
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getShopListingExpired': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/listings/expired/{listing_id}'
@@ -2242,7 +2242,7 @@
 		}
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/listing_id]') !== -1) url = url.replace('[/listing_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'uploadShopBanner': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/appearance/banner'
@@ -2269,7 +2269,7 @@
 		}
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/image]') !== -1) url = url.replace('[/image]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'deleteShopBanner': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}/appearance/banner/{shop_banner_id}'
@@ -2296,7 +2296,7 @@
 		}
 		if (url.indexOf('[/shop_id]') !== -1) url = url.replace('[/shop_id]', '')
 		if (url.indexOf('[/shop_banner_id]') !== -1) url = url.replace('[/shop_banner_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'updateShop': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/shops/{shop_id}'
@@ -2412,7 +2412,7 @@
 		if (url.indexOf('[/policy_shipping]') !== -1) url = url.replace('[/policy_shipping]', '')
 		if (url.indexOf('[/policy_refunds]') !== -1) url = url.replace('[/policy_refunds]', '')
 		if (url.indexOf('[/policy_additional]') !== -1) url = url.replace('[/policy_additional]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getShopSection': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/sections/{shop_section_id}'
@@ -2428,7 +2428,7 @@
 			if (args['shop_section_id']) delete args['shop_section_id']
 		}
 		if (url.indexOf('[/shop_section_id]') !== -1) url = url.replace('[/shop_section_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createShopSection': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/sections'
@@ -2453,7 +2453,7 @@
 		}
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateShopSection': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/sections/{shop_section_id}'
@@ -2499,7 +2499,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/rank]') !== -1) url = url.replace('[/rank]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteShopSection': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/sections/{shop_section_id}'
@@ -2515,7 +2515,7 @@
 			if (args['shop_section_id']) delete args['shop_section_id']
 		}
 		if (url.indexOf('[/shop_section_id]') !== -1) url = url.replace('[/shop_section_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getCategory': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/categories/{tag}'
@@ -2531,7 +2531,7 @@
 			if (args['tag']) delete args['tag']
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getSubCategory': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/categories/{tag}/{subtag}'
@@ -2558,7 +2558,7 @@
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
 		if (url.indexOf('[/subtag]') !== -1) url = url.replace('[/subtag]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getSubSubCategory': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/categories/{tag}/{subtag}/{subsubtag}'
@@ -2596,12 +2596,12 @@
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
 		if (url.indexOf('[/subtag]') !== -1) url = url.replace('[/subtag]', '')
 		if (url.indexOf('[/subsubtag]') !== -1) url = url.replace('[/subsubtag]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllTopCategory': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/taxonomy/categories'
 		args = args || {}
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllTopCategoryChildren': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/taxonomy/categories/{tag}'
@@ -2617,7 +2617,7 @@
 			if (args['tag']) delete args['tag']
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllSubCategoryChildren': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/taxonomy/categories/{tag}/{subtag}'
@@ -2644,7 +2644,7 @@
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
 		if (url.indexOf('[/subtag]') !== -1) url = url.replace('[/subtag]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findPopularTags': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/taxonomy/tags'
@@ -2659,7 +2659,7 @@
 			if (args['limit']) delete args['limit']
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllRelatedTags': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/taxonomy/tags/{tags}'
@@ -2685,7 +2685,7 @@
 		}
 		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getTransaction': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/transactions/{transaction_id}'
@@ -2701,7 +2701,7 @@
 			if (args['transaction_id']) delete args['transaction_id']
 		}
 		if (url.indexOf('[/transaction_id]') !== -1) url = url.replace('[/transaction_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getTreasury': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/treasuries/{treasury_id}'
@@ -2717,7 +2717,7 @@
 			if (args['treasury_id']) delete args['treasury_id']
 		}
 		if (url.indexOf('[/treasury_id]') !== -1) url = url.replace('[/treasury_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllTreasuries': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/treasuries'
@@ -2792,7 +2792,7 @@
 		if (url.indexOf('[/detail_level]') !== -1) url = url.replace('[/detail_level]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserTreasuries': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/treasuries'
@@ -2868,7 +2868,7 @@
 		if (url.indexOf('[/detail_level]') !== -1) url = url.replace('[/detail_level]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getUser': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}'
@@ -2884,7 +2884,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserShops': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/shops'
@@ -2920,7 +2920,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserFavoredBy': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/favored-by'
@@ -2956,7 +2956,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserFeedbackAsSubject': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/feedback/as-subject'
@@ -2992,7 +2992,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserFeedbackAsAuthor': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/feedback/as-author'
@@ -3028,7 +3028,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserFeedbackAsBuyer': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/feedback/as-buyer'
@@ -3064,7 +3064,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserFeedbackAsSeller': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/feedback/as-seller'
@@ -3100,7 +3100,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserOrders': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/orders'
@@ -3136,7 +3136,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserBuyerReceipts': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/receipts'
@@ -3172,7 +3172,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserBuyerTransactions': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/transactions'
@@ -3208,7 +3208,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserCharges': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/charges'
@@ -3244,7 +3244,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserPayments': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/payments'
@@ -3280,7 +3280,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserShippingTemplates': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/shipping/templates'
@@ -3316,7 +3316,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserPaymentTemplates': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/payments/templates'
@@ -3332,7 +3332,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'findAllUserAddresses': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/addresses'
@@ -3368,7 +3368,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getPaymentTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/payments/templates/{payment_template_id}'
@@ -3384,7 +3384,7 @@
 			if (args['payment_template_id']) delete args['payment_template_id']
 		}
 		if (url.indexOf('[/payment_template_id]') !== -1) url = url.replace('[/payment_template_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createPaymentTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/payments/templates'
@@ -3509,7 +3509,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/zip]') !== -1) url = url.replace('[/zip]', '')
 		if (url.indexOf('[/country_id]') !== -1) url = url.replace('[/country_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updatePaymentTemplate': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/payments/templates/{payment_template_id}'
@@ -3645,7 +3645,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/zip]') !== -1) url = url.replace('[/zip]', '')
 		if (url.indexOf('[/country_id]') !== -1) url = url.replace('[/country_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getListingPayment': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/payments/{listing_payment_id}'
@@ -3661,7 +3661,7 @@
 			if (args['listing_payment_id']) delete args['listing_payment_id']
 		}
 		if (url.indexOf('[/listing_payment_id]') !== -1) url = url.replace('[/listing_payment_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'uploadAvatar': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/avatar'
@@ -3696,7 +3696,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/src]') !== -1) url = url.replace('[/src]', '')
 		if (url.indexOf('[/image]') !== -1) url = url.replace('[/image]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getAvatarImgSrc': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/avatar/src'
@@ -3711,7 +3711,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getUserAddress': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/addresses/{user_address_id}'
@@ -3727,7 +3727,7 @@
 			if (args['user_address_id']) delete args['user_address_id']
 		}
 		if (url.indexOf('[/user_address_id]') !== -1) url = url.replace('[/user_address_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createUserAddress': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/addresses'
@@ -3818,7 +3818,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/zip]') !== -1) url = url.replace('[/zip]', '')
 		if (url.indexOf('[/country_id]') !== -1) url = url.replace('[/country_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateUserAddress': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/addresses/{user_address_id}'
@@ -3904,7 +3904,7 @@
 		if (url.indexOf('[/state]') !== -1) url = url.replace('[/state]', '')
 		if (url.indexOf('[/zip]') !== -1) url = url.replace('[/zip]', '')
 		if (url.indexOf('[/country_id]') !== -1) url = url.replace('[/country_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteUserAddress': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/users/{user_id}/addresses/{user_address_id}'
@@ -3920,7 +3920,7 @@
 			if (args['user_address_id']) delete args['user_address_id']
 		}
 		if (url.indexOf('[/user_address_id]') !== -1) url = url.replace('[/user_address_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'findAllFeaturedUsers': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/featured/users'
@@ -3945,7 +3945,7 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFeaturedUser': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/featured/users/{featured_user_id}'
@@ -3961,21 +3961,21 @@
 			if (args['featured_user_id']) delete args['featured_user_id']
 		}
 		if (url.indexOf('[/featured_user_id]') !== -1) url = url.replace('[/featured_user_id]', '')
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getMethodTable': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/'
 		args = args || {}
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getServerEpoch': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/server/epoch'
 		args = args || {}
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'ping': function(args, opts) {
 		var url = 'http://sandbox.openapi.etsy.com/v2/private/server/ping'
 		args = args || {}
-		return http({provider:'etsy_sandbox',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

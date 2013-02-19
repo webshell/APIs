@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'flickr'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'upload': function(args, opts) {
 		var url = 'http://api.flickr.com/services/upload'
 		args = args || {}
@@ -103,7 +103,7 @@
 		if (url.indexOf('[/content_type]') !== -1) url = url.replace('[/content_type]', '')
 		if (url.indexOf('[/hidden]') !== -1) url = url.replace('[/hidden]', '')
 		if (url.indexOf('[/async]') !== -1) url = url.replace('[/async]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'replace': function(args, opts) {
 		var url = 'http://api.flickr.com/services/replace'
@@ -129,7 +129,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/async]') !== -1) url = url.replace('[/async]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'activityUserComments': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.activity.userComments'
@@ -164,7 +164,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'activityUserPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.activity.userPhotos'
@@ -209,7 +209,7 @@
 		if (url.indexOf('[/timeframe]') !== -1) url = url.replace('[/timeframe]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'authCheckToken': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.auth.checkToken'
@@ -235,7 +235,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/auth_token]') !== -1) url = url.replace('[/auth_token]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'authGetFrob': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.auth.getFrob'
@@ -250,7 +250,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'authGetFullToken': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.auth.getFullToken'
@@ -276,7 +276,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/mini_token]') !== -1) url = url.replace('[/mini_token]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'authGetToken': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.auth.getToken'
@@ -302,7 +302,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/frob]') !== -1) url = url.replace('[/frob]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'authOauthGetAccessToken': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.auth.oauth.getAccessToken'
@@ -317,7 +317,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogsGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.blogs.getList'
@@ -342,7 +342,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/service]') !== -1) url = url.replace('[/service]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'blogsGetServices': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.blogs.getServices'
@@ -357,7 +357,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'blogsPostPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.blogs.postPhoto'
@@ -434,7 +434,7 @@
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/blog_password]') !== -1) url = url.replace('[/blog_password]', '')
 		if (url.indexOf('[/service]') !== -1) url = url.replace('[/service]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'collectionsGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.collections.getInfo'
@@ -460,7 +460,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/collection_id]') !== -1) url = url.replace('[/collection_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'collectionsGetTree': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.collections.getTree'
@@ -495,7 +495,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/collection_id]') !== -1) url = url.replace('[/collection_id]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'commonsGetInstitutions': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.commons.getInstitutions'
@@ -510,7 +510,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'contactsGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.contacts.getList'
@@ -555,7 +555,7 @@
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contactsGetListRecentlyUploaded': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.contacts.getListRecentlyUploaded'
@@ -590,7 +590,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date_lastupload]') !== -1) url = url.replace('[/date_lastupload]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'contactsGetPublicList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.contacts.getPublicList'
@@ -636,7 +636,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'favoritesAdd': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.favorites.add'
@@ -662,7 +662,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'favoritesGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.favorites.getList'
@@ -727,7 +727,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'favoritesGetPublicList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.favorites.getPublicList'
@@ -803,7 +803,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'favoritesRemove': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.favorites.remove'
@@ -829,7 +829,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'galleriesAddPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.addPhoto'
@@ -866,7 +866,7 @@
 		if (url.indexOf('[/gallery_id]') !== -1) url = url.replace('[/gallery_id]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'galleriesCreate': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.create'
@@ -913,7 +913,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/primary_photo_id]') !== -1) url = url.replace('[/primary_photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'galleriesEditMeta': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.editMeta'
@@ -951,7 +951,7 @@
 		if (url.indexOf('[/gallery_id]') !== -1) url = url.replace('[/gallery_id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'galleriesEditPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.editPhoto'
@@ -989,7 +989,7 @@
 		if (url.indexOf('[/gallery_id]') !== -1) url = url.replace('[/gallery_id]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'galleriesEditPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.editPhotos'
@@ -1027,7 +1027,7 @@
 		if (url.indexOf('[/gallery_id]') !== -1) url = url.replace('[/gallery_id]', '')
 		if (url.indexOf('[/primary_photo_id]') !== -1) url = url.replace('[/primary_photo_id]', '')
 		if (url.indexOf('[/photo_ids]') !== -1) url = url.replace('[/photo_ids]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'galleriesGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.getInfo'
@@ -1053,7 +1053,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/gallery_id]') !== -1) url = url.replace('[/gallery_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'galleriesGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.getList'
@@ -1098,7 +1098,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'galleriesGetListForPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.getListForPhoto'
@@ -1144,7 +1144,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'galleriesGetPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos'
@@ -1200,7 +1200,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'groupsBrowse': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.browse'
@@ -1225,7 +1225,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/cat_id]') !== -1) url = url.replace('[/cat_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'groupsGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.getInfo'
@@ -1261,7 +1261,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/group_id]') !== -1) url = url.replace('[/group_id]', '')
 		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'groupsSearch': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.search'
@@ -1307,7 +1307,7 @@
 		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'groupsMembersGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.members.getList'
@@ -1363,7 +1363,7 @@
 		if (url.indexOf('[/membertypes]') !== -1) url = url.replace('[/membertypes]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'groupsPoolsAdd': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.pools.add'
@@ -1390,7 +1390,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/group_id]') !== -1) url = url.replace('[/group_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'groupsPoolsGetContext': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.pools.getContext'
@@ -1427,7 +1427,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/group_id]') !== -1) url = url.replace('[/group_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'groupsPoolsGetGroups': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.pools.getGroups'
@@ -1462,7 +1462,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'groupsPoolsGetPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos'
@@ -1527,7 +1527,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'groupsPoolsRemove': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.groups.pools.remove'
@@ -1554,7 +1554,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/group_id]') !== -1) url = url.replace('[/group_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'interestingnessGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.interestingness.getList'
@@ -1609,7 +1609,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'machinetagsGetNamespaces': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.machinetags.getNamespaces'
@@ -1654,7 +1654,7 @@
 		if (url.indexOf('[/predicate]') !== -1) url = url.replace('[/predicate]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'machinetagsGetPairs': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.machinetags.getPairs'
@@ -1709,7 +1709,7 @@
 		if (url.indexOf('[/predicate]') !== -1) url = url.replace('[/predicate]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'machinetagsGetPredicates': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.machinetags.getPredicates'
@@ -1754,7 +1754,7 @@
 		if (url.indexOf('[/namespace]') !== -1) url = url.replace('[/namespace]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'machinetagsGetRecentValues': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.machinetags.getRecentValues'
@@ -1809,7 +1809,7 @@
 		if (url.indexOf('[/predicate]') !== -1) url = url.replace('[/predicate]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'machinetagsGetValues': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.machinetags.getValues'
@@ -1864,7 +1864,7 @@
 		if (url.indexOf('[/predicate]') !== -1) url = url.replace('[/predicate]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'pandaGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.panda.getList'
@@ -1879,7 +1879,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'pandaGetPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.panda.getPhotos'
@@ -1935,7 +1935,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'peopleFindByEmail': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.findByEmail'
@@ -1961,7 +1961,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/find_email]') !== -1) url = url.replace('[/find_email]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'peopleFindByUsername': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.findByUsername'
@@ -1987,7 +1987,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'peopleGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.getInfo'
@@ -2013,7 +2013,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'peopleGetPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.getPhotos'
@@ -2139,7 +2139,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'peopleGetPhotosOf': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.getPhotosOf'
@@ -2205,7 +2205,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'peopleGetPublicGroups': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicGroups'
@@ -2231,7 +2231,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'peopleGetPublicPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos'
@@ -2297,7 +2297,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'peopleGetUploadStatus': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.people.getUploadStatus'
@@ -2312,7 +2312,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosAddTags': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.addTags'
@@ -2339,7 +2339,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosDelete': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.delete'
@@ -2355,7 +2355,7 @@
 			if (args['photo_id']) delete args['photo_id']
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosGetAllContexts': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getAllContexts'
@@ -2381,7 +2381,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetContactsPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getContactsPhotos'
@@ -2446,7 +2446,7 @@
 		if (url.indexOf('[/single_photo]') !== -1) url = url.replace('[/single_photo]', '')
 		if (url.indexOf('[/include_self]') !== -1) url = url.replace('[/include_self]', '')
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetContactsPublicPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getContactsPublicPhotos'
@@ -2522,7 +2522,7 @@
 		if (url.indexOf('[/single_photo]') !== -1) url = url.replace('[/single_photo]', '')
 		if (url.indexOf('[/include_self]') !== -1) url = url.replace('[/include_self]', '')
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetContext': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getContext'
@@ -2548,7 +2548,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetCounts': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getCounts'
@@ -2583,7 +2583,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/dates]') !== -1) url = url.replace('[/dates]', '')
 		if (url.indexOf('[/taken_dates]') !== -1) url = url.replace('[/taken_dates]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetExif': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getExif'
@@ -2619,7 +2619,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/secret]') !== -1) url = url.replace('[/secret]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetFavorites': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getFavorites'
@@ -2665,7 +2665,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getInfo'
@@ -2701,7 +2701,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/secret]') !== -1) url = url.replace('[/secret]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetNotInSet': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getNotInSet'
@@ -2806,7 +2806,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetPerms': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getPerms'
@@ -2832,7 +2832,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetRecent': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getRecent'
@@ -2877,7 +2877,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetSizes': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getSizes'
@@ -2903,7 +2903,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGetUntagged': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getUntagged'
@@ -3008,7 +3008,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetWithGeoData': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getWithGeoData'
@@ -3113,7 +3113,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetWithoutGeoData': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getWithoutGeoData'
@@ -3218,7 +3218,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGetRecentlyUpdated': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.getRecentlyUpdated'
@@ -3274,7 +3274,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosRemoveTag': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.removeTag'
@@ -3301,7 +3301,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/tag_id]') !== -1) url = url.replace('[/tag_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosSearch': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.search'
@@ -3656,7 +3656,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosSetContentType': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.setContentType'
@@ -3683,7 +3683,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/content_type]') !== -1) url = url.replace('[/content_type]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosSetDates': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.setDates'
@@ -3729,7 +3729,7 @@
 		if (url.indexOf('[/date_posted]') !== -1) url = url.replace('[/date_posted]', '')
 		if (url.indexOf('[/date_taken]') !== -1) url = url.replace('[/date_taken]', '')
 		if (url.indexOf('[/date_taken_granularity]') !== -1) url = url.replace('[/date_taken_granularity]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosSetMeta': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.setMeta'
@@ -3767,7 +3767,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosSetPerms': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.setPerms'
@@ -3848,7 +3848,7 @@
 		if (url.indexOf('[/is_family]') !== -1) url = url.replace('[/is_family]', '')
 		if (url.indexOf('[/perm_comment]') !== -1) url = url.replace('[/perm_comment]', '')
 		if (url.indexOf('[/perm_addmeta]') !== -1) url = url.replace('[/perm_addmeta]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosSetSafetyLevel': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.setSafetyLevel'
@@ -3894,7 +3894,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/safety_level]') !== -1) url = url.replace('[/safety_level]', '')
 		if (url.indexOf('[/hidden]') !== -1) url = url.replace('[/hidden]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosSetTags': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.setTags'
@@ -3921,7 +3921,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/tags]') !== -1) url = url.replace('[/tags]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosCommentsAddComment': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.comments.addComment'
@@ -3958,7 +3958,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/comment_text]') !== -1) url = url.replace('[/comment_text]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosCommentsDeleteComment': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.comments.deleteComment'
@@ -3974,7 +3974,7 @@
 			if (args['photo_id']) delete args['photo_id']
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosCommentsEditComment': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.comments.editComment'
@@ -4001,7 +4001,7 @@
 		}
 		if (url.indexOf('[/comment_id]') !== -1) url = url.replace('[/comment_id]', '')
 		if (url.indexOf('[/comment_text]') !== -1) url = url.replace('[/comment_text]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosCommentsGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.comments.getList'
@@ -4047,7 +4047,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/min_comment_date]') !== -1) url = url.replace('[/min_comment_date]', '')
 		if (url.indexOf('[/max_comment_date]') !== -1) url = url.replace('[/max_comment_date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosCommentsGetRecentForContacts': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.comments.getRecentForContacts'
@@ -4112,7 +4112,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosGeoBatchCorrectLocation': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.batchCorrectLocation'
@@ -4169,7 +4169,7 @@
 		if (url.indexOf('[/accuracy]') !== -1) url = url.replace('[/accuracy]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
 		if (url.indexOf('[/woe_id]') !== -1) url = url.replace('[/woe_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosGeoCorrectLocation': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.correctLocation'
@@ -4205,7 +4205,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
 		if (url.indexOf('[/woe_id]') !== -1) url = url.replace('[/woe_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosGeoGetLocation': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation'
@@ -4231,7 +4231,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGeoGetPerms': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.getPerms'
@@ -4257,7 +4257,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGeoPhotosForLocation': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.photosForLocation'
@@ -4334,7 +4334,7 @@
 		if (url.indexOf('[/extras]') !== -1) url = url.replace('[/extras]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosGeoRemoveLocation': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.removeLocation'
@@ -4350,7 +4350,7 @@
 			if (args['photo_id']) delete args['photo_id']
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosGeoSetContext': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.setContext'
@@ -4377,7 +4377,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/context]') !== -1) url = url.replace('[/context]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosGeoSetLocation': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.setLocation'
@@ -4446,7 +4446,7 @@
 		if (url.indexOf('[/lon]') !== -1) url = url.replace('[/lon]', '')
 		if (url.indexOf('[/accuracy]') !== -1) url = url.replace('[/accuracy]', '')
 		if (url.indexOf('[/context]') !== -1) url = url.replace('[/context]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosGeoSetPerms': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.geo.setPerms'
@@ -4506,7 +4506,7 @@
 		if (url.indexOf('[/is_friend]') !== -1) url = url.replace('[/is_friend]', '')
 		if (url.indexOf('[/is_family]') !== -1) url = url.replace('[/is_family]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'photosLicensesGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.licenses.getInfo'
@@ -4521,7 +4521,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosLicensesSetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.licenses.setInfo'
@@ -4548,7 +4548,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/license_id]') !== -1) url = url.replace('[/license_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosNotesAdd': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.notes.add'
@@ -4629,7 +4629,7 @@
 		if (url.indexOf('[/note_w]') !== -1) url = url.replace('[/note_w]', '')
 		if (url.indexOf('[/note_h]') !== -1) url = url.replace('[/note_h]', '')
 		if (url.indexOf('[/note_text]') !== -1) url = url.replace('[/note_text]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosNotesDelete': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.notes.delete'
@@ -4645,7 +4645,7 @@
 			if (args['note_id']) delete args['note_id']
 		}
 		if (url.indexOf('[/note_id]') !== -1) url = url.replace('[/note_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosNotesEdit': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.notes.edit'
@@ -4716,7 +4716,7 @@
 		if (url.indexOf('[/note_w]') !== -1) url = url.replace('[/note_w]', '')
 		if (url.indexOf('[/note_h]') !== -1) url = url.replace('[/note_h]', '')
 		if (url.indexOf('[/note_text]') !== -1) url = url.replace('[/note_text]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosPeopleAdd': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.people.add'
@@ -4783,7 +4783,7 @@
 		if (url.indexOf('[/person_y]') !== -1) url = url.replace('[/person_y]', '')
 		if (url.indexOf('[/person_w]') !== -1) url = url.replace('[/person_w]', '')
 		if (url.indexOf('[/person_h]') !== -1) url = url.replace('[/person_h]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosPeopleDelete': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.people.delete'
@@ -4810,7 +4810,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosPeopleDeleteCoords': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.people.deleteCoords'
@@ -4837,7 +4837,7 @@
 		}
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosPeopleEditCoords': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.people.editCoords'
@@ -4908,7 +4908,7 @@
 		if (url.indexOf('[/person_y]') !== -1) url = url.replace('[/person_y]', '')
 		if (url.indexOf('[/person_w]') !== -1) url = url.replace('[/person_w]', '')
 		if (url.indexOf('[/person_h]') !== -1) url = url.replace('[/person_h]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosPeopleGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.people.getList'
@@ -4934,7 +4934,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosTransformRotate': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.transform.rotate'
@@ -4971,7 +4971,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/degrees]') !== -1) url = url.replace('[/degrees]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosUploadCheckTickets': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photos.upload.checkTickets'
@@ -4997,7 +4997,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/tickets]') !== -1) url = url.replace('[/tickets]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosetsAddPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.addPhoto'
@@ -5024,7 +5024,7 @@
 		}
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsCreate': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.create'
@@ -5071,7 +5071,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
 		if (url.indexOf('[/primary_photo_id]') !== -1) url = url.replace('[/primary_photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsDelete': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.delete'
@@ -5087,7 +5087,7 @@
 			if (args['photoset_id']) delete args['photoset_id']
 		}
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsEditMeta': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.editMeta'
@@ -5125,7 +5125,7 @@
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsEditPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.editPhotos'
@@ -5163,7 +5163,7 @@
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/primary_photo_id]') !== -1) url = url.replace('[/primary_photo_id]', '')
 		if (url.indexOf('[/photo_ids]') !== -1) url = url.replace('[/photo_ids]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsGetContext': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.getContext'
@@ -5200,7 +5200,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosetsGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.getInfo'
@@ -5226,7 +5226,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosetsGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.getList'
@@ -5251,7 +5251,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosetsGetPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos'
@@ -5327,7 +5327,7 @@
 		if (url.indexOf('[/media]') !== -1) url = url.replace('[/media]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'photosetsOrderSets': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.orderSets'
@@ -5343,7 +5343,7 @@
 			if (args['photoset_ids']) delete args['photoset_ids']
 		}
 		if (url.indexOf('[/photoset_ids]') !== -1) url = url.replace('[/photoset_ids]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsRemovePhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.removePhoto'
@@ -5370,7 +5370,7 @@
 		}
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsRemovePhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.removePhotos'
@@ -5397,7 +5397,7 @@
 		}
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/photo_ids]') !== -1) url = url.replace('[/photo_ids]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsReorderPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.reorderPhotos'
@@ -5424,7 +5424,7 @@
 		}
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/photo_ids]') !== -1) url = url.replace('[/photo_ids]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsSetPrimaryPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.setPrimaryPhoto'
@@ -5451,7 +5451,7 @@
 		}
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsCommentsAddComment': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.comments.addComment'
@@ -5488,7 +5488,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/comment_text]') !== -1) url = url.replace('[/comment_text]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsCommentsDeleteComment': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.comments.deleteComment'
@@ -5504,7 +5504,7 @@
 			if (args['comment_id']) delete args['comment_id']
 		}
 		if (url.indexOf('[/comment_id]') !== -1) url = url.replace('[/comment_id]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsCommentsEditComment': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.comments.editComment'
@@ -5531,7 +5531,7 @@
 		}
 		if (url.indexOf('[/comment_id]') !== -1) url = url.replace('[/comment_id]', '')
 		if (url.indexOf('[/comment_text]') !== -1) url = url.replace('[/comment_text]', '')
-		return http({provider:'flickr',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'photosetsCommentsGetList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.photosets.comments.getList'
@@ -5557,7 +5557,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesFind': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.find'
@@ -5583,7 +5583,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesFindByLatLon': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.findByLatLon'
@@ -5630,7 +5630,7 @@
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/lon]') !== -1) url = url.replace('[/lon]', '')
 		if (url.indexOf('[/accuracy]') !== -1) url = url.replace('[/accuracy]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesGetChildrenWithPhotosPublic': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.getChildrenWithPhotosPublic'
@@ -5665,7 +5665,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
 		if (url.indexOf('[/woe_id]') !== -1) url = url.replace('[/woe_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesGetInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.getInfo'
@@ -5700,7 +5700,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
 		if (url.indexOf('[/woe_id]') !== -1) url = url.replace('[/woe_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesGetInfoByUrl': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.getInfoByUrl'
@@ -5726,7 +5726,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesGetPlaceTypes': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.getPlaceTypes'
@@ -5741,7 +5741,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesGetShapeHistory': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.getShapeHistory'
@@ -5776,7 +5776,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
 		if (url.indexOf('[/woe_id]') !== -1) url = url.replace('[/woe_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesGetTopPlacesList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.getTopPlacesList'
@@ -5832,7 +5832,7 @@
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
 		if (url.indexOf('[/woe_id]') !== -1) url = url.replace('[/woe_id]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesPlacesForBoundingBox': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.placesForBoundingBox'
@@ -5878,7 +5878,7 @@
 		if (url.indexOf('[/bbox]') !== -1) url = url.replace('[/bbox]', '')
 		if (url.indexOf('[/place_type_id]') !== -1) url = url.replace('[/place_type_id]', '')
 		if (url.indexOf('[/place_type]') !== -1) url = url.replace('[/place_type]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesPlacesForContacts': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.placesForContacts'
@@ -5993,7 +5993,7 @@
 		if (url.indexOf('[/max_upload_date]') !== -1) url = url.replace('[/max_upload_date]', '')
 		if (url.indexOf('[/min_taken_date]') !== -1) url = url.replace('[/min_taken_date]', '')
 		if (url.indexOf('[/max_taken_date]') !== -1) url = url.replace('[/max_taken_date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'placesPlacesForTags': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.placesForTags'
@@ -6128,7 +6128,7 @@
 		if (url.indexOf('[/max_upload_date]') !== -1) url = url.replace('[/max_upload_date]', '')
 		if (url.indexOf('[/min_taken_date]') !== -1) url = url.replace('[/min_taken_date]', '')
 		if (url.indexOf('[/max_taken_date]') !== -1) url = url.replace('[/max_taken_date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesPlacesForUser': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.placesForUser'
@@ -6233,7 +6233,7 @@
 		if (url.indexOf('[/max_upload_date]') !== -1) url = url.replace('[/max_upload_date]', '')
 		if (url.indexOf('[/min_taken_date]') !== -1) url = url.replace('[/min_taken_date]', '')
 		if (url.indexOf('[/max_taken_date]') !== -1) url = url.replace('[/max_taken_date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'placesResolvePlaceId': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.resolvePlaceId'
@@ -6259,7 +6259,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/place_id]') !== -1) url = url.replace('[/place_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesResolvePlaceURL': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.resolvePlaceURL'
@@ -6285,7 +6285,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'placesTagsForPlace': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.places.tagsForPlace'
@@ -6360,7 +6360,7 @@
 		if (url.indexOf('[/max_upload_date]') !== -1) url = url.replace('[/max_upload_date]', '')
 		if (url.indexOf('[/min_taken_date]') !== -1) url = url.replace('[/min_taken_date]', '')
 		if (url.indexOf('[/max_taken_date]') !== -1) url = url.replace('[/max_taken_date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'prefsGetContentType': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.prefs.getContentType'
@@ -6375,7 +6375,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'prefsGetGeoPerms': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.prefs.getGeoPerms'
@@ -6390,7 +6390,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'prefsGetHidden': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.prefs.getHidden'
@@ -6405,7 +6405,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'prefsGetPrivacy': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.prefs.getPrivacy'
@@ -6420,7 +6420,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'prefsGetSafetyLevel': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.prefs.getSafetyLevel'
@@ -6435,7 +6435,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'reflectionGetMethodInfo': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.reflection.getMethodInfo'
@@ -6461,7 +6461,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/method_name]') !== -1) url = url.replace('[/method_name]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'reflectionGetMethods': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.reflection.getMethods'
@@ -6476,7 +6476,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'statsGetCollectionDomains': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getCollectionDomains'
@@ -6532,7 +6532,7 @@
 		if (url.indexOf('[/collection_id]') !== -1) url = url.replace('[/collection_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetCollectionReferrers': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getCollectionReferrers'
@@ -6599,7 +6599,7 @@
 		if (url.indexOf('[/collection_id]') !== -1) url = url.replace('[/collection_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetCollectionStats': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getCollectionStats'
@@ -6636,7 +6636,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
 		if (url.indexOf('[/collection_id]') !== -1) url = url.replace('[/collection_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotoDomains': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotoDomains'
@@ -6692,7 +6692,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotoReferrers': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotoReferrers'
@@ -6748,7 +6748,7 @@
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotoStats': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotoStats'
@@ -6785,7 +6785,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotosetDomains': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotosetDomains'
@@ -6841,7 +6841,7 @@
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotosetReferrers': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotosetReferrers'
@@ -6897,7 +6897,7 @@
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotosetStats': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotosetStats'
@@ -6934,7 +6934,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
 		if (url.indexOf('[/photoset_id]') !== -1) url = url.replace('[/photoset_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotostreamDomains': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotostreamDomains'
@@ -6980,7 +6980,7 @@
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotostreamReferrers': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotostreamReferrers'
@@ -7026,7 +7026,7 @@
 		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPhotostreamStats': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPhotostreamStats'
@@ -7052,7 +7052,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetPopularPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getPopularPhotos'
@@ -7107,7 +7107,7 @@
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
 		if (url.indexOf('[/per_page]') !== -1) url = url.replace('[/per_page]', '')
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'statsGetTotalViews': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.stats.getTotalViews'
@@ -7132,7 +7132,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'tagsGetClusterPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getClusterPhotos'
@@ -7169,7 +7169,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
 		if (url.indexOf('[/cluster_id]') !== -1) url = url.replace('[/cluster_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'tagsGetClusters': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getClusters'
@@ -7195,7 +7195,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'tagsGetHotList': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getHotList'
@@ -7230,7 +7230,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/period]') !== -1) url = url.replace('[/period]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'tagsGetListPhoto': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getListPhoto'
@@ -7256,7 +7256,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/photo_id]') !== -1) url = url.replace('[/photo_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'tagsGetListUser': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getListUser'
@@ -7281,7 +7281,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'tagsGetListUserPopular': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getListUserPopular'
@@ -7316,7 +7316,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'tagsGetListUserRaw': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getListUserRaw'
@@ -7342,7 +7342,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'tagsGetRelated': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.tags.getRelated'
@@ -7368,7 +7368,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'testEcho': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.test.echo'
@@ -7383,7 +7383,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'testLogin': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.test.login'
@@ -7398,12 +7398,12 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'testNull': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.test.null'
 		args = args || {}
-		return http({provider:'flickr',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'urlsGetGroup': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.urls.getGroup'
@@ -7429,7 +7429,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/group_id]') !== -1) url = url.replace('[/group_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'urlsGetUserPhotos': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.urls.getUserPhotos'
@@ -7454,7 +7454,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'urlsGetUserProfile': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.urls.getUserProfile'
@@ -7479,7 +7479,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'urlsLookupGallery': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.urls.lookupGallery'
@@ -7505,7 +7505,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'urlsLookupGroup': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.urls.lookupGroup'
@@ -7531,7 +7531,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'urlsLookupUser': function(args, opts) {
 		var url = 'http://api.flickr.com/services/rest/?method=flickr.urls.lookupUser'
@@ -7557,6 +7557,6 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'flickr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

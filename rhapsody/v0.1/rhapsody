@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'rhapsody'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'get.artist': function(args, opts) {
 		var url = 'http://feeds.rhapsody.com/{artist}/data.xml'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['artist']) delete args['artist']
 		}
 		if (url.indexOf('[/artist]') !== -1) url = url.replace('[/artist]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'get.album': function(args, opts) {
 		var url = 'http://feeds.rhapsody.com/{artist}/{album}/data.xml'
@@ -41,12 +41,12 @@
 		}
 		if (url.indexOf('[/artist]') !== -1) url = url.replace('[/artist]', '')
 		if (url.indexOf('[/album]') !== -1) url = url.replace('[/album]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'get.all.genres': function(args, opts) {
 		var url = 'http://feeds.rhapsody.com/data.xml'
 		args = args || {}
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'get.genre': function(args, opts) {
 		var url = 'http://feeds.rhapsody.com/{genre}/data.xml'
@@ -62,7 +62,7 @@
 			if (args['genre']) delete args['genre']
 		}
 		if (url.indexOf('[/genre]') !== -1) url = url.replace('[/genre]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'get.subgenre': function(args, opts) {
 		var url = 'http://feeds.rhapsody.com/{genre}/{subgenre}/data.xml'
@@ -89,7 +89,7 @@
 		}
 		if (url.indexOf('[/genre]') !== -1) url = url.replace('[/genre]', '')
 		if (url.indexOf('[/subgenre]') !== -1) url = url.replace('[/subgenre]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'artist.search': function(args, opts) {
 		var url = 'http://realsearch.real.com/search'
@@ -146,7 +146,7 @@
 		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
 		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
 		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'album.search': function(args, opts) {
 		var url = 'http://realsearch.real.com/search'
@@ -203,7 +203,7 @@
 		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
 		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
 		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'keyword.search': function(args, opts) {
 		var url = 'http://realsearch.real.com/search'
@@ -260,7 +260,7 @@
 		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
 		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
 		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'track.search': function(args, opts) {
 		var url = 'http://realsearch.real.com/search'
@@ -317,6 +317,6 @@
 		if (url.indexOf('[/pagination]') !== -1) url = url.replace('[/pagination]', '')
 		if (url.indexOf('[/availability]') !== -1) url = url.replace('[/availability]', '')
 		if (url.indexOf('[/searchtype]') !== -1) url = url.replace('[/searchtype]', '')
-		return http({provider:'rhapsody',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

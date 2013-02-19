@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'rubygems'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getGem': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/{name}.{format}'
 		args = args || {}
@@ -25,7 +25,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'search': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/search.{format}'
@@ -52,7 +52,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGems': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems.{format}'
@@ -68,12 +68,12 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'submitGem': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems'
 		args = args || {}
-		return http({provider:'rubygems',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'removeGem': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/yank'
@@ -110,7 +110,7 @@
 		if (url.indexOf('[/gem_name]') !== -1) url = url.replace('[/gem_name]', '')
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/platform]') !== -1) url = url.replace('[/platform]', '')
-		return http({provider:'rubygems',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'updateGem': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/unyank'
@@ -147,7 +147,7 @@
 		if (url.indexOf('[/gem_name]') !== -1) url = url.replace('[/gem_name]', '')
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/platform]') !== -1) url = url.replace('[/platform]', '')
-		return http({provider:'rubygems',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getLatestGems': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/latest.{format}'
@@ -163,7 +163,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getJustUpdatedGems': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/just_updated.{format}'
@@ -179,7 +179,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGemVersionDetails': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/versions/{name}.{format}'
@@ -206,7 +206,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getTotalGemsDownloads': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/downloads.{format}'
@@ -222,7 +222,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getTodayTopGemVersionsDownloads': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/downloads/top.{format}'
@@ -238,7 +238,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getTopGemVersionsDownloads': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/downloads/all.{format}'
@@ -254,7 +254,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGemDownloads': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/downloads/{name}-{version}.{format}'
@@ -292,7 +292,7 @@
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getDailyGemDownloads': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/versions/{name}-{version}/downloads.{format}'
@@ -330,7 +330,7 @@
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/version]') !== -1) url = url.replace('[/version]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getDailyGemDownloadsWithinRange': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/versions/{name}-{version}/downloads/search.{format}'
@@ -390,7 +390,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/from]') !== -1) url = url.replace('[/from]', '')
 		if (url.indexOf('[/to]') !== -1) url = url.replace('[/to]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGemOwners': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/{name}/owners.{format}'
@@ -417,7 +417,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'addGemOwner': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/{name}/owners'
@@ -444,7 +444,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		return http({provider:'rubygems',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'removeGemOwner': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/gems/{name}/owners'
@@ -471,7 +471,7 @@
 		}
 		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
 		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		return http({provider:'rubygems',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getWebHooks': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/web_hooks.{format}'
@@ -487,7 +487,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createWebHook': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/web_hooks'
@@ -514,7 +514,7 @@
 		}
 		if (url.indexOf('[/gem_name]') !== -1) url = url.replace('[/gem_name]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'rubygems',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'removeWebHook': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/web_hooks/remove'
@@ -541,7 +541,7 @@
 		}
 		if (url.indexOf('[/gem_name]') !== -1) url = url.replace('[/gem_name]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'rubygems',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'testFireWebHook': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/web_hooks/fire'
@@ -568,7 +568,7 @@
 		}
 		if (url.indexOf('[/gem_name]') !== -1) url = url.replace('[/gem_name]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'rubygems',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getApiKey': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/api_key.{format}'
@@ -584,7 +584,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGemsDependencies': function(args, opts) {
 		var url = 'https://rubygems.org/api/v1/dependencies'
@@ -600,6 +600,6 @@
 			if (args['gems']) delete args['gems']
 		}
 		if (url.indexOf('[/gems]') !== -1) url = url.replace('[/gems]', '')
-		return http({provider:'rubygems',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

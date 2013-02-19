@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'tumblr'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'blogInfo': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/info'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['base-hostname']) delete args['base-hostname']
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'avatar': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/avatar[/size]'
@@ -40,7 +40,7 @@
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/size]') !== -1) url = url.replace('[/size]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'followers': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/followers'
@@ -76,7 +76,7 @@
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'getPosts': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/posts[/type]'
@@ -172,7 +172,7 @@
 		if (url.indexOf('[/reblog_info]') !== -1) url = url.replace('[/reblog_info]', '')
 		if (url.indexOf('[/notes_info]') !== -1) url = url.replace('[/notes_info]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'manual'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
 	'queuedPosts': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/posts/queue'
@@ -218,7 +218,7 @@
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'draftPosts': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/posts/draft'
@@ -244,7 +244,7 @@
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'draftPosts': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/posts/submission'
@@ -280,7 +280,7 @@
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'postText': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -388,7 +388,7 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postPhoto': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -517,7 +517,7 @@
 		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postQuote': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -625,7 +625,7 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/quote]') !== -1) url = url.replace('[/quote]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postLink': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -743,7 +743,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postChat': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -851,7 +851,7 @@
 		if (url.indexOf('[/slug]') !== -1) url = url.replace('[/slug]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/conversation]') !== -1) url = url.replace('[/conversation]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postAudio': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -970,7 +970,7 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/external_url]') !== -1) url = url.replace('[/external_url]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'postVideo': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post'
@@ -1089,7 +1089,7 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/embed]') !== -1) url = url.replace('[/embed]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostText': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1208,7 +1208,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostPhoto': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1348,7 +1348,7 @@
 		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostQuote': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1467,7 +1467,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/quote]') !== -1) url = url.replace('[/quote]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostLink': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1596,7 +1596,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostChat': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1715,7 +1715,7 @@
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/conversation]') !== -1) url = url.replace('[/conversation]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostAudio': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1845,7 +1845,7 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/external_url]') !== -1) url = url.replace('[/external_url]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'editPostVideo': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/edit'
@@ -1975,7 +1975,7 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/embed]') !== -1) url = url.replace('[/embed]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostText': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -2115,7 +2115,7 @@
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/body]') !== -1) url = url.replace('[/body]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostPhoto': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -2276,7 +2276,7 @@
 		if (url.indexOf('[/link]') !== -1) url = url.replace('[/link]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostQuote': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -2416,7 +2416,7 @@
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
 		if (url.indexOf('[/quote]') !== -1) url = url.replace('[/quote]', '')
 		if (url.indexOf('[/source]') !== -1) url = url.replace('[/source]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostLink': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -2566,7 +2566,7 @@
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
 		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostChat': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -2706,7 +2706,7 @@
 		if (url.indexOf('[/comment]') !== -1) url = url.replace('[/comment]', '')
 		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
 		if (url.indexOf('[/conversation]') !== -1) url = url.replace('[/conversation]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostAudio': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -2857,7 +2857,7 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/external_url]') !== -1) url = url.replace('[/external_url]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'reblogPostVideo': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/reblog'
@@ -3008,7 +3008,7 @@
 		if (url.indexOf('[/caption]') !== -1) url = url.replace('[/caption]', '')
 		if (url.indexOf('[/embed]') !== -1) url = url.replace('[/embed]', '')
 		if (url.indexOf('[/data]') !== -1) url = url.replace('[/data]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'deletePost': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/blog/{base-hostname}/post/delete'
@@ -3035,12 +3035,12 @@
 		}
 		if (url.indexOf('[/base-hostname]') !== -1) url = url.replace('[/base-hostname]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userInfo': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/info'
 		args = args || {}
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userDashboard': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/dashboard'
@@ -3105,7 +3105,7 @@
 		if (url.indexOf('[/since_id]') !== -1) url = url.replace('[/since_id]', '')
 		if (url.indexOf('[/reblog_info]') !== -1) url = url.replace('[/reblog_info]', '')
 		if (url.indexOf('[/notes_info]') !== -1) url = url.replace('[/notes_info]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userLikes': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/likes'
@@ -3130,7 +3130,7 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userFollowing': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/following'
@@ -3155,7 +3155,7 @@
 		}
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'tumblr',url:url,method:'GET',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'oauth1'}, opts)
 	},
 	'userFollow': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/follow'
@@ -3171,7 +3171,7 @@
 			if (args['url']) delete args['url']
 		}
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userUnfollow': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/unfollow'
@@ -3187,7 +3187,7 @@
 			if (args['url']) delete args['url']
 		}
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userLike': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/like'
@@ -3214,7 +3214,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/reblog_key]') !== -1) url = url.replace('[/reblog_key]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userUnlike': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/user/unlike'
@@ -3241,7 +3241,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/reblog_key]') !== -1) url = url.replace('[/reblog_key]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	},
 	'userUnlike': function(args, opts) {
 		var url = 'http://api.tumblr.com/v2/tagged'
@@ -3300,6 +3300,6 @@
 		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		return http({provider:'tumblr',url:url,method:'POST',params:args, auth:'oauth1'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'oauth1'}, opts)
 	}
 })

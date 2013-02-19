@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'urbanairship'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'registerDeviceTokens': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/{token}'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['token']) delete args['token']
 		}
 		if (url.indexOf('[/token]') !== -1) url = url.replace('[/token]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getDeviceToken': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/{token}'
@@ -30,7 +30,7 @@
 			if (args['token']) delete args['token']
 		}
 		if (url.indexOf('[/token]') !== -1) url = url.replace('[/token]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'disableDeviceToken': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/{token}'
@@ -46,7 +46,7 @@
 			if (args['token']) delete args['token']
 		}
 		if (url.indexOf('[/token]') !== -1) url = url.replace('[/token]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'pushNotification': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push'
@@ -62,7 +62,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'cancelScheduledNotification': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/scheduled/{notification}'
@@ -78,7 +78,7 @@
 			if (args['notification']) delete args['notification']
 		}
 		if (url.indexOf('[/notification]') !== -1) url = url.replace('[/notification]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'bulkDeleteScheduledNotifications': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/scheduled'
@@ -94,7 +94,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'changeScheduledNotificationAlias': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/scheduled/alias/{alias}'
@@ -121,7 +121,7 @@
 		}
 		if (url.indexOf('[/alias]') !== -1) url = url.replace('[/alias]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'removeScheduledNotificationAlias': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/scheduled/alias/{alias}'
@@ -137,7 +137,7 @@
 			if (args['alias']) delete args['alias']
 		}
 		if (url.indexOf('[/alias]') !== -1) url = url.replace('[/alias]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'pushNotificationBatch': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/batch'
@@ -153,7 +153,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'broadcastNotification': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/broadcast'
@@ -169,7 +169,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getHourlyMessageCounts': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/stats'
@@ -206,7 +206,7 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/end]') !== -1) url = url.replace('[/end]', '')
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'listDeviceTokens': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens'
@@ -231,12 +231,12 @@
 		}
 		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'countDeviceTokens': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/count'
 		args = args || {}
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'listInvalidDeviceTokens': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/feedback'
@@ -252,7 +252,7 @@
 			if (args['since']) delete args['since']
 		}
 		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'registerApid': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/apids/{apid}'
@@ -279,7 +279,7 @@
 		}
 		if (url.indexOf('[/apid]') !== -1) url = url.replace('[/apid]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getApid': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/apids/{apid}'
@@ -295,7 +295,7 @@
 			if (args['apid']) delete args['apid']
 		}
 		if (url.indexOf('[/apid]') !== -1) url = url.replace('[/apid]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'invalidateApid': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/apids/{apid}'
@@ -311,7 +311,7 @@
 			if (args['apid']) delete args['apid']
 		}
 		if (url.indexOf('[/apid]') !== -1) url = url.replace('[/apid]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'pushAndroidMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push'
@@ -327,7 +327,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'pushAndroidMessageBatch': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/batch'
@@ -343,7 +343,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'broadcastAndroidMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/broadcast'
@@ -359,7 +359,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'listApids': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/apids'
@@ -384,7 +384,7 @@
 		}
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'registerPin': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_pins/{pin}'
@@ -411,7 +411,7 @@
 		}
 		if (url.indexOf('[/pin]') !== -1) url = url.replace('[/pin]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getDevicePin': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_pins/{pin}'
@@ -427,7 +427,7 @@
 			if (args['pin']) delete args['pin']
 		}
 		if (url.indexOf('[/pin]') !== -1) url = url.replace('[/pin]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'disablePin': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_pins/{pin}'
@@ -443,7 +443,7 @@
 			if (args['pin']) delete args['pin']
 		}
 		if (url.indexOf('[/pin]') !== -1) url = url.replace('[/pin]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'pushBlackberryMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push'
@@ -459,7 +459,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'pushBlackberryMessageBatch': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/push/batch'
@@ -475,7 +475,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'createUser': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user'
@@ -491,7 +491,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'modifyUser': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}'
@@ -518,7 +518,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteUser': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}'
@@ -534,7 +534,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'resetUserCredentials': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/creds/reset'
@@ -550,7 +550,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'sendUserMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/airmail/send'
@@ -566,7 +566,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'broadcastBlackberryMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/airmail/send/broadcast'
@@ -582,7 +582,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'listUserMessages': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages'
@@ -618,7 +618,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/full_list]') !== -1) url = url.replace('[/full_list]', '')
 		if (url.indexOf('[/since]') !== -1) url = url.replace('[/since]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'listUserUnreadMessages': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/unread'
@@ -634,7 +634,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'markUserUnreadMessagesAsRead': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/unread'
@@ -661,7 +661,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getUserMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/message/{message_id}'
@@ -688,7 +688,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/message_id]') !== -1) url = url.replace('[/message_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'deleteUserMessage': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/message/{message_id}'
@@ -715,7 +715,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/message_id]') !== -1) url = url.replace('[/message_id]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'getUserMessageBody': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/message/{message_id}/body'
@@ -742,7 +742,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/message_id]') !== -1) url = url.replace('[/message_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'markUserMessageAsRead': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/message/{message_id}/read'
@@ -769,7 +769,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/message_id]') !== -1) url = url.replace('[/message_id]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'deleteUserMessages': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/messages/delete'
@@ -796,12 +796,12 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getStoreInventory': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/app/content'
 		args = args || {}
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'downloadFreeContent': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/app/content/{product_id}/download'
@@ -817,7 +817,7 @@
 			if (args['product_id']) delete args['product_id']
 		}
 		if (url.indexOf('[/product_id]') !== -1) url = url.replace('[/product_id]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'downloadPaidContent': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/app/content/{product_id}/download'
@@ -844,7 +844,7 @@
 		}
 		if (url.indexOf('[/product_id]') !== -1) url = url.replace('[/product_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'checkForUpdates': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/app/updates'
@@ -871,7 +871,7 @@
 		}
 		if (url.indexOf('[/product_id]') !== -1) url = url.replace('[/product_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'createSubscriptionUser': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user'
@@ -887,7 +887,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getUserSubscriptionInfo': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}'
@@ -903,7 +903,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'modifySubscriptionUser': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}'
@@ -930,7 +930,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteSubscriptionUser': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}'
@@ -946,7 +946,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'resetCredentials': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/creds/reset'
@@ -973,7 +973,7 @@
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'recoverAccount': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/recover'
@@ -989,7 +989,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'checkRecoveryStatus': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/recover/{id}'
@@ -1005,7 +1005,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'retrieveSubscriptionOptions': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/available_subscriptions'
@@ -1021,7 +1021,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addSubscription': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/subscriptions/{subscription_key}/purchase'
@@ -1059,7 +1059,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/subscription_key]') !== -1) url = url.replace('[/subscription_key]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'listAvailableContent': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/subscription_content'
@@ -1075,7 +1075,7 @@
 			if (args['user_id']) delete args['user_id']
 		}
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'downloadContent': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/user/{user_id}/subscriptions/content/{content_id}/download'
@@ -1113,7 +1113,7 @@
 		if (url.indexOf('[/user_id]') !== -1) url = url.replace('[/user_id]', '')
 		if (url.indexOf('[/content_id]') !== -1) url = url.replace('[/content_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'createFeedItem': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/feeds'
@@ -1129,12 +1129,12 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'listFeeds': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/feeds'
 		args = args || {}
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getFeed': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/feeds/{feed_id}'
@@ -1150,7 +1150,7 @@
 			if (args['feed_id']) delete args['feed_id']
 		}
 		if (url.indexOf('[/feed_id]') !== -1) url = url.replace('[/feed_id]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'updateFeed': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/feeds/{feed_id}'
@@ -1177,7 +1177,7 @@
 		}
 		if (url.indexOf('[/feed_id]') !== -1) url = url.replace('[/feed_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteFeed': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/feeds/{feed_id}'
@@ -1193,12 +1193,12 @@
 			if (args['feed_id']) delete args['feed_id']
 		}
 		if (url.indexOf('[/feed_id]') !== -1) url = url.replace('[/feed_id]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listTags': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/tags'
 		args = args || {}
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addTag': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/tags/{tag}'
@@ -1214,7 +1214,7 @@
 			if (args['tag']) delete args['tag']
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteTag': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/tags/{tag}'
@@ -1230,7 +1230,7 @@
 			if (args['tag']) delete args['tag']
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'modifyTagDeviceTokens': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/tags/{tag}'
@@ -1257,7 +1257,7 @@
 		}
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'listDeviceTokenTags': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/{device_token}/tags'
@@ -1273,7 +1273,7 @@
 			if (args['device_token']) delete args['device_token']
 		}
 		if (url.indexOf('[/device_token]') !== -1) url = url.replace('[/device_token]', '')
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'addDeviceTokenTag': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/{device_token}/tags/{tag}'
@@ -1300,7 +1300,7 @@
 		}
 		if (url.indexOf('[/device_token]') !== -1) url = url.replace('[/device_token]', '')
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'deleteDeviceTokenTag': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/device_tokens/{device_token}/tags/{tag}'
@@ -1327,12 +1327,12 @@
 		}
 		if (url.indexOf('[/device_token]') !== -1) url = url.replace('[/device_token]', '')
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
-		return http({provider:'urbanairship',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'listApplications': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/partner/apps'
 		args = args || {}
-		return http({provider:'urbanairship',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'createApplication': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/partner/apps'
@@ -1348,7 +1348,7 @@
 			if (args['Content-Type']) delete args['Content-Type']
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'updateApplication': function(args, opts) {
 		var url = 'https://go.urbanairship.com/api/partner/apps/{app_id}'
@@ -1375,6 +1375,6 @@
 		}
 		if (url.indexOf('[/app_id]') !== -1) url = url.replace('[/app_id]', '')
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:'urbanairship',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	}
 })

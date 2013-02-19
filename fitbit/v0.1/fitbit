@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'fitbit'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'get-user-info': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/profile.{format}'
 		args = args || {}
@@ -25,7 +25,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'update-user-info': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/profile.{format}?gender=FEMALE&birthday=1980-02-01&height=176&nickname=Me&fullname=TestUser'
@@ -41,7 +41,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'get-body-measurements': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/body/date/{date}.{format}'
@@ -79,7 +79,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-body-weight': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/weight/date/{date}.{format}'
@@ -106,7 +106,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-body-fat': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/fat/date/{date}.{format}'
@@ -133,7 +133,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-activities': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/activities/date/{date}.{format}'
@@ -171,7 +171,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-foods': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/foods/log/date/{date}.{format}'
@@ -209,7 +209,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-sleep': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/sleep/date/{date}.{format}'
@@ -247,7 +247,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-heart-rate': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/heart/date/{date}.{format}'
@@ -274,7 +274,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-blood-pressure': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/bp/date/{date}.{format}'
@@ -301,7 +301,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-glucose': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/glucose/date/{date}.{format}'
@@ -328,7 +328,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-friends': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/friends.{format}'
@@ -355,7 +355,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-friends-leaderboard': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/friends/leaderboard.{format}'
@@ -371,7 +371,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'log-activity': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities.{format}?activityId=90009&startTime=12:20&durationMillis=600000&date=2011-07-11&distance=1.5'
@@ -387,7 +387,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-food': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log.{format}?foodId=30414&mealTypeId=1&unitId=147&amount=1&date=2011-07-06'
@@ -403,7 +403,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-sleep': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/sleep.{format}?startTime=08:20&duration=24000000&date=2011-07-06'
@@ -419,7 +419,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-heart-rate': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/heart.{format}?tracker=Running&heartRate=80&date=2011-07-06'
@@ -435,7 +435,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-blood-pressure': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/bp.{format}?systolic=120&diastolic=80&date=2011-07-06'
@@ -451,7 +451,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-glucose': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/glucose.{format}?hba1c=4.5&tracker=Afternoon&glucose=3&time=12:30&date=2011-07-06'
@@ -467,7 +467,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'delete-food-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/{food-log-id}.{format}'
@@ -494,7 +494,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/food-log-id]') !== -1) url = url.replace('[/food-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'delete-activity-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/{activity-log-id}.{format}'
@@ -521,7 +521,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/activity-log-id]') !== -1) url = url.replace('[/activity-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-activity-stats': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities.{format}'
@@ -537,7 +537,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-badges': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/badges.{format}'
@@ -564,7 +564,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'delete-sleep-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/sleep/{sleep-log-id}.{format}'
@@ -591,7 +591,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/sleep-log-id]') !== -1) url = url.replace('[/sleep-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'delete-heart-rate-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/heart/{heart-log-id}.{format}'
@@ -618,7 +618,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/heart-log-id]') !== -1) url = url.replace('[/heart-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'delete-blood-pressure-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/bp/{bp-log-id}.{format}'
@@ -645,7 +645,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/bp-log-id]') !== -1) url = url.replace('[/bp-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-time-series-activities': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/activities/calories/date/{start-date-or-end-date}/{end-date-or-period}.{format}'
@@ -694,7 +694,7 @@
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/start-date-or-end-date]') !== -1) url = url.replace('[/start-date-or-end-date]', '')
 		if (url.indexOf('[/end-date-or-period]') !== -1) url = url.replace('[/end-date-or-period]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-badges-weight': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/badges.{format}'
@@ -721,7 +721,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-time-series-body': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/body/weight/date/{start-date-or-end-date}/{end-date-or-period}.{format}'
@@ -770,7 +770,7 @@
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/start-date-or-end-date]') !== -1) url = url.replace('[/start-date-or-end-date]', '')
 		if (url.indexOf('[/end-date-or-period]') !== -1) url = url.replace('[/end-date-or-period]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'log-body-measurements': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body.{format}?date=2011-10-27&weight=150&fat=14.4'
@@ -786,7 +786,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-body-weight': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/weight.{format}?date=2012-04-14&weight=150&time=12:20:00'
@@ -802,7 +802,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'log-body-fat': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/fat.{format}?date=2012-04-14&fat=10.5&time=12:20:00'
@@ -818,7 +818,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'delete-body-weight-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/fat/{body-weight-log-id}.{format}'
@@ -845,7 +845,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/body-weight-log-id]') !== -1) url = url.replace('[/body-weight-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'delete-body-fat-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/fat/{body-fat-log-id}.{format}'
@@ -872,7 +872,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/body-fat-log-id]') !== -1) url = url.replace('[/body-fat-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-body-weight-goal': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/weight/goal.{format}'
@@ -888,7 +888,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'update-weight-goal': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/weight/goal.{format}?startDate=2012-06-15&startWeight=75&weight=70'
@@ -904,7 +904,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'get-body-fat-goal': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/fat/goal.{format}'
@@ -920,7 +920,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'update-fat-goal': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/body/log/fat/goal.{format}?fat=20'
@@ -936,7 +936,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'get-time-series-foods': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/foods/log/caloriesIn/date/{start-date-or-end-date}/{end-date-or-period}.{format}'
@@ -985,7 +985,7 @@
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/start-date-or-end-date]') !== -1) url = url.replace('[/start-date-or-end-date]', '')
 		if (url.indexOf('[/end-date-or-period]') !== -1) url = url.replace('[/end-date-or-period]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-time-series-sleep': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/{user-id}/sleep/minutesAsleep/date/{start-date-or-end-date}/{end-date-or-period}.{format}'
@@ -1034,7 +1034,7 @@
 		if (url.indexOf('[/user-id]') !== -1) url = url.replace('[/user-id]', '')
 		if (url.indexOf('[/start-date-or-end-date]') !== -1) url = url.replace('[/start-date-or-end-date]', '')
 		if (url.indexOf('[/end-date-or-period]') !== -1) url = url.replace('[/end-date-or-period]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-recent-activities': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/recent.{format}'
@@ -1050,7 +1050,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-frequent-activities': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/frequent.{format}'
@@ -1066,7 +1066,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-favorite-activities': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/favorite.{format}'
@@ -1082,7 +1082,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-recent-foods': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/recent.{format}'
@@ -1098,7 +1098,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-frequent-foods': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/frequent.{format}'
@@ -1114,7 +1114,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-favorite-foods': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/favorite.{format}'
@@ -1130,7 +1130,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'add-favorite-activity': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/log/favorite/{id}.{format}'
@@ -1157,7 +1157,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'delete-favorite-activity': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/log/favorite/{id}.{format}'
@@ -1184,7 +1184,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-activity-daily-goals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/goals/daily.{format}'
@@ -1200,7 +1200,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-activity-weekly-goals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/goals/weekly.{format}'
@@ -1216,7 +1216,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'update-activity-daily-goals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/goals/daily.{format}?type={type}&value={value}'
@@ -1254,7 +1254,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/value]') !== -1) url = url.replace('[/value]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'update-activity-weekly-goals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/activities/goals/weekly.{format}?type={type}&value={value}'
@@ -1292,7 +1292,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
 		if (url.indexOf('[/value]') !== -1) url = url.replace('[/value]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'add-favorite-food': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/favorite/{id}.{format}'
@@ -1319,7 +1319,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'delete-favorite-food': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/favorite/{id}.{format}'
@@ -1346,7 +1346,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-water': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/water/date/{date}.{format}'
@@ -1373,7 +1373,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/date]') !== -1) url = url.replace('[/date]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'log-water': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/water.{format}?amount=300&date=2011-07-06'
@@ -1389,7 +1389,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'delete-water-log': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/water/{water-log-id}.{format}'
@@ -1416,7 +1416,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/water-log-id]') !== -1) url = url.replace('[/water-log-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'create-food': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/foods.{format}?name=Icecream,big&defaultFoodMeasurementUnitId=147&defaultServingSize=1&calories=500'
@@ -1432,7 +1432,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'get-meals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/meals.{format}'
@@ -1448,7 +1448,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-food-goals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/goal.{format}'
@@ -1464,7 +1464,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'update-food-goals': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/foods/log/goal.{format}?intensity=MEDIUM'
@@ -1480,7 +1480,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'get-devices': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/devices.{format}'
@@ -1496,7 +1496,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'browse-activities': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/activities.{format}'
@@ -1512,7 +1512,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-activity': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/activities/{id}.{format}'
@@ -1539,7 +1539,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'search-foods': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/foods/search.{format}?query={query}'
@@ -1566,7 +1566,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-food': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/foods/{food-id}.{format}'
@@ -1593,7 +1593,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/food-id]') !== -1) url = url.replace('[/food-id]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-food-units': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/foods/units.{format}'
@@ -1609,7 +1609,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-invites': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/friends/invitations.{format}'
@@ -1625,7 +1625,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'create-invite': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/friends/invitations.{format}?invitedUserEmail={invitedUserEmail}'
@@ -1652,7 +1652,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/invitedUserEmail]') !== -1) url = url.replace('[/invitedUserEmail]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'accept-invite': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-/friends/invitations/{from-user-id}.{format}?accept={accept}'
@@ -1690,7 +1690,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/from-user-id]') !== -1) url = url.replace('[/from-user-id]', '')
 		if (url.indexOf('[/accept]') !== -1) url = url.replace('[/accept]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'add-subscription': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-{collection-path}apiSubscriptions/{subscription-id}.{format}'
@@ -1728,7 +1728,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/collection-path]') !== -1) url = url.replace('[/collection-path]', '')
 		if (url.indexOf('[/subscription-id]') !== -1) url = url.replace('[/subscription-id]', '')
-		return http({provider:'fitbit',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'remove-subscription': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-{collection-path}apiSubscriptions/{subscription-id}.{format}'
@@ -1766,7 +1766,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/collection-path]') !== -1) url = url.replace('[/collection-path]', '')
 		if (url.indexOf('[/subscription-id]') !== -1) url = url.replace('[/subscription-id]', '')
-		return http({provider:'fitbit',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-subscriptions': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/user/-{collection-path}apiSubscriptions.{format}'
@@ -1793,7 +1793,7 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/collection-path]') !== -1) url = url.replace('[/collection-path]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'client-viewer-ratelimiting': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/account/clientAndViewerRateLimitStatus.{format}'
@@ -1809,7 +1809,7 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'client-ratelimiting': function(args, opts) {
 		var url = 'http://api.fitbit.com/1/account/clientRateLimitStatus.{format}'
@@ -1825,6 +1825,6 @@
 			if (args['format']) delete args['format']
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:'fitbit',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

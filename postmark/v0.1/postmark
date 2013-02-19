@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'postmark'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'sendEmail': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/email'
 		args = args || {}
@@ -25,7 +25,7 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'sendEmailBatch': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/email/batch'
@@ -52,7 +52,7 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'getDeliveryStats': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/deliverystats'
@@ -79,7 +79,7 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBounces': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/bounces'
@@ -168,7 +168,7 @@
 		if (url.indexOf('[/tag]') !== -1) url = url.replace('[/tag]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/offset]') !== -1) url = url.replace('[/offset]', '')
-		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBounce': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/bounces/{bounceID}'
@@ -206,7 +206,7 @@
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/bounceID]') !== -1) url = url.replace('[/bounceID]', '')
-		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBounceDump': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/bounces/{bounceID}/dump'
@@ -244,7 +244,7 @@
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/bounceID]') !== -1) url = url.replace('[/bounceID]', '')
-		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getBouncesTags': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/bounces/tags'
@@ -271,7 +271,7 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'activateBounce': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/bounces/{bounceID}/activate'
@@ -309,7 +309,7 @@
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
 		if (url.indexOf('[/bounceID]') !== -1) url = url.replace('[/bounceID]', '')
-		return http({provider:'postmark',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'getServerSettings': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/server'
@@ -336,7 +336,7 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'setServerSettings': function(args, opts) {
 		var url = 'https://api.postmarkapp.com/server'
@@ -363,7 +363,7 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'filterSpam': function(args, opts) {
 		var url = 'http://spamcheck.postmarkapp.com/filter'
@@ -390,6 +390,6 @@
 		}
 		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
 		if (url.indexOf('[/Accept]') !== -1) url = url.replace('[/Accept]', '')
-		return http({provider:'postmark',url:url,method:'POST',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
 	}
 })

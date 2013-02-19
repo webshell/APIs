@@ -1,9 +1,9 @@
 ({
-	auth:function(){return auth({provider:'linkedin'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'profile': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'profileGet': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/'
@@ -28,7 +28,7 @@
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
 		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'people_search': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people-search'
@@ -203,7 +203,7 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'connection': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/connections'
@@ -248,7 +248,7 @@
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/modified]') !== -1) url = url.replace('[/modified]', '')
 		if (url.indexOf('[/modified-since]') !== -1) url = url.replace('[/modified-since]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'connection_id': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/id={userID}/connections'
@@ -303,7 +303,7 @@
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/modified]') !== -1) url = url.replace('[/modified]', '')
 		if (url.indexOf('[/modified-since]') !== -1) url = url.replace('[/modified-since]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'connection_url': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/url={url}/connections'
@@ -358,7 +358,7 @@
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/modified]') !== -1) url = url.replace('[/modified]', '')
 		if (url.indexOf('[/modified-since]') !== -1) url = url.replace('[/modified-since]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'join-group': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/{id}'
@@ -374,7 +374,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'leave-group': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/{id}'
@@ -390,22 +390,22 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'get-groups': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/group-memberships'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get-suggested-groups': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/suggestions/groups'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'group-settings': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/group-memberships/settings'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'group-posts': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/groups/{id}/posts'
@@ -421,7 +421,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'create-group-post': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/groups/{id}/posts'
@@ -437,7 +437,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'like-group-post': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/posts/{id}/relation-to-viewer/is-liked'
@@ -453,7 +453,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'comment-on-group-post': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/posts/{id}/comments'
@@ -469,7 +469,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'get_company': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/companies'
@@ -494,7 +494,7 @@
 		}
 		if (url.indexOf('[/universal-name]') !== -1) url = url.replace('[/universal-name]', '')
 		if (url.indexOf('[/email-domain]') !== -1) url = url.replace('[/email-domain]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get_company_by_id': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/companies/{id}'
@@ -510,7 +510,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'company-search': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/company-search'
@@ -585,7 +585,7 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'updates_companies': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/companies/{id}/updates'
@@ -631,27 +631,27 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/event-type]') !== -1) url = url.replace('[/event-type]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'followed-companies': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'recommended-companies': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/suggestions/to-follow/companies'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'follow-company': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'unfollow-company': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/following/companies'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'product-company': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/companies/{id}/products'
@@ -667,7 +667,7 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'job-details': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/jobs/{id}'
@@ -683,17 +683,17 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'bookmark-jobs': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-bookmarks'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'bookmarking-job': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-bookmarks'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'remove-bookmark-job': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-bookmarks/{id}'
@@ -709,12 +709,12 @@
 			if (args['id']) delete args['id']
 		}
 		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'recommended-jobs': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/suggestions/job-suggestions'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'job-search': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/job-search'
@@ -829,12 +829,12 @@
 		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'posting-job': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/jobs'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'editing-job': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/jobs/'
@@ -850,7 +850,7 @@
 			if (args['partner-job-id']) delete args['partner-job-id']
 		}
 		if (url.indexOf('[/partner-job-id]') !== -1) url = url.replace('[/partner-job-id]', '')
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'renewing-job': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/jobs/'
@@ -866,7 +866,7 @@
 			if (args['partner-job-id']) delete args['partner-job-id']
 		}
 		if (url.indexOf('[/partner-job-id]') !== -1) url = url.replace('[/partner-job-id]', '')
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'closing-job': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/jobs/'
@@ -882,12 +882,12 @@
 			if (args['partner-job-id']) delete args['partner-job-id']
 		}
 		if (url.indexOf('[/partner-job-id]') !== -1) url = url.replace('[/partner-job-id]', '')
-		return http({provider:'linkedin',url:url,method:'DELETE',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'DELETE',params:args}, opts)
 	},
 	'shares': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/shares'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'shares': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/updates'
@@ -962,7 +962,7 @@
 		if (url.indexOf('[/after]') !== -1) url = url.replace('[/after]', '')
 		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
 		if (url.indexOf('[/show-hidden-members]') !== -1) url = url.replace('[/show-hidden-members]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'shares_by_id': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/id={id}/network/updates'
@@ -1047,12 +1047,12 @@
 		if (url.indexOf('[/after]') !== -1) url = url.replace('[/after]', '')
 		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
 		if (url.indexOf('[/show-hidden-members]') !== -1) url = url.replace('[/show-hidden-members]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'network-stats': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/network-stats'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get_update_comments': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/update-comments'
@@ -1068,7 +1068,7 @@
 			if (args['network_update_key']) delete args['network_update_key']
 		}
 		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'get_update_likes': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/likes'
@@ -1084,7 +1084,7 @@
 			if (args['network_update_key']) delete args['network_update_key']
 		}
 		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
-		return http({provider:'linkedin',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'post_update_comments': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/update-comments'
@@ -1100,7 +1100,7 @@
 			if (args['network_update_key']) delete args['network_update_key']
 		}
 		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'post_update_likes': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/network/updates/key={network_update_key}/is-liked'
@@ -1116,21 +1116,21 @@
 			if (args['network_update_key']) delete args['network_update_key']
 		}
 		if (url.indexOf('[/network_update_key]') !== -1) url = url.replace('[/network_update_key]', '')
-		return http({provider:'linkedin',url:url,method:'PUT',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'PUT',params:args}, opts)
 	},
 	'post_network_update': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/person-activities'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'messaging': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/mailbox'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	},
 	'invitation': function(args, opts) {
 		var url = 'http://api.linkedin.com/v1/people/~/mailbox'
 		args = args || {}
-		return http({provider:'linkedin',url:url,method:'POST',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
 	}
 })

@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'pagespeed'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'run': function(args, opts) {
 		var url = 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed'
 		args = args || {}
@@ -74,6 +74,6 @@
 		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
 		if (url.indexOf('[/prettyPrint]') !== -1) url = url.replace('[/prettyPrint]', '')
 		if (url.indexOf('[/userIp]') !== -1) url = url.replace('[/userIp]', '')
-		return http({provider:'pagespeed',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

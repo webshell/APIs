@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'groupon'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getApiVersion': function(args, opts) {
 		var url = 'https://api.groupon.com//status.{format}'
 		args = args || {}
@@ -44,7 +44,7 @@
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/device_id]') !== -1) url = url.replace('[/device_id]', '')
 		if (url.indexOf('[/user_agent]') !== -1) url = url.replace('[/user_agent]', '')
-		return http({provider:'groupon',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getDivisions': function(args, opts) {
 		var url = 'https://api.groupon.com//divisions.{format}'
@@ -82,7 +82,7 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/show]') !== -1) url = url.replace('[/show]', '')
-		return http({provider:'groupon',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getRecentCommentaries': function(args, opts) {
 		var url = 'https://api.groupon.com//groupon_says.{format}'
@@ -130,7 +130,7 @@
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
 		if (url.indexOf('[/random]') !== -1) url = url.replace('[/random]', '')
-		return http({provider:'groupon',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getDeal': function(args, opts) {
 		var url = 'https://api.groupon.com//deals/{id}.{format}'
@@ -209,7 +209,7 @@
 		if (url.indexOf('[/email_address]') !== -1) url = url.replace('[/email_address]', '')
 		if (url.indexOf('[/area]') !== -1) url = url.replace('[/area]', '')
 		if (url.indexOf('[/referral_id]') !== -1) url = url.replace('[/referral_id]', '')
-		return http({provider:'groupon',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getDeals': function(args, opts) {
 		var url = 'https://api.groupon.com//deals.{format}'
@@ -337,7 +337,7 @@
 		if (url.indexOf('[/device_token]') !== -1) url = url.replace('[/device_token]', '')
 		if (url.indexOf('[/subscriber_id ]') !== -1) url = url.replace('[/subscriber_id ]', '')
 		if (url.indexOf('[/affiliate]') !== -1) url = url.replace('[/affiliate]', '')
-		return http({provider:'groupon',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'getListedDealPosts': function(args, opts) {
 		var url = 'https://api.groupon.com//deals/{deal_id}/posts.{format}'
@@ -375,6 +375,6 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/client_id]') !== -1) url = url.replace('[/client_id]', '')
 		if (url.indexOf('[/deal_id]') !== -1) url = url.replace('[/deal_id]', '')
-		return http({provider:'groupon',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })

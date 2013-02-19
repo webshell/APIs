@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'wow'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'getCharacter': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/character/{realm}/{characterName}'
 		args = args || {}
@@ -35,7 +35,7 @@
 		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
 		if (url.indexOf('[/characterName]') !== -1) url = url.replace('[/characterName]', '')
 		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGuild': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/guild/{realm}/{guildName}'
@@ -72,12 +72,12 @@
 		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
 		if (url.indexOf('[/guildName]') !== -1) url = url.replace('[/guildName]', '')
 		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getRealmsStatus': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/realm/status'
 		args = args || {}
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getRealmAuctions': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/auction/data/{realm}'
@@ -93,7 +93,7 @@
 			if (args['realm']) delete args['realm']
 		}
 		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getItem': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/item/{itemId}'
@@ -109,7 +109,7 @@
 			if (args['itemId']) delete args['itemId']
 		}
 		if (url.indexOf('[/itemId]') !== -1) url = url.replace('[/itemId]', '')
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getArenaTeam': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/arena/{realm}/{teamSize}/{teamName}'
@@ -147,31 +147,31 @@
 		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
 		if (url.indexOf('[/teamSize]') !== -1) url = url.replace('[/teamSize]', '')
 		if (url.indexOf('[/teamName]') !== -1) url = url.replace('[/teamName]', '')
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getCharacterRaces': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/data/character/races'
 		args = args || {}
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getCharacterClasses': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/data/character/classes'
 		args = args || {}
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGuildRewards': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/data/guild/rewards'
 		args = args || {}
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getGuildPerks': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/data/guild/perks'
 		args = args || {}
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
 	'getItemClasses': function(args, opts) {
 		var url = 'https://us.battle.net/api/wow/data/item/classes'
 		args = args || {}
-		return http({provider:'wow',url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	}
 })

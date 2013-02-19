@@ -1,5 +1,5 @@
 ({
-	auth:function(){return auth({provider:'weatherbug'})},
+	auth:function(){return auth({provider:fs('..')})},
 	'search.location.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLocationsXML.aspx'
 		args = args || {}
@@ -14,7 +14,7 @@
 			if (args['SearchString']) delete args['SearchString']
 		}
 		if (url.indexOf('[/SearchString]') !== -1) url = url.replace('[/SearchString]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'search.location.names': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLocationsXML.aspx'
@@ -30,7 +30,7 @@
 			if (args['SearchString']) delete args['SearchString']
 		}
 		if (url.indexOf('[/SearchString]') !== -1) url = url.replace('[/SearchString]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'search.stations.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getStationsXML.aspx'
@@ -46,7 +46,7 @@
 			if (args['zipCode']) delete args['zipCode']
 		}
 		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'search.stations.citycode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getStationsXML.aspx'
@@ -62,7 +62,7 @@
 			if (args['cityCode']) delete args['cityCode']
 		}
 		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'search.stations.lat.long': function(args, opts) {
 		var url = 'http://api.wxbug.net/getStationsXML.aspx'
@@ -89,7 +89,7 @@
 		}
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'live.weather.stationid': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
@@ -125,7 +125,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/stationid]') !== -1) url = url.replace('[/stationid]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'live.weather.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
@@ -161,7 +161,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'live.weather.citycode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
@@ -197,7 +197,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'live.weather.lat.long': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveWeatherRSS.aspx'
@@ -244,7 +244,7 @@
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'compact.live.weather.stationid': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
@@ -280,7 +280,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/stationid]') !== -1) url = url.replace('[/stationid]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'compact.live.weather.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
@@ -316,7 +316,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'compact.live.weather.citycode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
@@ -352,7 +352,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'compact.live.weather.lat.long': function(args, opts) {
 		var url = 'http://api.wxbug.net/getLiveCompactWeatherRSS.aspx'
@@ -399,7 +399,7 @@
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'forescat.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getForecastRSS.aspx'
@@ -435,7 +435,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'forescat.citycode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getForecastRSS.aspx'
@@ -471,7 +471,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/cityCode]') !== -1) url = url.replace('[/cityCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'forescat.lat.long': function(args, opts) {
 		var url = 'http://api.wxbug.net/getForecastRSS.aspx'
@@ -518,7 +518,7 @@
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'camera.list.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getCamerasXML.aspx'
@@ -554,7 +554,7 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'camera.list.lat.long': function(args, opts) {
 		var url = 'http://api.wxbug.net/getCamerasXML.aspx'
@@ -601,7 +601,7 @@
 		if (url.indexOf('[/OutputType]') !== -1) url = url.replace('[/OutputType]', '')
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'alerts.zipcode': function(args, opts) {
 		var url = 'http://api.wxbug.net/getAlertsRSS.aspx'
@@ -627,7 +627,7 @@
 		}
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/zipCode]') !== -1) url = url.replace('[/zipCode]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	},
 	'alerts.lat.long': function(args, opts) {
 		var url = 'http://api.wxbug.net/getAlertsRSS.aspx'
@@ -664,6 +664,6 @@
 		if (url.indexOf('[/UnitType]') !== -1) url = url.replace('[/UnitType]', '')
 		if (url.indexOf('[/lat]') !== -1) url = url.replace('[/lat]', '')
 		if (url.indexOf('[/long]') !== -1) url = url.replace('[/long]', '')
-		return http({provider:'weatherbug',url:url,method:'GET',params:args}, opts)
+		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
 	}
 })
