@@ -12,12 +12,12 @@ jsClientApi({
 		height: args.height || 300,
 		bgcolor: args.bgcolor || 'transparent'
 	},
-	initialize: function(callback, cbname) {
+	initialize: js(function(callback, cbname) {
 		$('body').append('<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAd3OUPPa2yWfuONwk_fJ0bhTHaM3KMPvuIPafOprTH7-W3OYIrRSWPxDOXslNmYDinoqNRDsv5AKabw&callback=' + cbname + '"></script>');
-	},
-	loaded: function() {
-	},
-	create: function(jsapi) {
+	}),
+	loaded: js(function() {
+	}),
+	create: js(function(jsapi) {
 		var t = this;
 		google.load('visualization', '1.0', {
 			'packages':['corechart'],
@@ -26,8 +26,8 @@ jsClientApi({
 			}
 		});
 		return false;
-	},
-	ready: function(jsapi) {
+	}),
+	ready: js(function(jsapi) {
 		this.data.datasource = this.toArr(this.data.datasource)
 		if (this.data.datasource.length > 0) {
 			if (this.isEmpty(this.data.datasource[0])) {
@@ -87,16 +87,16 @@ jsClientApi({
 		this.chart = {chart: chart, datatable: datatable, options: options}
 
 		jsapi.ready();
-	},
+	}),
 	interface: {
-		resize: function(width, height) {
+		resize: js(function(width, height) {
 			this.chart.options.width = width
 			this.chart.options.height = height
 			this.chart.chart.draw(this.chart.datatable, this.chart.options)
 			return this.chart;
-		},
+		})
 	},
-	datatoarr: function(data, cols) {
+	datatoarr: js(function(data, cols) {
 		var res = [];
 
 		if (typeof data == 'string')
@@ -122,15 +122,15 @@ jsClientApi({
 		}
 
 		return res;		
-	},
-	isEmpty: function(obj) {
+	}),
+	isEmpty: js(function(obj) {
 		if (obj.length > 0)
 			return false;
 		for (i in obj)
 			return false
 		return true
-	},
-	toArr: function(obj)
+	}),
+	toArr: js(function(obj)
 	{
 		if (typeof obj != "object" || Array.isArray(obj))
 			return obj;
@@ -138,7 +138,7 @@ jsClientApi({
 		for (key in obj)
 			res.push([key, obj[key]]);
 		return res;
-	}
+	})
 }, {
 	view: '<div id="chart_div<%= data.pid %>" style="width: <%= data.width %>px; height: <%= data.height %>px;"></div>'
 })

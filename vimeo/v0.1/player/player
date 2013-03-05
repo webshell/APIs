@@ -19,74 +19,74 @@ jsClientApi({
 		height: args.height || '300px',
 		params: {}
 	},
-	initialize: function(callback) {
+	initialize: js(function(callback) {
 		$.getScript("http://webshell.local/lib/froogaloop.min.js", callback);
-	},
-	loaded: function() {
+	}),
+	loaded: js(function() {
 
-	},
-	create: function(jsapi) {
+	}),
+	create: js(function(jsapi) {
 		this.player = $f($('#player' + this.data.pid)[0]);
 		var self = this;
 		this.player.addEvent('ready', function() {
 			self.ready(jsapi);
 		})
 		return false;
-	},
-	ready: function(jsapi) {
+	}),
+	ready: js(function(jsapi) {
 		jsapi.ready();
-	},
+	}),
 	interface: {
-		play: function() {
+		play: js(function() {
 			this.player.api('play');
-		},
-		pause: function() {
+		}),
+		pause: js(function() {
 			this.player.api('pause');
-		},
-		paused: function() {
+		}),
+		paused: js(function() {
 			return this.api('paused');
-		},
-		seekTo: function(seconds) {
+		}),
+		seekTo: js(function(seconds) {
 			this.player.api('seekTo', seconds);
-		},
-		unload: function() {
+		}),
+		unload: js(function() {
 			this.player.api('unload');
-		},
-		getCurrentTime: function() {
+		}),
+		getCurrentTime: js(function() {
 			return this.player.api('getCurrentTime');
-		},
-		getDuration: function() {
+		}),
+		getDuration: js(function() {
 			return this.player.api('getDuration');
-		},
-		getVideoEmbedCode: function() {
+		}),
+		getVideoEmbedCode: js(function() {
 			return this.player.api('getVideoEmbedCode');
-		},
-		getVideoHeight: function() {
+		}),
+		getVideoHeight: js(function() {
 			return this.player.api('getVideoHeight');
-		},
-		getVideoWidth: function() {
+		}),
+		getVideoWidth: js(function() {
 			return this.player.api('getVideoWidth');
-		},
-		getVideoUrl: function() {
+		}),
+		getVideoUrl: js(function() {
 			return this.player.api('getVideoUrl');
-		},
-		getColor: function() {
+		}),
+		getColor: js(function() {
 			return this.player.api('getColor');
-		},
-		setColor: function(color) {
+		}),
+		setColor: js(function(color) {
 			this.player.api('setColor', color);
-		},
-		setLoop: function(loop) {
+		}),
+		setLoop: js(function(loop) {
 			this.player.api('setLoop', loop);
-		},
-		getVolume: function() {
+		}),
+		getVolume: js(function() {
 			return this.player.api('getVolume');
-		},
-		setVolume: function(volume) {
+		}),
+		setVolume: js(function(volume) {
 			this.player.api('setVolume', volume);
-		},
-		addEvent: function(event, listener) {
+		}),
+		addEvent: js(function(event, listener) {
 			this.player.addEvent(event, listener);
-		}
+		})
 	}
 }, { view: '<iframe id="player<%= data.pid %>" src="<%= data.url %>&player_id=player<%= data.pid %>" style="width: <%= data.width %>; height: <%= data.height %>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>' });

@@ -12,12 +12,12 @@ jsClientApi({
 		height: args.height || '300',
 		params: {allowScriptAccess: "always", wmode: "Opaque"}
 	},
-	initialize: function(callback) {
+	initialize: js(function(callback) {
 		$.getScript("http://webshell.local/lib/swfobject/swfobject.js", callback);
-	},
-	loaded: function() {
-	},
-	create: function(jsapi) {
+	}),
+	loaded: js(function() {
+	}),
+	create: js(function(jsapi) {
 		swfobject.embedSWF(
 			this.data.url + '?version=3&f=videos&app=youtube_gdata&enablejsapi=1&playerapiid=player' + this.data.pid,
 			"ytapiplayer" + this.data.pid,
@@ -33,73 +33,73 @@ jsClientApi({
         var self = this;
         setTimeout(function() {self.ready(jsapi)}, 700);
         return false;
-	},
-	ready: function(jsapi) {
+	}),
+	ready: js(function(jsapi) {
 		jsapi.ready();
-	},
+	}),
 	interface: {
-		playVideo: function() {
+		playVideo: js(function() {
             this.player.playVideo();
-        },
-        pauseVideo: function() {
+        }),
+        pauseVideo: js(function() {
             this.player.pauseVideo();
-        },
-        stopVideo: function() {
+        }),
+        stopVideo: js(function() {
             this.player.stopVideo();
-        },
-        seekTo: function(seconds, allowSeekAhead) {
+        }),
+        seekTo: js(function(seconds, allowSeekAhead) {
             this.player.seekTo(seconds, allowSeekAhead);
-        },
-        clearVideo: function() {
+        }),
+        clearVideo: js(function() {
             this.player.clearVideo();
-        },
-        cue:function(url, startSeconds, suggestedQuality) {
+        }),
+        cue: js(function(url, startSeconds, suggestedQuality) {
             if (url.substr(0, 7) == 'http://')
                 this.player.cueVideoByUrl(url, startSeconds, suggestedQuality)
             else
                 this.player.cueVideoById(url, startSeconds, suggestedQuality)
 
-        },
-        load:function(url, startSeconds, suggestedQuality) {
+        }),
+        load: js(function(url, startSeconds, suggestedQuality) {
             if (url.substr(0, 7) == 'http://')
                 this.player.loadVideoByUrl(url, startSeconds, suggestedQuality)
             else
                 this.player.loadVideoById(url, startSeconds, suggestedQuality)
-        },
-        loadPlaylist: function(playlist, index, startSeconds, suggestedQuality) {
+        }),
+        loadPlaylist: js(function(playlist, index, startSeconds, suggestedQuality) {
             this.player.loadPlaylist(playlist, index, startSeconds, suggestedQuality)
-        },
-        cuePlaylist: function(playlist, index, startSeconds, suggestedQuality) {
+        }),
+        cuePlaylist: js(function(playlist, index, startSeconds, suggestedQuality) {
             this.player.cuePlaylist(playlist, index, startSeconds, suggestedQuality)
-        },
-        nextVideo: function() {
+        }),
+        nextVideo: js(function() {
             this.player.nextVideo();
-        },
-        previousVideo: function() {
+        }),
+        previousVideo: js(function() {
             this.player.previousVideo();
-        },
-        playVideoAt: function(index) {
+        }),
+        playVideoAt: js(function(index) {
             this.player.playVideoAt(index);
-        },
-        mute: function() {
+        }),
+        mute: js(function() {
             this.player.mute();
-        },
-        unmute: function() {
+        }),
+        unmute: js(function() {
             this.player.unMute();
-        },
-        setVolume: function(value) {
+        }),
+        setVolume: js(function(value) {
             this.player.setVolume(value);
-        },
-        setLoop: function(activate) {
+        }),
+        setLoop: js(function(activate) {
             this.player.setLoop(activate);
-        },
-        setShuffle: function(activate) {
+        }),
+        setShuffle: js(function(activate) {
             this.player.setShuffle(activate);
 
-        },
-        setPlaybackQuality: function(quality) {
+        }),
+        setPlaybackQuality: js(function(quality) {
             this.player.setPlaybackQuality(quality);
-        }
+        })
 	}
 }, {
 	view: '<div id="ytapiplayer<%= data.pid %>"></div>'

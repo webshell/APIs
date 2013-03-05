@@ -6,14 +6,14 @@ if (typeof args == 'string') {
 jsClientApi({
     name: "soundcloud.player",
 	data: args,
-	initialize: function(callback) {
+	initialize: js(function(callback) {
 		$.getScript("http://webshell.local/lib/swfobject/swfobject.js", function() {
             $.getScript("https://raw.github.com/soundcloud/Widget-JS-API/master/soundcloud.player.api.js", callback)
         });
-	},
-	loaded: function() {
-	},
-	create: function(jsapi) {
+	}),
+	loaded: js(function() {
+	}),
+	create: js(function(jsapi) {
         var playerId = 'scplayer' + this.data.pid;
         var flashvars = this.data;
         if (typeof flashvars.enable_api == "undefined")
@@ -33,64 +33,64 @@ jsClientApi({
             self.ready(jsapi);
         });
         return false;
-	},
-	ready: function(jsapi) {
+	}),
+	ready: js(function(jsapi) {
 		jsapi.ready();
-	},
+	}),
 	interface: {
-		play: function() {
+		play: js(function() {
             this.player.api_play()
-        },
-        pause: function() {
+        }),
+        pause: js(function() {
             this.player.api_pause()
-        },
-        stop: function() {
+        }),
+        stop: js(function() {
             this.player.api_stop();
-        },
-        toggle: function() {
+        }),
+        toggle: js(function() {
             this.player.api_toggle();
-        },
-        skip: function(trackIndex) {
+        }),
+        skip: js(function(trackIndex) {
             this.player.api_skip(trackIndex);
-        },
-        seekTo: function(seconds) {
+        }),
+        seekTo: js(function(seconds) {
             // player has to be done buffering (onMediaDoneBuffering) to be able to seekTo, fix ?
             this.player.api_seekTo(seconds);       
-        },
-        load:function(url) {
+        }),
+        load: js(function(url) {
             // player will be ready after the onReady event, fix ?
             this.player.api_load(url);
-        },
-        next: function() {
+        }),
+        next: js(function() {
             this.player.api_next();
-        },
-        prev: function() {
+        }),
+        prev: js(function() {
             this.player.api_prev();
-        },
-        setVolume: function(value) {
+        }),
+        setVolume: js(function(value) {
             this.player.api_setVolume(value);  
-        },
-        getVolume: function() {
+        }),
+        getVolume: js(function() {
             return this.player.api_getVolume();
-        },
-        getTrackDuration: function() {
+        }),
+        getTrackDuration: js(function() {
             return this.player.api_getTrackDuration();
-        },
-        getTrackPosition: function() {
+        }),
+        getTrackPosition: js(function() {
             return this.player.api_getTrackPosition();
-        },
-        getTracks: function() {
+        }),
+        getTracks: js(function() {
             return this.player.api_getTracks()
-        },
-        getCurrentTrack: function() {
+        }),
+        getCurrentTrack: js(function() {
             return this.api_getCurrentTrack();
-        },
-        getCurrentTrackIndex: function() {
+        }),
+        getCurrentTrackIndex: js(function() {
             return this.api_getCurrentTrackIndex();
-        },
-        getFlashId: function() {
+        }),
+        getFlashId: js(function() {
             return this.api_getFlashId();
-        }
+        })
 	}
 }, {
 	view: '<div id="scplayer<%= data.pid %>"></div>'

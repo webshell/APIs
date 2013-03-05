@@ -6,14 +6,14 @@ jsClientApi({
 		height: args.height || '300px'
 	},
 	//markers: [],
-	initialize: function(callback, callback_name) {
+	initialize: js(function(callback, callback_name) {
 		//load the js from google maps
 		$('body').append('<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&callback=' + callback_name + '""></script>')
-	},
-	loaded: function() {
+	}),
+	loaded: js(function() {
 
-	},
-	create: function(jsapi) {
+	}),
+	create: js(function(jsapi) {
 		var elem = document.getElementById('map-' + this.data.pid);
         var options = {
             center: new google.maps.LatLng(37.7699298, -122.4469157),
@@ -24,12 +24,12 @@ jsClientApi({
         var self = this;
 		setTimeout(function() {self.ready(jsapi)}, 400);
 		return false;
-	},
-	ready: function(jsapi) {
+	}),
+	ready: js(function(jsapi) {
 		jsapi.ready();
-	},
+	}),
 	interface: {
-		center: function(opts) {
+		center: js(function(opts) {
 			var self = this;
             var geocoder = new google.maps.Geocoder();
             if (typeof opts == 'string')
@@ -47,11 +47,11 @@ jsClientApi({
 	                	alert("Geocode was not successful for the following reason: " + status);
             	}
             );
-		},
-		zoom: function(level) {
+		}),
+		zoom: js(function(level) {
 			this.map.setZoom(parseInt(level));
-		},
-		streetview: function(opts) {
+		}),
+		streetview: js(function(opts) {
 			if (!opts)
 			{
 				var panorama = this.map.getStreetView();
@@ -80,8 +80,8 @@ jsClientApi({
 	               		alert("Geocode was not successful for the following reason: " + status);
             	}
 		    );
-		},
-		addMarker: function(opts) {
+		}),
+		addMarker: js(function(opts) {
 			var self = this;
 			var geocoder = new google.maps.Geocoder();
 			if (typeof opts == 'string')
@@ -111,14 +111,14 @@ jsClientApi({
 				disp([{geometry:{location:new google.maps.LatLng(opts.address.lat,opts.address.lng)}}], google.maps.GeocoderStatus.OK)
 			else
 				geocoder.geocode({ 'address': opts.address }, disp);
-		},
+		}),
 		// clearMarker: function() {
 		// 	for(var i = 0; i < this.markers.length; i++) {
   // 		    	this.markers[i].setMap(null);
 		//     }
   //   		this.markers = [];
 		// },
-		directions: function(opts) {
+		directions: js(function(opts) {
 			if (!opts.origin || !opts.destination)
 				return;
 
@@ -158,7 +158,7 @@ jsClientApi({
    				if (status == google.maps.DirectionsStatus.OK)
       				directionsDisplay.setDirections(result);
   			});
-		}
+		})
 	}
 }, {
 	view: '<style>.gmapsapi img { max-width: none !important; }</style><div id="map-<%= data.pid %>" class="gmapsapi" style="width: <%= data.width %>; height: <%= data.height %>;"></div>'
