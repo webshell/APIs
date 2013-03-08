@@ -39,12 +39,12 @@ In your Javascript you can now use the wsh object
 You can just call the Text to Speech API for, say, "Hello World". You can call lots of APIs like that and script them together directly in your JavaScript. Take a minute to visit our API Explorer to discover them!
 
 4. Webshell Cloud Editor
-To try and create your APIs directly in your browser to use them in the Webshell API. Go to the [http://webshell.io/creator](API Creator)
+To try and create your APIs directly in your browser to use them in the Webshell API. Go to the [API Creator](http://webshell.io/creator_)
 
 5. More
-For more information on what you can do with Webshell, check the [http://webshell.io/docs](Documentation) and the [http://webshell.io/docs/faq](FAQ)
+For more information on what you can do with Webshell, check the [Documentation](http://webshell.io/docs) and the [FAQ](http://webshell.io/docs/faq)
 
 Note
 ====
 
-Some builtins are used in their APIs, but are not described on [http://webshell.io](webshell.io) yet... We are working on it ;)
+Some builtins are used in their APIs, but are not described on [webshell.io](http://webshell.io) yet... We are working on it ;)
