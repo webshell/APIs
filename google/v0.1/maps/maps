@@ -29,6 +29,9 @@ jsClientApi({
 		jsapi.ready();
 	}),
 	interface: {
+		on: js(function(ev,cb) {
+			google.maps.event.addListener(this.map, ev, cb)
+		}),
 		center: js(function(opts) {
 			var self = this;
             var geocoder = new google.maps.Geocoder();
