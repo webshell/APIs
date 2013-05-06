@@ -1,24 +1,22 @@
-({
-	auth:function(){return auth({provider:fs('/bin/yoda')})},
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/yoda');
+
+exports.auth = function() { return auth({provider:provider}) };
 /** 
  * @category All
  * @param {string} [sentence] Input sentence to turn into Yoda-speak
  * @methodhttp GET
  */
-	'YodaSpeak': function(args, opts) {
-		var url = 'https://yoda.p.mashape.com/yoda'
-		args = args || {}
-		if (args['sentence'] == null) throw new Error('sentence is a required parameter')
-		var rgx = new RegExp('\{sentence\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sentence'])
-			if (args['sentence']) delete args['sentence']
-		}
-		if (url.indexOf('[/sentence]') !== -1) {
-			url = url.replace('[/sentence]', '/' + args['sentence'])
-			if (args['sentence']) delete args['sentence']
-		}
-		if (url.indexOf('[/sentence]') !== -1) url = url.replace('[/sentence]', '')
-		return http({provider:fs('/bin/yoda'),url:url,method:'GET',params:args}, opts)
-	}
-})
+exports.yodaSpeak = function(args, opts) {
+	var url = 'https://yoda.p.mashape.com/yoda';
+	args = args || {};
+	url = url_replace(url, args, 'sentence', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};
