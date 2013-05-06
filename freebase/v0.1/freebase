@@ -1,419 +1,159 @@
-({
-	auth:function(){return auth({provider:fs('..')})},
-	'search': function(args, opts) {
-		var url = 'https://www.googleapis.com/freebase/v1/search'
-		args = args || {}
-		if (args['query'] == null) throw new Error('query is a required parameter')
-		var rgx = new RegExp('\{query\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['query'])
-			if (args['query']) delete args['query']
-		}
-		if (url.indexOf('[/query]') !== -1) {
-			url = url.replace('[/query]', '/' + args['query'])
-			if (args['query']) delete args['query']
-		}
-		var rgx = new RegExp('\{callback\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		if (url.indexOf('[/callback]') !== -1 && args['/callback']) {
-			url = url.replace('[/callback]', '/' + args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		var rgx = new RegExp('\{domain\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['domain'])
-			if (args['domain']) delete args['domain']
-		}
-		if (url.indexOf('[/domain]') !== -1 && args['/domain']) {
-			url = url.replace('[/domain]', '/' + args['domain'])
-			if (args['domain']) delete args['domain']
-		}
-		var rgx = new RegExp('\{exact\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['exact'])
-			if (args['exact']) delete args['exact']
-		}
-		if (url.indexOf('[/exact]') !== -1) {
-			url = url.replace('[/exact]', '/' + args['exact'])
-			if (args['exact']) delete args['exact']
-		}
-		var rgx = new RegExp('\{filter\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		if (url.indexOf('[/filter]') !== -1 && args['/filter']) {
-			url = url.replace('[/filter]', '/' + args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1 && args['/format']) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{html_escape\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['html_escape'])
-			if (args['html_escape']) delete args['html_escape']
-		}
-		if (url.indexOf('[/html_escape]') !== -1) {
-			url = url.replace('[/html_escape]', '/' + args['html_escape'])
-			if (args['html_escape']) delete args['html_escape']
-		}
-		var rgx = new RegExp('\{indent\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['indent'])
-			if (args['indent']) delete args['indent']
-		}
-		if (url.indexOf('[/indent]') !== -1) {
-			url = url.replace('[/indent]', '/' + args['indent'])
-			if (args['indent']) delete args['indent']
-		}
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/limit]') !== -1) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		var rgx = new RegExp('\{mql_output\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['mql_output'])
-			if (args['mql_output']) delete args['mql_output']
-		}
-		if (url.indexOf('[/mql_output]') !== -1 && args['/mql_output']) {
-			url = url.replace('[/mql_output]', '/' + args['mql_output'])
-			if (args['mql_output']) delete args['mql_output']
-		}
-		var rgx = new RegExp('\{prefixed\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['prefixed'])
-			if (args['prefixed']) delete args['prefixed']
-		}
-		if (url.indexOf('[/prefixed]') !== -1) {
-			url = url.replace('[/prefixed]', '/' + args['prefixed'])
-			if (args['prefixed']) delete args['prefixed']
-		}
-		var rgx = new RegExp('\{start\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['start'])
-			if (args['start']) delete args['start']
-		}
-		if (url.indexOf('[/start]') !== -1) {
-			url = url.replace('[/start]', '/' + args['start'])
-			if (args['start']) delete args['start']
-		}
-		var rgx = new RegExp('\{type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (url.indexOf('[/type]') !== -1 && args['/type']) {
-			url = url.replace('[/type]', '/' + args['type'])
-			if (args['type']) delete args['type']
-		}
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (url.indexOf('[/lang]') !== -1 && args['/lang']) {
-			url = url.replace('[/lang]', '/' + args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
-		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
-		if (url.indexOf('[/exact]') !== -1) url = url.replace('[/exact]', '')
-		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/html_escape]') !== -1) url = url.replace('[/html_escape]', '')
-		if (url.indexOf('[/indent]') !== -1) url = url.replace('[/indent]', '')
-		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		if (url.indexOf('[/mql_output]') !== -1) url = url.replace('[/mql_output]', '')
-		if (url.indexOf('[/prefixed]') !== -1) url = url.replace('[/prefixed]', '')
-		if (url.indexOf('[/start]') !== -1) url = url.replace('[/start]', '')
-		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
-		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'mqlread': function(args, opts) {
-		var url = 'https://www.googleapis.com/freebase/v1/mqlread'
-		args = args || {}
-		if (args['query'] == null) throw new Error('query is a required parameter')
-		var rgx = new RegExp('\{query\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['query'])
-			if (args['query']) delete args['query']
-		}
-		if (url.indexOf('[/query]') !== -1) {
-			url = url.replace('[/query]', '/' + args['query'])
-			if (args['query']) delete args['query']
-		}
-		var rgx = new RegExp('\{as_of_time\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['as_of_time'])
-			if (args['as_of_time']) delete args['as_of_time']
-		}
-		if (url.indexOf('[/as_of_time]') !== -1 && args['/as_of_time']) {
-			url = url.replace('[/as_of_time]', '/' + args['as_of_time'])
-			if (args['as_of_time']) delete args['as_of_time']
-		}
-		var rgx = new RegExp('\{callback\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		if (url.indexOf('[/callback]') !== -1 && args['/callback']) {
-			url = url.replace('[/callback]', '/' + args['callback'])
-			if (args['callback']) delete args['callback']
-		}
-		var rgx = new RegExp('\{cursor\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['cursor'])
-			if (args['cursor']) delete args['cursor']
-		}
-		if (url.indexOf('[/cursor]') !== -1 && args['/cursor']) {
-			url = url.replace('[/cursor]', '/' + args['cursor'])
-			if (args['cursor']) delete args['cursor']
-		}
-		var rgx = new RegExp('\{html_escape\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['html_escape'])
-			if (args['html_escape']) delete args['html_escape']
-		}
-		if (url.indexOf('[/html_escape]') !== -1) {
-			url = url.replace('[/html_escape]', '/' + args['html_escape'])
-			if (args['html_escape']) delete args['html_escape']
-		}
-		var rgx = new RegExp('\{indent\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['indent'])
-			if (args['indent']) delete args['indent']
-		}
-		if (url.indexOf('[/indent]') !== -1) {
-			url = url.replace('[/indent]', '/' + args['indent'])
-			if (args['indent']) delete args['indent']
-		}
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (url.indexOf('[/lang]') !== -1) {
-			url = url.replace('[/lang]', '/' + args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		var rgx = new RegExp('\{cost\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['cost'])
-			if (args['cost']) delete args['cost']
-		}
-		if (url.indexOf('[/cost]') !== -1) {
-			url = url.replace('[/cost]', '/' + args['cost'])
-			if (args['cost']) delete args['cost']
-		}
-		var rgx = new RegExp('\{uniqueness_failure\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['uniqueness_failure'])
-			if (args['uniqueness_failure']) delete args['uniqueness_failure']
-		}
-		if (url.indexOf('[/uniqueness_failure]') !== -1) {
-			url = url.replace('[/uniqueness_failure]', '/' + args['uniqueness_failure'])
-			if (args['uniqueness_failure']) delete args['uniqueness_failure']
-		}
-		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		if (url.indexOf('[/as_of_time]') !== -1) url = url.replace('[/as_of_time]', '')
-		if (url.indexOf('[/callback]') !== -1) url = url.replace('[/callback]', '')
-		if (url.indexOf('[/cursor]') !== -1) url = url.replace('[/cursor]', '')
-		if (url.indexOf('[/html_escape]') !== -1) url = url.replace('[/html_escape]', '')
-		if (url.indexOf('[/indent]') !== -1) url = url.replace('[/indent]', '')
-		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		if (url.indexOf('[/cost]') !== -1) url = url.replace('[/cost]', '')
-		if (url.indexOf('[/uniqueness_failure]') !== -1) url = url.replace('[/uniqueness_failure]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'mqlwrite': function(args, opts) {
-		var url = 'https://www.googleapis.com/freebase/v1/mqlwrite'
-		args = args || {}
-		if (args['query'] == null) throw new Error('query is a required parameter')
-		var rgx = new RegExp('\{query\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['query'])
-			if (args['query']) delete args['query']
-		}
-		if (url.indexOf('[/query]') !== -1) {
-			url = url.replace('[/query]', '/' + args['query'])
-			if (args['query']) delete args['query']
-		}
-		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'manual'}, opts)
-	},
-	'topic': function(args, opts) {
-		var url = 'https://www.googleapis.com/freebase/v1/topic{id}'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (url.indexOf('[/lang]') !== -1) {
-			url = url.replace('[/lang]', '/' + args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		var rgx = new RegExp('\{filter\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		if (url.indexOf('[/filter]') !== -1 && args['/filter']) {
-			url = url.replace('[/filter]', '/' + args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/limit]') !== -1 && args['/limit']) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'text': function(args, opts) {
-		var url = 'https://www.googleapis.com/freebase/v1/text{id}'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (url.indexOf('[/lang]') !== -1) {
-			url = url.replace('[/lang]', '/' + args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		var rgx = new RegExp('\{maxlength\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['maxlength'])
-			if (args['maxlength']) delete args['maxlength']
-		}
-		if (url.indexOf('[/maxlength]') !== -1) {
-			url = url.replace('[/maxlength]', '/' + args['maxlength'])
-			if (args['maxlength']) delete args['maxlength']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		if (url.indexOf('[/maxlength]') !== -1) url = url.replace('[/maxlength]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'image': function(args, opts) {
-		var url = 'https://www.googleapis.com/freebase/v1/image{id}'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		var rgx = new RegExp('\{fallbackid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fallbackid'])
-			if (args['fallbackid']) delete args['fallbackid']
-		}
-		if (url.indexOf('[/fallbackid]') !== -1 && args['/fallbackid']) {
-			url = url.replace('[/fallbackid]', '/' + args['fallbackid'])
-			if (args['fallbackid']) delete args['fallbackid']
-		}
-		var rgx = new RegExp('\{maxheight\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['maxheight'])
-			if (args['maxheight']) delete args['maxheight']
-		}
-		if (url.indexOf('[/maxheight]') !== -1 && args['/maxheight']) {
-			url = url.replace('[/maxheight]', '/' + args['maxheight'])
-			if (args['maxheight']) delete args['maxheight']
-		}
-		var rgx = new RegExp('\{maxwidth\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['maxwidth'])
-			if (args['maxwidth']) delete args['maxwidth']
-		}
-		if (url.indexOf('[/maxwidth]') !== -1 && args['/maxwidth']) {
-			url = url.replace('[/maxwidth]', '/' + args['maxwidth'])
-			if (args['maxwidth']) delete args['maxwidth']
-		}
-		var rgx = new RegExp('\{mode\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['mode'])
-			if (args['mode']) delete args['mode']
-		}
-		if (url.indexOf('[/mode]') !== -1 && args['/mode']) {
-			url = url.replace('[/mode]', '/' + args['mode'])
-			if (args['mode']) delete args['mode']
-		}
-		var rgx = new RegExp('\{pad\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pad'])
-			if (args['pad']) delete args['pad']
-		}
-		if (url.indexOf('[/pad]') !== -1 && args['/pad']) {
-			url = url.replace('[/pad]', '/' + args['pad'])
-			if (args['pad']) delete args['pad']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/fallbackid]') !== -1) url = url.replace('[/fallbackid]', '')
-		if (url.indexOf('[/maxheight]') !== -1) url = url.replace('[/maxheight]', '')
-		if (url.indexOf('[/maxwidth]') !== -1) url = url.replace('[/maxwidth]', '')
-		if (url.indexOf('[/mode]') !== -1) url = url.replace('[/mode]', '')
-		if (url.indexOf('[/pad]') !== -1) url = url.replace('[/pad]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
 	}
-})
+	return url;
+}
+
+var provider = fs('/bin/freebase');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Find entities by keyword search.			
+ * @category Freebase
+ * @param {string} [query] The text you want to match against freebase entities.
+ * @param {string} callback JS method name for JSONP callbacks.
+ * @param {string} domain A comma separated list of domain IDs. Search results must include these domains.
+ * @param {boolean} exact Matches only the name, and keys 'exactly'. No normalization of any kind is done at indexing and query time. The text is only broken up on space characters.
+ * @param {string} filter A Filter s-expression.
+ * @param {string} format The keyword "classic" to return the same information the original search API would have
+ * @param {boolean} html_escape Whether or not to escape entities.
+ * @param {boolean} indent Whether to indent the json.
+ * @param {integer} limit Return up to this number of results. (integer >= 1)
+ * @param {string} mql_output A MQL query thats extracts entity information.
+ * @param {boolean} prefixed Whether or not to match by name prefix (used for autosuggest).
+ * @param {integer} start Allows paging through results. (integer >= 0)
+ * @param {string} type A comma seperated list of type IDs. Search results must include these types.
+ * @param {string} lang The language you are searching in. Can pass multiple languages.
+ * @methodhttp GET
+ */
+exports.search = function(args, opts) {
+	var url = 'https://www.googleapis.com/freebase/v1/search';
+	args = args || {};
+	url = url_replace(url, args, 'query', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'domain', 'str');
+	url = url_replace(url, args, 'exact', 'null', false, "false");
+	url = url_replace(url, args, 'filter', 'str');
+	url = url_replace(url, args, 'format', 'str');
+	url = url_replace(url, args, 'html_escape', 'null', false, "true");
+	url = url_replace(url, args, 'indent', 'null', false, "false");
+	url = url_replace(url, args, 'limit', 'int', false, "20");
+	url = url_replace(url, args, 'mql_output', 'str');
+	url = url_replace(url, args, 'prefixed', 'null', false, "false");
+	url = url_replace(url, args, 'start', 'int', false, "0");
+	url = url_replace(url, args, 'type', 'str');
+	url = url_replace(url, args, 'lang', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Retrieve detailed structured data about entities or collections of entities using the Metaweb Query Language (MQL).			
+ * @category Freebase
+ * @param {string} [query] A valid MQL query in the json format.
+ * @param {string} as_of_time Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").
+ * @param {string} callback JS method name for JSONP callbacks.
+ * @param {string} cursor Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.
+ * @param {boolean} html_escape Whether or not to escape entities.
+ * @param {integer} indent How many spaces to indent the JSON. (integer 0-10)
+ * @param {string} lang Return strings in the language requested (if a given object has no name in the requested language, null will be returned).
+ * @param {boolean} cost Whether or not to show the costs.
+ * @param {string} uniqueness_failure How MQL responds to uniqueness failures.
+ * @methodhttp GET
+ */
+exports.mqlread = function(args, opts) {
+	var url = 'https://www.googleapis.com/freebase/v1/mqlread';
+	args = args || {};
+	url = url_replace(url, args, 'query', 'str', true);
+	url = url_replace(url, args, 'as_of_time', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'cursor', 'str');
+	url = url_replace(url, args, 'html_escape', 'null', false, "true");
+	url = url_replace(url, args, 'indent', 'int', false, "false");
+	url = url_replace(url, args, 'lang', 'str', false, "/lang/en");
+	url = url_replace(url, args, 'cost', 'null', false, "false");
+	url = url_replace(url, args, 'uniqueness_failure', 'str', false, "hard");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Perform insertions, deletions and updates of Metaweb Query Language (MQL).			
+ * @category Freebase
+ * @param {string} [query] A valid MQL query in the json format.
+ * @methodhttp POST
+ */
+exports.mqlwrite = function(args, opts) {
+	var url = 'https://www.googleapis.com/freebase/v1/mqlwrite';
+	args = args || {};
+	url = url_replace(url, args, 'query', 'str', true);
+	return http.post({provider:provider,url:url,params:args, auth:'manual'}, opts);
+};
+
+/** 
+ * The Freebase Topic API is a web service that will return all the known facts for a given topic including images and text blurbs.			
+ * @category Freebase
+ * @param {string} [id] The id of the entity that you want a description for.
+ * @param {string} lang The desired language of the content.
+ * @param {string} filter Specific types or properties which you want to return values for.
+ * @param {integer} limit The maximum number of property values to return.
+ * @methodhttp GET
+ */
+exports.topic = function(args, opts) {
+	var url = 'https://www.googleapis.com/freebase/v1/topic{id}';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'lang', 'str', false, "/lang/en");
+	url = url_replace(url, args, 'filter', 'str');
+	url = url_replace(url, args, 'limit', 'int');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Get short textual descriptions for entities.			
+ * @category Freebase
+ * @param {string} [id] The id of the entity that you want a description for.
+ * @param {string} format Sanitizing transformation.
+ * @param {string} lang The desired language of the content.
+ * @param {integer} maxlength The max number of characters to return. Valid only for 'plain' format. (integer 0-4,294,967,295)
+ * @methodhttp GET
+ */
+exports.text = function(args, opts) {
+	var url = 'https://www.googleapis.com/freebase/v1/text{id}';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'format', 'str', false, "raw");
+	url = url_replace(url, args, 'lang', 'str', false, "/lang/en");
+	url = url_replace(url, args, 'maxlength', 'int', false, "200");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Get representative thumbnail images for entities.			
+ * @category Freebase
+ * @param {string} [id] The id of an entity for which you want an image. Alternatively, you may pass the id of the content node for a specific image.
+ * @param {string} fallbackid Use the image associated with this secondary id if no image is associated with the primary id.
+ * @param {integer} maxheight Maximum height in pixels for resulting image. (integer 0 - 4,096)
+ * @param {integer} maxwidth Maximum width in pixels for resulting image. (integer 0 - 4,096)
+ * @param {string} mode Method used to scale or crop image.
+ * @param {boolean} pad Whether the resulting image should be padded up to the requested dimensions. (boolean as 0 or 1)
+ * @methodhttp GET
+ */
+exports.image = function(args, opts) {
+	var url = 'https://www.googleapis.com/freebase/v1/image{id}';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'fallbackid', 'str');
+	url = url_replace(url, args, 'maxheight', 'int');
+	url = url_replace(url, args, 'maxwidth', 'int');
+	url = url_replace(url, args, 'mode', 'str');
+	url = url_replace(url, args, 'pad');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};

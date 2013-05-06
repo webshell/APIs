@@ -1,1818 +1,1065 @@
-({
-	auth:function(){return auth({provider:fs('..')})},
-	'generalCheckRateLimit': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/check_rate_limit.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'userGet': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/get.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'userListFriends': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_friends.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		var rgx = new RegExp('\{order\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['order'])
-			if (args['order']) delete args['order']
-		}
-		if (url.indexOf('[/order]') !== -1) {
-			url = url.replace('[/order]', '/' + args['order'])
-			if (args['order']) delete args['order']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'userListFriendsIds': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_friends_ids.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		var rgx = new RegExp('\{order\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['order'])
-			if (args['order']) delete args['order']
-		}
-		if (url.indexOf('[/order]') !== -1) {
-			url = url.replace('[/order]', '/' + args['order'])
-			if (args['order']) delete args['order']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'userListBestFriends': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_best_friends.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		var rgx = new RegExp('\{order\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['order'])
-			if (args['order']) delete args['order']
-		}
-		if (url.indexOf('[/order]') !== -1) {
-			url = url.replace('[/order]', '/' + args['order'])
-			if (args['order']) delete args['order']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		if (url.indexOf('[/order]') !== -1) url = url.replace('[/order]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'userListOnlineFriends': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_online_friends.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'userSendFriendRequest': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/send_friend_request.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userAddToBestFriends': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/add_to_best_friends.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userRemoveFromBestFriends': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/remove_from_best_friends.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userRemoveFromFriends': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/remove_from_friends.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userListFriendRequests': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_friend_requests.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'yes'}, opts)
-	},
-	'userAcceptFriendRequest': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/accept_friend_request.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userDenyFriendRequest': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/deny_friend_request.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userIsFriend': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/is_friend.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['id_user_1'] == null) throw new Error('id_user_1 is a required parameter')
-		var rgx = new RegExp('\{id_user_1\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user_1'])
-			if (args['id_user_1']) delete args['id_user_1']
-		}
-		if (url.indexOf('[/id_user_1]') !== -1) {
-			url = url.replace('[/id_user_1]', '/' + args['id_user_1'])
-			if (args['id_user_1']) delete args['id_user_1']
-		}
-		if (args['id_user_2'] == null) throw new Error('id_user_2 is a required parameter')
-		var rgx = new RegExp('\{id_user_2\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user_2'])
-			if (args['id_user_2']) delete args['id_user_2']
-		}
-		if (url.indexOf('[/id_user_2]') !== -1) {
-			url = url.replace('[/id_user_2]', '/' + args['id_user_2'])
-			if (args['id_user_2']) delete args['id_user_2']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user_1]') !== -1) url = url.replace('[/id_user_1]', '')
-		if (url.indexOf('[/id_user_2]') !== -1) url = url.replace('[/id_user_2]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'yes'}, opts)
-	},
-	'userGetCounters': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/get_counters.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'yes'}, opts)
-	},
-	'userListBlacklist': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_blacklist.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'userAddUserToBlacklist': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/add_user_to_blacklist.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userRemoveUserFromBlacklist': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/remove_user_from_blacklist.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'yes'}, opts)
-	},
-	'userListGroups': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/user/list_groups.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogGet': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/get.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		var rgx = new RegExp('\{output_format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/output_format]') !== -1) {
-			url = url.replace('[/output_format]', '/' + args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogSet': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/set.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogChangeAvatar': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/change_avatar.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['Content-Type'] == null) args['Content-Type'] = "multipart/form-data"
-		var rgx = new RegExp('\{Content-Type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['Content-Type'])
-			if (args['Content-Type']) delete args['Content-Type']
-		}
-		if (url.indexOf('[/Content-Type]') !== -1) {
-			url = url.replace('[/Content-Type]', '/' + args['Content-Type'])
-			if (args['Content-Type']) delete args['Content-Type']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/Content-Type]') !== -1) url = url.replace('[/Content-Type]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogListPosts': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/list_posts.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		var rgx = new RegExp('\{with_secret\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['with_secret'])
-			if (args['with_secret']) delete args['with_secret']
-		}
-		if (url.indexOf('[/with_secret]') !== -1) {
-			url = url.replace('[/with_secret]', '/' + args['with_secret'])
-			if (args['with_secret']) delete args['with_secret']
-		}
-		var rgx = new RegExp('\{output_format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/output_format]') !== -1) {
-			url = url.replace('[/output_format]', '/' + args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		if (url.indexOf('[/with_secret]') !== -1) url = url.replace('[/with_secret]', '')
-		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogListOfflinePosts': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/list_offline_posts.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		var rgx = new RegExp('\{with_secret\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['with_secret'])
-			if (args['with_secret']) delete args['with_secret']
-		}
-		if (url.indexOf('[/with_secret]') !== -1) {
-			url = url.replace('[/with_secret]', '/' + args['with_secret'])
-			if (args['with_secret']) delete args['with_secret']
-		}
-		var rgx = new RegExp('\{output_format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/output_format]') !== -1) {
-			url = url.replace('[/output_format]', '/' + args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		if (url.indexOf('[/with_secret]') !== -1) url = url.replace('[/with_secret]', '')
-		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'blogNewPost': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/new_post.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogGetPost': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/get_post.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (args['id_post'] == null) throw new Error('id_post is a required parameter')
-		var rgx = new RegExp('\{id_post\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		if (url.indexOf('[/id_post]') !== -1) {
-			url = url.replace('[/id_post]', '/' + args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		var rgx = new RegExp('\{output_format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/output_format]') !== -1) {
-			url = url.replace('[/output_format]', '/' + args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
-		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogSetPost': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/set_post.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogDeletePost': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/delete_post.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogListPostMedias': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/list_post_medias.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (args['id_post'] == null) throw new Error('id_post is a required parameter')
-		var rgx = new RegExp('\{id_post\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		if (url.indexOf('[/id_post]') !== -1) {
-			url = url.replace('[/id_post]', '/' + args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogNewPostMedia': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/new_post_media.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogDeletePostMedia': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/delete_post_media.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'blogListPostComments': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/list_post_comments.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (args['id_post'] == null) throw new Error('id_post is a required parameter')
-		var rgx = new RegExp('\{id_post\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		if (url.indexOf('[/id_post]') !== -1) {
-			url = url.replace('[/id_post]', '/' + args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogGetPostComment': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/get_post_comment.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (args['id_post'] == null) throw new Error('id_post is a required parameter')
-		var rgx = new RegExp('\{id_post\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		if (url.indexOf('[/id_post]') !== -1) {
-			url = url.replace('[/id_post]', '/' + args['id_post'])
-			if (args['id_post']) delete args['id_post']
-		}
-		if (args['id_comment'] == null) throw new Error('id_comment is a required parameter')
-		var rgx = new RegExp('\{id_comment\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_comment'])
-			if (args['id_comment']) delete args['id_comment']
-		}
-		if (url.indexOf('[/id_comment]') !== -1) {
-			url = url.replace('[/id_comment]', '/' + args['id_comment'])
-			if (args['id_comment']) delete args['id_comment']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/id_post]') !== -1) url = url.replace('[/id_post]', '')
-		if (url.indexOf('[/id_comment]') !== -1) url = url.replace('[/id_comment]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogListSkins': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/list_skins.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'blogListPictures': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/blog/list_pictures.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'profileGet': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/get.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		var rgx = new RegExp('\{output_format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/output_format]') !== -1) {
-			url = url.replace('[/output_format]', '/' + args['output_format'])
-			if (args['output_format']) delete args['output_format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/output_format]') !== -1) url = url.replace('[/output_format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'profileSet': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/set.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileAddAlbum': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/add_album.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileListAlbums': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/list_albums.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'profileSetAlbum': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/set_album.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileDeleteAlbum': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/delete_album.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileAddPicture': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/add_picture.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileListPictures': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/list_pictures.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (args['id_album'] == null) throw new Error('id_album is a required parameter')
-		var rgx = new RegExp('\{id_album\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_album'])
-			if (args['id_album']) delete args['id_album']
-		}
-		if (url.indexOf('[/id_album]') !== -1) {
-			url = url.replace('[/id_album]', '/' + args['id_album'])
-			if (args['id_album']) delete args['id_album']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/id_album]') !== -1) url = url.replace('[/id_album]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'profileGetPicture': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/get_picture.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['id_album'] == null) throw new Error('id_album is a required parameter')
-		var rgx = new RegExp('\{id_album\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_album'])
-			if (args['id_album']) delete args['id_album']
-		}
-		if (url.indexOf('[/id_album]') !== -1) {
-			url = url.replace('[/id_album]', '/' + args['id_album'])
-			if (args['id_album']) delete args['id_album']
-		}
-		if (args['id_picture'] == null) throw new Error('id_picture is a required parameter')
-		var rgx = new RegExp('\{id_picture\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_picture'])
-			if (args['id_picture']) delete args['id_picture']
-		}
-		if (url.indexOf('[/id_picture]') !== -1) {
-			url = url.replace('[/id_picture]', '/' + args['id_picture'])
-			if (args['id_picture']) delete args['id_picture']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_album]') !== -1) url = url.replace('[/id_album]', '')
-		if (url.indexOf('[/id_picture]') !== -1) url = url.replace('[/id_picture]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'profileSetPicture': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/set_picture.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileDeletePicture': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/delete_picture.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileGetConfig': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/get_config.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'profileSetConfig': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/set_config.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileGetPropertyValues': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/get_property_values.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['property'] == null) throw new Error('property is a required parameter')
-		var rgx = new RegExp('\{property\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['property'])
-			if (args['property']) delete args['property']
-		}
-		if (url.indexOf('[/property]') !== -1) {
-			url = url.replace('[/property]', '/' + args['property'])
-			if (args['property']) delete args['property']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/property]') !== -1) url = url.replace('[/property]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'profileSetTags': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/set_tags.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'profileGetTags': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/get_tags.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'profileGetTagsTypes': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/profile/get_tags_types.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'moodListMoods': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/mood/list_moods.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'moodGetMood': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/mood/get_mood.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{id_user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		if (url.indexOf('[/id_user]') !== -1 && args['/id_user']) {
-			url = url.replace('[/id_user]', '/' + args['id_user'])
-			if (args['id_user']) delete args['id_user']
-		}
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1 && args['/username']) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_user]') !== -1) url = url.replace('[/id_user]', '')
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'moodSetMood': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/mood/set_mood.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'moodDeleteMood': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/mood/delete_mood.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'newsfeedSendEvent': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/newsfeed/send_event.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'newsfeedSendAlert': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/newsfeed/send_alert.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'newsfeedListEvents': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/newsfeed/list_events.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['events_category'] == null) args['events_category'] = "own"
-		var rgx = new RegExp('\{events_category\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['events_category'])
-			if (args['events_category']) delete args['events_category']
-		}
-		if (url.indexOf('[/events_category]') !== -1) {
-			url = url.replace('[/events_category]', '/' + args['events_category'])
-			if (args['events_category']) delete args['events_category']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/events_category]') !== -1) url = url.replace('[/events_category]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'newsfeedListEventsTypes': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/newsfeed/list_events_types.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'newsfeedListAlerts': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/newsfeed/list_alerts.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'newsfeedListAlertsTypes': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/newsfeed/list_alerts_types.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'messageListThreads': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/list_threads.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['filter'] == null) args['filter'] = "all"
-		var rgx = new RegExp('\{filter\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		if (url.indexOf('[/filter]') !== -1) {
-			url = url.replace('[/filter]', '/' + args['filter'])
-			if (args['filter']) delete args['filter']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/filter]') !== -1) url = url.replace('[/filter]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'messageGetThread': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/get_thread.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['id_thread'] == null) throw new Error('id_thread is a required parameter')
-		var rgx = new RegExp('\{id_thread\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id_thread'])
-			if (args['id_thread']) delete args['id_thread']
-		}
-		if (url.indexOf('[/id_thread]') !== -1) {
-			url = url.replace('[/id_thread]', '/' + args['id_thread'])
-			if (args['id_thread']) delete args['id_thread']
-		}
-		var rgx = new RegExp('\{page\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/page]') !== -1 && args['/page']) {
-			url = url.replace('[/page]', '/' + args['page'])
-			if (args['page']) delete args['page']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/id_thread]') !== -1) url = url.replace('[/id_thread]', '')
-		if (url.indexOf('[/page]') !== -1) url = url.replace('[/page]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'messageSetThreadAsRead': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/set_thread_as_read.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'messageDeleteThread': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/delete_thread.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'messageDeleteMessage': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/delete_message.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'messageSendMessage': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/send_message.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'messageCreateThread': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/create_thread.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'messageReplyThread': function(args, opts) {
-		var url = 'https://api.skyrock.com/v2/message/reply_thread.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
 	}
-})
+	return url;
+}
+
+var provider = fs('/bin/skyrock');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns the number of remaining queries (see http://en.skyrock.com/developer/documentation/api/#request-rate-limits). Calls to this method are not counted against the limits.
+ * @category General
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.generalCheckRateLimit = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/check_rate_limit.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns an user's public data. If the call is authenticated and username is not provided, the method returns data about the current user's Skyrock account.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.userGet = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/get.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * List of friends (paginated).
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} page Page number.
+ * @param {string} order Results order. Possible values:- DEFAULT: default order.- ALPHA: sort alphabetically.- OLDEST_TO_NEWEST: sort by oldest to newest friends (by date of friendship).- NEWEST_TO_OLDEST: sort by newest to oldest friends (by date of friendship).- BEST_FIRST: default order, with best friends first.- BEST_LAST: default order, with best friends last.               
+ * @methodhttp GET
+ */
+exports.userListFriends = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_friends.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'page', 'int');
+	url = url_replace(url, args, 'order', 'str', false, "DEFAULT");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * List of friends ids (paginated).
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} page Page number.
+ * @param {string} order Results order. Possible values:- DEFAULT: default order.- ALPHA: sort alphabetically.- OLDEST_TO_NEWEST: sort by oldest to newest friends (by date of friendship).- NEWEST_TO_OLDEST: sort by newest to oldest friends (by date of friendship).- BEST_FIRST: default order, with best friends first.- BEST_LAST: default order, with best friends last.               
+ * @methodhttp GET
+ */
+exports.userListFriendsIds = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_friends_ids.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'page', 'int');
+	url = url_replace(url, args, 'order', 'str', false, "DEFAULT");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * List of best friends (paginated).
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} page Page number.
+ * @param {string} order Results order. Possible values:- DEFAULT: default order.- ALPHA: sort alphabetically.- OLDEST_TO_NEWEST: sort by oldest to newest friends (by date of friendship).- NEWEST_TO_OLDEST: sort by newest to oldest friends (by date of friendship).- BEST_FIRST: default order, with best friends first.- BEST_LAST: default order, with best friends last.               
+ * @methodhttp GET
+ */
+exports.userListBestFriends = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_best_friends.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'page', 'int');
+	url = url_replace(url, args, 'order', 'str', false, "DEFAULT");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * List of online friends.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.userListOnlineFriends = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_online_friends.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Sends a friend request.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userSendFriendRequest = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/send_friend_request.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Adds a friend to the best friend list. The friend user should be a friend of current user.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userAddToBestFriends = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/add_to_best_friends.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Removes a friend from the best friend list. The friend user should be a best friend of current user.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userRemoveFromBestFriends = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/remove_from_best_friends.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Removes a friend from the friend list.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userRemoveFromFriends = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/remove_from_friends.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * List of friend requests.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.userListFriendRequests = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_friend_requests.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Accepts a friend request.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userAcceptFriendRequest = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/accept_friend_request.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Denies a friend request.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userDenyFriendRequest = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/deny_friend_request.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Checks friend relation between two users.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} [id_user_1] First user ID.
+ * @param {integer} [id_user_2] Second user ID.
+ * @methodhttp GET
+ */
+exports.userIsFriend = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/is_friend.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user_1', 'int', true);
+	url = url_replace(url, args, 'id_user_2', 'int', true);
+	return http({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Returns current user counters.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.userGetCounters = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/get_counters.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * List of users in blacklist.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.userListBlacklist = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_blacklist.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Adds a user to the blacklist.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userAddUserToBlacklist = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/add_user_to_blacklist.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * Removes a user from the blacklist.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.userRemoveUserFromBlacklist = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/remove_user_from_blacklist.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'yes'}, opts);
+};
+
+/** 
+ * List of user's groups.
+ * @category Users
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.userListGroups = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/user/list_groups.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns a blog public data. If the call is authenticated and username is not provided, the method returns data about the current user's Skyrock blog.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {string} output_format Defines which format to output, for specific rich text fields. Possible values: 'html' (default), 'bbcode'.
+ * @methodhttp GET
+ */
+exports.blogGet = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/get.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'output_format', 'str', false, "html");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Sets authenticated user's blog data. Each parameter is optional, you can either set one or many at once.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.blogSet = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/set.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Changes authenticated user's blog avatar.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {string} [Content-Type] Content type.
+ * @methodhttp POST
+ */
+exports.blogChangeAvatar = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/change_avatar.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "multipart/form-data");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns an user's blog posts list (online only), paginated (10 articles per page).
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} page Page number.
+ * @param {boolean} with_secret Allow authenticated blog owner to show secret posts (false by default).
+ * @param {string} output_format Defines which format to output, for specific rich text fields. Possible values: 'html' (default), 'bbcode'.
+ * @methodhttp GET
+ */
+exports.blogListPosts = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/list_posts.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'page', 'int', false, "1");
+	url = url_replace(url, args, 'with_secret', 'null', false, "false");
+	url = url_replace(url, args, 'output_format', 'str', false, "html");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns current user's blog posts list (offline only), paginated.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} page Page number.
+ * @param {boolean} with_secret Allow authenticated blog owner to show secret posts (false by default).
+ * @param {string} output_format Defines which format to output, for specific rich text fields. Possible values: 'html' (default), 'bbcode'.
+ * @methodhttp GET
+ */
+exports.blogListOfflinePosts = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/list_offline_posts.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'page', 'int', false, "1");
+	url = url_replace(url, args, 'with_secret', 'null', false, "false");
+	url = url_replace(url, args, 'output_format', 'str', false, "html");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Creates a new blog post.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.blogNewPost = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/new_post.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns an user's blog post. Only online posts will be returned, unless authenticated user is its creator.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} [id_post] Post ID.
+ * @param {string} output_format Defines which format to output, for specific rich text fields. Possible values: 'html' (default), 'bbcode'.
+ * @methodhttp GET
+ */
+exports.blogGetPost = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/get_post.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'id_post', 'int', true);
+	url = url_replace(url, args, 'output_format', 'str', false, "html");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Edits a blog post.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.blogSetPost = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/set_post.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes a blog post.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.blogDeletePost = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/delete_post.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns a post's medias list.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} [id_post] Post ID.
+ * @methodhttp GET
+ */
+exports.blogListPostMedias = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/list_post_medias.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'id_post', 'int', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Associates media with a blog post.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.blogNewPostMedia = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/new_post_media.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes a post's media.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.blogDeletePostMedia = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/delete_post_media.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Lists a post's comments.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} [id_post] Post ID.
+ * @param {integer} page Page number.
+ * @methodhttp GET
+ */
+exports.blogListPostComments = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/list_post_comments.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'id_post', 'int', true);
+	url = url_replace(url, args, 'page', 'int');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns a post's comment.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} [id_post] Post ID.
+ * @param {integer} [id_comment] Post comment ID.
+ * @methodhttp GET
+ */
+exports.blogGetPostComment = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/get_post_comment.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'id_post', 'int', true);
+	url = url_replace(url, args, 'id_comment', 'int', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns available skins.
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.blogListSkins = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/list_skins.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns the list of pictures from all blog's articles, paginated (35 pictures per page).
+ * @category Blogs
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} page Page number.
+ * @methodhttp GET
+ */
+exports.blogListPictures = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/blog/list_pictures.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'page', 'int');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns an user's profile public data.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {string} output_format Defines which format to output, for specific rich text fields. Possible values: 'html' (default), 'bbcode'.
+ * @methodhttp GET
+ */
+exports.profileGet = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/get.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'output_format', 'str', false, "html");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Sets an user's profile public data.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileSet = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/set.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Adds an album to the profile.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileAddAlbum = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/add_album.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns the list of albums associated with a profile. Main album has id_album = 1.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.profileListAlbums = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/list_albums.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Sets an album's title.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileSetAlbum = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/set_album.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes an empty album. Main album (id_album = 1) cannot be deleted.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileDeleteAlbum = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/delete_album.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Adds a picture to the profile.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileAddPicture = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/add_picture.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns the list of pictures associated with a profile.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @param {integer} [id_album] Album ID.
+ * @methodhttp GET
+ */
+exports.profileListPictures = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/list_pictures.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	url = url_replace(url, args, 'id_album', 'int', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns a specified picture.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @param {integer} [id_album] Album ID.
+ * @param {integer} [id_picture] Picture ID.
+ * @methodhttp GET
+ */
+exports.profileGetPicture = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/get_picture.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_album', 'int', true);
+	url = url_replace(url, args, 'id_picture', 'int', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sets a picture's properties.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileSetPicture = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/set_picture.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes a picture.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileDeletePicture = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/delete_picture.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns settings about current user's profile.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.profileGetConfig = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/get_config.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sets informations about a profile's (see get_property_values for possible values to set).
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileSetConfig = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/set_config.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns possible values for a given property. These properties can be set using set or set_config.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @param {string} [property] Property name. Possible values: gender, gender_preference, looks_for, status, town, country, department, occupation, place, personality, smoker, hair_color, eye_color, height, weight, block_friends, block_honors, block_groups, block_gifts, show_visits_counter, show_comments_counter, show_kiffs_counter, show_my_websites, show_mood, display_policy, allow_share, allow_facebook_like, allow_votes, allow_kiffs, default_page, show_me_page, show_news_page, show_photos_page, show_videos_page, allow_comments.
+ * @methodhttp GET
+ */
+exports.profileGetPropertyValues = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/get_property_values.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'property', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sets an user profile's tags.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.profileSetTags = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/set_tags.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns an user profile's tags.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.profileGetTags = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/get_tags.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns user profile's tags types.
+ * @category Profiles
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.profileGetTagsTypes = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/profile/get_tags_types.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns an user's mood list.
+ * @category Moods
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.moodListMoods = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/mood/list_moods.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns an user last mood.
+ * @category Moods
+ * @param {string} [format] Response format.
+ * @param {integer} id_user User ID (optional if OAuthenticated).
+ * @param {string} username Username (optional if OAuthenticated).
+ * @methodhttp GET
+ */
+exports.moodGetMood = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/mood/get_mood.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_user', 'int');
+	url = url_replace(url, args, 'username', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Sets an user's mood.
+ * @category Moods
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.moodSetMood = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/mood/set_mood.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes an user's mood.
+ * @category Moods
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.moodDeleteMood = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/mood/delete_mood.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sends a free text as event to the authenticated user's dash-board (eg. newsfeed). Events also appear in the dash-board of the user's friends. The message is not localized and should be send in the user language.
+ * @category Newsfeeds
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.newsfeedSendEvent = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/newsfeed/send_event.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sends a free text as alert to the authenticated user's alerts (notifications). The message is not localized and should be send in the user language. Unlike events, alerts are personal.
+ * @category Newsfeeds
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.newsfeedSendAlert = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/newsfeed/send_alert.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Lists events in the user's dash-board (eg. newsfeed).
+ * @category Newsfeeds
+ * @param {string} [format] Response format.
+ * @param {string} [events_category] Events category. Possible values: own (display own events), friends (display friends' events).
+ * @methodhttp GET
+ */
+exports.newsfeedListEvents = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/newsfeed/list_events.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'events_category', 'str', true, "own");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns descriptions of events types, for developer information.
+ * @category Newsfeeds
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.newsfeedListEventsTypes = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/newsfeed/list_events_types.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Lists user's alerts (notifications).
+ * @category Newsfeeds
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.newsfeedListAlerts = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/newsfeed/list_alerts.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns descriptions of alerts types, for developer information.
+ * @category Newsfeeds
+ * @param {string} [format] Response format.
+ * @methodhttp GET
+ */
+exports.newsfeedListAlertsTypes = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/newsfeed/list_alerts_types.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns the authenticated user's message threads (15 threads per page).
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @param {string} [filter] Thread selection filter (all/unread).
+ * @param {integer} page Page number (optional).
+ * @methodhttp GET
+ */
+exports.messageListThreads = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/list_threads.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'filter', 'str', true, "all");
+	url = url_replace(url, args, 'page', 'int');
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns a message thread (15 messages per page).
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @param {integer} [id_thread] Message thread ID.
+ * @param {integer} page Page number (optional).
+ * @methodhttp GET
+ */
+exports.messageGetThread = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/get_thread.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'id_thread', 'int', true);
+	url = url_replace(url, args, 'page', 'int');
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Marks a message thread as read.
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.messageSetThreadAsRead = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/set_thread_as_read.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes a message thread.
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.messageDeleteThread = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/delete_thread.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes a message.
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.messageDeleteMessage = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/delete_message.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sends a message to a single recipient.
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.messageSendMessage = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/send_message.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Creates a multi-recipient thread.
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.messageCreateThread = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/create_thread.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Replies to a thread.
+ * @category Messages
+ * @param {string} [format] Response format.
+ * @methodhttp POST
+ */
+exports.messageReplyThread = function(args, opts) {
+	var url = 'https://api.skyrock.com/v2/message/reply_thread.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args}, opts);
+};

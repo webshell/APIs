@@ -1,315 +1,724 @@
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">getBusinessListingMap</span>
-</div>
-<div class="meta">
-<p>Returns an URL for a graphical map for a specified business listing.</p>
-</div>
-<hr>
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getBusinessListingDetails" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getBusinessListingDetails 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns all available data for a given business listing, including hours of operation, website URL, etc.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-YP listing ID.</p>
+
+
+
+      
+      <p> The unique identifier for the business listing. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> listingid </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">listingid</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-400</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Integer representing the width in pixels of the map (Default = 400). Examples: 400, 200, 123.</p>
+
+
+
+      
+      <p> Desired format of the response. Possible values: xml and json. Defaults to xml. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pixel_width</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-400</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Integer representing the height in pixels of the map (Default = 400). Examples: 400, 200, 123.</p>
+
+
+
+      
+      <p> User agent. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> User-Agent </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pixel_height</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-gif</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-String representing the mime-type of map you want returned. Valid values: jpg, png and gif.</p>
-</div>
-<div class="name">
-<span class="parameter-name">image_format</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-1</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Sets the zoom factor for the map, expressed as a fraction from .1 to 1.</p>
-</div>
-<div class="name">
-<span class="parameter-name">zoom</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-0</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-A positive or negative number reflecting the percentage of the map image to pan south (negative) or north (positive). (Default = 0). Examples: 0.5 (50% north) -0.4 (40% south). Postiive numbers tilt to the north, negative numbers tilt to the south.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pan_vertical</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-A positive or negative number reflecting the percentage of the map image to pan west (negative) or east (positive). (Default = 0). Examples: 0.5 (50% east) -0.4 (40% west). Postiive numbers tilt to the north, negative numbers tilt to the south.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pan_horizontal</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">searchListings</span>
-</div>
-<div class="meta">
-<p>Supports a number of specific use cases for finding a listing. The search request must include a searchloc value to set the geographic context for the search. The term value can include both name and category keywords. Note that if your implementation uses a single search box, you can combine geograpy and keywords in the term value and the API will parse them. This can potentially cause inaccurate matches if the business name includes place names, however. For example, the "LA wine Company" might be found in a search for "wine+LA" where LA is intended to mean Louisiana. Therefore, where possible, use the searchloc + term combination.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getBusinessListingMap" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getBusinessListingMap 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns an URL for a graphical map for a specified business listing.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side. To make this work, do not send a value for searchloc.</p>
+
+
+
+      
+      <p> YP listing ID. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> listingid </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">term</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Integer representing the width in pixels of the map (Default = 400). Examples: 400, 200, 123. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pixel_width </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Integer representing the height in pixels of the map (Default = 400). Examples: 400, 200, 123. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pixel_height </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unparsed, user-entered search location. Please ensure that all values are URL encoded. If no value is passed for searchloc, then the search engine will attempt to find a valid geo location string in the term parameter's value.<br/>Valid inputs are:<br/>- city, state (example: searchloc=Glendale%2C+CA).<br/>- zip code (example: searchloc=91203).<br/>- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).<br/>- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).<br/>- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).<br/>- street, zip (example: searchloc=611+North+Brand%2C+91203).<br/>- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).<br/>- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).<br/>- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).<br/>               </p>
+
+
+
+      
+      <p> String representing the mime-type of map you want returned. Valid values: jpg, png and gif. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> image_format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">searchloc</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">decimal</span>
+
+
+
+      
+      <p> Sets the zoom factor for the map, expressed as a fraction from .1 to 1. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> zoom </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Indicates that the term parameter contains a phone number, formatted as a 10-digit integer, e.g. 8775551212.</p>
+
+
+
+      
+      <p> A positive or negative number reflecting the percentage of the map image to pan south (negative) or north (positive). (Default = 0). Examples: 0.5 (50% north) -0.4 (40% south). Postiive numbers tilt to the north, negative numbers tilt to the south. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pan_vertical </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">phonesearch</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-5</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Total number of listings to return. Defaults to 5.</p>
+
+
+
+      
+      <p> A positive or negative number reflecting the percentage of the map image to pan west (negative) or east (positive). (Default = 0). Examples: 0.5 (50% east) -0.4 (40% west). Postiive numbers tilt to the north, negative numbers tilt to the south. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pan_horizontal </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">listingcount</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-false</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Enables short URL formats in the API response. Typically only used for SMS applications. Set to true for short URL format. Defaults to false.</p>
-</div>
-<div class="name">
-<span class="parameter-name">shorturl</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-1</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The page index of the block of results to return. Defaults to 1.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagenum</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Select the sort criteria for Organic Listings (only).<br/>Valid inputs are:<br/>- distance: Sort results by distance.<br/>- name: Sort results alphabetically by name.<br/>			</p>
-</div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Maximum search radius (in miles) from center of target location for Organic Results (only).</p>
-</div>
-<div class="name">
-<span class="parameter-name">radius</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-Chrome</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-User agent.</p>
-</div>
-<div class="name">
-<span class="parameter-name">User-Agent</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">getBusinessListingDetails</span>
-</div>
-<div class="meta">
-<p>Returns all available data for a given business listing, including hours of operation, website URL, etc.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getBusinessListingReviews" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getBusinessListingReviews 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns all available user reviews for a given business listing.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The unique identifier for the business listing.</p>
+
+
+
+      
+      <p> The unique identifier for the business listing. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> listingid </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">listingid</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-Chrome</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-User agent.</p>
+
+
+
+      
+      <p> Desired format of the response. Possible values: xml and json. Defaults to xml. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">User-Agent</span>
-<p class="required">Required</p>
+
 </div>
+
+  
+  
 </div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">getBusinessListingReviews</span>
-</div>
-<div class="meta">
-<p>Returns all available user reviews for a given business listing.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-searchListings" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      searchListings 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Supports a number of specific use cases for finding a listing. The search request must include a searchloc value to set the geographic context for the search. The term value can include both name and category keywords. Note that if your implementation uses a single search box, you can combine geograpy and keywords in the term value and the API will parse them. This can potentially cause inaccurate matches if the business name includes place names, however. For example, the "LA wine Company" might be found in a search for "wine+LA" where LA is intended to mean Louisiana. Therefore, where possible, use the searchloc + term combination.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The unique identifier for the business listing.</p>
+
+
+
+      
+      <p> Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side. To make this work, do not send a value for searchloc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> term </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">listingid</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Unparsed, user-entered search location. Please ensure that all values are URL encoded. If no value is passed for searchloc, then the search engine will attempt to find a valid geo location string in the term parameter's value.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA). </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> searchloc </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Indicates that the term parameter contains a phone number, formatted as a 10-digit integer, e.g. 8775551212. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> phonesearch </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Total number of listings to return. Defaults to 5. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> listingcount </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Enables short URL formats in the API response. Typically only used for SMS applications. Set to true for short URL format. Defaults to false. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> shorturl </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Desired format of the response. Possible values: xml and json. Defaults to xml. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The page index of the block of results to return. Defaults to 1. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagenum </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Select the sort criteria for Organic Listings (only).Valid inputs are:- distance: Sort results by distance.- name: Sort results alphabetically by name. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Maximum search radius (in miles) from center of target location for Organic Results (only). </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> radius </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> User agent. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> User-Agent </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon May 06 2013 17:54:39 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

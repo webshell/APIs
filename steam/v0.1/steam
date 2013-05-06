@@ -1,5 +1,14 @@
 ({
-	auth:function(){return auth({provider:fs('..')})},
+	auth:function(){return auth({provider:fs('/bin/steam')})},
+/** 
+ * GetNewsForApp returns the latest of a game specified by its appID.
+ * @category News
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [appid] AppID of the game you want the news of.	   
+ * @param {string} [count] How many news enties you want to get returned.	   
+ * @param {string} [maxlength] Maximum length of each news entry.	   
+ * @methodhttp GET
+ */
 	'getNewsForApp': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/'
 		args = args || {}
@@ -47,8 +56,15 @@
 		if (url.indexOf('[/appid]') !== -1) url = url.replace('[/appid]', '')
 		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
 		if (url.indexOf('[/maxlength]') !== -1) url = url.replace('[/maxlength]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
+/** 
+ * Returns on global achievements overview of a specific game in percentages.
+ * @category User
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [gameid] AppID of the game you want the news of.	   
+ * @methodhttp GET
+ */
 	'getGlobalAchievementPercentagesForApp': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/'
 		args = args || {}
@@ -74,8 +90,15 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/gameid]') !== -1) url = url.replace('[/gameid]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'none'}, opts)
 	},
+/** 
+ * Returns basic profile information for a list of 64-bit Steam IDs.
+ * @category User
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [steamids] Comma-delimited list of 64 bit Steam IDs to return profile information for. Up to 100 Steam IDs can be requested.	   
+ * @methodhttp GET
+ */
 	'getPlayerSummaries': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamUser/getPlayerSummaries/v0002/'
 		args = args || {}
@@ -101,8 +124,15 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/steamids]') !== -1) url = url.replace('[/steamids]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'manual'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
+/** 
+ * Returns basic profile information for a list of 64-bit Steam IDs.
+ * @category User
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [steamids] Comma-delimited list of 64 bit Steam IDs to return profile information for. Up to 100 Steam IDs can be requested.	   
+ * @methodhttp GET
+ */
 	'getPlayerSummaries': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/'
 		args = args || {}
@@ -128,8 +158,16 @@
 		}
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/steamids]') !== -1) url = url.replace('[/steamids]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'manual'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
+/** 
+ * Returns the friend list of any Steam user, provided his Steam Community profile visibility is set to "Public".
+ * @category User
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [steamid] 64 bit Steam ID to return friend list for.	   
+ * @param {string} [relationship] Relationship filter. Possibles values: all, friend.	   
+ * @methodhttp GET
+ */
 	'getFriendList': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamUser/GetFriendList/v0001/'
 		args = args || {}
@@ -166,8 +204,17 @@
 		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
 		if (url.indexOf('[/steamid]') !== -1) url = url.replace('[/steamid]', '')
 		if (url.indexOf('[/relationship]') !== -1) url = url.replace('[/relationship]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'manual'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
+/** 
+ * Returns a list of achievements for this user by app id
+ * @category User
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [steamid] 64 bit Steam ID to return friend list for.	   
+ * @param {string} [appid] The ID for the game you're requesting	   
+ * @param {string} l Language. If specified, it will return language data for the requested language.	   
+ * @methodhttp GET
+ */
 	'getPlayerAchievements': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/'
 		args = args || {}
@@ -214,8 +261,17 @@
 		if (url.indexOf('[/steamid]') !== -1) url = url.replace('[/steamid]', '')
 		if (url.indexOf('[/appid]') !== -1) url = url.replace('[/appid]', '')
 		if (url.indexOf('[/l]') !== -1) url = url.replace('[/l]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'manual'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
 	},
+/** 
+ * Returns a list of achievements for this user by app id
+ * @category User
+ * @param {string} [format] Output format. json (default), xml or vdf.	   
+ * @param {string} [steamid] 64 bit Steam ID to return friend list for.	   
+ * @param {string} [appid] The ID for the game you're requesting	   
+ * @param {string} l Language. If specified, it will return language data for the requested language.	   
+ * @methodhttp GET
+ */
 	'getUserStatsForGame': function(args, opts) {
 		var url = ' http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/'
 		args = args || {}
@@ -262,6 +318,6 @@
 		if (url.indexOf('[/steamid]') !== -1) url = url.replace('[/steamid]', '')
 		if (url.indexOf('[/appid]') !== -1) url = url.replace('[/appid]', '')
 		if (url.indexOf('[/l]') !== -1) url = url.replace('[/l]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'manual'}, opts)
+		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
 	}
 })

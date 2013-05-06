@@ -1,0 +1,185 @@
+({
+	auth:function(){return auth({provider:fs('/bin/webknox')})},
+/** 
+ * @category All
+ * @param {string} [text] The text for which the language should be determined.
+ * @methodhttp GET
+ */
+	'DetectLanguage': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/language'
+		args = args || {}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'GET',params:args}, opts)
+	},
+/** 
+ * @category All
+ * @param {string} [text] The text for which the POS tags should be found.
+ * @methodhttp GET
+ */
+	'DetectPartofSpeech': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/posTags'
+		args = args || {}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'GET',params:args}, opts)
+	},
+/** 
+ * @category All
+ * @param {string} [text] The text for which the sentiment should be detected.
+ * @param {string} [language] The language of the given text (en=English, de=German).
+ * @param {string} contextWords Optionally consider only sentences that contain a context word for the sentiment detection.
+ * @methodhttp GET
+ */
+	'DetectSentiment': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/sentiment'
+		args = args || {}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (args['language'] == null) throw new Error('language is a required parameter')
+		var rgx = new RegExp('\{language\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['language'])
+			if (args['language']) delete args['language']
+		}
+		if (url.indexOf('[/language]') !== -1) {
+			url = url.replace('[/language]', '/' + args['language'])
+			if (args['language']) delete args['language']
+		}
+		var rgx = new RegExp('\{contextWords\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['contextWords'])
+			if (args['contextWords']) delete args['contextWords']
+		}
+		if (url.indexOf('[/contextWords]') !== -1 && args['/contextWords']) {
+			url = url.replace('[/contextWords]', '/' + args['contextWords'])
+			if (args['contextWords']) delete args['contextWords']
+		}
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		if (url.indexOf('[/language]') !== -1) url = url.replace('[/language]', '')
+		if (url.indexOf('[/contextWords]') !== -1) url = url.replace('[/contextWords]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'GET',params:args}, opts)
+	},
+/** 
+ * @category All
+ * @param {string} [text] The text from which dates should be extracted.
+ * @methodhttp GET
+ */
+	'ExtractDates': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/dates'
+		args = args || {}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'GET',params:args}, opts)
+	},
+/** 
+ * @category All
+ * @param {string} [text] The text in which entities should be detected.
+ * @methodhttp GET
+ */
+	'ExtractEntities': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/entities'
+		args = args || {}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'GET',params:args}, opts)
+	},
+/** 
+ * @category All
+ * @param {string} [text] The text from which locations should be extracted.
+ * @methodhttp GET
+ */
+	'ExtractLocations': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/locations'
+		args = args || {}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'GET',params:args}, opts)
+	},
+/** 
+ * @category All
+ * @param {string} [title] The title of the article.
+ * @param {string} [text] The text of the article (including HTML tags).
+ * @methodhttp POST
+ */
+	'RatetheQuality': function(args, opts) {
+		var url = 'https://webknox-text-processing.p.mashape.com/text/quality'
+		args = args || {}
+		if (args['title'] == null) throw new Error('title is a required parameter')
+		var rgx = new RegExp('\{title\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (url.indexOf('[/title]') !== -1) {
+			url = url.replace('[/title]', '/' + args['title'])
+			if (args['title']) delete args['title']
+		}
+		if (args['text'] == null) throw new Error('text is a required parameter')
+		var rgx = new RegExp('\{text\}', 'g')
+		if (url.match(rgx)) {
+			url = url.replace(rgx, args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/text]') !== -1) {
+			url = url.replace('[/text]', '/' + args['text'])
+			if (args['text']) delete args['text']
+		}
+		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
+		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
+		return http({provider:fs('/bin/webknox'),url:url,method:'POST',params:args}, opts)
+	}
+})

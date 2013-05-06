@@ -1,192 +1,515 @@
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">getReference</span>
-</div>
-<div class="meta">
-<p>Get a Tree<br/>			</p>
-</div>
-<hr>
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-createTree" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      createTree 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Create a Tree.					The tree creation API will take nested entries as well. If both a tree and a nested path modifying that tree are specified, it will overwrite the contents of that tree with the new path contents and write a new tree out.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Name of the user</p>
+
+
+
+      
+      <p> Name of the user </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">user</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Name of the repository</p>
+
+
+
+      
+      <p> Name of the repository </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> repo </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">repo</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Tree SHA</p>
+
+
+
+      
+      <p> SHA1 of the tree you want to update with new data </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> base_tree </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sha</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Set to `1` to get the tree recursively</p>
+
+
+
+      
+      <p> File referenced in the tree </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tree.path </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">recursive</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> File mode - one of `100644` for file (blob), `100755` for executable (blob), `040000` for subdirectory (tree), `160000` for submodule (commit) or `120000` for a blob that specifies the path of a symlink </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tree.mode </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> `blob`, `tree`, or `commit` </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tree.type </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> SHA1 checksum ID of the object in the tree </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tree.sha </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Content you want this file to have - GitHub will write this blob out and use that SHA for this entry. Use either this or `tree.sha` </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tree.content </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method POST">POST</span><span class="route">createTree</span>
+
 </div>
-<div class="meta">
-<p>Create a Tree.<br/>					The tree creation API will take nested entries as well. If both a tree and a nested path modifying that tree are specified, it will overwrite the contents of that tree with the new path contents and write a new tree out.<br/>			</p>
+
+  
+  
 </div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getReference" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getReference 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Get a Tree<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Name of the user</p>
+
+
+
+      
+      <p> Name of the user </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">user</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Name of the repository</p>
+
+
+
+      
+      <p> Name of the repository </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> repo </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">repo</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-SHA1 of the tree you want to update with new data</p>
+
+
+
+      
+      <p> Tree SHA </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sha </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">base_tree</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getReference" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getReference 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Get a Tree<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-File referenced in the tree</p>
+
+
+
+      
+      <p> Name of the user </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tree.path</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-File mode - one of `100644` for file (blob), `100755` for executable (blob), `040000` for subdirectory (tree), `160000` for submodule (commit) or `120000` for a blob that specifies the path of a symlink</p>
+
+
+
+      
+      <p> Name of the repository </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> repo </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tree.mode</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-`blob`, `tree`, or `commit`</p>
+
+
+
+      
+      <p> Tree SHA </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sha </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tree.type</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-SHA1 checksum ID of the object in the tree</p>
+
+
+
+      
+      <p> Set to `1` to get the tree recursively </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> recursive </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tree.sha</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Content you want this file to have - GitHub will write this blob out and use that SHA for this entry. Use either this or `tree.sha`</p>
-</div>
-<div class="name">
-<span class="parameter-name">tree.content</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon May 06 2013 18:03:38 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>
