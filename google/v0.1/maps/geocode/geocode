@@ -1,0 +1,52 @@
+/** 
+ * Geocoding is the process of converting addresses (like "1600 Amphitheatre Parkway, Mountain View, CA") into geographic coordinates (like latitude 37.423021 and longitude -122.083739), which you can use to place markers or position the map.
+ *
+ * Reverse geocoding is the process of converting geographic coordinates into a human-readable address.
+ * The Google Geocoding API provides a direct way to access a these services via an HTTP request
+ * @category Geocoding
+ * @param {string} [address] The address that you want to geocode.
+ * @param {number} [lat] location latitude (ie: 45.45). Parameter lat and lng or latlng are used to reverse geocoding.
+ * @param {number} [lng] location longitude (ie: 1.45)
+ * @param {string} [latlng] The textual latitude/longitude value for which you wish to obtain the closest, human-readable address. (ie: "45.45,1.45")
+ * @param {string} [components] A component filter for which you wish to obtain a geocode. The components filter will also be accepted as an optional parameter if an address is provided
+ * @param {boolean} [sensor] Indicates whether or not the geocoding request comes from a device with a location sensor. This value must be either true or false.
+ * @param {string} [bounds] The bounding box of the viewport within which to bias geocode results more prominently. This parameter will only influence, not fully restrict, results from the geocoder. (ie: "34.172684,-118.604794|34.236144,-118.500938")
+ * @param {string} [language] The language in which to return results. If language is not supplied, the geocoder will attempt to use the native language of the domain from which the request is sent wherever possible.
+ * @param {string} [region] The region code, specified as a ccTLD ("top-level domain") two-character value. This parameter will only influence, not fully restrict, results from the geocoder.
+ * @methodhttp GET
+ */
+if (args.lat && args.lng)
+    args.latlng = '' + args.lat + ',' + args.lng
+
+var params = {};
+
+if (args.lat && args.lng)
+    params.latlng = '' + args.lat + ',' + args.lng;
+else if (args.latlng)
+    params.latlng = args.latlng;
+else if (args.address)
+    params.address = args.address;
+    
+else if ( ! args.components)
+    throw new Error('Geocode require latlng or address parameter');
+
+if (args.language)
+    params.language = args.language;
+    
+if (args.bounds)
+    params.bounds = args.bounds;
+
+if (args.components)
+    params.components = args.components;
+
+if (args.region)
+    params.region = args.region;
+
+params.sensor = args.sensor ? true : false;
+
+//dump(params);
+
+get({
+    url: 'http://maps.googleapis.com/maps/api/geocode/json',
+    params: params
+});
