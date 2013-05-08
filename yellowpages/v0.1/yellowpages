@@ -16,13 +16,13 @@ exports.auth = function() { return auth({provider:provider}) };
 /** 
  * Returns an URL for a graphical map for a specified business listing.
  * @category Listings
- * @param {string} [listingid] YP listing ID.
- * @param {integer} pixel_width Integer representing the width in pixels of the map (Default = 400). Examples: 400, 200, 123.
- * @param {integer} pixel_height Integer representing the height in pixels of the map (Default = 400). Examples: 400, 200, 123.
- * @param {string} image_format String representing the mime-type of map you want returned. Valid values: jpg, png and gif.
- * @param {decimal} zoom Sets the zoom factor for the map, expressed as a fraction from .1 to 1.
- * @param {string} pan_vertical A positive or negative number reflecting the percentage of the map image to pan south (negative) or north (positive). (Default = 0). Examples: 0.5 (50% north) -0.4 (40% south). Postiive numbers tilt to the north, negative numbers tilt to the south.
- * @param {string} pan_horizontal A positive or negative number reflecting the percentage of the map image to pan west (negative) or east (positive). (Default = 0). Examples: 0.5 (50% east) -0.4 (40% west). Postiive numbers tilt to the north, negative numbers tilt to the south.
+ * @param {string} listingid  YP listing ID.
+ * @param {integer} [pixel_width]  Integer representing the width in pixels of the map (Default = 400). Examples: 400, 200, 123.
+ * @param {integer} [pixel_height]  Integer representing the height in pixels of the map (Default = 400). Examples: 400, 200, 123.
+ * @param {string} [image_format]  String representing the mime-type of map you want returned. Valid values: jpg, png and gif.
+ * @param {decimal} [zoom]  Sets the zoom factor for the map, expressed as a fraction from .1 to 1.
+ * @param {string} [pan_vertical]  A positive or negative number reflecting the percentage of the map image to pan south (negative) or north (positive). (Default = 0). Examples: 0.5 (50% north) -0.4 (40% south). Postiive numbers tilt to the north, negative numbers tilt to the south.
+ * @param {string} [pan_horizontal]  A positive or negative number reflecting the percentage of the map image to pan west (negative) or east (positive). (Default = 0). Examples: 0.5 (50% east) -0.4 (40% west). Postiive numbers tilt to the north, negative numbers tilt to the south.
  * @methodhttp GET
  */
 exports.getBusinessListingMap = function(args, opts) {
@@ -41,16 +41,16 @@ exports.getBusinessListingMap = function(args, opts) {
 /** 
  * Supports a number of specific use cases for finding a listing. The search request must include a searchloc value to set the geographic context for the search. The term value can include both name and category keywords. Note that if your implementation uses a single search box, you can combine geograpy and keywords in the term value and the API will parse them. This can potentially cause inaccurate matches if the business name includes place names, however. For example, the "LA wine Company" might be found in a search for "wine+LA" where LA is intended to mean Louisiana. Therefore, where possible, use the searchloc + term combination.
  * @category Listings
- * @param {string} [term] Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side. To make this work, do not send a value for searchloc.
- * @param {string} [searchloc] Unparsed, user-entered search location. Please ensure that all values are URL encoded. If no value is passed for searchloc, then the search engine will attempt to find a valid geo location string in the term parameter's value.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
- * @param {boolean} phonesearch Indicates that the term parameter contains a phone number, formatted as a 10-digit integer, e.g. 8775551212.
- * @param {integer} listingcount Total number of listings to return. Defaults to 5.
- * @param {boolean} shorturl Enables short URL formats in the API response. Typically only used for SMS applications. Set to true for short URL format. Defaults to false.
- * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
- * @param {integer} pagenum The page index of the block of results to return. Defaults to 1.
- * @param {string} sort Select the sort criteria for Organic Listings (only).Valid inputs are:- distance: Sort results by distance.- name: Sort results alphabetically by name.			
- * @param {integer} radius Maximum search radius (in miles) from center of target location for Organic Results (only).
- * @param {string} [User-Agent] User agent.
+ * @param {string} term  Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side. To make this work, do not send a value for searchloc.
+ * @param {string} searchloc  Unparsed, user-entered search location. Please ensure that all values are URL encoded. If no value is passed for searchloc, then the search engine will attempt to find a valid geo location string in the term parameter's value.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
+ * @param {boolean} [phonesearch]  Indicates that the term parameter contains a phone number, formatted as a 10-digit integer, e.g. 8775551212.
+ * @param {integer} [listingcount]  Total number of listings to return. Defaults to 5.
+ * @param {boolean} [shorturl]  Enables short URL formats in the API response. Typically only used for SMS applications. Set to true for short URL format. Defaults to false.
+ * @param {string} [format]  Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {integer} [pagenum]  The page index of the block of results to return. Defaults to 1.
+ * @param {string} [sort]  Select the sort criteria for Organic Listings (only).Valid inputs are:- distance: Sort results by distance.- name: Sort results alphabetically by name.			
+ * @param {integer} [radius]  Maximum search radius (in miles) from center of target location for Organic Results (only).
+ * @param {string} User-Agent  User agent.
  * @methodhttp GET
  */
 exports.searchListings = function(args, opts) {
@@ -72,9 +72,9 @@ exports.searchListings = function(args, opts) {
 /** 
  * Returns all available data for a given business listing, including hours of operation, website URL, etc.
  * @category Listings
- * @param {string} [listingid] The unique identifier for the business listing.
- * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
- * @param {string} [User-Agent] User agent.
+ * @param {string} listingid  The unique identifier for the business listing.
+ * @param {string} [format]  Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {string} User-Agent  User agent.
  * @methodhttp GET
  */
 exports.getBusinessListingDetails = function(args, opts) {
@@ -89,8 +89,8 @@ exports.getBusinessListingDetails = function(args, opts) {
 /** 
  * Returns all available user reviews for a given business listing.
  * @category Listings
- * @param {string} [listingid] The unique identifier for the business listing.
- * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {string} listingid  The unique identifier for the business listing.
+ * @param {string} [format]  Desired format of the response. Possible values: xml and json. Defaults to xml.
  * @methodhttp GET
  */
 exports.getBusinessListingReviews = function(args, opts) {
@@ -104,9 +104,9 @@ exports.getBusinessListingReviews = function(args, opts) {
 /** 
  * Returns coupons near the submitted location. Optionally, a term parameter can be submitted to restrict coupons to relevant categories.
  * @category Content
- * @param {string} [searchloc] Unparsed, user-entered search location. Please ensure that all values are URL encoded.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
- * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
- * @param {string} [term] Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side.
+ * @param {string} searchloc  Unparsed, user-entered search location. Please ensure that all values are URL encoded.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
+ * @param {string} [format]  Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {string} term  Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side.
  * @methodhttp GET
  */
 exports.getCouponsNearLocation = function(args, opts) {
@@ -121,7 +121,7 @@ exports.getCouponsNearLocation = function(args, opts) {
 /** 
  * Returns Deal of the Day offers near the submitted location. Currently, four US Markets are supported: Los Angeles, Atlanta, Dallas and National. You can use specific zip codes within the three city markets, the market city or "national". This endpoint only supports JSON format response at this time.
  * @category Content
- * @param {string} [searchloc] Unparsed, user-entered search location. Please ensure that all values are URL encoded.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
+ * @param {string} searchloc  Unparsed, user-entered search location. Please ensure that all values are URL encoded.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
  * @methodhttp GET
  */
 exports.getDealOfTheDayNearLocation = function(args, opts) {

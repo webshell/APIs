@@ -19,8 +19,8 @@ exports.auth = function() { return auth({provider:provider}) };
 /** 
  * Returns the account details for the {AccountSid}.
  * @category Accounts
- * @param {string} [format] The response format.			
- * @param {string} [AccountSid] Represents the unique id of the Account
+ * @param {string} format  The response format.			
+ * @param {string} AccountSid  Represents the unique id of the Account
  * @methodhttp GET
  */
 exports.getAccount = function(args, opts) {
@@ -34,10 +34,10 @@ exports.getAccount = function(args, opts) {
 /** 
  * Allows you to modify the 'FriendlyName' for the {AccountSid} via POST.
  * @category Accounts
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account
- * @param {string} FriendlyName The human-readable description of an account.
- * @param {string} Status Alter the status of this account: use closed to irreversibly close this account, suspended to temporarily suspend it, or active to reactivate it.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account
+ * @param {string} [FriendlyName]  The human-readable description of an account.
+ * @param {string} [Status]  Alter the status of this account: use closed to irreversibly close this account, suspended to temporarily suspend it, or active to reactivate it.
  * @methodhttp POST
  */
 exports.updateAccountByPost = function(args, opts) {
@@ -53,10 +53,10 @@ exports.updateAccountByPost = function(args, opts) {
 /** 
  * Allows you to modify the 'FriendlyName' for the {AccountSid} via PUT.
  * @category Accounts
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account
- * @param {string} FriendlyName The human-readable description of an account.
- * @param {string} Status Alter the status of this account: use closed to irreversibly close this account, suspended to temporarily suspend it, or active to reactivate it.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account
+ * @param {string} [FriendlyName]  The human-readable description of an account.
+ * @param {string} [Status]  Alter the status of this account: use closed to irreversibly close this account, suspended to temporarily suspend it, or active to reactivate it.
  * @methodhttp PUT
  */
 exports.updateAccountByPut = function(args, opts) {
@@ -72,9 +72,9 @@ exports.updateAccountByPut = function(args, opts) {
 /** 
  * Right now, your credentials are tied to one and only one account, so the list resource only contains your single					account.			
  * @category Accounts
- * @param {string} [format] undefined
- * @param {string} FriendlyName Only return the Account resources with friendly names that exactly match this name.
- * @param {string} Status Only return Account resources with the given status. Can be closed, suspended or active.
+ * @param {string} format  undefined
+ * @param {string} [FriendlyName]  Only return the Account resources with friendly names that exactly match this name.
+ * @param {string} [Status]  Only return Account resources with the given status. Can be closed, suspended or active.
  * @methodhttp GET
  */
 exports.getAccountList = function(args, opts) {
@@ -89,8 +89,8 @@ exports.getAccountList = function(args, opts) {
 /** 
  * Creates a new subaccount.			
  * @category Accounts
- * @param {string} [format] undefined
- * @param {string} FriendlyName A human readable description of the new subaccount, up to 64 characters. Defaults to "SubAccount Created at {YYYY-MM-DD HH:MM meridiam}".
+ * @param {string} format  undefined
+ * @param {string} [FriendlyName]  A human readable description of the new subaccount, up to 64 characters. Defaults to "SubAccount Created at {YYYY-MM-DD HH:MM meridiam}".
  * @methodhttp POST
  */
 exports.createSubAccount = function(args, opts) {
@@ -104,12 +104,12 @@ exports.createSubAccount = function(args, opts) {
 /** 
  * Send a new outgoing message.
  * @category SMS Messages
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account.
- * @param {string} [From] A Twilio number enabled for SMS. Only phone numbers purchased from Twilio work here; you cannot (for example) spoof SMS					messages from your own cell phone number.			
- * @param {string} [To] The number to call. Format with a '+' and country code e.g., +16175551212 (E.164 format). Twilio will also accept					unformatted US numbers e.g., (415) 555-1212, 415-555-1212.			
- * @param {string} [Body] The text of the message you want to send, limited to 160 characters.
- * @param {string} StatusCallback A URL that Twilio will POST to when your message is processed. Twilio will POST the SmsSid as well as SmsStatus=sent or					SmsStatus=failed.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account.
+ * @param {string} From  A Twilio number enabled for SMS. Only phone numbers purchased from Twilio work here; you cannot (for example) spoof SMS					messages from your own cell phone number.			
+ * @param {string} To  The number to call. Format with a '+' and country code e.g., +16175551212 (E.164 format). Twilio will also accept					unformatted US numbers e.g., (415) 555-1212, 415-555-1212.			
+ * @param {string} Body  The text of the message you want to send, limited to 160 characters.
+ * @param {string} [StatusCallback]  A URL that Twilio will POST to when your message is processed. Twilio will POST the SmsSid as well as SmsStatus=sent or					SmsStatus=failed.			
  * @methodhttp POST
  */
 exports.sendSMS = function(args, opts) {
@@ -127,11 +127,11 @@ exports.sendSMS = function(args, opts) {
 /** 
  * Returns a list of SMS messages associated with your account identified by {AccountSid}.
  * @category SMS Messages
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account
- * @param {string} From Only show SMS messages from this phone number
- * @param {string} To Only show SMS messages to this phone number.
- * @param {string} DateSent Only show SMS messages sent on this date, given as YYYY-MM-DD. Example: DateSent=2009-07-06. You can also specify					inequality, such as DateSent lt YYYY-MM-DD for SMS messages that were sent on or before midnight on a date, and DateSent					gt YYYY-MM-DD for SMS messages sent on or after midnight on a date.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account
+ * @param {string} [From]  Only show SMS messages from this phone number
+ * @param {string} [To]  Only show SMS messages to this phone number.
+ * @param {string} [DateSent]  Only show SMS messages sent on this date, given as YYYY-MM-DD. Example: DateSent=2009-07-06. You can also specify					inequality, such as DateSent lt YYYY-MM-DD for SMS messages that were sent on or before midnight on a date, and DateSent					gt YYYY-MM-DD for SMS messages sent on or after midnight on a date.			
  * @methodhttp GET
  */
 exports.getSMSList = function(args, opts) {
@@ -148,9 +148,9 @@ exports.getSMSList = function(args, opts) {
 /** 
  * Returns a single SMS message specified by the provided {SMSMessageSid}.
  * @category SMS Messages
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account
- * @param {string} [SMSMessageSid] Represents a 34 character string that uniquely identifies this SMSMessage
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account
+ * @param {string} SMSMessageSid  Represents a 34 character string that uniquely identifies this SMSMessage
  * @methodhttp GET
  */
 exports.getSMS = function(args, opts) {
@@ -165,10 +165,10 @@ exports.getSMS = function(args, opts) {
 /** 
  * Returns the list of outgoing caller ids for this account
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} PhoneNumber Only show the caller id resource that exactly matches this phone number.
- * @param {string} FriendlyName Only show the caller id resource that exactly matches this name.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [PhoneNumber]  Only show the caller id resource that exactly matches this phone number.
+ * @param {string} [FriendlyName]  Only show the caller id resource that exactly matches this name.
  * @methodhttp GET
  */
 exports.getOutgoingCallerIdList = function(args, opts) {
@@ -184,14 +184,14 @@ exports.getOutgoingCallerIdList = function(args, opts) {
 /** 
  * Adds a new caller id to your account
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [PhoneNumber] The phone number to verify. Should be formatted with a '+' and country code e.g., +16175551212 (E.164 format). Twilio					will also accept unformatted US numbers e.g., (415) 555-1212, 415-555-1212.			
- * @param {string} FriendlyName A human readable description for the new caller ID with maximum length 64 characters. Defaults to a nicely formatted					version of the number.			
- * @param {string} CallDelay The number of seconds, between 0 and 60, to delay before initiating the validation call. Defaults to 0.
- * @param {string} Extension Digits to dial after connecting the verification call.
- * @param {string} StatusCallback A URL that Twilio will request when the verification call ends to notify your app if the verification process was successful or not.
- * @param {string} StatusCallbackMethod The HTTP method Twilio should use when requesting the above URL. Defaults to POST.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} PhoneNumber  The phone number to verify. Should be formatted with a '+' and country code e.g., +16175551212 (E.164 format). Twilio					will also accept unformatted US numbers e.g., (415) 555-1212, 415-555-1212.			
+ * @param {string} [FriendlyName]  A human readable description for the new caller ID with maximum length 64 characters. Defaults to a nicely formatted					version of the number.			
+ * @param {string} [CallDelay]  The number of seconds, between 0 and 60, to delay before initiating the validation call. Defaults to 0.
+ * @param {string} [Extension]  Digits to dial after connecting the verification call.
+ * @param {string} [StatusCallback]  A URL that Twilio will request when the verification call ends to notify your app if the verification process was successful or not.
+ * @param {string} [StatusCallbackMethod]  The HTTP method Twilio should use when requesting the above URL. Defaults to POST.
  * @methodhttp POST
  */
 exports.addOutgoingCallerId = function(args, opts) {
@@ -211,10 +211,10 @@ exports.addOutgoingCallerId = function(args, opts) {
 /** 
  * Returns a list of OutgoingCallerId resource representations, each representing a Caller ID number valid for an account. The list includes paging information.
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} PhoneNumber Only show the caller id resource that exactly matches this phone number.			
- * @param {string} FriendlyName Only show the caller id resource that exactly matches this name.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [PhoneNumber]  Only show the caller id resource that exactly matches this phone number.			
+ * @param {string} [FriendlyName]  Only show the caller id resource that exactly matches this name.			
  * @methodhttp GET
  */
 exports.getOutgoingCallerIds = function(args, opts) {
@@ -230,9 +230,9 @@ exports.getOutgoingCallerIds = function(args, opts) {
 /** 
  * Returns a single outgoing caller id specified by the provided {OutgoingCallerIdSid}
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [OutgoingCallerIdSid] Represents a 34 character string that uniquely identifies this caller Id
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} OutgoingCallerIdSid  Represents a 34 character string that uniquely identifies this caller Id
  * @methodhttp GET
  */
 exports.getOutgoingCallerId = function(args, opts) {
@@ -247,10 +247,10 @@ exports.getOutgoingCallerId = function(args, opts) {
 /** 
  * Updates the outgoing caller id specified by the provided {OutgoingCallerIdSid} and returns the updated resource if					successful via POST.			
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [OutgoingCallerIdSid] Represents a 34 character string that uniquely identifies this caller Id
- * @param {string} FriendlyName A human readable description of a Caller ID, with maximum length of 64 characters. Defaults to a nicely formatted					version of the phone number.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} OutgoingCallerIdSid  Represents a 34 character string that uniquely identifies this caller Id
+ * @param {string} [FriendlyName]  A human readable description of a Caller ID, with maximum length of 64 characters. Defaults to a nicely formatted					version of the phone number.			
  * @methodhttp POST
  */
 exports.updateOutgoingCallerIdByPost = function(args, opts) {
@@ -266,10 +266,10 @@ exports.updateOutgoingCallerIdByPost = function(args, opts) {
 /** 
  * Updates the outgoing caller id specified by the provided {OutgoingCallerIdSid} and returns the updated resource if					successful via PUT.			
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [OutgoingCallerIdSid] Represents a 34 character string that uniquely identifies this caller Id
- * @param {string} FriendlyName A human readable description of a Caller ID, with maximum length of 64 characters. Defaults to a nicely formatted					version of the phone number.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} OutgoingCallerIdSid  Represents a 34 character string that uniquely identifies this caller Id
+ * @param {string} [FriendlyName]  A human readable description of a Caller ID, with maximum length of 64 characters. Defaults to a nicely formatted					version of the phone number.			
  * @methodhttp PUT
  */
 exports.updateOutgoingCallerIdByPut = function(args, opts) {
@@ -285,9 +285,9 @@ exports.updateOutgoingCallerIdByPut = function(args, opts) {
 /** 
  * Deletes the outgoing caller id specified by the provided {OutgoingCallerIdSid}
  * @category Outgoing Caller ID
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [OutgoingCallerIdSid] Represents a 34 character string that uniquely identifies this caller Id
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} OutgoingCallerIdSid  Represents a 34 character string that uniquely identifies this caller Id
  * @methodhttp DELETE
  */
 exports.deleteOutgoingCallerId = function(args, opts) {
@@ -302,18 +302,18 @@ exports.deleteOutgoingCallerId = function(args, opts) {
 /** 
  * Returns a list of local AvailablePhoneNumber resource representations, each representing a phone number that is					currently available for provisioning within your account.			
  * @category Available Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [IsoCountryCode] The ISO country code of this phone number
- * @param {string} AreaCode Find phone numbers in the specified Area Code. Only available for North American numbers.
- * @param {string} Contains A pattern to match phone numbers on. Valid characters are '*' and [0-9a-zA-Z]. The '*' character will match any single					digit.			
- * @param {string} InRegion Limit results to a particular region (i.e. State/Province). Given a phone number, search within the same Region as that					number.			
- * @param {string} InPostalCode Limit results to a particular postal code. Given a phone number, search within the same postal code as that number.			
- * @param {string} NearLatLong Given a latitude/longitude pair lat,long find geographically close numbers within Distance miles.
- * @param {string} NearNumber Given a phone number, find a geographically close number within Distance miles. Distance defaults to 25 miles.
- * @param {string} InLata Limit results to a specific Local access and transport area (LATA). Given a phone number, search within the same LATA as					that number.			
- * @param {string} InRateCenter Limit results to a specific rate center, or given a phone number search within the same rate center as that number.					Requires InLata to be set as well.			
- * @param {string} Distance Specifies the search radius for a Near- query in miles. If not specified this defaults to 25 miles.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} IsoCountryCode  The ISO country code of this phone number
+ * @param {string} [AreaCode]  Find phone numbers in the specified Area Code. Only available for North American numbers.
+ * @param {string} [Contains]  A pattern to match phone numbers on. Valid characters are '*' and [0-9a-zA-Z]. The '*' character will match any single					digit.			
+ * @param {string} [InRegion]  Limit results to a particular region (i.e. State/Province). Given a phone number, search within the same Region as that					number.			
+ * @param {string} [InPostalCode]  Limit results to a particular postal code. Given a phone number, search within the same postal code as that number.			
+ * @param {string} [NearLatLong]  Given a latitude/longitude pair lat,long find geographically close numbers within Distance miles.
+ * @param {string} [NearNumber]  Given a phone number, find a geographically close number within Distance miles. Distance defaults to 25 miles.
+ * @param {string} [InLata]  Limit results to a specific Local access and transport area (LATA). Given a phone number, search within the same LATA as					that number.			
+ * @param {string} [InRateCenter]  Limit results to a specific rate center, or given a phone number search within the same rate center as that number.					Requires InLata to be set as well.			
+ * @param {string} [Distance]  Specifies the search radius for a Near- query in miles. If not specified this defaults to 25 miles.
  * @methodhttp GET
  */
 exports.getAvailableLocalPhoneNumberList = function(args, opts) {
@@ -337,10 +337,10 @@ exports.getAvailableLocalPhoneNumberList = function(args, opts) {
 /** 
  * Returns a list of toll-free AvailablePhoneNumber resource representations, each representing a phone number that is					currently available for provisioning within your account.			
  * @category Available Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [IsoCountryCode] The ISO country code of this phone number
- * @param {string} Contains A pattern to match phone numbers on. Valid characters are '*' and [0-9a-zA-Z]. The '*' character will match any single					digit.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} IsoCountryCode  The ISO country code of this phone number
+ * @param {string} [Contains]  A pattern to match phone numbers on. Valid characters are '*' and [0-9a-zA-Z]. The '*' character will match any single					digit.			
  * @methodhttp GET
  */
 exports.getAvailableTollFreePhoneNumberList = function(args, opts) {
@@ -356,9 +356,9 @@ exports.getAvailableTollFreePhoneNumberList = function(args, opts) {
 /** 
  * Returns the single Call resource identified by {CallSid}.
  * @category Calls
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [CallSid] A 34 character string that uniquely idetifies this resource
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} CallSid  A 34 character string that uniquely idetifies this resource
  * @methodhttp GET
  */
 exports.getCall = function(args, opts) {
@@ -373,12 +373,12 @@ exports.getCall = function(args, opts) {
 /** 
  * Modifies a live call. Modification could be redirection or termination of the call.
  * @category Modify Live Call
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [CallSid] A 34 character string that uniquely idetifies this resource
- * @param {string} Url A valid URL that returns TwiML. Twilio will immediately redirect the call to the new TwiML.
- * @param {string} Method The HTTP method Twilio should use when requesting the above URL. Defaults to POST.
- * @param {string} Status Either canceled or completed. Specifying canceled will attempt to hangup calls that are queued or ringing but not affect					calls already in progress. Specifying completed will attempt to hang up a call even if it's already in progress.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} CallSid  A 34 character string that uniquely idetifies this resource
+ * @param {string} [Url]  A valid URL that returns TwiML. Twilio will immediately redirect the call to the new TwiML.
+ * @param {string} [Method]  The HTTP method Twilio should use when requesting the above URL. Defaults to POST.
+ * @param {string} [Status]  Either canceled or completed. Specifying canceled will attempt to hangup calls that are queued or ringing but not affect					calls already in progress. Specifying completed will attempt to hang up a call even if it's already in progress.			
  * @methodhttp POST
  */
 exports.modifyLiveCall = function(args, opts) {
@@ -396,13 +396,13 @@ exports.modifyLiveCall = function(args, opts) {
 /** 
  * Returns a list of phone calls made to and from the account identified by {AccountSid}, sorted by DateUpdated with					most-recent calls first.			
  * @category Calls
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} To Only show calls to this phone number.
- * @param {string} From Only show calls from this phone number.
- * @param {string} Status Only show calls currently in this status. May be queued, ringing, in-progress, completed, failed, busy, or no-answer.			
- * @param {string} StartTime Only show calls that started on this date, given as YYYY-MM-DD. Also supports inequalities, such as StartTime(less than					or equal to)YYYY-MM-DD for calls that started at or before midnight on a date, and StartTime(greater than or equal					to)YYYY-MM-DD for calls that started at or after midnight on a date.			
- * @param {string} EndTime Only show calls that ended on this date, given as YYYY-MM-DD. Also supoprts inequalities, such as EndTime(less than or					equal to)YYYY-MM-DD for calls that ended at or before midnight on a date, and EndTime(greater than or equal					to)YYYY-MM-DD for calls that end at or after midnight on a date.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [To]  Only show calls to this phone number.
+ * @param {string} [From]  Only show calls from this phone number.
+ * @param {string} [Status]  Only show calls currently in this status. May be queued, ringing, in-progress, completed, failed, busy, or no-answer.			
+ * @param {string} [StartTime]  Only show calls that started on this date, given as YYYY-MM-DD. Also supports inequalities, such as StartTime(less than					or equal to)YYYY-MM-DD for calls that started at or before midnight on a date, and StartTime(greater than or equal					to)YYYY-MM-DD for calls that started at or after midnight on a date.			
+ * @param {string} [EndTime]  Only show calls that ended on this date, given as YYYY-MM-DD. Also supoprts inequalities, such as EndTime(less than or					equal to)YYYY-MM-DD for calls that ended at or before midnight on a date, and EndTime(greater than or equal					to)YYYY-MM-DD for calls that end at or after midnight on a date.			
  * @methodhttp GET
  */
 exports.getCallList = function(args, opts) {
@@ -421,19 +421,19 @@ exports.getCallList = function(args, opts) {
 /** 
  * Make a call.
  * @category Making Calls
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [From] The phone number to use as the caller id. Format with a '+' and country code e.g., +16175551212 (E.164 format). Must be					a Twilio number or a valid outgoing caller id for your account.			
- * @param {string} [To] The number to call formatted with a '+' and country code e.g., +16175551212 (E.164 format). Twilio will also accept					unformatted US numbers e.g., (415) 555-1212, 415-555-1212.			
- * @param {string} [Url] The fully qualified URL that should be consulted when the call connects. Just like when you set a URL for your inbound					calls.			
- * @param {string} Method The HTTP method Twilio should use when requesting the required Url parameter's value above. Defaults to POST.
- * @param {string} FallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url.
- * @param {string} FallbackMethod The HTTP method that Twilio should use to request the FallbackUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} StatusCallback A URL that Twilio will request when the call ends to notify your app.
- * @param {string} StatusCallbackMethod The HTTP method Twilio should use when requesting the above URL. Defaults to POST.
- * @param {string} SendDigits A string of keys to dial after connecting to the number. Valid digits in the string include: any digit (0-9), '#' and					'*'. For example, if you connected to a company phone number, and wanted to dial extension 1234 and then the pound key,					use SendDigits=1234#. Remember to URL-encode this string, since the '#' character has special meaning in a URL.			
- * @param {string} IfMachine Tell Twilio to try and determine if a machine (like voicemail) or a human has answered the call. Possible values are					Continue and Hangup. See the answering machines section below for more info.			
- * @param {string} Timeout The integer number of seconds that Twilio should allow the phone to ring before assuming there is no answer. Default is					60 seconds, the maximum is 999 seconds. Note, you could set this to a low value, such as 15, to hangup before reaching					an answering machine or voicemail. Also see the answering machine section for other solutions.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} From  The phone number to use as the caller id. Format with a '+' and country code e.g., +16175551212 (E.164 format). Must be					a Twilio number or a valid outgoing caller id for your account.			
+ * @param {string} To  The number to call formatted with a '+' and country code e.g., +16175551212 (E.164 format). Twilio will also accept					unformatted US numbers e.g., (415) 555-1212, 415-555-1212.			
+ * @param {string} Url  The fully qualified URL that should be consulted when the call connects. Just like when you set a URL for your inbound					calls.			
+ * @param {string} [Method]  The HTTP method Twilio should use when requesting the required Url parameter's value above. Defaults to POST.
+ * @param {string} [FallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url.
+ * @param {string} [FallbackMethod]  The HTTP method that Twilio should use to request the FallbackUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [StatusCallback]  A URL that Twilio will request when the call ends to notify your app.
+ * @param {string} [StatusCallbackMethod]  The HTTP method Twilio should use when requesting the above URL. Defaults to POST.
+ * @param {string} [SendDigits]  A string of keys to dial after connecting to the number. Valid digits in the string include: any digit (0-9), '#' and					'*'. For example, if you connected to a company phone number, and wanted to dial extension 1234 and then the pound key,					use SendDigits=1234#. Remember to URL-encode this string, since the '#' character has special meaning in a URL.			
+ * @param {string} [IfMachine]  Tell Twilio to try and determine if a machine (like voicemail) or a human has answered the call. Possible values are					Continue and Hangup. See the answering machines section below for more info.			
+ * @param {string} [Timeout]  The integer number of seconds that Twilio should allow the phone to ring before assuming there is no answer. Default is					60 seconds, the maximum is 999 seconds. Note, you could set this to a low value, such as 15, to hangup before reaching					an answering machine or voicemail. Also see the answering machine section for other solutions.			
  * @methodhttp POST
  */
 exports.makeCall = function(args, opts) {
@@ -458,9 +458,9 @@ exports.makeCall = function(args, opts) {
 /** 
  * Fetches the details of a phone number purchased from Twilio
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} [IncomingPhoneNumberSid] A 34 character string that uniquely idetifies this resource.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} IncomingPhoneNumberSid  A 34 character string that uniquely idetifies this resource.
  * @methodhttp GET
  */
 exports.getIncomingPhoneNumber = function(args, opts) {
@@ -475,22 +475,22 @@ exports.getIncomingPhoneNumber = function(args, opts) {
 /** 
  * Update an incoming phone number obtained from Twilio via POST.
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} [IncomingPhoneNumberSid] A 34 character string that uniquely idetifies this resource.
- * @param {string} FriendlyName A human readable description of the new incoming phone number resource, with maximum length 64 characters.
- * @param {string} ApiVersion Calls to this phone number will start a new TwiML session with this API version. Either 2010-04-01 or 2008-08-01.
- * @param {string} VoiceUrl The URL that Twilio should request when somebody dials the phone number.
- * @param {string} VoiceMethod The HTTP method that should be used to request the VoiceUrl. Either GET or POST. Defaults to POST.
- * @param {string} VoiceFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by VoiceUrl.
- * @param {string} VoiceFallbackMethod The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
- * @param {string} StatusCallback The URL that Twilio will request to pass status parameters (such as call ended) to your application.
- * @param {string} StatusCallbackMethod The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST.
- * @param {string} SmsUrl The URL that Twilio should request when somebody sends an SMS to the new phone number.
- * @param {string} SmsMethod The HTTP method that should be used to request the SmsUrl. Either GET or POST. Defaults to POST.
- * @param {string} SmsFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
- * @param {string} SmsFallbackMethod The HTTP method that should be used to request the SmsFallbackUrl. Either GET or POST. Defaults to POST.
- * @param {string} VoiceCallerIdLookup Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} IncomingPhoneNumberSid  A 34 character string that uniquely idetifies this resource.
+ * @param {string} [FriendlyName]  A human readable description of the new incoming phone number resource, with maximum length 64 characters.
+ * @param {string} [ApiVersion]  Calls to this phone number will start a new TwiML session with this API version. Either 2010-04-01 or 2008-08-01.
+ * @param {string} [VoiceUrl]  The URL that Twilio should request when somebody dials the phone number.
+ * @param {string} [VoiceMethod]  The HTTP method that should be used to request the VoiceUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [VoiceFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by VoiceUrl.
+ * @param {string} [VoiceFallbackMethod]  The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [StatusCallback]  The URL that Twilio will request to pass status parameters (such as call ended) to your application.
+ * @param {string} [StatusCallbackMethod]  The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST.
+ * @param {string} [SmsUrl]  The URL that Twilio should request when somebody sends an SMS to the new phone number.
+ * @param {string} [SmsMethod]  The HTTP method that should be used to request the SmsUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [SmsFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
+ * @param {string} [SmsFallbackMethod]  The HTTP method that should be used to request the SmsFallbackUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [VoiceCallerIdLookup]  Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
  * @methodhttp POST
  */
 exports.updateIncomingPhoneNumberByPost = function(args, opts) {
@@ -518,22 +518,22 @@ exports.updateIncomingPhoneNumberByPost = function(args, opts) {
 /** 
  * Update an incoming phone number obtained from Twilio via PUT.
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} [IncomingPhoneNumberSid] A 34 character string that uniquely idetifies this resource.
- * @param {string} FriendlyName A human readable description of the new incoming phone number resource, with maximum length 64 characters.
- * @param {string} ApiVersion Calls to this phone number will start a new TwiML session with this API version. Either 2010-04-01 or 2008-08-01.
- * @param {string} VoiceUrl The URL that Twilio should request when somebody dials the phone number.
- * @param {string} VoiceMethod The HTTP method that should be used to request the VoiceUrl. Either GET or POST. Defaults to POST.
- * @param {string} VoiceFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by VoiceUrl.
- * @param {string} VoiceFallbackMethod The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
- * @param {string} StatusCallback The URL that Twilio will request to pass status parameters (such as call ended) to your application.
- * @param {string} StatusCallbackMethod The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST.
- * @param {string} SmsUrl The URL that Twilio should request when somebody sends an SMS to the new phone number.
- * @param {string} SmsMethod The HTTP method that should be used to request the SmsUrl. Either GET or POST. Defaults to POST.
- * @param {string} SmsFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
- * @param {string} SmsFallbackMethod The HTTP method that should be used to request the SmsFallbackUrl. Either GET or POST. Defaults to POST.
- * @param {string} VoiceCallerIdLookup Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} IncomingPhoneNumberSid  A 34 character string that uniquely idetifies this resource.
+ * @param {string} [FriendlyName]  A human readable description of the new incoming phone number resource, with maximum length 64 characters.
+ * @param {string} [ApiVersion]  Calls to this phone number will start a new TwiML session with this API version. Either 2010-04-01 or 2008-08-01.
+ * @param {string} [VoiceUrl]  The URL that Twilio should request when somebody dials the phone number.
+ * @param {string} [VoiceMethod]  The HTTP method that should be used to request the VoiceUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [VoiceFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by VoiceUrl.
+ * @param {string} [VoiceFallbackMethod]  The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [StatusCallback]  The URL that Twilio will request to pass status parameters (such as call ended) to your application.
+ * @param {string} [StatusCallbackMethod]  The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST.
+ * @param {string} [SmsUrl]  The URL that Twilio should request when somebody sends an SMS to the new phone number.
+ * @param {string} [SmsMethod]  The HTTP method that should be used to request the SmsUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [SmsFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
+ * @param {string} [SmsFallbackMethod]  The HTTP method that should be used to request the SmsFallbackUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [VoiceCallerIdLookup]  Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
  * @methodhttp PUT
  */
 exports.updateIncomingPhoneNumberByPut = function(args, opts) {
@@ -561,9 +561,9 @@ exports.updateIncomingPhoneNumberByPut = function(args, opts) {
 /** 
  * Deletes a phone number purchased from Twilio
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} [IncomingPhoneNumberSid] A 34 character string that uniquely idetifies this resource.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} IncomingPhoneNumberSid  A 34 character string that uniquely idetifies this resource.
  * @methodhttp DELETE
  */
 exports.deleteIncomingPhoneNumber = function(args, opts) {
@@ -578,10 +578,10 @@ exports.deleteIncomingPhoneNumber = function(args, opts) {
 /** 
  * Returns a list of incoming phone number resources, each representing a phone number given to your account
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} PhoneNumber Only show the incoming phone number resources that match this pattern. You can specify partial numbers and use '*' as a					wildcard for any digit.			
- * @param {string} FriendlyName Only show the incoming phone number resources with friendly names that exactly match this name.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} [PhoneNumber]  Only show the incoming phone number resources that match this pattern. You can specify partial numbers and use '*' as a					wildcard for any digit.			
+ * @param {string} [FriendlyName]  Only show the incoming phone number resources with friendly names that exactly match this name.
  * @methodhttp GET
  */
 exports.getIncomingPhoneNumberList = function(args, opts) {
@@ -597,21 +597,21 @@ exports.getIncomingPhoneNumberList = function(args, opts) {
 /** 
  * Adds a new phone number to your account. If a phone number is found for your request, Twilio will add it to your account			
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} [PhoneNumber] The phone number you want to purchase. The number should be formated starting with a '+' followed by the country code					and the number in E.164 format			
- * @param {string} FriendlyName A human readable description of the new incoming phone number. Maximum 64 characters. Defaults to a formatted version of					the number.			
- * @param {string} VoiceUrl The URL that Twilio should request when somebody dials the new phone number.
- * @param {string} VoiceMethod The HTTP method that should be used to request the VoiceUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} VoiceFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url.
- * @param {string} VoiceFallbackMethod The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
- * @param {string} StatusCallback The URL that Twilio will request to pass status parameters (such as call ended) to your application.
- * @param {string} StatusCallbackMethod The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST. Defaults to POST.
- * @param {string} SmsUrl The URL that Twilio should request when somebody sends an SMS to the phone number.
- * @param {string} SmsMethod The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} SmsFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
- * @param {string} SmsFallbackMethod The HTTP method that should be used to request the SmsFallbackUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} VoiceCallerIdLookup Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} PhoneNumber  The phone number you want to purchase. The number should be formated starting with a '+' followed by the country code					and the number in E.164 format			
+ * @param {string} [FriendlyName]  A human readable description of the new incoming phone number. Maximum 64 characters. Defaults to a formatted version of					the number.			
+ * @param {string} [VoiceUrl]  The URL that Twilio should request when somebody dials the new phone number.
+ * @param {string} [VoiceMethod]  The HTTP method that should be used to request the VoiceUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [VoiceFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url.
+ * @param {string} [VoiceFallbackMethod]  The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [StatusCallback]  The URL that Twilio will request to pass status parameters (such as call ended) to your application.
+ * @param {string} [StatusCallbackMethod]  The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST. Defaults to POST.
+ * @param {string} [SmsUrl]  The URL that Twilio should request when somebody sends an SMS to the phone number.
+ * @param {string} [SmsMethod]  The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [SmsFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
+ * @param {string} [SmsFallbackMethod]  The HTTP method that should be used to request the SmsFallbackUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [VoiceCallerIdLookup]  Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
  * @methodhttp POST
  */
 exports.addIncomingPhoneNumber = function(args, opts) {
@@ -638,21 +638,21 @@ exports.addIncomingPhoneNumber = function(args, opts) {
 /** 
  * Adds a random phone number available for the area depending on the Area Code provided
  * @category Incoming Phone Numbers
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id.
- * @param {string} [AreaCode] The area code in which you'd like a new incoming phone number. Any three digit, US area code is valid. Twilio will					provision a random phone number within this area code for you. You must include either this or a PhoneNumber parameter					to have your POST succeed.			
- * @param {string} FriendlyName A human readable description of the new incoming phone number. Maximum 64 characters. Defaults to a formatted version of					the number.			
- * @param {string} VoiceUrl The URL that Twilio should request when somebody dials the new phone number.
- * @param {string} VoiceMethod The HTTP method that should be used to request the VoiceUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} VoiceFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url.
- * @param {string} VoiceFallbackMethod The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
- * @param {string} StatusCallback The URL that Twilio will request to pass status parameters (such as call ended) to your application.
- * @param {string} StatusCallbackMethod The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST. Defaults to POST.
- * @param {string} SmsUrl The URL that Twilio should request when somebody sends an SMS to the phone number.
- * @param {string} SmsMethod The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} SmsFallbackUrl A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
- * @param {string} SmsFallbackMethod The HTTP method that should be used to request the SmsFallbackUrl. Must be either GET or POST. Defaults to POST.
- * @param {string} VoiceCallerIdLookup Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id.
+ * @param {string} AreaCode  The area code in which you'd like a new incoming phone number. Any three digit, US area code is valid. Twilio will					provision a random phone number within this area code for you. You must include either this or a PhoneNumber parameter					to have your POST succeed.			
+ * @param {string} [FriendlyName]  A human readable description of the new incoming phone number. Maximum 64 characters. Defaults to a formatted version of					the number.			
+ * @param {string} [VoiceUrl]  The URL that Twilio should request when somebody dials the new phone number.
+ * @param {string} [VoiceMethod]  The HTTP method that should be used to request the VoiceUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [VoiceFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML at Url.
+ * @param {string} [VoiceFallbackMethod]  The HTTP method that should be used to request the VoiceFallbackUrl. Either GET or POST. Defaults to POST.
+ * @param {string} [StatusCallback]  The URL that Twilio will request to pass status parameters (such as call ended) to your application.
+ * @param {string} [StatusCallbackMethod]  The HTTP method Twilio will use to make requests to the StatusCallback URL. Either GET or POST. Defaults to POST.
+ * @param {string} [SmsUrl]  The URL that Twilio should request when somebody sends an SMS to the phone number.
+ * @param {string} [SmsMethod]  The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [SmsFallbackUrl]  A URL that Twilio will request if an error occurs requesting or executing the TwiML defined by SmsUrl.
+ * @param {string} [SmsFallbackMethod]  The HTTP method that should be used to request the SmsFallbackUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} [VoiceCallerIdLookup]  Do a lookup of a caller's name from the CNAM database and post it to your app. Either true or false. Defaults to false.			
  * @methodhttp POST
  */
 exports.addIncomingPhoneNumberByAreaCode = function(args, opts) {
@@ -679,10 +679,10 @@ exports.addIncomingPhoneNumberByAreaCode = function(args, opts) {
 /** 
  * Returns a recording list for the {CallSid}
  * @category Calls
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [CallSid] Show only recordings made during the call given by this sid.
- * @param {string} DateCreated Only show recordings created on the given date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such					as DateCreated(less than or equal to)YYYY-MM-DD for recordings generated at or before midnight on a date, and					DateCreated(greater than or equal to)YYYY-MM-DD for recordings generated at or after midnight on a date.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} CallSid  Show only recordings made during the call given by this sid.
+ * @param {string} [DateCreated]  Only show recordings created on the given date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such					as DateCreated(less than or equal to)YYYY-MM-DD for recordings generated at or before midnight on a date, and					DateCreated(greater than or equal to)YYYY-MM-DD for recordings generated at or after midnight on a date.			
  * @methodhttp GET
  */
 exports.getRecordingListForCall = function(args, opts) {
@@ -698,10 +698,10 @@ exports.getRecordingListForCall = function(args, opts) {
 /** 
  * Returns a recording list associated with this {AccountSid}
  * @category Recordings
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} CallSid Show only recordings made during the call given by this sid.
- * @param {string} DateCreated Only show recordings created on the given date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such					as DateCreated(less than or equal to)YYYY-MM-DD for recordings generated at or before midnight on a date, and					DateCreated(greater than or equal to)YYYY-MM-DD for recordings generated at or after midnight on a date.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [CallSid]  Show only recordings made during the call given by this sid.
+ * @param {string} [DateCreated]  Only show recordings created on the given date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such					as DateCreated(less than or equal to)YYYY-MM-DD for recordings generated at or before midnight on a date, and					DateCreated(greater than or equal to)YYYY-MM-DD for recordings generated at or after midnight on a date.			
  * @methodhttp GET
  */
 exports.getRecordingListForAccount = function(args, opts) {
@@ -717,9 +717,9 @@ exports.getRecordingListForAccount = function(args, opts) {
 /** 
  * Each Recording instance resource has a Transcriptions subresource which represents the set of transcriptions generated					from the recording (if any). Represents the set of transcriptions available for the recording identified by					{RecordingSid}.			
  * @category Recordings
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [RecordingSid] The unique id of the Recording this Transcription was made of
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} RecordingSid  The unique id of the Recording this Transcription was made of
  * @methodhttp GET
  */
 exports.getTranscriptionListForRecording = function(args, opts) {
@@ -734,9 +734,9 @@ exports.getTranscriptionListForRecording = function(args, opts) {
 /** 
  * Returns a single Transcription resource representation identified by the given {TranscriptionSid}.
  * @category Transcriptions
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [TranscriptionSid] A 34 character string that uniquely identifies this resource
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} TranscriptionSid  A 34 character string that uniquely identifies this resource
  * @methodhttp GET
  */
 exports.getTranscription = function(args, opts) {
@@ -751,8 +751,8 @@ exports.getTranscription = function(args, opts) {
 /** 
  * Returns a set of Transcription resource representations that includes paging information, sorted by 'DateUpdated', with					most recent transcripts first.			
  * @category Transcriptions
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
  * @methodhttp GET
  */
 exports.getTranscriptionList = function(args, opts) {
@@ -766,9 +766,9 @@ exports.getTranscriptionList = function(args, opts) {
 /** 
  * Returns a recording
  * @category Recordings
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [RecordingSid] The unique id of the Recording this Transcription was made of
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} RecordingSid  The unique id of the Recording this Transcription was made of
  * @methodhttp GET
  */
 exports.getRecording = function(args, opts) {
@@ -783,9 +783,9 @@ exports.getRecording = function(args, opts) {
 /** 
  * Deletes a recording
  * @category Recordings
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [RecordingSid] The unique id of the Recording this Transcription was made of
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} RecordingSid  The unique id of the Recording this Transcription was made of
  * @methodhttp DELETE
  */
 exports.deleteRecording = function(args, opts) {
@@ -800,9 +800,9 @@ exports.deleteRecording = function(args, opts) {
 /** 
  * Returns a notification
  * @category Notifications
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [NotificationSid] A 34 character string that uniquely identifies this resource.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} NotificationSid  A 34 character string that uniquely identifies this resource.
  * @methodhttp GET
  */
 exports.getNotification = function(args, opts) {
@@ -817,9 +817,9 @@ exports.getNotification = function(args, opts) {
 /** 
  * Deletes a notification
  * @category Notifications
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [NotificationSid] A 34 character string that uniquely identifies this resource.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} NotificationSid  A 34 character string that uniquely identifies this resource.
  * @methodhttp DELETE
  */
 exports.deleteNotification = function(args, opts) {
@@ -834,10 +834,10 @@ exports.deleteNotification = function(args, opts) {
 /** 
  * Returns a notification list
  * @category Notifications
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} Log Only show notifications for this log, using the integer log values shown above.
- * @param {string} MessageDate Only show notifications for this date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such as					MessageDate(less than or equal to)YYYY-MM-DD for messages logged at or before midnight on a date, and					MessageDate(greater than or equal to )YYYY-MM-DD for messages logged at or after midnight on a date. When performing a					date range query with day-granularity make sure the right endpoint is midnight of the next day (e.g. to construct a					range query for all calls on YYYY-MM-DD use MessageDate(greater than or equal to)YYYY-MM-DD(and)MessageDate(less					than)YYYY-MM-(DD+1)).			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [Log]  Only show notifications for this log, using the integer log values shown above.
+ * @param {string} [MessageDate]  Only show notifications for this date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such as					MessageDate(less than or equal to)YYYY-MM-DD for messages logged at or before midnight on a date, and					MessageDate(greater than or equal to )YYYY-MM-DD for messages logged at or after midnight on a date. When performing a					date range query with day-granularity make sure the right endpoint is midnight of the next day (e.g. to construct a					range query for all calls on YYYY-MM-DD use MessageDate(greater than or equal to)YYYY-MM-DD(and)MessageDate(less					than)YYYY-MM-(DD+1)).			
  * @methodhttp GET
  */
 exports.getNotificationList = function(args, opts) {
@@ -853,11 +853,11 @@ exports.getNotificationList = function(args, opts) {
 /** 
  * Returns a notification list
  * @category Calls
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [CallSid] A 34 character string that uniquely identifies this resource
- * @param {string} Log Only show notifications for this log, using the integer log values shown above.
- * @param {string} MessageDate Only show notifications for this date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such as					MessageDate(less than or equal to)YYYY-MM-DD for messages logged at or before midnight on a date, and					MessageDate(greater than or equal to)YYYY-MM-DD for messages logged at or after midnight on a date. When performing a					date range query with day-granularity make sure the right endpoint is midnight of the next day (e.g. to construct a					range query for all calls on YYYY-MM-DD use MessageDate(greater than or equal to)YYYY-MM-DD(and)MessageDate(less					than)YYYY-MM-(DD+1)).			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} CallSid  A 34 character string that uniquely identifies this resource
+ * @param {string} [Log]  Only show notifications for this log, using the integer log values shown above.
+ * @param {string} [MessageDate]  Only show notifications for this date. Should be formatted as YYYY-MM-DD. You can also specify inequality, such as					MessageDate(less than or equal to)YYYY-MM-DD for messages logged at or before midnight on a date, and					MessageDate(greater than or equal to)YYYY-MM-DD for messages logged at or after midnight on a date. When performing a					date range query with day-granularity make sure the right endpoint is midnight of the next day (e.g. to construct a					range query for all calls on YYYY-MM-DD use MessageDate(greater than or equal to)YYYY-MM-DD(and)MessageDate(less					than)YYYY-MM-(DD+1)).			
  * @methodhttp GET
  */
 exports.getNotificationListForCall = function(args, opts) {
@@ -874,9 +874,9 @@ exports.getNotificationListForCall = function(args, opts) {
 /** 
  * Returns a representation of the conference identified by {ConferenceSid}.
  * @category Conferences
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [ConferenceSid] A 34 character string that uniquely identifies this conference.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} ConferenceSid  A 34 character string that uniquely identifies this conference.
  * @methodhttp GET
  */
 exports.getConference = function(args, opts) {
@@ -891,10 +891,10 @@ exports.getConference = function(args, opts) {
 /** 
  * Returns the list of participants in the conference identified by {ConferenceSid}.
  * @category Conferences
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [ConferenceSid] A 34 character string that uniquely identifies this conference.
- * @param {string} Muted Only show participants that are muted or unmuted. Either true or false.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} ConferenceSid  A 34 character string that uniquely identifies this conference.
+ * @param {string} [Muted]  Only show participants that are muted or unmuted. Either true or false.
  * @methodhttp GET
  */
 exports.getParticipantListForConference = function(args, opts) {
@@ -910,12 +910,12 @@ exports.getParticipantListForConference = function(args, opts) {
 /** 
  * Returns a list of conferences within an account identified by {AccountSid}.
  * @category Conferences
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} Status Only show conferences currently in with this status. May be init, in-progress, or completed.
- * @param {string} FriendlyName List conferences who's FriendlyName is the exact match of this string.
- * @param {string} DateCreated Only show conferences that started on this date, given as YYYY-MM-DD. You can also specify inequality, such as					DateCreated(less than or equal to)YYYY-MM-DD for conferences that started at or before midnight on a date, and					DateCreated(greater than or equal to)YYYY-MM-DD for conferences that started at or after midnight on a date.			
- * @param {string} DateUpdated Only show conferences that were last updated on this date, given as YYYY-MM-DD. You can also specify inequality, such as					DateUpdated(less than or equal to)YYYY-MM-DD for conferences that were last updated at or before midnight on a date, and					DateUpdated(greater than or equal to)YYYY-MM-DD for conferences that were updated at or after midnight on a date.			
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [Status]  Only show conferences currently in with this status. May be init, in-progress, or completed.
+ * @param {string} [FriendlyName]  List conferences who's FriendlyName is the exact match of this string.
+ * @param {string} [DateCreated]  Only show conferences that started on this date, given as YYYY-MM-DD. You can also specify inequality, such as					DateCreated(less than or equal to)YYYY-MM-DD for conferences that started at or before midnight on a date, and					DateCreated(greater than or equal to)YYYY-MM-DD for conferences that started at or after midnight on a date.			
+ * @param {string} [DateUpdated]  Only show conferences that were last updated on this date, given as YYYY-MM-DD. You can also specify inequality, such as					DateUpdated(less than or equal to)YYYY-MM-DD for conferences that were last updated at or before midnight on a date, and					DateUpdated(greater than or equal to)YYYY-MM-DD for conferences that were updated at or after midnight on a date.			
  * @methodhttp GET
  */
 exports.getConferenceListForAccount = function(args, opts) {
@@ -933,10 +933,10 @@ exports.getConferenceListForAccount = function(args, opts) {
 /** 
  * Returns a representation of this participant.
  * @category Participants
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [ConferenceSid] A 34 character string that uniquely identifies this conference.
- * @param {string} [CallSid] A 34 character string that uniquely identifies the call that is connected to this conference.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} ConferenceSid  A 34 character string that uniquely identifies this conference.
+ * @param {string} CallSid  A 34 character string that uniquely identifies the call that is connected to this conference.
  * @methodhttp GET
  */
 exports.getParticipantForConference = function(args, opts) {
@@ -952,11 +952,11 @@ exports.getParticipantForConference = function(args, opts) {
 /** 
  * Mute a participant.
  * @category Participants
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [ConferenceSid] A 34 character string that uniquely identifies this conference.
- * @param {string} [CallSid] A 34 character string that uniquely identifies the call that is connected to this conference.
- * @param {string} Muted Specifying true will mute the participant, while false will un-mute.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} ConferenceSid  A 34 character string that uniquely identifies this conference.
+ * @param {string} CallSid  A 34 character string that uniquely identifies the call that is connected to this conference.
+ * @param {string} [Muted]  Specifying true will mute the participant, while false will un-mute.
  * @methodhttp POST
  */
 exports.MuteParticipant = function(args, opts) {
@@ -973,10 +973,10 @@ exports.MuteParticipant = function(args, opts) {
 /** 
  * Kick a participant from a conference.
  * @category Participants
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [ConferenceSid] A 34 character string that uniquely identifies this conference.
- * @param {string} [CallSid] A 34 character string that uniquely identifies the call that is connected to this conference.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} ConferenceSid  A 34 character string that uniquely identifies this conference.
+ * @param {string} CallSid  A 34 character string that uniquely identifies the call that is connected to this conference.
  * @methodhttp DELETE
  */
 exports.deleteParticipant = function(args, opts) {
@@ -992,10 +992,10 @@ exports.deleteParticipant = function(args, opts) {
 /** 
  * Returns the list of participants in the conference identified by {ConferenceSid}.
  * @category Participants
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} [ConferenceSid] A 34 character string that uniquely identifies this conference.
- * @param {string} Muted Only show participants that are muted or unmuted. Either true or false.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} ConferenceSid  A 34 character string that uniquely identifies this conference.
+ * @param {string} [Muted]  Only show participants that are muted or unmuted. Either true or false.
  * @methodhttp GET
  */
 exports.getParticipantListForConference2 = function(args, opts) {
@@ -1011,8 +1011,8 @@ exports.getParticipantListForConference2 = function(args, opts) {
 /** 
  * Returns the Sandbox resource associated with the account identified by {AccountSid}.
  * @category Sandbox
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
  * @methodhttp GET
  */
 exports.getSandbox = function(args, opts) {
@@ -1026,12 +1026,12 @@ exports.getSandbox = function(args, opts) {
 /** 
  * Updates the Sandbox resource via POST.
  * @category Sandbox
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} VoiceUrl 
- * @param {string} VoiceMethod The HTTP method that should be used to request the above URL. Must be either GET or POST. Defaults to POST.
- * @param {string} SmsUrl The URL that Twilio should request when somebody sends an SMS to the sandbox.
- * @param {string} SmsMethod The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [VoiceUrl]  
+ * @param {string} [VoiceMethod]  The HTTP method that should be used to request the above URL. Must be either GET or POST. Defaults to POST.
+ * @param {string} [SmsUrl]  The URL that Twilio should request when somebody sends an SMS to the sandbox.
+ * @param {string} [SmsMethod]  The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
  * @methodhttp POST
  */
 exports.updateSandboxByPost = function(args, opts) {
@@ -1049,12 +1049,12 @@ exports.updateSandboxByPost = function(args, opts) {
 /** 
  * Updates the Sandbox resource via PUT.
  * @category Sandbox
- * @param {string} [format] undefined
- * @param {string} [AccountSid] Represents the unique id of the Account responsible for this caller Id
- * @param {string} VoiceUrl 
- * @param {string} VoiceMethod The HTTP method that should be used to request the above URL. Must be either GET or POST. Defaults to POST.
- * @param {string} SmsUrl The URL that Twilio should request when somebody sends an SMS to the sandbox.
- * @param {string} SmsMethod The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
+ * @param {string} format  undefined
+ * @param {string} AccountSid  Represents the unique id of the Account responsible for this caller Id
+ * @param {string} [VoiceUrl]  
+ * @param {string} [VoiceMethod]  The HTTP method that should be used to request the above URL. Must be either GET or POST. Defaults to POST.
+ * @param {string} [SmsUrl]  The URL that Twilio should request when somebody sends an SMS to the sandbox.
+ * @param {string} [SmsMethod]  The HTTP method that should be used to request the SmsUrl. Must be either GET or POST. Defaults to POST.
  * @methodhttp PUT
  */
 exports.updateSandboxByPut = function(args, opts) {

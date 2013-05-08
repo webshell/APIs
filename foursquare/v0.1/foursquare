@@ -17,7 +17,7 @@ exports.auth = function() { return auth({provider:provider}) };
 /** 
  * Returns profile information for a given user, including selected badges and mayorships.                    If the user is a friend, contact information, Facebook ID, and Twitter handle and the user's last                    checkin may also be present.In addition, the pings field will indicate whether checkins from this                    user will trigger a ping (notifications to mobile devices). This setting can be changed via setpings.                    Note that this setting is overriden if pings is false in settings (no pings will be sent, even if                    this user is set to true).                
  * @category User
- * @param {string} [user] Identity of the user to get details for. Pass self to get details of the acting user.
+ * @param {string} user  Identity of the user to get details for. Pass self to get details of the acting user.
  * @methodhttp GET
  */
 exports.getUser = function(args, opts) {
@@ -30,12 +30,12 @@ exports.getUser = function(args, opts) {
 /** 
  * Returns an array of compact user objects with Twitter or Facebook information and friend status.                 
  * @category User
- * @param {string} phone A comma-delimited list of phone numbers to look for
- * @param {string} email A comma-delimited list of email addresses to look for
- * @param {string} twitter A comma-delimited list of Twitter handles to look for
- * @param {string} twitterSource A single Twitter handle. Results will be friends of this user who use Foursquare
- * @param {string} fbid A comma-delimited list of Facebook ID's to look for
- * @param {string} name A single string to search for in users' names
+ * @param {string} [phone]  A comma-delimited list of phone numbers to look for
+ * @param {string} [email]  A comma-delimited list of email addresses to look for
+ * @param {string} [twitter]  A comma-delimited list of Twitter handles to look for
+ * @param {string} [twitterSource]  A single Twitter handle. Results will be friends of this user who use Foursquare
+ * @param {string} [fbid]  A comma-delimited list of Facebook ID's to look for
+ * @param {string} [name]  A single string to search for in users' names
  * @methodhttp GET
  */
 exports.searchUser = function(args, opts) {
@@ -64,7 +64,7 @@ exports.getRequests = function(args, opts) {
 /** 
  * Returns badges for a given user.                
  * @category User
- * @param {string} [user] ID for user to view badges for. Pass self to get details of the acting user.
+ * @param {string} user  ID for user to view badges for. Pass self to get details of the acting user.
  * @methodhttp GET
  */
 exports.getBadges = function(args, opts) {
@@ -77,11 +77,11 @@ exports.getBadges = function(args, opts) {
 /** 
  * Returns a history of checkins for the authenticated user.                
  * @category User
- * @param {string} [user] Identity of the user to get details for. Pass self to get details of the acting user. For now, only "self" is supported			
- * @param {string} limit Number of results to return, up to 500.
- * @param {string} offset Used to page through results.
- * @param {string} afterTimestamp Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or					when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last					poll time and then de-deduplicating.			
- * @param {string} beforeTimestamp Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.
+ * @param {string} user  Identity of the user to get details for. Pass self to get details of the acting user. For now, only "self" is supported			
+ * @param {string} [limit]  Number of results to return, up to 500.
+ * @param {string} [offset]  Used to page through results.
+ * @param {string} [afterTimestamp]  Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or					when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last					poll time and then de-deduplicating.			
+ * @param {string} [beforeTimestamp]  Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.
  * @methodhttp GET
  */
 exports.getUserCheckins = function(args, opts) {
@@ -98,7 +98,7 @@ exports.getUserCheckins = function(args, opts) {
 /** 
  * Returns an array of a user's friends.                
  * @category User
- * @param {string} [user] Identity of the user to get friends of. Pass self to get friends of the acting user.
+ * @param {string} user  Identity of the user to get friends of. Pass self to get friends of the acting user.
  * @methodhttp GET
  */
 exports.getFriends = function(args, opts) {
@@ -111,9 +111,9 @@ exports.getFriends = function(args, opts) {
 /** 
  * Returns tips from a user.                
  * @category User
- * @param {string} [user] Identity of the user to get tips from. Pass self to get tips of the acting user.
- * @param {string} sort One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.
- * @param {string} ll Latitude and longitude of the user's location.
+ * @param {string} user  Identity of the user to get tips from. Pass self to get tips of the acting user.
+ * @param {string} [sort]  One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.
+ * @param {string} [ll]  Latitude and longitude of the user's location.
  * @methodhttp GET
  */
 exports.getUserTips = function(args, opts) {
@@ -128,9 +128,9 @@ exports.getUserTips = function(args, opts) {
 /** 
  * Returns todos from a user.                
  * @category User
- * @param {string} [user] Identity of the user to get todos for. Pass self to get todos of the acting user.
- * @param {string} sort One of recent or popular. Nearby requires geolat and geolong to be provided.
- * @param {string} [ll] Latitude and longitude of the user's location.
+ * @param {string} user  Identity of the user to get todos for. Pass self to get todos of the acting user.
+ * @param {string} [sort]  One of recent or popular. Nearby requires geolat and geolong to be provided.
+ * @param {string} ll  Latitude and longitude of the user's location.
  * @methodhttp GET
  */
 exports.getTodos = function(args, opts) {
@@ -145,7 +145,7 @@ exports.getTodos = function(args, opts) {
 /** 
  * Returns a list of all venues visited by the specified user, along with how many visits and when they were last there.               
  * @category User
- * @param {string} [user] Identity of the user to get details for. Pass self to get details of the acting user. For now, only "self" is supported			
+ * @param {string} user  Identity of the user to get details for. Pass self to get details of the acting user. For now, only "self" is supported			
  * @methodhttp GET
  */
 exports.getVenueHistory = function(args, opts) {
@@ -158,7 +158,7 @@ exports.getVenueHistory = function(args, opts) {
 /** 
  * Sends a friend request to another user.                
  * @category User
- * @param {string} [user] The user ID to which a request will be sent.
+ * @param {string} user  The user ID to which a request will be sent.
  * @methodhttp POST
  */
 exports.sendRequest = function(args, opts) {
@@ -171,7 +171,7 @@ exports.sendRequest = function(args, opts) {
 /** 
  * Cancels any relationship between the acting user and the specified user.					Removes a friend, unfollows a celebrity, or cancels a pending friend request.                
  * @category User
- * @param {string} [user] Identity of the user to unfriend.
+ * @param {string} user  Identity of the user to unfriend.
  * @methodhttp POST
  */
 exports.unfriendUser = function(args, opts) {
@@ -184,7 +184,7 @@ exports.unfriendUser = function(args, opts) {
 /** 
  * Approves a pending friend request from another user.                 
  * @category User
- * @param {string} [user] The user ID of a pending friend.
+ * @param {string} user  The user ID of a pending friend.
  * @methodhttp POST
  */
 exports.approveFriend = function(args, opts) {
@@ -197,7 +197,7 @@ exports.approveFriend = function(args, opts) {
 /** 
  * Denies a pending friend request from another user.                
  * @category User
- * @param {string} [user] The user ID of a pending friend.
+ * @param {string} user  The user ID of a pending friend.
  * @methodhttp POST
  */
 exports.denyFriend = function(args, opts) {
@@ -210,8 +210,8 @@ exports.denyFriend = function(args, opts) {
 /** 
  * Changes whether the acting user will receive pings (phone notifications) when the specified user checks in.                
  * @category User
- * @param {string} [user] The user ID of a friend.
- * @param {string} [value] True or false.
+ * @param {string} user  The user ID of a friend.
+ * @param {string} value  True or false.
  * @methodhttp POST
  */
 exports.setPings = function(args, opts) {
@@ -225,7 +225,7 @@ exports.setPings = function(args, opts) {
 /** 
  * Gives details about a venue, including location, mayorship, tags, tips, specials, and category					Authenticated users will also receive information about who is here now.If the venue ID given 					is one that has been merged into another "master" venue, the response will show data about the 					"master" instead of giving you an error.                
  * @category Venue
- * @param {string} [venue] ID of venue to retrieve.
+ * @param {string} venue  ID of venue to retrieve.
  * @methodhttp GET
  */
 exports.getVenue = function(args, opts) {
@@ -238,15 +238,15 @@ exports.getVenue = function(args, opts) {
 /** 
  * Allows users to add a new venue.					If this method returns an error, give the user the option to edit her inputs.					In addition to this, give users the ability to say "never mind, check-in here anyway" 					and perform a manual ("venueless") checkin by specifying just the venue name. This is 					rare, but there's a chance you'll see this case if the user wants to force a duplicate venue.					All fields are optional, but one of either a valid address or a geolat/geolong pair must be 					provided. We recommend that developers provide a geolat/geolong pair in every case.					Caller may also, optionally, pass in a category (primarycategoryid) to which you want this 					venue assigned. You can browse a full list of categories using the /categories method. On 					adding venue, we recommend that applications show the user this hierarchy and allow them to 					choose something suitable.                
  * @category Venue
- * @param {string} [name] The name of the venue.
- * @param {string} address The address of the venue.
- * @param {string} crossStreet The nearest intersecting street or streets.
- * @param {string} city The city name where this venue is.
- * @param {string} state The nearest state or province to the venue.
- * @param {string} zip The zip or postal code for the venue.
- * @param {string} phone The phone number of the venue.
- * @param {string} [ll] Latitude and longitude of the venue, as accurate as is known.
- * @param {string} primaryCategoryId The ID of the category to which you want to assign this venue.
+ * @param {string} name  The name of the venue.
+ * @param {string} [address]  The address of the venue.
+ * @param {string} [crossStreet]  The nearest intersecting street or streets.
+ * @param {string} [city]  The city name where this venue is.
+ * @param {string} [state]  The nearest state or province to the venue.
+ * @param {string} [zip]  The zip or postal code for the venue.
+ * @param {string} [phone]  The phone number of the venue.
+ * @param {string} ll  Latitude and longitude of the venue, as accurate as is known.
+ * @param {string} [primaryCategoryId]  The ID of the category to which you want to assign this venue.
  * @methodhttp POST
  */
 exports.addVenue = function(args, opts) {
@@ -278,12 +278,12 @@ exports.getCategories = function(args, opts) {
 /** 
  * Returns a list of venues near the current location, optionally matching the search term.					If lat and long is provided, each venue includes a distance. If authenticated, the method 					will return venue metadata related to you and your friends. If you do not authenticate, 					you will not get this data.                
  * @category Venue
- * @param {string} [ll] Latitude and longitude of the user's location, so response can include distance.
- * @param {string} llAcc Accuracy of latitude and longitude, in meters.
- * @param {string} alt Altitude of the user's location, in meters.
- * @param {string} altAcc Accuracy of the user's altitude, in meters.
- * @param {string} query A search term to be applied against titles.
- * @param {string} limit Number of results to return, up to 500.
+ * @param {string} ll  Latitude and longitude of the user's location, so response can include distance.
+ * @param {string} [llAcc]  Accuracy of latitude and longitude, in meters.
+ * @param {string} [alt]  Altitude of the user's location, in meters.
+ * @param {string} [altAcc]  Accuracy of the user's altitude, in meters.
+ * @param {string} [query]  A search term to be applied against titles.
+ * @param {string} [limit]  Number of results to return, up to 500.
  * @methodhttp GET
  */
 exports.searchVenue = function(args, opts) {
@@ -301,7 +301,7 @@ exports.searchVenue = function(args, opts) {
 /** 
  * Provides a count of how many people are at a given venue, plus the first page					of the users there, friends-first, and if the current user is authenticated.                
  * @category Venue
- * @param {string} [venue] ID of venue to retrieve
+ * @param {string} venue  ID of venue to retrieve
  * @methodhttp GET
  */
 exports.getVenueDetails = function(args, opts) {
@@ -314,8 +314,8 @@ exports.getVenueDetails = function(args, opts) {
 /** 
  * Returns tips for a venue.                
  * @category Venue
- * @param {string} [venue] The venue where you want to add this tip.
- * @param {string} sort One of recent or popular.
+ * @param {string} venue  The venue where you want to add this tip.
+ * @param {string} [sort]  One of recent or popular.
  * @methodhttp GET
  */
 exports.getVenueTips = function(args, opts) {
@@ -329,10 +329,10 @@ exports.getVenueTips = function(args, opts) {
 /** 
  * Returns photos for a venue.               
  * @category Venue
- * @param {string} [venue] The venue you want photos for.
- * @param {string} [group] Pass checkin for photos added by friends on their recent checkins. Pass venue for public photos added to the venue by					anyone. Use multi to fetch both.			
- * @param {string} limit Number of results to return, up to 500.
- * @param {string} offset Used to page through results.
+ * @param {string} venue  The venue you want photos for.
+ * @param {string} group  Pass checkin for photos added by friends on their recent checkins. Pass venue for public photos added to the venue by					anyone. Use multi to fetch both.			
+ * @param {string} [limit]  Number of results to return, up to 500.
+ * @param {string} [offset]  Used to page through results.
  * @methodhttp GET
  */
 exports.getVenuePhotos = function(args, opts) {
@@ -348,8 +348,8 @@ exports.getVenuePhotos = function(args, opts) {
 /** 
  * Allows you to mark a venue to-do, with optional text.               
  * @category Venue
- * @param {string} [venue] The venue you want to mark to-do.
- * @param {string} text The text of the tip.
+ * @param {string} venue  The venue you want to mark to-do.
+ * @param {string} [text]  The text of the tip.
  * @methodhttp POST
  */
 exports.markToDo = function(args, opts) {
@@ -363,8 +363,8 @@ exports.markToDo = function(args, opts) {
 /** 
  * Allows users to indicate a venue is incorrect in some way.					Flags are pushed into a moderation queue. If a closed flag 					is approved, the venue will no longer show up in search results. 					Moderators will attempt to correct cases of mislocated or duplicate 					venues as appropriate. If the user has the correct address for a 					mislocated venue, use proposeedit instead.                
  * @category Venue
- * @param {string} [venue] The venue id for which an edit is being proposed.
- * @param {string} [problem] One of mislocated, closed, duplicate.
+ * @param {string} venue  The venue id for which an edit is being proposed.
+ * @param {string} problem  One of mislocated, closed, duplicate.
  * @methodhttp POST
  */
 exports.flagVenue = function(args, opts) {
@@ -378,16 +378,16 @@ exports.flagVenue = function(args, opts) {
 /** 
  * Allows you to propose a change to a venue.If the user knows a correct address, use this method to save it. 					Otherwise, use flag to flag the venue instead (you need not specify a new address or geolat/geolong in that case).                
  * @category Venue
- * @param {string} [venue] The venue id for which an edit is being proposed.
- * @param {string} [name] The name of the venue.
- * @param {string} [address] The address of the venue.
- * @param {string} crossStreet The nearest intersecting street or streets.
- * @param {string} [city] The city name where this venue is.
- * @param {string} [state] The nearest state or province to the venue.
- * @param {string} zip The zip or postal code for the venue.
- * @param {string} phone The phone number of the venue.
- * @param {string} [ll] Latitude and longitude of the venue, as accurate as is known.
- * @param {string} primaryCategoryId The ID of the category to which you want to assign this venue.
+ * @param {string} venue  The venue id for which an edit is being proposed.
+ * @param {string} name  The name of the venue.
+ * @param {string} address  The address of the venue.
+ * @param {string} [crossStreet]  The nearest intersecting street or streets.
+ * @param {string} city  The city name where this venue is.
+ * @param {string} state  The nearest state or province to the venue.
+ * @param {string} [zip]  The zip or postal code for the venue.
+ * @param {string} [phone]  The phone number of the venue.
+ * @param {string} ll  Latitude and longitude of the venue, as accurate as is known.
+ * @param {string} [primaryCategoryId]  The ID of the category to which you want to assign this venue.
  * @methodhttp POST
  */
 exports.editVenue = function(args, opts) {
@@ -409,7 +409,7 @@ exports.editVenue = function(args, opts) {
 /** 
  * Gives details about a tip, including which users (especially friends) have marked the tip to-do or done.               
  * @category Tip
- * @param {string} [tip] ID of tip to retrieve.
+ * @param {string} tip  ID of tip to retrieve.
  * @methodhttp GET
  */
 exports.getTip = function(args, opts) {
@@ -422,9 +422,9 @@ exports.getTip = function(args, opts) {
 /** 
  * Allows you to add a new tip at a venue.                
  * @category Tip
- * @param {string} [venueId] The venue where you want to add this tip.
- * @param {string} [text] The text of the tip.
- * @param {string} url A URL related to this tip.
+ * @param {string} venueId  The venue where you want to add this tip.
+ * @param {string} text  The text of the tip.
+ * @param {string} [url]  A URL related to this tip.
  * @methodhttp POST
  */
 exports.addTip = function(args, opts) {
@@ -439,11 +439,11 @@ exports.addTip = function(args, opts) {
 /** 
  * Returns a list of tips near the area secified.                 
  * @category Tip
- * @param {string} [ll] Latitude and longitude of the user's location.
- * @param {string} limit Number of results to return, up to 500.
- * @param {string} offset Used to page through results.
- * @param {string} filter If set to friends, only show nearby tips from friends.
- * @param {string} query Only find tips matching the given term, cannot be used in conjunction with friends filter.
+ * @param {string} ll  Latitude and longitude of the user's location.
+ * @param {string} [limit]  Number of results to return, up to 500.
+ * @param {string} [offset]  Used to page through results.
+ * @param {string} [filter]  If set to friends, only show nearby tips from friends.
+ * @param {string} [query]  Only find tips matching the given term, cannot be used in conjunction with friends filter.
  * @methodhttp GET
  */
 exports.getTips = function(args, opts) {
@@ -460,7 +460,7 @@ exports.getTips = function(args, opts) {
 /** 
  * Allows you to mark a tip to-do.                
  * @category Tip
- * @param {string} [tip] The tip you want to mark to-do.
+ * @param {string} tip  The tip you want to mark to-do.
  * @methodhttp POST
  */
 exports.markToDoTip = function(args, opts) {
@@ -473,7 +473,7 @@ exports.markToDoTip = function(args, opts) {
 /** 
  * Allows the acting user to mark a tip done.                
  * @category Tip
- * @param {string} [tip] The tip you want to mark done.
+ * @param {string} tip  The tip you want to mark done.
  * @methodhttp POST
  */
 exports.markdoneTip = function(args, opts) {
@@ -486,7 +486,7 @@ exports.markdoneTip = function(args, opts) {
 /** 
  * Allows you to remove a tip from your to-do list or done list.                
  * @category Tip
- * @param {string} [tip] The tip you want to unmark.
+ * @param {string} tip  The tip you want to unmark.
  * @methodhttp POST
  */
 exports.unmarkTip = function(args, opts) {
@@ -499,7 +499,7 @@ exports.unmarkTip = function(args, opts) {
 /** 
  * Get details of a checkin.                
  * @category Checkin
- * @param {string} [checkin] The ID of the checkin to retrieve additional information for.
+ * @param {string} checkin  The ID of the checkin to retrieve additional information for.
  * @methodhttp GET
  */
 exports.getCheckinDetails = function(args, opts) {
@@ -512,14 +512,14 @@ exports.getCheckinDetails = function(args, opts) {
 /** 
  * Allows you to check in to a place.                
  * @category Checkin
- * @param {string} [venueId] The venue where the user is checking in. No venueid is needed if shouting or just providing a venue name. Find venue IDs					by searching or from historical APIs.			
- * @param {string} venue If are not shouting, but you don't have a venue ID or would rather prefer a 'venueless' checkin, pass the venue name as					a string using this parameter. It will become an 'orphan' (no address or venueid but with geolat, geolong).			
- * @param {string} shout A message about your check-in. The maximum length of this field is 140 characters.
- * @param {string} [broadcast] How much to broadcast this check-in, ranging from private (off-the-grid) to public,faceboook,twitter. Can also be just					public or public,facebook, for example. If no valid value is found, the default is public. Shouts cannot be private.			
- * @param {string} ll Latitude and longitude of the user's location.
- * @param {string} llAcc Accuracy of the user's latitude and longitude, in meters.
- * @param {string} alt Altitude of the user's location, in meters.
- * @param {string} altAcc Vertical accuracy of the user's location, in meters.
+ * @param {string} venueId  The venue where the user is checking in. No venueid is needed if shouting or just providing a venue name. Find venue IDs					by searching or from historical APIs.			
+ * @param {string} [venue]  If are not shouting, but you don't have a venue ID or would rather prefer a 'venueless' checkin, pass the venue name as					a string using this parameter. It will become an 'orphan' (no address or venueid but with geolat, geolong).			
+ * @param {string} [shout]  A message about your check-in. The maximum length of this field is 140 characters.
+ * @param {string} broadcast  How much to broadcast this check-in, ranging from private (off-the-grid) to public,faceboook,twitter. Can also be just					public or public,facebook, for example. If no valid value is found, the default is public. Shouts cannot be private.			
+ * @param {string} [ll]  Latitude and longitude of the user's location.
+ * @param {string} [llAcc]  Accuracy of the user's latitude and longitude, in meters.
+ * @param {string} [alt]  Altitude of the user's location, in meters.
+ * @param {string} [altAcc]  Vertical accuracy of the user's location, in meters.
  * @methodhttp POST
  */
 exports.checkin = function(args, opts) {
@@ -539,10 +539,10 @@ exports.checkin = function(args, opts) {
 /** 
  * Returns a list of recent checkins from friends.                
  * @category Checkin
- * @param {string} ll Latitude and longitude of the user's location, so response can include distance.
- * @param {string} limit Number of results to return, up to 500.
- * @param {string} offset Used to page through results.
- * @param {string} afterTimestamp Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit					results are new since then, this is ignored.			
+ * @param {string} [ll]  Latitude and longitude of the user's location, so response can include distance.
+ * @param {string} [limit]  Number of results to return, up to 500.
+ * @param {string} [offset]  Used to page through results.
+ * @param {string} [afterTimestamp]  Seconds after which to look for checkins, e.g. for looking for new checkins since the last fetch. If more than limit					results are new since then, this is ignored.			
  * @methodhttp GET
  */
 exports.getCheckins = function(args, opts) {
@@ -558,8 +558,8 @@ exports.getCheckins = function(args, opts) {
 /** 
  * Comment on a checkin-in               
  * @category Checkin
- * @param {string} [checkin] The ID of the checkin to add a comment to.
- * @param {string} [text] The text of the comment, up to 200 characters.
+ * @param {string} checkin  The ID of the checkin to add a comment to.
+ * @param {string} text  The text of the comment, up to 200 characters.
  * @methodhttp POST
  */
 exports.addCheckinComment = function(args, opts) {
@@ -573,8 +573,8 @@ exports.addCheckinComment = function(args, opts) {
 /** 
  * Remove a comment from a checkin, if the acting user is the author or the owner of the checkin.               
  * @category Checkin
- * @param {string} [checkin] The ID of the checkin to remove a comment from.
- * @param {string} [commentId] The id of the comment to remove.
+ * @param {string} checkin  The ID of the checkin to remove a comment from.
+ * @param {string} commentId  The id of the comment to remove.
  * @methodhttp POST
  */
 exports.removeCheckinComment = function(args, opts) {
@@ -588,7 +588,7 @@ exports.removeCheckinComment = function(args, opts) {
 /** 
  * Get details of a photo.               
  * @category Photo
- * @param {string} [photo] The ID of the photo to retrieve additional information for.
+ * @param {string} photo  The ID of the photo to retrieve additional information for.
  * @methodhttp GET
  */
 exports.getPhotoDetails = function(args, opts) {
@@ -601,14 +601,14 @@ exports.getPhotoDetails = function(args, opts) {
 /** 
  * Allows users to add a new photo to a checkin, tip, or a venue in general.               
  * @category Photo
- * @param {string} checkinId the ID of a checkin owned by the user.
- * @param {string} tipId the ID of a tip owned by the user.
- * @param {string} venueId the ID of a venue, provided only when adding a public photo of the venue in general, rather than a private checkin or					tip photo using the parameters above.			
- * @param {string} broadcast Whether to broadcast this photo, ranging from twitter if you want to send to twitter, facebook if you want to send to					facebook, or twitter,facebook if you want to send to both.			
- * @param {string} ll Latitude and longitude of the user's location.
- * @param {string} llAcc Accuracy of the user's latitude and longitude, in meters.
- * @param {string} alt Altitude of the user's location, in meters.
- * @param {string} altAcc Vertical accuracy of the user's location, in meters.
+ * @param {string} [checkinId]  the ID of a checkin owned by the user.
+ * @param {string} [tipId]  the ID of a tip owned by the user.
+ * @param {string} [venueId]  the ID of a venue, provided only when adding a public photo of the venue in general, rather than a private checkin or					tip photo using the parameters above.			
+ * @param {string} [broadcast]  Whether to broadcast this photo, ranging from twitter if you want to send to twitter, facebook if you want to send to					facebook, or twitter,facebook if you want to send to both.			
+ * @param {string} [ll]  Latitude and longitude of the user's location.
+ * @param {string} [llAcc]  Accuracy of the user's latitude and longitude, in meters.
+ * @param {string} [alt]  Altitude of the user's location, in meters.
+ * @param {string} [altAcc]  Vertical accuracy of the user's location, in meters.
  * @methodhttp POST
  */
 exports.addPhoto = function(args, opts) {
@@ -628,7 +628,7 @@ exports.addPhoto = function(args, opts) {
 /** 
  * Gives details about a special, including text and unlock rules.               
  * @category Special
- * @param {string} [special] required ID of special to retrieve.
+ * @param {string} special  required ID of special to retrieve.
  * @methodhttp GET
  */
 exports.getSpecialDetails = function(args, opts) {
@@ -641,11 +641,11 @@ exports.getSpecialDetails = function(args, opts) {
 /** 
  * Returns a list of specials near the current location.               
  * @category Special
- * @param {string} [ll] Latitude and longitude to search near.
- * @param {string} llAcc Accuracy of latitude and longitude, in meters.
- * @param {string} alt Altitude of the user's location, in meters.
- * @param {string} altAcc Accuracy of the user's altitude, in meters.
- * @param {string} limit Number of results to return, up to 50.
+ * @param {string} ll  Latitude and longitude to search near.
+ * @param {string} [llAcc]  Accuracy of latitude and longitude, in meters.
+ * @param {string} [alt]  Altitude of the user's location, in meters.
+ * @param {string} [altAcc]  Accuracy of the user's altitude, in meters.
+ * @param {string} [limit]  Number of results to return, up to 50.
  * @methodhttp GET
  */
 exports.getSpecials = function(args, opts) {
@@ -662,7 +662,7 @@ exports.getSpecials = function(args, opts) {
 /** 
  * Returns a setting for the acting user. setting can be any of the three: 					receivePings, sendToTwitter, sendToFacebook               
  * @category Setting
- * @param {string} [setting] The name of a setting.
+ * @param {string} setting  The name of a setting.
  * @methodhttp GET
  */
 exports.getSetting = function(args, opts) {
@@ -686,8 +686,8 @@ exports.getAllSettings = function(args, opts) {
 /** 
  * Change a setting for the given user.                
  * @category Setting
- * @param {string} [setting] Name of setting to change, sendToTwitter, sendToFacebook, receivePings.
- * @param {string} [value] 1 for true, and 0 for false.
+ * @param {string} setting  Name of setting to change, sendToTwitter, sendToFacebook, receivePings.
+ * @param {string} value  1 for true, and 0 for false.
  * @methodhttp POST
  */
 exports.setSetting = function(args, opts) {
@@ -701,7 +701,7 @@ exports.setSetting = function(args, opts) {
 /** 
  * Does multiple requests at once.                 
  * @category Multiple Request
- * @param {string} [requests] A comma-delimited list of API requests, each URI encoded (meaning that already-encoded elements are double-encoded)			
+ * @param {string} requests  A comma-delimited list of API requests, each URI encoded (meaning that already-encoded elements are double-encoded)			
  * @methodhttp GET
  */
 exports.multipleRequests = function(args, opts) {

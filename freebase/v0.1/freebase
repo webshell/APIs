@@ -19,20 +19,20 @@ exports.auth = function() { return auth({provider:provider}) };
 /** 
  * Find entities by keyword search.			
  * @category Freebase
- * @param {string} [query] The text you want to match against freebase entities.
- * @param {string} callback JS method name for JSONP callbacks.
- * @param {string} domain A comma separated list of domain IDs. Search results must include these domains.
- * @param {boolean} exact Matches only the name, and keys 'exactly'. No normalization of any kind is done at indexing and query time. The text is only broken up on space characters.
- * @param {string} filter A Filter s-expression.
- * @param {string} format The keyword "classic" to return the same information the original search API would have
- * @param {boolean} html_escape Whether or not to escape entities.
- * @param {boolean} indent Whether to indent the json.
- * @param {integer} limit Return up to this number of results. (integer >= 1)
- * @param {string} mql_output A MQL query thats extracts entity information.
- * @param {boolean} prefixed Whether or not to match by name prefix (used for autosuggest).
- * @param {integer} start Allows paging through results. (integer >= 0)
- * @param {string} type A comma seperated list of type IDs. Search results must include these types.
- * @param {string} lang The language you are searching in. Can pass multiple languages.
+ * @param {string} query  The text you want to match against freebase entities.
+ * @param {string} [callback]  JS method name for JSONP callbacks.
+ * @param {string} [domain]  A comma separated list of domain IDs. Search results must include these domains.
+ * @param {boolean} [exact]  Matches only the name, and keys 'exactly'. No normalization of any kind is done at indexing and query time. The text is only broken up on space characters.
+ * @param {string} [filter]  A Filter s-expression.
+ * @param {string} [format]  The keyword "classic" to return the same information the original search API would have
+ * @param {boolean} [html_escape]  Whether or not to escape entities.
+ * @param {boolean} [indent]  Whether to indent the json.
+ * @param {integer} [limit]  Return up to this number of results. (integer >= 1)
+ * @param {string} [mql_output]  A MQL query thats extracts entity information.
+ * @param {boolean} [prefixed]  Whether or not to match by name prefix (used for autosuggest).
+ * @param {integer} [start]  Allows paging through results. (integer >= 0)
+ * @param {string} [type]  A comma seperated list of type IDs. Search results must include these types.
+ * @param {string} [lang]  The language you are searching in. Can pass multiple languages.
  * @methodhttp GET
  */
 exports.search = function(args, opts) {
@@ -58,15 +58,15 @@ exports.search = function(args, opts) {
 /** 
  * Retrieve detailed structured data about entities or collections of entities using the Metaweb Query Language (MQL).			
  * @category Freebase
- * @param {string} [query] A valid MQL query in the json format.
- * @param {string} as_of_time Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").
- * @param {string} callback JS method name for JSONP callbacks.
- * @param {string} cursor Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.
- * @param {boolean} html_escape Whether or not to escape entities.
- * @param {integer} indent How many spaces to indent the JSON. (integer 0-10)
- * @param {string} lang Return strings in the language requested (if a given object has no name in the requested language, null will be returned).
- * @param {boolean} cost Whether or not to show the costs.
- * @param {string} uniqueness_failure How MQL responds to uniqueness failures.
+ * @param {string} query  A valid MQL query in the json format.
+ * @param {string} [as_of_time]  Run the query as it would've been run at the specified point in time. Must be a valid timestamp (e.g. "2007-01-09T22" or "2007-02").
+ * @param {string} [callback]  JS method name for JSONP callbacks.
+ * @param {string} [cursor]  Provides a mechanism for "paging" out results (can be used in conjunction with "limit" directive in MQL). No value (for the first request) OR a valid cursor returned by a previous request.
+ * @param {boolean} [html_escape]  Whether or not to escape entities.
+ * @param {integer} [indent]  How many spaces to indent the JSON. (integer 0-10)
+ * @param {string} [lang]  Return strings in the language requested (if a given object has no name in the requested language, null will be returned).
+ * @param {boolean} [cost]  Whether or not to show the costs.
+ * @param {string} [uniqueness_failure]  How MQL responds to uniqueness failures.
  * @methodhttp GET
  */
 exports.mqlread = function(args, opts) {
@@ -87,7 +87,7 @@ exports.mqlread = function(args, opts) {
 /** 
  * Perform insertions, deletions and updates of Metaweb Query Language (MQL).			
  * @category Freebase
- * @param {string} [query] A valid MQL query in the json format.
+ * @param {string} query  A valid MQL query in the json format.
  * @methodhttp POST
  */
 exports.mqlwrite = function(args, opts) {
@@ -100,10 +100,10 @@ exports.mqlwrite = function(args, opts) {
 /** 
  * The Freebase Topic API is a web service that will return all the known facts for a given topic including images and text blurbs.			
  * @category Freebase
- * @param {string} [id] The id of the entity that you want a description for.
- * @param {string} lang The desired language of the content.
- * @param {string} filter Specific types or properties which you want to return values for.
- * @param {integer} limit The maximum number of property values to return.
+ * @param {string} id  The id of the entity that you want a description for.
+ * @param {string} [lang]  The desired language of the content.
+ * @param {string} [filter]  Specific types or properties which you want to return values for.
+ * @param {integer} [limit]  The maximum number of property values to return.
  * @methodhttp GET
  */
 exports.topic = function(args, opts) {
@@ -119,10 +119,10 @@ exports.topic = function(args, opts) {
 /** 
  * Get short textual descriptions for entities.			
  * @category Freebase
- * @param {string} [id] The id of the entity that you want a description for.
- * @param {string} format Sanitizing transformation.
- * @param {string} lang The desired language of the content.
- * @param {integer} maxlength The max number of characters to return. Valid only for 'plain' format. (integer 0-4,294,967,295)
+ * @param {string} id  The id of the entity that you want a description for.
+ * @param {string} [format]  Sanitizing transformation.
+ * @param {string} [lang]  The desired language of the content.
+ * @param {integer} [maxlength]  The max number of characters to return. Valid only for 'plain' format. (integer 0-4,294,967,295)
  * @methodhttp GET
  */
 exports.text = function(args, opts) {
@@ -138,12 +138,12 @@ exports.text = function(args, opts) {
 /** 
  * Get representative thumbnail images for entities.			
  * @category Freebase
- * @param {string} [id] The id of an entity for which you want an image. Alternatively, you may pass the id of the content node for a specific image.
- * @param {string} fallbackid Use the image associated with this secondary id if no image is associated with the primary id.
- * @param {integer} maxheight Maximum height in pixels for resulting image. (integer 0 - 4,096)
- * @param {integer} maxwidth Maximum width in pixels for resulting image. (integer 0 - 4,096)
- * @param {string} mode Method used to scale or crop image.
- * @param {boolean} pad Whether the resulting image should be padded up to the requested dimensions. (boolean as 0 or 1)
+ * @param {string} id  The id of an entity for which you want an image. Alternatively, you may pass the id of the content node for a specific image.
+ * @param {string} [fallbackid]  Use the image associated with this secondary id if no image is associated with the primary id.
+ * @param {integer} [maxheight]  Maximum height in pixels for resulting image. (integer 0 - 4,096)
+ * @param {integer} [maxwidth]  Maximum width in pixels for resulting image. (integer 0 - 4,096)
+ * @param {string} [mode]  Method used to scale or crop image.
+ * @param {boolean} [pad]  Whether the resulting image should be padded up to the requested dimensions. (boolean as 0 or 1)
  * @methodhttp GET
  */
 exports.image = function(args, opts) {
