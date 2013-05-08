@@ -1,303 +1,132 @@
-({
-	auth:function(){return auth({provider:fs('..')})},
-	'getBusinessListingMap': function(args, opts) {
-		var url = 'http://api2.yp.com/listings/v1/listingmap'
-		args = args || {}
-		if (args['listingid'] == null) throw new Error('listingid is a required parameter')
-		var rgx = new RegExp('\{listingid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['listingid'])
-			if (args['listingid']) delete args['listingid']
-		}
-		if (url.indexOf('[/listingid]') !== -1) {
-			url = url.replace('[/listingid]', '/' + args['listingid'])
-			if (args['listingid']) delete args['listingid']
-		}
-		var rgx = new RegExp('\{pixel_width\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pixel_width'])
-			if (args['pixel_width']) delete args['pixel_width']
-		}
-		if (url.indexOf('[/pixel_width]') !== -1) {
-			url = url.replace('[/pixel_width]', '/' + args['pixel_width'])
-			if (args['pixel_width']) delete args['pixel_width']
-		}
-		var rgx = new RegExp('\{pixel_height\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pixel_height'])
-			if (args['pixel_height']) delete args['pixel_height']
-		}
-		if (url.indexOf('[/pixel_height]') !== -1) {
-			url = url.replace('[/pixel_height]', '/' + args['pixel_height'])
-			if (args['pixel_height']) delete args['pixel_height']
-		}
-		var rgx = new RegExp('\{image_format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['image_format'])
-			if (args['image_format']) delete args['image_format']
-		}
-		if (url.indexOf('[/image_format]') !== -1) {
-			url = url.replace('[/image_format]', '/' + args['image_format'])
-			if (args['image_format']) delete args['image_format']
-		}
-		var rgx = new RegExp('\{zoom\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['zoom'])
-			if (args['zoom']) delete args['zoom']
-		}
-		if (url.indexOf('[/zoom]') !== -1) {
-			url = url.replace('[/zoom]', '/' + args['zoom'])
-			if (args['zoom']) delete args['zoom']
-		}
-		var rgx = new RegExp('\{pan_vertical\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pan_vertical'])
-			if (args['pan_vertical']) delete args['pan_vertical']
-		}
-		if (url.indexOf('[/pan_vertical]') !== -1) {
-			url = url.replace('[/pan_vertical]', '/' + args['pan_vertical'])
-			if (args['pan_vertical']) delete args['pan_vertical']
-		}
-		var rgx = new RegExp('\{pan_horizontal\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pan_horizontal'])
-			if (args['pan_horizontal']) delete args['pan_horizontal']
-		}
-		if (url.indexOf('[/pan_horizontal]') !== -1 && args['/pan_horizontal']) {
-			url = url.replace('[/pan_horizontal]', '/' + args['pan_horizontal'])
-			if (args['pan_horizontal']) delete args['pan_horizontal']
-		}
-		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
-		if (url.indexOf('[/pixel_width]') !== -1) url = url.replace('[/pixel_width]', '')
-		if (url.indexOf('[/pixel_height]') !== -1) url = url.replace('[/pixel_height]', '')
-		if (url.indexOf('[/image_format]') !== -1) url = url.replace('[/image_format]', '')
-		if (url.indexOf('[/zoom]') !== -1) url = url.replace('[/zoom]', '')
-		if (url.indexOf('[/pan_vertical]') !== -1) url = url.replace('[/pan_vertical]', '')
-		if (url.indexOf('[/pan_horizontal]') !== -1) url = url.replace('[/pan_horizontal]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'searchListings': function(args, opts) {
-		var url = 'http://api2.yp.com/listings/v1/search'
-		args = args || {}
-		if (args['term'] == null) throw new Error('term is a required parameter')
-		var rgx = new RegExp('\{term\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['term'])
-			if (args['term']) delete args['term']
-		}
-		if (url.indexOf('[/term]') !== -1) {
-			url = url.replace('[/term]', '/' + args['term'])
-			if (args['term']) delete args['term']
-		}
-		if (args['searchloc'] == null) throw new Error('searchloc is a required parameter')
-		var rgx = new RegExp('\{searchloc\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['searchloc'])
-			if (args['searchloc']) delete args['searchloc']
-		}
-		if (url.indexOf('[/searchloc]') !== -1) {
-			url = url.replace('[/searchloc]', '/' + args['searchloc'])
-			if (args['searchloc']) delete args['searchloc']
-		}
-		var rgx = new RegExp('\{phonesearch\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['phonesearch'])
-			if (args['phonesearch']) delete args['phonesearch']
-		}
-		if (url.indexOf('[/phonesearch]') !== -1 && args['/phonesearch']) {
-			url = url.replace('[/phonesearch]', '/' + args['phonesearch'])
-			if (args['phonesearch']) delete args['phonesearch']
-		}
-		var rgx = new RegExp('\{listingcount\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['listingcount'])
-			if (args['listingcount']) delete args['listingcount']
-		}
-		if (url.indexOf('[/listingcount]') !== -1) {
-			url = url.replace('[/listingcount]', '/' + args['listingcount'])
-			if (args['listingcount']) delete args['listingcount']
-		}
-		var rgx = new RegExp('\{shorturl\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['shorturl'])
-			if (args['shorturl']) delete args['shorturl']
-		}
-		if (url.indexOf('[/shorturl]') !== -1) {
-			url = url.replace('[/shorturl]', '/' + args['shorturl'])
-			if (args['shorturl']) delete args['shorturl']
-		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{pagenum\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pagenum'])
-			if (args['pagenum']) delete args['pagenum']
-		}
-		if (url.indexOf('[/pagenum]') !== -1) {
-			url = url.replace('[/pagenum]', '/' + args['pagenum'])
-			if (args['pagenum']) delete args['pagenum']
-		}
-		var rgx = new RegExp('\{sort\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sort'])
-			if (args['sort']) delete args['sort']
-		}
-		if (url.indexOf('[/sort]') !== -1 && args['/sort']) {
-			url = url.replace('[/sort]', '/' + args['sort'])
-			if (args['sort']) delete args['sort']
-		}
-		var rgx = new RegExp('\{radius\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['radius'])
-			if (args['radius']) delete args['radius']
-		}
-		if (url.indexOf('[/radius]') !== -1 && args['/radius']) {
-			url = url.replace('[/radius]', '/' + args['radius'])
-			if (args['radius']) delete args['radius']
-		}
-		if (args['User-Agent'] == null) args['User-Agent'] = "Chrome"
-		var rgx = new RegExp('\{User-Agent\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['User-Agent'])
-			if (args['User-Agent']) delete args['User-Agent']
-		}
-		if (url.indexOf('[/User-Agent]') !== -1) {
-			url = url.replace('[/User-Agent]', '/' + args['User-Agent'])
-			if (args['User-Agent']) delete args['User-Agent']
-		}
-		if (url.indexOf('[/term]') !== -1) url = url.replace('[/term]', '')
-		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
-		if (url.indexOf('[/phonesearch]') !== -1) url = url.replace('[/phonesearch]', '')
-		if (url.indexOf('[/listingcount]') !== -1) url = url.replace('[/listingcount]', '')
-		if (url.indexOf('[/shorturl]') !== -1) url = url.replace('[/shorturl]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/pagenum]') !== -1) url = url.replace('[/pagenum]', '')
-		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		if (url.indexOf('[/radius]') !== -1) url = url.replace('[/radius]', '')
-		if (url.indexOf('[/User-Agent]') !== -1) url = url.replace('[/User-Agent]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'getBusinessListingDetails': function(args, opts) {
-		var url = 'http://api2.yp.com/listings/v1/details'
-		args = args || {}
-		if (args['listingid'] == null) throw new Error('listingid is a required parameter')
-		var rgx = new RegExp('\{listingid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['listingid'])
-			if (args['listingid']) delete args['listingid']
-		}
-		if (url.indexOf('[/listingid]') !== -1) {
-			url = url.replace('[/listingid]', '/' + args['listingid'])
-			if (args['listingid']) delete args['listingid']
-		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['User-Agent'] == null) args['User-Agent'] = "Chrome"
-		var rgx = new RegExp('\{User-Agent\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['User-Agent'])
-			if (args['User-Agent']) delete args['User-Agent']
-		}
-		if (url.indexOf('[/User-Agent]') !== -1) {
-			url = url.replace('[/User-Agent]', '/' + args['User-Agent'])
-			if (args['User-Agent']) delete args['User-Agent']
-		}
-		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/User-Agent]') !== -1) url = url.replace('[/User-Agent]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'getBusinessListingReviews': function(args, opts) {
-		var url = 'http://api2.yp.com/listings/v1/reviews'
-		args = args || {}
-		if (args['listingid'] == null) throw new Error('listingid is a required parameter')
-		var rgx = new RegExp('\{listingid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['listingid'])
-			if (args['listingid']) delete args['listingid']
-		}
-		if (url.indexOf('[/listingid]') !== -1) {
-			url = url.replace('[/listingid]', '/' + args['listingid'])
-			if (args['listingid']) delete args['listingid']
-		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/listingid]') !== -1) url = url.replace('[/listingid]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'getCouponsNearLocation': function(args, opts) {
-		var url = 'http://api2.yp.com/content/v1/coupons'
-		args = args || {}
-		if (args['searchloc'] == null) throw new Error('searchloc is a required parameter')
-		var rgx = new RegExp('\{searchloc\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['searchloc'])
-			if (args['searchloc']) delete args['searchloc']
-		}
-		if (url.indexOf('[/searchloc]') !== -1) {
-			url = url.replace('[/searchloc]', '/' + args['searchloc'])
-			if (args['searchloc']) delete args['searchloc']
-		}
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['term'] == null) throw new Error('term is a required parameter')
-		var rgx = new RegExp('\{term\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['term'])
-			if (args['term']) delete args['term']
-		}
-		if (url.indexOf('[/term]') !== -1) {
-			url = url.replace('[/term]', '/' + args['term'])
-			if (args['term']) delete args['term']
-		}
-		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/term]') !== -1) url = url.replace('[/term]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'getDealOfTheDayNearLocation': function(args, opts) {
-		var url = 'http://api2.yp.com/content/v1/deals'
-		args = args || {}
-		if (args['searchloc'] == null) throw new Error('searchloc is a required parameter')
-		var rgx = new RegExp('\{searchloc\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['searchloc'])
-			if (args['searchloc']) delete args['searchloc']
-		}
-		if (url.indexOf('[/searchloc]') !== -1) {
-			url = url.replace('[/searchloc]', '/' + args['searchloc'])
-			if (args['searchloc']) delete args['searchloc']
-		}
-		if (url.indexOf('[/searchloc]') !== -1) url = url.replace('[/searchloc]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	}
-})
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	return url;
+}
+
+var provider = fs('/bin/yellowpages');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns an URL for a graphical map for a specified business listing.
+ * @category Listings
+ * @param {string} [listingid] YP listing ID.
+ * @param {integer} pixel_width Integer representing the width in pixels of the map (Default = 400). Examples: 400, 200, 123.
+ * @param {integer} pixel_height Integer representing the height in pixels of the map (Default = 400). Examples: 400, 200, 123.
+ * @param {string} image_format String representing the mime-type of map you want returned. Valid values: jpg, png and gif.
+ * @param {decimal} zoom Sets the zoom factor for the map, expressed as a fraction from .1 to 1.
+ * @param {string} pan_vertical A positive or negative number reflecting the percentage of the map image to pan south (negative) or north (positive). (Default = 0). Examples: 0.5 (50% north) -0.4 (40% south). Postiive numbers tilt to the north, negative numbers tilt to the south.
+ * @param {string} pan_horizontal A positive or negative number reflecting the percentage of the map image to pan west (negative) or east (positive). (Default = 0). Examples: 0.5 (50% east) -0.4 (40% west). Postiive numbers tilt to the north, negative numbers tilt to the south.
+ * @methodhttp GET
+ */
+exports.getBusinessListingMap = function(args, opts) {
+	var url = 'http://api2.yp.com/listings/v1/listingmap';
+	args = args || {};
+	url = url_replace(url, args, 'listingid', 'str', true);
+	url = url_replace(url, args, 'pixel_width', 'int', false, "400");
+	url = url_replace(url, args, 'pixel_height', 'int', false, "400");
+	url = url_replace(url, args, 'image_format', 'str', false, "gif");
+	url = url_replace(url, args, 'zoom', 'null', false, "1");
+	url = url_replace(url, args, 'pan_vertical', 'str', false, "0");
+	url = url_replace(url, args, 'pan_horizontal', 'str');
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Supports a number of specific use cases for finding a listing. The search request must include a searchloc value to set the geographic context for the search. The term value can include both name and category keywords. Note that if your implementation uses a single search box, you can combine geograpy and keywords in the term value and the API will parse them. This can potentially cause inaccurate matches if the business name includes place names, however. For example, the "LA wine Company" might be found in a search for "wine+LA" where LA is intended to mean Louisiana. Therefore, where possible, use the searchloc + term combination.
+ * @category Listings
+ * @param {string} [term] Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side. To make this work, do not send a value for searchloc.
+ * @param {string} [searchloc] Unparsed, user-entered search location. Please ensure that all values are URL encoded. If no value is passed for searchloc, then the search engine will attempt to find a valid geo location string in the term parameter's value.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
+ * @param {boolean} phonesearch Indicates that the term parameter contains a phone number, formatted as a 10-digit integer, e.g. 8775551212.
+ * @param {integer} listingcount Total number of listings to return. Defaults to 5.
+ * @param {boolean} shorturl Enables short URL formats in the API response. Typically only used for SMS applications. Set to true for short URL format. Defaults to false.
+ * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {integer} pagenum The page index of the block of results to return. Defaults to 1.
+ * @param {string} sort Select the sort criteria for Organic Listings (only).Valid inputs are:- distance: Sort results by distance.- name: Sort results alphabetically by name.			
+ * @param {integer} radius Maximum search radius (in miles) from center of target location for Organic Results (only).
+ * @param {string} [User-Agent] User agent.
+ * @methodhttp GET
+ */
+exports.searchListings = function(args, opts) {
+	var url = 'http://api2.yp.com/listings/v1/search';
+	args = args || {};
+	url = url_replace(url, args, 'term', 'str', true);
+	url = url_replace(url, args, 'searchloc', 'str', true);
+	url = url_replace(url, args, 'phonesearch');
+	url = url_replace(url, args, 'listingcount', 'int', false, "5");
+	url = url_replace(url, args, 'shorturl', 'null', false, "false");
+	url = url_replace(url, args, 'format', 'str', false, "xml");
+	url = url_replace(url, args, 'pagenum', 'int', false, "1");
+	url = url_replace(url, args, 'sort', 'str');
+	url = url_replace(url, args, 'radius', 'int');
+	url = url_replace(url, args, 'User-Agent', 'str', true, "Chrome");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns all available data for a given business listing, including hours of operation, website URL, etc.
+ * @category Listings
+ * @param {string} [listingid] The unique identifier for the business listing.
+ * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {string} [User-Agent] User agent.
+ * @methodhttp GET
+ */
+exports.getBusinessListingDetails = function(args, opts) {
+	var url = 'http://api2.yp.com/listings/v1/details';
+	args = args || {};
+	url = url_replace(url, args, 'listingid', 'str', true);
+	url = url_replace(url, args, 'format', 'str', false, "xml");
+	url = url_replace(url, args, 'User-Agent', 'str', true, "Chrome");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns all available user reviews for a given business listing.
+ * @category Listings
+ * @param {string} [listingid] The unique identifier for the business listing.
+ * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @methodhttp GET
+ */
+exports.getBusinessListingReviews = function(args, opts) {
+	var url = 'http://api2.yp.com/listings/v1/reviews';
+	args = args || {};
+	url = url_replace(url, args, 'listingid', 'str', true);
+	url = url_replace(url, args, 'format', 'str', false, "xml");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns coupons near the submitted location. Optionally, a term parameter can be submitted to restrict coupons to relevant categories.
+ * @category Content
+ * @param {string} [searchloc] Unparsed, user-entered search location. Please ensure that all values are URL encoded.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
+ * @param {string} format Desired format of the response. Possible values: xml and json. Defaults to xml.
+ * @param {string} [term] Unparsed, user-entered search term. Note: For applications where users may provide the search term and location in a single input field (e.g. pizza, Los Angeles), the user-entered value can be sent in the term parameter thus avoiding the need to parse the term and location on the client side.
+ * @methodhttp GET
+ */
+exports.getCouponsNearLocation = function(args, opts) {
+	var url = 'http://api2.yp.com/content/v1/coupons';
+	args = args || {};
+	url = url_replace(url, args, 'searchloc', 'str', true);
+	url = url_replace(url, args, 'format', 'str', false, "xml");
+	url = url_replace(url, args, 'term', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns Deal of the Day offers near the submitted location. Currently, four US Markets are supported: Los Angeles, Atlanta, Dallas and National. You can use specific zip codes within the three city markets, the market city or "national". This endpoint only supports JSON format response at this time.
+ * @category Content
+ * @param {string} [searchloc] Unparsed, user-entered search location. Please ensure that all values are URL encoded.Valid inputs are:- city, state (example: searchloc=Glendale%2C+CA).- zip code (example: searchloc=91203).- lat:long (example: searchloc=37.7752%3A-122.4192 for San Francisco,CA).- street1 and street2, city, state (example: searchloc=olive+and+san+fernando%2C+burbank+CA).- street1 and street2, zip (example: searchloc=olive+and+san+fernando%2C+91502).- street, zip (example: searchloc=611+North+Brand%2C+91203).- street, city, state (example: searchloc=611+North+Brand%2C+Glendale+CA).- neighborhood, city, state (example: searchloc=chinatown%2C+san+francisco%2C+CA).- point of interest, city, state (example: searchloc=golden+gate+bridge%2C+san+francisco%2C+CA).               
+ * @methodhttp GET
+ */
+exports.getDealOfTheDayNearLocation = function(args, opts) {
+	var url = 'http://api2.yp.com/content/v1/deals';
+	args = args || {};
+	url = url_replace(url, args, 'searchloc', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};

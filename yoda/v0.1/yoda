@@ -1,0 +1,22 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/yoda');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * @category All
+ * @param {string} [sentence] Input sentence to turn into Yoda-speak
+ * @methodhttp GET
+ */
+exports.yodaSpeak = function(args, opts) {
+	var url = 'https://yoda.p.mashape.com/yoda';
+	args = args || {};
+	url = url_replace(url, args, 'sentence', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};

@@ -1,0 +1,54 @@
+{
+"displayName":"imgur",
+"icon":"",
+"base_url":"https://imgur-apiv3.p.mashape.com",
+"default_auth":"oauth2",
+"oauth2":{
+  "authorize":{
+    "url":"https://imgur-apiv3.p.mashape.com/oauth2/auth",
+    "params":{
+      "client_id":"{client_id}",
+      "response_type":"code",
+      "redirect_uri":"{callback_url}",
+      "state":"{_callback_args}",
+      "scope":"{scope}"
+      }
+    },
+  "access_token":{
+    "url":"https://imgur-apiv3.p.mashape.com/oauth2/token",
+    "field":"state",
+    "method":"post",
+    "headers": { "X-Mashape-Authorization" : "{mashape_key}"  }, 
+    "params":{
+      "client_id":"{client_id}",
+      "client_secret":"{client_secret}",
+      "redirect_uri":"{callback_url}",
+      "grant_type":"authorization_code",
+      "code":"{_code}"
+      }
+    },
+  "request":{
+    "format":"json",
+    "get":{
+      "oauth_token":"{_access_token}",
+      }
+    },
+  "parameters":[
+    {
+    "name":"client_id"
+    "type":"string",
+    },
+    {
+    "name":"client_secret"
+    "type":"string",
+    },
+    {
+    "name":"scope"
+    "type":"string",
+    },
+    {
+    "name":"mashape_key"
+    "type":"string",
+    }
+  ]
+ }
