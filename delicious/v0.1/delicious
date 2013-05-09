@@ -25,13 +25,13 @@ exports.postUpdate = function(args, opts) {
 /** 
  * Add a post to Delicious.
  * @category Posts
- * @param {string} [url] The URL of the item.
- * @param {string} [description] The description of the item.
- * @param {string} extended Notes for the item.
- * @param {string} tags Tags for the item (space delimited).
- * @param {string} dt Datestamp of the item (format "CCYY-MM-DDThh:mm:ssZ"). Requires a LITERAL "T" and "Z" like in ISO8601 at http://www.cl.cam.ac.uk/~mgk25/iso-time.html for example: "1984-09-01T14:21:31Z"
- * @param {string} replace Don't replace post if given url has already been posted.
- * @param {string} shared Make the item private.
+ * @param {string} url  The URL of the item.
+ * @param {string} description  The description of the item.
+ * @param {string} [extended]  Notes for the item.
+ * @param {string} [tags]  Tags for the item (space delimited).
+ * @param {string} [dt]  Datestamp of the item (format "CCYY-MM-DDThh:mm:ssZ"). Requires a LITERAL "T" and "Z" like in ISO8601 at http://www.cl.cam.ac.uk/~mgk25/iso-time.html for example: "1984-09-01T14:21:31Z"
+ * @param {string} [replace]  Don't replace post if given url has already been posted.
+ * @param {string} [shared]  Make the item private.
  * @methodhttp GET
  */
 exports.postAdd = function(args, opts) {
@@ -50,7 +50,7 @@ exports.postAdd = function(args, opts) {
 /** 
  * Delete a post from Delicious.
  * @category Posts
- * @param {string} [url] The URL of the item.
+ * @param {string} url  The URL of the item.
  * @methodhttp DELETE
  */
 exports.postDelete = function(args, opts) {
@@ -63,11 +63,11 @@ exports.postDelete = function(args, opts) {
 /** 
  * Returns one or more posts on a single day matching the arguments. If no date or url is given, most recent date will be used.
  * @category Posts
- * @param {string} tag Filter by this tag (space delimited).
- * @param {string} dt Filter by this date, defaults to the most recent date on which bookmarks were saved.
- * @param {string} url Fetch a bookmark for this URL, regardless of date. Note: Be sure to URL-encode the argument value.
- * @param {string} hashes Fetch multiple bookmarks by one or more URL MD5s regardless of date, separated by URL-encoded spaces (ie. '+').
- * @param {string} meta Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes.
+ * @param {string} [tag]  Filter by this tag (space delimited).
+ * @param {string} [dt]  Filter by this date, defaults to the most recent date on which bookmarks were saved.
+ * @param {string} [url]  Fetch a bookmark for this URL, regardless of date. Note: Be sure to URL-encode the argument value.
+ * @param {string} [hashes]  Fetch multiple bookmarks by one or more URL MD5s regardless of date, separated by URL-encoded spaces (ie. '+').
+ * @param {string} [meta]  Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes.
  * @methodhttp GET
  */
 exports.postGet = function(args, opts) {
@@ -84,8 +84,8 @@ exports.postGet = function(args, opts) {
 /** 
  * Returns a list of the most recent posts, filtered by argument. Maximum 100.
  * @category Posts
- * @param {string} tag Filter by this tag.
- * @param {integer} count Number of items to retrieve (Default:15, Maximum:100).
+ * @param {string} [tag]  Filter by this tag.
+ * @param {integer} [count]  Number of items to retrieve (Default:15, Maximum:100).
  * @methodhttp GET
  */
 exports.postRecent = function(args, opts) {
@@ -99,7 +99,7 @@ exports.postRecent = function(args, opts) {
 /** 
  * Returns a list of dates with the number of posts at each date.
  * @category Posts
- * @param {string} tag Filter by this tag.
+ * @param {string} [tag]  Filter by this tag.
  * @methodhttp GET
  */
 exports.postDates = function(args, opts) {
@@ -112,12 +112,12 @@ exports.postDates = function(args, opts) {
 /** 
  * Returns all posts. Please use sparingly. Call the update function to see if you need to fetch this at all.
  * @category Posts
- * @param {string} tag Filter by this tag.
- * @param {integer} start Start returning posts this many results into the set.
- * @param {integer} results Return this many results.
- * @param {string} fromdt Filter for posts on this date or later.
- * @param {string} todt Filter for posts on this date or earlier.
- * @param {string} meta Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes.
+ * @param {string} [tag]  Filter by this tag.
+ * @param {integer} [start]  Start returning posts this many results into the set.
+ * @param {integer} [results]  Return this many results.
+ * @param {string} [fromdt]  Filter for posts on this date or later.
+ * @param {string} [todt]  Filter for posts on this date or earlier.
+ * @param {string} [meta]  Include change detection signatures on each item in a 'meta' attribute. Clients wishing to maintain a synchronized local store of bookmarks should retain the value of this attribute - its value will change when any significant field of the bookmark changes.
  * @methodhttp GET
  */
 exports.postAll = function(args, opts) {
@@ -146,7 +146,7 @@ exports.postAllHashes = function(args, opts) {
 /** 
  * Returns a list of popular tags, recommended tags and network tags for a user.
  * @category Posts
- * @param {string} [url] URL for which you'd like suggestions.
+ * @param {string} url  URL for which you'd like suggestions.
  * @methodhttp GET
  */
 exports.postSuggest = function(args, opts) {
@@ -170,7 +170,7 @@ exports.tagsGet = function(args, opts) {
 /** 
  * Delete an existing tag.
  * @category Tags
- * @param {string} [tag] Tag to delete.
+ * @param {string} tag  Tag to delete.
  * @methodhttp DELETE
  */
 exports.tagsDelete = function(args, opts) {
@@ -183,8 +183,8 @@ exports.tagsDelete = function(args, opts) {
 /** 
  * Rename an existing tag with a new tag name.
  * @category Tags
- * @param {string} [old] Tag to rename.
- * @param {string} [new] New tag name.
+ * @param {string} old  Tag to rename.
+ * @param {string} new  New tag name.
  * @methodhttp GET
  */
 exports.tagsRename = function(args, opts) {
@@ -198,7 +198,7 @@ exports.tagsRename = function(args, opts) {
 /** 
  * Retrieve all of a user's bundles.
  * @category Tag Bundles
- * @param {string} bundle Fetch just the named bundle.
+ * @param {string} [bundle]  Fetch just the named bundle.
  * @methodhttp GET
  */
 exports.tagBundlesAll = function(args, opts) {
@@ -211,8 +211,8 @@ exports.tagBundlesAll = function(args, opts) {
 /** 
  * Assign a set of tags to a single bundle, wipes away previous settings for bundle.
  * @category Tag Bundles
- * @param {string} [bundle] Name of the bundle.
- * @param {string} [tags] List of tags, space-separated.
+ * @param {string} bundle  Name of the bundle.
+ * @param {string} tags  List of tags, space-separated.
  * @methodhttp PUT
  */
 exports.tagBundlesSet = function(args, opts) {
@@ -226,7 +226,7 @@ exports.tagBundlesSet = function(args, opts) {
 /** 
  * Delete a bundle.
  * @category Tag Bundles
- * @param {string} [bundle] Name of the bundle.
+ * @param {string} bundle  Name of the bundle.
  * @methodhttp DELETE
  */
 exports.tagBundlesDelete = function(args, opts) {

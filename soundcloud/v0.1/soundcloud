@@ -17,20 +17,20 @@ exports.auth = function() { return auth({provider:provider}) };
 /** 
  * Returns a collection of tracks
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} q undefined
- * @param {string} tags undefined
- * @param {string} filter undefined
- * @param {string} order undefined
- * @param {string} bpm-from undefined
- * @param {string} bpm-to undefined
- * @param {string} duration-from undefined
- * @param {string} duration-to undefined
- * @param {string} created_at-from undefined
- * @param {string} created_at-to undefined
- * @param {string} ids undefined
- * @param {string} genres undefined
- * @param {string} order undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} [q]  undefined
+ * @param {string} [tags]  undefined
+ * @param {string} [filter]  undefined
+ * @param {string} [order]  undefined
+ * @param {string} [bpm-from]  undefined
+ * @param {string} [bpm-to]  undefined
+ * @param {string} [duration-from]  undefined
+ * @param {string} [duration-to]  undefined
+ * @param {string} [created_at-from]  undefined
+ * @param {string} [created_at-to]  undefined
+ * @param {string} [ids]  undefined
+ * @param {string} [genres]  undefined
+ * @param {string} [order]  undefined
  * @methodhttp GET
  */
 exports.getTracks = function(args, opts) {
@@ -56,9 +56,9 @@ exports.getTracks = function(args, opts) {
 /** 
  * Uploads a track
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [title] undefined
- * @param {string} [asset_data] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} title  undefined
+ * @param {string} asset_data  undefined
  * @methodhttp POST
  */
 exports.postTracks = function(args, opts) {
@@ -73,8 +73,8 @@ exports.postTracks = function(args, opts) {
 /** 
  * Returns a track by track id
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp GET
  */
 exports.getTrack = function(args, opts) {
@@ -88,9 +88,9 @@ exports.getTrack = function(args, opts) {
 /** 
  * Updates a given track
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [title] undefined
- * @param {string} [asset_data] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} title  undefined
+ * @param {string} asset_data  undefined
  * @methodhttp PUT
  */
 exports.putTrack = function(args, opts) {
@@ -105,8 +105,8 @@ exports.putTrack = function(args, opts) {
 /** 
  * Deletes a given track
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp DELETE
  */
 exports.deleteTrack = function(args, opts) {
@@ -120,8 +120,8 @@ exports.deleteTrack = function(args, opts) {
 /** 
  * Returns comments of a track by track id
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp GET
  */
 exports.getTrackComments = function(args, opts) {
@@ -135,8 +135,8 @@ exports.getTrackComments = function(args, opts) {
 /** 
  * Posts a comments to a track by track id
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp POST
  */
 exports.postTrackComments = function(args, opts) {
@@ -150,8 +150,8 @@ exports.postTrackComments = function(args, opts) {
 /** 
  * Returns all users with permission for a track by track id
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp GET
  */
 exports.getTrackPermissions = function(args, opts) {
@@ -165,8 +165,8 @@ exports.getTrackPermissions = function(args, opts) {
 /** 
  * Updates the list of permitted users for a track by track id
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp PUT
  */
 exports.putTrackPermissions = function(args, opts) {
@@ -180,8 +180,8 @@ exports.putTrackPermissions = function(args, opts) {
 /** 
  * Returns the secret token for a track by track id. This resource can only be used by the track owner.
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp GET
  */
 exports['getTrackSecret-token'] = function(args, opts) {
@@ -195,8 +195,8 @@ exports['getTrackSecret-token'] = function(args, opts) {
 /** 
  * Resets the secret token for a track by track id. The secret token can not be specified but will be randomly chosen on          the server and returned. This resource can only be used by the track owner.       
  * @category Tracks
- * @param {string} format The response format (xml or json)
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} track_id  undefined
  * @methodhttp PUT
  */
 exports.putTrackSecretToken = function(args, opts) {
@@ -210,8 +210,8 @@ exports.putTrackSecretToken = function(args, opts) {
 /** 
  * Returns a collection of users
  * @category Users
- * @param {string} q Most endpoints will accept a q param which you can use to specify a keyword to search for in fields like title, username, description, etc. depending on the resource type.       
- * @param {string} format The response format (xml or json)       
+ * @param {string} [q]  Most endpoints will accept a q param which you can use to specify a keyword to search for in fields like title, username, description, etc. depending on the resource type.       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUsers = function(args, opts) {
@@ -225,8 +225,8 @@ exports.getUsers = function(args, opts) {
 /** 
  * Returns a user by user id
  * @category Users
- * @param {string} [user_id] The user's id       
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  The user's id       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUser = function(args, opts) {
@@ -240,8 +240,8 @@ exports.getUser = function(args, opts) {
 /** 
  * Returns a collection of tracks uploaded by user id
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserTracks = function(args, opts) {
@@ -255,8 +255,8 @@ exports.getUserTracks = function(args, opts) {
 /** 
  * Returns a collection of comments made by user id
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserComments = function(args, opts) {
@@ -270,8 +270,8 @@ exports.getUserComments = function(args, opts) {
 /** 
  * Returns a collection of users the user with user id is following
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserFollowings = function(args, opts) {
@@ -285,9 +285,9 @@ exports.getUserFollowings = function(args, opts) {
 /** 
  * Checks if the user with the id contact_id is in the givens user's list of contacts.
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} [contact_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} contact_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserFollowing = function(args, opts) {
@@ -302,9 +302,9 @@ exports.getUserFollowing = function(args, opts) {
 /** 
  * Adds the user with the id contact_id to the givens user's list of contacts.
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} [contact_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} contact_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp PUT
  */
 exports.putUserFollowings = function(args, opts) {
@@ -319,9 +319,9 @@ exports.putUserFollowings = function(args, opts) {
 /** 
  * Removes the user with the id contact_id from the givens user's list of contacts.
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} [contact_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} contact_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp DELETE
  */
 exports.deleteUserFollowings = function(args, opts) {
@@ -336,8 +336,8 @@ exports.deleteUserFollowings = function(args, opts) {
 /** 
  * Returns a collection of users who follow the user with user id
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserFollowers = function(args, opts) {
@@ -351,9 +351,9 @@ exports.getUserFollowers = function(args, opts) {
 /** 
  * Checks if the user with contact_id is a follower of the given user.
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} [contact_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} contact_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserFollower = function(args, opts) {
@@ -368,8 +368,8 @@ exports.getUserFollower = function(args, opts) {
 /** 
  * Returns a collection of tracks favorited by the user with user id
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserFavorites = function(args, opts) {
@@ -383,9 +383,9 @@ exports.getUserFavorites = function(args, opts) {
 /** 
  * Adds the given track to the given user's list of favorites.
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} [track_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} track_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp PUT
  */
 exports.putUserFavorites = function(args, opts) {
@@ -400,9 +400,9 @@ exports.putUserFavorites = function(args, opts) {
 /** 
  * Deletes the given track from the given user's list of favorites.
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} [track_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} track_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp DELETE
  */
 exports.deleteUserFavorites = function(args, opts) {
@@ -417,8 +417,8 @@ exports.deleteUserFavorites = function(args, opts) {
 /** 
  * Returns a collection of groups joined by user with user id
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserGroups = function(args, opts) {
@@ -432,8 +432,8 @@ exports.getUserGroups = function(args, opts) {
 /** 
  * Returns a collection of playlists created by user with user id
  * @category Users
- * @param {string} [user_id] undefined
- * @param {string} format The response format (xml or json)       
+ * @param {string} user_id  undefined
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getUserPlaylists = function(args, opts) {
@@ -447,7 +447,7 @@ exports.getUserPlaylists = function(args, opts) {
 /** 
  * Returns the logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.me = function(args, opts) {
@@ -460,7 +460,7 @@ exports.me = function(args, opts) {
 /** 
  * Returns a collection of tracks uploaded by logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMeTracks = function(args, opts) {
@@ -473,7 +473,7 @@ exports.getMeTracks = function(args, opts) {
 /** 
  * Returns a collection of comments made by logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMeComments = function(args, opts) {
@@ -486,7 +486,7 @@ exports.getMeComments = function(args, opts) {
 /** 
  * Returns a collection of users the logged-in user is following
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMeFollowings = function(args, opts) {
@@ -499,8 +499,8 @@ exports.getMeFollowings = function(args, opts) {
 /** 
  * Checks if the user with the id contact_id is in the logged-in user's list of contacts.
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} [contact_id] undefined
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} contact_id  undefined
  * @methodhttp GET
  */
 exports.getMeFollowing = function(args, opts) {
@@ -514,8 +514,8 @@ exports.getMeFollowing = function(args, opts) {
 /** 
  * Adds the user with the id contact_id to the logged-in user's list of contacts.
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} [contact_id] undefined
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} contact_id  undefined
  * @methodhttp PUT
  */
 exports.putMeFollowings = function(args, opts) {
@@ -529,8 +529,8 @@ exports.putMeFollowings = function(args, opts) {
 /** 
  * Deletes the user with the id contact_id from the logged-in user's list of contacts.
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} [contact_id] undefined
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} contact_id  undefined
  * @methodhttp DELETE
  */
 exports.deleteMeFollowings = function(args, opts) {
@@ -544,7 +544,7 @@ exports.deleteMeFollowings = function(args, opts) {
 /** 
  * Returns a collection of users who follow the logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMeFollowers = function(args, opts) {
@@ -557,8 +557,8 @@ exports.getMeFollowers = function(args, opts) {
 /** 
  * Checks if the user with the id contact_id is a follower of the logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} [contact_id] undefined
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} contact_id  undefined
  * @methodhttp GET
  */
 exports.getMeFollower = function(args, opts) {
@@ -572,8 +572,8 @@ exports.getMeFollower = function(args, opts) {
 /** 
  * Returns a collection of tracks favorited by the logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMeFavorites = function(args, opts) {
@@ -587,8 +587,8 @@ exports.getMeFavorites = function(args, opts) {
 /** 
  * Adds the given track to the logged-in user's list of favorites.
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} track_id  undefined
  * @methodhttp PUT
  */
 exports.putMeFavorites = function(args, opts) {
@@ -602,8 +602,8 @@ exports.putMeFavorites = function(args, opts) {
 /** 
  * Deletes the given track from the logged-in user's list of favorites.
  * @category Me
- * @param {string} format The response format (xml or json)       
- * @param {string} [track_id] undefined
+ * @param {string} [format]  The response format (xml or json)       
+ * @param {string} track_id  undefined
  * @methodhttp DELETE
  */
 exports.deleteMeFavorites = function(args, opts) {
@@ -617,7 +617,7 @@ exports.deleteMeFavorites = function(args, opts) {
 /** 
  * Returns a collection of groups joined by logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMeGroups = function(args, opts) {
@@ -630,7 +630,7 @@ exports.getMeGroups = function(args, opts) {
 /** 
  * Returns a collection of playlists created by the logged-in user
  * @category Me
- * @param {string} format The response format (xml or json)       
+ * @param {string} [format]  The response format (xml or json)       
  * @methodhttp GET
  */
 exports.getMePlaylists = function(args, opts) {
@@ -643,10 +643,10 @@ exports.getMePlaylists = function(args, opts) {
 /** 
  * Returns a collection of playlists
  * @category Playlists
- * @param {string} format The response format (xml or json)
- * @param {string} q undefined
- * @param {string} filter undefined
- * @param {string} license Filter on license.       
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} [q]  undefined
+ * @param {string} [filter]  undefined
+ * @param {string} [license]  Filter on license.       
  * @methodhttp GET
  */
 exports.getPlaylists = function(args, opts) {
@@ -662,8 +662,8 @@ exports.getPlaylists = function(args, opts) {
 /** 
  * Returns a playlist by playlist id
  * @category Playlists
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getPlaylist = function(args, opts) {
@@ -677,7 +677,7 @@ exports.getPlaylist = function(args, opts) {
 /** 
  * Returns a collection of groups
  * @category Groups
- * @param {string} format The response format (xml or json)
+ * @param {string} [format]  The response format (xml or json)
  * @methodhttp GET
  */
 exports.getGroups = function(args, opts) {
@@ -690,8 +690,8 @@ exports.getGroups = function(args, opts) {
 /** 
  * Returns a group by group id
  * @category Groups
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getGroup = function(args, opts) {
@@ -705,8 +705,8 @@ exports.getGroup = function(args, opts) {
 /** 
  * Returns a combined collection of moderators, members and contributors of the group with group id
  * @category Groups
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getGroupUsers = function(args, opts) {
@@ -720,8 +720,8 @@ exports.getGroupUsers = function(args, opts) {
 /** 
  * Returns a collection of moderators of the group with group id
  * @category Groups
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getGroupModerators = function(args, opts) {
@@ -735,8 +735,8 @@ exports.getGroupModerators = function(args, opts) {
 /** 
  * Returns a collection of members of the group with group id
  * @category Groups
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getGroupMembers = function(args, opts) {
@@ -750,8 +750,8 @@ exports.getGroupMembers = function(args, opts) {
 /** 
  * Returns a collection of contributors of the group with group id
  * @category Groups
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getGroupContributors = function(args, opts) {
@@ -765,8 +765,8 @@ exports.getGroupContributors = function(args, opts) {
 /** 
  * Returns a collection of tracks contributed to the group with group id
  * @category Groups
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getGroupTracks = function(args, opts) {
@@ -780,8 +780,8 @@ exports.getGroupTracks = function(args, opts) {
 /** 
  * Returns a comment by comment id
  * @category Comments
- * @param {string} format The response format (xml or json)
- * @param {string} [playlist_id] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} playlist_id  undefined
  * @methodhttp GET
  */
 exports.getComment = function(args, opts) {
@@ -795,8 +795,8 @@ exports.getComment = function(args, opts) {
 /** 
  * Translates a website URI into an API URI
  * @category Resolver
- * @param {string} format The response format (xml or json)
- * @param {string} [url] undefined
+ * @param {string} [format]  The response format (xml or json)
+ * @param {string} url  undefined
  * @methodhttp GET
  */
 exports.resolve = function(args, opts) {
