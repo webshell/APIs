@@ -1,1901 +1,1012 @@
-({
-	auth:function(){return auth({provider:fs('..')})},
-	'linkByFullname': function(args, opts) {
-		var url = 'http://www.reddit.com/by_id/{fullname}.{format}'
-		args = args || {}
-		if (args['fullname'] == null) throw new Error('fullname is a required parameter')
-		var rgx = new RegExp('\{fullname\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fullname'])
-			if (args['fullname']) delete args['fullname']
-		}
-		if (url.indexOf('[/fullname]') !== -1) {
-			url = url.replace('[/fullname]', '/' + args['fullname'])
-			if (args['fullname']) delete args['fullname']
-		}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/fullname]') !== -1) url = url.replace('[/fullname]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'linkByFullnameComments': function(args, opts) {
-		var url = 'http://www.reddit.com/comments/{id36}.{format}'
-		args = args || {}
-		if (args['id36'] == null) throw new Error('id36 is a required parameter')
-		var rgx = new RegExp('\{id36\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id36'])
-			if (args['id36']) delete args['id36']
-		}
-		if (url.indexOf('[/id36]') !== -1) {
-			url = url.replace('[/id36]', '/' + args['id36'])
-			if (args['id36']) delete args['id36']
-		}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/id36]') !== -1) url = url.replace('[/id36]', '')
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getInfo': function(args, opts) {
-		var url = 'http://www.reddit.com/api/info.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		var rgx = new RegExp('\{url\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['url'])
-			if (args['url']) delete args['url']
-		}
-		if (url.indexOf('[/url]') !== -1 && args['/url']) {
-			url = url.replace('[/url]', '/' + args['url'])
-			if (args['url']) delete args['url']
-		}
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1 && args['/id']) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/limit]') !== -1 && args['/limit']) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'postExpando': function(args, opts) {
-		var url = 'http://www.reddit.com/api/expando'
-		args = args || {}
-		if (args['link_id'] == null) throw new Error('link_id is a required parameter')
-		var rgx = new RegExp('\{link_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['link_id'])
-			if (args['link_id']) delete args['link_id']
-		}
-		if (url.indexOf('[/link_id]') !== -1) {
-			url = url.replace('[/link_id]', '/' + args['link_id'])
-			if (args['link_id']) delete args['link_id']
-		}
-		if (url.indexOf('[/link_id]') !== -1) url = url.replace('[/link_id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
-	},
-	'login': function(args, opts) {
-		var url = 'http://www.reddit.com/api/login/{username}'
-		args = args || {}
-		if (args['username'] == null) throw new Error('username is a required parameter')
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (args['user'] == null) throw new Error('user is a required parameter')
-		var rgx = new RegExp('\{user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['user'])
-			if (args['user']) delete args['user']
-		}
-		if (url.indexOf('[/user]') !== -1) {
-			url = url.replace('[/user]', '/' + args['user'])
-			if (args['user']) delete args['user']
-		}
-		if (args['passwd'] == null) throw new Error('passwd is a required parameter')
-		var rgx = new RegExp('\{passwd\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['passwd'])
-			if (args['passwd']) delete args['passwd']
-		}
-		if (url.indexOf('[/passwd]') !== -1) {
-			url = url.replace('[/passwd]', '/' + args['passwd'])
-			if (args['passwd']) delete args['passwd']
-		}
-		if (args['api_type'] == null) args['api_type'] = "json"
-		var rgx = new RegExp('\{api_type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['api_type'])
-			if (args['api_type']) delete args['api_type']
-		}
-		if (url.indexOf('[/api_type]') !== -1) {
-			url = url.replace('[/api_type]', '/' + args['api_type'])
-			if (args['api_type']) delete args['api_type']
-		}
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		if (url.indexOf('[/passwd]') !== -1) url = url.replace('[/passwd]', '')
-		if (url.indexOf('[/api_type]') !== -1) url = url.replace('[/api_type]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
-	},
-	'userAbout': function(args, opts) {
-		var url = 'http://www.reddit.com/user/{username}/about.json'
-		args = args || {}
-		if (args['username'] == null) throw new Error('username is a required parameter')
-		var rgx = new RegExp('\{username\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1) {
-			url = url.replace('[/username]', '/' + args['username'])
-			if (args['username']) delete args['username']
-		}
-		if (url.indexOf('[/username]') !== -1) url = url.replace('[/username]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getMe': function(args, opts) {
-		var url = 'http://www.reddit.com/api/me.json'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'getMine': function(args, opts) {
-		var url = 'http://www.reddit.com/reddits/mine.{format}'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'postRegister': function(args, opts) {
-		var url = 'http://www.reddit.com/api/register'
-		args = args || {}
-		if (args['user'] == null) throw new Error('user is a required parameter')
-		var rgx = new RegExp('\{user\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['user'])
-			if (args['user']) delete args['user']
-		}
-		if (url.indexOf('[/user]') !== -1) {
-			url = url.replace('[/user]', '/' + args['user'])
-			if (args['user']) delete args['user']
-		}
-		if (args['email'] == null) throw new Error('email is a required parameter')
-		var rgx = new RegExp('\{email\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['email'])
-			if (args['email']) delete args['email']
-		}
-		if (url.indexOf('[/email]') !== -1) {
-			url = url.replace('[/email]', '/' + args['email'])
-			if (args['email']) delete args['email']
-		}
-		if (args['passwd'] == null) throw new Error('passwd is a required parameter')
-		var rgx = new RegExp('\{passwd\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['passwd'])
-			if (args['passwd']) delete args['passwd']
-		}
-		if (url.indexOf('[/passwd]') !== -1) {
-			url = url.replace('[/passwd]', '/' + args['passwd'])
-			if (args['passwd']) delete args['passwd']
-		}
-		if (args['passwd2'] == null) throw new Error('passwd2 is a required parameter')
-		var rgx = new RegExp('\{passwd2\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['passwd2'])
-			if (args['passwd2']) delete args['passwd2']
-		}
-		if (url.indexOf('[/passwd2]') !== -1) {
-			url = url.replace('[/passwd2]', '/' + args['passwd2'])
-			if (args['passwd2']) delete args['passwd2']
-		}
-		if (args['dest'] == null) throw new Error('dest is a required parameter')
-		var rgx = new RegExp('\{dest\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['dest'])
-			if (args['dest']) delete args['dest']
-		}
-		if (url.indexOf('[/dest]') !== -1) {
-			url = url.replace('[/dest]', '/' + args['dest'])
-			if (args['dest']) delete args['dest']
-		}
-		if (args['rem'] == null) throw new Error('rem is a required parameter')
-		var rgx = new RegExp('\{rem\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['rem'])
-			if (args['rem']) delete args['rem']
-		}
-		if (url.indexOf('[/rem]') !== -1) {
-			url = url.replace('[/rem]', '/' + args['rem'])
-			if (args['rem']) delete args['rem']
-		}
-		if (args['reason'] == null) throw new Error('reason is a required parameter')
-		var rgx = new RegExp('\{reason\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['reason'])
-			if (args['reason']) delete args['reason']
-		}
-		if (url.indexOf('[/reason]') !== -1) {
-			url = url.replace('[/reason]', '/' + args['reason'])
-			if (args['reason']) delete args['reason']
-		}
-		if (url.indexOf('[/user]') !== -1) url = url.replace('[/user]', '')
-		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		if (url.indexOf('[/passwd]') !== -1) url = url.replace('[/passwd]', '')
-		if (url.indexOf('[/passwd2]') !== -1) url = url.replace('[/passwd2]', '')
-		if (url.indexOf('[/dest]') !== -1) url = url.replace('[/dest]', '')
-		if (url.indexOf('[/rem]') !== -1) url = url.replace('[/rem]', '')
-		if (url.indexOf('[/reason]') !== -1) url = url.replace('[/reason]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postDeleteUser': function(args, opts) {
-		var url = 'http://www.reddit.com/api/delete_user'
-		args = args || {}
-		if (args['areyousure1'] == null) throw new Error('areyousure1 is a required parameter')
-		var rgx = new RegExp('\{areyousure1\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['areyousure1'])
-			if (args['areyousure1']) delete args['areyousure1']
-		}
-		if (url.indexOf('[/areyousure1]') !== -1) {
-			url = url.replace('[/areyousure1]', '/' + args['areyousure1'])
-			if (args['areyousure1']) delete args['areyousure1']
-		}
-		if (args['areyousure2'] == null) throw new Error('areyousure2 is a required parameter')
-		var rgx = new RegExp('\{areyousure2\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['areyousure2'])
-			if (args['areyousure2']) delete args['areyousure2']
-		}
-		if (url.indexOf('[/areyousure2]') !== -1) {
-			url = url.replace('[/areyousure2]', '/' + args['areyousure2'])
-			if (args['areyousure2']) delete args['areyousure2']
-		}
-		if (args['areyousure2'] == null) throw new Error('areyousure2 is a required parameter')
-		var rgx = new RegExp('\{areyousure2\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['areyousure2'])
-			if (args['areyousure2']) delete args['areyousure2']
-		}
-		if (url.indexOf('[/areyousure2]') !== -1) {
-			url = url.replace('[/areyousure2]', '/' + args['areyousure2'])
-			if (args['areyousure2']) delete args['areyousure2']
-		}
-		if (url.indexOf('[/areyousure1]') !== -1) url = url.replace('[/areyousure1]', '')
-		if (url.indexOf('[/areyousure2]') !== -1) url = url.replace('[/areyousure2]', '')
-		if (url.indexOf('[/areyousure2]') !== -1) url = url.replace('[/areyousure2]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postLeavemoderator': function(args, opts) {
-		var url = 'http://www.reddit.com/api/leavemoderator'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postLeavecontributor': function(args, opts) {
-		var url = 'http://www.reddit.com/api/leavecontributor'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postPassword': function(args, opts) {
-		var url = 'http://www.reddit.com/api/password'
-		args = args || {}
-		if (args['name'] == null) throw new Error('name is a required parameter')
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postResetpassword': function(args, opts) {
-		var url = 'http://www.reddit.com/api/resetpassword'
-		args = args || {}
-		if (args['reset'] == null) throw new Error('reset is a required parameter')
-		var rgx = new RegExp('\{reset\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['reset'])
-			if (args['reset']) delete args['reset']
-		}
-		if (url.indexOf('[/reset]') !== -1) {
-			url = url.replace('[/reset]', '/' + args['reset'])
-			if (args['reset']) delete args['reset']
-		}
-		if (args['passwd'] == null) throw new Error('passwd is a required parameter')
-		var rgx = new RegExp('\{passwd\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['passwd'])
-			if (args['passwd']) delete args['passwd']
-		}
-		if (url.indexOf('[/passwd]') !== -1) {
-			url = url.replace('[/passwd]', '/' + args['passwd'])
-			if (args['passwd']) delete args['passwd']
-		}
-		if (args['passwd2'] == null) throw new Error('passwd2 is a required parameter')
-		var rgx = new RegExp('\{passwd2\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['passwd2'])
-			if (args['passwd2']) delete args['passwd2']
-		}
-		if (url.indexOf('[/passwd2]') !== -1) {
-			url = url.replace('[/passwd2]', '/' + args['passwd2'])
-			if (args['passwd2']) delete args['passwd2']
-		}
-		if (url.indexOf('[/reset]') !== -1) url = url.replace('[/reset]', '')
-		if (url.indexOf('[/passwd]') !== -1) url = url.replace('[/passwd]', '')
-		if (url.indexOf('[/passwd2]') !== -1) url = url.replace('[/passwd2]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'submit': function(args, opts) {
-		var url = 'http://www.reddit.com/api/submit'
-		args = args || {}
-		var rgx = new RegExp('\{url\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['url'])
-			if (args['url']) delete args['url']
-		}
-		if (url.indexOf('[/url]') !== -1 && args['/url']) {
-			url = url.replace('[/url]', '/' + args['url'])
-			if (args['url']) delete args['url']
-		}
-		var rgx = new RegExp('\{text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/text]') !== -1 && args['/text']) {
-			url = url.replace('[/text]', '/' + args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (args['kind'] == null) throw new Error('kind is a required parameter')
-		var rgx = new RegExp('\{kind\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['kind'])
-			if (args['kind']) delete args['kind']
-		}
-		if (url.indexOf('[/kind]') !== -1) {
-			url = url.replace('[/kind]', '/' + args['kind'])
-			if (args['kind']) delete args['kind']
-		}
-		if (args['sr'] == null) throw new Error('sr is a required parameter')
-		var rgx = new RegExp('\{sr\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sr'])
-			if (args['sr']) delete args['sr']
-		}
-		if (url.indexOf('[/sr]') !== -1) {
-			url = url.replace('[/sr]', '/' + args['sr'])
-			if (args['sr']) delete args['sr']
-		}
-		if (args['title'] == null) throw new Error('title is a required parameter')
-		var rgx = new RegExp('\{title\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['title'])
-			if (args['title']) delete args['title']
-		}
-		if (url.indexOf('[/title]') !== -1) {
-			url = url.replace('[/title]', '/' + args['title'])
-			if (args['title']) delete args['title']
-		}
-		if (args['r'] == null) throw new Error('r is a required parameter')
-		var rgx = new RegExp('\{r\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (url.indexOf('[/r]') !== -1) {
-			url = url.replace('[/r]', '/' + args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		if (url.indexOf('[/kind]') !== -1) url = url.replace('[/kind]', '')
-		if (url.indexOf('[/sr]') !== -1) url = url.replace('[/sr]', '')
-		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
-		if (url.indexOf('[/r]') !== -1) url = url.replace('[/r]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'share': function(args, opts) {
-		var url = 'http://www.reddit.com/api/share'
-		args = args || {}
-		if (args['parent'] == null) throw new Error('parent is a required parameter')
-		var rgx = new RegExp('\{parent\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['parent'])
-			if (args['parent']) delete args['parent']
-		}
-		if (url.indexOf('[/parent]') !== -1) {
-			url = url.replace('[/parent]', '/' + args['parent'])
-			if (args['parent']) delete args['parent']
-		}
-		if (args['share_from'] == null) throw new Error('share_from is a required parameter')
-		var rgx = new RegExp('\{share_from\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['share_from'])
-			if (args['share_from']) delete args['share_from']
-		}
-		if (url.indexOf('[/share_from]') !== -1) {
-			url = url.replace('[/share_from]', '/' + args['share_from'])
-			if (args['share_from']) delete args['share_from']
-		}
-		if (args['replyto'] == null) throw new Error('replyto is a required parameter')
-		var rgx = new RegExp('\{replyto\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['replyto'])
-			if (args['replyto']) delete args['replyto']
-		}
-		if (url.indexOf('[/replyto]') !== -1) {
-			url = url.replace('[/replyto]', '/' + args['replyto'])
-			if (args['replyto']) delete args['replyto']
-		}
-		if (args['share_to'] == null) throw new Error('share_to is a required parameter')
-		var rgx = new RegExp('\{share_to\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['share_to'])
-			if (args['share_to']) delete args['share_to']
-		}
-		if (url.indexOf('[/share_to]') !== -1) {
-			url = url.replace('[/share_to]', '/' + args['share_to'])
-			if (args['share_to']) delete args['share_to']
-		}
-		if (args['message'] == null) throw new Error('message is a required parameter')
-		var rgx = new RegExp('\{message\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['message'])
-			if (args['message']) delete args['message']
-		}
-		if (url.indexOf('[/message]') !== -1) {
-			url = url.replace('[/message]', '/' + args['message'])
-			if (args['message']) delete args['message']
-		}
-		var rgx = new RegExp('\{renderstyle\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['renderstyle'])
-			if (args['renderstyle']) delete args['renderstyle']
-		}
-		if (url.indexOf('[/renderstyle]') !== -1 && args['/renderstyle']) {
-			url = url.replace('[/renderstyle]', '/' + args['renderstyle'])
-			if (args['renderstyle']) delete args['renderstyle']
-		}
-		if (url.indexOf('[/parent]') !== -1) url = url.replace('[/parent]', '')
-		if (url.indexOf('[/share_from]') !== -1) url = url.replace('[/share_from]', '')
-		if (url.indexOf('[/replyto]') !== -1) url = url.replace('[/replyto]', '')
-		if (url.indexOf('[/share_to]') !== -1) url = url.replace('[/share_to]', '')
-		if (url.indexOf('[/message]') !== -1) url = url.replace('[/message]', '')
-		if (url.indexOf('[/renderstyle]') !== -1) url = url.replace('[/renderstyle]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postVote': function(args, opts) {
-		var url = 'http://www.reddit.com/api/vote'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (args['dir'] == null) throw new Error('dir is a required parameter')
-		var rgx = new RegExp('\{dir\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['dir'])
-			if (args['dir']) delete args['dir']
-		}
-		if (url.indexOf('[/dir]') !== -1) {
-			url = url.replace('[/dir]', '/' + args['dir'])
-			if (args['dir']) delete args['dir']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/dir]') !== -1) url = url.replace('[/dir]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postFetchTitle': function(args, opts) {
-		var url = 'http://www.reddit.com/api/fetch_title'
-		args = args || {}
-		if (args['url'] == null) throw new Error('url is a required parameter')
-		var rgx = new RegExp('\{url\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['url'])
-			if (args['url']) delete args['url']
-		}
-		if (url.indexOf('[/url]') !== -1) {
-			url = url.replace('[/url]', '/' + args['url'])
-			if (args['url']) delete args['url']
-		}
-		if (url.indexOf('[/url]') !== -1) url = url.replace('[/url]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postMarknsfw': function(args, opts) {
-		var url = 'http://www.reddit.com/api/marknsfw'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUnmarknsfw': function(args, opts) {
-		var url = 'http://www.reddit.com/api/unmarknsfw'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postSave': function(args, opts) {
-		var url = 'http://www.reddit.com/api/save'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUnsave': function(args, opts) {
-		var url = 'http://www.reddit.com/api/unsave'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postHide': function(args, opts) {
-		var url = 'http://www.reddit.com/api/hide'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUnhide': function(args, opts) {
-		var url = 'http://www.reddit.com/api/unhide'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postDel': function(args, opts) {
-		var url = 'http://www.reddit.com/api/del'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postEditusertext': function(args, opts) {
-		var url = 'http://www.reddit.com/api/editusertext'
-		args = args || {}
-		if (args['thing_id'] == null) throw new Error('thing_id is a required parameter')
-		var rgx = new RegExp('\{thing_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['thing_id'])
-			if (args['thing_id']) delete args['thing_id']
-		}
-		if (url.indexOf('[/thing_id]') !== -1) {
-			url = url.replace('[/thing_id]', '/' + args['thing_id'])
-			if (args['thing_id']) delete args['thing_id']
-		}
-		if (args['text'] == null) throw new Error('text is a required parameter')
-		var rgx = new RegExp('\{text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/text]') !== -1) {
-			url = url.replace('[/text]', '/' + args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/thing_id]') !== -1) url = url.replace('[/thing_id]', '')
-		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postRemove': function(args, opts) {
-		var url = 'http://www.reddit.com/api/remove'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postApprove': function(args, opts) {
-		var url = 'http://www.reddit.com/api/approve'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postDistinguish': function(args, opts) {
-		var url = 'http://www.reddit.com/api/distinguish'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (args['how'] == null) throw new Error('how is a required parameter')
-		var rgx = new RegExp('\{how\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['how'])
-			if (args['how']) delete args['how']
-		}
-		if (url.indexOf('[/how]') !== -1) {
-			url = url.replace('[/how]', '/' + args['how'])
-			if (args['how']) delete args['how']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/how]') !== -1) url = url.replace('[/how]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postCompose': function(args, opts) {
-		var url = 'http://www.reddit.com/api/compose'
-		args = args || {}
-		if (args['to'] == null) throw new Error('to is a required parameter')
-		var rgx = new RegExp('\{to\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['to'])
-			if (args['to']) delete args['to']
-		}
-		if (url.indexOf('[/to]') !== -1) {
-			url = url.replace('[/to]', '/' + args['to'])
-			if (args['to']) delete args['to']
-		}
-		if (args['subject'] == null) throw new Error('subject is a required parameter')
-		var rgx = new RegExp('\{subject\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['subject'])
-			if (args['subject']) delete args['subject']
-		}
-		if (url.indexOf('[/subject]') !== -1) {
-			url = url.replace('[/subject]', '/' + args['subject'])
-			if (args['subject']) delete args['subject']
-		}
-		if (args['text'] == null) throw new Error('text is a required parameter')
-		var rgx = new RegExp('\{text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/text]') !== -1) {
-			url = url.replace('[/text]', '/' + args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (args['captcha'] == null) throw new Error('captcha is a required parameter')
-		var rgx = new RegExp('\{captcha\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['captcha'])
-			if (args['captcha']) delete args['captcha']
-		}
-		if (url.indexOf('[/captcha]') !== -1) {
-			url = url.replace('[/captcha]', '/' + args['captcha'])
-			if (args['captcha']) delete args['captcha']
-		}
-		if (url.indexOf('[/to]') !== -1) url = url.replace('[/to]', '')
-		if (url.indexOf('[/subject]') !== -1) url = url.replace('[/subject]', '')
-		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		if (url.indexOf('[/captcha]') !== -1) url = url.replace('[/captcha]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postCollapseMessage': function(args, opts) {
-		var url = 'http://www.reddit.com/api/collapse_message'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUncollapseMessage': function(args, opts) {
-		var url = 'http://www.reddit.com/api/uncollapse_message'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUnreadMessage': function(args, opts) {
-		var url = 'http://www.reddit.com/api/unread_message'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postReadMessage': function(args, opts) {
-		var url = 'http://www.reddit.com/api/read_message'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postHideMessage': function(args, opts) {
-		var url = 'http://www.reddit.com/api/hide_message'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUnhideMessage': function(args, opts) {
-		var url = 'http://www.reddit.com/api/unhide_message'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postMoremessages': function(args, opts) {
-		var url = 'http://www.reddit.com/api/moremessages'
-		args = args || {}
-		if (args['parent_id'] == null) throw new Error('parent_id is a required parameter')
-		var rgx = new RegExp('\{parent_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['parent_id'])
-			if (args['parent_id']) delete args['parent_id']
-		}
-		if (url.indexOf('[/parent_id]') !== -1) {
-			url = url.replace('[/parent_id]', '/' + args['parent_id'])
-			if (args['parent_id']) delete args['parent_id']
-		}
-		if (url.indexOf('[/parent_id]') !== -1) url = url.replace('[/parent_id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postComment': function(args, opts) {
-		var url = 'http://www.reddit.com/api/comment'
-		args = args || {}
-		if (args['parent'] == null) throw new Error('parent is a required parameter')
-		var rgx = new RegExp('\{parent\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['parent'])
-			if (args['parent']) delete args['parent']
-		}
-		if (url.indexOf('[/parent]') !== -1) {
-			url = url.replace('[/parent]', '/' + args['parent'])
-			if (args['parent']) delete args['parent']
-		}
-		if (args['text'] == null) throw new Error('text is a required parameter')
-		var rgx = new RegExp('\{text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/text]') !== -1) {
-			url = url.replace('[/text]', '/' + args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/parent]') !== -1) url = url.replace('[/parent]', '')
-		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postMorechildren': function(args, opts) {
-		var url = 'http://www.reddit.com/api/morechildren'
-		args = args || {}
-		if (args['link_id'] == null) throw new Error('link_id is a required parameter')
-		var rgx = new RegExp('\{link_id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['link_id'])
-			if (args['link_id']) delete args['link_id']
-		}
-		if (url.indexOf('[/link_id]') !== -1) {
-			url = url.replace('[/link_id]', '/' + args['link_id'])
-			if (args['link_id']) delete args['link_id']
-		}
-		if (args['where'] == null) throw new Error('where is a required parameter')
-		var rgx = new RegExp('\{where\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['where'])
-			if (args['where']) delete args['where']
-		}
-		if (url.indexOf('[/where]') !== -1) {
-			url = url.replace('[/where]', '/' + args['where'])
-			if (args['where']) delete args['where']
-		}
-		if (args['children'] == null) throw new Error('children is a required parameter')
-		var rgx = new RegExp('\{children\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['children'])
-			if (args['children']) delete args['children']
-		}
-		if (url.indexOf('[/children]') !== -1) {
-			url = url.replace('[/children]', '/' + args['children'])
-			if (args['children']) delete args['children']
-		}
-		if (args['pv_hex'] == null) throw new Error('pv_hex is a required parameter')
-		var rgx = new RegExp('\{pv_hex\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['pv_hex'])
-			if (args['pv_hex']) delete args['pv_hex']
-		}
-		if (url.indexOf('[/pv_hex]') !== -1) {
-			url = url.replace('[/pv_hex]', '/' + args['pv_hex'])
-			if (args['pv_hex']) delete args['pv_hex']
-		}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/link_id]') !== -1) url = url.replace('[/link_id]', '')
-		if (url.indexOf('[/where]') !== -1) url = url.replace('[/where]', '')
-		if (url.indexOf('[/children]') !== -1) url = url.replace('[/children]', '')
-		if (url.indexOf('[/pv_hex]') !== -1) url = url.replace('[/pv_hex]', '')
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postFriend': function(args, opts) {
-		var url = 'http://www.reddit.com/api/friend'
-		args = args || {}
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1 && args['/name']) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (args['container'] == null) throw new Error('container is a required parameter')
-		var rgx = new RegExp('\{container\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['container'])
-			if (args['container']) delete args['container']
-		}
-		if (url.indexOf('[/container]') !== -1) {
-			url = url.replace('[/container]', '/' + args['container'])
-			if (args['container']) delete args['container']
-		}
-		if (args['type'] == null) throw new Error('type is a required parameter')
-		var rgx = new RegExp('\{type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (url.indexOf('[/type]') !== -1) {
-			url = url.replace('[/type]', '/' + args['type'])
-			if (args['type']) delete args['type']
-		}
-		var rgx = new RegExp('\{note\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['note'])
-			if (args['note']) delete args['note']
-		}
-		if (url.indexOf('[/note]') !== -1 && args['/note']) {
-			url = url.replace('[/note]', '/' + args['note'])
-			if (args['note']) delete args['note']
-		}
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/container]') !== -1) url = url.replace('[/container]', '')
-		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
-		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUnfriend': function(args, opts) {
-		var url = 'http://www.reddit.com/api/unfriend'
-		args = args || {}
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1 && args['/name']) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (args['container'] == null) throw new Error('container is a required parameter')
-		var rgx = new RegExp('\{container\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['container'])
-			if (args['container']) delete args['container']
-		}
-		if (url.indexOf('[/container]') !== -1) {
-			url = url.replace('[/container]', '/' + args['container'])
-			if (args['container']) delete args['container']
-		}
-		if (args['type'] == null) throw new Error('type is a required parameter')
-		var rgx = new RegExp('\{type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (url.indexOf('[/type]') !== -1) {
-			url = url.replace('[/type]', '/' + args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		if (url.indexOf('[/container]') !== -1) url = url.replace('[/container]', '')
-		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postFriendNote': function(args, opts) {
-		var url = 'http://www.reddit.com/api/friend_note'
-		args = args || {}
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1 && args['/name']) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		var rgx = new RegExp('\{note\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['note'])
-			if (args['note']) delete args['note']
-		}
-		if (url.indexOf('[/note]') !== -1 && args['/note']) {
-			url = url.replace('[/note]', '/' + args['note'])
-			if (args['note']) delete args['note']
-		}
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/note]') !== -1) url = url.replace('[/note]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postUpdate': function(args, opts) {
-		var url = 'http://www.reddit.com/api/update'
-		args = args || {}
-		if (args['curpass'] == null) throw new Error('curpass is a required parameter')
-		var rgx = new RegExp('\{curpass\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['curpass'])
-			if (args['curpass']) delete args['curpass']
-		}
-		if (url.indexOf('[/curpass]') !== -1) {
-			url = url.replace('[/curpass]', '/' + args['curpass'])
-			if (args['curpass']) delete args['curpass']
-		}
-		var rgx = new RegExp('\{email\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['email'])
-			if (args['email']) delete args['email']
-		}
-		if (url.indexOf('[/email]') !== -1 && args['/email']) {
-			url = url.replace('[/email]', '/' + args['email'])
-			if (args['email']) delete args['email']
-		}
-		var rgx = new RegExp('\{newpass\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['newpass'])
-			if (args['newpass']) delete args['newpass']
-		}
-		if (url.indexOf('[/newpass]') !== -1 && args['/newpass']) {
-			url = url.replace('[/newpass]', '/' + args['newpass'])
-			if (args['newpass']) delete args['newpass']
-		}
-		var rgx = new RegExp('\{verpass\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['verpass'])
-			if (args['verpass']) delete args['verpass']
-		}
-		if (url.indexOf('[/verpass]') !== -1 && args['/verpass']) {
-			url = url.replace('[/verpass]', '/' + args['verpass'])
-			if (args['verpass']) delete args['verpass']
-		}
-		var rgx = new RegExp('\{verify\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['verify'])
-			if (args['verify']) delete args['verify']
-		}
-		if (url.indexOf('[/verify]') !== -1 && args['/verify']) {
-			url = url.replace('[/verify]', '/' + args['verify'])
-			if (args['verify']) delete args['verify']
-		}
-		if (url.indexOf('[/curpass]') !== -1) url = url.replace('[/curpass]', '')
-		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		if (url.indexOf('[/newpass]') !== -1) url = url.replace('[/newpass]', '')
-		if (url.indexOf('[/verpass]') !== -1) url = url.replace('[/verpass]', '')
-		if (url.indexOf('[/verify]') !== -1) url = url.replace('[/verify]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postTbCommentspanelShow': function(args, opts) {
-		var url = 'http://www.reddit.com/api/tb_commentspanel_show'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postTbCommentspanelHide': function(args, opts) {
-		var url = 'http://www.reddit.com/api/tb_commentspanel_hide'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postSiteAdmin': function(args, opts) {
-		var url = 'http://www.reddit.com/api/site_admin'
-		args = args || {}
-		if (args['sr'] == null) throw new Error('sr is a required parameter')
-		var rgx = new RegExp('\{sr\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sr'])
-			if (args['sr']) delete args['sr']
-		}
-		if (url.indexOf('[/sr]') !== -1) {
-			url = url.replace('[/sr]', '/' + args['sr'])
-			if (args['sr']) delete args['sr']
-		}
-		if (args['name'] == null) throw new Error('name is a required parameter')
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (args['title'] == null) throw new Error('title is a required parameter')
-		var rgx = new RegExp('\{title\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['title'])
-			if (args['title']) delete args['title']
-		}
-		if (url.indexOf('[/title]') !== -1) {
-			url = url.replace('[/title]', '/' + args['title'])
-			if (args['title']) delete args['title']
-		}
-		if (args['header-title'] == null) throw new Error('header-title is a required parameter')
-		var rgx = new RegExp('\{header-title\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['header-title'])
-			if (args['header-title']) delete args['header-title']
-		}
-		if (url.indexOf('[/header-title]') !== -1) {
-			url = url.replace('[/header-title]', '/' + args['header-title'])
-			if (args['header-title']) delete args['header-title']
-		}
-		if (args['domain'] == null) throw new Error('domain is a required parameter')
-		var rgx = new RegExp('\{domain\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['domain'])
-			if (args['domain']) delete args['domain']
-		}
-		if (url.indexOf('[/domain]') !== -1) {
-			url = url.replace('[/domain]', '/' + args['domain'])
-			if (args['domain']) delete args['domain']
-		}
-		if (args['description'] == null) throw new Error('description is a required parameter')
-		var rgx = new RegExp('\{description\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['description'])
-			if (args['description']) delete args['description']
-		}
-		if (url.indexOf('[/description]') !== -1) {
-			url = url.replace('[/description]', '/' + args['description'])
-			if (args['description']) delete args['description']
-		}
-		if (args['lang'] == null) throw new Error('lang is a required parameter')
-		var rgx = new RegExp('\{lang\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (url.indexOf('[/lang]') !== -1) {
-			url = url.replace('[/lang]', '/' + args['lang'])
-			if (args['lang']) delete args['lang']
-		}
-		if (args['over_18'] == null) throw new Error('over_18 is a required parameter')
-		var rgx = new RegExp('\{over_18\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['over_18'])
-			if (args['over_18']) delete args['over_18']
-		}
-		if (url.indexOf('[/over_18]') !== -1) {
-			url = url.replace('[/over_18]', '/' + args['over_18'])
-			if (args['over_18']) delete args['over_18']
-		}
-		if (args['allow_top'] == null) throw new Error('allow_top is a required parameter')
-		var rgx = new RegExp('\{allow_top\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['allow_top'])
-			if (args['allow_top']) delete args['allow_top']
-		}
-		if (url.indexOf('[/allow_top]') !== -1) {
-			url = url.replace('[/allow_top]', '/' + args['allow_top'])
-			if (args['allow_top']) delete args['allow_top']
-		}
-		if (args['show_media'] == null) throw new Error('show_media is a required parameter')
-		var rgx = new RegExp('\{show_media\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['show_media'])
-			if (args['show_media']) delete args['show_media']
-		}
-		if (url.indexOf('[/show_media]') !== -1) {
-			url = url.replace('[/show_media]', '/' + args['show_media'])
-			if (args['show_media']) delete args['show_media']
-		}
-		if (args['type'] == null) throw new Error('type is a required parameter')
-		var rgx = new RegExp('\{type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (url.indexOf('[/type]') !== -1) {
-			url = url.replace('[/type]', '/' + args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (args['link_type'] == null) throw new Error('link_type is a required parameter')
-		var rgx = new RegExp('\{link_type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['link_type'])
-			if (args['link_type']) delete args['link_type']
-		}
-		if (url.indexOf('[/link_type]') !== -1) {
-			url = url.replace('[/link_type]', '/' + args['link_type'])
-			if (args['link_type']) delete args['link_type']
-		}
-		if (args['sponsorship-text'] == null) throw new Error('sponsorship-text is a required parameter')
-		var rgx = new RegExp('\{sponsorship-text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sponsorship-text'])
-			if (args['sponsorship-text']) delete args['sponsorship-text']
-		}
-		if (url.indexOf('[/sponsorship-text]') !== -1) {
-			url = url.replace('[/sponsorship-text]', '/' + args['sponsorship-text'])
-			if (args['sponsorship-text']) delete args['sponsorship-text']
-		}
-		if (args['sponsorship-name'] == null) throw new Error('sponsorship-name is a required parameter')
-		var rgx = new RegExp('\{sponsorship-name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sponsorship-name'])
-			if (args['sponsorship-name']) delete args['sponsorship-name']
-		}
-		if (url.indexOf('[/sponsorship-name]') !== -1) {
-			url = url.replace('[/sponsorship-name]', '/' + args['sponsorship-name'])
-			if (args['sponsorship-name']) delete args['sponsorship-name']
-		}
-		if (args['sponsorship-url'] == null) throw new Error('sponsorship-url is a required parameter')
-		var rgx = new RegExp('\{sponsorship-url\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sponsorship-url'])
-			if (args['sponsorship-url']) delete args['sponsorship-url']
-		}
-		if (url.indexOf('[/sponsorship-url]') !== -1) {
-			url = url.replace('[/sponsorship-url]', '/' + args['sponsorship-url'])
-			if (args['sponsorship-url']) delete args['sponsorship-url']
-		}
-		if (args['css_on_cname'] == null) throw new Error('css_on_cname is a required parameter')
-		var rgx = new RegExp('\{css_on_cname\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['css_on_cname'])
-			if (args['css_on_cname']) delete args['css_on_cname']
-		}
-		if (url.indexOf('[/css_on_cname]') !== -1) {
-			url = url.replace('[/css_on_cname]', '/' + args['css_on_cname'])
-			if (args['css_on_cname']) delete args['css_on_cname']
-		}
-		if (url.indexOf('[/sr]') !== -1) url = url.replace('[/sr]', '')
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/title]') !== -1) url = url.replace('[/title]', '')
-		if (url.indexOf('[/header-title]') !== -1) url = url.replace('[/header-title]', '')
-		if (url.indexOf('[/domain]') !== -1) url = url.replace('[/domain]', '')
-		if (url.indexOf('[/description]') !== -1) url = url.replace('[/description]', '')
-		if (url.indexOf('[/lang]') !== -1) url = url.replace('[/lang]', '')
-		if (url.indexOf('[/over_18]') !== -1) url = url.replace('[/over_18]', '')
-		if (url.indexOf('[/allow_top]') !== -1) url = url.replace('[/allow_top]', '')
-		if (url.indexOf('[/show_media]') !== -1) url = url.replace('[/show_media]', '')
-		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
-		if (url.indexOf('[/link_type]') !== -1) url = url.replace('[/link_type]', '')
-		if (url.indexOf('[/sponsorship-text]') !== -1) url = url.replace('[/sponsorship-text]', '')
-		if (url.indexOf('[/sponsorship-name]') !== -1) url = url.replace('[/sponsorship-name]', '')
-		if (url.indexOf('[/sponsorship-url]') !== -1) url = url.replace('[/sponsorship-url]', '')
-		if (url.indexOf('[/css_on_cname]') !== -1) url = url.replace('[/css_on_cname]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postSubredditStylesheet': function(args, opts) {
-		var url = 'http://www.reddit.com/api/subreddit_stylesheet'
-		args = args || {}
-		if (args['stylesheet_contents'] == null) throw new Error('stylesheet_contents is a required parameter')
-		var rgx = new RegExp('\{stylesheet_contents\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['stylesheet_contents'])
-			if (args['stylesheet_contents']) delete args['stylesheet_contents']
-		}
-		if (url.indexOf('[/stylesheet_contents]') !== -1) {
-			url = url.replace('[/stylesheet_contents]', '/' + args['stylesheet_contents'])
-			if (args['stylesheet_contents']) delete args['stylesheet_contents']
-		}
-		if (args['op'] == null) throw new Error('op is a required parameter')
-		var rgx = new RegExp('\{op\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['op'])
-			if (args['op']) delete args['op']
-		}
-		if (url.indexOf('[/op]') !== -1) {
-			url = url.replace('[/op]', '/' + args['op'])
-			if (args['op']) delete args['op']
-		}
-		if (url.indexOf('[/stylesheet_contents]') !== -1) url = url.replace('[/stylesheet_contents]', '')
-		if (url.indexOf('[/op]') !== -1) url = url.replace('[/op]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postDeleteSrImg': function(args, opts) {
-		var url = 'http://www.reddit.com/api/delete_sr_img'
-		args = args || {}
-		if (args['img_name'] == null) throw new Error('img_name is a required parameter')
-		var rgx = new RegExp('\{img_name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['img_name'])
-			if (args['img_name']) delete args['img_name']
-		}
-		if (url.indexOf('[/img_name]') !== -1) {
-			url = url.replace('[/img_name]', '/' + args['img_name'])
-			if (args['img_name']) delete args['img_name']
-		}
-		if (url.indexOf('[/img_name]') !== -1) url = url.replace('[/img_name]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postDeleteSrHeader': function(args, opts) {
-		var url = 'http://www.reddit.com/api/delete_sr_header'
-		args = args || {}
-		if (args['img_name'] == null) throw new Error('img_name is a required parameter')
-		var rgx = new RegExp('\{img_name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['img_name'])
-			if (args['img_name']) delete args['img_name']
-		}
-		if (url.indexOf('[/img_name]') !== -1) {
-			url = url.replace('[/img_name]', '/' + args['img_name'])
-			if (args['img_name']) delete args['img_name']
-		}
-		if (url.indexOf('[/img_name]') !== -1) url = url.replace('[/img_name]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'getUploadSrImg': function(args, opts) {
-		var url = 'http://www.reddit.com/api/upload_sr_img'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'postUploadSrImg': function(args, opts) {
-		var url = 'http://www.reddit.com/api/upload_sr_img'
-		args = args || {}
-		if (args['name'] == null) throw new Error('name is a required parameter')
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (args['formid'] == null) throw new Error('formid is a required parameter')
-		var rgx = new RegExp('\{formid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['formid'])
-			if (args['formid']) delete args['formid']
-		}
-		if (url.indexOf('[/formid]') !== -1) {
-			url = url.replace('[/formid]', '/' + args['formid'])
-			if (args['formid']) delete args['formid']
-		}
-		if (args['header'] == null) throw new Error('header is a required parameter')
-		var rgx = new RegExp('\{header\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['header'])
-			if (args['header']) delete args['header']
-		}
-		if (url.indexOf('[/header]') !== -1) {
-			url = url.replace('[/header]', '/' + args['header'])
-			if (args['header']) delete args['header']
-		}
-		if (args['sponsor'] == null) throw new Error('sponsor is a required parameter')
-		var rgx = new RegExp('\{sponsor\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sponsor'])
-			if (args['sponsor']) delete args['sponsor']
-		}
-		if (url.indexOf('[/sponsor]') !== -1) {
-			url = url.replace('[/sponsor]', '/' + args['sponsor'])
-			if (args['sponsor']) delete args['sponsor']
-		}
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/formid]') !== -1) url = url.replace('[/formid]', '')
-		if (url.indexOf('[/header]') !== -1) url = url.replace('[/header]', '')
-		if (url.indexOf('[/sponsor]') !== -1) url = url.replace('[/sponsor]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postSubscribe': function(args, opts) {
-		var url = 'http://www.reddit.com/api/subscribe'
-		args = args || {}
-		if (args['action'] == null) throw new Error('action is a required parameter')
-		var rgx = new RegExp('\{action\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['action'])
-			if (args['action']) delete args['action']
-		}
-		if (url.indexOf('[/action]') !== -1) {
-			url = url.replace('[/action]', '/' + args['action'])
-			if (args['action']) delete args['action']
-		}
-		if (args['sr'] == null) throw new Error('sr is a required parameter')
-		var rgx = new RegExp('\{sr\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sr'])
-			if (args['sr']) delete args['sr']
-		}
-		if (url.indexOf('[/sr]') !== -1) {
-			url = url.replace('[/sr]', '/' + args['sr'])
-			if (args['sr']) delete args['sr']
-		}
-		if (url.indexOf('[/action]') !== -1) url = url.replace('[/action]', '')
-		if (url.indexOf('[/sr]') !== -1) url = url.replace('[/sr]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postSearchRedditNames': function(args, opts) {
-		var url = 'http://www.reddit.com/api/search_reddit_names'
-		args = args || {}
-		if (args['query'] == null) throw new Error('query is a required parameter')
-		var rgx = new RegExp('\{query\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['query'])
-			if (args['query']) delete args['query']
-		}
-		if (url.indexOf('[/query]') !== -1) {
-			url = url.replace('[/query]', '/' + args['query'])
-			if (args['query']) delete args['query']
-		}
-		if (url.indexOf('[/query]') !== -1) url = url.replace('[/query]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args, auth:'none'}, opts)
-	},
-	'flairlist': function(args, opts) {
-		var url = 'http://www.reddit.com/api/flairlist'
-		args = args || {}
-		if (args['r'] == null) throw new Error('r is a required parameter')
-		var rgx = new RegExp('\{r\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (url.indexOf('[/r]') !== -1) {
-			url = url.replace('[/r]', '/' + args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (args['limit'] == null) args['limit'] = "100"
-		var rgx = new RegExp('\{limit\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (url.indexOf('[/limit]') !== -1) {
-			url = url.replace('[/limit]', '/' + args['limit'])
-			if (args['limit']) delete args['limit']
-		}
-		if (args['after'] == null) throw new Error('after is a required parameter')
-		var rgx = new RegExp('\{after\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['after'])
-			if (args['after']) delete args['after']
-		}
-		if (url.indexOf('[/after]') !== -1) {
-			url = url.replace('[/after]', '/' + args['after'])
-			if (args['after']) delete args['after']
-		}
-		if (args['before'] == null) throw new Error('before is a required parameter')
-		var rgx = new RegExp('\{before\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['before'])
-			if (args['before']) delete args['before']
-		}
-		if (url.indexOf('[/before]') !== -1) {
-			url = url.replace('[/before]', '/' + args['before'])
-			if (args['before']) delete args['before']
-		}
-		if (url.indexOf('[/r]') !== -1) url = url.replace('[/r]', '')
-		if (url.indexOf('[/limit]') !== -1) url = url.replace('[/limit]', '')
-		if (url.indexOf('[/after]') !== -1) url = url.replace('[/after]', '')
-		if (url.indexOf('[/before]') !== -1) url = url.replace('[/before]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'flair': function(args, opts) {
-		var url = 'http://www.reddit.com/api/flair'
-		args = args || {}
-		if (args['r'] == null) throw new Error('r is a required parameter')
-		var rgx = new RegExp('\{r\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (url.indexOf('[/r]') !== -1) {
-			url = url.replace('[/r]', '/' + args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (args['name'] == null) throw new Error('name is a required parameter')
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		var rgx = new RegExp('\{text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/text]') !== -1 && args['/text']) {
-			url = url.replace('[/text]', '/' + args['text'])
-			if (args['text']) delete args['text']
-		}
-		var rgx = new RegExp('\{css_class\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['css_class'])
-			if (args['css_class']) delete args['css_class']
-		}
-		if (url.indexOf('[/css_class]') !== -1 && args['/css_class']) {
-			url = url.replace('[/css_class]', '/' + args['css_class'])
-			if (args['css_class']) delete args['css_class']
-		}
-		if (url.indexOf('[/r]') !== -1) url = url.replace('[/r]', '')
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		if (url.indexOf('[/css_class]') !== -1) url = url.replace('[/css_class]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'flaircsv': function(args, opts) {
-		var url = 'http://www.reddit.com/api/flaircsv.json'
-		args = args || {}
-		if (args['r'] == null) throw new Error('r is a required parameter')
-		var rgx = new RegExp('\{r\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (url.indexOf('[/r]') !== -1) {
-			url = url.replace('[/r]', '/' + args['r'])
-			if (args['r']) delete args['r']
-		}
-		if (args['flair_csv'] == null) throw new Error('flair_csv is a required parameter')
-		var rgx = new RegExp('\{flair_csv\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['flair_csv'])
-			if (args['flair_csv']) delete args['flair_csv']
-		}
-		if (url.indexOf('[/flair_csv]') !== -1) {
-			url = url.replace('[/flair_csv]', '/' + args['flair_csv'])
-			if (args['flair_csv']) delete args['flair_csv']
-		}
-		if (url.indexOf('[/r]') !== -1) url = url.replace('[/r]', '')
-		if (url.indexOf('[/flair_csv]') !== -1) url = url.replace('[/flair_csv]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postFeedback': function(args, opts) {
-		var url = 'http://www.reddit.com/api/feedback'
-		args = args || {}
-		if (args['name'] == null) throw new Error('name is a required parameter')
-		var rgx = new RegExp('\{name\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (url.indexOf('[/name]') !== -1) {
-			url = url.replace('[/name]', '/' + args['name'])
-			if (args['name']) delete args['name']
-		}
-		if (args['email'] == null) throw new Error('email is a required parameter')
-		var rgx = new RegExp('\{email\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['email'])
-			if (args['email']) delete args['email']
-		}
-		if (url.indexOf('[/email]') !== -1) {
-			url = url.replace('[/email]', '/' + args['email'])
-			if (args['email']) delete args['email']
-		}
-		if (args['reason'] == null) throw new Error('reason is a required parameter')
-		var rgx = new RegExp('\{reason\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['reason'])
-			if (args['reason']) delete args['reason']
-		}
-		if (url.indexOf('[/reason]') !== -1) {
-			url = url.replace('[/reason]', '/' + args['reason'])
-			if (args['reason']) delete args['reason']
-		}
-		if (args['text'] == null) throw new Error('text is a required parameter')
-		var rgx = new RegExp('\{text\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/text]') !== -1) {
-			url = url.replace('[/text]', '/' + args['text'])
-			if (args['text']) delete args['text']
-		}
-		if (url.indexOf('[/name]') !== -1) url = url.replace('[/name]', '')
-		if (url.indexOf('[/email]') !== -1) url = url.replace('[/email]', '')
-		if (url.indexOf('[/reason]') !== -1) url = url.replace('[/reason]', '')
-		if (url.indexOf('[/text]') !== -1) url = url.replace('[/text]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postReport': function(args, opts) {
-		var url = 'http://www.reddit.com/api/report'
-		args = args || {}
-		if (args['id'] == null) throw new Error('id is a required parameter')
-		var rgx = new RegExp('\{id\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) {
-			url = url.replace('[/id]', '/' + args['id'])
-			if (args['id']) delete args['id']
-		}
-		if (url.indexOf('[/id]') !== -1) url = url.replace('[/id]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postSearchfeedback': function(args, opts) {
-		var url = 'http://www.reddit.com/api/searchfeedback'
-		args = args || {}
-		if (args['q'] == null) throw new Error('q is a required parameter')
-		var rgx = new RegExp('\{q\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['q'])
-			if (args['q']) delete args['q']
-		}
-		if (url.indexOf('[/q]') !== -1) {
-			url = url.replace('[/q]', '/' + args['q'])
-			if (args['q']) delete args['q']
-		}
-		if (args['sort'] == null) throw new Error('sort is a required parameter')
-		var rgx = new RegExp('\{sort\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['sort'])
-			if (args['sort']) delete args['sort']
-		}
-		if (url.indexOf('[/sort]') !== -1) {
-			url = url.replace('[/sort]', '/' + args['sort'])
-			if (args['sort']) delete args['sort']
-		}
-		if (args['t'] == null) throw new Error('t is a required parameter')
-		var rgx = new RegExp('\{t\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['t'])
-			if (args['t']) delete args['t']
-		}
-		if (url.indexOf('[/t]') !== -1) {
-			url = url.replace('[/t]', '/' + args['t'])
-			if (args['t']) delete args['t']
-		}
-		if (args['approval'] == null) throw new Error('approval is a required parameter')
-		var rgx = new RegExp('\{approval\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['approval'])
-			if (args['approval']) delete args['approval']
-		}
-		if (url.indexOf('[/approval]') !== -1) {
-			url = url.replace('[/approval]', '/' + args['approval'])
-			if (args['approval']) delete args['approval']
-		}
-		if (url.indexOf('[/q]') !== -1) url = url.replace('[/q]', '')
-		if (url.indexOf('[/sort]') !== -1) url = url.replace('[/sort]', '')
-		if (url.indexOf('[/t]') !== -1) url = url.replace('[/t]', '')
-		if (url.indexOf('[/approval]') !== -1) url = url.replace('[/approval]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'getBookmarklet': function(args, opts) {
-		var url = 'http://www.reddit.com/api/bookmarklet'
-		args = args || {}
-		if (args['what'] == null) throw new Error('what is a required parameter')
-		var rgx = new RegExp('\{what\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['what'])
-			if (args['what']) delete args['what']
-		}
-		if (url.indexOf('[/what]') !== -1) {
-			url = url.replace('[/what]', '/' + args['what'])
-			if (args['what']) delete args['what']
-		}
-		if (args['u'] == null) throw new Error('u is a required parameter')
-		var rgx = new RegExp('\{u\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['u'])
-			if (args['u']) delete args['u']
-		}
-		if (url.indexOf('[/u]') !== -1) {
-			url = url.replace('[/u]', '/' + args['u'])
-			if (args['u']) delete args['u']
-		}
-		if (url.indexOf('[/what]') !== -1) url = url.replace('[/what]', '')
-		if (url.indexOf('[/u]') !== -1) url = url.replace('[/u]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
-	},
-	'postEditError': function(args, opts) {
-		var url = 'http://www.reddit.com/api/edit_error'
-		args = args || {}
-		if (args['hexkey'] == null) throw new Error('hexkey is a required parameter')
-		var rgx = new RegExp('\{hexkey\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['hexkey'])
-			if (args['hexkey']) delete args['hexkey']
-		}
-		if (url.indexOf('[/hexkey]') !== -1) {
-			url = url.replace('[/hexkey]', '/' + args['hexkey'])
-			if (args['hexkey']) delete args['hexkey']
-		}
-		if (args['nickname'] == null) throw new Error('nickname is a required parameter')
-		var rgx = new RegExp('\{nickname\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['nickname'])
-			if (args['nickname']) delete args['nickname']
-		}
-		if (url.indexOf('[/nickname]') !== -1) {
-			url = url.replace('[/nickname]', '/' + args['nickname'])
-			if (args['nickname']) delete args['nickname']
-		}
-		if (args['status'] == null) throw new Error('status is a required parameter')
-		var rgx = new RegExp('\{status\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['status'])
-			if (args['status']) delete args['status']
-		}
-		if (url.indexOf('[/status]') !== -1) {
-			url = url.replace('[/status]', '/' + args['status'])
-			if (args['status']) delete args['status']
-		}
-		if (url.indexOf('[/hexkey]') !== -1) url = url.replace('[/hexkey]', '')
-		if (url.indexOf('[/nickname]') !== -1) url = url.replace('[/nickname]', '')
-		if (url.indexOf('[/status]') !== -1) url = url.replace('[/status]', '')
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postNoframe': function(args, opts) {
-		var url = 'http://www.reddit.com/api/noframe'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'postFrame': function(args, opts) {
-		var url = 'http://www.reddit.com/api/frame'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'POST',params:args}, opts)
-	},
-	'getGadget': function(args, opts) {
-		var url = 'http://www.reddit.com/api/gadget'
-		args = args || {}
-		if (args['type'] == null) args['type'] = "click"
-		var rgx = new RegExp('\{type\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (url.indexOf('[/type]') !== -1) {
-			url = url.replace('[/type]', '/' + args['type'])
-			if (args['type']) delete args['type']
-		}
-		if (args['links'] == null) throw new Error('links is a required parameter')
-		var rgx = new RegExp('\{links\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['links'])
-			if (args['links']) delete args['links']
-		}
-		if (url.indexOf('[/links]') !== -1) {
-			url = url.replace('[/links]', '/' + args['links'])
-			if (args['links']) delete args['links']
-		}
-		if (url.indexOf('[/type]') !== -1) url = url.replace('[/type]', '')
-		if (url.indexOf('[/links]') !== -1) url = url.replace('[/links]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args}, opts)
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
 	}
-})
+	return url;
+}
+
+var provider = fs('/bin/reddit');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns information about a link given its fullname.               
+ * @category Link
+ * @param {string} fullname  A base-36 id of the form /t[0-9]+_[a-z0-9]+/ (e.g. t3_6nw57) that reddit associates with every Thing. In the example, the type prefix t3_ specifies that the fullname is for a Link, and the id 6nw57 specifies the Link's id36. (Note: the numbers according to id type are not constant, and may vary between reddit installations.)               
+ * @param {string} format  Format of the data being returned. Accepted values: json (JSON), rss (RSS feed), xml (RSS feed)               
+ * @methodhttp GET
+ */
+exports.linkByFullname = function(args, opts) {
+	var url = 'http://www.reddit.com/by_id/{fullname}.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'fullname', 'str', true);
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns information about a link, with comments, given its id36.               
+ * @category Link
+ * @param {string} id36  The second part of the fullname, a base-36 id of the form /t[0-9]+_[a-z0-9]+/ (e.g. t3_6nw57) that reddit associates with every Thing. In the example, the type prefix t3_ specifies that the fullname is for a Link, and the id 6nw57 specifies the Link's id36. (Note: the numbers according to id type are not constant, and may vary between reddit installations.)               
+ * @param {string} format  Format of the data being returned. Accepted values: json (JSON), rss (RSS feed), xml (RSS feed)               
+ * @methodhttp GET
+ */
+exports.linkByFullnameComments = function(args, opts) {
+	var url = 'http://www.reddit.com/comments/{id36}.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'id36', 'str', true);
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns information about a URL's submissions.               
+ * @category Link
+ * @param {string} format  Format of the data being returned. Accepted values: json (JSON), xml (XML)               
+ * @param {anyURI} [url]  Format: a URL. Specify either this or id.                       
+ * @param {string} [id]  Format: a link ID. Specify either this or url.                       
+ * @param {integer} [limit]  Presumably, limits the number of links returned. Format: a number.                       
+ * @methodhttp GET
+ */
+exports.getInfo = function(args, opts) {
+	var url = 'http://www.reddit.com/api/info.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'url');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'limit', 'int');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns expanded link content.               
+ * @category Link
+ * @param {string} link_id  The link to expand.                       
+ * @methodhttp POST
+ */
+exports.postExpando = function(args, opts) {
+	var url = 'http://www.reddit.com/api/expando';
+	args = args || {};
+	url = url_replace(url, args, 'link_id', 'str', true);
+	return http.post({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Logs a user in. Returns a SetCookie line in the HTTP header, identifying the new session.               
+ * @category User
+ * @param {string} username  The username to log in as.               
+ * @param {string} user  The username to authenticate as. This is redundant, but required.                       
+ * @param {string} passwd  The plain-text password for the account.                       
+ * @param {string} api_type  Must be "json" for the style of auth used in this documentation.                       
+ * @methodhttp POST
+ */
+exports.login = function(args, opts) {
+	var url = 'http://www.reddit.com/api/login/{username}';
+	args = args || {};
+	url = url_replace(url, args, 'username', 'str', true);
+	url = url_replace(url, args, 'user', 'str', true);
+	url = url_replace(url, args, 'passwd', 'str', true);
+	url = url_replace(url, args, 'api_type', 'str', true, "json");
+	return http.post({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Retrieves information from a user's "about" page, including karma totals.               
+ * @category User
+ * @param {string} username  The name of the user whose "about" page to retrieve.               
+ * @methodhttp GET
+ */
+exports.userAbout = function(args, opts) {
+	var url = 'http://www.reddit.com/user/{username}/about.json';
+	args = args || {};
+	url = url_replace(url, args, 'username', 'str', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns information about the logged-in user.               
+ * @category User
+ * @methodhttp GET
+ */
+exports.getMe = function(args, opts) {
+	var url = 'http://www.reddit.com/api/me.json';
+	args = args || {};
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns information about the subreddits the currently logged-in user subscribes to.               
+ * @category User
+ * @param {string} format  Format of the data being returned. Accepted values: json (JSON), xml (XML)               
+ * @methodhttp GET
+ */
+exports.getMine = function(args, opts) {
+	var url = 'http://www.reddit.com/reddits/mine.{format}';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Registers a new user.               
+ * @category User
+ * @param {string} user  The username to register.                       
+ * @param {string} email  The user's email address.                       
+ * @param {string} passwd  The user's password.                       
+ * @param {string} passwd2  The user's password, again. Has to be the same as "passwd".                       
+ * @param {string} dest  Destination?                       
+ * @param {boolean} rem  Format: boolean                       
+ * @param {boolean} reason  Possible accepted values: redirect, subscribe                       
+ * @methodhttp POST
+ */
+exports.postRegister = function(args, opts) {
+	var url = 'http://www.reddit.com/api/register';
+	args = args || {};
+	url = url_replace(url, args, 'user', 'str', true);
+	url = url_replace(url, args, 'email', 'str', true);
+	url = url_replace(url, args, 'passwd', 'str', true);
+	url = url_replace(url, args, 'passwd2', 'str', true);
+	url = url_replace(url, args, 'dest', 'str', true);
+	url = url_replace(url, args, 'rem', 'null', true);
+	url = url_replace(url, args, 'reason', 'null', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Permanently deletes the logged-in user.               
+ * @category User
+ * @param {string} areyousure1  Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no                       
+ * @param {string} areyousure2  Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no                       
+ * @param {string} areyousure2  Verification. All three parameters must be "yes" to delete user successfully. Accepted values: yes, no                       
+ * @methodhttp POST
+ */
+exports.postDeleteUser = function(args, opts) {
+	var url = 'http://www.reddit.com/api/delete_user';
+	args = args || {};
+	url = url_replace(url, args, 'areyousure1', 'str', true);
+	url = url_replace(url, args, 'areyousure2', 'str', true);
+	url = url_replace(url, args, 'areyousure2', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Handles self-removal as moderator from a subreddit as rendered in the subreddit sidebox on any of that subreddit's pages.               
+ * @category User
+ * @param {string} id  ID?                       
+ * @methodhttp POST
+ */
+exports.postLeavemoderator = function(args, opts) {
+	var url = 'http://www.reddit.com/api/leavemoderator';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Handles self-removal as contributor from a subreddit as rendered in the subreddit sidebox on any of that subreddit's pages.               
+ * @category User
+ * @param {string} id  ID?                       
+ * @methodhttp POST
+ */
+exports.postLeavecontributor = function(args, opts) {
+	var url = 'http://www.reddit.com/api/leavecontributor';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sends a forgot-password message to an account holder.               
+ * @category User
+ * @param {string} name  A username with a valid email address.                       
+ * @methodhttp POST
+ */
+exports.postPassword = function(args, opts) {
+	var url = 'http://www.reddit.com/api/password';
+	args = args || {};
+	url = url_replace(url, args, 'name', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Resets a user's password.               
+ * @category User
+ * @param {string} reset  Cache key?                       
+ * @param {string} passwd  The new password.                       
+ * @param {string} passwd2  The new password, again. Must be the same as "passwd".                       
+ * @methodhttp POST
+ */
+exports.postResetpassword = function(args, opts) {
+	var url = 'http://www.reddit.com/api/resetpassword';
+	args = args || {};
+	url = url_replace(url, args, 'reset', 'str', true);
+	url = url_replace(url, args, 'passwd', 'str', true);
+	url = url_replace(url, args, 'passwd2', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Submits a link/story. For submitting to work, the reddit_session cookie needs to be present in the request, or the answer to a CAPTCHA must be supplied.               
+ * @category Story
+ * @param {string} [url]  The link to submit, if the "kind" parameter is "link". Required if the story is a regular post.                       
+ * @param {string} [text]  The text to submit, if the "kind" parameter is "self". Required if the story is a self post.                       
+ * @param {string} kind  Accepted values: link, self.                       
+ * @param {string} sr  The subreddit to submit the link to.                       
+ * @param {string} title  The text to appear as a link to the new story.                       
+ * @param {string} r  The subreddit, again. (?)                       
+ * @methodhttp POST
+ */
+exports.submit = function(args, opts) {
+	var url = 'http://www.reddit.com/api/submit';
+	args = args || {};
+	url = url_replace(url, args, 'url', 'str');
+	url = url_replace(url, args, 'text', 'str');
+	url = url_replace(url, args, 'kind', 'str', true);
+	url = url_replace(url, args, 'sr', 'str', true);
+	url = url_replace(url, args, 'title', 'str', true);
+	url = url_replace(url, args, 'r', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Shares a link/story via email to a friend on the logged-in user's behalf. For sharing to work, the reddit_session cookie needs to be present in the request, or the answer to a CAPTCHA must be supplied.               
+ * @category Story
+ * @param {string} parent  The thing you want to share. See API docs for more details about things.                       
+ * @param {string} share_from  The name of the person who is sending the message. Maximum 100 characters.                       
+ * @param {string} replyto  The email address of the person who is sending the message.                       
+ * @param {string} share_to  The email address of the recepient of the message.                       
+ * @param {string} message  The text that precedes the link to the story in the message. Maximum 1000 characters.                       
+ * @param {string} [renderstyle]  Presumably, the email format. Known accepted value: html                       
+ * @methodhttp POST
+ */
+exports.share = function(args, opts) {
+	var url = 'http://www.reddit.com/api/share';
+	args = args || {};
+	url = url_replace(url, args, 'parent', 'str', true);
+	url = url_replace(url, args, 'share_from', 'str', true);
+	url = url_replace(url, args, 'replyto', 'str', true);
+	url = url_replace(url, args, 'share_to', 'str', true);
+	url = url_replace(url, args, 'message', 'str', true);
+	url = url_replace(url, args, 'renderstyle', 'str');
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Casts or rescinds a vote on a story/comment.               
+ * @category Story
+ * @param {string} id  The fullname of the thing you are voting for.                       
+ * @param {string} dir  The vote you are going to cast. Use 1 to vote up, 0 to rescind a vote, or -1 to vote down. Note that previous votes are not additive. If the user previously voted 1, voting -1 will change the vote to -1, not 0. Accepted values: -1 (downvote), 0 (neutral-vote), 1 (upvote)                       
+ * @methodhttp POST
+ */
+exports.postVote = function(args, opts) {
+	var url = 'http://www.reddit.com/api/vote';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'dir', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns the title for a story, given its URL.               
+ * @category Story
+ * @param {anyURL} url  The URL to fetch the title of.                       
+ * @methodhttp POST
+ */
+exports.postFetchTitle = function(args, opts) {
+	var url = 'http://www.reddit.com/api/fetch_title';
+	args = args || {};
+	url = url_replace(url, args, 'url', 'null', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Marks a thing as NSFW.               
+ * @category Story
+ * @param {string} id  The fullname of the thing to mark.                       
+ * @methodhttp POST
+ */
+exports.postMarknsfw = function(args, opts) {
+	var url = 'http://www.reddit.com/api/marknsfw';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Marks a thing as SFW (unmarks as NSFW)               
+ * @category Story
+ * @param {string} id  The fullname of the thing to unmark.                       
+ * @methodhttp POST
+ */
+exports.postUnmarknsfw = function(args, opts) {
+	var url = 'http://www.reddit.com/api/unmarknsfw';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Saves a post.               
+ * @category Story
+ * @param {string} id  The fullname of the post to save.                       
+ * @methodhttp POST
+ */
+exports.postSave = function(args, opts) {
+	var url = 'http://www.reddit.com/api/save';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Unsaves a post.               
+ * @category Story
+ * @param {string} id  The fullname of the post to unsave.                       
+ * @methodhttp POST
+ */
+exports.postUnsave = function(args, opts) {
+	var url = 'http://www.reddit.com/api/unsave';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Hides a post.               
+ * @category Story
+ * @param {string} id  The fullname of the post to hide.                       
+ * @methodhttp POST
+ */
+exports.postHide = function(args, opts) {
+	var url = 'http://www.reddit.com/api/hide';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Unhides a post.               
+ * @category Story
+ * @param {string} id  The fullname of the post to unhide.                       
+ * @methodhttp POST
+ */
+exports.postUnhide = function(args, opts) {
+	var url = 'http://www.reddit.com/api/unhide';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes things.               
+ * @category Thing
+ * @param {string} id  The fullname of the thing to delete.                       
+ * @methodhttp POST
+ */
+exports.postDel = function(args, opts) {
+	var url = 'http://www.reddit.com/api/del';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Updates the user text on a thing.               
+ * @category Thing
+ * @param {string} thing_id  The fullname of the thing to update.                       
+ * @param {string} text  The new text.                       
+ * @methodhttp POST
+ */
+exports.postEditusertext = function(args, opts) {
+	var url = 'http://www.reddit.com/api/editusertext';
+	args = args || {};
+	url = url_replace(url, args, 'thing_id', 'str', true);
+	url = url_replace(url, args, 'text', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Removes a thing.               
+ * @category Thing
+ * @param {string} id  The thing to remove.                       
+ * @methodhttp POST
+ */
+exports.postRemove = function(args, opts) {
+	var url = 'http://www.reddit.com/api/remove';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Approves a thing.               
+ * @category Thing
+ * @param {string} id  The thing to approve.                       
+ * @methodhttp POST
+ */
+exports.postApprove = function(args, opts) {
+	var url = 'http://www.reddit.com/api/approve';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Distinguishes a thing.               
+ * @category Thing
+ * @param {string} id  The thing to distinguish.                       
+ * @param {string} how  Accepted values: yes, no, admin.                       
+ * @methodhttp POST
+ */
+exports.postDistinguish = function(args, opts) {
+	var url = 'http://www.reddit.com/api/distinguish';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'how', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Handles message composition under /message/compose               
+ * @category Message
+ * @param {string} to  The recepient of the message.                       
+ * @param {string} subject  The subject of the message.                       
+ * @param {string} text  The message.                       
+ * @param {string} captcha  CAPTCHA result.                       
+ * @methodhttp POST
+ */
+exports.postCompose = function(args, opts) {
+	var url = 'http://www.reddit.com/api/compose';
+	args = args || {};
+	url = url_replace(url, args, 'to', 'str', true);
+	url = url_replace(url, args, 'subject', 'str', true);
+	url = url_replace(url, args, 'text', 'str', true);
+	url = url_replace(url, args, 'captcha', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Collapses a message.               
+ * @category Message
+ * @param {string} id  A list of messages to collapse.                       
+ * @methodhttp POST
+ */
+exports.postCollapseMessage = function(args, opts) {
+	var url = 'http://www.reddit.com/api/collapse_message';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Collapses a message.               
+ * @category Message
+ * @param {string} id  A list of messages to uncollapse.                       
+ * @methodhttp POST
+ */
+exports.postUncollapseMessage = function(args, opts) {
+	var url = 'http://www.reddit.com/api/uncollapse_message';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Mark a message as unread.               
+ * @category Message
+ * @param {string} id  The message to mark as unread.                       
+ * @methodhttp POST
+ */
+exports.postUnreadMessage = function(args, opts) {
+	var url = 'http://www.reddit.com/api/unread_message';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Mark a message as read.               
+ * @category Message
+ * @param {string} id  The message to mark as read.                       
+ * @methodhttp POST
+ */
+exports.postReadMessage = function(args, opts) {
+	var url = 'http://www.reddit.com/api/read_message';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Hides a message.               
+ * @category Message
+ * @param {string} id  The message to hide.                       
+ * @methodhttp POST
+ */
+exports.postHideMessage = function(args, opts) {
+	var url = 'http://www.reddit.com/api/hide_message';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Unhides a message.               
+ * @category Message
+ * @param {string} id  The message to unhide.                       
+ * @methodhttp POST
+ */
+exports.postUnhideMessage = function(args, opts) {
+	var url = 'http://www.reddit.com/api/unhide_message';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Retrieves more messages by parent.               
+ * @category Message
+ * @param {string} parent_id  The message parent.                       
+ * @methodhttp POST
+ */
+exports.postMoremessages = function(args, opts) {
+	var url = 'http://www.reddit.com/api/moremessages';
+	args = args || {};
+	url = url_replace(url, args, 'parent_id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Posts a comment.               
+ * @category Comment
+ * @param {string} parent  The fullname of the thing or comment you are commenting on.                       
+ * @param {string} text  The markdown content of the comment you are posting.                       
+ * @methodhttp POST
+ */
+exports.postComment = function(args, opts) {
+	var url = 'http://www.reddit.com/api/comment';
+	args = args || {};
+	url = url_replace(url, args, 'parent', 'str', true);
+	url = url_replace(url, args, 'text', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Retrieves more comment children.               
+ * @category Comment
+ * @param {string} link_id  The id of the link to get the comments for.                       
+ * @param {string} where  Comment sorting option.                       
+ * @param {string} children  Children comment IDs.                       
+ * @param {string} pv_hex  Maximum 40 characters?                       
+ * @param {string} id  Some kind of ID.                       
+ * @methodhttp POST
+ */
+exports.postMorechildren = function(args, opts) {
+	var url = 'http://www.reddit.com/api/morechildren';
+	args = args || {};
+	url = url_replace(url, args, 'link_id', 'str', true);
+	url = url_replace(url, args, 'where', 'str', true);
+	url = url_replace(url, args, 'children', 'str', true);
+	url = url_replace(url, args, 'pv_hex', 'str', true);
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Complement to "unfriend": handles friending as well as privilege changes on subreddits.               
+ * @category Friend
+ * @param {string} [name]  The user to add as a friend.                       
+ * @param {string} container  Either the current user or the subreddit.                       
+ * @param {string} type  Accepted values: friend, moderator, contributor, banned                       
+ * @param {string} [note]  A "friend note". Maximum 300 characters.                       
+ * @methodhttp POST
+ */
+exports.postFriend = function(args, opts) {
+	var url = 'http://www.reddit.com/api/friend';
+	args = args || {};
+	url = url_replace(url, args, 'name', 'str');
+	url = url_replace(url, args, 'container', 'str', true);
+	url = url_replace(url, args, 'type', 'str', true);
+	url = url_replace(url, args, 'note', 'str');
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Handles removal of a friend (a user-user relation) or removal of a user's privileges from a subreddit (a user-subreddit relation).  The user can either be passed in by name (name) or by fullname (id).  'container' will either be the current user or the subreddit.               
+ * @category Friend
+ * @param {string} [name]  The user's name.                       
+ * @param {string} id  The user's fullname.                       
+ * @param {string} container  Either the current user or the subreddit.                       
+ * @param {string} type  Accepted values: friend, moderator, contributor, banned                       
+ * @methodhttp POST
+ */
+exports.postUnfriend = function(args, opts) {
+	var url = 'http://www.reddit.com/api/unfriend';
+	args = args || {};
+	url = url_replace(url, args, 'name', 'str');
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'container', 'str', true);
+	url = url_replace(url, args, 'type', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Attach a note to a friend.               
+ * @category Friend
+ * @param {string} [name]  The friend to whom to associate the note with.                       
+ * @param {string} [note]  A note. Maximum 300 characters.                       
+ * @methodhttp POST
+ */
+exports.postFriendNote = function(args, opts) {
+	var url = 'http://www.reddit.com/api/friend_note';
+	args = args || {};
+	url = url_replace(url, args, 'name', 'str');
+	url = url_replace(url, args, 'note', 'str');
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Handles /prefs/update for updating email address and password.               
+ * @category Preferences
+ * @param {string} curpass  The current password of the logged-in user. Required to update any setting.                       
+ * @param {string} [email]  A new email.                       
+ * @param {string} [newpass]  A new password.                       
+ * @param {string} [verpass]  A new password, again. Must be the same as "newpass".                       
+ * @param {boolean} [verify]  Whether or not to send an email verification letter? Format: boolean                       
+ * @methodhttp POST
+ */
+exports.postUpdate = function(args, opts) {
+	var url = 'http://www.reddit.com/api/update';
+	args = args || {};
+	url = url_replace(url, args, 'curpass', 'str', true);
+	url = url_replace(url, args, 'email', 'str');
+	url = url_replace(url, args, 'newpass', 'str');
+	url = url_replace(url, args, 'verpass', 'str');
+	url = url_replace(url, args, 'verify');
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Turns on the preference to show comments panel.               
+ * @category Preferences
+ * @methodhttp POST
+ */
+exports.postTbCommentspanelShow = function(args, opts) {
+	var url = 'http://www.reddit.com/api/tb_commentspanel_show';
+	args = args || {};
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Turns off the preference to show comments panel.               
+ * @category Preferences
+ * @methodhttp POST
+ */
+exports.postTbCommentspanelHide = function(args, opts) {
+	var url = 'http://www.reddit.com/api/tb_commentspanel_hide';
+	args = args || {};
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Creates or updates subreddits.               
+ * @category Subreddit
+ * @param {string} sr  Subreddit.                       
+ * @param {string} name  Subreddit name.                       
+ * @param {string} title  A title for the subreddit. Maximum 100 characters.                       
+ * @param {string} header-title  A title for the subreddit for the header. Maximum 500 characters.                       
+ * @param {string} domain  Subreddit domain. "Own a domain? Enter it here and then go to your DNS provider and add a CNAME record aliasing your domain to rhs.reddit.com. You will be able to access your reddit through your domain."                       
+ * @param {string} description  Subreddit description. Maximum 5120 characters.                       
+ * @param {string} lang  Subreddit language.                       
+ * @param {boolean} over_18  Whether or not this is a "mature content" subreddit; viewers must be at least 18 years old.                       
+ * @param {boolean} allow_top  Whether or not to allow this subreddit to be shown in the "default set".                       
+ * @param {boolean} show_media  Whether or not to show thumbnails images of content.                       
+ * @param {string} type  Subreddit type. Accepted values: public (anyone can view and submit), private (only approved members can view and submit), restricted (anyone can view, but only approved members can submit)                       
+ * @param {string} link_type  Subreddit content options. Accepted values: any (any link type is allowed), link (only links to external sites allowed), self (only self posts allowed)                       
+ * @param {string} sponsorship-text  Sponsorship text. Maximum 500 characters.                       
+ * @param {string} sponsorship-name  Sponsorship name. Maximum 500 characters.                       
+ * @param {string} sponsorship-url  Sponsorship URL. Maximum 500 characters.                       
+ * @param {boolean} css_on_cname  Whether or not to show subreddit style while accessing the subreddit through the domain?                       
+ * @methodhttp POST
+ */
+exports.postSiteAdmin = function(args, opts) {
+	var url = 'http://www.reddit.com/api/site_admin';
+	args = args || {};
+	url = url_replace(url, args, 'sr', 'str', true);
+	url = url_replace(url, args, 'name', 'str', true);
+	url = url_replace(url, args, 'title', 'str', true);
+	url = url_replace(url, args, 'header-title', 'str', true);
+	url = url_replace(url, args, 'domain', 'str', true);
+	url = url_replace(url, args, 'description', 'str', true);
+	url = url_replace(url, args, 'lang', 'str', true);
+	url = url_replace(url, args, 'over_18', 'null', true);
+	url = url_replace(url, args, 'allow_top', 'null', true);
+	url = url_replace(url, args, 'show_media', 'null', true);
+	url = url_replace(url, args, 'type', 'str', true);
+	url = url_replace(url, args, 'link_type', 'str', true);
+	url = url_replace(url, args, 'sponsorship-text', 'str', true);
+	url = url_replace(url, args, 'sponsorship-name', 'str', true);
+	url = url_replace(url, args, 'sponsorship-url', 'str', true);
+	url = url_replace(url, args, 'css_on_cname', 'null', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Updates the CSS for a subreddit.               
+ * @category Subreddit
+ * @param {string} stylesheet_contents  The stylesheet.                       
+ * @param {string} op  Operation. Accepted values: save, preview                       
+ * @methodhttp POST
+ */
+exports.postSubredditStylesheet = function(args, opts) {
+	var url = 'http://www.reddit.com/api/subreddit_stylesheet';
+	args = args || {};
+	url = url_replace(url, args, 'stylesheet_contents', 'str', true);
+	url = url_replace(url, args, 'op', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Deletes a subreddit image. Called called upon requested delete on /about/stylesheet. Updates the site's image list, and causes the <li> which wraps the image to be hidden.               
+ * @category Subreddit
+ * @param {string} img_name  The image to delete.                       
+ * @methodhttp POST
+ */
+exports.postDeleteSrImg = function(args, opts) {
+	var url = 'http://www.reddit.com/api/delete_sr_img';
+	args = args || {};
+	url = url_replace(url, args, 'img_name', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Called when the user request that the header on a subreddit be reset.               
+ * @category Subreddit
+ * @param {string} img_name  The image to delete.                       
+ * @methodhttp POST
+ */
+exports.postDeleteSrHeader = function(args, opts) {
+	var url = 'http://www.reddit.com/api/delete_sr_header';
+	args = args || {};
+	url = url_replace(url, args, 'img_name', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Completely unnecessary method which exists because safari can be dumb too.  On page reload after an image has been posted in safari, the iframe to which the request posted preserves the URL of the POST, and safari attempts to execute a GET against it.  The iframe is hidden, so what it returns is completely irrelevant.               
+ * @category Subreddit
+ * @methodhttp GET
+ */
+exports.getUploadSrImg = function(args, opts) {
+	var url = 'http://www.reddit.com/api/upload_sr_img';
+	args = args || {};
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Called on /about/stylesheet when an image needs to be replaced or uploaded, as well as on /about/edit for updating the header.  Unlike every other POST in this controller, this method does not get called with Ajax but rather is from the original form POSTing to a hidden iFrame.  Unfortunately, this means the response needs to generate an page with a script tag to fire the requisite updates to the parent document, and, more importantly, that we can't use our normal toolkit for passing those responses back. The result of this function is a rendered UploadedImage() object in charge of firing the completedUploadImage() call in JS.               
+ * @category Subreddit
+ * @param {string} name  The name for the image.                       
+ * @param {string} formid  Form ID. Maximum 100 characters.                       
+ * @param {boolean} header  Whether or not this is a header image? Accepted values: 0, 1                       
+ * @param {boolean} sponsor  Whether or not something is sponsored? Used by admins only. Accepted values: 0, 1                       
+ * @methodhttp POST
+ */
+exports.postUploadSrImg = function(args, opts) {
+	var url = 'http://www.reddit.com/api/upload_sr_img';
+	args = args || {};
+	url = url_replace(url, args, 'name', 'str', true);
+	url = url_replace(url, args, 'formid', 'str', true);
+	url = url_replace(url, args, 'header', 'null', true);
+	url = url_replace(url, args, 'sponsor', 'null', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Subscribes or unsubscribes the logged-in user to a subreddit.               
+ * @category Subreddit
+ * @param {string} action  Accepted values: sub (subscribe), unsub (unsubscribe)                       
+ * @param {string} sr  The subreddit.                       
+ * @methodhttp POST
+ */
+exports.postSubscribe = function(args, opts) {
+	var url = 'http://www.reddit.com/api/subscribe';
+	args = args || {};
+	url = url_replace(url, args, 'action', 'str', true);
+	url = url_replace(url, args, 'sr', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Searches for subreddits with the given query.               
+ * @category Subreddit
+ * @param {string} query  The search query. Maximum 50 characters.                       
+ * @methodhttp POST
+ */
+exports.postSearchRedditNames = function(args, opts) {
+	var url = 'http://www.reddit.com/api/search_reddit_names';
+	args = args || {};
+	url = url_replace(url, args, 'query', 'str', true);
+	return http.post({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Returns the flair assignments of a subreddit.               
+ * @category Flair
+ * @param {string} r  The name of the subreddit.                       
+ * @param {positiveInteger} limit  The maximum number of items to return (up to 1000).                       
+ * @param {string} after  Return entries starting after this user.                       
+ * @param {string} before  Return entries starting before this user.                       
+ * @methodhttp GET
+ */
+exports.flairlist = function(args, opts) {
+	var url = 'http://www.reddit.com/api/flairlist';
+	args = args || {};
+	url = url_replace(url, args, 'r', 'str', true);
+	url = url_replace(url, args, 'limit', 'null', true, "100");
+	url = url_replace(url, args, 'after', 'str', true);
+	url = url_replace(url, args, 'before', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sets or clears a user's flair in a subreddit.               
+ * @category Flair
+ * @param {string} r  The name of the subreddit.                       
+ * @param {string} name  The name of the user.                       
+ * @param {string} [text]  The flair text to assign. Note: If an empty string is assigned to both text and css_class, then flair for the user will be removed.                       
+ * @param {string} [css_class]  The CSS class to assign to the flair text. Note: If an empty string is assigned to both text and css_class, then flair for the user will be removed.                       
+ * @methodhttp GET
+ */
+exports.flair = function(args, opts) {
+	var url = 'http://www.reddit.com/api/flair';
+	args = args || {};
+	url = url_replace(url, args, 'r', 'str', true);
+	url = url_replace(url, args, 'name', 'str', true);
+	url = url_replace(url, args, 'text', 'str');
+	url = url_replace(url, args, 'css_class', 'str');
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Posts a CSV file of flair settings to a subreddit.               
+ * @category Flair
+ * @param {string} r  The name of the subreddit.                       
+ * @param {string} flair_csv  CSV file contents, up to 100 lines.                       
+ * @methodhttp POST
+ */
+exports.flaircsv = function(args, opts) {
+	var url = 'http://www.reddit.com/api/flaircsv.json';
+	args = args || {};
+	url = url_replace(url, args, 'r', 'str', true);
+	url = url_replace(url, args, 'flair_csv', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Sends user feedback to Reddit admins.               
+ * @category Other
+ * @param {string} name  A name.                       
+ * @param {string} email  An email.                       
+ * @param {string} reason  A reason for feedback. Accepted values: ad_inq (advertising inquiry), feedback, i18n (internationalization).                       
+ * @param {string} text  The feedback.                       
+ * @methodhttp POST
+ */
+exports.postFeedback = function(args, opts) {
+	var url = 'http://www.reddit.com/api/feedback';
+	args = args || {};
+	url = url_replace(url, args, 'name', 'str', true);
+	url = url_replace(url, args, 'email', 'str', true);
+	url = url_replace(url, args, 'reason', 'str', true);
+	url = url_replace(url, args, 'text', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Reports a thing.               
+ * @category Other
+ * @param {string} id  The fullname of the thing to report.                       
+ * @methodhttp POST
+ */
+exports.postReport = function(args, opts) {
+	var url = 'http://www.reddit.com/api/report';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Returns search results.               
+ * @category Other
+ * @param {string} q  Search query. Maximum 500 characters.                       
+ * @param {string} sort  Sort option. Maximum 10 characters.                       
+ * @param {string} t  Maximum 10 characters.                       
+ * @param {boolean} approval  Format: boolean.                       
+ * @methodhttp POST
+ */
+exports.postSearchfeedback = function(args, opts) {
+	var url = 'http://www.reddit.com/api/searchfeedback';
+	args = args || {};
+	url = url_replace(url, args, 'q', 'str', true);
+	url = url_replace(url, args, 'sort', 'str', true);
+	url = url_replace(url, args, 't', 'str', true);
+	url = url_replace(url, args, 'approval', 'null', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Does something with bookmarklets.               
+ * @category Other
+ * @param {string} what  Action. Accepted values: like, dislike, save.                       
+ * @param {string} u  Array of link URLs?                       
+ * @methodhttp GET
+ */
+exports.getBookmarklet = function(args, opts) {
+	var url = 'http://www.reddit.com/api/bookmarklet';
+	args = args || {};
+	url = url_replace(url, args, 'what', 'str', true);
+	url = url_replace(url, args, 'u', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * @category Other
+ * @param {string} hexkey  Maximum 32 characters.                       
+ * @param {string} nickname  Maximum 1000 characters.                       
+ * @param {string} status  Accepted values: new, severe, interesting, normal, fixed.                       
+ * @methodhttp POST
+ */
+exports.postEditError = function(args, opts) {
+	var url = 'http://www.reddit.com/api/edit_error';
+	args = args || {};
+	url = url_replace(url, args, 'hexkey', 'str', true);
+	url = url_replace(url, args, 'nickname', 'str', true);
+	url = url_replace(url, args, 'status', 'str', true);
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Removes the Reddit toolbar if it is enabled in the user's preferences               
+ * @category Other
+ * @methodhttp POST
+ */
+exports.postNoframe = function(args, opts) {
+	var url = 'http://www.reddit.com/api/noframe';
+	args = args || {};
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Adds the Reddit toolbar if it is disabled in the user's preferences               
+ * @category Other
+ * @methodhttp POST
+ */
+exports.postFrame = function(args, opts) {
+	var url = 'http://www.reddit.com/api/frame';
+	args = args || {};
+	return http.post({provider:provider,url:url,params:args}, opts);
+};
+
+/** 
+ * Something related to the "recently viewed" sidebar gadget.               
+ * @category Other
+ * @param {string} type  The type of gadget? Accepted value: click.                       
+ * @param {string} links  A list of links.                       
+ * @methodhttp GET
+ */
+exports.getGadget = function(args, opts) {
+	var url = 'http://www.reddit.com/api/gadget';
+	args = args || {};
+	url = url_replace(url, args, 'type', 'str', true, "click");
+	url = url_replace(url, args, 'links', 'str', true);
+	return http({provider:provider,url:url,params:args}, opts);
+};

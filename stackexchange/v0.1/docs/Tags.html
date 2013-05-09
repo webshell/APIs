@@ -1,1298 +1,2517 @@
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagList</span>
-</div>
-<div class="meta">
-<p>Returns the tags found on a site.<br/>			</p>
-</div>
-<hr>
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagFaqGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagFaqGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the frequently asked questions for the given set of tags in {tags}.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Required text in returned tags.</p>
+
+
+
+      
+      <p> For a question to be returned, it must have all the tags in {tags} and be considered "frequently asked". The exact algorithm for determining whether a question is considered a FAQ is subject to change at any time.			    			    {tags} can contain up to 5 individual tags per request. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tags </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">filter</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
-</div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
-</div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
-</div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
-</div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The sorts accepted by this method operate on the follow fields of the tag object:<br/><br/>						  popular – count<br/>						  activity – the creation_date of the last question asked with the tag<br/>						  name – name<br/>						  popular is the default sort.<br/>					</p>
-</div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
-</div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. <br/>					 </p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagInfoGet</span>
-</div>
-<div class="meta">
-<p>Returns tag objects representing the tags in {tags} found on the site.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagInfoGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagInfoGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns tag objects representing the tags in {tags} found on the site.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The tags for which to return info.<br/>		      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+
+
+
+      
+      <p> The tags for which to return info.		      This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tags </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tags</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Required text in returned tags.</p>
+
+
+
+      
+      <p> Required text in returned tags. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> filter </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">filter</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> The sorts accepted by this method operate on the follow fields of the tag object:						  popular – count						  activity – the creation_date of the last question asked with the tag						  name – name						  popular is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The sorts accepted by this method operate on the follow fields of the tag object:<br/><br/>						  popular – count<br/>						  activity – the creation_date of the last question asked with the tag<br/>						  name – name<br/>						  popular is the default sort.<br/>					</p>
+
+
+
+      
+      <p> The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. <br/>					 </p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagModeratorOnlyList</span>
-</div>
-<div class="meta">
-<p>Returns the tags found on a site that only moderators can use.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the tags found on a site.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Required text in returned tags.</p>
+
+
+
+      
+      <p> Required text in returned tags. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> filter </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">filter</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> The sorts accepted by this method operate on the follow fields of the tag object:						  popular – count						  activity – the creation_date of the last question asked with the tag						  name – name						  popular is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The sorts accepted by this method operate on the follow fields of the tag object:<br/><br/>						  popular – count<br/>						  activity – the creation_date of the last question asked with the tag<br/>						  name – name<br/>						  popular is the default sort.<br/>					</p>
+
+
+
+      
+      <p> The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. <br/>					 </p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagRequiredList</span>
-</div>
-<div class="meta">
-<p>Returns the tags found on a site that fulfill required tag constraints on questions.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagModeratorOnlyList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagModeratorOnlyList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the tags found on a site that only moderators can use.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Required text in returned tags.</p>
+
+
+
+      
+      <p> Required text in returned tags. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> filter </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">filter</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> The sorts accepted by this method operate on the follow fields of the tag object:						  popular – count						  activity – the creation_date of the last question asked with the tag						  name – name						  popular is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The sorts accepted by this method operate on the follow fields of the tag object:<br/><br/>						  popular – count<br/>						  activity – the creation_date of the last question asked with the tag<br/>						  name – name<br/>						  popular is the default sort.<br/>					</p>
+
+
+
+      
+      <p> The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. <br/>					 </p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagSynonymsList</span>
-</div>
-<div class="meta">
-<p>Returns all tag synonyms found a site.<br/><br/>					When searching for synonyms of specific tags, it is better to use /tags/{tags}/synonyms over this method.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagRelatedGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagRelatedGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the tags that are most related to those in {tags}.				  				  Including multiple tags in {tags} is equivalent to asking for "tags related to tag #1 and tag #2" not "tags related to tag #1 or tag #2".				  				  count on tag objects returned is the number of question with that tag that also share all those in {tags}.				  				  {tags} can contain up to 4 individual tags per request.				  				  This method returns a list of tags.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> The tags for which to return related.			    This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tags </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
-</div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
-</div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
-</div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The sorts accepted by this method operate on the follow fields of the tag_synonym object:<br/><br/>						  creation – creation_date<br/>						  applied – applied_count<br/>						  activity – last_applied_date<br/>						  creation is the default sort.<br/>					</p>
-</div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
-</div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagFaqGet</span>
-</div>
-<div class="meta">
-<p>Returns the frequently asked questions for the given set of tags in {tags}.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagRequiredList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagRequiredList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the tags found on a site that fulfill required tag constraints on questions.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-For a question to be returned, it must have all the tags in {tags} and be considered "frequently asked". The exact algorithm for determining whether a question is considered a FAQ is subject to change at any time.<br/>			    <br/>			    {tags} can contain up to 5 individual tags per request.</p>
+
+
+
+      
+      <p> Required text in returned tags. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> filter </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tags</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The sorts accepted by this method operate on the follow fields of the tag object:						  popular – count						  activity – the creation_date of the last question asked with the tag						  name – name						  popular is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagRelatedGet</span>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="meta">
-<p>Returns the tags that are most related to those in {tags}.<br/>				  <br/>				  Including multiple tags in {tags} is equivalent to asking for "tags related to tag #1 and tag #2" not "tags related to tag #1 or tag #2".<br/>				  <br/>				  count on tag objects returned is the number of question with that tag that also share all those in {tags}.<br/>				  <br/>				  {tags} can contain up to 4 individual tags per request.<br/>				  <br/>				  This method returns a list of tags.<br/>			</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The inname parameter lets a consumer filter down to tags that contain a certain substring. For example, inname=own would return both "download" and "owner" amongst others. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<hr>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagSynonymsGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagSynonymsGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Gets all the synonyms that point to the tags identified in tags.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The tags for which to return related.<br/>			    This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+
+
+
+      
+      <p> The tags for which to return synonyms.					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tags </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tags</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The sorts accepted by this method operate on the follow fields of the tag_synonym object:						  						  creation – creation_date						  applied – applied_count						  activity – last_applied_date						  creation is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagSynonymsGet</span>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="meta">
-<p>Gets all the synonyms that point to the tags identified in tags.<br/>			</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<hr>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagSynonymsList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagSynonymsList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns all tag synonyms found a site.					When searching for synonyms of specific tags, it is better to use /tags/{tags}/synonyms over this method.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The tags for which to return synonyms.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tags</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> The sorts accepted by this method operate on the follow fields of the tag_synonym object:						  creation – creation_date						  applied – applied_count						  activity – last_applied_date						  creation is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The sorts accepted by this method operate on the follow fields of the tag_synonym object:<br/>						  <br/>						  creation – creation_date<br/>						  applied – applied_count<br/>						  activity – last_applied_date<br/>						  creation is the default sort.<br/>					</p>
-</div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
-</div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagWikisGet</span>
-</div>
-<div class="meta">
-<p>Returns the community editted tag wikis associated with a set of tags.<br/><br/>					Unlike privilege wikis, tag wikis carry an optional excerpt. Additionally, they are subject to much more frequent change.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagWikisGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagWikisGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the community editted tag wikis associated with a set of tags.					Unlike privilege wikis, tag wikis carry an optional excerpt. Additionally, they are subject to much more frequent change.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The tags for which to return synonyms.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon.</p>
+
+
+
+      
+      <p> The tags for which to return synonyms.					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tags </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tags</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">topAnswerersInTagGet</span>
-</div>
-<div class="meta">
-<p>Returns the top 30 answerers active in a single tag, of either all-time or the last 30 days.<br/>				  <br/>				  This is a view onto the data presented on the tag info page on the sites.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-topAnswerersInTagGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      topAnswerersInTagGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the top 30 answerers active in a single tag, of either all-time or the last 30 days.				  				  This is a view onto the data presented on the tag info page on the sites.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-One of all-time or month.</p>
+
+
+
+      
+      <p> One of all-time or month. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> period </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">period</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The tag in question.</p>
+
+
+
+      
+      <p> The tag in question. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tag </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tag</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">topAskersInTagGet</span>
-</div>
-<div class="meta">
-<p>Returns the top 30 question askers active in a single tag, of either all-time or the last 30 days.<br/><br/>					This is a view onto the data presented on the tag info page on the sites.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-topAskersInTagGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      topAskersInTagGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the top 30 question askers active in a single tag, of either all-time or the last 30 days.					This is a view onto the data presented on the tag info page on the sites.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-One of all-time or month.</p>
+
+
+
+      
+      <p> One of all-time or month. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> period </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">period</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The tag in question.</p>
+
+
+
+      
+      <p> The tag in question. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> tag </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">tag</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> To specified on which site you want to search. stackoverflow (default) </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-To specified on which site you want to search. stackoverflow (default)</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed May 08 2013 20:36:06 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

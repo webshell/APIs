@@ -1,763 +1,1472 @@
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">badgesList</span>
-</div>
-<div class="meta">
-<p>Returns all the badges in the system.<br/><br/>					Badge sorts are a tad complicated. For the purposes of sorting (and min/max) tag_based is considered to be greater than named.<br/><br/>					This means that you can get a list of all tag based badges by passing min=tag_based, and conversely all the named badges by passing max=named, with sort=type.<br/><br/>					For ranks, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver and min=silver for just silver, and min=bronze for just bronze.<br/><br/>					rank is the default sort.<br/><br/>					This method returns a list of badges.<br/>			</p>
-</div>
-<hr>
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-badgesGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      badgesGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Gets the badges identified in id.					Note that badge ids are not constant across sites, and thus should be looked up via the /badges method. A badge id on a single site is, however, guaranteed to be stable.					Badge sorts are a tad complicated. For the purposes of sorting (and min/max) tag_based is considered to be greater than named.					This means that you can get a list of all tag based badges by passing min=tag_based, and conversely all the named badges by passing max=named, with sort=type.					For ranks, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver and min=silver for just silver, and min=bronze for just bronze.					rank is the default sort.					{id} can contain up to 100 semicolon delimited ids, to find ids programatically look for badge_id on badge objects.					This method returns a list of badges.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon					string </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> id </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> One of :							rank - rank of the badge							name - name of the badge							rank is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-One of :<br/>						  rank - rank of the badge<br/>						  name - name of the badge<br/>						  type - type of the badge<br/>						  rank is the default sort.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">badgesGet</span>
-</div>
-<div class="meta">
-<p>Gets the badges identified in id.<br/><br/>					Note that badge ids are not constant across sites, and thus should be looked up via the /badges method. A badge id on a single site is, however, guaranteed to be stable.<br/><br/>					Badge sorts are a tad complicated. For the purposes of sorting (and min/max) tag_based is considered to be greater than named.<br/><br/>					This means that you can get a list of all tag based badges by passing min=tag_based, and conversely all the named badges by passing max=named, with sort=type.<br/><br/>					For ranks, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver and min=silver for just silver, and min=bronze for just bronze.<br/><br/>					rank is the default sort.<br/><br/>					{id} can contain up to 100 semicolon delimited ids, to find ids programatically look for badge_id on badge objects.<br/><br/>					This method returns a list of badges.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-badgesList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      badgesList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns all the badges in the system.					Badge sorts are a tad complicated. For the purposes of sorting (and min/max) tag_based is considered to be greater than named.					This means that you can get a list of all tag based badges by passing min=tag_based, and conversely all the named badges by passing max=named, with sort=type.					For ranks, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver and min=silver for just silver, and min=bronze for just bronze.					rank is the default sort.					This method returns a list of badges.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">id</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> One of :						  rank - rank of the badge						  name - name of the badge						  type - type of the badge						  rank is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-One of :<br/>							rank - rank of the badge<br/>							name - name of the badge<br/>							rank is the default sort.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
-</div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">namedBadgesList</span>
-</div>
-<div class="meta">
-<p>Gets all explicitly named badges in the system.<br/><br/>					A named badged stands in opposition to a tag-based badge. These are referred to as general badges on the sites themselves.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-namedBadgesList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      namedBadgesList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Gets all explicitly named badges in the system.					A named badged stands in opposition to a tag-based badge. These are referred to as general badges on the sites themselves.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> One of :							rank - rank of the badge							name - name of the badge							rank is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-One of :<br/>							rank - rank of the badge<br/>							name - name of the badge<br/>							rank is the default sort.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">recipientsBadgesList</span>
-</div>
-<div class="meta">
-<p>Returns recently awarded badges in the system.<br/><br/>				  As these badges have been awarded, they will have the badge.user property set.<br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-recipientsBadgesGet" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      recipientsBadgesGet 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns recently awarded badges in the system, constrained to a certain set of badges.				  As these badges have been awarded, they will have the badge.user property set.				  				  {id} can contain up to 100 semicolon delimited ids, to find ids programatically look for badge_id on badge objects.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon					string </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> id </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">recipientsBadgesGet</span>
-</div>
-<div class="meta">
-<p>Returns recently awarded badges in the system, constrained to a certain set of badges.<br/><br/>				  As these badges have been awarded, they will have the badge.user property set.<br/>				  <br/>				  {id} can contain up to 100 semicolon delimited ids, to find ids programatically look for badge_id on badge objects.<br/><br/><br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-recipientsBadgesList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      recipientsBadgesList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns recently awarded badges in the system.				  As these badges have been awarded, they will have the badge.user property set.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-A single primary key identifier or a vectorized, semicolon-delimited list of identifiers.<br/>					This is a vectorized parameter, multiple ids can be sent a single request if delimited with a semi-colon<br/>					string</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">id</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
-</div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
-</div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">tagBadgesList</span>
-</div>
-<div class="meta">
-<p>Returns the badges that are awarded for participation in specific tags.<br/><br/>				  For the rank sort, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver&min=silver for just silver, and min=bronze for just bronze.<br/>				  <br/>				  rank is the default sort.<br/><br/>			</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-tagBadgesList" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      tagBadgesList 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the badges that are awarded for participation in specific tags.				  For the rank sort, bronze is greater than silver which is greater than gold. Along with sort=rank, set max=gold for just gold badges, max=silver&min=silver for just silver, and min=bronze for just bronze.				  				  rank is the default sort.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the minimum creation date on a returned item.</p>
+
+
+
+      
+      <p> Unix timestamp of the minimum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> fromdate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">fromdate</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Maximum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Maximum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">max</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Minimum of the range to include in the response according to the current sort.</p>
+
+
+
+      
+      <p> Minimum of the range to include in the response according to the current sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">min</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-How the current sort should be ordered. One of desc (default), or asc.</p>
+
+
+
+      
+      <p> How the current sort should be ordered. One of desc (default), or asc. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> order </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">order</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The pagination offset for the current collection. Affected by the specified pagesize. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> page </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The number of collection results to display during pagination. Should be between 0 and 100 inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> pagesize </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The pagination offset for the current collection. Affected by the specified pagesize.</p>
+
+
+
+      
+      <p> One of :							rank - rank of the badge							name - name of the badge							rank is the default sort. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sort </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The number of collection results to display during pagination. Should be between 0 and 100 inclusive.</p>
+
+
+
+      
+      <p> Unix timestamp of the maximum creation date on a returned item. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> todate </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">pagesize</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-One of :<br/>							rank - rank of the badge<br/>							name - name of the badge<br/>							rank is the default sort.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> inname </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">sort</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Unix timestamp of the maximum creation date on a returned item.</p>
+
+
+
+      
+      <p>  </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> site </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">todate</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">inname</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-stackoverflow</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-</p>
-</div>
-<div class="name">
-<span class="parameter-name">site</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed May 08 2013 20:36:06 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

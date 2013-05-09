@@ -1,5 +1,20 @@
 ({
 	auth:function(){return auth({provider:fs('..')})},
+	'embedableTimeline': function(args, opts) {
+		var id;
+		if (typeof args == 'number')
+			id = args
+		else
+			id = args.id || 0;
+
+		if (id == 0) {
+			echo('error: id required');
+			return;
+		}
+		render({id: id}, {
+			view: '<a class="twitter-timeline" href="https://twitter.com/twitterapi" data-widget-id="<%= data.id %>">Tweets de @twitterapi</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>'
+		})
+	},
 	'homeTimeline': function(args, opts) {
 		var url = 'https://api.twitter.com/1.1/statuses/home_timeline.{format}'
 		args = args || {}

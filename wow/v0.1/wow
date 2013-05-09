@@ -1,177 +1,158 @@
-({
-	auth:function(){return auth({provider:fs('..')})},
-	'getCharacter': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/character/{realm}/{characterName}'
-		args = args || {}
-		if (args['realm'] == null) throw new Error('realm is a required parameter')
-		var rgx = new RegExp('\{realm\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (url.indexOf('[/realm]') !== -1) {
-			url = url.replace('[/realm]', '/' + args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (args['characterName'] == null) throw new Error('characterName is a required parameter')
-		var rgx = new RegExp('\{characterName\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['characterName'])
-			if (args['characterName']) delete args['characterName']
-		}
-		if (url.indexOf('[/characterName]') !== -1) {
-			url = url.replace('[/characterName]', '/' + args['characterName'])
-			if (args['characterName']) delete args['characterName']
-		}
-		var rgx = new RegExp('\{fields\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields'])
-			if (args['fields']) delete args['fields']
-		}
-		if (url.indexOf('[/fields]') !== -1 && args['/fields']) {
-			url = url.replace('[/fields]', '/' + args['fields'])
-			if (args['fields']) delete args['fields']
-		}
-		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
-		if (url.indexOf('[/characterName]') !== -1) url = url.replace('[/characterName]', '')
-		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getGuild': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/guild/{realm}/{guildName}'
-		args = args || {}
-		if (args['realm'] == null) throw new Error('realm is a required parameter')
-		var rgx = new RegExp('\{realm\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (url.indexOf('[/realm]') !== -1) {
-			url = url.replace('[/realm]', '/' + args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (args['guildName'] == null) throw new Error('guildName is a required parameter')
-		var rgx = new RegExp('\{guildName\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['guildName'])
-			if (args['guildName']) delete args['guildName']
-		}
-		if (url.indexOf('[/guildName]') !== -1) {
-			url = url.replace('[/guildName]', '/' + args['guildName'])
-			if (args['guildName']) delete args['guildName']
-		}
-		var rgx = new RegExp('\{fields\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['fields'])
-			if (args['fields']) delete args['fields']
-		}
-		if (url.indexOf('[/fields]') !== -1 && args['/fields']) {
-			url = url.replace('[/fields]', '/' + args['fields'])
-			if (args['fields']) delete args['fields']
-		}
-		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
-		if (url.indexOf('[/guildName]') !== -1) url = url.replace('[/guildName]', '')
-		if (url.indexOf('[/fields]') !== -1) url = url.replace('[/fields]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getRealmsStatus': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/realm/status'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getRealmAuctions': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/auction/data/{realm}'
-		args = args || {}
-		if (args['realm'] == null) throw new Error('realm is a required parameter')
-		var rgx = new RegExp('\{realm\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (url.indexOf('[/realm]') !== -1) {
-			url = url.replace('[/realm]', '/' + args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getItem': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/item/{itemId}'
-		args = args || {}
-		if (args['itemId'] == null) throw new Error('itemId is a required parameter')
-		var rgx = new RegExp('\{itemId\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['itemId'])
-			if (args['itemId']) delete args['itemId']
-		}
-		if (url.indexOf('[/itemId]') !== -1) {
-			url = url.replace('[/itemId]', '/' + args['itemId'])
-			if (args['itemId']) delete args['itemId']
-		}
-		if (url.indexOf('[/itemId]') !== -1) url = url.replace('[/itemId]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getArenaTeam': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/arena/{realm}/{teamSize}/{teamName}'
-		args = args || {}
-		if (args['realm'] == null) throw new Error('realm is a required parameter')
-		var rgx = new RegExp('\{realm\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (url.indexOf('[/realm]') !== -1) {
-			url = url.replace('[/realm]', '/' + args['realm'])
-			if (args['realm']) delete args['realm']
-		}
-		if (args['teamSize'] == null) throw new Error('teamSize is a required parameter')
-		var rgx = new RegExp('\{teamSize\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['teamSize'])
-			if (args['teamSize']) delete args['teamSize']
-		}
-		if (url.indexOf('[/teamSize]') !== -1) {
-			url = url.replace('[/teamSize]', '/' + args['teamSize'])
-			if (args['teamSize']) delete args['teamSize']
-		}
-		if (args['teamName'] == null) throw new Error('teamName is a required parameter')
-		var rgx = new RegExp('\{teamName\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['teamName'])
-			if (args['teamName']) delete args['teamName']
-		}
-		if (url.indexOf('[/teamName]') !== -1) {
-			url = url.replace('[/teamName]', '/' + args['teamName'])
-			if (args['teamName']) delete args['teamName']
-		}
-		if (url.indexOf('[/realm]') !== -1) url = url.replace('[/realm]', '')
-		if (url.indexOf('[/teamSize]') !== -1) url = url.replace('[/teamSize]', '')
-		if (url.indexOf('[/teamName]') !== -1) url = url.replace('[/teamName]', '')
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getCharacterRaces': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/data/character/races'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getCharacterClasses': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/data/character/classes'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getGuildRewards': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/data/guild/rewards'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getGuildPerks': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/data/guild/perks'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
-	'getItemClasses': function(args, opts) {
-		var url = 'https://us.battle.net/api/wow/data/item/classes'
-		args = args || {}
-		return http({provider:fs('..'),url:url,method:'GET',params:args, auth:'none'}, opts)
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
 	}
-})
+	return url;
+}
+
+var provider = fs('/bin/wow');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Fetches a single character at a time through an HTTP GET request to a URL describing the character profile resource. By default, a basic dataset will be returned and with each request and zero or more additional fields can be retrieved. The core dataset returned includes the character's realm, name, level, last modified timestamp, thumbnail, race id, achievement points value, gender id and class id.
+ * @category Characters
+ * @param {string} realm  The realm name.
+ * @param {string} characterName  The character name.
+ * @param {string} [fields]  Indicates that one or more of the optional datasets is to be retrieved. The list of the optional fields that can be requested:- guild: A summary of the guild that the character belongs to. If the character does not belong to a guild and this field is requested, this field will not be exposed.- stats: A map of character attributes and stats.- talents: A list of talent structures.- items: A list of items equipted by the character. Use of this field will also include the average item level and average item level equipped for the character.- reputation: A list of the factions that the character has an associated reputation with.- titles: A list of the titles obtained by the character including the currently selected title.- professions: A list of the character's professions. It is important to note that when this information is retrieved, it will also include the known recipes of each of the listed professions.- appearance: A map of values that describes the face, features and helm/cloak display preferences and attributes.- companions: A list of all of the non-combat pets obtained by the character.- mounts: A list of all of the mounts obtained by the character.- pets: A list of all of the combat pets obtained by the character.- achievements: A map of achievement data including completion timestamps and criteria information.- progression: A list of raids and bosses indicating raid progression and completedness.- pvp: A map of pvp information including arena team membership and rated battlegrounds information.- quests: A list of quests completed by the character.               
+ * @methodhttp GET
+ */
+exports.getCharacter = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/character/{realm}/{characterName}';
+	args = args || {};
+	url = url_replace(url, args, 'realm', 'str', true);
+	url = url_replace(url, args, 'characterName', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Fetches a single guild at a time through an HTTP GET request to a url describing the guild profile resource. By default, a basic dataset will be returned and with each request and zero or more additional fields can be retrieved. The core dataset returned includes the guild's name, level, faction and achievement points.
+ * @category Guilds
+ * @param {string} realm  The realm name.
+ * @param {string} guildName  The guild name.
+ * @param {string} [fields]  Indicates that one or more of the optional datasets is to be retrieved. The list of the optional fields that can be requested:- members: A list of characters that are a member of the guild.- achievements: A set of data structures that describe the achievements earned by the guild.               
+ * @methodhttp GET
+ */
+exports.getGuild = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/guild/{realm}/{guildName}';
+	args = args || {};
+	url = url_replace(url, args, 'realm', 'str', true);
+	url = url_replace(url, args, 'guildName', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Retrieves realms status information. This information is limited to whether or not the realm is up, the type and state of the realm and the current population.
+ * @category Realms
+ * @methodhttp GET
+ */
+exports.getRealmsStatus = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/realm/status';
+	args = args || {};
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides a per-realm list of recently generated auction house data dumps. The current auctions data is represented as JSON structures containing auction data for the tree auctions houses available on each realm.
+ * @category Auctions
+ * @param {string} realm  The realm name.
+ * @methodhttp GET
+ */
+exports.getRealmAuctions = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/auction/data/{realm}';
+	args = args || {};
+	url = url_replace(url, args, 'realm', 'str', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides detailed item information.
+ * @category Items
+ * @param {string} itemId  The item ID.
+ * @methodhttp GET
+ */
+exports.getItem = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/item/{itemId}';
+	args = args || {};
+	url = url_replace(url, args, 'itemId', 'str', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides detailed arena team information.
+ * @category PVP
+ * @param {string} realm  The realm name.
+ * @param {string} teamSize  The team size.
+ * @param {string} teamName  The team name.
+ * @methodhttp GET
+ */
+exports.getArenaTeam = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/arena/{realm}/{teamSize}/{teamName}';
+	args = args || {};
+	url = url_replace(url, args, 'realm', 'str', true);
+	url = url_replace(url, args, 'teamSize', 'str', true);
+	url = url_replace(url, args, 'teamName', 'str', true);
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides a list of character races.
+ * @category Data
+ * @methodhttp GET
+ */
+exports.getCharacterRaces = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/data/character/races';
+	args = args || {};
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides a list of character classes.
+ * @category Data
+ * @methodhttp GET
+ */
+exports.getCharacterClasses = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/data/character/classes';
+	args = args || {};
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides a list of all guild rewards.
+ * @category Data
+ * @methodhttp GET
+ */
+exports.getGuildRewards = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/data/guild/rewards';
+	args = args || {};
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides a list of all guild perks.
+ * @category Data
+ * @methodhttp GET
+ */
+exports.getGuildPerks = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/data/guild/perks';
+	args = args || {};
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
+
+/** 
+ * Provides a list of item classes.
+ * @category Data
+ * @methodhttp GET
+ */
+exports.getItemClasses = function(args, opts) {
+	var url = 'https://us.battle.net/api/wow/data/item/classes';
+	args = args || {};
+	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
+};
