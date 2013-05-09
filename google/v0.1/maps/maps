@@ -3,9 +3,9 @@ jsClientApi({
 	name: "google.maps",
 	data: {
 		width: args.width || '100%',
-		height: args.height || '300px'
+		height: args.height || '300px',
+		markers: []
 	},
-	//markers: [],
 	initialize: js(function(callback, callback_name) {
 		//load the js from google maps
 		$('body').append('<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&callback=' + callback_name + '""></script>')
@@ -106,7 +106,7 @@ jsClientApi({
 						icon: opts.icon
 					};
 					var marker = new google.maps.Marker(marker_options);
-					//self.markers[self.markers.length] = marker;
+					self.data.markers.push(marker);
 				}
 			}
 
@@ -115,12 +115,12 @@ jsClientApi({
 			else
 				geocoder.geocode({ 'address': opts.address }, disp);
 		}),
-		// clearMarker: function() {
-		// 	for(var i = 0; i < this.markers.length; i++) {
-  // 		    	this.markers[i].setMap(null);
-		//     }
-  //   		this.markers = [];
-		// },
+		clearMarkers: js(function() {
+		 	for(var i = 0; i < this.data.markers.length; i++) {
+   		    	this.data.markers[i].setMap(null);
+		    }
+     		this.data.markers = [];
+		}),
 		directions: js(function(opts) {
 			if (!opts.origin || !opts.destination)
 				return;
