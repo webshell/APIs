@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+xmlns="http://wadl.dev.java.net/2009/02" xmlns:t="urn:github:githubresponse"
+xmlns:webshell="http://webshell.io/wadl/2012/06/"
+xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd http://webshell.io/wadl/2012/06/ http://webshell.io/wadl/webshell-extensions.xsd">
+<resources base="https://worldtimeengine-world-time-engine---free.p.mashape.com">
+<resource path="/geo">
+<method id="coordinatestoTime" name="GET">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Provide the latitude and longitude coordinates for any point on earth and get the current local time in that location.</doc>
+<request>
+<param name="latitude" required="true" type="number" style="query">
+<doc>
+The latitude of the location that you want to obtain the current local time for.</doc>
+</param>
+<param name="longitude" required="true" type="number" style="query">
+<doc>
+The longitude of the location that you want to obtain the current local time for.</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/ip">
+<method id="iPAddresstoTime" name="GET">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Provide any IP Address and this API will tell you the current time in that location.</doc>
+<request>
+<param name="ipaddress" required="true" type="string" style="query">
+<doc>
+The IPv4 Address that you want to query for its current time zone rules.</doc>
+</param>
+</request>
+</method>
+</resource>
+</resources>
+</application>
