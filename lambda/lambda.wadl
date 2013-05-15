@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+xmlns="http://wadl.dev.java.net/2009/02" xmlns:t="urn:github:githubresponse"
+xmlns:webshell="http://webshell.io/wadl/2012/06/"
+xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd http://webshell.io/wadl/2012/06/ http://webshell.io/wadl/webshell-extensions.xsd">
+<resources base="https://lambda-face-recognition.p.mashape.com">
+<resource path="/album">
+<method id="createAlbum" name="POST">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Create a new photo album, be sure to save your albumkey!</doc>
+<request>
+<param name="album" required="true" type="string" style="query">
+<doc>
+The name of the album to create</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/detect">
+<method id="detect" name="POST">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Detect faces in an image, as well as extract facial features (eyes, nose, mouth)</doc>
+<request>
+<param name="files" required="false" type="binary" style="query">
+<doc>
+A set of binary image files</doc>
+</param>
+<param name="urls" required="false" type="string" style="query">
+<doc>
+A comma separated list of image URLs</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/album_rebuild">
+<method id="rebuildAlbum" name="GET">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Manually rebuild an album after adding training examples</doc>
+<request>
+<param name="album" required="true" type="string" style="query">
+<doc>
+The name of the album to rebuild</doc>
+</param>
+<param name="albumkey" required="true" type="string" style="query">
+<doc>
+The albumkey for the album to rebuild</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/recognize">
+<method id="recognize" name="POST">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Recognize the person in an image</doc>
+<request>
+<param name="album" required="true" type="string" style="query">
+<doc>
+The album you want to look in</doc>
+</param>
+<param name="albumkey" required="true" type="string" style="query">
+<doc>
+Your album key</doc>
+</param>
+<param name="files" required="false" type="binary" style="query">
+<doc>
+A set of binary image files to recognize</doc>
+</param>
+<param name="urls" required="false" type="string" style="query">
+<doc>
+A comma separated list of image URLs to recognize</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/album_train">
+<method id="trainAlbum" name="POST">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>Add an image and entryid to an album</doc>
+<request>
+<param name="album" required="true" type="string" style="query">
+<doc>
+The name of the album</doc>
+</param>
+<param name="albumkey" required="true" type="string" style="query">
+<doc>
+The album key for the album</doc>
+</param>
+<param name="entryid" required="true" type="string" style="query">
+<doc>
+An entry id for the person you are uploading pictures of</doc>
+</param>
+<param name="files" required="false" type="binary" style="query">
+<doc>
+An image containing the person you are adding to the album</doc>
+</param>
+<param name="urls" required="false" type="string" style="query">
+<doc>
+A comma separated list of image urls</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/album">
+<method id="viewAlbum" name="GET">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>View one of your albums, with a visual summary.</doc>
+<request>
+<param name="album" required="true" type="string" style="query">
+<doc>
+The name of the album you want to view</doc>
+</param>
+<param name="albumkey" required="true" type="string" style="query">
+<doc>
+The album key of the album you want to view</doc>
+</param>
+</request>
+</method>
+</resource>
+<resource path="/album_train">
+<method id="viewEntry" name="GET">
+<apigee:tags>
+<apigee:tag primary="true">All</apigee:tag>
+</apigee:tags>
+<webshell:authentication required="true"/>
+<doc>View an entry in an album, telling you how many training images it has</doc>
+<request>
+<param name="album" required="true" type="string" style="query">
+<doc>
+The name of the album</doc>
+</param>
+<param name="albumkey" required="true" type="string" style="query">
+<doc>
+The album key for the album</doc>
+</param>
+<param name="entryid" required="true" type="string" style="query">
+<doc>
+An entry id for the person you with to view</doc>
+</param>
+</request>
+</method>
+</resource>
+</resources>
+</application>

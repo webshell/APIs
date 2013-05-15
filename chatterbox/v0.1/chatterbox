@@ -1,0 +1,28 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/chatterbox');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * @category All
+ * @param {string}  lang   The two letter language code of the text you wish to submit.  Accepted values are:"en" - English, "es" - Spanish", pt" - Portuguese, "fr" - French, "nl" - Dutch, "de" - German, "it" - Italian.  For ULTRA users with detectlang set to 1, this lang parameter will only be used as a fall back if automatic language detection fails.
+ * @param {string} [text]  The text you wish to be classified.  The maximum length is 300 characters.  This string must be UTF-8 encoded (otherwise non-ascii characters will not be recognised properly).
+ * @param {string}  exclude   Any words you wish to exclude to avoid swaying the sentiment detection.  This may be the name of a product for example.  Enter a comma separated string.
+ * @param {string}  detectlang   For subscribers of the ULTRA plan only, when this value is set to 1 Chatterbox will automatically detect the status language.  If it is unable to automatically detect the language, Chatterbox will fall back on the lang parameter.
+ * @methodhttp POST
+ */
+exports.classifytext = function(args, opts) {
+	var url = 'https://chatterbox-analytics-sentiment-analysis-free.p.mashape.com/sentiment/current/classify_text/';
+	args = args || {};
+	url = url_replace(url, args, 'lang', 'str');
+	url = url_replace(url, args, 'text', 'str', true);
+	url = url_replace(url, args, 'exclude', 'str');
+	url = url_replace(url, args, 'detectlang', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};

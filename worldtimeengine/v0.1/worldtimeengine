@@ -1,0 +1,36 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/worldtimeengine');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * @category All
+ * @param {number} [latitude]  The latitude of the location that you want to obtain the current local time for.
+ * @param {number} [longitude]  The longitude of the location that you want to obtain the current local time for.
+ * @methodhttp GET
+ */
+exports.coordinatestoTime = function(args, opts) {
+	var url = 'https://worldtimeengine-world-time-engine---free.p.mashape.com/geo';
+	args = args || {};
+	url = url_replace(url, args, 'latitude', 'null', true);
+	url = url_replace(url, args, 'longitude', 'null', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {string} [ipaddress]  The IPv4 Address that you want to query for its current time zone rules.
+ * @methodhttp GET
+ */
+exports.iPAddresstoTime = function(args, opts) {
+	var url = 'https://worldtimeengine-world-time-engine---free.p.mashape.com/ip';
+	args = args || {};
+	url = url_replace(url, args, 'ipaddress', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};

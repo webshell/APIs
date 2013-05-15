@@ -1,0 +1,118 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/lambda');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * @category All
+ * @param {string} [album]  The name of the album to create
+ * @methodhttp POST
+ */
+exports.createAlbum = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/album';
+	args = args || {};
+	url = url_replace(url, args, 'album', 'str', true);
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {binary}  files   A set of binary image files
+ * @param {string}  urls   A comma separated list of image URLs
+ * @methodhttp POST
+ */
+exports.detect = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/detect';
+	args = args || {};
+	url = url_replace(url, args, 'files');
+	url = url_replace(url, args, 'urls', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {string} [album]  The name of the album to rebuild
+ * @param {string} [albumkey]  The albumkey for the album to rebuild
+ * @methodhttp GET
+ */
+exports.rebuildAlbum = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/album_rebuild';
+	args = args || {};
+	url = url_replace(url, args, 'album', 'str', true);
+	url = url_replace(url, args, 'albumkey', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {string} [album]  The album you want to look in
+ * @param {string} [albumkey]  Your album key
+ * @param {binary}  files   A set of binary image files to recognize
+ * @param {string}  urls   A comma separated list of image URLs to recognize
+ * @methodhttp POST
+ */
+exports.recognize = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/recognize';
+	args = args || {};
+	url = url_replace(url, args, 'album', 'str', true);
+	url = url_replace(url, args, 'albumkey', 'str', true);
+	url = url_replace(url, args, 'files');
+	url = url_replace(url, args, 'urls', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {string} [album]  The name of the album
+ * @param {string} [albumkey]  The album key for the album
+ * @param {string} [entryid]  An entry id for the person you are uploading pictures of
+ * @param {binary}  files   An image containing the person you are adding to the album
+ * @param {string}  urls   A comma separated list of image urls
+ * @methodhttp POST
+ */
+exports.trainAlbum = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/album_train';
+	args = args || {};
+	url = url_replace(url, args, 'album', 'str', true);
+	url = url_replace(url, args, 'albumkey', 'str', true);
+	url = url_replace(url, args, 'entryid', 'str', true);
+	url = url_replace(url, args, 'files');
+	url = url_replace(url, args, 'urls', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {string} [album]  The name of the album you want to view
+ * @param {string} [albumkey]  The album key of the album you want to view
+ * @methodhttp GET
+ */
+exports.viewAlbum = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/album';
+	args = args || {};
+	url = url_replace(url, args, 'album', 'str', true);
+	url = url_replace(url, args, 'albumkey', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * @category All
+ * @param {string} [album]  The name of the album
+ * @param {string} [albumkey]  The album key for the album
+ * @param {string} [entryid]  An entry id for the person you with to view
+ * @methodhttp GET
+ */
+exports.viewEntry = function(args, opts) {
+	var url = 'https://lambda-face-recognition.p.mashape.com/album_train';
+	args = args || {};
+	url = url_replace(url, args, 'album', 'str', true);
+	url = url_replace(url, args, 'albumkey', 'str', true);
+	url = url_replace(url, args, 'entryid', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
