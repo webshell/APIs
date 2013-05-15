@@ -1,0 +1,147 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns Analytics data for a profile.               
+ * @category Reporting
+ * @param {string} [ids]  Unique table ID for retrieving Analytics data. Table ID is of the form ga:XXXX, where XXXX is the Analytics profile ID. (string)
+ * @param {string} [start-date]  Start date for fetching Analytics data. All requests should specify a start date formatted as YYYY-MM-DD. (string)
+ * @param {string} [end-date]  End date for fetching Analytics data. All requests should specify an end date formatted as YYYY-MM-DD. (string)
+ * @param {string} [metrics]  A comma-separated list of Analytics metrics. E.g., 'ga:visits,ga:pageviews'. At least one metric must be specified. (string)
+ * @param {string}  dimensions   A comma-separated list of Analytics dimensions. E.g., 'ga:browser,ga:city'. (string)
+ * @param {string}  filters   A comma-separated list of dimension or metric filters to be applied to Analytics data. (string)
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {string}  segment   An Analytics advanced segment to be applied to data. (string)
+ * @param {string}  sort   A comma-separated list of dimensions or metrics that determine the sort order for Analytics data. (string)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getProfileData = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/data/ga';
+	args = args || {};
+	url = url_replace(url, args, 'ids', 'str', true);
+	url = url_replace(url, args, 'start-date', 'str', true);
+	url = url_replace(url, args, 'end-date', 'str', true);
+	url = url_replace(url, args, 'metrics', 'str', true);
+	url = url_replace(url, args, 'dimensions', 'str');
+	url = url_replace(url, args, 'filters', 'str');
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'segment', 'str');
+	url = url_replace(url, args, 'sort', 'str');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists all accounts to which the user has access.	   
+ * @category Management
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getAccounts = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts';
+	args = args || {};
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists goals to which the user has access.	   
+ * @category Management
+ * @param {string} [accountId]  Account ID for the web properties to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. (string)
+ * @param {string} [webPropertyId]  Web property ID for the web properties to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access. (string)
+ * @param {string} [profileId]  Profile ID for the web properties to retrieve. Can either be a specific profile ID or '~all', which refers to all the profiles to which the user has access. (string)
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getGoals = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists profiles to which the user has access.               
+ * @category Management
+ * @param {string} [accountId]  Account ID for the web properties to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. (string)
+ * @param {string} [webPropertyId]  Web property ID for the web properties to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access. (string)
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getProfiles = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists advanced segments to which the user has access.               
+ * @category Management
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getSegments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/segments';
+	args = args || {};
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists web properties to which the user has access.               
+ * @category Management
+ * @param {string} [accountId]  Account ID for the web properties to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. (string)
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getWebProperties = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
