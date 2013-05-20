@@ -1,0 +1,874 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Gets the sites a user has access to.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {boolean}  include-all-sites   List all sites that can be at least viewed by the user in the Google Apps domain. This parameter is only applicable when listing sites for a Google Apps domain. Possible values are true or false. Default is false.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {boolean}  with-mappings   Includes the web address mappings in a site entry. Possible values are true or false. Default is false.
+ * @methodhttp GET
+ */
+exports.getSites = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'include-all-sites', 'null', false, "false");
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'with-mappings', 'null', false, "false");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To create new sites. This feature is only available to Google Apps domains.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {boolean}  include-all-sites   List all sites that can be at least viewed by the user in the Google Apps domain. This parameter is only applicable when listing sites for a Google Apps domain. Possible values are true or false. Default is false.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {boolean}  with-mappings   Includes the web address mappings in a site entry. Possible values are true or false. Default is false.
+ * @methodhttp POST
+ */
+exports.createSite = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'include-all-sites', 'null', false, "false");
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	url = url_replace(url, args, 'with-mappings', 'null', false, "true");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To duplicate an existing site.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {boolean}  include-all-sites   List all sites that can be at least viewed by the user in the Google Apps domain. This parameter is only applicable when listing sites for a Google Apps domain. Possible values are true or false. Default is false.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {boolean}  with-mappings   Includes the web address mappings in a site entry. Possible values are true or false. Default is false.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.copySite = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'include-all-sites', 'null', false, "false");
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'with-mappings', 'null', false, "true");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To add, update, or delete a mapping. To update address mappings, you need to be a site admin, or a domain admin in the case of a Google Apps hosted site.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {boolean}  include-all-sites   List all sites that can be at least viewed by the user in the Google Apps domain. This parameter is only applicable when listing sites for a Google Apps domain. Possible values are true or false. Default is false.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {boolean}  with-mappings   Includes the web address mappings in a site entry. Possible values are true or false. Default is false.
+ * @methodhttp PUT
+ */
+exports.modifyWebAddressMappings = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'include-all-sites', 'null', false, "false");
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	url = url_replace(url, args, 'with-mappings', 'null', false, "true");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Gets the site specified.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.getSite = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To update the title or summary of a site.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateSiteMetadata = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To add or update categories metadata. This feature is only available to Google Apps domains.			
+ * @category Site Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.addCategories = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/site/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Gets all activites within a site.			
+ * @category Activity Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.getSiteActivities = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/activity/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Gets a specifies activites within a site.			
+ * @category Activity Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [activityEntryID]  Specifies Activity Entry ID.}
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.getActivity = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/activity/{domainName}/{siteName}/{activityEntryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'activityEntryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To fetch the revision history for any content entry.			
+ * @category Revision Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [contentEntryID]  Specifies Content Entry ID.
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.getRevisionHistory = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/revision/{domainName}/{siteName}/{contentEntryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'contentEntryID', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To fetch a specify revision for any content entry.			
+ * @category Revision Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [contentEntryID]  Specifies Content Entry ID.
+ * @param {string} [revisionEntryID]  Specifies an Revision Entry ID.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.getRevision = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/revision/{domainName}/{siteName}/{contentEntryID}/{revisionEntryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'contentEntryID', 'str', true);
+	url = url_replace(url, args, 'revisionEntryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists a Sites's current content.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.retrieveSiteCurrentContent = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To create new items/pages.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createItemPage = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To create new items/pages under custom URL paths.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createItemPageCustomURL = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To create subpages (children) under a parent page.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createSubpages = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To create a page template.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createPageTemplates = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To instantiate a new page from a template.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createPagesFromTemplate = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To upload an attachment to a parent.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.uploadAttachment = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "multipart/related; boundary=END_OF_PART");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Web attachments are special kinds of attachments. Essentially, they're links to other files on the web that you can add to your filecabinet listings. 			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string}  author   Entry author. The service returns entries where the author name and/or email address match your query string.
+ * @param {string}  q   Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive.							
+ * @param {string}  start-index   1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries.
+ * @param {int}  max-results   Maximum number of results to be retrieved. By default the API will return the first 100 documents and files in the user's resource list. To request more or less than 100 resources, use the max-results GET parameter with any resources feed URL. Valid values for this parameter are integers from 1 to 1000, inclusive.
+ * @param {string}  updated-min   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  updated-max   Bound on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned.
+ * @param {string}  published-min   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  published-max   Bound on the entry publication date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive.
+ * @param {string}  ancestor   Requests only entries that have the specified ancestor. Provide the ID of the desired ancestor entry. For example: 0123456789. Returns all entries that have the specified ancestor as a parent, a parent's parent, and so on.
+ * @param {boolean}  include-deleted   Specifies whether to include deleted entries. Possible values are true or false. Default is false.
+ * @param {boolean}  include-draft   Specifies whether to include draft entries. Possible values are true or false. Default is false. You need to be the owner or author of the draft to view it.
+ * @param {string}  kind   Specifies the kind(s) of content entries to return. These follow the type of page within Google Sites.
+ * @param {string}  parent   Requests only entries that have the specified parent. Provide the ID of the parent entry. For example: 0123456789.
+ * @param {string}  path   Requests content under a certain page hierarchy. The path to a subpage within a Site to fetch content for. For example: path=/path/to/page.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.webAttachment = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'author', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'start-index', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'updated-min', 'str');
+	url = url_replace(url, args, 'updated-max', 'str');
+	url = url_replace(url, args, 'published-min', 'str');
+	url = url_replace(url, args, 'published-max', 'str');
+	url = url_replace(url, args, 'ancestor', 'str');
+	url = url_replace(url, args, 'include-deleted', 'null', false, "false");
+	url = url_replace(url, args, 'include-draft', 'null', false, "false");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'path', 'str');
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Get a specific content.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [contentEntryID]  Specifies Content Entry ID.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.retrieveContent = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}/{contentEntryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'contentEntryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To update an entry's metadata or HTML content.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [entryID]  Specifies entry ID.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateItemOrContent = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}/{entryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'entryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To remove an item from a Google Site.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [entryID]  Specifies entry ID.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string}  If-Match   ETag or * here.
+ * @methodhttp DELETE
+ */
+exports.deleteContent = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}/{entryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'entryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'If-Match', 'str');
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To replace the contents of an attachment, but leaving its metadata unchanged.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [attchmentEntryID]  Specifies Attchment Entry ID.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.replaceAttachmentContent = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/media/content/{domainName}/{siteName}/{attchmentEntryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'attchmentEntryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/msword");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To update both an attachment's metadata and its content at the same time.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [attchmentEntryID]  Specifies Attchment Entry ID.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateAttachmentMetadataContent = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/media/content/{domainName}/{siteName}/{attchmentEntryID}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'attchmentEntryID', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "multipart/related; boundary=END_OF_PART");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To retrieve a site's sharing permissions.			
+ * @category ACL Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp GET
+ */
+exports.retrieveSiteSharingPermissions = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/acl/site/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * To insert a new role into the ACL feed.			
+ * @category ACL Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.shareSite = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/acl/site/{domainName}/{siteName}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To update an ACL entry.			
+ * @category ACL Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [user_mail]  User mail. Example: new_writer%40example.com.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.modifySharingPermissions = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/acl/site/{domainName}/{siteName}/user%3A{user_mail}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'user_mail', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * To remove permissions for an user.			
+ * @category ACL Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [user_mail]  User mail. Example: new_writer%40example.com.
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @methodhttp DELETE
+ */
+exports.removeSharingPermissions = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/acl/site/{domainName}/{siteName}/user%3A{user_mail}';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'user_mail', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Batch requests gives your client the ability to execute multiple operations in one request, rather than submitting each operation individually.			
+ * @category Content Feed
+ * @param {string} [domainName]  'site' or the domain of your Google Apps hosted domain (e.g. example.com).
+ * @param {string} [siteName]  The webspace name of your site; found in the Site's URL (e.g. myCoolSite).
+ * @param {string} [GData-Version]  Specifies a version number.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.batchRequest = function(args, opts) {
+	var url = 'https://sites.google.com/feeds/content/{domainName}/{siteName}/batch';
+	args = args || {};
+	url = url_replace(url, args, 'domainName', 'str', true);
+	url = url_replace(url, args, 'siteName', 'str', true);
+	url = url_replace(url, args, 'GData-Version', 'str', true, "1.4");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};

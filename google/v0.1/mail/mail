@@ -1,0 +1,358 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Creates a label.               
+ * @category Labels
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp POST
+ */
+exports.createLabel = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/label';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves all labels and their settings.			
+ * @category Labels
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getLabels = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/label';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates a filter.               
+ * @category Filters
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp POST
+ */
+exports.createFilter = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/filter';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates a send-as alias.               
+ * @category Send-As Alias
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp POST
+ */
+exports.createSendAsAlias = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/sendas';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves all send-as alias settings.               
+ * @category Send-As Alias
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getSendAsAlias = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/sendas';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates web clips settings.               
+ * @category Web Clips
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateWebClipsSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/webclip';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates forwarding settings.               
+ * @category Forwarding
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateForwardingSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/forwarding';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves all forwarding settings.               
+ * @category Forwarding
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getForwardingSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/forwarding';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates POP settings.               
+ * @category POP
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updatePopSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/pop';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves POP settings.               
+ * @category POP
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getPopSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/pop';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates IMAP settings.               
+ * @category IMAP
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateImapSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/imap';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves IMAP settings.               
+ * @category IMAP
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getImapSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/imap';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates vacation-responder settings.               
+ * @category Vacation Responder
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateVacationResponderSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/vacation';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves vacation-responder settings.               
+ * @category Vacation Responder
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getVacationResponderSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/vacation';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates signature settings.               
+ * @category Signature
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateSignatureSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/signature';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves signature settings.               
+ * @category Signature
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getSignatureSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/signature';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates language settings.               
+ * @category Language
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateLanguageSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/language';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates a delegate.               
+ * @category Delegation
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp POST
+ */
+exports.createDelegate = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/delegation';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves all delegates.               
+ * @category Delegation
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @methodhttp GET
+ */
+exports.getDelegates = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/delegation';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes a delegate.               
+ * @category Delegation
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [delegate_email_id]  The email ID of the delegate.
+ * @methodhttp DELETE
+ */
+exports.deleteDelegate = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/delegation/{delegate_email_id}';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'delegate_email_id', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates general settings.               
+ * @category General
+ * @param {string} [domain_name]  The domain of the email address.
+ * @param {string} [user_name]  The username of the email address.
+ * @param {string} [Content-Type]  The content type.
+ * @methodhttp PUT
+ */
+exports.updateGeneralSettings = function(args, opts) {
+	var url = 'https://apps-apis.google.com/a/feeds/emailsettings/2.0/{domain_name}/{user_name}/general';
+	args = args || {};
+	url = url_replace(url, args, 'domain_name', 'str', true);
+	url = url_replace(url, args, 'user_name', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/atom+xml");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};

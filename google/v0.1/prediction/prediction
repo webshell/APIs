@@ -1,0 +1,101 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Run a prediction request against a hosted model.			
+ * @category Google Prediction
+ * @param {string} [hostedModelName]  The name of a hosted model.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp POST
+ */
+exports.predictAgainstHostedModel = function(args, opts) {
+	var url = 'https://www.googleapis.com/prediction/v1.4/hostedmodels/{hostedModelName}/predict';
+	args = args || {};
+	url = url_replace(url, args, 'hostedModelName', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns information about a trained model.			
+ * @category Google Prediction
+ * @param {string} [id]  The unique name for the predictive model.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getModelInformation = function(args, opts) {
+	var url = 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Add new data to a trained model.			
+ * @category Google Prediction
+ * @param {string} [id]  The unique name for the predictive model.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp PUT
+ */
+exports.addStreamingTraining = function(args, opts) {
+	var url = 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Delete a trained model.			
+ * @category Google Prediction
+ * @param {string} [id]  The unique name for the predictive model.
+ * @methodhttp DELETE
+ */
+exports.deleteTrainedModel = function(args, opts) {
+	var url = 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Begin training your model.			
+ * @category Google Prediction
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp POST
+ */
+exports.trainNewModel = function(args, opts) {
+	var url = 'https://www.googleapis.com/prediction/v1.4/trainedmodels';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Run a prediction against your model.			
+ * @category Google Prediction
+ * @param {string} [id]  The unique name for the predictive model.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp POST
+ */
+exports.predictAgainstTrainedModel = function(args, opts) {
+	var url = 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}/predict';
+	args = args || {};
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};

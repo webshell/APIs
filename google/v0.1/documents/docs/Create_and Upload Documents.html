@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-createDocumentWithMetadata" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      createDocumentWithMetadata 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Creating a new, empty resource with only metadata is the simplest way to create a resource, because it does not involve uploading any resource content.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Send an HTTP POST request to the resumable-create-media link of the resources feed. To acquire this link, clients query https://docs.google.com/feeds/default/private/full.Example:<link rel="http://schemas.google.com/g/2005#resumable-create-media"    type="application/atom+xml"    href="https://docs.google.com/feeds/upload/create-session/default/private/full"/>		    Important: To upload a file, append ?convert=false to the resumable-create-media link. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> resumable-create-media-link </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Uploading documents using Optical Character Recognition.Limitations:    Supported file formats: application/pdf, image/jpeg, image/png, image/gif    Works best with high resolution images (at least 10 pixel character height)    OCR is a computationally expensive operation and can take up to 30 seconds.    Works only for latin character sets.To perform OCR on a .pdf, .jpg, .png, or .gif file, include the ocr=true </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> ocr </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> May be provided in order to hint at which language to use when performing OCR. Even while providing this parameter, if there is overwhelming evidence that a character or paragraph is of a certain language, the hint will not be applied in that case.Valid values for ocr-language are ISO 639-1 codes. The following codes are currently supported by the API: bg, ca, cs, da, de, el, en, es, fi, fil, fr, hr, hu, id, it, ja, ko, lt, lv, nl, no, pl, pt, ro, ru, sk, sl, sr, sv, th, tr, uk, vi, zh-Hans </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> ocr-language </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the language to translate a document into. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> targetLanguage </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the source language of the original document. Optional when using the translation service. If not provided, Google will attempt to auto-detect the source language. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sourceLanguage </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Specifies whether or not a document-type arbitrary file upload should be converted into a native Google Doc. Optional when uploading a file. Possible values are true and false. Default is true. This parameter has no effect on PDFs or arbitrary file uploads. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> convert </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">int</span>
+
+
+
+      
+      <p> Specifies Upload Content Length. Important: Always choose a chunk size that is a multiple of 512 kilobytes. The last chunk may be smaller than 512 kilobytes. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> X-Upload-Content-Length </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-createDocumentWithMetadataAndContent" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      createDocumentWithMetadataAndContent 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Creating a new resource with both metadata and content at once requires the use of the GData resumable upload protocol. When uploading a resource in this scenario, the resource will have the given title and metadata, as well as the given content.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Send an HTTP POST request to the resumable-create-media link of the resources feed. To acquire this link, clients query https://docs.google.com/feeds/default/private/full.Example:<link rel="http://schemas.google.com/g/2005#resumable-create-media"    type="application/atom+xml"    href="https://docs.google.com/feeds/upload/create-session/default/private/full"/>		    Important: To upload a file, append ?convert=false to the resumable-create-media link. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> resumable-create-media-link </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Uploading documents using Optical Character Recognition.Limitations:    Supported file formats: application/pdf, image/jpeg, image/png, image/gif    Works best with high resolution images (at least 10 pixel character height)    OCR is a computationally expensive operation and can take up to 30 seconds.    Works only for latin character sets.To perform OCR on a .pdf, .jpg, .png, or .gif file, include the ocr=true </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> ocr </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> May be provided in order to hint at which language to use when performing OCR. Even while providing this parameter, if there is overwhelming evidence that a character or paragraph is of a certain language, the hint will not be applied in that case.Valid values for ocr-language are ISO 639-1 codes. The following codes are currently supported by the API: bg, ca, cs, da, de, el, en, es, fi, fil, fr, hr, hu, id, it, ja, ko, lt, lv, nl, no, pl, pt, ro, ru, sk, sl, sr, sv, th, tr, uk, vi, zh-Hans </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> ocr-language </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the language to translate a document into. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> targetLanguage </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the source language of the original document. Optional when using the translation service. If not provided, Google will attempt to auto-detect the source language. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sourceLanguage </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Specifies whether or not a document-type arbitrary file upload should be converted into a native Google Doc. Optional when uploading a file. Possible values are true and false. Default is true. This parameter has no effect on PDFs or arbitrary file uploads. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> convert </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Upload Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> X-Upload-Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">int</span>
+
+
+
+      
+      <p> Specifies Upload Content Length. Important: Always choose a chunk size that is a multiple of 512 kilobytes. The last chunk may be smaller than 512 kilobytes. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> X-Upload-Content-Length </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-uploadDocumentChunks" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      uploadDocumentChunks 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Request to upload the document or file in chunks of 512 kilobytes each.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Next location for upload a chunk of 512 kilobytes each. Important: After a period of time, requesting an expired [next location] receives a response of 410 Gone or 404 Not Found. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> next-location </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the range. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> Content-Range </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-uploadDocumentWithContentOnly" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      uploadDocumentWithContentOnly 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Creating a new resource with only content requires the use of the GData resumable upload protocol. When uploading a resource in this scenario, the resource will have a default title and metadata, depending on the MIME type of the content uploaded.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Send an HTTP POST request to the resumable-create-media link of the resources feed. To acquire this link, clients query https://docs.google.com/feeds/default/private/full.Example:<link rel="http://schemas.google.com/g/2005#resumable-create-media"    type="application/atom+xml"    href="https://docs.google.com/feeds/upload/create-session/default/private/full"/>		    Important: To upload a file, append ?convert=false to the resumable-create-media link. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> resumable-create-media-link </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Uploading documents using Optical Character Recognition.Limitations:    Supported file formats: application/pdf, image/jpeg, image/png, image/gif    Works best with high resolution images (at least 10 pixel character height)    OCR is a computationally expensive operation and can take up to 30 seconds.    Works only for latin character sets.To perform OCR on a .pdf, .jpg, .png, or .gif file, include the ocr=true </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> ocr </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> May be provided in order to hint at which language to use when performing OCR. Even while providing this parameter, if there is overwhelming evidence that a character or paragraph is of a certain language, the hint will not be applied in that case.Valid values for ocr-language are ISO 639-1 codes. The following codes are currently supported by the API: bg, ca, cs, da, de, el, en, es, fi, fil, fr, hr, hu, id, it, ja, ko, lt, lv, nl, no, pl, pt, ro, ru, sk, sl, sr, sv, th, tr, uk, vi, zh-Hans </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> ocr-language </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the language to translate a document into. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> targetLanguage </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the source language of the original document. Optional when using the translation service. If not provided, Google will attempt to auto-detect the source language. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> sourceLanguage </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Specifies whether or not a document-type arbitrary file upload should be converted into a native Google Doc. Optional when uploading a file. Possible values are true and false. Default is true. This parameter has no effect on PDFs or arbitrary file uploads. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> convert </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Upload Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> X-Upload-Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">int</span>
+
+
+
+      
+      <p> Specifies Upload Content Length. Important: Always choose a chunk size that is a multiple of 512 kilobytes. The last chunk may be smaller than 512 kilobytes. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> X-Upload-Content-Length </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu May 16 2013 18:20:06 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

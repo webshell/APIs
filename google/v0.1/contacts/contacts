@@ -1,0 +1,136 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Retrieving all contacts of a user./!\ Note: The special userEmail value default can be used to refer to the authenticated user. /!\               
+ * @category Contacts
+ * @param {string} [userEmail]  Email of the user to receive contacts
+ * @methodhttp GET
+ */
+exports.getAllContacts = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/contacts/{userEmail}/full';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * The Contacts Data API lets you request a set of contacts that match specified criteria, such as requesting contacts created or updated in a given date range, or published by a particular author.                 
+ * @category Contacts
+ * @param {string} [userEmail]  Email of the user to receive contacts
+ * @param {string}  phone   The type of feed to return, such as atom (the default), rss, or json.
+ * @param {string} [q]  Fulltext query on contacts data fields. The API currently supports simple search queries such as q="term1 term2 term3"
+ * @param {integer}  max-results   The maximum number of entries to return. If you want to receive all of the contacts, rather than only the default maximum, you can specify a very large number for max-results.
+ * @param {integer}  start-index   The 1-based index of the first result to be retrieved (for paging).
+ * @param {dateTime}  updated-min   The lower bound on entry update dates.
+ * @methodhttp GET
+ */
+exports.getContacts = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/contacts/{userEmail}/full';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	url = url_replace(url, args, 'phone', 'str', false, "json");
+	url = url_replace(url, args, 'q', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'updated-min');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieving a single contact./!\ Note: The special userEmail value default can be used to refer to the authenticated user. /!\               
+ * @category Contacts
+ * @param {string} [userEmail]  Email of the user who has the contact
+ * @param {string} [contactId]  Id of the contact
+ * @methodhttp GET
+ */
+exports.getContact = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/contacts/{userEmail}/full/{contactId}';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	url = url_replace(url, args, 'contactId', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieving a contact's photo./!\ Note: The special userEmail value default can be used to refer to the authenticated user. /!\               
+ * @category Photos
+ * @param {string} [userEmail]  Email of the user who has the contact
+ * @param {string} [contactId]  Id of the contact
+ * @methodhttp GET
+ */
+exports.getPhoto = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/photos/media/{userEmail}/{contactId}';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	url = url_replace(url, args, 'contactId', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieving all contact groups./!\ Note: The special userEmail value default can be used to refer to the authenticated user. /!\               
+ * @category Groups
+ * @param {string} [userEmail]  Email of the user to receive all groups
+ * @methodhttp GET
+ */
+exports.getAllGroups = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/groups/{userEmail}/full';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieving contact groups using query parameters/!\ Note: The special userEmail value default can be used to refer to the authenticated user. /!\               
+ * @category Groups
+ * @param {string} [userEmail]  Email of the user to receive all groups
+ * @param {string}  phone   The type of feed to return, such as atom (the default), rss, or json.
+ * @param {string} [q]  Fulltext query on contacts data fields. The API currently supports simple search queries such as q="term1 term2 term3"
+ * @param {integer}  max-results   The maximum number of entries to return. If you want to receive all of the contacts, rather than only the default maximum, you can specify a very large number for max-results.
+ * @param {integer}  start-index   The 1-based index of the first result to be retrieved (for paging).
+ * @param {dateTime}  updated-min   The lower bound on entry update dates.
+ * @methodhttp GET
+ */
+exports.getGroups = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/groups/{userEmail}/full';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	url = url_replace(url, args, 'phone', 'str', false, "json");
+	url = url_replace(url, args, 'q', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'updated-min');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieving a single contact group/!\ Note: The special userEmail value default can be used to refer to the authenticated user. /!\               
+ * @category Groups
+ * @param {string} [userEmail]  Email of the user to receive all groups
+ * @param {string} [groupID]  ID of the group
+ * @methodhttp GET
+ */
+exports.getGroup = function(args, opts) {
+	var url = 'https://www.google.com/m8/feeds/{userEmail}/full/{groupID}';
+	args = args || {};
+	url = url_replace(url, args, 'userEmail', 'str', true, "default");
+	url = url_replace(url, args, 'groupID', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};

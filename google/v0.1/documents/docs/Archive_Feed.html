@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-abortsArchiveOperation" style="">
+  <div class="title">
+    <span class="method DELETE"> DELETE </span><span class="route">
+      abortsArchiveOperation 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Aborting an archive in the process of being generated.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> private: For use whenever you can authenticate the request. Read/write access if the authenticated user has edit privileges; otherwise, read-only. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> visibility </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Represents the archive which refer to the state. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> archiveID </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-exportResultsQuery" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      exportResultsQuery 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>The archive feed can be used to export the results of a query as a .zip file of documents. The body of the request contains data which controls the archive operation and, optionally, a list of resource IDs to archive. If no resource IDs are contained in the request body, query parameters from the URL (if any) is used to select the items to include in the archive. If the request body contains one or more resource IDs, query parameters from the URL is ignored.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> private: For use whenever you can authenticate the request. Read/write access if the authenticated user has edit privileges; otherwise, read-only. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> visibility </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Entry author. The service returns entries where the author name and/or email address match your query string. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> author </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Full-text query string. When creating a query, list search terms separated by spaces, in the form q=term1 term2 term3. (As with all of the query parameter values, the spaces must be URL encoded.) The service returns all entries that match all of the search terms (like using AND between terms). Like Google's web search, a service searches on complete words (and related words with the same stem), not substrings.To search for an exact phrase, enclose the phrase in quotation marks: q="exact phrase".To exclude entries that match a given term, use the form q=-term.The search is case-insensitive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> q </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> 1-based index of the first result to be retrieved. Note that this isn't a general cursoring mechanism. If you first send a query with ?start-index=1&max-results=10 and then send another query with ?start-index=11&max-results=10, the service cannot guarantee that the results are equivalent to ?start-index=1&max-results=20, because insertions and deletions could have taken place in between the two queries. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> start-index </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Bounds on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> updated-min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Bounds on the entry update date. Use the RFC 3339 timestamp format. For example: 2005-08-09T10:57:00-08:00. The lower bound is inclusive, whereas the upper bound is exclusive. In some cases (such as when using v2.1 or newer of the Calendar Data API), specifying an updated-min that is too far in the past will cause an HTTP 410 (Gone) status to be returned. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> updated-max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Category query filter. To do an OR between terms, use a pipe character (|), URL-encoded as %7C. For example: category=Fritz%7CLaurie returns entries that match either category. To do an AND between terms, use a comma character (,). For example: category=Fritz,Laurie returns entries that match both categories. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> category </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Retrieves resources beyond the first page, page through results by following the next link of a feed. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> start-key </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies the search terms for the title of a document. This parameter used without title-exact will only submit partial queries, not exact queries. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> title </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Specifies whether the title query should be taken as an exact string. Meaningless without title. Possible values are true and false. Note: Matches are case-insensitive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> title-exact </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Lower bound on the last time a document was opened by the current user. Use the RFC 3339 timestamp format. For example: opened-min=2005-08-09T09:57:00-08:00 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> opened-min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Upper bound on the last time a document was opened by the current user. Use the RFC 3339 timestamp format. For example: opened-max=2009-03-02T10:00:00 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> opened-max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Lower bound on the last time a document was edited by the current user. This value corresponds to the <edited ns="app"> value in the Atom entry, which represents changes to the document's content or metadata. Use the RFC 3339 timestamp format. For example: edited-min=2005-08-09T09:57:00-08:00 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> edited-min </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Upper bound on the last time a document was edited by the user. This value corresponds to the <edited ns="app"> value in the Atom entry, which represents changes to the document's content or metadata. Use the RFC 3339 timestamp format. For example: edited-max=2009-08-09T09:57:00-08:00 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> edited-max </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Searches for documents with a specific owner. Use the email address of the owner. For example: owner=user%40gmail.com </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Searches for documents which can be written to by specific users.	Use a single email address or a comma separated list of email addresses. For example: writer=user1%40gmail.com%2Cuser2%40example.com </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> writer </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Searches for documents which can be read by specific users. Use a single email address or a comma separated list of email addresses. For example: reader=user1%40gmail.com%2Cuser2%40example.com </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> reader </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Specifies whether the query should return folders as well as documents. Possible values are true and false. Default is false </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> showfolders </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Specifies whether the query should return documents which are in the trash as well as other documents. Possible values are true and false. Default is false </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> showdeleted </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getArchiveStatus" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getArchiveStatus 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the status of an archive. The resulting entry contains elements which provide information (including completion status) about the archive operation.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> private: For use whenever you can authenticate the request. Read/write access if the authenticated user has edit privileges; otherwise, read-only. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> visibility </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Represents the archive which refer to the state. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> archiveID </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-updateArchiveNotificationEmailAddress" style="">
+  <div class="title">
+    <span class="method PUT"> PUT </span><span class="route">
+      updateArchiveNotificationEmailAddress 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Changes the archive notification email address.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> private: For use whenever you can authenticate the request. Read/write access if the authenticated user has edit privileges; otherwise, read-only. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> visibility </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Represents the archive which refer to the state. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> archiveID </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies a version number. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> GData-Version </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Specifies Content Type. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> Content-Type </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu May 16 2013 18:20:06 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

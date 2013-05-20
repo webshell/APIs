@@ -1,0 +1,605 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Lists all the accounts to which the user has access.               
+ * @category Accounts
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAccounts = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts';
+	args = args || {};
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Get information about the specified AdSense account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {boolean}  tree   Whether the tree of sub accounts should be returned.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.getAccount = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'tree');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all ad clients in the specified AdSense account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAdClients = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all ad units in the specified ad client under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client which contains the custom channel.
+ * @param {boolean}  includeInactive   Whether to include inactive ad units. Default: true.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAdUnits = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/adunits';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'includeInactive', 'null', false, "true");
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Gets the specified ad unit in the specified ad client under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client which contains the custom channel.
+ * @param {string} [adUnitId]  Ad unit to retrieve.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.getAdUnit = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'adUnitId', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all custom channels connected to the specified ad unit, under the specified ad client, under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client for which to list custom channels.
+ * @param {string} [adUnitId]  Ad unit to retrieve.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAdUnitCustomChannels = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'adUnitId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * The custom channels belonging to the specified ad client under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client which contains the custom channel.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listCustomChannels = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/customchannels';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Get the specified custom channel belonging to the specified ad client under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client which contains the custom channel.
+ * @param {string} [customChannelId]  Custom channel to retrieve.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.getCustomChannel = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'customChannelId', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all ad units in the specified custom channel, under the specified ad client, under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client which contains the custom channel.
+ * @param {string} [customChannelId]  Custom channel for which to list ad units.
+ * @param {boolean}  includeInactive   Whether to include inactive ad units. Default: true.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listCustomAdUnits = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'customChannelId', 'str', true);
+	url = url_replace(url, args, 'includeInactive', 'null', false, "true");
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all URL channels belonging to the specified ad client under the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [adClientId]  Ad client for which to list URL channels.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listUrlChannels = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/urlchannels';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Generate an AdSense report for the specified account based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [startDate]  Start of the date range on which to report in "YYYY-MM-DD" format, inclusive.
+ * @param {string} [endDate]  End of the date range on which to report in "YYYY-MM-DD" format, inclusive.
+ * @param {string}  currency   Not available.
+ * @param {string}  dimension   Optional dimensions on which to base the report.Available dimensions are:- DATE- WEEK- MONTH- AD_CLIENT_ID- PRODUCT_CODE- PRODUCT_NAME- AD_UNIT_ID- AD_UNIT_CODE- AD_UNIT_NAME- AD_UNIT_SIZE_CODE- AD_UNIT_SIZE_NAME- CUSTOM_CHANNEL_ID- CUSTOM_CHANNEL_CODE- CUSTOM_CHANNEL_NAME- URL_CHANNEL_ID- URL_CHANNEL_NAME- AD_FORMAT_CODE- AD_FORMAT_NAME- BRANDING_TYPE_CODE- BRANDING_TYPE_NAME- BUYER_NETWORK_ID- BUYER_NETWORK_NAME- BID_TYPE_CODE- BID_TYPE_NAME- DOMAIN_NAME- COUNTRY_CODE- COUNTRY_NAME- TARGETING_TYPE_CODE- TARGETING_TYPE_NAME               
+ * @param {string}  filter   Set of filters to be applied to the report.
+ * @param {string}  locale   Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+ * @param {string}  metric   Optional numeric columns to include in the report.Available metrics are:- PAGE_VIEWS- PAGE_VIEWS_CTR- PAGE_VIEWS_RPM- AD_REQUESTS- AD_REQUESTS_COVERAGE- AD_REQUESTS_CTR- AD_REQUESTS_RPM- MATCHED_AD_REQUESTS- MATCHED_AD_REQUESTS_CTR- MATCHED_AD_REQUESTS_RPM- INDIVIDUAL_AD_IMPRESSIONS- INDIVIDUAL_AD_IMPRESSIONS_CTR- INDIVIDUAL_AD_IMPRESSIONS_RPM- CLICKS- EARNINGS- TOTAL_EARNINGS- COST_PER_CLICK               
+ * @param {string}  sort   Optional name of a dimension or metric on which to sort the resulting report. Optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending:- DATE- WEEK- MONTH- AD_CLIENT_ID- PRODUCT_CODE- PRODUCT_NAME- AD_UNIT_ID- AD_UNIT_CODE- AD_UNIT_NAME- AD_UNIT_SIZE_CODE- AD_UNIT_SIZE_NAME- CUSTOM_CHANNEL_ID- CUSTOM_CHANNEL_CODE- CUSTOM_CHANNEL_NAME- URL_CHANNEL_ID- URL_CHANNEL_NAME- AD_FORMAT_CODE- AD_FORMAT_NAME- BRANDING_TYPE_CODE- BRANDING_TYPE_NAME- BUYER_NETWORK_ID- BUYER_NETWORK_NAME- BID_TYPE_CODE- BID_TYPE_NAME- DOMAIN_NAME- COUNTRY_CODE- COUNTRY_NAME- TARGETING_TYPE_CODE- TARGETING_TYPE_NAME- PAGE_VIEWS- PAGE_VIEWS_CTR- PAGE_VIEWS_RPM- AD_REQUESTS- AD_REQUESTS_COVERAGE- AD_REQUESTS_CTR- AD_REQUESTS_RPM- MATCHED_AD_REQUESTS- MATCHED_AD_REQUESTS_CTR- MATCHED_AD_REQUESTS_RPM- INDIVIDUAL_AD_IMPRESSIONS- INDIVIDUAL_AD_IMPRESSIONS_CTR- INDIVIDUAL_AD_IMPRESSIONS_RPM- CLICKS- EARNINGS- TOTAL_EARNINGS- COST_PER_CLICK               
+ * @param {integer}  startIndex   Index of the first row of report data to return. The minumum value is 0 (zero), the maximum value is 5000 (5 thousand). If startIndex is either unset or zero, the API will return as many rows as specified by the value of maxResults. If maxResults is not set the API will return as many rows as possible, up to 50,000. If startIndex is set to a non-zero value, the sum of startIndex and maxResults cannot be greater than 5000, or an error will be returned: paging past row 5000 is unsupported.
+ * @param {integer}  maxResults   The maximum number of rows of report data to return. The minumum value is 0 (zero), the maximum value is 50000 (50 thousand).
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.generateReports = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/reports';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'startDate', 'str', true);
+	url = url_replace(url, args, 'endDate', 'str', true);
+	url = url_replace(url, args, 'currency', 'str');
+	url = url_replace(url, args, 'dimension', 'str');
+	url = url_replace(url, args, 'filter', 'str');
+	url = url_replace(url, args, 'locale', 'str');
+	url = url_replace(url, args, 'metric', 'str');
+	url = url_replace(url, args, 'sort', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'maxResults', 'int', false, "50000");
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all ad clients in this AdSense account.			
+ * @category Ad Clients
+ * @param {integer}  maxResults   The maximum number of ad clients to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of nextPageToken from the previous response. Default returns the first page of data.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAdClients = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients';
+	args = args || {};
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all ad units in the specified ad client.			
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client for which to get the ad units.
+ * @param {boolean}  includeInactive   Whether to include inactive ad units. Default: true.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAdUnits = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/adunits';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'includeInactive', 'null', false, "true");
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Gets the specified ad unit in the specified ad client.               
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client for which to get the ad unit.
+ * @param {string} [adUnitId]  Ad unit to retrieve.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.getAdUnit = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/adunits/{adUnitId}';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'adUnitId', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all custom channels connected to the specified ad unit under the specified ad client.               
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client for which to list custom channels.
+ * @param {string} [adUnitId]  Ad unit to retrieve.
+ * @param {integer}  maxResults   The maximum number of custom channels to include in the response, used for paging. The minimum value is 0 (zero), the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of nextPageToken from the previous response. Default returns the first page of data.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listAdUnitCustomChannels = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/adunits/{adUnitId}/customchannels';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'adUnitId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List the custom channels under the specified ad client.               
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client for which to list custom channels.
+ * @param {integer}  maxResults   The maximum number of custom channels to include in the response, used for paging. The minimum value is 0 (zero), the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of nextPageToken from the previous response. Default returns the first page of data.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listCustomChannels = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/customchannels';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Get the specified custom channel belonging to the specified ad client under the specified account.               
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client that contains the custom channel.
+ * @param {string} [customChannelId]  Custom channel to retrieve.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.getCustomChannel = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/customchannels/{customChannelId}';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'customChannelId', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all ad units in the specified custom channel in the specified ad client.               
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client which contains the custom channel.
+ * @param {string} [customChannelId]  Custom channel for which to list ad units.
+ * @param {boolean}  includeInactive   Whether to include inactive ad units. Default: true.
+ * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listCustomChannelAdUnits = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/customchannels/{customChannelId}/adunits';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'customChannelId', 'str', true);
+	url = url_replace(url, args, 'includeInactive', 'null', false, "true");
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all URL channels in the specifed ad client.               
+ * @category Ad Clients
+ * @param {string} [adClientId]  Ad client for which to list URL channels.
+ * @param {integer}  maxResults   The maximum number of URL channels to include in the response, used for paging. The minimum value is 0 (zero), the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of nextPageToken from the previous response. Default returns the first page of data.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listUrlChannels = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/urlchannels';
+	args = args || {};
+	url = url_replace(url, args, 'adClientId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Generate an AdSense report over the specified accounts, or over the user's default account if no accounts are specified, based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.               
+ * @category Ad Clients
+ * @param {string} [startDate]  Start of the date range on which to report in "YYYY-MM-DD" format, inclusive.
+ * @param {string} [endDate]  End of the date range on which to report in "YYYY-MM-DD" format, inclusive.
+ * @param {string}  accountId   Accounts upon which to report.
+ * @param {string}  currency   Not available.
+ * @param {string}  dimension   Optional dimensions on which to base the report.Available dimensions are:- DATE- WEEK- MONTH- AD_CLIENT_ID- PRODUCT_CODE- PRODUCT_NAME- AD_UNIT_ID- AD_UNIT_CODE- AD_UNIT_NAME- AD_UNIT_SIZE_CODE- AD_UNIT_SIZE_NAME- CUSTOM_CHANNEL_ID- CUSTOM_CHANNEL_CODE- CUSTOM_CHANNEL_NAME- URL_CHANNEL_ID- URL_CHANNEL_NAME- AD_FORMAT_CODE- AD_FORMAT_NAME- BRANDING_TYPE_CODE- BRANDING_TYPE_NAME- BUYER_NETWORK_ID- BUYER_NETWORK_NAME- BID_TYPE_CODE- BID_TYPE_NAME- DOMAIN_NAME- COUNTRY_CODE- COUNTRY_NAME- TARGETING_TYPE_CODE- TARGETING_TYPE_NAME               
+ * @param {string}  filter   Set of filters to be applied to the report.
+ * @param {string}  locale   Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+ * @param {string}  metric   Optional numeric columns to include in the report.Available metrics are:- PAGE_VIEWS- PAGE_VIEWS_CTR- PAGE_VIEWS_RPM- AD_REQUESTS- AD_REQUESTS_COVERAGE- AD_REQUESTS_CTR- AD_REQUESTS_RPM- MATCHED_AD_REQUESTS- MATCHED_AD_REQUESTS_CTR- MATCHED_AD_REQUESTS_RPM- INDIVIDUAL_AD_IMPRESSIONS- INDIVIDUAL_AD_IMPRESSIONS_CTR- INDIVIDUAL_AD_IMPRESSIONS_RPM- CLICKS- EARNINGS- TOTAL_EARNINGS- COST_PER_CLICK               
+ * @param {string}  sort   Optional name of a dimension or metric on which to sort the resulting report. Optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending:- DATE- WEEK- MONTH- AD_CLIENT_ID- PRODUCT_CODE- PRODUCT_NAME- AD_UNIT_ID- AD_UNIT_CODE- AD_UNIT_NAME- AD_UNIT_SIZE_CODE- AD_UNIT_SIZE_NAME- CUSTOM_CHANNEL_ID- CUSTOM_CHANNEL_CODE- CUSTOM_CHANNEL_NAME- URL_CHANNEL_ID- URL_CHANNEL_NAME- AD_FORMAT_CODE- AD_FORMAT_NAME- BRANDING_TYPE_CODE- BRANDING_TYPE_NAME- BUYER_NETWORK_ID- BUYER_NETWORK_NAME- BID_TYPE_CODE- BID_TYPE_NAME- DOMAIN_NAME- COUNTRY_CODE- COUNTRY_NAME- TARGETING_TYPE_CODE- TARGETING_TYPE_NAME- PAGE_VIEWS- PAGE_VIEWS_CTR- PAGE_VIEWS_RPM- AD_REQUESTS- AD_REQUESTS_COVERAGE- AD_REQUESTS_CTR- AD_REQUESTS_RPM- MATCHED_AD_REQUESTS- MATCHED_AD_REQUESTS_CTR- MATCHED_AD_REQUESTS_RPM- INDIVIDUAL_AD_IMPRESSIONS- INDIVIDUAL_AD_IMPRESSIONS_CTR- INDIVIDUAL_AD_IMPRESSIONS_RPM- CLICKS- EARNINGS- TOTAL_EARNINGS- COST_PER_CLICK               
+ * @param {integer}  startIndex   Index of the first row of report data to return. The minumum value is 0 (zero), the maximum value is 5000 (5 thousand). If startIndex is either unset or zero, the API will return as many rows as specified by the value of maxResults. If maxResults is not set the API will return as many rows as possible, up to 50,000. If startIndex is set to a non-zero value, the sum of startIndex and maxResults cannot be greater than 5000, or an error will be returned: paging past row 5000 is unsupported.
+ * @param {integer}  maxResults   The maximum number of rows of report data to return. The minumum value is 0 (zero), the maximum value is 50000 (50 thousand).
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.generateReports = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.1/reports';
+	args = args || {};
+	url = url_replace(url, args, 'startDate', 'str', true);
+	url = url_replace(url, args, 'endDate', 'str', true);
+	url = url_replace(url, args, 'accountId', 'str');
+	url = url_replace(url, args, 'currency', 'str');
+	url = url_replace(url, args, 'dimension', 'str');
+	url = url_replace(url, args, 'filter', 'str');
+	url = url_replace(url, args, 'locale', 'str');
+	url = url_replace(url, args, 'metric', 'str');
+	url = url_replace(url, args, 'sort', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'maxResults', 'int', false, "50000");
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};

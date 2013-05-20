@@ -1,0 +1,124 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns a list of Location Resources representing past locations of the authenticated user.			
+ * @category Location
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  granularity   Granularity of the requested locations.
+ * @param {int}  max-results   Maximum number of locations to return.
+ * @param {int}  max-time   Maximum timestamp of locations to return (ms since epoch).
+ * @param {int}  min-time   Minimum timestamp of locations to return (ms since epoch).
+ * @methodhttp GET
+ */
+exports.listLocations = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/location';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'granularity', 'str');
+	url = url_replace(url, args, 'max-results');
+	url = url_replace(url, args, 'max-time');
+	url = url_replace(url, args, 'min-time');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates or updates the specified Location Resource in the authenticated user's location history using the data included in the request.			
+ * @category Location
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.insertLocation = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/location';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns the specified Location Resource from the authenticated user's location history.			
+ * @category Location
+ * @param {string} [locationId]  Timestamp of the location to read (ms since epoch).
+ * @param {string}  granularity   Granularity of the requested locations.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getLocation = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/location/{locationId}';
+	args = args || {};
+	url = url_replace(url, args, 'locationId', 'str', true);
+	url = url_replace(url, args, 'granularity', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes the specified Location Resource from the authenticated user's location history.			
+ * @category Location
+ * @param {string} [locationId]  Timestamp of the location to read (ms since epoch).
+ * @methodhttp DELETE
+ */
+exports.deleteLocation = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/location/{locationId}';
+	args = args || {};
+	url = url_replace(url, args, 'locationId', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns the Location Resource that represent the authenticated user's current location.			
+ * @category Current Location
+ * @param {string}  granularity   Granularity of the requested locations.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getCurrentLocation = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/currentLocation';
+	args = args || {};
+	url = url_replace(url, args, 'granularity', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates or creates the single Location Resource of the authenticated user's Current Location Collection using the data included in the request. A copy of the same location is automatically added to the location history.			
+ * @category Current Location
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.insertCurrentLocation = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/currentLocation';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes the single Location Resource of the authenticated user's Current Location Collection.			
+ * @category Current Location
+ * @methodhttp DELETE
+ */
+exports.deleteCurrentLocation = function(args, opts) {
+	var url = 'https://www.googleapis.com/latitude/v1/currentLocation';
+	args = args || {};
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};

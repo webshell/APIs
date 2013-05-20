@@ -1,0 +1,235 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns all Task Resources in the specified task list. Authentication is required.			
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {string}  maxResults   The maximum number of elements to return with this request. Default: maxResults=20. Maximum allowable value: maxResults=100.
+ * @param {string}  completedMax   Upper bound for a task's completion date (as an RFC 3339 timestamp) to filter by. Default: completedMax=2031-01-01. Use the RFC 3339 timestamp format. For example: 2010-08-09T10:57:00.000-08:00
+ * @param {string}  completedMin   Lower bound for a task's completion date (as an RFC 3339 timestamp) to filter by. Default: completedMin=1970-01-01. Use the RFC 3339 timestamp format. For example: 2010-08-09T10:57:00.000-08:00
+ * @param {string}  dueMax   Upper bound for a task's due date (as an RFC 3339 timestamp) to filter by. Default: dueMax=2031-01-01. Use the RFC 3339 timestamp format. For example: 2010-08-09T10:57:00.000-08:00
+ * @param {string}  dueMin   Lower bound for a task's due date (as an RFC 3339 timestamp) to filter by. Default: dueMin=1970-01-01. Use the RFC 3339 timestamp format. For example: 2010-08-09T10:57:00.000-08:00
+ * @param {boolean}  showCompleted   Specify whether or not to show completed tasks. Default: showCompleted=true
+ * @param {boolean}  showDeleted   Specify whether or not to show deleted tasks. Default: showDeleted=false
+ * @param {boolean}  showHidden   Specify whether or not to show hidden tasks. Default: showHidden=true
+ * @param {string}  pageToken   Token specifying the result page to return. The default is to return the first page.
+ * @param {string}  updatedMin   Lower bound for a task's last modification time (as an RFC 3339 timestamp) to filter by. Use the RFC 3339 timestamp format. For example: 2010-08-09T10:57:00.000-08:00Z. The default is not to filter by last modification time.
+ * @methodhttp GET
+ */
+exports.listTasks = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'maxResults', 'str', false, "100");
+	url = url_replace(url, args, 'completedMax', 'str', false, "2031-01-01");
+	url = url_replace(url, args, 'completedMin', 'str', false, "1970-01-01");
+	url = url_replace(url, args, 'dueMax', 'str', false, "2031-01-01");
+	url = url_replace(url, args, 'dueMin', 'str', false, "1970-01-01");
+	url = url_replace(url, args, 'showCompleted', 'null', false, "true");
+	url = url_replace(url, args, 'showDeleted', 'null', false, "false");
+	url = url_replace(url, args, 'showHidden', 'null', false, "false");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'updatedMin', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates a new task on the specified task list. Returns a copy of the created Task Resource. Authentication is required.               
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {string} [Content-Type]  Content type.
+ * @param {string}  parent   Specify the task's parent task ID. No parameter indicates an insertion or a move to the top level of the task list.
+ * @param {string}  previous   Specify the task's previous task ID. No parameter indicates an insertion or a move to the first position in the sublist.
+ * @methodhttp POST
+ */
+exports.createTasks = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'previous', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns the specified Task Resource. Authentication is required.			
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string} [task]  Task identifier.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @methodhttp GET
+ */
+exports.getTask = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'task', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates the specified task. Returns a copy of the updated Task Resource. Authentication is required.               
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string} [task]  Task identifier.
+ * @param {string} [Content-Type]  Content type.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @methodhttp PUT
+ */
+exports.updateTask = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'task', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'fields', 'str');
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes the specified task from the task list. Returns no data (only a status code). Authentication is required.               
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string} [task]  Task identifier.
+ * @methodhttp DELETE
+ */
+exports.deleteTask = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'task', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or moving it to a different position among its sibling tasks. Returns a copy of the updated Task Resource. Authentication is required.               
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string} [task]  Task identifier.
+ * @param {string}  parent   Specify the task's parent task ID. No parameter indicates an insertion or a move to the top level of the task list.
+ * @param {string}  previous   Specify the task's previous task ID. No parameter indicates an insertion or a move to the first position in the sublist.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @methodhttp POST
+ */
+exports.moveTask = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}/move';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'task', 'str', true);
+	url = url_replace(url, args, 'parent', 'str');
+	url = url_replace(url, args, 'previous', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Clears all completed tasks from the specified task list. The affected tasks are marked as hidden and are no longer returned by default when retrieving all tasks for a task list. Returns no data (only a status code). Authentication is required.               
+ * @category Tasks
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @methodhttp POST
+ */
+exports.clearTasks = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/clear';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns all the authenticated user's Tasklist Resources. Authentication is required.               
+ * @category Task Lists
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {string}  maxResults   The maximum number of elements to return with this request. Default: maxResults=20. Maximum allowable value: maxResults=100.
+ * @param {string}  pageToken   Token specifying the result page to return. The default is to return the first page.
+ * @methodhttp GET
+ */
+exports.listUserTaskLists = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/users/@me/lists';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'maxResults', 'str', false, "100");
+	url = url_replace(url, args, 'pageToken', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates a new task list and adds it to the authenticated user's task lists. Returns a copy of the created Tasklist Resource. Authentication is required.               
+ * @category Task Lists
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {string} [Content-Type]  Content type.
+ * @methodhttp POST
+ */
+exports.createUserTaskList = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/users/@me/lists';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns the authenticated user's specified Tasklist Resource. Authentication is required.               
+ * @category Task Lists
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @methodhttp GET
+ */
+exports.getUserTaskList = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates the authenticated user's specified task list. Returns a copy of the updated Tasklist Resource. Authentication is required.               
+ * @category Task Lists
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @param {string} [Content-Type]  Content type.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @methodhttp PUT
+ */
+exports.updateUserTaskList = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'fields', 'str');
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes the authenticated user's specified task list. Returns no data (only a status code). Authentication is required.               
+ * @category Task Lists
+ * @param {string} [tasklist]  Task list identifier. To refer to the authenticated user's default task list, use the special value @default.
+ * @methodhttp DELETE
+ */
+exports.deleteUserTaskList = function(args, opts) {
+	var url = 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}';
+	args = args || {};
+	url = url_replace(url, args, 'tasklist', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};

@@ -1,0 +1,536 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Returns the rules in the access control list for the calendar			
+ * @category ACL Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listCalendarAccessControlRules = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates an access control rule.			
+ * @category ACL Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createCalendarAccessControlRule = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns an access control rule.			
+ * @category ACL Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [ruleId]  ACL rule identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getCalendarAccessControlRule = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'ruleId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates an access control rule.			
+ * @category ACL Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [ruleId]  ACL rule identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateCalendarAccessControlRule = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'ruleId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes an access control rule.			
+ * @category ACL Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [ruleId]  ACL rule identifier.
+ * @methodhttp DELETE
+ */
+exports.deleteCalendarAccessControlRule = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'ruleId', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns entries on the user's calendar list.			
+ * @category CalendarList Resource
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {int}  maxResults   Maximum number of entries returned on one result page.
+ * @param {string}  minAccessRole   The minimum access role for the user in the returned entires. Optional. The default is no restriction.
+ * @param {string}  pageToken   Token specifying which result page to return.
+ * @param {string}  showHidden   Whether to show hidden entries.
+ * @methodhttp GET
+ */
+exports.calendarList = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'maxResults');
+	url = url_replace(url, args, 'minAccessRole', 'str');
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'showHidden', 'str', false, "false");
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Adds an entry to the user's calendar list.			
+ * @category CalendarList Resource
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.addCalendarEntry = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns an entry on the user's calendar list.			
+ * @category CalendarList Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getCalendarEntry = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates an entry on the user's calendar list.			
+ * @category CalendarList Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateCalendarEntry = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes an entry on the user's calendar list.			
+ * @category CalendarList Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @methodhttp DELETE
+ */
+exports.deleteCalendarEntry = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates a secondary calendar.			
+ * @category Calendars Resource
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createSecondaryCalendar = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns metadata for a calendar.			
+ * @category Calendars Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getCalendar = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates metadata for a calendar.			
+ * @category Calendars Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateCalendar = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes a secondary calendar.			
+ * @category Calendars Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @methodhttp DELETE
+ */
+exports.deleteCalendar = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Clears a primary calendar. This operation deletes all data associated with the primary calendar of an account and cannot be undone.			
+ * @category Calendars Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @methodhttp GET
+ */
+exports.clearPrimaryCalendar = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/clear';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns events on the specified calendar.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  iCalUID   Specifies iCalendar UID (iCalUID) of events to be included in the response.
+ * @param {int}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned.
+ * @param {int}  maxResults   Maximum number of events returned on one result page.
+ * @param {string}  orderBy   The order of the events returned in the result.
+ * @param {string}  pageToken   Token specifying which result page to return.
+ * @param {string}  q   Free text search terms to find events that match these terms in any field, except for extended properties.
+ * @param {boolean}  showDeleted   Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result.
+ * @param {boolean}  showHiddenInvitations   Whether to include hidden invitations in the result.
+ * @param {boolean}  singleEvents   Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves.
+ * @param {string}  timeMax   Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time.
+ * @param {string}  timeMin   Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time.
+ * @param {string}  timeZone   Time zone used in the response. The default is the time zone of the calendar.
+ * @param {string}  updatedMin   Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+ * @methodhttp GET
+ */
+exports.lestEvents = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'iCalUID', 'str');
+	url = url_replace(url, args, 'maxAttendees');
+	url = url_replace(url, args, 'maxResults');
+	url = url_replace(url, args, 'orderBy', 'str');
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'q', 'str');
+	url = url_replace(url, args, 'showDeleted', 'null', false, "false");
+	url = url_replace(url, args, 'showHiddenInvitations', 'null', false, "false");
+	url = url_replace(url, args, 'singleEvents', 'null', false, "false");
+	url = url_replace(url, args, 'timeMax', 'str');
+	url = url_replace(url, args, 'timeMin', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
+	url = url_replace(url, args, 'updatedMin', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates an event.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the creation of the new event.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.createEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns an event.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [eventId]  Event identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {int}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned.
+ * @param {string}  timeZone   Time zone used in the response. The default is the time zone of the calendar.
+ * @methodhttp GET
+ */
+exports.getEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'eventId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'maxAttendees');
+	url = url_replace(url, args, 'timeZone', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates an event.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [eventId]  Event identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.).
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp PUT
+ */
+exports.updateEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'eventId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Deletes an event.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [eventId]  Event identifier.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the deletion of the event.
+ * @methodhttp DELETE
+ */
+exports.deleteEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'eventId', 'str', true);
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns instances of the specified recurring event.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [eventId]  Event identifier.
+ * @param {int}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned.
+ * @param {int}  maxResults   Maximum number of entries returned on one result page.
+ * @param {string}  originalStart   The original start time of the instance in the result.
+ * @param {string}  pageToken   Token specifying which result page to return.
+ * @param {boolean}  showDeleted   Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result.
+ * @param {string}  timeZone   Time zone used in the response. The default is the time zone of the calendar.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getInstances = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/instances';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'eventId', 'str', true);
+	url = url_replace(url, args, 'maxAttendees');
+	url = url_replace(url, args, 'maxResults');
+	url = url_replace(url, args, 'originalStart', 'str');
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'showDeleted', 'null', false, "false");
+	url = url_replace(url, args, 'timeZone', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Imports an event.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.importEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/import';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Creates an event based on a simple text string.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [text]  The text describing the event to be created.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the creation of the event.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp POST
+ */
+exports.quickAddEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'text', 'str', true);
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "fasle");
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Moves an event to another calendar, i.e. changes an event's organizer.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [eventId]  Event identifier.
+ * @param {string} [destination]  Calendar identifier of the target calendar where the event is to be moved to.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the change of the event's organizer.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp POST
+ */
+exports.moveEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/move';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'eventId', 'str', true);
+	url = url_replace(url, args, 'destination', 'str', true);
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "fasle");
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Resets a specialized instance of a recurring event to its original state.			
+ * @category Events Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [eventId]  Event identifier.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the event update.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp POST
+ */
+exports.resetEvent = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/reset';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'eventId', 'str', true);
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "fasle");
+	url = url_replace(url, args, 'fields', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns all user settings for the authenticated user.			
+ * @category Settings Resource
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listUserSettings = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/settings';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns a single user setting.			
+ * @category Settings Resource
+ * @param {string} [setting]  Name of the user setting.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getUserSetting = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/settings/{setting}';
+	args = args || {};
+	url = url_replace(url, args, 'setting', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns the color definitions for calendars and events.			
+ * @category Colors Resource
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getColorDefinitions = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/colors';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns free/busy information for a set of calendars.			
+ * @category Freebusy Resource
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string} [Content-Type]  Specifies Content Type.
+ * @methodhttp POST
+ */
+exports.getFreeBusyInformations = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/freeBusy';
+	args = args || {};
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
