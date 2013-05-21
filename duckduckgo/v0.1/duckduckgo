@@ -1,0 +1,22 @@
+/** 
+ * Search over all public objects in the social graph
+ * @category Docs
+ * @param {string} q  The search string
+ * @param {string} format  set the format of the output. json or xml (default: json)
+ * @methodhttp GET
+ */
+exports.search = function(args, opts) {
+	var url = 'https://api.duckduckgo.com/';
+
+    args = args || {};
+    if (typeof args == 'string')
+        args = {q: args};
+    
+    if ( ! args.q)
+        throw new Error("q is a required parameter");
+    
+    if ( ! args.format)
+        args.format = "json";
+
+	return get({url:url,params:args, format: args.format}, opts);
+};
