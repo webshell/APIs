@@ -29,7 +29,7 @@ exports.auth = function() { return auth({provider:provider}) };
  * @methodhttp GET
  */
 exports.listAccounts = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts';
 	args = args || {};
 	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
 	url = url_replace(url, args, 'pageToken', 'str');
@@ -54,7 +54,7 @@ exports.listAccounts = function(args, opts) {
  * @methodhttp GET
  */
 exports.getAccount = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'tree');
@@ -80,7 +80,7 @@ exports.getAccount = function(args, opts) {
  * @methodhttp GET
  */
 exports.listAdClients = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
@@ -109,7 +109,7 @@ exports.listAdClients = function(args, opts) {
  * @methodhttp GET
  */
 exports.listAdUnits = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/adunits';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/adunits';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'adClientId', 'str', true);
@@ -138,7 +138,7 @@ exports.listAdUnits = function(args, opts) {
  * @methodhttp GET
  */
 exports.getAdUnit = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'adClientId', 'str', true);
@@ -152,11 +152,10 @@ exports.getAdUnit = function(args, opts) {
 };
 
 /** 
- * List all custom channels connected to the specified ad unit, under the specified ad client, under the specified account.               
+ * List all custom channels in the specified ad client for the specified account.               
  * @category Accounts
  * @param {string} [accountId]  Account on which to report.
  * @param {string} [adClientId]  Ad client for which to list custom channels.
- * @param {string} [adUnitId]  Ad unit to retrieve.
  * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
  * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
  * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
@@ -167,37 +166,7 @@ exports.getAdUnit = function(args, opts) {
  * @methodhttp GET
  */
 exports.listAdUnitCustomChannels = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/customchannels';
-	args = args || {};
-	url = url_replace(url, args, 'accountId', 'str', true);
-	url = url_replace(url, args, 'adClientId', 'str', true);
-	url = url_replace(url, args, 'adUnitId', 'str', true);
-	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
-	url = url_replace(url, args, 'pageToken', 'str');
-	url = url_replace(url, args, 'callback', 'str');
-	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
-	url = url_replace(url, args, 'quotaUser', 'str');
-	url = url_replace(url, args, 'userIp', 'str');
-	return http({url:url, params:args, provider:provider}, opts);
-};
-
-/** 
- * The custom channels belonging to the specified ad client under the specified account.               
- * @category Accounts
- * @param {string} [accountId]  Account on which to report.
- * @param {string} [adClientId]  Ad client which contains the custom channel.
- * @param {integer}  maxResults   The maximum number of ad units to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
- * @param {string}  pageToken   A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Default returns the first page of results.
- * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
- * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
- * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
- * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
- * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
- * @methodhttp GET
- */
-exports.listCustomChannels = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/customchannels';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/customchannels';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'adClientId', 'str', true);
@@ -212,7 +181,7 @@ exports.listCustomChannels = function(args, opts) {
 };
 
 /** 
- * Get the specified custom channel belonging to the specified ad client under the specified account.               
+ * et the specified custom channel from the specified ad client for the specified account.               
  * @category Accounts
  * @param {string} [accountId]  Account on which to report.
  * @param {string} [adClientId]  Ad client which contains the custom channel.
@@ -225,7 +194,7 @@ exports.listCustomChannels = function(args, opts) {
  * @methodhttp GET
  */
 exports.getCustomChannel = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'adClientId', 'str', true);
@@ -239,7 +208,7 @@ exports.getCustomChannel = function(args, opts) {
 };
 
 /** 
- * List all ad units in the specified custom channel, under the specified ad client, under the specified account.               
+ * List all ad units in the specified custom channel.               
  * @category Accounts
  * @param {string} [accountId]  Account on which to report.
  * @param {string} [adClientId]  Ad client which contains the custom channel.
@@ -255,7 +224,7 @@ exports.getCustomChannel = function(args, opts) {
  * @methodhttp GET
  */
 exports.listCustomAdUnits = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}/adunits';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'adClientId', 'str', true);
@@ -286,7 +255,7 @@ exports.listCustomAdUnits = function(args, opts) {
  * @methodhttp GET
  */
 exports.listUrlChannels = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/adclients/{adClientId}/urlchannels';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/adclients/{adClientId}/urlchannels';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'adClientId', 'str', true);
@@ -322,7 +291,7 @@ exports.listUrlChannels = function(args, opts) {
  * @methodhttp GET
  */
 exports.generateReports = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/accounts/{accountId}/reports';
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/reports';
 	args = args || {};
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'startDate', 'str', true);
@@ -344,6 +313,118 @@ exports.generateReports = function(args, opts) {
 };
 
 /** 
+ * List all saved reports in the specified AdSense account               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string}  locale   Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+ * @param {integer}  startIndex   Index of the first row of report data to return. The minumum value is 0 (zero), the maximum value is 5000 (5 thousand). If startIndex is either unset or zero, the API will return as many rows as specified by the value of maxResults. If maxResults is not set the API will return as many rows as possible, up to 50,000. If startIndex is set to a non-zero value, the sum of startIndex and maxResults cannot be greater than 5000, or an error will be returned: paging past row 5000 is unsupported.
+ * @param {integer}  maxResults   The maximum number of rows of report data to return. The minumum value is 0 (zero), the maximum value is 50000 (50 thousand).
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listSavedReports = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/reports/saved';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'locale', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'maxResults', 'int', false, "50000");
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Generate an AdSense report based on the saved report ID sent in the query parameters               
+ * @category Accounts
+ * @param {string} [accountId]  Account on which to report.
+ * @param {string} [savedReportId]  The saved report to retrieve.
+ * @param {string}  locale   Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
+ * @param {integer}  startIndex   Index of the first row of report data to return. The minumum value is 0 (zero), the maximum value is 5000 (5 thousand). If startIndex is either unset or zero, the API will return as many rows as specified by the value of maxResults. If maxResults is not set the API will return as many rows as possible, up to 50,000. If startIndex is set to a non-zero value, the sum of startIndex and maxResults cannot be greater than 5000, or an error will be returned: paging past row 5000 is unsupported.
+ * @param {integer}  maxResults   The maximum number of rows of report data to return. The minumum value is 0 (zero), the maximum value is 50000 (50 thousand).
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.generateReportsById = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/reports/{savedReportId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'savedReportId', 'str', true);
+	url = url_replace(url, args, 'locale', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'maxResults', 'int', false, "50000");
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List all saved ad styles in the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account for which to list saved ad styles.
+ * @param {integer}  maxResults   The maximum number of ad clients to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
+ * @param {string}  pageToken   A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of nextPageToken from the previous response. Default returns the first page of data.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listSavedAdStyles = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/savedadstyles';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
+	url = url_replace(url, args, 'pageToken', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List a specific saved ad style for the specified account.               
+ * @category Accounts
+ * @param {string} [accountId]  Account for which to list saved ad styles.
+ * @param {string} [savedAdStyleId]  Saved ad style to retrieve.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.getSavedAdStyles = function(args, opts) {
+	var url = 'https://www.googleapis.com/adsense/v1.2/accounts/{accountId}/savedadstyles/{savedAdStyleId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'savedAdStyleId', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
  * List all ad clients in this AdSense account.			
  * @category Ad Clients
  * @param {integer}  maxResults   The maximum number of ad clients to include in the response, used for paging. The minimum value is 0 (zero) and the maximum value is 10000 (10 thousand). Default is 10000 (10 thousand).
@@ -356,7 +437,7 @@ exports.generateReports = function(args, opts) {
  * @methodhttp GET
  */
 exports.listAdClients = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients';
 	args = args || {};
 	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
 	url = url_replace(url, args, 'pageToken', 'str');
@@ -383,7 +464,7 @@ exports.listAdClients = function(args, opts) {
  * @methodhttp GET
  */
 exports.listAdUnits = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/adunits';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/adunits';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'includeInactive', 'null', false, "true");
@@ -410,7 +491,7 @@ exports.listAdUnits = function(args, opts) {
  * @methodhttp GET
  */
 exports.getAdUnit = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/adunits/{adUnitId}';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/adunits/{adUnitId}';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'adUnitId', 'str', true);
@@ -437,7 +518,7 @@ exports.getAdUnit = function(args, opts) {
  * @methodhttp GET
  */
 exports.listAdUnitCustomChannels = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/adunits/{adUnitId}/customchannels';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/adunits/{adUnitId}/customchannels';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'adUnitId', 'str', true);
@@ -465,7 +546,7 @@ exports.listAdUnitCustomChannels = function(args, opts) {
  * @methodhttp GET
  */
 exports.listCustomChannels = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/customchannels';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/customchannels';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
@@ -491,7 +572,7 @@ exports.listCustomChannels = function(args, opts) {
  * @methodhttp GET
  */
 exports.getCustomChannel = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/customchannels/{customChannelId}';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/customchannels/{customChannelId}';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'customChannelId', 'str', true);
@@ -519,7 +600,7 @@ exports.getCustomChannel = function(args, opts) {
  * @methodhttp GET
  */
 exports.listCustomChannelAdUnits = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/customchannels/{customChannelId}/adunits';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/customchannels/{customChannelId}/adunits';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'customChannelId', 'str', true);
@@ -548,7 +629,7 @@ exports.listCustomChannelAdUnits = function(args, opts) {
  * @methodhttp GET
  */
 exports.listUrlChannels = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/adclients/{adClientId}/urlchannels';
+	var url = 'https://www.googleapis.com/adsense/v1.2/adclients/{adClientId}/urlchannels';
 	args = args || {};
 	url = url_replace(url, args, 'adClientId', 'str', true);
 	url = url_replace(url, args, 'maxResults', 'int', false, "10000");
@@ -583,7 +664,7 @@ exports.listUrlChannels = function(args, opts) {
  * @methodhttp GET
  */
 exports.generateReports = function(args, opts) {
-	var url = 'https://www.googleapis.com/adsense/v1.1/reports';
+	var url = 'https://www.googleapis.com/adsense/v1.2/reports';
 	args = args || {};
 	url = url_replace(url, args, 'startDate', 'str', true);
 	url = url_replace(url, args, 'endDate', 'str', true);
