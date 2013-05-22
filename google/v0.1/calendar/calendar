@@ -1,10 +1,10 @@
 function url_replace(url, args, param, type, required, def) {
-	if (args[param] === undefined && required && def !== undefined)
-		args[param] = def;
 	if (args[param] === undefined && required && def === undefined)
 		throw new Error(param + ' is a required parameter');
 	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
 		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
 	if (url.indexOf('{' + param + '}') !== -1) {
 		var rgx = new RegExp('\\{' + param + '\\}', 'g');
 		url = url.replace(rgx, args[param]);
@@ -36,7 +36,13 @@ exports.listCalendarAccessControlRules = function(args, opts) {
  * @category ACL Resource
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string} [role]  The role assigned to the scope. Possible values are:"none" - Provides no access."freeBusyReader" - Provides read access to free/busy information."reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden."writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible."owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+ * @param {string} [scope.type]  The type of the scope. Possible values are:"default" - The public scope. This is the default value."user" - Limits the scope to a single user."group" - Limits the scope to a group."domain" - Limits the scope to a domain.Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.
+ * @param {string}  scope.value   The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type "default".
+ * @param {string}  kind   Type of the resource ("calendar#aclRule").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the ACL rule.
+ * @param {string}  id   Identifier of the ACL rule.
  * @methodhttp POST
  */
 exports.createCalendarAccessControlRule = function(args, opts) {
@@ -44,7 +50,13 @@ exports.createCalendarAccessControlRule = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'role', 'str', true);
+	url = url_replace(url, args, 'scope.type', 'str', true);
+	url = url_replace(url, args, 'scope.value', 'str');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'id', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
 
@@ -71,7 +83,13 @@ exports.getCalendarAccessControlRule = function(args, opts) {
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string} [ruleId]  ACL rule identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string}  role   The role assigned to the scope. Possible values are:"none" - Provides no access."freeBusyReader" - Provides read access to free/busy information."reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden."writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible."owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+ * @param {string}  scope.type   The type of the scope. Possible values are:"default" - The public scope. This is the default value."user" - Limits the scope to a single user."group" - Limits the scope to a group."domain" - Limits the scope to a domain.Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.
+ * @param {string}  scope.value   The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type "default".
+ * @param {string}  kind   Type of the resource ("calendar#aclRule").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the ACL rule.
+ * @param {string}  id   Identifier of the ACL rule.
  * @methodhttp PUT
  */
 exports.updateCalendarAccessControlRule = function(args, opts) {
@@ -80,8 +98,45 @@ exports.updateCalendarAccessControlRule = function(args, opts) {
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'ruleId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'role', 'str');
+	url = url_replace(url, args, 'scope.type', 'str');
+	url = url_replace(url, args, 'scope.value', 'str');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'id', 'str');
 	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates an access control rule. This method supports patch semantics.			
+ * @category ACL Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string} [ruleId]  ACL rule identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  role   The role assigned to the scope. Possible values are:"none" - Provides no access."freeBusyReader" - Provides read access to free/busy information."reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden."writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible."owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+ * @param {string}  scope.type   The type of the scope. Possible values are:"default" - The public scope. This is the default value."user" - Limits the scope to a single user."group" - Limits the scope to a group."domain" - Limits the scope to a domain.Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.
+ * @param {string}  scope.value   The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type "default".
+ * @param {string}  kind   Type of the resource ("calendar#aclRule").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the ACL rule.
+ * @param {string}  id   Identifier of the ACL rule.
+ * @methodhttp PATCH
+ */
+exports.patchCalendarAccessControlRule = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'ruleId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'role', 'str');
+	url = url_replace(url, args, 'scope.type', 'str');
+	url = url_replace(url, args, 'scope.value', 'str');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	return http.patch({url:url, body:args, provider:provider}, opts);
 };
 
 /** 
@@ -125,7 +180,23 @@ exports.calendarList = function(args, opts) {
  * @category CalendarList Resource
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {boolean}  colorRgbFormat   Whether to use the 'foregroundColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'colorId' field will be set to the best matching option automatically. Optional. The default is False.
+ * @param {string}  kind   Type of the resource ("calendar#calendarListEntry").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string} [id]  Identifier of the calendar.
+ * @param {string}  summary   Title of the calendar. Read-only.
+ * @param {string}  description   Description of the calendar. Optional. Read-only.
+ * @param {string}  location   Geographic location of the calendar as free-form text. Optional. Read-only.
+ * @param {string}  timeZone   The time zone of the calendar. Optional. Read-only.
+ * @param {string}  summaryOverride   The summary that the authenticated user has set for this calendar. Optional.
+ * @param {string}  colorId   The color of the calendar. This is an ID referring to an entry in the "calendar" section of the colors definition (see the "colors" endpoint). Optional.
+ * @param {string}  backgroundColor   The main color of the calendar in the format '#0088aa'. This property supersedes the index-based colorId property. Optional.
+ * @param {string}  foregroundColor   The foreground color of the calendar in the format '#ffffff'. This property supersedes the index-based colorId property. Optional.
+ * @param {boolean}  hidden   Whether the calendar has been hidden from the list. Optional. The default is False.
+ * @param {boolean}  selected   Whether the calendar content shows up in the calendar UI. Optional. The default is False.
+ * @param {string}  accessRole   The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:"freeBusyReader" - Provides read access to free/busy information."reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden."writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible."owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+ * @param {string} [defaultReminders[].method]  The method used by this reminder. Possible values are:"email" - Reminders are sent via email."sms" - Reminders are sent via SMS."popup" - Reminders are sent via a UI popup.
+ * @param {interger} [defaultReminders[].minutes]  Number of minutes before the start of the event when the reminder should trigger.
  * @methodhttp POST
  */
 exports.addCalendarEntry = function(args, opts) {
@@ -133,7 +204,23 @@ exports.addCalendarEntry = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'fields', 'str');
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'colorRgbFormat');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
+	url = url_replace(url, args, 'summaryOverride', 'str');
+	url = url_replace(url, args, 'colorId', 'str');
+	url = url_replace(url, args, 'backgroundColor', 'str');
+	url = url_replace(url, args, 'foregroundColor', 'str');
+	url = url_replace(url, args, 'hidden', 'null', false, "false");
+	url = url_replace(url, args, 'selected', 'null', false, "false");
+	url = url_replace(url, args, 'accessRole', 'str');
+	url = url_replace(url, args, 'defaultReminders[].method', 'str', true);
+	url = url_replace(url, args, 'defaultReminders[].minutes', 'null', true);
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
 
@@ -156,17 +243,98 @@ exports.getCalendarEntry = function(args, opts) {
  * Updates an entry on the user's calendar list.			
  * @category CalendarList Resource
  * @param {string} [calendarId]  Calendar identifier.
+ * @param {boolean}  colorRgbFormat   Whether to use the 'foregroundColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'colorId' field will be set to the best matching option automatically. Optional. The default is False.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string}  kind   Type of the resource ("calendar#calendarListEntry").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the calendar.
+ * @param {string}  summary   Title of the calendar. Read-only.
+ * @param {string}  description   Description of the calendar. Optional. Read-only.
+ * @param {string}  location   Geographic location of the calendar as free-form text. Optional. Read-only.
+ * @param {string}  timeZone   The time zone of the calendar. Optional. Read-only.
+ * @param {string}  summaryOverride   The summary that the authenticated user has set for this calendar. Optional.
+ * @param {string}  colorId   The color of the calendar. This is an ID referring to an entry in the "calendar" section of the colors definition (see the "colors" endpoint). Optional.
+ * @param {string}  backgroundColor   The main color of the calendar in the format '#0088aa'. This property supersedes the index-based colorId property. Optional.
+ * @param {string}  foregroundColor   The foreground color of the calendar in the format '#ffffff'. This property supersedes the index-based colorId property. Optional.
+ * @param {boolean}  hidden   Whether the calendar has been hidden from the list. Optional. The default is False.
+ * @param {boolean}  selected   Whether the calendar content shows up in the calendar UI. Optional. The default is False.
+ * @param {string}  accessRole   The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:"freeBusyReader" - Provides read access to free/busy information."reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden."writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible."owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+ * @param {string} [defaultReminders[].method]  The method used by this reminder. Possible values are:"email" - Reminders are sent via email."sms" - Reminders are sent via SMS."popup" - Reminders are sent via a UI popup.
+ * @param {interger} [defaultReminders[].minutes]  Number of minutes before the start of the event when the reminder should trigger.
  * @methodhttp PUT
  */
 exports.updateCalendarEntry = function(args, opts) {
 	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}';
 	args = args || {};
 	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'colorRgbFormat');
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
+	url = url_replace(url, args, 'summaryOverride', 'str');
+	url = url_replace(url, args, 'colorId', 'str');
+	url = url_replace(url, args, 'backgroundColor', 'str');
+	url = url_replace(url, args, 'foregroundColor', 'str');
+	url = url_replace(url, args, 'hidden', 'null', false, "false");
+	url = url_replace(url, args, 'selected', 'null', false, "false");
+	url = url_replace(url, args, 'accessRole', 'str');
+	url = url_replace(url, args, 'defaultReminders[].method', 'str', true);
+	url = url_replace(url, args, 'defaultReminders[].minutes', 'null', true);
 	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates an entry on the user's calendar list. This method supports patch semantics.			
+ * @category CalendarList Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {boolean}  colorRgbFormat   Whether to use the 'foregroundColor' and 'backgroundColor' fields to write the calendar colors (RGB). If this feature is used, the index-based 'colorId' field will be set to the best matching option automatically. Optional. The default is False.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  kind   Type of the resource ("calendar#calendarListEntry").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the calendar.
+ * @param {string}  summary   Title of the calendar. Read-only.
+ * @param {string}  description   Description of the calendar. Optional. Read-only.
+ * @param {string}  location   Geographic location of the calendar as free-form text. Optional. Read-only.
+ * @param {string}  timeZone   The time zone of the calendar. Optional. Read-only.
+ * @param {string}  summaryOverride   The summary that the authenticated user has set for this calendar. Optional.
+ * @param {string}  colorId   The color of the calendar. This is an ID referring to an entry in the "calendar" section of the colors definition (see the "colors" endpoint). Optional.
+ * @param {string}  backgroundColor   The main color of the calendar in the format '#0088aa'. This property supersedes the index-based colorId property. Optional.
+ * @param {string}  foregroundColor   The foreground color of the calendar in the format '#ffffff'. This property supersedes the index-based colorId property. Optional.
+ * @param {boolean}  hidden   Whether the calendar has been hidden from the list. Optional. The default is False.
+ * @param {boolean}  selected   Whether the calendar content shows up in the calendar UI. Optional. The default is False.
+ * @param {string}  accessRole   The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:"freeBusyReader" - Provides read access to free/busy information."reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden."writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible."owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+ * @param {string}  defaultReminders[].method   The method used by this reminder. Possible values are:"email" - Reminders are sent via email."sms" - Reminders are sent via SMS."popup" - Reminders are sent via a UI popup.
+ * @param {interger}  defaultReminders[].minutes   Number of minutes before the start of the event when the reminder should trigger.
+ * @methodhttp PATCH
+ */
+exports.patchCalendarEntry = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'colorRgbFormat');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
+	url = url_replace(url, args, 'summaryOverride', 'str');
+	url = url_replace(url, args, 'colorId', 'str');
+	url = url_replace(url, args, 'backgroundColor', 'str');
+	url = url_replace(url, args, 'foregroundColor', 'str');
+	url = url_replace(url, args, 'hidden', 'null', false, "false");
+	url = url_replace(url, args, 'selected', 'null', false, "false");
+	url = url_replace(url, args, 'accessRole', 'str');
+	url = url_replace(url, args, 'defaultReminders[].method', 'str');
+	url = url_replace(url, args, 'defaultReminders[].minutes');
+	return http.patch({url:url, body:args, provider:provider}, opts);
 };
 
 /** 
@@ -186,14 +354,26 @@ exports.deleteCalendarEntry = function(args, opts) {
  * Creates a secondary calendar.			
  * @category Calendars Resource
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string}  kind   Type of the resource ("calendar#calendar").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the calendar.
+ * @param {string} [summary]  Title of the calendar.
+ * @param {string}  description   Description of the calendar. Optional.
+ * @param {string}  location   Geographic location of the calendar as free-form text. Optional.
+ * @param {string}  timeZone   The time zone of the calendar. Optional.
  * @methodhttp POST
  */
 exports.createSecondaryCalendar = function(args, opts) {
 	var url = 'https://www.googleapis.com/calendar/v3/calendars';
 	args = args || {};
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'summary', 'str', true);
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
 
@@ -217,7 +397,13 @@ exports.getCalendar = function(args, opts) {
  * @category Calendars Resource
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string}  kind   Type of the resource ("calendar#calendar").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the calendar.
+ * @param {string}  summary   Title of the calendar.
+ * @param {string}  description   Description of the calendar. Optional.
+ * @param {string}  location   Geographic location of the calendar as free-form text. Optional.
+ * @param {string}  timeZone   The time zone of the calendar. Optional.
  * @methodhttp PUT
  */
 exports.updateCalendar = function(args, opts) {
@@ -225,8 +411,43 @@ exports.updateCalendar = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
 	return http.put({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Updates metadata for a calendar.			
+ * @category Calendars Resource
+ * @param {string} [calendarId]  Calendar identifier.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  kind   Type of the resource ("calendar#calendar").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the calendar.
+ * @param {string}  summary   Title of the calendar.
+ * @param {string}  description   Description of the calendar. Optional.
+ * @param {string}  location   Geographic location of the calendar as free-form text. Optional.
+ * @param {string}  timeZone   The time zone of the calendar. Optional.
+ * @methodhttp PATCH
+ */
+exports.patchCalendar = function(args, opts) {
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}';
+	args = args || {};
+	url = url_replace(url, args, 'calendarId', 'str', true);
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'timeZone', 'str');
+	return http.patch({url:url, body:args, provider:provider}, opts);
 };
 
 /** 
@@ -260,6 +481,7 @@ exports.clearPrimaryCalendar = function(args, opts) {
  * @category Events Resource
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {boolean}  alwaysIncludeEmail   Whether to always include a value in the "email" field for the organizer, creator and attendees, even if no real email is available (i.e. a generated, non-working value will be provided). The use of this option is discouraged and should only be used by clients which cannot handle the absence of an email address value in the mentioned places. Optional. The default is False.
  * @param {string}  iCalUID   Specifies iCalendar UID (iCalUID) of events to be included in the response.
  * @param {int}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned.
  * @param {int}  maxResults   Maximum number of events returned on one result page.
@@ -275,11 +497,12 @@ exports.clearPrimaryCalendar = function(args, opts) {
  * @param {string}  updatedMin   Lower bound for an event's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
  * @methodhttp GET
  */
-exports.lestEvents = function(args, opts) {
+exports.listEvents = function(args, opts) {
 	var url = 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events';
 	args = args || {};
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'alwaysIncludeEmail', 'null', false, "false");
 	url = url_replace(url, args, 'iCalUID', 'str');
 	url = url_replace(url, args, 'maxAttendees');
 	url = url_replace(url, args, 'maxResults');
@@ -302,7 +525,72 @@ exports.lestEvents = function(args, opts) {
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
  * @param {boolean}  sendNotifications   Whether to send notifications about the creation of the new event.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {integer}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+ * @param {string}  kind   Type of the resource ("calendar#event").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the event.
+ * @param {string}  status   Status of the event. Optional. Possible values are:"confirmed" - The event is confirmed. This is the default status."tentative" - The event is tentatively confirmed."cancelled" - The event is cancelled.
+ * @param {string}  htmlLink   An absolute link to this event in the Google Calendar Web UI. Read-only.
+ * @param {string}  created   Creation time of the event (as a RFC 3339 timestamp). Read-only.
+ * @param {string}  updated   Last modification time of the event (as a RFC 3339 timestamp). Read-only.
+ * @param {string}  summary   Title of the event.
+ * @param {string}  description   Description of the event. Optional.
+ * @param {string}  location   Geographic location of the event as free-form text. Optional.
+ * @param {string}  colorId   The color of the event. This is an ID referring to an entry in the "event" section of the colors definition (see the "colors" endpoint). Optional.
+ * @param {string}  creator.id   The creator's Profile ID, if available.
+ * @param {string}  creator.email   The creator's email address, if available.
+ * @param {string}  creator.displayName   The creator's name, if available.
+ * @param {boolean}  creator.self   Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {string}  organizer.id   The organizer's Profile ID, if available.
+ * @param {string}  organizer.email   The organizer's email address, if available.
+ * @param {string}  organizer.displayName   The organizer's name, if available.
+ * @param {boolean}  organizer.self   Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {string}  start.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  start.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  start.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {string}  end.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  end.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  end.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {xs:array}  recurrence[]   List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.
+ * @param {string}  recurringEventId   For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable.
+ * @param {string}  originalStartTime.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  originalStartTime.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  originalStartTime.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {string}  transparency   Whether the event blocks time on the calendar. Optional. Possible values are:"opaque" - The event blocks time on the calendar. This is the default value."transparent" - The event does not block time on the calendar.
+ * @param {string}  visibility   Visibility of the event. Optional. Possible values are:"default" - Uses the default visibility for events on the calendar. This is the default value."public" - The event is public and event details are visible to all readers of the calendar."private" - The event is private and only event attendees may view event details."confidential" - The event is private. This value is provided for compatibility reasons.
+ * @param {string}  iCalUID   Event ID in the iCalendar format.
+ * @param {integer}  sequence   Sequence number as per iCalendar.
+ * @param {string}  attendees[].id   The attendee's Profile ID, if available.
+ * @param {string} [attendees[].email]  The attendee's email address, if available. This field must be present when adding an attendee.
+ * @param {string}  attendees[].displayName   The attendee's name, if available. Optional.
+ * @param {boolean}  attendees[].organizer   Whether the attendee is the organizer of the event. Read-only. The default is False.
+ * @param {boolean}  attendees[].self   Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {boolean}  attendees[].resource   Whether the attendee is a resource. Read-only. The default is False.
+ * @param {boolean}  attendees[].optional   Whether this is an optional attendee. Optional. The default is False.
+ * @param {string}  attendees[].responseStatus   The attendee's response status. Possible values are:"needsAction" - The attendee has not responded to the invitation."declined" - The attendee has declined the invitation."tentative" - The attendee has tentatively accepted the invitation."accepted" - The attendee has accepted the invitation.
+ * @param {string}  attendees[].comment   The attendee's response comment. Optional.
+ * @param {integer}  attendees[].additionalGuests   Number of additional guests. Optional. The default is 0.
+ * @param {boolean}  attendeesOmitted   Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the 'maxAttendee' query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.
+ * @param {string}  extendedProperties.private.key   The name of the private property and the corresponding value.
+ * @param {string}  extendedProperties.shared.key   The name of the shared property and the corresponding value.
+ * @param {string}  gadget.type   The gadget's type.
+ * @param {string}  gadget.title   The gadget's title.
+ * @param {string}  gadget.link   The gadget's URL.
+ * @param {string}  gadget.iconLink   The gadget's icon URL.
+ * @param {integer}  gadget.width   The gadget's width in pixels. Optional.
+ * @param {integer}  gadget.height   The gadget's height in pixels. Optional.
+ * @param {string}  gadget.display   The gadget's display mode. Optional. Possible values are:"icon" - The gadget displays next to the event's title in the calendar view."chip" - The gadget displays when the event is clicked.
+ * @param {string}  gadget.preferences.key   
+ * @param {boolean}  anyoneCanAddSelf   Whether anyone can invite themselves to the event. Optional. The default is False.
+ * @param {boolean}  guestsCanInviteOthers   Whether attendees other than the organizer can invite others to the event. Optional. The default is True.
+ * @param {boolean}  guestsCanSeeOtherGuests   Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.
+ * @param {boolean}  privateCopy   Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable.
+ * @param {boolean}  reminders.useDefault   Whether the default reminders of the calendar apply to the event.
+ * @param {string} [reminders.overrides[].method]  The method used by this reminder. Possible values are:"email" - Reminders are sent via email."sms" - Reminders are sent via SMS."popup" - Reminders are sent via a UI popup.
+ * @param {integer} [reminders.overrides[].minutes]  Number of minutes before the start of the event when the reminder should trigger.
+ * @param {boolean}  endTimeUnspecified   Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.
+ * @param {boolean}  locked   Whether this is a locked event copy where no changes can be made to the main event fields "summary", "description", "location", "start", "end" or "recurrence". The default is False. Read-Only.
+ * @param {string}  hangoutLink   An absolute link to the Google+ hangout associated with this event. Read-only.
  * @methodhttp POST
  */
 exports.createEvent = function(args, opts) {
@@ -311,7 +599,72 @@ exports.createEvent = function(args, opts) {
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
 	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'maxAttendees', 'int');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'status', 'str');
+	url = url_replace(url, args, 'htmlLink', 'str');
+	url = url_replace(url, args, 'created', 'str');
+	url = url_replace(url, args, 'updated', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'colorId', 'str');
+	url = url_replace(url, args, 'creator.id', 'str');
+	url = url_replace(url, args, 'creator.email', 'str');
+	url = url_replace(url, args, 'creator.displayName', 'str');
+	url = url_replace(url, args, 'creator.self', 'null', false, "false");
+	url = url_replace(url, args, 'organizer.id', 'str');
+	url = url_replace(url, args, 'organizer.email', 'str');
+	url = url_replace(url, args, 'organizer.displayName', 'str');
+	url = url_replace(url, args, 'organizer.self', 'null', false, "false");
+	url = url_replace(url, args, 'start.date', 'str');
+	url = url_replace(url, args, 'start.dateTime', 'str');
+	url = url_replace(url, args, 'start.timeZone', 'str');
+	url = url_replace(url, args, 'end.date', 'str');
+	url = url_replace(url, args, 'end.dateTime', 'str');
+	url = url_replace(url, args, 'end.timeZone', 'str');
+	url = url_replace(url, args, 'recurrence[]');
+	url = url_replace(url, args, 'recurringEventId', 'str');
+	url = url_replace(url, args, 'originalStartTime.date', 'str');
+	url = url_replace(url, args, 'originalStartTime.dateTime', 'str');
+	url = url_replace(url, args, 'originalStartTime.timeZone', 'str');
+	url = url_replace(url, args, 'transparency', 'str');
+	url = url_replace(url, args, 'visibility', 'str');
+	url = url_replace(url, args, 'iCalUID', 'str');
+	url = url_replace(url, args, 'sequence', 'int');
+	url = url_replace(url, args, 'attendees[].id', 'str');
+	url = url_replace(url, args, 'attendees[].email', 'str', true);
+	url = url_replace(url, args, 'attendees[].displayName', 'str');
+	url = url_replace(url, args, 'attendees[].organizer', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].self', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].resource', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].optional', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].responseStatus', 'str');
+	url = url_replace(url, args, 'attendees[].comment', 'str');
+	url = url_replace(url, args, 'attendees[].additionalGuests', 'int', false, "0");
+	url = url_replace(url, args, 'attendeesOmitted', 'null', false, "false");
+	url = url_replace(url, args, 'extendedProperties.private.key', 'str');
+	url = url_replace(url, args, 'extendedProperties.shared.key', 'str');
+	url = url_replace(url, args, 'gadget.type', 'str');
+	url = url_replace(url, args, 'gadget.title', 'str');
+	url = url_replace(url, args, 'gadget.link', 'str');
+	url = url_replace(url, args, 'gadget.iconLink', 'str');
+	url = url_replace(url, args, 'gadget.width', 'int');
+	url = url_replace(url, args, 'gadget.height', 'int');
+	url = url_replace(url, args, 'gadget.display', 'str');
+	url = url_replace(url, args, 'gadget.preferences.key', 'str');
+	url = url_replace(url, args, 'anyoneCanAddSelf', 'null', false, "false");
+	url = url_replace(url, args, 'guestsCanInviteOthers', 'null', false, "true");
+	url = url_replace(url, args, 'guestsCanSeeOtherGuests', 'null', false, "true");
+	url = url_replace(url, args, 'privateCopy');
+	url = url_replace(url, args, 'reminders.useDefault');
+	url = url_replace(url, args, 'reminders.overrides[].method', 'str', true);
+	url = url_replace(url, args, 'reminders.overrides[].minutes', 'int', true);
+	url = url_replace(url, args, 'endTimeUnspecified', 'null', false, "false");
+	url = url_replace(url, args, 'locked', 'null', false, "false");
+	url = url_replace(url, args, 'hangoutLink', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
 
@@ -342,8 +695,73 @@ exports.getEvent = function(args, opts) {
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string} [eventId]  Event identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {boolean}  sendNotifications   Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.).
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the creation of the new event.
+ * @param {integer}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+ * @param {string}  kind   Type of the resource ("calendar#event").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the event.
+ * @param {string}  status   Status of the event. Optional. Possible values are:"confirmed" - The event is confirmed. This is the default status."tentative" - The event is tentatively confirmed."cancelled" - The event is cancelled.
+ * @param {string}  htmlLink   An absolute link to this event in the Google Calendar Web UI. Read-only.
+ * @param {string}  created   Creation time of the event (as a RFC 3339 timestamp). Read-only.
+ * @param {string}  updated   Last modification time of the event (as a RFC 3339 timestamp). Read-only.
+ * @param {string}  summary   Title of the event.
+ * @param {string}  description   Description of the event. Optional.
+ * @param {string}  location   Geographic location of the event as free-form text. Optional.
+ * @param {string}  colorId   The color of the event. This is an ID referring to an entry in the "event" section of the colors definition (see the "colors" endpoint). Optional.
+ * @param {string}  creator.id   The creator's Profile ID, if available.
+ * @param {string}  creator.email   The creator's email address, if available.
+ * @param {string}  creator.displayName   The creator's name, if available.
+ * @param {boolean}  creator.self   Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {string}  organizer.id   The organizer's Profile ID, if available.
+ * @param {string}  organizer.email   The organizer's email address, if available.
+ * @param {string}  organizer.displayName   The organizer's name, if available.
+ * @param {boolean}  organizer.self   Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {string}  start.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  start.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  start.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {string}  end.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  end.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  end.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {xs:array}  recurrence[]   List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.
+ * @param {string}  recurringEventId   For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable.
+ * @param {string}  originalStartTime.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  originalStartTime.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  originalStartTime.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {string}  transparency   Whether the event blocks time on the calendar. Optional. Possible values are:"opaque" - The event blocks time on the calendar. This is the default value."transparent" - The event does not block time on the calendar.
+ * @param {string}  visibility   Visibility of the event. Optional. Possible values are:"default" - Uses the default visibility for events on the calendar. This is the default value."public" - The event is public and event details are visible to all readers of the calendar."private" - The event is private and only event attendees may view event details."confidential" - The event is private. This value is provided for compatibility reasons.
+ * @param {string}  iCalUID   Event ID in the iCalendar format.
+ * @param {integer}  sequence   Sequence number as per iCalendar.
+ * @param {string}  attendees[].id   The attendee's Profile ID, if available.
+ * @param {string} [attendees[].email]  The attendee's email address, if available. This field must be present when adding an attendee.
+ * @param {string}  attendees[].displayName   The attendee's name, if available. Optional.
+ * @param {boolean}  attendees[].organizer   Whether the attendee is the organizer of the event. Read-only. The default is False.
+ * @param {boolean}  attendees[].self   Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {boolean}  attendees[].resource   Whether the attendee is a resource. Read-only. The default is False.
+ * @param {boolean}  attendees[].optional   Whether this is an optional attendee. Optional. The default is False.
+ * @param {string}  attendees[].responseStatus   The attendee's response status. Possible values are:"needsAction" - The attendee has not responded to the invitation."declined" - The attendee has declined the invitation."tentative" - The attendee has tentatively accepted the invitation."accepted" - The attendee has accepted the invitation.
+ * @param {string}  attendees[].comment   The attendee's response comment. Optional.
+ * @param {integer}  attendees[].additionalGuests   Number of additional guests. Optional. The default is 0.
+ * @param {boolean}  attendeesOmitted   Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the 'maxAttendee' query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.
+ * @param {string}  extendedProperties.private.key   The name of the private property and the corresponding value.
+ * @param {string}  extendedProperties.shared.key   The name of the shared property and the corresponding value.
+ * @param {string}  gadget.type   The gadget's type.
+ * @param {string}  gadget.title   The gadget's title.
+ * @param {string}  gadget.link   The gadget's URL.
+ * @param {string}  gadget.iconLink   The gadget's icon URL.
+ * @param {integer}  gadget.width   The gadget's width in pixels. Optional.
+ * @param {integer}  gadget.height   The gadget's height in pixels. Optional.
+ * @param {string}  gadget.display   The gadget's display mode. Optional. Possible values are:"icon" - The gadget displays next to the event's title in the calendar view."chip" - The gadget displays when the event is clicked.
+ * @param {string}  gadget.preferences.key   
+ * @param {boolean}  anyoneCanAddSelf   Whether anyone can invite themselves to the event. Optional. The default is False.
+ * @param {boolean}  guestsCanInviteOthers   Whether attendees other than the organizer can invite others to the event. Optional. The default is True.
+ * @param {boolean}  guestsCanSeeOtherGuests   Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.
+ * @param {boolean}  privateCopy   Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable.
+ * @param {boolean}  reminders.useDefault   Whether the default reminders of the calendar apply to the event.
+ * @param {string} [reminders.overrides[].method]  The method used by this reminder. Possible values are:"email" - Reminders are sent via email."sms" - Reminders are sent via SMS."popup" - Reminders are sent via a UI popup.
+ * @param {integer} [reminders.overrides[].minutes]  Number of minutes before the start of the event when the reminder should trigger.
+ * @param {boolean}  endTimeUnspecified   Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.
+ * @param {boolean}  locked   Whether this is a locked event copy where no changes can be made to the main event fields "summary", "description", "location", "start", "end" or "recurrence". The default is False. Read-Only.
+ * @param {string}  hangoutLink   An absolute link to the Google+ hangout associated with this event. Read-only.
  * @methodhttp PUT
  */
 exports.updateEvent = function(args, opts) {
@@ -353,7 +771,72 @@ exports.updateEvent = function(args, opts) {
 	url = url_replace(url, args, 'eventId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
 	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'maxAttendees', 'int');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'status', 'str');
+	url = url_replace(url, args, 'htmlLink', 'str');
+	url = url_replace(url, args, 'created', 'str');
+	url = url_replace(url, args, 'updated', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'colorId', 'str');
+	url = url_replace(url, args, 'creator.id', 'str');
+	url = url_replace(url, args, 'creator.email', 'str');
+	url = url_replace(url, args, 'creator.displayName', 'str');
+	url = url_replace(url, args, 'creator.self', 'null', false, "false");
+	url = url_replace(url, args, 'organizer.id', 'str');
+	url = url_replace(url, args, 'organizer.email', 'str');
+	url = url_replace(url, args, 'organizer.displayName', 'str');
+	url = url_replace(url, args, 'organizer.self', 'null', false, "false");
+	url = url_replace(url, args, 'start.date', 'str');
+	url = url_replace(url, args, 'start.dateTime', 'str');
+	url = url_replace(url, args, 'start.timeZone', 'str');
+	url = url_replace(url, args, 'end.date', 'str');
+	url = url_replace(url, args, 'end.dateTime', 'str');
+	url = url_replace(url, args, 'end.timeZone', 'str');
+	url = url_replace(url, args, 'recurrence[]');
+	url = url_replace(url, args, 'recurringEventId', 'str');
+	url = url_replace(url, args, 'originalStartTime.date', 'str');
+	url = url_replace(url, args, 'originalStartTime.dateTime', 'str');
+	url = url_replace(url, args, 'originalStartTime.timeZone', 'str');
+	url = url_replace(url, args, 'transparency', 'str');
+	url = url_replace(url, args, 'visibility', 'str');
+	url = url_replace(url, args, 'iCalUID', 'str');
+	url = url_replace(url, args, 'sequence', 'int');
+	url = url_replace(url, args, 'attendees[].id', 'str');
+	url = url_replace(url, args, 'attendees[].email', 'str', true);
+	url = url_replace(url, args, 'attendees[].displayName', 'str');
+	url = url_replace(url, args, 'attendees[].organizer', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].self', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].resource', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].optional', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].responseStatus', 'str');
+	url = url_replace(url, args, 'attendees[].comment', 'str');
+	url = url_replace(url, args, 'attendees[].additionalGuests', 'int', false, "0");
+	url = url_replace(url, args, 'attendeesOmitted', 'null', false, "false");
+	url = url_replace(url, args, 'extendedProperties.private.key', 'str');
+	url = url_replace(url, args, 'extendedProperties.shared.key', 'str');
+	url = url_replace(url, args, 'gadget.type', 'str');
+	url = url_replace(url, args, 'gadget.title', 'str');
+	url = url_replace(url, args, 'gadget.link', 'str');
+	url = url_replace(url, args, 'gadget.iconLink', 'str');
+	url = url_replace(url, args, 'gadget.width', 'int');
+	url = url_replace(url, args, 'gadget.height', 'int');
+	url = url_replace(url, args, 'gadget.display', 'str');
+	url = url_replace(url, args, 'gadget.preferences.key', 'str');
+	url = url_replace(url, args, 'anyoneCanAddSelf', 'null', false, "false");
+	url = url_replace(url, args, 'guestsCanInviteOthers', 'null', false, "true");
+	url = url_replace(url, args, 'guestsCanSeeOtherGuests', 'null', false, "true");
+	url = url_replace(url, args, 'privateCopy');
+	url = url_replace(url, args, 'reminders.useDefault');
+	url = url_replace(url, args, 'reminders.overrides[].method', 'str', true);
+	url = url_replace(url, args, 'reminders.overrides[].minutes', 'int', true);
+	url = url_replace(url, args, 'endTimeUnspecified', 'null', false, "false");
+	url = url_replace(url, args, 'locked', 'null', false, "false");
+	url = url_replace(url, args, 'hangoutLink', 'str');
 	return http.put({url:url, body:args, provider:provider}, opts);
 };
 
@@ -408,7 +891,74 @@ exports.getInstances = function(args, opts) {
  * @category Events Resource
  * @param {string} [calendarId]  Calendar identifier.
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {boolean}  sendNotifications   Whether to send notifications about the creation of the new event.
+ * @param {integer}  maxAttendees   The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+ * @param {string}  kind   Type of the resource ("calendar#event").
+ * @param {string}  etag   ETag of the resource.
+ * @param {string}  id   Identifier of the event.
+ * @param {string}  status   Status of the event. Optional. Possible values are:"confirmed" - The event is confirmed. This is the default status."tentative" - The event is tentatively confirmed."cancelled" - The event is cancelled.
+ * @param {string}  htmlLink   An absolute link to this event in the Google Calendar Web UI. Read-only.
+ * @param {string}  created   Creation time of the event (as a RFC 3339 timestamp). Read-only.
+ * @param {string}  updated   Last modification time of the event (as a RFC 3339 timestamp). Read-only.
+ * @param {string}  summary   Title of the event.
+ * @param {string}  description   Description of the event. Optional.
+ * @param {string}  location   Geographic location of the event as free-form text. Optional.
+ * @param {string}  colorId   The color of the event. This is an ID referring to an entry in the "event" section of the colors definition (see the "colors" endpoint). Optional.
+ * @param {string}  creator.id   The creator's Profile ID, if available.
+ * @param {string}  creator.email   The creator's email address, if available.
+ * @param {string}  creator.displayName   The creator's name, if available.
+ * @param {boolean}  creator.self   Whether the creator corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {string}  organizer.id   The organizer's Profile ID, if available.
+ * @param {string}  organizer.email   The organizer's email address, if available.
+ * @param {string}  organizer.displayName   The organizer's name, if available.
+ * @param {boolean}  organizer.self   Whether the organizer corresponds to the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {string}  start.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  start.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  start.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {string}  end.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  end.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  end.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {xs:array}  recurrence[]   List of RRULE, EXRULE, RDATE and EXDATE lines for a recurring event. This field is omitted for single events or instances of recurring events.
+ * @param {string}  recurringEventId   For an instance of a recurring event, this is the event ID of the recurring event itself. Immutable.
+ * @param {string}  originalStartTime.date   The date, in the format "yyyy-mm-dd", if this is an all-day event.
+ * @param {string}  originalStartTime.dateTime   The time, as a combined date-time value (formatted according to RFC 3339). A time zone offset is required unless a time zone is explicitly specified in 'timeZone'.
+ * @param {string}  originalStartTime.timeZone   The name of the time zone in which the time is specified (e.g. "Europe/Zurich"). Optional. The default is the time zone of the calendar.
+ * @param {string}  transparency   Whether the event blocks time on the calendar. Optional. Possible values are:"opaque" - The event blocks time on the calendar. This is the default value."transparent" - The event does not block time on the calendar.
+ * @param {string}  visibility   Visibility of the event. Optional. Possible values are:"default" - Uses the default visibility for events on the calendar. This is the default value."public" - The event is public and event details are visible to all readers of the calendar."private" - The event is private and only event attendees may view event details."confidential" - The event is private. This value is provided for compatibility reasons.
+ * @param {string} [iCalUID]  Event ID in the iCalendar format.
+ * @param {integer}  sequence   Sequence number as per iCalendar.
+ * @param {string}  attendees[].id   The attendee's Profile ID, if available.
+ * @param {string} [attendees[].email]  The attendee's email address, if available. This field must be present when adding an attendee.
+ * @param {string}  attendees[].displayName   The attendee's name, if available. Optional.
+ * @param {boolean}  attendees[].organizer   Whether the attendee is the organizer of the event. Read-only. The default is False.
+ * @param {boolean}  attendees[].self   Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
+ * @param {boolean}  attendees[].resource   Whether the attendee is a resource. Read-only. The default is False.
+ * @param {boolean}  attendees[].optional   Whether this is an optional attendee. Optional. The default is False.
+ * @param {string}  attendees[].responseStatus   The attendee's response status. Possible values are:"needsAction" - The attendee has not responded to the invitation."declined" - The attendee has declined the invitation."tentative" - The attendee has tentatively accepted the invitation."accepted" - The attendee has accepted the invitation.
+ * @param {string}  attendees[].comment   The attendee's response comment. Optional.
+ * @param {integer}  attendees[].additionalGuests   Number of additional guests. Optional. The default is 0.
+ * @param {boolean}  attendeesOmitted   Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the 'maxAttendee' query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.
+ * @param {string}  extendedProperties.private.key   The name of the private property and the corresponding value.
+ * @param {string}  extendedProperties.shared.key   The name of the shared property and the corresponding value.
+ * @param {string}  gadget.type   The gadget's type.
+ * @param {string}  gadget.title   The gadget's title.
+ * @param {string}  gadget.link   The gadget's URL.
+ * @param {string}  gadget.iconLink   The gadget's icon URL.
+ * @param {integer}  gadget.width   The gadget's width in pixels. Optional.
+ * @param {integer}  gadget.height   The gadget's height in pixels. Optional.
+ * @param {string}  gadget.display   The gadget's display mode. Optional. Possible values are:"icon" - The gadget displays next to the event's title in the calendar view."chip" - The gadget displays when the event is clicked.
+ * @param {string}  gadget.preferences.key   
+ * @param {boolean}  anyoneCanAddSelf   Whether anyone can invite themselves to the event. Optional. The default is False.
+ * @param {boolean}  guestsCanInviteOthers   Whether attendees other than the organizer can invite others to the event. Optional. The default is True.
+ * @param {boolean}  guestsCanSeeOtherGuests   Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.
+ * @param {boolean}  privateCopy   Whether this is a private event copy where changes are not shared with other copies on other calendars. Optional. Immutable.
+ * @param {boolean}  reminders.useDefault   Whether the default reminders of the calendar apply to the event.
+ * @param {string} [reminders.overrides[].method]  The method used by this reminder. Possible values are:"email" - Reminders are sent via email."sms" - Reminders are sent via SMS."popup" - Reminders are sent via a UI popup.
+ * @param {integer} [reminders.overrides[].minutes]  Number of minutes before the start of the event when the reminder should trigger.
+ * @param {boolean}  endTimeUnspecified   Whether the end time is actually unspecified. An end time is still provided for compatibility reasons, even if this attribute is set to True. The default is False.
+ * @param {boolean}  locked   Whether this is a locked event copy where no changes can be made to the main event fields "summary", "description", "location", "start", "end" or "recurrence". The default is False. Read-Only.
+ * @param {string}  hangoutLink   An absolute link to the Google+ hangout associated with this event. Read-only.
  * @methodhttp POST
  */
 exports.importEvent = function(args, opts) {
@@ -416,7 +966,74 @@ exports.importEvent = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
+	url = url_replace(url, args, 'maxAttendees', 'int');
+	url = url_replace(url, args, 'kind', 'str');
+	url = url_replace(url, args, 'etag', 'str');
+	url = url_replace(url, args, 'id', 'str');
+	url = url_replace(url, args, 'status', 'str');
+	url = url_replace(url, args, 'htmlLink', 'str');
+	url = url_replace(url, args, 'created', 'str');
+	url = url_replace(url, args, 'updated', 'str');
+	url = url_replace(url, args, 'summary', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'location', 'str');
+	url = url_replace(url, args, 'colorId', 'str');
+	url = url_replace(url, args, 'creator.id', 'str');
+	url = url_replace(url, args, 'creator.email', 'str');
+	url = url_replace(url, args, 'creator.displayName', 'str');
+	url = url_replace(url, args, 'creator.self', 'null', false, "false");
+	url = url_replace(url, args, 'organizer.id', 'str');
+	url = url_replace(url, args, 'organizer.email', 'str');
+	url = url_replace(url, args, 'organizer.displayName', 'str');
+	url = url_replace(url, args, 'organizer.self', 'null', false, "false");
+	url = url_replace(url, args, 'start.date', 'str');
+	url = url_replace(url, args, 'start.dateTime', 'str');
+	url = url_replace(url, args, 'start.timeZone', 'str');
+	url = url_replace(url, args, 'end.date', 'str');
+	url = url_replace(url, args, 'end.dateTime', 'str');
+	url = url_replace(url, args, 'end.timeZone', 'str');
+	url = url_replace(url, args, 'recurrence[]');
+	url = url_replace(url, args, 'recurringEventId', 'str');
+	url = url_replace(url, args, 'originalStartTime.date', 'str');
+	url = url_replace(url, args, 'originalStartTime.dateTime', 'str');
+	url = url_replace(url, args, 'originalStartTime.timeZone', 'str');
+	url = url_replace(url, args, 'transparency', 'str');
+	url = url_replace(url, args, 'visibility', 'str');
+	url = url_replace(url, args, 'iCalUID', 'str', true);
+	url = url_replace(url, args, 'sequence', 'int');
+	url = url_replace(url, args, 'attendees[].id', 'str');
+	url = url_replace(url, args, 'attendees[].email', 'str', true);
+	url = url_replace(url, args, 'attendees[].displayName', 'str');
+	url = url_replace(url, args, 'attendees[].organizer', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].self', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].resource', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].optional', 'null', false, "false");
+	url = url_replace(url, args, 'attendees[].responseStatus', 'str');
+	url = url_replace(url, args, 'attendees[].comment', 'str');
+	url = url_replace(url, args, 'attendees[].additionalGuests', 'int', false, "0");
+	url = url_replace(url, args, 'attendeesOmitted', 'null', false, "false");
+	url = url_replace(url, args, 'extendedProperties.private.key', 'str');
+	url = url_replace(url, args, 'extendedProperties.shared.key', 'str');
+	url = url_replace(url, args, 'gadget.type', 'str');
+	url = url_replace(url, args, 'gadget.title', 'str');
+	url = url_replace(url, args, 'gadget.link', 'str');
+	url = url_replace(url, args, 'gadget.iconLink', 'str');
+	url = url_replace(url, args, 'gadget.width', 'int');
+	url = url_replace(url, args, 'gadget.height', 'int');
+	url = url_replace(url, args, 'gadget.display', 'str');
+	url = url_replace(url, args, 'gadget.preferences.key', 'str');
+	url = url_replace(url, args, 'anyoneCanAddSelf', 'null', false, "false");
+	url = url_replace(url, args, 'guestsCanInviteOthers', 'null', false, "true");
+	url = url_replace(url, args, 'guestsCanSeeOtherGuests', 'null', false, "true");
+	url = url_replace(url, args, 'privateCopy');
+	url = url_replace(url, args, 'reminders.useDefault');
+	url = url_replace(url, args, 'reminders.overrides[].method', 'str', true);
+	url = url_replace(url, args, 'reminders.overrides[].minutes', 'int', true);
+	url = url_replace(url, args, 'endTimeUnspecified', 'null', false, "false");
+	url = url_replace(url, args, 'locked', 'null', false, "false");
+	url = url_replace(url, args, 'hangoutLink', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
 
@@ -434,7 +1051,7 @@ exports.quickAddEvent = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'text', 'str', true);
-	url = url_replace(url, args, 'sendNotifications', 'null', false, "fasle");
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
 	url = url_replace(url, args, 'fields', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
@@ -455,7 +1072,7 @@ exports.moveEvent = function(args, opts) {
 	url = url_replace(url, args, 'calendarId', 'str', true);
 	url = url_replace(url, args, 'eventId', 'str', true);
 	url = url_replace(url, args, 'destination', 'str', true);
-	url = url_replace(url, args, 'sendNotifications', 'null', false, "fasle");
+	url = url_replace(url, args, 'sendNotifications', 'null', false, "false");
 	url = url_replace(url, args, 'fields', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
@@ -524,13 +1141,23 @@ exports.getColorDefinitions = function(args, opts) {
  * Returns free/busy information for a set of calendars.			
  * @category Freebusy Resource
  * @param {string}  fields   Selector specifying which fields to include in a partial response.
- * @param {string} [Content-Type]  Specifies Content Type.
+ * @param {string}  timeMin   The start of the interval for the query.
+ * @param {string}  timeMax   The end of the interval for the query.
+ * @param {string}  timeZone   Time zone used in the response. Optional. The default is UTC.
+ * @param {string}  groupExpansionMax   Maximal number of calendar identifiers to be provided for a single group. Optional. An error will be returned for a group with more members than this value.
+ * @param {integer}  calendarExpansionMax   Maximal number of calendars for which FreeBusy information is to be provided. Optional.
+ * @param {string}  items[].id   The identifier of a calendar or a group.
  * @methodhttp POST
  */
 exports.getFreeBusyInformations = function(args, opts) {
 	var url = 'https://www.googleapis.com/calendar/v3/freeBusy';
 	args = args || {};
 	url = url_replace(url, args, 'fields', 'str');
-	url = url_replace(url, args, 'Content-Type', 'str', true, "application/json");
+	url = url_replace(url, args, 'timeMin', 'str');
+	url = url_replace(url, args, 'timeMax', 'str');
+	url = url_replace(url, args, 'timeZone', 'str', false, "UTC");
+	url = url_replace(url, args, 'groupExpansionMax', 'str');
+	url = url_replace(url, args, 'calendarExpansionMax', 'int');
+	url = url_replace(url, args, 'items[].id', 'str');
 	return http.post({url:url, body:args, provider:provider}, opts);
 };
