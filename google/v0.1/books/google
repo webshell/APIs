@@ -1,0 +1,289 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	if (type == 'int' && args[param] !== undefined && (parseFloat(args[param]) != parseInt(args[param], 10) || isNaN(args[param])))
+		throw new Error(param + ' must be an integer');
+	if (url.indexOf('{' + param + '}') !== -1) {
+		var rgx = new RegExp('\\{' + param + '\\}', 'g');
+		url = url.replace(rgx, args[param]);
+		delete args[param];
+	}
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * Retrieves a list of public Bookshelf resources for the specified user.			
+ * @category Bookshelves
+ * @param {string} [userId]  Id of user for whom to retrieve bookshelves. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listUserBookshelves = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves';
+	args = args || {};
+	url = url_replace(url, args, 'userId', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
+
+/** 
+ * Retrieves a specific Bookshelf resource for the specified user.			
+ * @category Bookshelves
+ * @param {string} [userId]  Id of user for whom to retrieve bookshelves. (string)
+ * @param {string} [shelf]  Id of bookshelf to retrieve. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getUserBookshelf = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}';
+	args = args || {};
+	url = url_replace(url, args, 'userId', 'str', true);
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
+
+/** 
+ * Retrieves a list of Bookshelf resources belonging to the authenticated user. Authentication is required.               
+ * @category Bookshelves
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listAuthenticatedUserBookshelves = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves';
+	args = args || {};
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves a specific Bookshelf resource belonging to the authenticated user. Authentication is required.			
+ * @category Bookshelves
+ * @param {string} [shelf]  Id of bookshelf to retrieve. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getAuthenticatedUserBookshelf = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}';
+	args = args || {};
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Adds a volume to a mutable pre-defined or user-defined bookshelf. Authentication is required.               
+ * @category Bookshelves
+ * @param {string} [shelf]  Id of bookshelf to which to add a volume. (string)
+ * @param {string} [volumeId]  Id of volume to add. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @methodhttp POST
+ */
+exports.addVolume = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume';
+	args = args || {};
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'volumeId', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Removes a volume from a mutable pre-defined or user-defined bookshelf. Authentication is required.               
+ * @category Bookshelves
+ * @param {string} [shelf]  Id of bookshelf from which to remove a volume. (string)
+ * @param {string} [volumeId]  Id of volume to remove. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @methodhttp POST
+ */
+exports.removeVolume = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume';
+	args = args || {};
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'volumeId', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Moves a volume within a bookshelf.               
+ * @category Bookshelves
+ * @param {string} [shelf]  Id of bookshelf from which to move a volume. (string)
+ * @param {string} [volumeId]  Id of volume to move. (string)
+ * @param {integer}  volumePosition   Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @methodhttp POST
+ */
+exports.moveVolume = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume';
+	args = args || {};
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'volumeId', 'str', true);
+	url = url_replace(url, args, 'volumePosition', 'int');
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Clears all volumes from a bookshelf. Authentication is required.               
+ * @category Bookshelves
+ * @param {string} [shelf]  Id of bookshelf from which to clear all volumes. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @methodhttp POST
+ */
+exports.clearVolumes = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes';
+	args = args || {};
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves a Volume resource based on ID. Authentication is required.               
+ * @category Volumes
+ * @param {string} [volumeId]  Id of volume to retrieve. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  partner   Identifier of partner for whom to brand results. (string)
+ * @param {string}  projection   Restrict information returned to a set of selected fields. (string)Applicable values:- full: Includes all volume data- lite: Includes a subset of fields in volumeInfo and accessInfo.               
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.getVolume = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/volumes/{volumeId}';
+	args = args || {};
+	url = url_replace(url, args, 'volumeId', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'partner', 'str');
+	url = url_replace(url, args, 'projection', 'str');
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Performs a book search. Authentication is required.               
+ * @category Volumes
+ * @param {string} [q]  Id of volume to retrieve. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {string}  download   Restrict to volumes by download availability. (string)
+ * @param {string}  filter   Filter search results. (string)Applicable values:- ebooks: All Google eBooks.- free-ebooks: Google eBook with full volume text viewability.- full: Public can view entire volume text.- paid-ebooks: Google eBooks with a price.- partial: Public able to see parts of text.               
+ * @param {string}  langRestrict   Restrict results to books with this language code. (string)
+ * @param {string}  libraryRestrict   Restrict search to this user's library. (string)
+ * @param {integer}  maxResults   Maximum number of results to return. (integer, 0-40)
+ * @param {string}  orderBy   Sort search results. (string)Applicable values:- newest: Most recently published.- relevance: Relevance to search terms.               
+ * @param {string}  partner   Identifier of partner for whom to restrict and brand results. (string)
+ * @param {string}  printType   Restrict to books or magazines. (string)Applicable values:- all: All volume content types.- books: Just books.- magazines: Just magazines.               
+ * @param {string}  projection   Restrict information returned to a set of selected fields. (string)Applicable values:- full: Includes all volume data.- lite: Includes a subset of fields in volumeInfo and accessInfo.               
+ * @param {boolean}  showPreorders   Set to true to show books available for preorder. Defaults to false. (boolean)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {integer}  startIndex   Index of the first result to return (starts at 0) (integer, 0+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.searchVolumes = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/volumes';
+	args = args || {};
+	url = url_replace(url, args, 'q', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'download', 'str');
+	url = url_replace(url, args, 'filter', 'str');
+	url = url_replace(url, args, 'langRestrict', 'str');
+	url = url_replace(url, args, 'libraryRestrict', 'str');
+	url = url_replace(url, args, 'maxResults', 'int');
+	url = url_replace(url, args, 'orderBy', 'str');
+	url = url_replace(url, args, 'partner', 'str');
+	url = url_replace(url, args, 'printType', 'str');
+	url = url_replace(url, args, 'projection', 'str');
+	url = url_replace(url, args, 'showPreorders', 'null', false, "false");
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves a list of Volume resources for a given bookshelf. Authentication is required.               
+ * @category Volumes
+ * @param {string} [shelf]  The bookshelf id or name retrieve volumes for. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {integer}  maxResults   Maximum number of results to return (integer, 0+)
+ * @param {string}  projection   Restrict information returned to a set of selected fields. (string)Applicable values:- full: Includes all volume data.- lite: Includes a subset of fields in volumeInfo and accessInfo.               
+ * @param {string} [q]  Full-text search query string in this bookshelf. (string)
+ * @param {boolean}  showPreorders   Set to true to show pre-ordered books. Defaults to false. (boolean)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {integer}  startIndex   Index of the first element to return (starts at 0) (integer, 0+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listAuthenticatedUserBookshelfVolumes = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes';
+	args = args || {};
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'maxResults', 'int');
+	url = url_replace(url, args, 'projection', 'str');
+	url = url_replace(url, args, 'q', 'str', true);
+	url = url_replace(url, args, 'showPreorders', 'null', false, "false");
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Retrieves volumes in a specific bookshelf for the specified user.               
+ * @category Volumes
+ * @param {string} [userId]  Id of user for whom to retrieve bookshelf volumes. (string)
+ * @param {string} [shelf]  Id of bookshelf to retrieve volumes. (string)
+ * @param {string}  country   ISO-3166-1 code to override the IP-based location. (string)
+ * @param {integer}  maxResults   Maximum number of results to return (integer, 0+)
+ * @param {boolean}  showPreorders   Set to true to show pre-ordered books. Defaults to false. (boolean)
+ * @param {string}  source   String to identify the originator of this request. (string)
+ * @param {integer}  startIndex   Index of the first element to return (starts at 0) (integer, 0+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listUserBookshelfVolumes = function(args, opts) {
+	var url = 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes';
+	args = args || {};
+	url = url_replace(url, args, 'userId', 'str', true);
+	url = url_replace(url, args, 'shelf', 'str', true);
+	url = url_replace(url, args, 'country', 'str');
+	url = url_replace(url, args, 'maxResults', 'int');
+	url = url_replace(url, args, 'showPreorders', 'null', false, "false");
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'startIndex', 'int');
+	url = url_replace(url, args, 'fields', 'str');
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};

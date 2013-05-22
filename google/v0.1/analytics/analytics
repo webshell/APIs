@@ -54,7 +54,11 @@ exports.getProfileData = function(args, opts) {
  * @category Management
  * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
  * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
- * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
  * @methodhttp GET
  */
 exports.getAccounts = function(args, opts) {
@@ -62,7 +66,11 @@ exports.getAccounts = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'max-results', 'int');
 	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'callback', 'str');
 	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
 	return http({url:url, params:args, provider:provider}, opts);
 };
 
@@ -74,7 +82,11 @@ exports.getAccounts = function(args, opts) {
  * @param {string} [profileId]  Profile ID for the web properties to retrieve. Can either be a specific profile ID or '~all', which refers to all the profiles to which the user has access. (string)
  * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
  * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
- * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
  * @methodhttp GET
  */
 exports.getGoals = function(args, opts) {
@@ -85,7 +97,11 @@ exports.getGoals = function(args, opts) {
 	url = url_replace(url, args, 'profileId', 'str', true);
 	url = url_replace(url, args, 'max-results', 'int');
 	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'callback', 'str');
 	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
 	return http({url:url, params:args, provider:provider}, opts);
 };
 
@@ -96,7 +112,11 @@ exports.getGoals = function(args, opts) {
  * @param {string} [webPropertyId]  Web property ID for the web properties to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access. (string)
  * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
  * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
- * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
  * @methodhttp GET
  */
 exports.getProfiles = function(args, opts) {
@@ -106,7 +126,11 @@ exports.getProfiles = function(args, opts) {
 	url = url_replace(url, args, 'webPropertyId', 'str', true);
 	url = url_replace(url, args, 'max-results', 'int');
 	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'callback', 'str');
 	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
 	return http({url:url, params:args, provider:provider}, opts);
 };
 
@@ -115,7 +139,11 @@ exports.getProfiles = function(args, opts) {
  * @category Management
  * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
  * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
- * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
  * @methodhttp GET
  */
 exports.getSegments = function(args, opts) {
@@ -123,7 +151,11 @@ exports.getSegments = function(args, opts) {
 	args = args || {};
 	url = url_replace(url, args, 'max-results', 'int');
 	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'callback', 'str');
 	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
 	return http({url:url, params:args, provider:provider}, opts);
 };
 
@@ -133,7 +165,11 @@ exports.getSegments = function(args, opts) {
  * @param {string} [accountId]  Account ID for the web properties to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. (string)
  * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
  * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
- * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
  * @methodhttp GET
  */
 exports.getWebProperties = function(args, opts) {
@@ -142,6 +178,342 @@ exports.getWebProperties = function(args, opts) {
 	url = url_replace(url, args, 'accountId', 'str', true);
 	url = url_replace(url, args, 'max-results', 'int');
 	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List custom data sources to which the user has access               
+ * @category Management
+ * @param {string} [accountId]  Account ID for the web properties to retrieve. Can either be a specific account ID or '~all', which refers to all the accounts to which the user has access. (string)
+ * @param {string} [webPropertyId]  Web property Id for the custom data sources to retrieve.
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp GET
+ */
+exports.listCustomDataSources = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Delete uploaded data for the given custom data source and date               
+ * @category Management
+ * @param {string} [accountId]  Account Id associated with daily upload delete.
+ * @param {string} [webPropertyId]  Web property Id associated with daily upload delete.
+ * @param {string} [customDataSourceId]  Custom data source Id associated with daily upload delete.
+ * @param {string} [date]  Date for which data is to be deleted. Date should be formatted as YYYY-MM-DD.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @methodhttp DELETE
+ */
+exports.deleteDailyUploads = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/dailyUploads/{date}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'customDataSourceId', 'str', true);
+	url = url_replace(url, args, 'date', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * List daily uploads to which the user has access.               
+ * @category Management
+ * @param {string} [accountId]  Account Id for the daily uploads to retrieve.
+ * @param {string} [webPropertyId]  Web property Id associated with daily upload to retrieve.
+ * @param {string} [customDataSourceId]  Custom data source Id associated with daily upload to retrieve.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @param {string} [end-date]  End date of the form YYYY-MM-DD.
+ * @param {string} [start-date]  Start date of the form YYYY-MM-DD.
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @param {string}  fields   Selector specifying which fields to include in a partial response.
+ * @methodhttp GET
+ */
+exports.listDailyUploads = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/dailyUploads';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'customDataSourceId', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	url = url_replace(url, args, 'end-date', 'str', true);
+	url = url_replace(url, args, 'start-date', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
 	url = url_replace(url, args, 'fields', 'str');
 	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Update/Overwrite data for a custom data source and date. Try it now.This method supports media upload. Uploaded files must conform to these constraints:Maximum file size: 5MBAccepted Media MIME types: application/octet-stream               
+ * @category Management
+ * @param {string} [accountId]  Account Id associated with daily upload.
+ * @param {string} [webPropertyId]  Web property Id associated with daily upload.
+ * @param {string} [customDataSourceId]  Custom data source Id to which the data being uploaded belongs.
+ * @param {string} [date]  Date for which data is uploaded. Date should be formatted as YYYY-MM-DD.
+ * @param {string}  callback   Name of the JavaScript callback function that handles the response. Used in JavaScript JSON-P requests.
+ * @param {string}  fields   Selector specifying a subset of fields to include in the response. Use for better performance.
+ * @param {boolean}  prettyPrint   Returns the response in a human-readable format (with indentations and line breaks) if true. When this is false, it can reduce the response payload size, which might lead to better performance in some environments. Default value: false.
+ * @param {string}  quotaUser   Lets you enforce per-user quotas from a server-side application even in cases when the user's IP address is unknown. This can occur, for example, with applications that run cron jobs on App Engine on a user's behalf. You can choose any arbitrary string that uniquely identifies a user, but it is limited to 40 characters. Alternative to userIp, overrides userIp if both are provided.
+ * @param {string}  userIp   IP address of the end user for whom the API call is being made. Lets you enforce per-user quotas when calling the API from a server-side application.
+ * @param {integer} [appendNumber]  Append number for this upload indexed from 1. Acceptable values are 1 to 20, inclusive.
+ * @param {string} [type]  Type of data for this upload. Acceptable values are:"cost": Value for specifying cost data upload.
+ * @param {boolean}  reset   Reset/Overwrite all previous appends for this date and start over with this file as the first upload. (Default: false)
+ * @methodhttp POST
+ */
+exports.uploadDailyUploads = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/dailyUploads/{date}/uploads';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'customDataSourceId', 'str', true);
+	url = url_replace(url, args, 'date', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'fields', 'str');
+	url = url_replace(url, args, 'prettyPrint', 'null', false, "false");
+	url = url_replace(url, args, 'quotaUser', 'str');
+	url = url_replace(url, args, 'userIp', 'str');
+	url = url_replace(url, args, 'appendNumber', 'int', true);
+	url = url_replace(url, args, 'type', 'str', true);
+	url = url_replace(url, args, 'reset', 'null', false, "false");
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Delete an experiment.               
+ * @category Management
+ * @param {string} [accountId]  Account ID to which the experiment belongs
+ * @param {string} [webPropertyId]  Web property ID to which the experiment belongs
+ * @param {string} [profileId]  Profile ID to which the experiment belongs
+ * @param {string} [experimentId]  ID of the experiment to delete
+ * @methodhttp DELETE
+ */
+exports.deleteExperiments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'experimentId', 'str', true);
+	return http.delete({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Returns an experiment to which the user has access.               
+ * @category Management
+ * @param {string} [accountId]  Account ID to retrieve the experiment for.
+ * @param {string} [webPropertyId]  Web property ID to retrieve the experiment for.
+ * @param {string} [profileId]  Profile ID to retrieve the experiment for.
+ * @param {string} [experimentId]  Experiment ID to retrieve the experiment for.
+ * @methodhttp GET
+ */
+exports.getExperiments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'experimentId', 'str', true);
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Lists experiments to which the user has access.               
+ * @category Management
+ * @param {string} [accountId]  Account ID to retrieve the experiment for.
+ * @param {string} [webPropertyId]  Web property ID to retrieve the experiment for.
+ * @param {string} [profileId]  Profile ID to retrieve the experiment for.
+ * @param {integer}  max-results   The maximum number of entries to include in this response. (integer)
+ * @param {integer}  start-index   An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter. (integer, 1+)
+ * @methodhttp GET
+ */
+exports.listExperiments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'max-results', 'int');
+	url = url_replace(url, args, 'start-index', 'int');
+	return http({url:url, params:args, provider:provider}, opts);
+};
+
+/** 
+ * Create a new experiment.               
+ * @category Management
+ * @param {string} [accountId]  Account ID to create the experiment for.
+ * @param {string} [webPropertyId]  Web property ID to create the experiment for.
+ * @param {string} [profileId]  Profile ID to create the experiment for.
+ * @param {string} [name]  Experiment name. This field may not be changed for an experiment whose status is ENDED. This field is required when creating an experiment.
+ * @param {string} [status]  Experiment status. Possible values: "DRAFT", "READY_TO_RUN", "RUNNING", "ENDED". Experiments can be created in the "DRAFT", "READY_TO_RUN" or "RUNNING" state. This field is required when creating an experiment.
+ * @param {string} [variations.name]  The name of the variation. This field is required when creating an experiment. This field may not be changed for an experiment whose status is ENDED.
+ * @param {string}  description   Notes about this experiment.
+ * @param {string}  editableInGaUi   If true, the end user will be able to edit the experiment via the Google Analytics user interface.
+ * @param {integer}  minimumExperimentLengthInDays   Specifies the minimum length of the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  objectiveMetric   The metric that the experiment is optimizing. Valid values: "ga:goal(n)Completions", "ga:bounces", "ga:pageviews", "ga:timeOnSite", "ga:transactions", "ga:transactionRevenue". This field is required if status is "RUNNING" and servingFramework is one of "REDIRECT" or "API".
+ * @param {string}  optimizationType   Whether the objectiveMetric should be minimized or maximized. Possible values: "MAXIMUM", "MINIMUM". Optional--defaults to "MAXIMUM". Cannot be specified without objectiveMetric. Cannot be modified when status is "RUNNING" or "ENDED".
+ * @param {boolean}  rewriteVariationUrlsAsOriginal   Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  servingFramework   The framework used to serve the experiment variations and evaluate the results. One of:REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results.API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation.EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
+ * @param {integer}  trafficCoverage   A floating-point number between 0 and 1. Specifies the fraction of the traffic that participates in the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  variations.status   Status of the variation. Possible values: "ACTIVE", "INACTIVE". INACTIVE variations are not served. This field may not be changed for an experiment whose status is ENDED.
+ * @param {string}  variations.url   The URL of the variation. This field may not be changed for an experiment whose status is RUNNING or ENDED.
+ * @param {integer}  winnerConfidenceLevel   A floating-point number between 0 and 1. Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
+ * @methodhttp POST
+ */
+exports.insertExperiments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'name', 'str', true);
+	url = url_replace(url, args, 'status', 'str', true);
+	url = url_replace(url, args, 'variations.name', 'str', true);
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'editableInGaUi', 'str');
+	url = url_replace(url, args, 'minimumExperimentLengthInDays', 'int');
+	url = url_replace(url, args, 'objectiveMetric', 'str');
+	url = url_replace(url, args, 'optimizationType', 'str');
+	url = url_replace(url, args, 'rewriteVariationUrlsAsOriginal');
+	url = url_replace(url, args, 'servingFramework', 'str');
+	url = url_replace(url, args, 'trafficCoverage', 'int');
+	url = url_replace(url, args, 'variations.status', 'str');
+	url = url_replace(url, args, 'variations.url', 'str');
+	url = url_replace(url, args, 'winnerConfidenceLevel', 'int');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Create a new experiment.               
+ * @category Management
+ * @param {string} [accountId]  Account ID of the experiment to update.
+ * @param {string} [webPropertyId]  Web property ID of the experiment to update.
+ * @param {string} [profileId]  Profile ID of the experiment to update.
+ * @param {string} [experimentId]  Experiment ID of the experiment to update.
+ * @param {string} [id]  Experiment ID. Required for patch and update. Disallowed for create.
+ * @param {string} [name]  Experiment name. This field may not be changed for an experiment whose status is ENDED. This field is required when creating an experiment.
+ * @param {string} [status]  Experiment status. Possible values: "DRAFT", "READY_TO_RUN", "RUNNING", "ENDED". Experiments can be created in the "DRAFT", "READY_TO_RUN" or "RUNNING" state. This field is required when creating an experiment.
+ * @param {string} [variations.name]  The name of the variation. This field is required when creating an experiment. This field may not be changed for an experiment whose status is ENDED.
+ * @param {string}  description   Notes about this experiment.
+ * @param {string}  editableInGaUi   If true, the end user will be able to edit the experiment via the Google Analytics user interface.
+ * @param {integer}  minimumExperimentLengthInDays   Specifies the minimum length of the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  objectiveMetric   The metric that the experiment is optimizing. Valid values: "ga:goal(n)Completions", "ga:bounces", "ga:pageviews", "ga:timeOnSite", "ga:transactions", "ga:transactionRevenue". This field is required if status is "RUNNING" and servingFramework is one of "REDIRECT" or "API".
+ * @param {string}  optimizationType   Whether the objectiveMetric should be minimized or maximized. Possible values: "MAXIMUM", "MINIMUM". Optional--defaults to "MAXIMUM". Cannot be specified without objectiveMetric. Cannot be modified when status is "RUNNING" or "ENDED".
+ * @param {boolean}  rewriteVariationUrlsAsOriginal   Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  servingFramework   The framework used to serve the experiment variations and evaluate the results. One of:REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results.API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation.EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
+ * @param {integer}  trafficCoverage   A floating-point number between 0 and 1. Specifies the fraction of the traffic that participates in the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  variations.status   Status of the variation. Possible values: "ACTIVE", "INACTIVE". INACTIVE variations are not served. This field may not be changed for an experiment whose status is ENDED.
+ * @param {string}  variations.url   The URL of the variation. This field may not be changed for an experiment whose status is RUNNING or ENDED.
+ * @param {integer}  winnerConfidenceLevel   A floating-point number between 0 and 1. Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
+ * @methodhttp POST
+ */
+exports.insertExperiments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'experimentId', 'str', true);
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'name', 'str', true);
+	url = url_replace(url, args, 'status', 'str', true);
+	url = url_replace(url, args, 'variations.name', 'str', true);
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'editableInGaUi', 'str');
+	url = url_replace(url, args, 'minimumExperimentLengthInDays', 'int');
+	url = url_replace(url, args, 'objectiveMetric', 'str');
+	url = url_replace(url, args, 'optimizationType', 'str');
+	url = url_replace(url, args, 'rewriteVariationUrlsAsOriginal');
+	url = url_replace(url, args, 'servingFramework', 'str');
+	url = url_replace(url, args, 'trafficCoverage', 'int');
+	url = url_replace(url, args, 'variations.status', 'str');
+	url = url_replace(url, args, 'variations.url', 'str');
+	url = url_replace(url, args, 'winnerConfidenceLevel', 'int');
+	return http.post({url:url, body:args, provider:provider}, opts);
+};
+
+/** 
+ * Update an existing experiment. This method supports patch semantics.               
+ * @category Management
+ * @param {string} [accountId]  Account ID of the experiment to update.
+ * @param {string} [webPropertyId]  Web property ID of the experiment to update.
+ * @param {string} [profileId]  Profile ID of the experiment to update.
+ * @param {string} [experimentId]  Experiment ID of the experiment to update.
+ * @param {string} [id]  Experiment ID. Required for patch and update. Disallowed for create.
+ * @param {string}  name   Experiment name. This field may not be changed for an experiment whose status is ENDED. This field is required when creating an experiment.
+ * @param {string}  status   Experiment status. Possible values: "DRAFT", "READY_TO_RUN", "RUNNING", "ENDED". Experiments can be created in the "DRAFT", "READY_TO_RUN" or "RUNNING" state. This field is required when creating an experiment.
+ * @param {string}  variations.name   The name of the variation. This field is required when creating an experiment. This field may not be changed for an experiment whose status is ENDED.
+ * @param {string}  description   Notes about this experiment.
+ * @param {string}  editableInGaUi   If true, the end user will be able to edit the experiment via the Google Analytics user interface.
+ * @param {integer}  minimumExperimentLengthInDays   Specifies the minimum length of the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  objectiveMetric   The metric that the experiment is optimizing. Valid values: "ga:goal(n)Completions", "ga:bounces", "ga:pageviews", "ga:timeOnSite", "ga:transactions", "ga:transactionRevenue". This field is required if status is "RUNNING" and servingFramework is one of "REDIRECT" or "API".
+ * @param {string}  optimizationType   Whether the objectiveMetric should be minimized or maximized. Possible values: "MAXIMUM", "MINIMUM". Optional--defaults to "MAXIMUM". Cannot be specified without objectiveMetric. Cannot be modified when status is "RUNNING" or "ENDED".
+ * @param {boolean}  rewriteVariationUrlsAsOriginal   Boolean specifying whether variations URLS are rewritten to match those of the original. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  servingFramework   The framework used to serve the experiment variations and evaluate the results. One of:REDIRECT: Google Analytics redirects traffic to different variation pages, reports the chosen variation and evaluates the results.API: Google Analytics chooses and reports the variation to serve and evaluates the results; the caller is responsible for serving the selected variation.EXTERNAL: The variations will be served externally and the chosen variation reported to Google Analytics. The caller is responsible for serving the selected variation and evaluating the results.
+ * @param {integer}  trafficCoverage   A floating-point number between 0 and 1. Specifies the fraction of the traffic that participates in the experiment. Can be changed for a running experiment. This field may not be changed for an experiments whose status is ENDED.
+ * @param {string}  variations.status   Status of the variation. Possible values: "ACTIVE", "INACTIVE". INACTIVE variations are not served. This field may not be changed for an experiment whose status is ENDED.
+ * @param {string}  variations.url   The URL of the variation. This field may not be changed for an experiment whose status is RUNNING or ENDED.
+ * @param {integer}  winnerConfidenceLevel   A floating-point number between 0 and 1. Specifies the necessary confidence level to choose a winner. This field may not be changed for an experiments whose status is ENDED.
+ * @methodhttp PATCH
+ */
+exports.updateExperiments = function(args, opts) {
+	var url = 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}';
+	args = args || {};
+	url = url_replace(url, args, 'accountId', 'str', true);
+	url = url_replace(url, args, 'webPropertyId', 'str', true);
+	url = url_replace(url, args, 'profileId', 'str', true);
+	url = url_replace(url, args, 'experimentId', 'str', true);
+	url = url_replace(url, args, 'id', 'str', true);
+	url = url_replace(url, args, 'name', 'str');
+	url = url_replace(url, args, 'status', 'str');
+	url = url_replace(url, args, 'variations.name', 'str');
+	url = url_replace(url, args, 'description', 'str');
+	url = url_replace(url, args, 'editableInGaUi', 'str');
+	url = url_replace(url, args, 'minimumExperimentLengthInDays', 'int');
+	url = url_replace(url, args, 'objectiveMetric', 'str');
+	url = url_replace(url, args, 'optimizationType', 'str');
+	url = url_replace(url, args, 'rewriteVariationUrlsAsOriginal');
+	url = url_replace(url, args, 'servingFramework', 'str');
+	url = url_replace(url, args, 'trafficCoverage', 'int');
+	url = url_replace(url, args, 'variations.status', 'str');
+	url = url_replace(url, args, 'variations.url', 'str');
+	url = url_replace(url, args, 'winnerConfidenceLevel', 'int');
+	return http.patch({url:url, body:args, provider:provider}, opts);
 };
