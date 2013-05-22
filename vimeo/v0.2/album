@@ -1,0 +1,39 @@
+function request(args, opts, method) {
+    var a = args;
+
+    if (typeof a == 'string')
+        a = {album_id: a}
+        
+    if (typeof a.format == 'undefined')
+        a.format = 'json'
+        
+    if (a.format != 'json' && a.format != 'xml' && a.format != 'php')
+        throw new Error('format should be `json` or `xml` or `php`');
+    
+    return get({
+        url: 'http://vimeo.com/api/v2/album/' + a.album_id + '/' + method + '.' + a.format,
+        format: a.format
+    }, opts);
+}
+
+/** 
+ * Videos in that album
+ * @category Album
+ * @param {string} [album_id] The ID of the album.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getVideos = function(args, opts) {
+    return request(args, opts, 'videos');
+}
+
+/** 
+ * Album info for the specified album
+ * @category Album
+ * @param {string} [album_id] The ID of the album.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getInfo = function(args, opts) {
+    return request(args, opts, 'info');
+}

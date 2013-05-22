@@ -1,0 +1,24 @@
+/** 
+ * Get data about a specific video
+ * @category Video
+ * @param {string} [video_id] The ID of the video you want information for.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getVideo = function(args, opts) {
+    var a = {} || args;
+
+    if (typeof a == 'string')
+        a = {video_id: a}
+        
+    if (typeof a.format == 'undefined')
+        a.format = 'json'
+        
+    if (a.format != 'json' && a.format != 'xml' && a.format != 'php')
+        throw new Error('format should be `json` or `xml`');
+    
+    return get({
+        url: 'http://vimeo.com/api/v2/video/' + a.video_id + '.' + a.format,
+        format: a.format
+    });
+}

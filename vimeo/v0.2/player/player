@@ -1,0 +1,92 @@
+args = args || {};
+if (typeof args == 'string') {
+    args = {idVideo: args}
+}
+
+
+var url;
+if (args.url) {
+    url = args.url
+}
+else
+	url = 'http://player.vimeo.com/video/' + args.idVideo + '?api=1';
+
+jsClientApi({
+	name: "vimeo.player",
+	data: {
+		url: url,
+		width: args.width || '100%',
+		height: args.height || '300px',
+		params: {}
+	},
+	initialize: js(function(callback) {
+		$.getScript("http://webshell.io/lib/froogaloop.min.js", callback);
+	}),
+	loaded: js(function() {
+
+	}),
+	create: js(function(jsapi) {
+		this.player = $f($('#player' + this.data.pid)[0]);
+		var self = this;
+		this.player.addEvent('ready', function() {
+			self.ready(jsapi);
+		})
+		return false;
+	}),
+	ready: js(function(jsapi) {
+		jsapi.ready();
+	}),
+	interface: {
+		play: js(function() {
+			this.player.api('play');
+		}),
+		pause: js(function() {
+			this.player.api('pause');
+		}),
+		paused: js(function() {
+			return this.api('paused');
+		}),
+		seekTo: js(function(seconds) {
+			this.player.api('seekTo', seconds);
+		}),
+		unload: js(function() {
+			this.player.api('unload');
+		}),
+		getCurrentTime: js(function() {
+			return this.player.api('getCurrentTime');
+		}),
+		getDuration: js(function() {
+			return this.player.api('getDuration');
+		}),
+		getVideoEmbedCode: js(function() {
+			return this.player.api('getVideoEmbedCode');
+		}),
+		getVideoHeight: js(function() {
+			return this.player.api('getVideoHeight');
+		}),
+		getVideoWidth: js(function() {
+			return this.player.api('getVideoWidth');
+		}),
+		getVideoUrl: js(function() {
+			return this.player.api('getVideoUrl');
+		}),
+		getColor: js(function() {
+			return this.player.api('getColor');
+		}),
+		setColor: js(function(color) {
+			this.player.api('setColor', color);
+		}),
+		setLoop: js(function(loop) {
+			this.player.api('setLoop', loop);
+		}),
+		getVolume: js(function() {
+			return this.player.api('getVolume');
+		}),
+		setVolume: js(function(volume) {
+			this.player.api('setVolume', volume);
+		}),
+		addEvent: js(function(event, listener) {
+			this.player.addEvent(event, listener);
+		})
+	}
+}, { view: '<iframe id="player<%= data.pid %>" src="<%= data.url %>&player_id=player<%= data.pid %>" style="width: <%= data.width %>; height: <%= data.height %>" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>' });

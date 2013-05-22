@@ -1,0 +1,50 @@
+function request(args, opts, method) {
+    var a = args;
+
+    if (typeof a == 'string')
+        a = {groupname: a}
+        
+    if (typeof a.format == 'undefined')
+        a.format = 'json'
+        
+    if (a.format != 'json' && a.format != 'xml' && a.format != 'php')
+        throw new Error('format should be `json` or `xml` or `php`');
+    
+    return get({
+        url: 'http://vimeo.com/api/v2/group/' + a.groupname + '/' + method + '.' + a.format,
+        format: a.format
+    }, opts);
+}
+
+/** 
+ * Videos added to that group
+ * @category Group
+ * @param {string} [groupname] Either the shortcut URL or ID of the group.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getVideos = function(args, opts) {
+    return request(args, opts, 'videos');
+}
+
+/** 
+ * Users who have joined the group
+ * @category Group
+ * @param {string} [groupname] Either the shortcut URL or ID of the group.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getUsers = function(args, opts) {
+    return request(args, opts, 'users');
+}
+
+/** 
+ * Group info for the specified group
+ * @category Group
+ * @param {string} [groupname] Either the shortcut URL or ID of the group.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getInfo = function(args, opts) {
+    return request(args, opts, 'info');
+}

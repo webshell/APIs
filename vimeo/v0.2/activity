@@ -1,0 +1,61 @@
+function request(args, opts, method) {
+    var a = args;
+
+    if (typeof a == 'string')
+        a = {username: a}
+        
+    if (typeof a.format == 'undefined')
+        a.format = 'json'
+        
+    if (a.format != 'json' && a.format != 'xml' && a.format != 'php')
+        throw new Error('format should be `json` or `xml` or `php`');
+    
+    return get({
+        url: 'http://vimeo.com/api/v2/activity/' + a.username + '/' + method + '.' + a.format,
+        format: a.format
+    }, opts);
+}
+
+/** 
+ * Activity by the user
+ * @category Activity
+ * @param {string} [username] Either the shortcut URL or ID of the user, an email address will NOT work.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getUserDid = function(args, opts) {
+    return request(args, opts, 'user_did');
+}
+
+/** 
+ * Activity on the user
+ * @category Activity
+ * @param {string} [username] Either the shortcut URL or ID of the user, an email address will NOT work.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getHappenedToUser = function(args, opts) {
+    return request(args, opts, 'happened_to_user');
+}
+
+/** 
+ * Activity by the user’s contacts
+ * @category Activity
+ * @param {string} [username] Either the shortcut URL or ID of the user, an email address will NOT work.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getContactsDid = function(args, opts) {
+    return request(args, opts, 'contacts_did');
+}
+
+/** 
+ * Activity by everyone
+ * @category Activity
+ * @param {string} [username] Either the shortcut URL or ID of the user, an email address will NOT work.
+ * @param {string} [output] Specify the output type. We currently offer JSON, PHP, and XML formats. (default: JSON)
+ * @methodhttp GET
+ */
+exports.getEveryoneDid = function(args, opts) {
+    return request(args, opts, 'everyone_did');
+}
