@@ -3149,16 +3149,18 @@ exports.markdown = function(args, opts) {
 	url = url_replace(url, args, 'text', 'str', true);
 	url = url_replace(url, args, 'mode', 'str');
 	url = url_replace(url, args, 'context', 'str');
-	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
+	return http.post({provider:provider,url:url,body:JSON.stringify(args), auth:'none'}, opts);
 };
 
 /** 
  * The raw API it not JSON-based. It takes a Markdown document as plaintext (text/plain or text/x-markdown) and renders it as plain Markdown without a repository context (just like a README.md file is rendered – this is the simplest way to preview a readme online).			
  * @category Markdown
+ * @param {string} text  The Markdown text to render
  * @methodhttp POST
  */
 exports.markdownRaw = function(args, opts) {
 	var url = 'https://api.github.com/markdown/raw';
 	args = args || {};
-	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
+	url = url_replace(url, args, 'text', 'str', true);
+	return http.post({provider:provider,url:url,body:args.text, auth:'none', contenttype: "text/plain"}, opts);
 };
