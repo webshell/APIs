@@ -1,0 +1,64 @@
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/google');
+
+exports.auth = function() { return auth({provider:provider}) };
+/** 
+ * @category Translate
+ * @param {string}  source   The language of the source text. The value should be one of the language codes listed in Language reference.If a language is not specified, the system will attempt to identify the source language automatically.
+ * @param {string} [target]  The language to translate the source text into. The value should be one of the language codes listed in Language reference.                       
+ * @param {string} [q]  The text to be translated.You can repeat this parameter more than once in a single request to translate multiple texts.
+ * @param {string}  callback   This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations.Embed the API query in script tags.Define the callback function in script tags.See REST from JavaScript in the Getting Started document for an example.
+ * @param {string}  format   This optional parameter allows you to indicate that the text to be translated is either plain-text or HTML. A value of html indicates HTML and a value of text indicates plain-text.Default: format=html.
+ * @param {boolean}  prettyprint   If prettyprint=true, the results returned by the server will be human readable (pretty printed).Default: prettyprint=true.
+ * @methodhttp GET
+ */
+exports.translate = function(args, opts) {
+	var url = 'https://www.googleapis.com/language/translate/v2/';
+	args = args || {};
+	url = url_replace(url, args, 'source', 'str');
+	url = url_replace(url, args, 'target', 'str', true);
+	url = url_replace(url, args, 'q', 'str', true);
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'format', 'str');
+	url = url_replace(url, args, 'prettyprint', 'null', false, "true");
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
+
+/** 
+ * @category Language
+ * @param {string}  target   The language of the language name and sorting order.If a language is not specified, the system will not return the language name and the sorting order will based on the language code.                       
+ * @param {string}  callback   This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations.Embed the API query in script tags.Define the callback function in script tags.See REST from JavaScript in the Getting Started document for an example.
+ * @param {boolean}  prettyprint   If prettyprint=true, the results returned by the server will be human readable (pretty printed).Default: prettyprint=true.
+ * @methodhttp GET
+ */
+exports.getSupportedLanguage = function(args, opts) {
+	var url = 'https://www.googleapis.com/language/translate/v2/';
+	args = args || {};
+	url = url_replace(url, args, 'target', 'str');
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'prettyprint', 'null', false, "true");
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
+
+/** 
+ * @category Language
+ * @param {string}  callback   This optional parameter allows you to specify a JavaScript function to handle query results for pure client-side implementations.Embed the API query in script tags.Define the callback function in script tags.See REST from JavaScript in the Getting Started document for an example.
+ * @param {boolean}  prettyprint   If prettyprint=true, the results returned by the server will be human readable (pretty printed).Default: prettyprint=true.
+ * @param {string} [q]  The text to be detected.You can repeat this parameter more than once in a single request to detect multiple texts.
+ * @methodhttp GET
+ */
+exports.detectLanguage = function(args, opts) {
+	var url = 'https://www.googleapis.com/language/translate/v2/detect';
+	args = args || {};
+	url = url_replace(url, args, 'callback', 'str');
+	url = url_replace(url, args, 'prettyprint', 'null', false, "true");
+	url = url_replace(url, args, 'q', 'str', true);
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
