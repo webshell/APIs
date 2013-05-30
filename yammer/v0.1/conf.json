@@ -1,0 +1,46 @@
+{
+  "displayName":"Yammer",
+  "icon":"",
+  "base_url":"",
+  "default_auth":"oauth2",
+  "auth": {
+    "oauth2": {
+      "authorize": {
+        "url":"https://www.yammer.com/dialog/oauth",
+        "params": {
+          "client_id":"{client_id}",
+          "response_type":"code",
+          "redirect_uri":"{_callback_url}?{_callback_args}"
+        }
+      },
+      "access_token":{
+        "url":"https://www.yammer.com/oauth2/access_token.json",
+        "field":"state",
+        "method":"post",
+        "params":{
+          "client_id":"{client_id}",
+          "client_secret":"{client_secret}",
+          "redirect_uri":"{_callback_url}?{_callback_args}",
+          "grant_type":"authorization_code",
+          "code":"{_code}"
+        }
+      },
+      "request":{
+	    "format":"json",
+        "get":{
+          "oauth_token":"{_access_token}"
+        }
+      },
+      "parameters":[
+        {
+          "name":"client_id",
+          "type":"string"
+        },
+        {
+          "name":"client_secret",
+          "type":"string"
+        }
+      ]
+    }
+  }
+}
