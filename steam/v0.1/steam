@@ -1,323 +1,129 @@
-({
-	auth:function(){return auth({provider:fs('/bin/steam')})},
+function url_replace(url, args, param, type, required, def) {
+	if (args[param] === undefined && required && def !== undefined)
+		args[param] = def;
+	if (args[param] === undefined && required && def === undefined)
+		throw new Error(param + ' is a required parameter');
+	if (type == 'str' && args[param] !== undefined && args[param] !== undefined && args[param] !== null && typeof args[param] != 'string')
+		args[param] = args[param].toString();
+	return url;
+}
+
+var provider = fs('/bin/steam');
+
+exports.auth = function() { return auth({provider:provider}) };
 /** 
  * GetNewsForApp returns the latest of a game specified by its appID.
  * @category News
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [appid] AppID of the game you want the news of.	   
- * @param {string} [count] How many news enties you want to get returned.	   
- * @param {string} [maxlength] Maximum length of each news entry.	   
+ * @param {string} [format=json]  Output format. json (default), xml or vdf.	   
+ * @param {string} [appid]  AppID of the game you want the news of.	   
+ * @param {string} [count]  How many news enties you want to get returned.	   
+ * @param {string} [maxlength]  Maximum length of each news entry.	   
  * @methodhttp GET
  */
-	'getNewsForApp': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['appid'] == null) throw new Error('appid is a required parameter')
-		var rgx = new RegExp('\{appid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['appid'])
-			if (args['appid']) delete args['appid']
-		}
-		if (url.indexOf('[/appid]') !== -1) {
-			url = url.replace('[/appid]', '/' + args['appid'])
-			if (args['appid']) delete args['appid']
-		}
-		if (args['count'] == null) throw new Error('count is a required parameter')
-		var rgx = new RegExp('\{count\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['count'])
-			if (args['count']) delete args['count']
-		}
-		if (url.indexOf('[/count]') !== -1) {
-			url = url.replace('[/count]', '/' + args['count'])
-			if (args['count']) delete args['count']
-		}
-		if (args['maxlength'] == null) throw new Error('maxlength is a required parameter')
-		var rgx = new RegExp('\{maxlength\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['maxlength'])
-			if (args['maxlength']) delete args['maxlength']
-		}
-		if (url.indexOf('[/maxlength]') !== -1) {
-			url = url.replace('[/maxlength]', '/' + args['maxlength'])
-			if (args['maxlength']) delete args['maxlength']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/appid]') !== -1) url = url.replace('[/appid]', '')
-		if (url.indexOf('[/count]') !== -1) url = url.replace('[/count]', '')
-		if (url.indexOf('[/maxlength]') !== -1) url = url.replace('[/maxlength]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
+exports.getNewsForApp = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'appid', 'str', true);
+	url = url_replace(url, args, 'count', 'str', true);
+	url = url_replace(url, args, 'maxlength', 'str', true);
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
+
 /** 
  * Returns on global achievements overview of a specific game in percentages.
  * @category User
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [gameid] AppID of the game you want the news of.	   
+ * @param {string} [format=json]  Output format. json (default), xml or vdf.	   
+ * @param {string} [gameid]  AppID of the game you want the news of.	   
  * @methodhttp GET
  */
-	'getGlobalAchievementPercentagesForApp': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['gameid'] == null) throw new Error('gameid is a required parameter')
-		var rgx = new RegExp('\{gameid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['gameid'])
-			if (args['gameid']) delete args['gameid']
-		}
-		if (url.indexOf('[/gameid]') !== -1) {
-			url = url.replace('[/gameid]', '/' + args['gameid'])
-			if (args['gameid']) delete args['gameid']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/gameid]') !== -1) url = url.replace('[/gameid]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'none'}, opts)
-	},
+exports.getGlobalAchievementPercentagesForApp = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'gameid', 'str', true);
+	return http({url:url, params:args, auth:'none', provider:provider}, opts);
+};
+
 /** 
  * Returns basic profile information for a list of 64-bit Steam IDs.
  * @category User
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [steamids] Comma-delimited list of 64 bit Steam IDs to return profile information for. Up to 100 Steam IDs can be requested.	   
+ * @param {string} [format=json]  Output format. json (default), xml or vdf.	   
+ * @param {string} [steamids]  Comma-delimited list of 64 bit Steam IDs to return profile information for. Up to 100 Steam IDs can be requested.	   
  * @methodhttp GET
  */
-	'getPlayerSummaries': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamUser/getPlayerSummaries/v0002/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['steamids'] == null) throw new Error('steamids is a required parameter')
-		var rgx = new RegExp('\{steamids\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['steamids'])
-			if (args['steamids']) delete args['steamids']
-		}
-		if (url.indexOf('[/steamids]') !== -1) {
-			url = url.replace('[/steamids]', '/' + args['steamids'])
-			if (args['steamids']) delete args['steamids']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/steamids]') !== -1) url = url.replace('[/steamids]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
-	},
+exports.getPlayerSummaries = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamUser/getPlayerSummaries/v0002/';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'steamids', 'str', true);
+	return http({url:url, params:args, auth:'manual', provider:provider}, opts);
+};
+
 /** 
- * Returns basic profile information for a list of 64-bit Steam IDs.
+ * An extremely useful feature would be to grab the Steam IDs of the users in a server. Currently, server queries only return player nicknames, unless you have RCON access to the server. Steam IDs could conceivably be returned by the GetAccountPublicInfoBySteamID but I imagine that would be more cumbersome. A simple solution would be to have a method much like the ResolveVanityURL with the same response
  * @category User
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [steamids] Comma-delimited list of 64 bit Steam IDs to return profile information for. Up to 100 Steam IDs can be requested.	   
+ * @param {string} [nickname]  nickname	   
  * @methodhttp GET
  */
-	'getPlayerSummaries': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['steamids'] == null) throw new Error('steamids is a required parameter')
-		var rgx = new RegExp('\{steamids\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['steamids'])
-			if (args['steamids']) delete args['steamids']
-		}
-		if (url.indexOf('[/steamids]') !== -1) {
-			url = url.replace('[/steamids]', '/' + args['steamids'])
-			if (args['steamids']) delete args['steamids']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/steamids]') !== -1) url = url.replace('[/steamids]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
-	},
+exports.resolveNickname = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamUser/ResolveNickname/v0001/';
+	args = args || {};
+	url = url_replace(url, args, 'nickname', 'str', true);
+	return http({url:url, params:args, auth:'manual', provider:provider}, opts);
+};
+
 /** 
  * Returns the friend list of any Steam user, provided his Steam Community profile visibility is set to "Public".
  * @category User
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [steamid] 64 bit Steam ID to return friend list for.	   
- * @param {string} [relationship] Relationship filter. Possibles values: all, friend.	   
+ * @param {string} [format=json]  Output format. json (default), xml or vdf.	   
+ * @param {string} [steamid]  64 bit Steam ID to return friend list for.	   
+ * @param {string} [relationship]  Relationship filter. Possibles values: all, friend.	   
  * @methodhttp GET
  */
-	'getFriendList': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamUser/GetFriendList/v0001/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['steamid'] == null) throw new Error('steamid is a required parameter')
-		var rgx = new RegExp('\{steamid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['steamid'])
-			if (args['steamid']) delete args['steamid']
-		}
-		if (url.indexOf('[/steamid]') !== -1) {
-			url = url.replace('[/steamid]', '/' + args['steamid'])
-			if (args['steamid']) delete args['steamid']
-		}
-		if (args['relationship'] == null) throw new Error('relationship is a required parameter')
-		var rgx = new RegExp('\{relationship\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['relationship'])
-			if (args['relationship']) delete args['relationship']
-		}
-		if (url.indexOf('[/relationship]') !== -1) {
-			url = url.replace('[/relationship]', '/' + args['relationship'])
-			if (args['relationship']) delete args['relationship']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/steamid]') !== -1) url = url.replace('[/steamid]', '')
-		if (url.indexOf('[/relationship]') !== -1) url = url.replace('[/relationship]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
-	},
+exports.getFriendList = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamUser/GetFriendList/v0001/';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'steamid', 'str', true);
+	url = url_replace(url, args, 'relationship', 'str', true);
+	return http({url:url, params:args, auth:'manual', provider:provider}, opts);
+};
+
 /** 
  * Returns a list of achievements for this user by app id
  * @category User
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [steamid] 64 bit Steam ID to return friend list for.	   
- * @param {string} [appid] The ID for the game you're requesting	   
- * @param {string} l Language. If specified, it will return language data for the requested language.	   
+ * @param {string} [format=json]  Output format. json (default), xml or vdf.	   
+ * @param {string} [steamid]  64 bit Steam ID to return friend list for.	   
+ * @param {string} [appid]  The ID for the game you're requesting	   
+ * @param {string}  l   Language. If specified, it will return language data for the requested language.	   
  * @methodhttp GET
  */
-	'getPlayerAchievements': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['steamid'] == null) throw new Error('steamid is a required parameter')
-		var rgx = new RegExp('\{steamid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['steamid'])
-			if (args['steamid']) delete args['steamid']
-		}
-		if (url.indexOf('[/steamid]') !== -1) {
-			url = url.replace('[/steamid]', '/' + args['steamid'])
-			if (args['steamid']) delete args['steamid']
-		}
-		if (args['appid'] == null) throw new Error('appid is a required parameter')
-		var rgx = new RegExp('\{appid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['appid'])
-			if (args['appid']) delete args['appid']
-		}
-		if (url.indexOf('[/appid]') !== -1) {
-			url = url.replace('[/appid]', '/' + args['appid'])
-			if (args['appid']) delete args['appid']
-		}
-		var rgx = new RegExp('\{l\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['l'])
-			if (args['l']) delete args['l']
-		}
-		if (url.indexOf('[/l]') !== -1 && args['/l']) {
-			url = url.replace('[/l]', '/' + args['l'])
-			if (args['l']) delete args['l']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/steamid]') !== -1) url = url.replace('[/steamid]', '')
-		if (url.indexOf('[/appid]') !== -1) url = url.replace('[/appid]', '')
-		if (url.indexOf('[/l]') !== -1) url = url.replace('[/l]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
-	},
+exports.getPlayerAchievements = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'steamid', 'str', true);
+	url = url_replace(url, args, 'appid', 'str', true);
+	url = url_replace(url, args, 'l', 'str');
+	return http({url:url, params:args, auth:'manual', provider:provider}, opts);
+};
+
 /** 
  * Returns a list of achievements for this user by app id
  * @category User
- * @param {string} [format] Output format. json (default), xml or vdf.	   
- * @param {string} [steamid] 64 bit Steam ID to return friend list for.	   
- * @param {string} [appid] The ID for the game you're requesting	   
- * @param {string} l Language. If specified, it will return language data for the requested language.	   
+ * @param {string} [format=json]  Output format. json (default), xml or vdf.	   
+ * @param {string} [steamid]  64 bit Steam ID to return friend list for.	   
+ * @param {string} [appid]  The ID for the game you're requesting	   
+ * @param {string}  l   Language. If specified, it will return language data for the requested language.	   
  * @methodhttp GET
  */
-	'getUserStatsForGame': function(args, opts) {
-		var url = ' http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/'
-		args = args || {}
-		if (args['format'] == null) args['format'] = "json"
-		var rgx = new RegExp('\{format\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (url.indexOf('[/format]') !== -1) {
-			url = url.replace('[/format]', '/' + args['format'])
-			if (args['format']) delete args['format']
-		}
-		if (args['steamid'] == null) throw new Error('steamid is a required parameter')
-		var rgx = new RegExp('\{steamid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['steamid'])
-			if (args['steamid']) delete args['steamid']
-		}
-		if (url.indexOf('[/steamid]') !== -1) {
-			url = url.replace('[/steamid]', '/' + args['steamid'])
-			if (args['steamid']) delete args['steamid']
-		}
-		if (args['appid'] == null) throw new Error('appid is a required parameter')
-		var rgx = new RegExp('\{appid\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['appid'])
-			if (args['appid']) delete args['appid']
-		}
-		if (url.indexOf('[/appid]') !== -1) {
-			url = url.replace('[/appid]', '/' + args['appid'])
-			if (args['appid']) delete args['appid']
-		}
-		var rgx = new RegExp('\{l\}', 'g')
-		if (url.match(rgx)) {
-			url = url.replace(rgx, args['l'])
-			if (args['l']) delete args['l']
-		}
-		if (url.indexOf('[/l]') !== -1 && args['/l']) {
-			url = url.replace('[/l]', '/' + args['l'])
-			if (args['l']) delete args['l']
-		}
-		if (url.indexOf('[/format]') !== -1) url = url.replace('[/format]', '')
-		if (url.indexOf('[/steamid]') !== -1) url = url.replace('[/steamid]', '')
-		if (url.indexOf('[/appid]') !== -1) url = url.replace('[/appid]', '')
-		if (url.indexOf('[/l]') !== -1) url = url.replace('[/l]', '')
-		return http({provider:fs('/bin/steam'),url:url,method:'GET',params:args, auth:'manual'}, opts)
-	}
-})
+exports.getUserStatsForGame = function(args, opts) {
+	var url = ' http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/';
+	args = args || {};
+	url = url_replace(url, args, 'format', 'str', true, "json");
+	url = url_replace(url, args, 'steamid', 'str', true);
+	url = url_replace(url, args, 'appid', 'str', true);
+	url = url_replace(url, args, 'l', 'str');
+	return http({url:url, params:args, auth:'manual', provider:provider}, opts);
+};
