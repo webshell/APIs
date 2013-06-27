@@ -18,8 +18,8 @@ function url_replace(url, args, param, type, required, def) {
 var provider = fs('/bin/github');
 
 exports.auth = function() { return auth({provider:provider}) };
-/** 
- * List a user’s gists			
+/**
+ * List a user’s gists
  * @category Gist
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -31,8 +31,8 @@ exports.gistListUser = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List the authenticated user’s gists			
+/**
+ * List the authenticated user’s gists
  * @category Gist
  * @methodhttp GET
  */
@@ -42,8 +42,8 @@ exports.gistList = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List all public gists			
+/**
+ * List all public gists
  * @category Gist
  * @methodhttp GET
  */
@@ -53,8 +53,8 @@ exports.gistListPublic = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List the authenticated user’s starred gists			
+/**
+ * List the authenticated user’s starred gists
  * @category Gist
  * @methodhttp GET
  */
@@ -64,8 +64,8 @@ exports.gistListStarred = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single gist			
+/**
+ * Get a single gist
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp GET
@@ -77,8 +77,8 @@ exports.gistGet = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit a gist					NOTE: All files from the previous version of the gist are carried over by default if not included in the hash. Deletes can be performed by including the filename with a null hash.			
+/**
+ * Edit a gist					NOTE: All files from the previous version of the gist are carried over by default if not included in the hash. Deletes can be performed by including the filename with a null hash.
  * @category Gist
  * @param {string} id  Gist id
  * @param {string} [description]  The description for this gist
@@ -96,8 +96,8 @@ exports.gistEdit = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a gist			
+/**
+ * Delete a gist
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp DELETE
@@ -109,8 +109,8 @@ exports.gistDelete = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Create a gist			
+/**
+ * Create a gist
  * @category Gist
  * @param {string} [description]  The description for this gist
  * @param {boolean} public  Set if this gist is public or not
@@ -126,8 +126,8 @@ exports.gistCreate = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Check if a gist is starred			
+/**
+ * Check if a gist is starred
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp GET
@@ -139,8 +139,8 @@ exports.gistStarred = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Star a gist			
+/**
+ * Star a gist
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp PUT
@@ -152,8 +152,8 @@ exports.gistStar = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Unstar a gist			
+/**
+ * Unstar a gist
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp DELETE
@@ -165,8 +165,8 @@ exports.gistUnstar = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Fork a gist			
+/**
+ * Fork a gist
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp POST
@@ -178,8 +178,8 @@ exports.gistFork = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List comments on a gist			
+/**
+ * List comments on a gist
  * @category Gist
  * @param {string} id  Gist id
  * @methodhttp GET
@@ -191,8 +191,8 @@ exports.gistListComments = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a comment			
+/**
+ * Create a comment
  * @category Gist
  * @param {string} id  Gist id
  * @param {string} body  Content of the comment
@@ -206,8 +206,8 @@ exports.gistPostComment = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single comment			
+/**
+ * Get a single comment
  * @category Gist
  * @param {string} id  Gist comment id
  * @methodhttp GET
@@ -219,8 +219,8 @@ exports.gistGetComment = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit a comment			
+/**
+ * Edit a comment
  * @category Gist
  * @param {string} id  Gist comment id
  * @param {string} body  Content of the comment
@@ -234,8 +234,8 @@ exports.gistEditComment = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a comment			
+/**
+ * Delete a comment
  * @category Gist
  * @param {string} id  Gist comment id
  * @methodhttp DELETE
@@ -247,8 +247,8 @@ exports.gistDeleteComment = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a Blob			
+/**
+ * Get a Blob
  * @category Blobs
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -264,8 +264,8 @@ exports.getBlob = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a Blob			
+/**
+ * Create a Blob
  * @category Blobs
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -283,8 +283,8 @@ exports.createBlob = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a Commit			
+/**
+ * Get a Commit
  * @category Commits
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -300,8 +300,8 @@ exports.getCommit = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a Commit			
+/**
+ * Create a Commit
  * @category Commits
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -333,8 +333,8 @@ exports.createBlob = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a Reference			
+/**
+ * Get a Reference
  * @category References
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -350,8 +350,8 @@ exports.getReference = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a Reference			
+/**
+ * Get a Reference
  * @category References
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -367,8 +367,8 @@ exports.getSubReference = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Update a Reference			
+/**
+ * Update a Reference
  * @category References
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -388,8 +388,8 @@ exports.updateReference = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a Reference			
+/**
+ * Delete a Reference
  * @category References
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -405,8 +405,8 @@ exports.deleteReference = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get all References.					This will return an array of all the references on the system, including things like notes and stashes if they exist on the server. Anything in the namespace, not just heads and tags, though that would be the most common.			
+/**
+ * Get all References.					This will return an array of all the references on the system, including things like notes and stashes if they exist on the server. Anything in the namespace, not just heads and tags, though that would be the most common.
  * @category References
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -420,8 +420,8 @@ exports.listReferences = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a Reference			
+/**
+ * Create a Reference
  * @category References
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -439,8 +439,8 @@ exports.createReference = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a Tag			
+/**
+ * Get a Tag
  * @category Tags
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -456,8 +456,8 @@ exports.getReference = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a Tag Object.					Note that creating a tag object does not create the reference that makes a tag in Git. If you want to create an annotated tag in Git, you have to do this call to create the tag object, and then create the `refs/tags/[tag]` reference. If you want to create a lightweight tag, you simply have to create the reference - this call would be unnecessary.			
+/**
+ * Create a Tag Object.					Note that creating a tag object does not create the reference that makes a tag in Git. If you want to create an annotated tag in Git, you have to do this call to create the tag object, and then create the `refs/tags/[tag]` reference. If you want to create a lightweight tag, you simply have to create the reference - this call would be unnecessary.
  * @category Tags
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -485,8 +485,8 @@ exports.createReference = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a Tree			
+/**
+ * Get a Tree
  * @category Trees
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -502,8 +502,8 @@ exports.getReference = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a Tree			
+/**
+ * Get a Tree
  * @category Trees
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -521,8 +521,8 @@ exports.getReference = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a Tree.					The tree creation API will take nested entries as well. If both a tree and a nested path modifying that tree are specified, it will overwrite the contents of that tree with the new path contents and write a new tree out.			
+/**
+ * Create a Tree.					The tree creation API will take nested entries as well. If both a tree and a nested path modifying that tree are specified, it will overwrite the contents of that tree with the new path contents and write a new tree out.
  * @category Trees
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -548,10 +548,10 @@ exports.createTree = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List your issues			
+/**
+ * List your issues
  * @category Issues
- * @param {string} [filter]  `assigned`: Issues assigned to you							`created`: Issues created by you							`mentioned`: Issues mentioning you							`subscribed`: Issues you’re subscribed to updates for					
+ * @param {string} [filter]  `assigned`: Issues assigned to you							`created`: Issues created by you							`mentioned`: Issues mentioning you							`subscribed`: Issues you’re subscribed to updates for
  * @param {string} [state]  `open` or `closed`
  * @param {string} [labels]  list of comma separated Label names. Example: `bug,ui,@high`
  * @param {string} [sort]  `created`, `updated` or `comments`
@@ -571,14 +571,14 @@ exports.listIssues = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List issues for a repository			
+/**
+ * List issues for a repository
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
- * @param {any} [milestone]  _Integer_ Milestone number							`none` for Issues with no Milestone.							`*` for Issues with any Milestone.					
+ * @param {any} [milestone]  _Integer_ Milestone number							`none` for Issues with no Milestone.							`*` for Issues with any Milestone.
  * @param {string} [state]  `open` or `closed`
- * @param {string} [assignee]  _String_ User login							`none` for Issues with no assigned User.							`*` for Issues with any assigned User.					
+ * @param {string} [assignee]  _String_ User login							`none` for Issues with no assigned User.							`*` for Issues with any assigned User.
  * @param {string} [mentioned]  User login.
  * @param {string} [labels]  list of comma separated Label names. Example: `bug,ui,@high`
  * @param {string} [sort]  `created`, `updated` or `comments`
@@ -602,8 +602,8 @@ exports.listRepoIssues = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create an issue			
+/**
+ * Create an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -627,8 +627,8 @@ exports.createIssue = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single issue			
+/**
+ * Get a single issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -644,8 +644,8 @@ exports.getIssue = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create an issue			
+/**
+ * Create an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -673,8 +673,8 @@ exports.createIssue = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List comments on an issue			
+/**
+ * List comments on an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -690,8 +690,8 @@ exports.listIssueComments = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a comment on an issue			
+/**
+ * Create a comment on an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -709,8 +709,8 @@ exports.postIssueComment = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single comment on an issue			
+/**
+ * Get a single comment on an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -728,8 +728,8 @@ exports.getIssueComment = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit a comment on an issue			
+/**
+ * Edit a comment on an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -749,8 +749,8 @@ exports.editIssueComment = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a comment on an issue			
+/**
+ * Delete a comment on an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -768,8 +768,8 @@ exports.deleteIssueComment = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List events for an issue			
+/**
+ * List events for an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -785,8 +785,8 @@ exports.listIssueEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List issues events for a repository			
+/**
+ * List issues events for a repository
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -800,8 +800,8 @@ exports.listRepoEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a single issue event for a repository			
+/**
+ * Get a single issue event for a repository
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -817,8 +817,8 @@ exports.getIssueEvent = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List labels on an issue			
+/**
+ * List labels on an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -834,8 +834,8 @@ exports.listIssueLabels = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Add labels to an issue			
+/**
+ * Add labels to an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -851,8 +851,8 @@ exports.addIssueLabels = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Replace all labels for an issue			
+/**
+ * Replace all labels for an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -868,8 +868,8 @@ exports.replaceIssueLabels = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Remove all labels from an issue			
+/**
+ * Remove all labels from an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -885,8 +885,8 @@ exports.removeIssueLabels = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Remove a label from an issue			
+/**
+ * Remove a label from an issue
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -904,8 +904,8 @@ exports.deleteIssueLabel = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List all labels for a repository			
+/**
+ * List all labels for a repository
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -919,8 +919,8 @@ exports.listLabels = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a label			
+/**
+ * Create a label
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -938,8 +938,8 @@ exports.createLabel = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single label			
+/**
+ * Get a single label
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -955,8 +955,8 @@ exports.getLabel = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Update a label			
+/**
+ * Update a label
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -976,8 +976,8 @@ exports.updateLabel = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a label			
+/**
+ * Delete a label
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -993,8 +993,8 @@ exports.deleteLabel = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get labels for every issue in a milestone			
+/**
+ * Get labels for every issue in a milestone
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1010,8 +1010,8 @@ exports.listMilestoneLabels = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List milestones for a repository			
+/**
+ * List milestones for a repository
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1025,8 +1025,8 @@ exports.listMilestones = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a milestone			
+/**
+ * Create a milestone
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1048,8 +1048,8 @@ exports.createMilestone = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single milestone			
+/**
+ * Get a single milestone
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1065,8 +1065,8 @@ exports.getMilestone = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Update a milestone			
+/**
+ * Update a milestone
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1090,8 +1090,8 @@ exports.updateMilestone = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a milestone			
+/**
+ * Delete a milestone
  * @category Issues
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1107,8 +1107,8 @@ exports.deleteMilestone = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List all public organizations for a user.			
+/**
+ * List all public organizations for a user.
  * @category Orgs
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -1120,21 +1120,19 @@ exports.listUserOrgs = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List public and private organizations for the authenticated user.			
+/**
+ * List public and private organizations for the authenticated user.
  * @category Orgs
  * @param {string} user  Name of the user
  * @methodhttp GET
  */
 exports.listOrgs = function(args, opts) {
-	var url = 'https://api.github.com/users/{user}/orgs';
-	args = args || {};
-	url = url_replace(url, args, 'user', 'str', true);
-	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
+	var url = 'https://api.github.com/user/orgs';
+	return http({provider:provider,url:url, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get an organization			
+/**
+ * Get an organization
  * @category Orgs
  * @param {string} org  Organization name
  * @methodhttp GET
@@ -1146,8 +1144,8 @@ exports.getOrg = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit an organization			
+/**
+ * Edit an organization
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} [billing_email]  Billing email address. This address is not publicized
@@ -1169,8 +1167,8 @@ exports.editOrg = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List all users who are members of an organization. A member is a user that belongs to at least 1 team in the organization. If the authenticated user is also a member of this organization then both concealed and public members will be returned. Otherwise only public members are returned.			
+/**
+ * List all users who are members of an organization. A member is a user that belongs to at least 1 team in the organization. If the authenticated user is also a member of this organization then both concealed and public members will be returned. Otherwise only public members are returned.
  * @category Orgs
  * @param {string} org  Organization name
  * @methodhttp GET
@@ -1182,8 +1180,8 @@ exports.listOrgMembers = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get member.			
+/**
+ * Get member.
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} user  Name of the user
@@ -1197,8 +1195,8 @@ exports.getOrgMember = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Remove a member.					Removing a user from this list will remove them from all teams and they will no longer have any access to the organization’s repositories.			
+/**
+ * Remove a member.					Removing a user from this list will remove them from all teams and they will no longer have any access to the organization’s repositories.
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} user  Name of the user
@@ -1212,8 +1210,8 @@ exports.removeOrgMember = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List public members.					Members of an organization can choose to have their membership publicized or not.			
+/**
+ * List public members.					Members of an organization can choose to have their membership publicized or not.
  * @category Orgs
  * @param {string} org  Organization name
  * @methodhttp GET
@@ -1225,8 +1223,8 @@ exports.listOrgPublicMembers = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get if a user is a public member.			
+/**
+ * Get if a user is a public member.
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} user  Name of the user
@@ -1240,8 +1238,8 @@ exports.checkOrgPublicMember = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Publicize a user’s membership.			
+/**
+ * Publicize a user’s membership.
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} user  Name of the user
@@ -1255,8 +1253,8 @@ exports.publicizeOrgMember = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Conceal a user’s membership.			
+/**
+ * Conceal a user’s membership.
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} user  Name of the user
@@ -1270,8 +1268,8 @@ exports.concealOrgMember = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List teams.			
+/**
+ * List teams.
  * @category Orgs
  * @param {string} org  Organization name
  * @methodhttp GET
@@ -1283,13 +1281,13 @@ exports.listOrgTeams = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a team.					In order to create a team, the authenticated user must be an owner of {org}			
+/**
+ * Create a team.					In order to create a team, the authenticated user must be an owner of {org}
  * @category Orgs
  * @param {string} org  Organization name
  * @param {string} name  Team name
  * @param {array} [repo_names]  Names of the repositories
- * @param {string} [permission]  `pull`: team members can pull, but not push to or administer these repositories. Default							`push`: team members can pull and push, but not administer these repositories.							`admin`: team members can pull, push and administer these repositories.					
+ * @param {string} [permission]  `pull`: team members can pull, but not push to or administer these repositories. Default							`push`: team members can pull and push, but not administer these repositories.							`admin`: team members can pull, push and administer these repositories.
  * @methodhttp POST
  */
 exports.createTeam = function(args, opts) {
@@ -1302,8 +1300,8 @@ exports.createTeam = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a team.			
+/**
+ * Get a team.
  * @category Orgs
  * @param {string} id  Team id
  * @methodhttp GET
@@ -1315,12 +1313,12 @@ exports.getTeam = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit a team.					In order to edit a team, the authenticated user must be an owner of the org that the team is associated with.			
+/**
+ * Edit a team.					In order to edit a team, the authenticated user must be an owner of the org that the team is associated with.
  * @category Orgs
  * @param {string} id  Team id
  * @param {string} name  Team name
- * @param {string} [permission]  `pull`: team members can pull, but not push to or administer these repositories. Default							`push`: team members can pull and push, but not administer these repositories.							`admin`: team members can pull, push and administer these repositories.					
+ * @param {string} [permission]  `pull`: team members can pull, but not push to or administer these repositories. Default							`push`: team members can pull and push, but not administer these repositories.							`admin`: team members can pull, push and administer these repositories.
  * @methodhttp PATCH
  */
 exports.editOrg = function(args, opts) {
@@ -1332,8 +1330,8 @@ exports.editOrg = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a team.					In order to delete a team, the authenticated user must be an owner of the org that the team is associated with.			
+/**
+ * Delete a team.					In order to delete a team, the authenticated user must be an owner of the org that the team is associated with.
  * @category Orgs
  * @param {string} id  Team id
  * @methodhttp DELETE
@@ -1345,8 +1343,8 @@ exports.deleteTeam = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List team members.					In order to list members in a team, the authenticated user must be a member of the team.			
+/**
+ * List team members.					In order to list members in a team, the authenticated user must be a member of the team.
  * @category Orgs
  * @param {string} id  Team id
  * @methodhttp GET
@@ -1358,8 +1356,8 @@ exports.listTeamMembers = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get team member.					In order to get if a user is a member of a team, the authenticated user must be a member of the team.			
+/**
+ * Get team member.					In order to get if a user is a member of a team, the authenticated user must be a member of the team.
  * @category Orgs
  * @param {string} id  Team id
  * @param {string} user  Name of the user
@@ -1373,8 +1371,8 @@ exports.getTeamMember = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Add team member.					In order to add a user to a team, the authenticated user must have `admin` permissions to the team or be an owner of the org that the team is associated with.			
+/**
+ * Add team member.					In order to add a user to a team, the authenticated user must have `admin` permissions to the team or be an owner of the org that the team is associated with.
  * @category Orgs
  * @param {string} id  Team id
  * @param {string} user  Name of the user
@@ -1388,8 +1386,8 @@ exports.addTeamMember = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Remove a team member.					In order to remove a user from a team, the authenticated user must have `admin` permissions to the team or be an owner of the org that the team is associated with. NOTE: This does not delete the user, it just remove them from the team.			
+/**
+ * Remove a team member.					In order to remove a user from a team, the authenticated user must have `admin` permissions to the team or be an owner of the org that the team is associated with. NOTE: This does not delete the user, it just remove them from the team.
  * @category Orgs
  * @param {string} id  Team id
  * @param {string} user  Name of the user
@@ -1403,8 +1401,8 @@ exports.removeTeamMember = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List team repos.			
+/**
+ * List team repos.
  * @category Orgs
  * @param {string} id  Team id
  * @methodhttp GET
@@ -1416,8 +1414,8 @@ exports.listTeamRepos = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get team repo.			
+/**
+ * Get team repo.
  * @category Orgs
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1433,8 +1431,8 @@ exports.getTeamRepo = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Add team repo.					In order to add a repo to a team, the authenticated user must be an owner of the org that the team is associated with. Also, the repo must be owned by the organization, or a direct for of a repo owned by the organization.			
+/**
+ * Add team repo.					In order to add a repo to a team, the authenticated user must be an owner of the org that the team is associated with. Also, the repo must be owned by the organization, or a direct for of a repo owned by the organization.
  * @category Orgs
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1450,8 +1448,8 @@ exports.addTeamRepo = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Remove team repo.					In order to remove a repo from a team, the authenticated user must be an owner of the org that the team is associated with.					NOTE: This does not delete the repo, it just removes it from the team.			
+/**
+ * Remove team repo.					In order to remove a repo from a team, the authenticated user must be an owner of the org that the team is associated with.					NOTE: This does not delete the repo, it just removes it from the team.
  * @category Orgs
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1467,8 +1465,8 @@ exports.removeTeamRepo = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List pull requests			
+/**
+ * List pull requests
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1484,8 +1482,8 @@ exports.listPullRequests = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a pull request.					NOTE: `head` and `base` can be either a sha or a branch name. Typically you would namespace `head` with a user like this: `username:branch`.			
+/**
+ * Create a pull request.					NOTE: `head` and `base` can be either a sha or a branch name. Typically you would namespace `head` with a user like this: `username:branch`.
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1507,8 +1505,8 @@ exports.createPullRequest = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Create a pull request from an existing Issue.			
+/**
+ * Create a pull request from an existing Issue.
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1528,8 +1526,8 @@ exports.createPullRequestFromIssue = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Update a pull request.					NOTE: `head` and `base` can be either a sha or a branch name. Typically you would namespace `head` with a user like this: `username:branch`.			
+/**
+ * Update a pull request.					NOTE: `head` and `base` can be either a sha or a branch name. Typically you would namespace `head` with a user like this: `username:branch`.
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1551,8 +1549,8 @@ exports.updatePullRequest = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List commits on a pull request			
+/**
+ * List commits on a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1568,8 +1566,8 @@ exports.listPullRequestCommits = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List pull requests files			
+/**
+ * List pull requests files
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1585,8 +1583,8 @@ exports.listPullRequestFiles = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get if a pull request has been merged			
+/**
+ * Get if a pull request has been merged
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1602,8 +1600,8 @@ exports.checkPullRequestMerged = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Merge a pull request			
+/**
+ * Merge a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1621,8 +1619,8 @@ exports.mergePullRequest = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List comments on a pull request			
+/**
+ * List comments on a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1638,8 +1636,8 @@ exports.listPullRequestComments = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a comment on a pull request			
+/**
+ * Create a comment on a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1657,8 +1655,8 @@ exports.postPullRequestComment = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single comment on a pull request			
+/**
+ * Get a single comment on a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1676,8 +1674,8 @@ exports.getPullRequestComment = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit a comment on a pull request			
+/**
+ * Edit a comment on a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1697,8 +1695,8 @@ exports.editPullRequestComment = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a comment on a pull request			
+/**
+ * Delete a comment on a pull request
  * @category Pull requests
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1716,8 +1714,8 @@ exports.deletePullRequestComment = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List repositories for the authenticated user.			
+/**
+ * List repositories for the authenticated user.
  * @category Repos
  * @param {string} [type]  `all`, `owner`, `public`, `private` or `member`
  * @param {string} [sort]  `created`, `updated`, `pushed` or `full_name`
@@ -1733,8 +1731,8 @@ exports.listRepos = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Create a new repository for the authenticated user.			
+/**
+ * Create a new repository for the authenticated user.
  * @category Repos
  * @param {string} name  Repository name
  * @param {string} [description]  Repository description
@@ -1760,8 +1758,8 @@ exports.createRepo = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List public repositories for the specified user.			
+/**
+ * List public repositories for the specified user.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} [type]  `all`, `owner`, `public`, `private` or `member`
@@ -1779,8 +1777,8 @@ exports.listUserRepos = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repositories for the specified org.			
+/**
+ * List repositories for the specified org.
  * @category Repos
  * @param {string} org  Organization name
  * @param {string} [type]  `all`, `owner`, `public`, `private` or `member`
@@ -1798,8 +1796,8 @@ exports.listOrgRepos = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a new repository in this organization. The authenticated user must be a member of `org`.			
+/**
+ * Create a new repository in this organization. The authenticated user must be a member of `org`.
  * @category Repos
  * @param {string} org  Organization name
  * @param {string} name  Repository name
@@ -1827,8 +1825,8 @@ exports.createOrgRepo = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a repository.			
+/**
+ * Get a repository.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1842,8 +1840,8 @@ exports.getRepo = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Edit a repository.			
+/**
+ * Edit a repository.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1873,8 +1871,8 @@ exports.updateRepo = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a repository.					Deleting a repository requires admin access. If OAuth is used, the `delete_repo` scope is required.			
+/**
+ * Delete a repository.					Deleting a repository requires admin access. If OAuth is used, the `delete_repo` scope is required.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1888,8 +1886,8 @@ exports.deleteRepo = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List repository contributors			
+/**
+ * List repository contributors
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1905,8 +1903,8 @@ exports.listContributors = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repository languages			
+/**
+ * List repository languages
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1920,8 +1918,8 @@ exports.listLanguages = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repository teams			
+/**
+ * List repository teams
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1935,8 +1933,8 @@ exports.listTeams = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repository tags			
+/**
+ * List repository tags
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1950,8 +1948,8 @@ exports.listTags = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repository branches			
+/**
+ * List repository branches
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1965,8 +1963,8 @@ exports.listBranches = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a repository branch			
+/**
+ * Get a repository branch
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1982,8 +1980,8 @@ exports.getBranch = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repository collaborators			
+/**
+ * List repository collaborators
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -1997,8 +1995,8 @@ exports.listCollaborators = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Check if a user is a collaborator			
+/**
+ * Check if a user is a collaborator
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2014,8 +2012,8 @@ exports.checkCollaborator = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Add a collaborator			
+/**
+ * Add a collaborator
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2031,8 +2029,8 @@ exports.addCollaborator = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Remove a collaborator			
+/**
+ * Remove a collaborator
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2048,8 +2046,8 @@ exports.removeCollaborator = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List commit comments for a repository.					Comments are ordered by ascending ID.			
+/**
+ * List commit comments for a repository.					Comments are ordered by ascending ID.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2063,8 +2061,8 @@ exports.listCommitsComments = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a single commit comment			
+/**
+ * Get a single commit comment
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2080,8 +2078,8 @@ exports.getCommitComment = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Update a commit comment			
+/**
+ * Update a commit comment
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2099,8 +2097,8 @@ exports.editCommitComment = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a commit comment			
+/**
+ * Delete a commit comment
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2116,8 +2114,8 @@ exports.deleteCommitComment = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List comments for a single commit			
+/**
+ * List comments for a single commit
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2133,8 +2131,8 @@ exports.listCommitComments = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a commit comment			
+/**
+ * Create a commit comment
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2160,8 +2158,8 @@ exports.postCommitComment = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single commit			
+/**
+ * Get a single commit
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2177,8 +2175,8 @@ exports.getCommit = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List commits on a repository			
+/**
+ * List commits on a repository
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2196,8 +2194,8 @@ exports.listCommits = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a single commit			
+/**
+ * Get a single commit
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2213,13 +2211,13 @@ exports.getCommit = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Compare two commits			
+/**
+ * Compare two commits
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
- * @param {string} base  
- * @param {string} head  
+ * @param {string} base
+ * @param {string} head
  * @methodhttp GET
  */
 exports.compareCommits = function(args, opts) {
@@ -2232,8 +2230,8 @@ exports.compareCommits = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * This method returns the preferred README for a repository.			
+/**
+ * This method returns the preferred README for a repository.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2249,8 +2247,8 @@ exports.getReadme = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * This method returns the contents of any file or directory in a repository.			
+/**
+ * This method returns the contents of any file or directory in a repository.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2268,8 +2266,8 @@ exports.getContents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * This method will return a 302 to a URL to download a tarball or zipball archive for a repository.			
+/**
+ * This method will return a 302 to a URL to download a tarball or zipball archive for a repository.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2287,8 +2285,8 @@ exports.getArchive = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List downloads for a repository			
+/**
+ * List downloads for a repository
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2302,15 +2300,15 @@ exports.listDownloads = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a new download (Create the resource)			
+/**
+ * Create a new download (Create the resource)
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
- * @param {string} name  
+ * @param {string} name
  * @param {integer} size  Size of file in bytes.
- * @param {string} [description]  
- * @param {string} [content_type]  
+ * @param {string} [description]
+ * @param {string} [content_type]
  * @methodhttp POST
  */
 exports.createDownload = function(args, opts) {
@@ -2325,8 +2323,8 @@ exports.createDownload = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single download			
+/**
+ * Get a single download
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2342,8 +2340,8 @@ exports.getDownload = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Delete a download			
+/**
+ * Delete a download
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2359,8 +2357,8 @@ exports.deleteDownload = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List forks			
+/**
+ * List forks
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2376,8 +2374,8 @@ exports.listForks = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a fork.					Forking a Repository happens asynchronously. Therefore, you may have to wait a short period before accessing the git objects.			
+/**
+ * Create a fork.					Forking a Repository happens asynchronously. Therefore, you may have to wait a short period before accessing the git objects.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2393,8 +2391,8 @@ exports.fork = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List keys.			
+/**
+ * List keys.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2408,12 +2406,12 @@ exports.listRepoKeys = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a key			
+/**
+ * Create a key
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
- * @param {string} [title]  
+ * @param {string} [title]
  * @param {string} [key]  `ssh-rsa AAA...`
  * @methodhttp POST
  */
@@ -2427,8 +2425,8 @@ exports.createRepoKey = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get a single key			
+/**
+ * Get a single key
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2444,13 +2442,13 @@ exports.getRepoKey = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Update a key			
+/**
+ * Update a key
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
  * @param {string} id  Key id
- * @param {string} [title]  
+ * @param {string} [title]
  * @param {string} [key]  `ssh-rsa AAA...`
  * @methodhttp PATCH
  */
@@ -2465,8 +2463,8 @@ exports.editRepoKey = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a key			
+/**
+ * Delete a key
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2482,8 +2480,8 @@ exports.deleteRepoKey = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List watchers			
+/**
+ * List watchers
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2497,8 +2495,8 @@ exports.listWatchers = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repos being watched by a user			
+/**
+ * List repos being watched by a user
  * @category Repos
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -2510,8 +2508,8 @@ exports.listUserWatched = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repos being watched by the authenticated user			
+/**
+ * List repos being watched by the authenticated user
  * @category Repos
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -2523,8 +2521,8 @@ exports.listWatched = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Check if you are watching a repo			
+/**
+ * Check if you are watching a repo
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2538,8 +2536,8 @@ exports.checkUserWatched = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Watch a repo			
+/**
+ * Watch a repo
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2553,8 +2551,8 @@ exports.watch = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Stop watching a repo			
+/**
+ * Stop watching a repo
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2568,8 +2566,8 @@ exports.unwatch = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List hooks services			
+/**
+ * List hooks services
  * @category Repos
  * @methodhttp GET
  */
@@ -2579,8 +2577,8 @@ exports.hooks = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List hooks			
+/**
+ * List hooks
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2594,8 +2592,8 @@ exports.listHooks = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a hook			
+/**
+ * Create a hook
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2617,8 +2615,8 @@ exports.createHook = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get single hook			
+/**
+ * Get single hook
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2634,8 +2632,8 @@ exports.getHook = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Create a hook			
+/**
+ * Create a hook
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2663,8 +2661,8 @@ exports.editHook = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a hook			
+/**
+ * Delete a hook
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2680,8 +2678,8 @@ exports.deleteHook = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * This will trigger the hook with the latest push to the current repository.			
+/**
+ * This will trigger the hook with the latest push to the current repository.
  * @category Repos
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2697,8 +2695,8 @@ exports.testHook = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single user			
+/**
+ * Get a single user
  * @category Users
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -2710,8 +2708,8 @@ exports.getUser = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Get the authenticated user			
+/**
+ * Get the authenticated user
  * @category Users
  * @methodhttp GET
  */
@@ -2721,16 +2719,16 @@ exports.me = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Update the authenticated user			
+/**
+ * Update the authenticated user
  * @category Users
- * @param {string} name  
+ * @param {string} name
  * @param {string} email  Publicly visible email address.
- * @param {string} [blog]  
- * @param {string} [company]  
- * @param {string} [location]  
- * @param {boolean} [hireable]  
- * @param {string} [bio]  
+ * @param {string} [blog]
+ * @param {string} [company]
+ * @param {string} [location]
+ * @param {boolean} [hireable]
+ * @param {string} [bio]
  * @methodhttp POST
  */
 exports.editMe = function(args, opts) {
@@ -2746,8 +2744,8 @@ exports.editMe = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List email addresses for a user			
+/**
+ * List email addresses for a user
  * @category Users
  * @methodhttp GET
  */
@@ -2757,8 +2755,8 @@ exports.listEmails = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Add email address(es)			
+/**
+ * Add email address(es)
  * @category Users
  * @methodhttp POST
  */
@@ -2768,8 +2766,8 @@ exports.addEmails = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Remove email address(es)			
+/**
+ * Remove email address(es)
  * @category Users
  * @methodhttp DELETE
  */
@@ -2779,8 +2777,8 @@ exports.removeEmails = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List a user’s followers			
+/**
+ * List a user’s followers
  * @category Users
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2794,8 +2792,8 @@ exports.listWatchers = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List the authenticated user’s followers			
+/**
+ * List the authenticated user’s followers
  * @category Users
  * @methodhttp GET
  */
@@ -2805,8 +2803,8 @@ exports.listWatched = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List who a user is following			
+/**
+ * List who a user is following
  * @category Users
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -2818,8 +2816,8 @@ exports.listUserFollowing = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List who the authenticated user is following			
+/**
+ * List who the authenticated user is following
  * @category Users
  * @methodhttp GET
  */
@@ -2829,8 +2827,8 @@ exports.listFollowing = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Check if you are following a user			
+/**
+ * Check if you are following a user
  * @category Users
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -2842,8 +2840,8 @@ exports.checkUserWatched = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Follow a user			
+/**
+ * Follow a user
  * @category Users
  * @param {string} user  Name of the user
  * @methodhttp PUT
@@ -2855,8 +2853,8 @@ exports.follow = function(args, opts) {
 	return http.put({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Unfollow a user			
+/**
+ * Unfollow a user
  * @category Users
  * @param {string} user  Name of the user
  * @methodhttp DELETE
@@ -2868,8 +2866,8 @@ exports.unfollow = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List public keys			
+/**
+ * List public keys
  * @category Users
  * @methodhttp GET
  */
@@ -2879,10 +2877,10 @@ exports.listKeys = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Create a public key			
+/**
+ * Create a public key
  * @category Users
- * @param {string} [title]  
+ * @param {string} [title]
  * @param {string} [key]  `ssh-rsa AAA...`
  * @methodhttp POST
  */
@@ -2894,8 +2892,8 @@ exports.createKey = function(args, opts) {
 	return http.post({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Get a single public key			
+/**
+ * Get a single public key
  * @category Users
  * @param {string} id  Key id
  * @methodhttp GET
@@ -2907,11 +2905,11 @@ exports.getKey = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Update a public key			
+/**
+ * Update a public key
  * @category Users
  * @param {string} id  Key id
- * @param {string} [title]  
+ * @param {string} [title]
  * @param {string} [key]  `ssh-rsa AAA...`
  * @methodhttp PATCH
  */
@@ -2924,8 +2922,8 @@ exports.editKey = function(args, opts) {
 	return http.patch({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Delete a public key			
+/**
+ * Delete a public key
  * @category Users
  * @param {string} id  Key id
  * @methodhttp DELETE
@@ -2937,8 +2935,8 @@ exports.deleteKey = function(args, opts) {
 	return http.delete({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * List public events			
+/**
+ * List public events
  * @category Events
  * @methodhttp GET
  */
@@ -2948,8 +2946,8 @@ exports.listEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List repository events			
+/**
+ * List repository events
  * @category Events
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2963,8 +2961,8 @@ exports.listRepoEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List issue events for a repository			
+/**
+ * List issue events for a repository
  * @category Events
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2978,8 +2976,8 @@ exports.listIssuesEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List public events for a network of repositories			
+/**
+ * List public events for a network of repositories
  * @category Events
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -2993,8 +2991,8 @@ exports.listNetworksEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List public events for an organization			
+/**
+ * List public events for an organization
  * @category Events
  * @param {string} org  Name of the organization
  * @methodhttp GET
@@ -3006,8 +3004,8 @@ exports.listOrgPublicEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List events that a user has received.					These are events that you’ve received by watching repos and following users. If you are authenticated as the given user, you will see private events. Otherwise, you’ll only see public events.			
+/**
+ * List events that a user has received.					These are events that you’ve received by watching repos and following users. If you are authenticated as the given user, you will see private events. Otherwise, you’ll only see public events.
  * @category Events
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -3019,8 +3017,8 @@ exports.listUserReceivedEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List public events that a user has received			
+/**
+ * List public events that a user has received
  * @category Events
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -3032,8 +3030,8 @@ exports.listUserPublicReceivedEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List events performed by a user.					If you are authenticated as the given user, you will see your private events. Otherwise, you’ll only see public events.			
+/**
+ * List events performed by a user.					If you are authenticated as the given user, you will see your private events. Otherwise, you’ll only see public events.
  * @category Events
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -3045,8 +3043,8 @@ exports.listUserEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List public events performed by a user			
+/**
+ * List public events performed by a user
  * @category Events
  * @param {string} user  Name of the user
  * @methodhttp GET
@@ -3058,8 +3056,8 @@ exports.listUserPublicEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * List events for an organization.					This is the user’s organization dashboard. You must be authenticated as the user to view this.			
+/**
+ * List events for an organization.					This is the user’s organization dashboard. You must be authenticated as the user to view this.
  * @category Events
  * @param {string} user  Name of the user
  * @param {string} org  Name of the organization
@@ -3073,8 +3071,8 @@ exports.listOrgEvents = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'oauth2'}, opts);
 };
 
-/** 
- * Find issues by state and keyword.			
+/**
+ * Find issues by state and keyword.
  * @category Search
  * @param {string} user  Name of the user
  * @param {string} repo  Name of the repository
@@ -3092,8 +3090,8 @@ exports.searchIssues = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Find repositories by keyword. Note, this legacy method does not follow the v3 pagination pattern. This method returns up to 100 results per page and pages can be fetched using the `start_page` parameter.			
+/**
+ * Find repositories by keyword. Note, this legacy method does not follow the v3 pagination pattern. This method returns up to 100 results per page and pages can be fetched using the `start_page` parameter.
  * @category Search
  * @param {string} keyword  Search term
  * @param {string} [language]  Filter results by language
@@ -3109,8 +3107,8 @@ exports.searchRepos = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Find users by keyword.			
+/**
+ * Find users by keyword.
  * @category Search
  * @param {string} keyword  Search term
  * @methodhttp GET
@@ -3122,8 +3120,8 @@ exports.searchUsers = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Email search.					This API call is added for compatibility reasons only. There’s no guarantee that full email searches will always be available.			
+/**
+ * Email search.					This API call is added for compatibility reasons only. There’s no guarantee that full email searches will always be available.
  * @category Search
  * @param {string} email  Email address
  * @methodhttp GET
@@ -3135,11 +3133,11 @@ exports.searchEmails = function(args, opts) {
 	return http({provider:provider,url:url,params:args, auth:'none'}, opts);
 };
 
-/** 
- * Render an arbritrary Markdown document			
+/**
+ * Render an arbritrary Markdown document
  * @category Markdown
  * @param {string} text  The Markdown text to render
- * @param {string} [mode]  The rendering mode.							- `markdown` to render a document as plain Markdown, just like README files are rendered.							- `gfm` to render a document as user-content, e.g. like user comments or issues are rendered. In GFM mode, hard line breaks are always taken into account, and issue and user mentions are linked accordingly.					
+ * @param {string} [mode]  The rendering mode.							- `markdown` to render a document as plain Markdown, just like README files are rendered.							- `gfm` to render a document as user-content, e.g. like user comments or issues are rendered. In GFM mode, hard line breaks are always taken into account, and issue and user mentions are linked accordingly.
  * @param {string} [context]  The repository context, only taken into account when rendering as `gfm`
  * @methodhttp POST
  */
@@ -3152,8 +3150,8 @@ exports.markdown = function(args, opts) {
 	return http.post({provider:provider,url:url,body:JSON.stringify(args), auth:'none'}, opts);
 };
 
-/** 
- * The raw API it not JSON-based. It takes a Markdown document as plaintext (text/plain or text/x-markdown) and renders it as plain Markdown without a repository context (just like a README.md file is rendered – this is the simplest way to preview a readme online).			
+/**
+ * The raw API it not JSON-based. It takes a Markdown document as plaintext (text/plain or text/x-markdown) and renders it as plain Markdown without a repository context (just like a README.md file is rendered – this is the simplest way to preview a readme online).
  * @category Markdown
  * @param {string} text  The Markdown text to render
  * @methodhttp POST
