@@ -1,383 +1,834 @@
-<!-- Webshell APIs
- Copyright (C) 2013 Webshell SAS
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- any later version.
+    
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
+        
 
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- -->
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">listSubscribers</span>
-</div>
-<div class="meta">
-<p>Returns the subscribers of the specified list. Private list subscribers will only be shown if the authenticated user owns the specified list. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.</p>
-</div>
-<hr>
+<div class="endpoint" data-group="documentation" id="endpoint-isSubscriber" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      isSubscriber 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Check if the specified user is a subscriber of the specified list. Returns the user if they are subscriber. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The numerical id of the list.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">list_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters.</p>
+
+
+
+      
+      <p> The screen name of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">slug</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The user ID of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The numerical id of the list. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> list_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> slug </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_screen_name</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The user ID of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Breaks the results into pages. A single page contains 20 lists. Provide a value of -1 to begin paging. Provide values as returned in the response body's next_cursor and previous_cursor attributes to page back and forth in the list.</p>
+
+
+
+      
+      <p> When set to either true, t or 1, each tweet will include a node called "entities". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> include_entities </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">cursor</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-When set to either true, t or 1, each tweet will include a node called "entities". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future.</p>
+
+
+
+      
+      <p> When set to either true, t or 1 statuses will not be included in the returned user objects. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> skip_status </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">include_entities</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-When set to either true, t or 1 statuses will not be included in the returned user objects.</p>
-</div>
-<div class="name">
-<span class="parameter-name">skip_status</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">isSubscriber</span>
-</div>
-<div class="meta">
-<p>Check if the specified user is a subscriber of the specified list. Returns the user if they are subscriber. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-listSubscribeMe" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      listSubscribeMe 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Subscribes the authenticated user to the specified list. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_screen_name</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The user ID of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> The screen name of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_id</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The user ID of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The numerical id of the list. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> list_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The numerical id of the list.</p>
+
+
+
+      
+      <p> You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> slug </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">list_id</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters.</p>
-</div>
-<div class="name">
-<span class="parameter-name">slug</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.</p>
-</div>
-<div class="name">
-<span class="parameter-name">user_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.</p>
-</div>
-<div class="name">
-<span class="parameter-name">screen_name</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-When set to either true, t or 1, each tweet will include a node called "entities". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future.</p>
-</div>
-<div class="name">
-<span class="parameter-name">include_entities</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-When set to either true, t or 1 statuses will not be included in the returned user objects.</p>
-</div>
-<div class="name">
-<span class="parameter-name">skip_status</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method POST">POST</span><span class="route">listSubscribeMe</span>
-</div>
-<div class="meta">
-<p>Subscribes the authenticated user to the specified list. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-listSubscribers" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      listSubscribers 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the subscribers of the specified list. Private list subscribers will only be shown if the authenticated user owns the specified list. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_screen_name</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The numerical id of the list. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> list_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The user ID of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> slug </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The numerical id of the list.</p>
+
+
+
+      
+      <p> The screen name of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">list_id</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The user ID of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Breaks the results into pages. A single page contains 20 lists. Provide a value of -1 to begin paging. Provide values as returned in the response body's next_cursor and previous_cursor attributes to page back and forth in the list. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> cursor </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters.</p>
+
+
+
+      
+      <p> When set to either true, t or 1, each tweet will include a node called "entities". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> include_entities </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">slug</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> When set to either true, t or 1 statuses will not be included in the returned user objects. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> skip_status </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
 </div>
+
+  
+  
 </div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method POST">POST</span><span class="route">listUnsubscribeMe</span>
-</div>
-<div class="meta">
-<p>Unsubscribes the authenticated user from the specified list. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-listUnsubscribeMe" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      listUnsubscribeMe 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Unsubscribes the authenticated user from the specified list. Either a list_id or a slug is required. If providing a list_slug, an owner_screen_name or owner_id is also required.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_screen_name</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The user ID of the user who owns the list being requested by a slug.</p>
+
+
+
+      
+      <p> The screen name of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">owner_id</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The user ID of the user who owns the list being requested by a slug. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> owner_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The numerical id of the list. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> list_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The numerical id of the list.</p>
+
+
+
+      
+      <p> You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> slug </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">list_id</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the owner_id or owner_screen_name parameters.</p>
-</div>
-<div class="name">
-<span class="parameter-name">slug</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu Sep 12 2013 01:12:19 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

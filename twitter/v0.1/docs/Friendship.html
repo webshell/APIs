@@ -1,334 +1,1236 @@
-<!-- Webshell APIs
- Copyright (C) 2013 Webshell SAS
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- any later version.
+    
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
+        
 
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- -->
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method POST">POST</span><span class="route">follow</span>
-</div>
-<div class="meta">
-<p>Allows the authenticating users to follow the user specified in the ID parameter.<br/><br/>Returns the befriended user in the requested format when successful. Returns a string describing the failure condition when unsuccessful. If you are already friends with the user a HTTP 403 may be returned, though for performance reasons you may get a 200 OK message even if the friendship already exists.<br/><br/>Actions taken in this method are asynchronous and changes will be eventually consistent. Providing either screen_name or user_id is required.</p>
-</div>
-<hr>
+<div class="endpoint" data-group="documentation" id="endpoint-follow" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      follow 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Allows the authenticating users to follow the user specified in the ID parameter.                       Returns the befriended user in the requested format when successful. Returns a string describing the failure condition when unsuccessful. If you are already friends with the user a HTTP 403 may be returned, though for performance reasons you may get a 200 OK message even if the friendship already exists.                       Actions taken in this method are asynchronous and changes will be eventually consistent. Providing either screen_name or user_id is required.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user for whom to befriend.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">screen_name</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The ID of the user for whom to befriend.</p>
+
+
+
+      
+      <p> The screen name of the user for whom to befriend. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">user_id</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The ID of the user for whom to befriend. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Enable notifications for the target user. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> follow </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
+
 </div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Enable notifications for the target user.       </p>
+
+  
+  
 </div>
-<div class="name">
-<span class="parameter-name">follow</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method DELETE">DELETE</span><span class="route">unfollow</span>
-</div>
-<div class="meta">
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-friendsIds" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      friendsIds 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns a cursored collection of user IDs for every user the specified user is following (otherwise known as their "friends").                   At this time, results are ordered with the most recent following first — however, this ordering is subject to unannounced change and eventual consistency issues. Results are given in groups of 5,000 user IDs and multiple "pages" of results can be navigated through using the next_cursor value in subsequent requests. See Using cursors to navigate collections for more information.                   This method is especially powerful when used in conjunction with GET users/lookup, a method that allows you to convert user IDs into full user objects in bulk.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user for whom to befriend.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">screen_name</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The ID of the user for whom to return results for. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The ID of the user for whom to befriend.</p>
+
+
+
+      
+      <p> The screen name of the user for whom to return results for. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">user_id</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."                The response from the API will include a previous_cursor and next_cursor to allow paging back and forth. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> cursor </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> stringify_ids </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
 </div>
+
+  
+  
 </div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">showFriendship</span>
-</div>
-<div class="meta">
-<p>Returns detailed information about the relationship between two arbitrary users. A choice has to be made between screen_name or id for both target and source parameters.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-getUserIdRetweetNoWantedFrom" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      getUserIdRetweetNoWantedFrom 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns a collection of user_ids that the currently authenticated user does not want to receive retweets from.Use POST friendships/update to set the "no retweets" status for a given user account on behalf of the current user.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The user_id of the subject user.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">source_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen_name of the subject user.</p>
+
+
+
+      
+      <p> Many programming environments will not consume our ids due to their size. Provide this option to have ids returned as strings instead. Read more about Twitter IDs, JSON and Snowflake. This parameter is especially important to use in Javascript environments.Example Values: true </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> stringify_ids </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">source_screen_name</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The user_id of the target user.</p>
-</div>
-<div class="name">
-<span class="parameter-name">target_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-The screen_name of the target user.</p>
-</div>
-<div class="name">
-<span class="parameter-name">target_screen_name</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">incomingFriendships</span>
-</div>
-<div class="meta">
-<p>Returns a collection of numeric IDs for every user who has a pending request to follow the authenticating user.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-incomingFriendships" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      incomingFriendships 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns a collection of numeric IDs for every user who has a pending request to follow the authenticating user.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.<br/>               </p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">cursor</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."                        The response from the API will include a previous_cursor and next_cursor to allow paging back and forth. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> cursor </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> stringify_ids </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
+
 </div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</p>
+
+  
+  
 </div>
-<div class="name">
-<span class="parameter-name">stringify_ids</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">outgoingFriendships</span>
-</div>
-<div class="meta">
-<p>Returns a collection of numeric IDs for every protected user for whom the authenticating user has a pending follow request.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-lookupFriendships" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      lookupFriendships 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the relationships of the authenticating user to the comma-separated list of up to 100 screen_names or user_ids provided. Values for connections can be: following, following_requested, followed_by, none.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.<br/>               </p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">cursor</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</p>
+
+
+
+      
+      <p> The screen name of the user for whom to befriend.Example Values: noradio </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">stringify_ids</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The ID of the user for whom to befriend.Example Values: 12345 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
 </div>
+
+  
+  
 </div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">friendsIds</span>
-</div>
-<div class="meta">
-<p>Returns a cursored collection of user IDs for every user the specified user is following (otherwise known as their "friends").<br/><br/>At this time, results are ordered with the most recent following first — however, this ordering is subject to unannounced change and eventual consistency issues. Results are given in groups of 5,000 user IDs and multiple "pages" of results can be navigated through using the next_cursor value in subsequent requests. See Using cursors to navigate collections for more information.<br/><br/>This method is especially powerful when used in conjunction with GET users/lookup, a method that allows you to convert user IDs into full user objects in bulk.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-outgoingFriendships" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      outgoingFriendships 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns a collection of numeric IDs for every protected user for whom the authenticating user has a pending follow request.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The ID of the user for whom to return results for.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">user_id</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."                        The response from the API will include a previous_cursor and next_cursor to allow paging back and forth. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> cursor </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">boolean</span>
+
+
+
+      
+      <p> Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> stringify_ids </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
+
 </div>
-<div class="description">
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-showFriendship" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      showFriendship 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns detailed information about the relationship between two arbitrary users. A choice has to be made between screen_name or id for both target and source parameters.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The screen name of the user for whom to return results for.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">screen_name</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The user_id of the subject user. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> source_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of -1 will be assumed, which is the first "page."<br/><br/>The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.</p>
+
+
+
+      
+      <p> The screen_name of the subject user. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> source_screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">cursor</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The user_id of the target user. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> target_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead.</p>
+
+
+
+      
+      <p> The screen_name of the target user. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> target_screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">stringify_ids</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-unfollow" style="">
+  <div class="title">
+    <span class="method DELETE"> DELETE </span><span class="route">
+      unfollow 
+    </span>
+  </div>
+  
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The screen name of the user for whom to befriend. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The ID of the user for whom to befriend. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-updateFriendships" style="">
+  <div class="title">
+    <span class="method POST"> POST </span><span class="route">
+      updateFriendships 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Allows one to enable or disable retweets and device notifications from the specified user.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The screen name of the user for whom to befriend.Example Values: noradio </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> screen_name </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> The ID of the user for whom to befriend.Example Values: 12345 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> user_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Enable/disable device notifications from the target user.Example Values: true, false </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> device </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> Enable/disable retweets from the target user.Example Values: true, false </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> retweets </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
+</div>
+
+</div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu Sep 12 2013 01:12:20 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

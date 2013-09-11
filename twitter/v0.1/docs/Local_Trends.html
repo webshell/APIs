@@ -1,113 +1,339 @@
-<!-- Webshell APIs
- Copyright (C) 2013 Webshell SAS
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- any later version.
+    
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
+        
 
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- -->
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">userTrendingLocations</span>
-</div>
-<div class="meta">
-<p>Returns the locations that Twitter has trending topic information for.<br/><br/>The response is an array of "locations" that encode the location's WOEID and some other human-readable information such as a canonical name and country the location belongs in.<br/><br/>A WOEID is a Yahoo! Where On Earth ID.</p>
-</div>
-<hr>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">trendingTopics</span>
-</div>
-<div class="meta">
-<p>Returns the top 10 trending topics for a specific WOEID, if trending information is available for it.<br/><br/>The response is an array of "trend" objects that encode the name of the trending topic, the query parameter that can be used to search for the topic on Twitter Search, and the Twitter Search URL.<br/><br/>This information is cached for 5 minutes. Requesting more frequently than that will not return any more data, and will count against your rate limit usage.</p>
-</div>
-<hr>
+<div class="endpoint" data-group="documentation" id="endpoint-closestTrendsTo" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      closestTrendsTo 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the locations that Twitter has trending topic information for, closest to a specified location.                   The response is an array of "locations" that encode the location's WOEID and some other human-readable information such as a canonical name and country the location belongs in.                   A WOEID is a Yahoo! Where On Earth ID.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-The Yahoo! Where On Earth ID of the location to return trending information for. Global information is available by using 1 as the WOEID.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">id</span>
-<p class="required">Required</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> If provided with a long parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> lat </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> If provided with a lat parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> long </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="parameter">
-<div class="console">
+
 </div>
-<div class="description">
-<span class="parameter-type">string</span>
-<p>
-Setting this equal to hashtags will remove all hashtags from the trends list.</p>
+
+  
+  
 </div>
-<div class="name">
-<span class="parameter-name">exclude</span>
-<p class="required">Required</p>
-</div>
-</div>
-</div>
-</div>
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">closestTrendsTo</span>
-</div>
-<div class="meta">
-<p>Returns the locations that Twitter has trending topic information for, closest to a specified location.<br/><br/>The response is an array of "locations" that encode the location's WOEID and some other human-readable information such as a canonical name and country the location belongs in.<br/><br/>A WOEID is a Yahoo! Where On Earth ID.</p>
-</div>
-<hr>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-trendingTopics" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      trendingTopics 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the top 10 trending topics for a specific WOEID, if trending information is available for it.                   The response is an array of "trend" objects that encode the name of the trending topic, the query parameter that can be used to search for the topic on Twitter Search, and the Twitter Search URL.                   This information is cached for 5 minutes. Requesting more frequently than that will not return any more data, and will count against your rate limit usage.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-If provided with a long parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">lat</span>
-<p class="optional">Optional</p>
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">integer</span>
+
+
+
+      
+      <p> The Yahoo! Where On Earth ID of the location to return trending information for. Global information is available by using 1 as the WOEID. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> id </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-If provided with a lat parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.</p>
+
+
+
+      
+      <p> Setting this equal to hashtags will remove all hashtags from the trends list. </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> exclude </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">long</span>
-<p class="required">Required</p>
+
 </div>
+
+  
+  
 </div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+    
+
+        
+
+<div class="endpoint" data-group="documentation" id="endpoint-userTrendingLocations" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      userTrendingLocations 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns the locations that Twitter has trending topic information for.                   The response is an array of "locations" that encode the location's WOEID and some other human-readable information such as a canonical name and country the location belongs in.                   A WOEID is a Yahoo! Where On Earth ID.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
+<div class="parameters">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
+<span class="parameter-type">string</span>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
+
 </div>
+
+  
+  
+</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu Sep 12 2013 01:12:21 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>

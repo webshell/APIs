@@ -1,189 +1,339 @@
-<!-- Webshell APIs
- Copyright (C) 2013 Webshell SAS
+<!DOCTYPE html>
+<html>
+  <body>
+    
+    <div class="apicontainer">
+      <div class="main api-profile">
+	<div class="constraint">
+	  
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- any later version.
+    
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
+        
 
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- -->
-<body>
- <div class="apicontainer">
-<div class="main api-profile">
- <div class="constraint">
-<div class="endpoint" data-group="documentation" id="endpoint-nameOfTheMethod" style="">
-<div class="title">
-<span class="method GET">GET</span><span class="route">search</span>
-</div>
-<div class="meta">
+<div class="endpoint" data-group="documentation" id="endpoint-search" style="">
+  <div class="title">
+    <span class="method GET"> GET </span><span class="route">
+      search 
+    </span>
+  </div>
+  
+  
+  <div class="meta">
+    <p>Returns a collection of relevant Tweets matching a specified query.Please note that Twitter's search service and, by extension, the Search API is not meant to be an exhaustive source of Tweets. Not all Tweets will be indexed or made available via the search interface.In API v1.1, the response format of the Search API has been improved to return Tweet objects more similar to the objects you'll find across the REST API and platform. You may need to tolerate some inconsistencies and variance in perspectival values (fields that pertain to the perspective of the authenticating user) and embedded user objects.To learn how to use Twitter Search effectively, consult our guide to Using the Twitter Search API. See Working with Timelines to learn best practices for navigating results by since_id and max_id.<br/></p>
+  </div>
+  <hr>
+  
+  
+  
+  
+
+
+
 <div class="parameters">
-<div class="titles">
-<div class="console">Default</div>
-<div class="description">Description</div>
-<div class="name">Parameter</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+  <div class="titles">
+    <div class="console">Default</div>
+    <div class="description">Description</div>
+    <div class="name">Parameter</div>
+  </div>
+  
+
+
+
+
+
+
+  
+  <div class="parameter">
+    <div class="console"><p>json</p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> format </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">q</span>
-<p class="required">Required</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> undefined </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> q </span>
+      
+      
+      <p class="required" >Required</p>
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">callback</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> If supplied, the response will use the JSONP format with a callback of the given name. The usefulness of this parameter is somewhat diminished by the requirement of authentication for requests to this endpoint.Example Values: processTweets </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> callback </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">geocode</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Returns tweets by users located within a given radius of the given latitude/longitude. The location is preferentially taking from the Geotagging API, but will fall back to their Twitter profile. The parameter value is specified by "latitude,longitude,radius", where radius units must be specified as either "mi" (miles) or "km" (kilometers). Note that you cannot use the near operator via the API to geocode arbitrary locations; however you can use this geocode parameter to search near geocodes directly. A maximum of 1,000 distinct "sub-regions" will be considered when using the radius modifier.Example Values: 37.781157,-122.398720,1mi </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> geocode </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">lang</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Restricts tweets to the given language, given by an ISO 639-1 code. Language detection is best-effort.Example Values: eu </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> lang </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">locale</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Specify the language of the query you are sending (only ja is currently effective). This is intended for language-specific consumers and the default should work in the majority of cases.Example Values: ja </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> locale </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">page</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> The number of tweets to return per page, up to a maximum of 100. Defaults to 15. This was formerly the "rpp" parameter in the old Search API.Example Values: 100 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> count </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">result_type</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Optional. Specifies what type of search results you would prefer to receive. The current default is "mixed." Valid values include:  * mixed: Include both popular and real time results in the response.  * recent: return only the most recent results in the response  * popular: return only the most popular results in the response.Example Values: mixed, recent, popular </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> result_type </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">rpp</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Returns results with an ID less than (that is, older than) or equal to the specified ID.Example Values: 54321 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> max_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">show_user</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Returns tweets generated before the given date. Date should be formatted as YYYY-MM-DD. Keep in mind that the search index may not go back as far as the date you specify here.Example Values: 2012-09-01 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> until </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">until</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.Example Values: 12345 </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> since_id </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">since_id</span>
-<p class="optional">Optional</p>
-</div>
-</div>
-<div class="parameter">
-<div class="console">
-</div>
-<div class="description">
+
+  <div class="parameter">
+    <div class="console"><p></p></div>
+    <div class="description">
+      
+      
 <span class="parameter-type">string</span>
-<p>
-</p>
+
+
+
+      
+      <p> The entities node will be disincluded when set to false.Example Values: false </p>
+    </div>
+    <div class="name">
+      <span class="parameter-name"> include_entities </span>
+      
+      <p class="optional">Optional</p>
+      
+      
+   </div>
+  
 </div>
-<div class="name">
-<span class="parameter-name">include_entities</span>
-<p class="optional">Optional</p>
+
 </div>
+
+  
+  
 </div>
-</div>
-</div>
+
+
+
+    
+    
+    
+    
+    
+    
+
+
+
+
+	</div>
+      </div>
+    </div>
+    
+    <footer>
+      Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Thu Sep 12 2013 01:12:20 GMT+0200 (CEST)
+    </footer>
+    
+    <script> prettyPrint(); </script>
+  </body>
+</html>
