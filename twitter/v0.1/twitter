@@ -1610,7 +1610,7 @@ exports.favorites = function(args, opts) {
  * @methodhttp POST
  */
 exports.favoriteStatus = function(args, opts) {
-	var url = 'https://api.twitter.com/1.1/favorites/create/{id}.{format}';
+	var url = 'https://api.twitter.com/1.1/favorites/create.{format}';
 	args = args || {};
 	url = url_replace(url, args, 'format', 'str', true, "json");
 	url = url_replace(url, args, 'id', 'int', true);
@@ -1627,7 +1627,7 @@ exports.favoriteStatus = function(args, opts) {
  * @methodhttp DELETE
  */
 exports.unfavoriteStatus = function(args, opts) {
-	var url = 'https://api.twitter.com/1.1/favorites/destroy/{id}.{format}';
+	var url = 'https://api.twitter.com/1.1/favorites/destroy.{format}';
 	args = args || {};
 	url = url_replace(url, args, 'format', 'str', true, "json");
 	url = url_replace(url, args, 'id', 'int', true);
@@ -1711,23 +1711,6 @@ exports.blockedIds = function(args, opts) {
 	url = url_replace(url, args, 'sringify_ids');
 	url = url_replace(url, args, 'cursor', 'int');
 	return http({url:url, params:args, auth:'oauth1', provider:provider}, opts);
-};
-
-/** 
- * The user specified in the id is blocked by the authenticated user and reported as a spammer.
- * @category Spam Reporting
- * @param {string} [format=json]  undefined
- * @param {string}  screen_name   The ID or screen_name of the user you want to report as a spammer. Helpful for disambiguating when a valid screen name is also a user ID.
- * @param {integer}  user_id   The ID of the user you want to report as a spammer. Helpful for disambiguating when a valid user ID is also a valid screen name.
- * @methodhttp POST
- */
-exports.reportSpam = function(args, opts) {
-	var url = 'https://api.twitter.com/1.1/report_spam.{format}';
-	args = args || {};
-	url = url_replace(url, args, 'format', 'str', true, "json");
-	url = url_replace(url, args, 'screen_name', 'str');
-	url = url_replace(url, args, 'user_id', 'int');
-	return http.post({url:url, body:args, auth:'oauth1', provider:provider}, opts);
 };
 
 /** 
